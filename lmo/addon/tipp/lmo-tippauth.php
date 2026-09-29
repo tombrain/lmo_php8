@@ -107,6 +107,14 @@ if ($action == 'tipp') {
         } elseif ($todo == 'tabelle') {
             require_once(PATH_TO_LMO . '/lmo-openfile.php');
         }
+        // Fehlgeschlagenes Laden (ungültige/nicht vorhandene Liga) fängt
+        // lmo-openfile.php bereits ab, indem es $file auf '' zurück setzt.
+        // $todo muss hier ebenfalls zurueckgesetzt werden, sonst würde der
+        // nachgelagerte Block unten trotzdem die content-spezifische Datei
+        // (z.B. lmo-tipptabelle.php) mit undefinierten Variablen aufrufen.
+        if (in_array($todo, array('edit', 'einsicht', 'tabelle', 'wert', 'fieber'), true) && empty($file)) {
+            $todo = '';
+        }
 
         include(PATH_TO_ADDONDIR . '/tipp/lmo-tippmenu.php');
 ?>

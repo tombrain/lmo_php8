@@ -614,12 +614,6 @@
 1004=Rokomet
 1005=Nogomet
 1006=Hokej na ledu
-2000=Volleyball
-2001=Volleyball Version by vbfan
-2020=Žoge
-2021=Osvojene žoge
-2022=Žoge izgubljene
-2025=Quot.
 3000=Ustvarite načrt igre za drugi polčas
 3001=Liga ima liho število dni tekem. Nobenega povratnega potovanja ni bilo mogoče identificirati.
 3002=Načrt igre za drugi polčas je bil uspešno shranjen.

@@ -614,12 +614,6 @@
 1004=Handball
 1005=Fussball
 1006=Eishockey
-2000=Volleyball
-2001=Volleyball Version by vbfan
-2020=Bälle
-2021=Bälle gewonnen
-2022=Bälle verloren
-2025=Quot.
 3000=Rückrundenspielplan erstellen
 3001=Die Liga hat eine ungerade Anzahl an Spieltagen. Es konnte keine Hin- & Rückrunde identifiziert werden.
 3002=Der Rückrundenspielplan wurde erfolgreich gespeichert.

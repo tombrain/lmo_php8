@@ -27,10 +27,11 @@ $verz = substr($dirliga . $subdir, -1) == '/' ? opendir(substr(PATH_TO_LMO . '/'
 $liga_counter = 0;
 $unbenannte_liga_counter = 0;
 $ligadatei = array();
+if ($verz !== false) {
 while($files = readdir($verz)) {
     if (strtolower(substr($files,-4)) == '.l98') {
         $sekt = '';
-        $datei = fopen(PATH_TO_LMO . '/' . $dirliga . $subdir . $files, 'rb');
+        $datei = file_exists(PATH_TO_LMO . '/' . $dirliga . $subdir . $files) ? fopen(PATH_TO_LMO . '/' . $dirliga . $subdir . $files, 'rb') : false;
         if ($datei && check_hilfsadmin($files)) {
             $ligadatei[$liga_counter]['file_date'] = filemtime(PATH_TO_LMO . '/' . $dirliga . $subdir . $files);  //Datum
             $ligadatei[$liga_counter]['file_name'] = $files;
@@ -118,7 +119,12 @@ while($files = readdir($verz)) {
         }
     }
 }
-closedir($verz);
+} else {
+    echo getMessage($text[224], true);
+}
+if ($verz !== false) {
+    closedir($verz);
+}
 
 usort($ligadatei, 'cmp');
 if (isset($_SESSION['liga_sort_direction']) && $_SESSION['liga_sort_direction'] == 'desc') $ligadatei = array_reverse($ligadatei); ?>

@@ -614,12 +614,6 @@
 1004=Håndball
 1005=Fotball
 1006=Ishockey
-2000=Volleyball
-2001=Volleyball Version by vbfan
-2020=Baller
-2021=Baller vant
-2022=Tapte baller
-2025=Quot.
 3000=Lag andre omgangsspillplan
 3001=Ligaen har et oddetall kampdager. Ingen rundtur kunne identifiseres.
 3002=Spillplanen i andre omgang ble reddet.

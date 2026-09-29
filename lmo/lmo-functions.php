@@ -83,6 +83,10 @@ function get_dir($verz)
     $ret = array();
     if (substr($verz, -1) != '/') $verz .= '/';
 
+    if (!is_dir(PATH_TO_LMO . '/' . $verz)) {
+        return $ret;
+    }
+
     $handle = opendir(PATH_TO_LMO . '/' . $verz);
     if ($handle) {
         while ($file = readdir ($handle)) {

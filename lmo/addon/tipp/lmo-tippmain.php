@@ -39,6 +39,14 @@ if ($action == "tipp") {
       require(PATH_TO_LMO."/lmo-openfilename.php");
     } elseif ($todo == "wert" && $all == 1) {
     }
+    // Wenn das Laden fehlgeschlagen ist (ungültige/nicht vorhandene Liga),
+    // setzt lmo-openfile.php $file auf '' zurueck. Ohne diese Prüfung
+    // wuerde der switch($todo)-Block unten trotzdem die content-spezifische
+    // Datei (z.B. lmo-tipptabelle.php) aufrufen, obwohl $anzst/$anzteams/
+    // $tab0/... nie gesetzt wurden.
+    if (in_array($todo, array("edit", "einsicht", "tabelle", "wert", "fieber"), true) && empty($file)) {
+      $todo = "";
+    }
   }
   $me = array("0", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
   $adda = $_SERVER['PHP_SELF']."?action=tipp&amp;todo=";

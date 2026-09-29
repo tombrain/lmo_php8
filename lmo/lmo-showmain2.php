@@ -269,7 +269,7 @@ if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/
 $output_hauptteil .= ob_get_contents();
 ob_end_clean();
 
-if ($file != '') {
+if ($file != '' && isset($stand)) {
     // Letzte Auswertung
     $output_letzteauswertung .= $text[406] . ':&nbsp;' . $stand;
 
@@ -280,15 +280,15 @@ if ($file != '') {
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr>
 <?php
-        if ($lmtype == 0 && $druck == 1) {
+        if ($lmtype == 0 && isset($druck) && $druck == 1) {
             include(PATH_TO_LMO . '/lmo-savehtml.php');
             include(PATH_TO_LMO . '/lmo-savehtml1.php');
         }?>
             <td align="center"><?php
-        if ($lmtype == 0 && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-st.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-st.html" title="' . $text[477] . '">' . $text[478] . '</a>&nbsp;';}?>
+        if ($lmtype == 0 && isset($druck) && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-st.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-st.html" title="' . $text[477] . '">' . $text[478] . '</a>&nbsp;';}?>
             </td>
             <td align="center"><?php
-        if ($lmtype == 0 && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html" title="' . $text[479] . '">' . $text[480] . '</a>&nbsp;';}?>
+        if ($lmtype == 0 && isset($druck) && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html" title="' . $text[479] . '">' . $text[480] . '</a>&nbsp;';}?>
             </td>
           </tr>
         </table><?php

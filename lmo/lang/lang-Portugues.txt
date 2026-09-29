@@ -614,12 +614,6 @@
 1004=Handebol
 1005=Futebol
 1006=Hóquei no gelo
-2000=Volleyball
-2001=Volleyball Version by vbfan
-2020=Bolas
-2021=Bolas ganhas
-2022=Bolas perdidas
-2025=Quot.
 3000=Criar plano de jogo para o segundo tempo
 3001=A liga tem um número ímpar de dias de jogos. Nenhuma viagem de ida e volta foi identificada.
 3002=O plano de jogo do segundo tempo foi salvo com sucesso.

@@ -614,12 +614,6 @@
 1004=Kézilabda
 1005=Futball
 1006=Jégkorong
-2000=Volleyball
-2001=Volleyball Version by vbfan
-2020=Labdák
-2021=Nyertek labdák
-2022=Elveszett labdák
-2025=Quot.
 3000=Második félidő játéktervének elkészítése
 3001=A bajnokság páratlan számú mérkőzésnappal rendelkezik. Oda-vissza utat nem sikerült azonosítani.
 3002=A második félidő játéktervét sikerült elmenteni.

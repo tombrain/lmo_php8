@@ -614,12 +614,6 @@
 1004=Rukomet
 1005=Fudbal
 1006=Hokej na ledu
-2000=Volleyball (Odbojka)
-2001=Volleyball Version (odbojka vrzija) by vbfan
-2020=Poen
-2021=Osvojeni poeni
-2022=Izgubljeni poeni
-2025=Quot.
 3000=Kreiraj plan igre za drugo poluvrijeme
 3001=Liga ima neparan broj dana utakmica. Nije moguće utvrditi povratno putovanje.
 3002=Plan igre drugog poluvremena je uspješno sačuvan.

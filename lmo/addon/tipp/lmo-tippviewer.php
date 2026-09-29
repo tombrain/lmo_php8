@@ -25,27 +25,29 @@ if ($tipp_viewertipp == 1 && $viewermode == 1) {
     require_once(PATH_TO_ADDONDIR . '/tipp/lmo-tippaenderbar.php');
     $verz = opendir(substr(PATH_TO_LMO . '/' . $dirliga, 0, -1));
     $dateien = array();
-    while ($files = readdir($verz)) {
-        if (file_exists(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . substr($files, 0, -4) . '_' . $_SESSION['lmotippername'] . '.tip')) {
-            $ftest = 1;
-            if ($tipp_immeralle != 1) {
-                $ftest = 0;
-                $ftest1 = '';
-                $ftest1 = explode(',', $tipp_ligenzutippen);
-                if (isset($ftest1)) {
-                    for ($u = 0; $u < count($ftest1); $u++) {
-                        if ($ftest1[$u] == substr($files, 0, -4)) {
-                            $ftest = 1;
+    if ($verz !== false) {
+        while ($files = readdir($verz)) {
+            if (file_exists(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . substr($files, 0, -4) . '_' . $_SESSION['lmotippername'] . '.tip')) {
+                $ftest = 1;
+                if ($tipp_immeralle != 1) {
+                    $ftest = 0;
+                    $ftest1 = '';
+                    $ftest1 = explode(',', $tipp_ligenzutippen);
+                    if (isset($ftest1)) {
+                        for ($u = 0; $u < count($ftest1); $u++) {
+                            if ($ftest1[$u] == substr($files, 0, -4)) {
+                                $ftest = 1;
+                            }
                         }
                     }
                 }
-            }
-            if ($ftest == 1) {
-                array_push($dateien, $files);
+                if ($ftest == 1) {
+                    array_push($dateien, $files);
+                }
             }
         }
+        closedir($verz);
     }
-    closedir($verz);
 
     sort($dateien);
     $anzligen = count($dateien);

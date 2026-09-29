@@ -60,12 +60,14 @@ if ($file != '' && $tipp_tipptabelle1 == 1) {
             $verz = opendir(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp);
             $dummy = array();
             $liga = substr($file, 0, -4);
-            while ($files = readdir($verz)) {
-                if (strtolower(substr($files, 0, strrpos($files, '_'))) == strtolower($liga) && strtolower(substr($files, -4)) == '.tip') {
-                    array_push($dummy, $files);
+            if ($verz !== false) {
+                while ($files = readdir($verz)) {
+                    if (strtolower(substr($files, 0, strrpos($files, '_'))) == strtolower($liga) && strtolower(substr($files, -4)) == '.tip') {
+                        array_push($dummy, $files);
+                    }
                 }
+                closedir($verz);
             }
-            closedir($verz);
             $anztipper = count($dummy);
             for ($m = 0; $m < $anztipper; $m++) {
                 $nick = substr(substr($dummy[$m], strrpos($dummy[$m], '_') + 1), 0, -4);
@@ -351,12 +353,14 @@ if ($tipp_wertverein == 1 && $tabtype == 0) { ?>
         $verz = opendir(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . 'auswert/vereine/');
         $dummy = array();
         $liga = substr($file, 0, -4);
-        while ($files = readdir($verz)) {
-            if (strtolower(substr($files, 0, strrpos($files, '_'))) == strtolower($liga) && strtolower(substr($files, - 4)) == '.ver') {
-                array_push($dummy, $files);
+        if ($verz !== false) {
+            while ($files = readdir($verz)) {
+                if (strtolower(substr($files, 0, strrpos($files, '_'))) == strtolower($liga) && strtolower(substr($files, - 4)) == '.ver') {
+                    array_push($dummy, $files);
+                }
             }
+            closedir($verz);
         }
-        closedir($verz);
         $anztipper = count($dummy);
         for ($m = 0; $m < $anztipper; $m++) {
             $nick = substr(substr($dummy[$m], strrpos($dummy[$m], '_') + 1), 0, -4);
