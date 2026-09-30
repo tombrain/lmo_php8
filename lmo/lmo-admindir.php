@@ -83,8 +83,8 @@ while($files = readdir($verz)) {
                             }
                         }
                         //Alle benötigten Werte gefunden -> Abbruch
-                        if ($ligadatei[$liga_counter]['liga_name'] != '' &&  
-                            $ligadatei[$liga_counter]['aktueller_spieltag'] != '' && 
+                        if ($ligadatei[$liga_counter]['liga_name'] != '' &&
+                            $ligadatei[$liga_counter]['aktueller_spieltag'] != '' &&
                             $ligadatei[$liga_counter]['anz_teams'] != '')
                         break;
                     }

@@ -50,18 +50,18 @@ if ($file != "") {
   $hoy = 0;
   for ($a = 1; $a <= $anzteams; $a++) {
     if ($tabtype == 3 || $newtabtype == 3) {
-      $hoy = ($anzst/2);
+      $hoy = (int)($anzst/2);
     }
     if ($tabtype == 4 || $newtabtype == 4) {
-      $endtab = ($anzst/2);
+      $endtab = (int)($anzst/2);
     }
     for ($j = $hoy; $j < $endtab; $j++) {
       for ($i = 0; $i < $anzsp; $i++) {
         if ($tabtype == 3 || $newtabtype == 3) {
-          $hoy = ($anzst/2);
+          $hoy = (int)($anzst/2);
         }
         if ($tabtype == 4 || $newtabtype == 4) {
-          $endtab = ($anzst/2);
+          $endtab = (int)($anzst/2);
         }
         if (($goala[$j][$i] != "_") && ($goalb[$j][$i] != "_") && ((($tabtype == 0 or $tabtype == 3 or $tabtype == 4) && (($a == $teama[$j][$i]) || ($a == $teamb[$j][$i]))) || (($tabtype == 1) && ($a == $teama[$j][$i])) || (($tabtype == 2) && ($a == $teamb[$j][$i])))) {
           if ($stt < $j+1) {
@@ -256,13 +256,13 @@ if ($file != "") {
         }
       }
     }
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = ($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = ($anzst/2))))) {
+    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $etore[$a] = $etore[$a]-$torkorrektur1[$a]; // Hack-Straftore
       $atore[$a] = $atore[$a]-$torkorrektur2[$a]; // Hack-Straftore
     }
     $dtore[$a] = $etore[$a]-$atore[$a];
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = ($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = ($anzst/2))))) {
+    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $punkte[$a] = $punkte[$a]-$strafp[$a];
       if ($minus == 2) {
