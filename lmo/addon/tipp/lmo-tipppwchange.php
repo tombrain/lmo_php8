@@ -87,7 +87,9 @@ if (($action == 'tipp') && ($todo == 'pwchange')) {
     }
 
     if ($newpage == 1) {
-        $users[$save] = $dummb[0] . '|' . $xtipperpassneu . '|' . $dummb[2] . '|' . $dummb[3] . '|' . $dummb[4] . '|' . $dummb[5] . '|' . $dummb[6] . '|' . $dummb[7] . '|' . $dummb[8] . '|' . $dummb[9] . '|' . $dummb[10] . '|EOL';
+        $bestAlgo = defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT;
+        $hashedPassNeu = password_hash($xtipperpassneu, $bestAlgo);
+        $users[$save] = $dummb[0] . '|' . $hashedPassNeu . '|' . $dummb[2] . '|' . $dummb[3] . '|' . $dummb[4] . '|' . $dummb[5] . '|' . $dummb[6] . '|' . $dummb[7] . '|' . $dummb[8] . '|' . $dummb[9] . '|' . $dummb[10] . '|EOL';
         require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsaveauth.php');
     }
 ?>
