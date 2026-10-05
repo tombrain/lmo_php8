@@ -10,8 +10,6 @@
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
@@ -185,8 +183,6 @@ xadmin_pass=passwort1
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
@@ -421,8 +417,6 @@ xadmin_erweitert1=1
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
@@ -602,8 +596,6 @@ GEAENDERT config/lmo-auth.php
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
@@ -777,8 +769,6 @@ GEAENDERT config/lmo-auth.php
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">

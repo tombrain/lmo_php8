@@ -17,19 +17,26 @@ Currently supported languages (_sorted alphabetically_)
 - [![Croatian](https://www.liga-manager-online.org/forum_files/md/Hrvatski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Hrvatski) Croatian
 - [![Czech](https://www.liga-manager-online.org/forum_files/md/Cestina.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Cestina) Czech
 - [![Dutch](https://www.liga-manager-online.org/forum_files/md/Nederlands.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Nederlands) Dutch
-- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) English (also installation language)
-- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) French (also installation language)
-- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) German (also installation language and [help files](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
+- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) English
+- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) French
+- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) German ([help files](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
 - [![Hungarian](https://www.liga-manager-online.org/forum_files/md/Magyar.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Magyar) Hungarian
 - [![Italian](https://www.liga-manager-online.org/forum_files/md/Italiano.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Italiano) Italian
 - [![Norwegian](https://www.liga-manager-online.org/forum_files/md/Norsk.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Norsk) Norwegian
 - [![Portuguese](https://www.liga-manager-online.org/forum_files/md/Portugues.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Portugues) Portuguese
 - [![Romanian](https://www.liga-manager-online.org/forum_files/md/Romanian.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Romanian) Romanian
 - [![Slovenian](https://www.liga-manager-online.org/forum_files/md/Slovenskega.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Slovenskega) Slovenian
-- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanish (also installation language)
+- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanish
 
 ### System requirement
 - Web server with at least PHP 8.0 - maximum PHP 8.4
+
+### Installation
+1. Upload the `lmo` folder to your web space.
+2. Open `lmo.php` in your browser. LMO sets itself up (no installer, no FTP data needed).
+3. Open `lmoadmin.php` **right away** and choose the admin user name and password.
+
+Update: copy the new files over the old ones. New settings are added to your configuration automatically; an old `install` folder can be deleted.
 
 > [!NOTE]
 This LMO version is still a beta version. Please note this. Before copying over an existing LMO, make a backup first!
@@ -45,9 +52,9 @@ Mit diesem Skript können Sie Ihren Besuchern einen tollen Ergebnisdienst über 
 
 Momentan unterstützte Sprachen (_alphabetisch sortiert_)
 - [![Bosnian](https://www.liga-manager-online.org/forum_files/md/Bosanski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Bosanski) Bosnisch
-- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) Deutsch (auch Installationssprache und [Hilfedateien](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
-- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) Englisch (auch Installationssprache)
-- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) Französisch (auch Installationssprache)
+- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) Deutsch ([Hilfedateien](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
+- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) Englisch
+- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) Französisch
 - [![Italian](https://www.liga-manager-online.org/forum_files/md/Italiano.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Italiano) Italienisch
 - [![Croatian](https://www.liga-manager-online.org/forum_files/md/Hrvatski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Hrvatski) Kroatisch
 - [![Dutch](https://www.liga-manager-online.org/forum_files/md/Nederlands.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Nederlands) Niederländisch
@@ -55,12 +62,19 @@ Momentan unterstützte Sprachen (_alphabetisch sortiert_)
 - [![Portuguese](https://www.liga-manager-online.org/forum_files/md/Portugues.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Portugues) Portugiesisch
 - [![Romanian](https://www.liga-manager-online.org/forum_files/md/Romanian.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Romanian) Rumänisch
 - [![Slovenian](https://www.liga-manager-online.org/forum_files/md/Slovenskega.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Slovenskega) Slowenisch
-- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanisch (auch Installationssprache)
+- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanisch
 - [![Czech](https://www.liga-manager-online.org/forum_files/md/Cestina.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Cestina) Tschechisch
 - [![Hungarian](https://www.liga-manager-online.org/forum_files/md/Magyar.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Magyar) Ungarisch
 
 ### Systemvorraussetzung
 - Webserver mit mindestens PHP 8.0  -  maximal PHP 8.4
+
+### Installation
+1. Den Ordner `lmo` auf den Webspace hochladen.
+2. `lmo.php` im Browser aufrufen. Der LMO richtet sich selbst ein (kein Installer, keine FTP-Daten nötig).
+3. **Sofort** `lmoadmin.php` aufrufen und Benutzername und Passwort des Admins festlegen.
+
+Update: Die neuen Dateien über die alten kopieren. Neue Einstellungen werden automatisch in die Konfiguration übernommen; einen alten Ordner `install` kann man löschen.
 
 > [!NOTE]
 Bei dieser LMO Version handelt es sich immer noch um eine Beta Version. Beachtet das bitte. Vor dem drüberkopieren über einen vorhandenen LMO macht zuerst eine Sicherung!
@@ -85,19 +99,26 @@ Currently supported languages (_sorted alphabetically_)
 - [![Croatian](https://www.liga-manager-online.org/forum_files/md/Hrvatski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Hrvatski) Croatian
 - [![Czech](https://www.liga-manager-online.org/forum_files/md/Cestina.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Cestina) Czech
 - [![Dutch](https://www.liga-manager-online.org/forum_files/md/Nederlands.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Nederlands) Dutch
-- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) English (also installation language)
-- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) French (also installation language)
-- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) German (also installation language and [help files](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
+- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) English
+- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) French
+- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) German ([help files](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
 - [![Hungarian](https://www.liga-manager-online.org/forum_files/md/Magyar.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Magyar) Hungarian
 - [![Italian](https://www.liga-manager-online.org/forum_files/md/Italiano.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Italiano) Italian
 - [![Norwegian](https://www.liga-manager-online.org/forum_files/md/Norsk.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Norsk) Norwegian
 - [![Portuguese](https://www.liga-manager-online.org/forum_files/md/Portugues.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Portugues) Portuguese
 - [![Romanian](https://www.liga-manager-online.org/forum_files/md/Romanian.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Romanian) Romanian
 - [![Slovenian](https://www.liga-manager-online.org/forum_files/md/Slovenskega.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Slovenskega) Slovenian
-- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanish (also installation language)
+- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanish
 
 ### System requirement
 - Web server with at least PHP 8.0 - maximum PHP 8.4
+
+### Installation
+1. Upload the `lmo` folder to your web space.
+2. Open `lmo.php` in your browser. LMO sets itself up (no installer, no FTP data needed).
+3. Open `lmoadmin.php` **right away** and choose the admin user name and password.
+
+Update: copy the new files over the old ones. New settings are added to your configuration automatically; an old `install` folder can be deleted.
 
 > [!NOTE]
 This LMO version is still a beta version. Please note this. Before copying over an existing LMO, make a backup first!
@@ -113,9 +134,9 @@ Mit diesem Skript können Sie Ihren Besuchern einen tollen Ergebnisdienst über 
 
 Momentan unterstützte Sprachen (_alphabetisch sortiert_)
 - [![Bosnian](https://www.liga-manager-online.org/forum_files/md/Bosanski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Bosanski) Bosnisch
-- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) Deutsch (auch Installationssprache und [Hilfedateien](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
-- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) Englisch (auch Installationssprache)
-- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) Französisch (auch Installationssprache)
+- [![German](https://www.liga-manager-online.org/forum_files/md/Deutsch.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Deutsch) Deutsch ([Hilfedateien](https://www.liga-manager-online.org/test/lmo_git/help/Deutsch/index.html))
+- [![English](https://www.liga-manager-online.org/forum_files/md/English.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=English) Englisch
+- [![French](https://www.liga-manager-online.org/forum_files/md/Francais.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Francais) Französisch
 - [![Italian](https://www.liga-manager-online.org/forum_files/md/Italiano.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Italiano) Italienisch
 - [![Croatian](https://www.liga-manager-online.org/forum_files/md/Hrvatski.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Hrvatski) Kroatisch
 - [![Dutch](https://www.liga-manager-online.org/forum_files/md/Nederlands.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Nederlands) Niederländisch
@@ -123,12 +144,19 @@ Momentan unterstützte Sprachen (_alphabetisch sortiert_)
 - [![Portuguese](https://www.liga-manager-online.org/forum_files/md/Portugues.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Portugues) Portugiesisch
 - [![Romanian](https://www.liga-manager-online.org/forum_files/md/Romanian.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Romanian) Rumänisch
 - [![Slovenian](https://www.liga-manager-online.org/forum_files/md/Slovenskega.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Slovenskega) Slowenisch
-- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanisch (auch Installationssprache)
+- [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanisch
 - [![Czech](https://www.liga-manager-online.org/forum_files/md/Cestina.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Cestina) Tschechisch
 - [![Hungarian](https://www.liga-manager-online.org/forum_files/md/Magyar.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Magyar) Ungarisch
 
 ### Systemvorraussetzung
 - Webserver mit mindestens PHP 8.0  -  maximal PHP 8.4
+
+### Installation
+1. Den Ordner `lmo` auf den Webspace hochladen.
+2. `lmo.php` im Browser aufrufen. Der LMO richtet sich selbst ein (kein Installer, keine FTP-Daten nötig).
+3. **Sofort** `lmoadmin.php` aufrufen und Benutzername und Passwort des Admins festlegen.
+
+Update: Die neuen Dateien über die alten kopieren. Neue Einstellungen werden automatisch in die Konfiguration übernommen; einen alten Ordner `install` kann man löschen.
 
 > [!NOTE]
 Bei dieser LMO Version handelt es sich immer noch um eine Beta Version. Beachtet das bitte. Vor dem drüberkopieren über einen vorhandenen LMO macht zuerst eine Sicherung!

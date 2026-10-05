@@ -30,8 +30,6 @@ xbacklink=0
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
@@ -730,8 +728,6 @@ GEAENDERT config/tipp/cfg.txt
 </head>
 <body>
 <div align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
 <script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
 </script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">

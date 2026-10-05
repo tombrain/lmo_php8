@@ -20,6 +20,10 @@ final class Normalizer
         // Stack-Traces von PHP-Fehlern nennen die Hilfsskripte der Tests samt Zeilennummer
         // (z. B. ".../bin/http.php(57)"). Aendert sich ein Hilfsskript, verschiebt sich die Zeile.
         $html = preg_replace('#\S*/tests/GoldenMaster/bin/(\w+\.php)\(\d+\)#', '{HARNESS}/$1(N)', $html);
+        // Dasselbe fuer die aufrufenden LMO-Dateien im Stack-Trace ("#0 {LMO_PATH}/lmoadmin.php(69)"):
+        // neue Zeilen oberhalb des Aufrufs sind keine Verhaltensaenderung. Die Fehlerstelle selbst
+        // ("... on line 235") bleibt im Vergleich.
+        $html = preg_replace('#(\#\d+ \{LMO_PATH\}/[\w./-]+\.php)\(\d+\)#', '$1(N)', $html);
 
         // Composer haengt die Pfade der PEAR-Pakete vor den include_path; PHP nennt ihn in
         // "Failed opening required"-Meldungen. Nur die PHP-eigenen Eintraege vergleichen.

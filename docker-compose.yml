@@ -16,3 +16,31 @@ services:
       GOLDEN_MODE: ${GOLDEN_MODE:-compare}
       GOLDEN_COVERAGE: ${GOLDEN_COVERAGE:-0}
       GOLDEN_NO_FAKETIME: ${GOLDEN_NO_FAKETIME:-0}
+
+  # Webserver zum Ausprobieren, arbeitet live auf ./lmo:  docker compose up -d web
+  # Aufruf: http://localhost:${WEB_PORT:-8082}/lmo/
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.3}
+    image: lmo-web:php${PHP_VERSION:-8.3}
+    ports:
+      - "${WEB_PORT:-8082}:80"
+    volumes:
+      - ./lmo:/var/www/html/lmo
+      # Laufzeitdaten getrennt vom Code (Neustart von vorn: docker compose down -v)
+      - ./lmo:/srv/lmo-src:ro
+      - web-config:/var/www/html/lmo/config
+      - web-ligen:/var/www/html/lmo/ligen
+      - web-output:/var/www/html/lmo/output
+      - web-tipps:/var/www/html/lmo/addon/tipp/tipps
+      - web-stats:/var/www/html/lmo/addon/spieler/stats
+
+volumes:
+  web-config:
+  web-ligen:
+  web-output:
+  web-tipps:
+  web-stats:

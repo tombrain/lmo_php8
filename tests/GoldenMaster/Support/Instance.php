@@ -32,24 +32,30 @@ final class Instance
 
     public static function create(string $sourceRoot): self
     {
-        $source = rtrim($sourceRoot, '/') . '/lmo';
-        if (!is_file($source . '/init.php')) {
-            throw new RuntimeException(
-                "Keine LMO-Quelle gefunden unter $source (erwartet <Quelle>/lmo/init.php). " .
-                'LMO_SOURCE pruefen.'
-            );
+        $path = self::copySource($sourceRoot);
+
+        // Fertig eingerichtete Installation: Standardkonfiguration + Standardkonto admin/lmo +
+        // init-parameters.php. Neuer Stand: Vorlagen in config-default/; der unveraenderte Original-
+        // stand (Aufzeichnen der Snapshots) hat sie noch in install/config/ inkl. lmo-auth.php.
+        $defaults = is_dir($path . '/config-default') ? $path . '/config-default' : $path . '/install/config';
+        if (is_dir($defaults)) {
+            self::mergeTree($defaults, $path . '/config');
         }
-
-        $path = sys_get_temp_dir() . '/lmo-golden-' . getmypid() . '-' . bin2hex(random_bytes(3));
-        self::copyTree($source, $path, true);
-
-        // Was der Installer sonst anlegt: Standardkonfiguration + init-parameters.php
-        if (is_dir($path . '/install/config')) {
-            self::mergeTree($path . '/install/config', $path . '/config');
+        if (!is_file($path . '/config/lmo-auth.php')) {
+            // gleicher Inhalt wie install/config/lmo-auth.php im Original
+            file_put_contents($path . '/config/lmo-auth.php', "<?php exit(); ?>\nadmin|lmo|2|||");
         }
         $cfg = $path . '/config/cfg.txt';
         if (!is_file($cfg)) {
-            throw new RuntimeException('config/cfg.txt fehlt auch nach dem Zusammenfuehren mit install/config.');
+            throw new RuntimeException("config/cfg.txt fehlt auch nach dem Zusammenfuehren mit $defaults.");
+        }
+        // Abgleich mit config-default/ gilt als erledigt; sonst legte die erste Anfrage den
+        // Marker an und jedes Protokoll enthielte diese Dateiaenderung.
+        if (is_file($path . '/lmo-setup.php')) {
+            if (!function_exists('lmo_defaults_stamp')) {
+                require_once $path . '/lmo-setup.php';
+            }
+            file_put_contents($path . '/config/.defaults-stamp', lmo_defaults_stamp($path . '/config-default'));
         }
         $text = file_get_contents($cfg);
         // Berechnungszeit ("Seite in 0.0123 Sek.") wuerde jede Ausgabe veraendern.
@@ -61,7 +67,7 @@ final class Instance
             "<?php\n\$lmo_dateipfad='" . $path . "';\n\$lmo_url='" . self::URL . "';\n?>"
         );
 
-        // Was der Installer sonst anlegt bzw. als schreibbar prueft (install/install.php, Liste 777/666):
+        // Was frueher der Installer anlegte bzw. als schreibbar pruefte (install/install.php, Liste 777/666):
         // ohne addon/tipp/lmo-tippauth.txt bricht z. B. die Tippspiel-Benutzerverwaltung mit einem Fatal Error ab.
         foreach (['addon/tipp/tipps', 'addon/tipp/tipps/auswert', 'addon/tipp/tipps/einsicht',
             'addon/tipp/tipps/auswert/vereine', 'addon/spieler/stats', 'config/viewer'] as $dir) {
@@ -82,6 +88,36 @@ final class Instance
         $instance = new self($path);
         $instance->freezeLeagueTimes();
         return $instance;
+    }
+
+    /**
+     * Frisch hochgeladener Stand ohne jede Einrichtung: keine Konfiguration, kein Admin-Konto,
+     * keine init-parameters.php. Fuer die Tests der automatischen Ersteinrichtung (lmo-setup.php).
+     */
+    public static function createUninstalled(string $sourceRoot): self
+    {
+        $path = self::copySource($sourceRoot);
+        mkdir($path . '/.sessions', 0777, true); // nur fuer den Test-Harness (session.save_path)
+        return new self($path);
+    }
+
+    private static function copySource(string $sourceRoot): string
+    {
+        $source = rtrim($sourceRoot, '/') . '/lmo';
+        if (!is_file($source . '/init.php')) {
+            throw new RuntimeException(
+                "Keine LMO-Quelle gefunden unter $source (erwartet <Quelle>/lmo/init.php). " .
+                'LMO_SOURCE pruefen.'
+            );
+        }
+
+        $path = sys_get_temp_dir() . '/lmo-golden-' . getmypid() . '-' . bin2hex(random_bytes(3));
+        self::copyTree($source, $path, true);
+
+        // Laufzeitdateien einer lokalen Installation (z. B. aus dem Web-Container) nicht uebernehmen:
+        // Jede Instanz startet mit der Standardkonfiguration und dem Standardkonto admin/lmo.
+        self::removeRuntimeFiles($path);
+        return $path;
     }
 
     public function path(): string
@@ -116,6 +152,18 @@ final class Instance
     {
         if (is_dir($this->path)) {
             self::removeTree($this->path);
+        }
+    }
+
+    private static function removeRuntimeFiles(string $path): void
+    {
+        $files = [$path . '/config/lmo-auth.php', $path . '/config/init-parameters.php',
+            $path . '/config/.defaults-stamp', $path . '/addon/tipp/lmo-tippauth.txt'];
+        $files = array_merge($files, glob($path . '/config/cfg.txt') ?: [], glob($path . '/config/*/cfg.txt') ?: []);
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
     }
 

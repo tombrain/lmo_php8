@@ -49,6 +49,20 @@ final class Fixture
         return [$app, new Runner($app)];
     }
 
+    /**
+     * Neue Instanz im Zustand "frisch hochgeladen" (ohne Installer-Schritte).
+     *
+     * @return array{0:Instance,1:Runner}
+     */
+    public static function uninstalledInstance(): array
+    {
+        $app = Instance::createUninstalled(self::sourceRoot());
+        register_shutdown_function(static function () use ($app): void {
+            $app->destroy();
+        });
+        return [$app, new Runner($app)];
+    }
+
     /** Frische Instanz mit angemeldetem Hauptadmin; das Kennwort-Upgrade beim Login zaehlt nicht als Aenderung. */
     public static function loggedInClient(): AdminClient
     {
