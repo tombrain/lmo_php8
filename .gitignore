@@ -1,0 +1,5 @@
+vendor/
+.original/
+.phpunit.result.cache
+lmo/vendor/
+coverage/

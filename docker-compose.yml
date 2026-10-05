@@ -1,0 +1,18 @@
+# Aufruf siehe TESTING.md
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.3}
+    image: lmo-golden-tests:php${PHP_VERSION:-8.3}
+    volumes:
+      - .:/app
+      # unveraenderter Originalstand fuer das Aufzeichnen der Snapshots (optional)
+      - ${ORIGINAL_DIR:-./.original}:/original:ro
+    environment:
+      LMO_SOURCE: ${LMO_SOURCE:-/app}
+      GOLDEN_MODE: ${GOLDEN_MODE:-compare}
+      GOLDEN_COVERAGE: ${GOLDEN_COVERAGE:-0}
+      GOLDEN_NO_FAKETIME: ${GOLDEN_NO_FAKETIME:-0}

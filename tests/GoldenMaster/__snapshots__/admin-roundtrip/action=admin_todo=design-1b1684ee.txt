@@ -1,0 +1,372 @@
+### action=admin&todo=design
+### GESENDETE FELDER (POST, 25)
+action=admin
+todo=design
+save=1
+show=0
+xlmo_main_background1=#dde0fF
+xlmo_main_color1=#000
+xlmo_main_border1=1px solid #000
+xlmo_main_fontfamily1=sans-serif
+xlmo_main_fontsize1=13px
+xlmo_main_background2=
+xlmo_main_color2=#009
+xlmo_main_fontfamily2=Trebuchet MS,sans-serif
+xlmo_main_fontsize2=115%
+xlmo_main_background4=#009
+xlmo_main_color4=#eee
+xlmo_main_border4=
+xlmo_main_background5=#009
+xlmo_main_color5=#eee
+xlmo_main_border5=
+xlmo_main_background6=#eee
+xlmo_main_color6=#009
+xlmo_main_border6=
+xlmo_main_background7=#eee
+xlmo_main_color7=#009
+xlmo_main_border7=
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; Optionen&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<script src="http://lmo.test/lmo/js/colorpicker.js" type="text/javascript">
+</script>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen des Scripts festlegen">Optionen</a>
+</td>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons" onclick="return chklmolink();" title="Konfiguration der installierten Addons">Addons</a>
+</td>
+<td align="center">Designeditor</td>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=user" onclick="return chklmolink();" title="Verwaltung der User, die auf diesen Admin-Bereich Zugriff erhalten sollen">Userverwaltung</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center" colspan="2">
+<h1>Festlegen des Ausgabedesigns</h1>
+</td>
+</tr>
+<tr>
+<td valign="top" align="left">
+<table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">Äußerer Rahmen</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=1">Mittlerer Rahmen</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=2">Innerer Rahmen</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=3">Tabelle</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=4">Turnierbereich</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=5">Sonstige Optionen</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design&amp;show=6">Formulare</a>
+</td>
+</tr>
+</table>
+</td>
+<td align="left" valign="top">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="design">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="show" value="0">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th colspan="3">Rahmen</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background1" id="lmo_main_background1input" size="7" maxlength="7" value="#dde0fF" onChange="dolmoedit();relateColor('lmo_main_background1', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background1');</script>&nbsp; <input class="lmo-formular-input" type="text" name="xlmo_main_color1" id="lmo_main_color1input" size="7" maxlength="7" value="#000" onChange="dolmoedit();relateColor('lmo_main_color1', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color1');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_border1" size="25" maxlength="25" value="1px solid #000" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Optionen für die Umrandung fest (Stärke, Art und Farbe)">Randoptionen</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_fontfamily1" size="25" maxlength="50" value="sans-serif" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Schriftart fest (Achtung: nicht jede Schriftart ist auf jedem System vorhanden)">Schriftart</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_fontsize1" size="6" maxlength="6" value="13px" onChange="dolmoedit()">
+</td>
+<td>Schriftgröße</td>
+</tr>
+<tr>
+<th colspan="3">Überschrift</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background2" id="lmo_main_background2input" size="7" maxlength="7" value="" onChange="dolmoedit();relateColor('lmo_main_background2', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background2');</script>
+<input class="lmo-formular-input" type="text" name="xlmo_main_color2" id="lmo_main_color2input" size="7" maxlength="7" value="#009" onChange="dolmoedit();relateColor('lmo_main_color2', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color2');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_fontfamily2" size="25" maxlength="50" value="Trebuchet MS,sans-serif" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Schriftart fest (Achtung: nicht jede Schriftart ist auf jedem System vorhanden)">Schriftart</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_fontsize2" size="6" maxlength="6" value="115%" onChange="dolmoedit()">
+</td>
+<td>Schriftgröße</td>
+</tr>
+<tr>
+<th colspan="3">Hauptmenü (Rahmen)</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background4" id="lmo_main_background4input" size="7" maxlength="7" value="#009" onChange="dolmoedit();relateColor('lmo_main_background4', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background4');</script>&nbsp; <input class="lmo-formular-input" type="text" name="xlmo_main_color4" id="lmo_main_color4input" size="7" maxlength="7" value="#eee" onChange="dolmoedit();relateColor('lmo_main_color4', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color4');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_border4" size="25" maxlength="25" value="" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Optionen für die Umrandung fest (Stärke, Art und Farbe)">Randoptionen</acronym>
+</td>
+</tr>
+<tr>
+<th colspan="3">Hauptmenü (Link)</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background5" id="lmo_main_background5input" size="7" maxlength="7" value="#009" onChange="dolmoedit();relateColor('lmo_main_background5', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background5');</script>&nbsp; <input class="lmo-formular-input" type="text" name="xlmo_main_color5" id="lmo_main_color5input" size="7" maxlength="7" value="#eee" onChange="dolmoedit();relateColor('lmo_main_color5', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color5');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_border5" size="25" maxlength="25" value="" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Optionen für die Umrandung fest (Stärke, Art und Farbe)">Randoptionen</acronym>
+</td>
+</tr>
+<tr>
+<th colspan="3">Untermenü (Rahmen)</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background6" id="lmo_main_background6input" size="7" maxlength="7" value="#eee" onChange="dolmoedit();relateColor('lmo_main_background6', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background6');</script>&nbsp; <input class="lmo-formular-input" type="text" name="xlmo_main_color6" id="lmo_main_color6input" size="7" maxlength="7" value="#009" onChange="dolmoedit();relateColor('lmo_main_color6', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color6');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_border6" size="25" maxlength="25" value="" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Optionen für die Umrandung fest (Stärke, Art und Farbe)">Randoptionen</acronym>
+</td>
+</tr>
+<tr>
+<th colspan="3">Untermenü (Link)</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_background7" id="lmo_main_background7input" size="7" maxlength="7" value="#eee" onChange="dolmoedit();relateColor('lmo_main_background7', this.value);">
+<script type="text/javascript">makePicker('lmo_main_background7');</script>&nbsp; <input class="lmo-formular-input" type="text" name="xlmo_main_color7" id="lmo_main_color7input" size="7" maxlength="7" value="#009" onChange="dolmoedit();relateColor('lmo_main_color7', this.value);">
+<script type="text/javascript">makePicker('lmo_main_color7');</script>
+</td>
+<td>
+<acronym title="Legen Sie hier die Hintergrundfarbe fest (z.B. #ffffff)">Hintergrund</acronym>,&nbsp;<acronym title="Legen Sie hier die Vordergrundfarbe fest (z.B. #ffffff)">Schriftfarbe</acronym>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="right">
+<input class="lmo-formular-input" type="text" name="xlmo_main_border7" size="25" maxlength="25" value="" onChange="dolmoedit()">
+</td>
+<td>
+<acronym title="Legen Sie hier die Optionen für die Umrandung fest (Stärke, Art und Farbe)">Randoptionen</acronym>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="Änderungen speichern">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+GEAENDERT config/cfg.txt
+[diff nicht verfuegbar; md5 vorher 0e7d413c097fa2a2877b5229e92bdbce, nachher 0e7d413c097fa2a2877b5229e92bdbce]
+GEAENDERT config/classlib/cfg.txt
+[diff nicht verfuegbar; md5 vorher fd39cfee46c7dd65970e19cbb9484b59, nachher fd39cfee46c7dd65970e19cbb9484b59]
+GEAENDERT config/mini/cfg.txt
+[diff nicht verfuegbar; md5 vorher 711e09548b00b041bc9abc9c5526a148, nachher 711e09548b00b041bc9abc9c5526a148]
+GEAENDERT config/spieler/cfg.txt
+[diff nicht verfuegbar; md5 vorher afdef1d5f5380d71e49c6ba14f26f60a, nachher afdef1d5f5380d71e49c6ba14f26f60a]
+GEAENDERT config/ticker/cfg.txt
+[diff nicht verfuegbar; md5 vorher ad85b53a00f229f239826eabbb7eed17, nachher ad85b53a00f229f239826eabbb7eed17]
+GEAENDERT config/tipp/cfg.txt
+[diff nicht verfuegbar; md5 vorher ef04b4843c1faa24f74b7f7fc3c7d661, nachher ef04b4843c1faa24f74b7f7fc3c7d661]

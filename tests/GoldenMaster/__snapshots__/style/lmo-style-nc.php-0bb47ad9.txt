@@ -1,0 +1,284 @@
+### lmo-style-nc.php
+
+.message{
+  color: #080;
+}
+
+.error{
+  color: #a00;
+}
+
+/** Außenbereich*/
+.lmoMain {
+  background: #dde0fF repeat;
+  color: #000;  font-size: 13px;  font-family: sans-serif;}
+.lmoMain p {
+  margin:0;
+}
+
+/** Außenbereich Überschrift*/
+.lmoMain h1 {
+  background:  repeat;
+  color: #009;  font-size: 115%;  font-family: Trebuchet MS,sans-serif;}
+
+/** Außenbereich Menü */
+.lmoMain .lmoMenu {
+  font-weight: bold;
+  background: #009 repeat;
+  color: #eee;}
+
+.lmoMain .lmoMenu a {
+  background: #009 repeat;
+  color: #eee;}
+
+/** Außenbereich Untermenü */
+.lmoMain .lmoSubmenu {
+  font-weight: bold;
+  background: #eee repeat;
+  color: #009;}
+
+.lmoMain .lmoSubmenu a {
+  line-height:140%;
+  font-weight: normal;
+  text-decoration: none;
+  background: #eee repeat;
+  color: #009;}
+
+/** Außenbereich Fusszeilen */
+.lmoMain .lmoFooter {
+    font-weight: normal;
+}
+
+.lmoMain .lmoFooter a {
+  text-decoration: underline;
+  background: #dde0fF repeat;
+  color: #000;}
+
+/** Ende Außenbereich */
+
+/** Mittelbereich */
+.lmoMiddle {
+  background: #fff repeat;
+  color: #000;  font-size: 94%;  font-weight: bold;
+}
+
+/** Überschrift im Mittelbereich */
+.lmoMiddle h1{
+  background: #009 repeat;
+  color: #fff;  font-size:115%;
+}
+
+/** Links im Mittelbereich */
+.lmoMiddle a {
+  line-height:150%;
+  text-decoration: none;
+  background: #fff repeat;
+  color: #000;  font-weight: normal;
+}
+
+.lmoMiddle .lmoMenu {
+  font-weight: bold;
+  background: #009 repeat;
+  color: #fff;}
+
+.lmoMiddle .lmoMenu a {
+  line-height:140%;
+  font-weight: normal;
+  text-decoration: none;
+  background: #009 repeat;
+  color: #fff;}
+
+.lmoMiddle .lmoSubmenu {
+  background: #fff repeat;
+  color: #009;}
+
+.lmoMiddle .lmoSubmenu a {
+  background: #fff repeat;
+  color: #009;}
+
+/** Innerer Bereich */
+.lmoInner {
+  background: #f5f5ff repeat;
+  color: #000;  font-size: 98%;  font-weight: normal;
+}
+
+.lmoInner a {
+  line-height:100%;
+  text-decoration: none;
+  background: #f5f5ff repeat;
+  color: #000;  font-weight: normal;
+}
+
+.lmoInner caption {
+  background: #fff repeat;
+  color: #000;  font-weight: bold;
+}
+
+.lmoInner caption a{
+  background: #fff repeat;
+  color: #000;  font-weight: normal;
+}
+
+.lmoInner .lmoFooter {
+  background: #009 repeat;
+  color: #fff;}
+
+.lmoInner .lmoFooter a {
+  line-height:150%;
+  text-decoration: underline;
+  background: #009 repeat;
+  color: #fff;}
+
+.lmoKreuz table {
+  font-size: 80%;}
+
+.lmoBackMarkierung {
+  background: #ddf repeat;
+}
+
+.lmoBackMarkierung a {
+  line-height:190%;
+  background: #ddf repeat;
+  font-weight: bold;
+}
+
+.lmoFrontMarkierung {
+  color: #d00;  font-weight: bold;
+}
+
+.lmoLeer {
+  background: #eee repeat;
+}
+
+.lmoTabelleMeister {
+  background: #0c0 repeat;
+  color: #000;}
+
+.lmoTabelleMeister a {
+  background: #0c0 repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleCleague {
+  background: #6e6 repeat;
+  color: #000;}
+
+.lmoTabelleCleague a {
+  background: #6e6 repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleCleaguequali {
+  background: #afa repeat;
+  color: #000;}
+
+.lmoTabelleCleaguequali a {
+  background: #afa repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleUefa {
+  background: #cfc repeat;
+  color: #000;}
+
+.lmoTabelleUefa a {
+  background: #cfc repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleRelegation {
+  background: #fcb repeat;
+  color: #000;}
+
+.lmoTabelleRelegation a {
+  background: #fcb repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleAbsteiger {
+  background: #e65 repeat;
+  color: #000;}
+
+.lmoTabelleAbsteiger a {
+  background: #e65 repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTabelleHeimbilanz {
+  background: #ccc repeat;
+  color: #000;}
+
+.lmoTabelleGastbilanz {
+  background: #eee repeat;
+  color: #000;}
+
+.lmoTurnierSieger {
+  background: #cfc repeat;
+  color: #000;}
+
+.lmoTurnierSieger a {
+  background: #cfc repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTurnierSieger a:hover{
+  background: #000 repeat;
+  color: #cfc;}
+
+.lmoTurnierVerlierer {
+  background: #fcb repeat;
+  color: #000;}
+
+.lmoTurnierVerlierer a {
+  background: #fcb repeat;
+  color: #000;  text-decoration: none;
+}
+
+.lmoTurnierVerlierer a:hover{
+  background: #000 repeat;
+  color: #fcb;}
+
+.lmotext {
+  text-align: justify;
+}
+
+.colorpicker {
+  display:none;
+}
+
+.sort-arrow {
+  display:none;
+}
+
+.sort-arrow.descending {
+  display:none;
+}
+
+.sort-arrow.ascending {
+  display:none;
+}
+a span.popup, a:link span.popup{
+  display: none;
+}
+
+th.bottom {
+  vertical-align: bottom;
+}
+
+.baseline {
+  vertical-align: baseline;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+#myChart{
+    width: 700px;
+    height: 500px;
+}
+

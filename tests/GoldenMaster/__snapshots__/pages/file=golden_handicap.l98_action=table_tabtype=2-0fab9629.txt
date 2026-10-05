@@ -1,0 +1,395 @@
+### file=golden/handicap.l98&action=table&tabtype=2
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>handicap</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>handicap</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=cal&amp;st=3" title="Anzeige des Kalenders der Liga">Kalender</a>&nbsp;&nbsp;Ergebnisse/Tabelle&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=cross" title="Anzeige aller Ergebnisse auf einen Blick">Kreuztabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph" title="Anzeige der Fieberkurven">Fieberkurven</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=stats&amp;stat1=0&amp;stat2=0" title="Anzeige der Statistiken und Prognosen">Ligastatistik</a>&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=1" title="auf diesen Spieltag wechseln">01</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=2" title="auf diesen Spieltag wechseln">02</a>&nbsp;</td>
+<td align='center'>03&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=4" title="auf diesen Spieltag wechseln">04</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=5" title="auf diesen Spieltag wechseln">05</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=6" title="auf diesen Spieltag wechseln">06</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=7" title="auf diesen Spieltag wechseln">07</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=8" title="auf diesen Spieltag wechseln">08</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=9" title="auf diesen Spieltag wechseln">09</a>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=10" title="auf diesen Spieltag wechseln">10</a>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th colspan="11" align="left">3. Spieltag</th>
+</tr>
+<tr>
+<td class="nobr">01.01.1970 01:00</td>
+<td width="2">&nbsp;</td>
+<td class="nobr" align="right">
+<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=1" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 1</a>&nbsp;</td>
+<td align="center" width="10">-</td>
+<td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=3" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 3</a>
+</td>
+<td width="2">&nbsp;</td>
+<td align="right">2</td>
+<td align="center" width="8">:</td>
+<td align="left">1</td>
+<td width="2">&nbsp;</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">01.01.1970 01:00</td>
+<td width="2">&nbsp;</td>
+<td class="nobr" align="right">
+<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 4</a>&nbsp;</td>
+<td align="center" width="10">-</td>
+<td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 2</a>
+</td>
+<td width="2">&nbsp;</td>
+<td align="right">2</td>
+<td align="center" width="8">:</td>
+<td align="left">0</td>
+<td width="2">&nbsp;</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">01.01.1970 01:00</td>
+<td width="2">&nbsp;</td>
+<td class="nobr" align="right">
+<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=6" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 6</a>&nbsp;</td>
+<td align="center" width="10">-</td>
+<td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=golden/handicap.l98&amp;selteam=5" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 5</a>
+</td>
+<td width="2">&nbsp;</td>
+<td align="right">0</td>
+<td align="center" width="8">:</td>
+<td align="left">1</td>
+<td width="2">&nbsp;</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" align="center" width="100%" colspan="11">&nbsp;Tore: 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore/Spiel: 2</td>
+</tr>
+<tr>
+<td align="center" width="100%" colspan="11">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="left">&nbsp;<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=2" title="vorheriger Spieltag">« vorheriger Spieltag</a>&nbsp;</td>
+<td align="right">&nbsp;<a href="/lmo/lmo.php?action=table&amp;tabtype=2&amp;file=golden/handicap.l98&amp;st=4" title="nächster Spieltag">nächster Spieltag »</a>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<caption>
+<a href="/lmo/lmo.php?action=table&amp;file=golden/handicap.l98&amp;endtab=10&amp;st=3&amp;tabtype=0" title="die Gesamttabelle anzeigen">Tabelle</a>&nbsp;<a href="/lmo/lmo.php?action=table&amp;file=golden/handicap.l98&amp;endtab=10&amp;st=3&amp;tabtype=1" title="die Heimbilanz anzeigen">Heim</a>&nbsp;Auswärts&nbsp;<a href="/lmo/lmo.php?action=table&amp;file=golden/handicap.l98&amp;endtab=10&amp;st=3&amp;tabtype=4" title="Hinrunde">Hinrunde</a>&nbsp;<a href="/lmo/lmo.php?action=table&amp;file=golden/handicap.l98&amp;endtab=10&amp;st=3&amp;tabtype=3" title="Rückrunde">Rückrunde</a>
+</caption>
+<tr>
+<th style="text-align:left" colspan="7">&nbsp;</th>
+<th style="text-align:center">
+<acronym title="Spiele">Sp.</acronym>
+</th>
+<th style="text-align:center">
+<acronym title="Sieg">s</acronym>
+</th>
+<th style="text-align:right">
+<acronym title="Unentschieden">u</acronym>
+</th>
+<th style="text-align:enter">
+<acronym title="Niederlage">n</acronym>
+</th>
+<th style="width:2px;">&nbsp;</th>
+<th style="text-align:center" colspan="3">Tore</th>
+<th style="text-align:right">Diff.</th>
+<th style="width:2px;">&nbsp;</th>
+<th align="right">Pkt.</th>
+</tr>
+<tr>
+<td class="nobr" align="right">1</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 5</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">9</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">1</td>
+<td class="nobr" align="right">8</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>12</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">2</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 1</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">7</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">0</td>
+<td class="nobr" align="right">7</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>9</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">3</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 4</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">6</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">3</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>7</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">4</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 3</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">7</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">5</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>6</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">5</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 2</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">2</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>3</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">6</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 6</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">5</td>
+<td class="nobr" align="right">-4</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>3</strong>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" align="center" colspan="22">&nbsp;Gesamt-Tore: 48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore&nbsp;/Spiel: 2.4</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href="http://lmo.test/lmo/output/handicap.l98-st.html" title="Zeigt eine Druckansicht des aktuellen Spieltags an">Aktuellen Spieltag drucken</a>&nbsp; </td>
+<td align="center">
+<a href="http://lmo.test/lmo/output/handicap.l98-sp.html" title="Zeigt eine Druckansicht des kompletten Spielplan an">Ligaspielplan drucken</a>&nbsp; </td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=table&amp;tabtype=2&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php?subdir=golden/" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

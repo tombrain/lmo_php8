@@ -1,0 +1,592 @@
+### file=1l_2024-25.l98&action=stats&stat1=1
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>1. Bundesliga 2024/25</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>1. Bundesliga 2024/25</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;st=1" title="Anzeige des Kalenders der Liga">Kalender</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results" title="Anzeige der Spielergebnisse und Tabelle eines bestimmten Spieltags">Ergebnisse/Tabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross" title="Anzeige aller Ergebnisse auf einen Blick">Kreuztabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=graph" title="Anzeige der Fieberkurven">Fieberkurven</a>&nbsp;&nbsp;Ligastatistik&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=spieler" title="Anzeige der Spielerstatistiken">Spielerstatistik</a>&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="top" align="center">
+<table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Bayern München">FCB</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Bayer 04 Leverkusen">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=2&amp;stat2=0">B04</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von FSV Mainz 05">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=3&amp;stat2=0">FSV</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von VfB Stuttgart">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=4&amp;stat2=0">VfB</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von VfL Bochum">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=5&amp;stat2=0">1848</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von RB Leipzig">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=6&amp;stat2=0">RBL</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von 1.FC Heidenheim">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=7&amp;stat2=0">1.FCH</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von 1.FC Union Berlin">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=8&amp;stat2=0">FCU</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von TSG Hoffenheim">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=9&amp;stat2=0">TSG</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Werder Bremen">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=10&amp;stat2=0">SVW</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Holstein Kiel">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=11&amp;stat2=0">HK</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von FC St. Pauli">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=12&amp;stat2=0">FCSTP</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Borussia Dortmund">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=13&amp;stat2=0">BVB</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von FC Augsburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=14&amp;stat2=0">FCA</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Borussia M'gladbach">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=15&amp;stat2=0">BMG</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von SC Freiburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=16&amp;stat2=0">SCF</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von VfL Wolfsburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=17&amp;stat2=0">WOB</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Die Statistik 1 von Eintracht Frankfurt">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=18&amp;stat2=0">SGE</a>
+</acronym>
+</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+</td>
+<td valign="top" align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="text-right">Bayern München</th>
+<th class="text-center">&nbsp; </th>
+</tr>
+<tr>
+<td align="right">18</td>
+<th class="text-center">Tabellenposition</th>
+</tr>
+<tr>
+<td align="right">0</td>
+<th class="text-center">Pkt.</th>
+</tr>
+<tr>
+<td align="right">0</td>
+<th class="text-center">Spiele</th>
+</tr>
+<tr>
+<td align="right">
+</td>
+<th class="text-center">Pkt./Spiel</th>
+</tr>
+<tr>
+<td align="right">0:0</td>
+<th class="text-center">Tore</th>
+</tr>
+<tr>
+<td align="right">
+</td>
+<th class="text-center">Tore/Spiel</th>
+</tr>
+<tr>
+<td align="right">
+</td>
+<th class="text-center">Siege</th>
+</tr>
+<tr>
+<td align="right">&nbsp;</td>
+<th class="top" style="text-align:center">Höchster Sieg</th>
+</tr>
+<tr>
+<td align="right">
+</td>
+<th class="text-center">Niederlagen</th>
+</tr>
+<tr>
+<td align="right">&nbsp;</td>
+<th class="top" style="text-align:center">Höchste Niederlage</th>
+</tr>
+<tr>
+<td align="right">0 Sp. o. Niederlage</td>
+<th class="top" style="text-align:center">Aktuelle Serie</th>
+</tr>
+<!-- OUTPUT Restprogramm START-->
+<tr>
+<td align="right" valign="top">(A)&nbsp;VfL Wolfsburg&nbsp;(2.)<br>(H)&nbsp;SC Freiburg&nbsp;(6.)<br>(A)&nbsp;Holstein Kiel&nbsp;(8.)<br>(A)&nbsp;Werder Bremen&nbsp;(1.)<br>(H)&nbsp;Bayer 04 Leverkusen&nbsp;(16.)<br>(A)&nbsp;Eintracht Frankfurt&nbsp;(12.)<br>(H)&nbsp;VfB Stuttgart&nbsp;(4.)<br>(A)&nbsp;VfL Bochum&nbsp;(3.)<br>(H)&nbsp;1.FC Union Berlin&nbsp;(17.)<br>(A)&nbsp;FC St. Pauli&nbsp;(10.)<br>(H)&nbsp;FC Augsburg&nbsp;(11.)<br>(A)&nbsp;Borussia Dortmund&nbsp;(14.)<br>(H)&nbsp;1.FC Heidenheim&nbsp;(18.)<br>(A)&nbsp;FSV Mainz 05&nbsp;(9.)<br>(H)&nbsp;RB Leipzig&nbsp;(7.)<br>(A)&nbsp;Borussia M'gladbach&nbsp;(13.)<br>(H)&nbsp;TSG Hoffenheim&nbsp;(5.)<br>(H)&nbsp;VfL Wolfsburg&nbsp;(2.)<br>(A)&nbsp;SC Freiburg&nbsp;(6.)<br>(H)&nbsp;Holstein Kiel&nbsp;(8.)<br>(H)&nbsp;Werder Bremen&nbsp;(1.)<br>(A)&nbsp;Bayer 04 Leverkusen&nbsp;(16.)<br>(H)&nbsp;Eintracht Frankfurt&nbsp;(12.)<br>(A)&nbsp;VfB Stuttgart&nbsp;(4.)<br>(H)&nbsp;VfL Bochum&nbsp;(3.)<br>(A)&nbsp;1.FC Union Berlin&nbsp;(17.)<br>(H)&nbsp;FC St. Pauli&nbsp;(10.)<br>(A)&nbsp;FC Augsburg&nbsp;(11.)<br>(H)&nbsp;Borussia Dortmund&nbsp;(14.)<br>(A)&nbsp;1.FC Heidenheim&nbsp;(18.)<br>(H)&nbsp;FSV Mainz 05&nbsp;(9.)<br>(A)&nbsp;RB Leipzig&nbsp;(7.)<br>(H)&nbsp;Borussia M'gladbach&nbsp;(13.)<br>(A)&nbsp;TSG Hoffenheim&nbsp;(5.)<br>
+</td>
+<th class="top" style="text-align:center">Restprogramm</th>
+<td align="left" valign="top">
+</td>
+</tr>
+<!-- OUTPUT Restprogramm ENDE-->
+</table>
+</td>
+<td valign="top" align="center">
+<table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Bayern München">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=1">FCB</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Bayer 04 Leverkusen">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=2">B04</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von FSV Mainz 05">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=3">FSV</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von VfB Stuttgart">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=4">VfB</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von VfL Bochum">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=5">1848</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von RB Leipzig">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=6">RBL</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von 1.FC Heidenheim">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=7">1.FCH</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von 1.FC Union Berlin">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=8">FCU</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von TSG Hoffenheim">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=9">TSG</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Werder Bremen">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=10">SVW</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Holstein Kiel">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=11">HK</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von FC St. Pauli">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=12">FCSTP</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Borussia Dortmund">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=13">BVB</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von FC Augsburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=14">FCA</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Borussia M'gladbach">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=15">BMG</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von SC Freiburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=16">SCF</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von VfL Wolfsburg">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=17">WOB</a>
+</acronym>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<acronym title="Die Statistik 1 von Eintracht Frankfurt">
+<a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=1&amp;stat2=18">SGE</a>
+</acronym>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center" colspan="5">
+<h1>Statistische Daten zur Liga</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th colspan="4" align="center">Spiele </th>
+</tr>
+<tr>
+<td align="right">ges.</td>
+<td align="right">Heimsiege</td>
+<td align="center">Unentschieden</td>
+<td align="left">Auswärtssiege</td>
+</tr>
+<tr>
+<td align="right">
+<strong>0</strong>
+</td>
+<td align="right">
+<strong>0</strong>
+</td>
+<td align="center">
+<strong>0</strong>
+</td>
+<td align="left">
+<strong>0</strong>
+</td>
+</tr>
+<tr>
+<th colspan="4" align="center">Tore </th>
+</tr>
+<tr>
+<td align="right">ges. </td>
+<td align="right">Heim-Tore </td>
+<td>&nbsp;</td>
+<td align="left">Auswärts-Tore </td>
+</tr>
+<tr>
+<td align="right">
+<strong>0</strong> (Ø0) </td>
+<td align="right">
+<strong>0</strong>
+</td>
+<td>&nbsp;</td>
+<td align="left">
+<strong>0</strong>
+</td>
+</tr>
+<tr>
+<th colspan="4" align="center">Serien</th>
+</tr>
+<tr>
+<td colspan="4">
+<table width="100%" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th>
+<th style="text-align:center" colspan="2">Aktuell</th>
+<th style="text-align:center" colspan="2">Saison</th>
+</tr>
+<tr>
+<th style="text-align:right">Gewonnen&nbsp;&nbsp;</th>
+<td align="right" class="lmoTabelleMeister">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleMeister">&nbsp;</td>
+<td align="right" class="lmoTabelleMeister">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleMeister">&nbsp;</td>
+</tr>
+<tr>
+<th style="text-align:right">Ungeschlagen&nbsp;&nbsp;</th>
+<td align="right" class="lmoTabelleUefa">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleUefa">&nbsp;</td>
+<td align="right" class="lmoTabelleUefa">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleUefa">&nbsp;</td>
+</tr>
+<tr>
+<th style="text-align:right">Unentschieden&nbsp;&nbsp;</th>
+<td align="right">
+<strong>0&nbsp;</strong>&nbsp;</td>
+<td>
+</td>
+<td align="right">
+<strong>0</strong>&nbsp;</td>
+<td>
+</td>
+</tr>
+<tr>
+<th style="text-align:right">Sieglos&nbsp;&nbsp;</th>
+<td align="right" class="lmoTabelleRelegation">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleRelegation">&nbsp;</td>
+<td align="right" class="lmoTabelleRelegation">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleRelegation">
+</td>
+</tr>
+<tr>
+<th style="text-align:right">Verloren&nbsp;&nbsp;</th>
+<td align="right" class="lmoTabelleAbsteiger">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleAbsteiger">&nbsp;</td>
+<td align="right" class="lmoTabelleAbsteiger">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleAbsteiger">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=1&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

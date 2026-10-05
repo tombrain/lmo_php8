@@ -1,0 +1,1352 @@
+### file=1l_2024-25.l98&action=cross
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>1. Bundesliga 2024/25</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>1. Bundesliga 2024/25</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;st=1" title="Anzeige des Kalenders der Liga">Kalender</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results" title="Anzeige der Spielergebnisse und Tabelle eines bestimmten Spieltags">Ergebnisse/Tabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;Kreuztabelle&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=graph" title="Anzeige der Fieberkurven">Fieberkurven</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=0&amp;stat2=0" title="Anzeige der Statistiken und Prognosen">Ligastatistik</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=spieler" title="Anzeige der Spielerstatistiken">Spielerstatistik</a>&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmoKreuz">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align='right'>&nbsp;</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=1" title="Bayern München: die Ergebnisse dieser Mannschaft hervorheben">FCB</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=2" title="Bayer 04 Leverkusen: die Ergebnisse dieser Mannschaft hervorheben">B04</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=3" title="FSV Mainz 05: die Ergebnisse dieser Mannschaft hervorheben">FSV</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=4" title="VfB Stuttgart: die Ergebnisse dieser Mannschaft hervorheben">VfB</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=5" title="VfL Bochum: die Ergebnisse dieser Mannschaft hervorheben">1848</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=6" title="RB Leipzig: die Ergebnisse dieser Mannschaft hervorheben">RBL</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=7" title="1.FC Heidenheim: die Ergebnisse dieser Mannschaft hervorheben">1.FCH</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=8" title="1.FC Union Berlin: die Ergebnisse dieser Mannschaft hervorheben">FCU</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=9" title="TSG Hoffenheim: die Ergebnisse dieser Mannschaft hervorheben">TSG</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=10" title="Werder Bremen: die Ergebnisse dieser Mannschaft hervorheben">SVW</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=11" title="Holstein Kiel: die Ergebnisse dieser Mannschaft hervorheben">HK</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=12" title="FC St. Pauli: die Ergebnisse dieser Mannschaft hervorheben">FCSTP</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=13" title="Borussia Dortmund: die Ergebnisse dieser Mannschaft hervorheben">BVB</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=14" title="FC Augsburg: die Ergebnisse dieser Mannschaft hervorheben">FCA</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="Borussia M'gladbach: die Ergebnisse dieser Mannschaft hervorheben">BMG</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=16" title="SC Freiburg: die Ergebnisse dieser Mannschaft hervorheben">SCF</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=17" title="VfL Wolfsburg: die Ergebnisse dieser Mannschaft hervorheben">WOB</a>
+</th>
+<th align='center'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=18" title="Eintracht Frankfurt: die Ergebnisse dieser Mannschaft hervorheben">SGE</a>
+</th>
+<th align='left'>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=1" title="die Ergebnisse dieser Mannschaft hervorheben">Bayern München</a>
+</th>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Bayern München - Bayer 04 Leverkusen &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Bayern München - FSV Mainz 05 &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Bayern München - VfB Stuttgart &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Bayern München - VfL Bochum &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Bayern München - RB Leipzig &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Bayern München - 1.FC Heidenheim &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Bayern München - 1.FC Union Berlin &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Bayern München - TSG Hoffenheim &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Bayern München - Werder Bremen &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="Bayern München - Holstein Kiel &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Bayern München - FC St. Pauli &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Bayern München - Borussia Dortmund &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Bayern München - FC Augsburg &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Bayern München - Borussia M'gladbach &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Bayern München - SC Freiburg &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Bayern München - VfL Wolfsburg &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Bayern München - Eintracht Frankfurt &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Bayern München'>FCB</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=2" title="die Ergebnisse dieser Mannschaft hervorheben">Bayer 04 Leverkusen</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="Bayer 04 Leverkusen - Bayern München &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Bayer 04 Leverkusen - FSV Mainz 05 &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Bayer 04 Leverkusen - VfB Stuttgart &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Bayer 04 Leverkusen - VfL Bochum &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Bayer 04 Leverkusen - RB Leipzig &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Bayer 04 Leverkusen - 1.FC Heidenheim &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Bayer 04 Leverkusen - 1.FC Union Berlin &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="Bayer 04 Leverkusen - TSG Hoffenheim &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Bayer 04 Leverkusen - Werder Bremen &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="Bayer 04 Leverkusen - Holstein Kiel &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Bayer 04 Leverkusen - FC St. Pauli &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Bayer 04 Leverkusen - Borussia Dortmund &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Bayer 04 Leverkusen - FC Augsburg &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Bayer 04 Leverkusen - Borussia M'gladbach &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Bayer 04 Leverkusen - SC Freiburg &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="Bayer 04 Leverkusen - VfL Wolfsburg &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Bayer 04 Leverkusen - Eintracht Frankfurt &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Bayer 04 Leverkusen'>B04</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=3" title="die Ergebnisse dieser Mannschaft hervorheben">FSV Mainz 05</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="FSV Mainz 05 - Bayern München &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="FSV Mainz 05 - Bayer 04 Leverkusen &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="FSV Mainz 05 - VfB Stuttgart &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="FSV Mainz 05 - VfL Bochum &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="FSV Mainz 05 - RB Leipzig &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="FSV Mainz 05 - 1.FC Heidenheim &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="FSV Mainz 05 - 1.FC Union Berlin &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="FSV Mainz 05 - TSG Hoffenheim &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="FSV Mainz 05 - Werder Bremen &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="FSV Mainz 05 - Holstein Kiel &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="FSV Mainz 05 - FC St. Pauli &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="FSV Mainz 05 - Borussia Dortmund &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="FSV Mainz 05 - FC Augsburg &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="FSV Mainz 05 - Borussia M'gladbach &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="FSV Mainz 05 - SC Freiburg &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="FSV Mainz 05 - VfL Wolfsburg &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="FSV Mainz 05 - Eintracht Frankfurt &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='FSV Mainz 05'>FSV</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=4" title="die Ergebnisse dieser Mannschaft hervorheben">VfB Stuttgart</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="VfB Stuttgart - Bayern München &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="VfB Stuttgart - Bayer 04 Leverkusen &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="VfB Stuttgart - FSV Mainz 05 &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="VfB Stuttgart - VfL Bochum &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="VfB Stuttgart - RB Leipzig &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="VfB Stuttgart - 1.FC Heidenheim &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="VfB Stuttgart - 1.FC Union Berlin &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="VfB Stuttgart - TSG Hoffenheim &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="VfB Stuttgart - Werder Bremen &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="VfB Stuttgart - Holstein Kiel &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="VfB Stuttgart - FC St. Pauli &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="VfB Stuttgart - Borussia Dortmund &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="VfB Stuttgart - FC Augsburg &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="VfB Stuttgart - Borussia M'gladbach &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="VfB Stuttgart - SC Freiburg &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="VfB Stuttgart - VfL Wolfsburg &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="VfB Stuttgart - Eintracht Frankfurt &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='VfB Stuttgart'>VfB</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=5" title="die Ergebnisse dieser Mannschaft hervorheben">VfL Bochum</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="VfL Bochum - Bayern München &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="VfL Bochum - Bayer 04 Leverkusen &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="VfL Bochum - FSV Mainz 05 &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="VfL Bochum - VfB Stuttgart &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="VfL Bochum - RB Leipzig &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="VfL Bochum - 1.FC Heidenheim &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="VfL Bochum - 1.FC Union Berlin &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="VfL Bochum - TSG Hoffenheim &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="VfL Bochum - Werder Bremen &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="VfL Bochum - Holstein Kiel &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="VfL Bochum - FC St. Pauli &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="VfL Bochum - Borussia Dortmund &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="VfL Bochum - FC Augsburg &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="VfL Bochum - Borussia M'gladbach &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="VfL Bochum - SC Freiburg &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="VfL Bochum - VfL Wolfsburg &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="VfL Bochum - Eintracht Frankfurt &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='VfL Bochum'>1848</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=6" title="die Ergebnisse dieser Mannschaft hervorheben">RB Leipzig</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="RB Leipzig - Bayern München &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="RB Leipzig - Bayer 04 Leverkusen &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="RB Leipzig - FSV Mainz 05 &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="RB Leipzig - VfB Stuttgart &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="RB Leipzig - VfL Bochum &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="RB Leipzig - 1.FC Heidenheim &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="RB Leipzig - 1.FC Union Berlin &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="RB Leipzig - TSG Hoffenheim &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="RB Leipzig - Werder Bremen &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="RB Leipzig - Holstein Kiel &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="RB Leipzig - FC St. Pauli &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="RB Leipzig - Borussia Dortmund &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="RB Leipzig - FC Augsburg &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="RB Leipzig - Borussia M'gladbach &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="RB Leipzig - SC Freiburg &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="RB Leipzig - VfL Wolfsburg &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="RB Leipzig - Eintracht Frankfurt &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='RB Leipzig'>RBL</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=7" title="die Ergebnisse dieser Mannschaft hervorheben">1.FC Heidenheim</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="1.FC Heidenheim - Bayern München &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="1.FC Heidenheim - Bayer 04 Leverkusen &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="1.FC Heidenheim - FSV Mainz 05 &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="1.FC Heidenheim - VfB Stuttgart &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="1.FC Heidenheim - VfL Bochum &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="1.FC Heidenheim - RB Leipzig &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="1.FC Heidenheim - 1.FC Union Berlin &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="1.FC Heidenheim - TSG Hoffenheim &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="1.FC Heidenheim - Werder Bremen &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="1.FC Heidenheim - Holstein Kiel &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="1.FC Heidenheim - FC St. Pauli &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="1.FC Heidenheim - Borussia Dortmund &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="1.FC Heidenheim - FC Augsburg &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="1.FC Heidenheim - Borussia M'gladbach &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="1.FC Heidenheim - SC Freiburg &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="1.FC Heidenheim - VfL Wolfsburg &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="1.FC Heidenheim - Eintracht Frankfurt &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='1.FC Heidenheim'>1.FCH</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=8" title="die Ergebnisse dieser Mannschaft hervorheben">1.FC Union Berlin</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="1.FC Union Berlin - Bayern München &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="1.FC Union Berlin - Bayer 04 Leverkusen &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="1.FC Union Berlin - FSV Mainz 05 &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="1.FC Union Berlin - VfB Stuttgart &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="1.FC Union Berlin - VfL Bochum &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="1.FC Union Berlin - RB Leipzig &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="1.FC Union Berlin - 1.FC Heidenheim &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="1.FC Union Berlin - TSG Hoffenheim &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="1.FC Union Berlin - Werder Bremen &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="1.FC Union Berlin - Holstein Kiel &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="1.FC Union Berlin - FC St. Pauli &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="1.FC Union Berlin - Borussia Dortmund &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="1.FC Union Berlin - FC Augsburg &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="1.FC Union Berlin - Borussia M'gladbach &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="1.FC Union Berlin - SC Freiburg &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="1.FC Union Berlin - VfL Wolfsburg &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="1.FC Union Berlin - Eintracht Frankfurt &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='1.FC Union Berlin'>FCU</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=9" title="die Ergebnisse dieser Mannschaft hervorheben">TSG Hoffenheim</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="TSG Hoffenheim - Bayern München &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="TSG Hoffenheim - Bayer 04 Leverkusen &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="TSG Hoffenheim - FSV Mainz 05 &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="TSG Hoffenheim - VfB Stuttgart &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="TSG Hoffenheim - VfL Bochum &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="TSG Hoffenheim - RB Leipzig &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="TSG Hoffenheim - 1.FC Heidenheim &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="TSG Hoffenheim - 1.FC Union Berlin &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="TSG Hoffenheim - Werder Bremen &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="TSG Hoffenheim - Holstein Kiel &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="TSG Hoffenheim - FC St. Pauli &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="TSG Hoffenheim - Borussia Dortmund &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="TSG Hoffenheim - FC Augsburg &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="TSG Hoffenheim - Borussia M'gladbach &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="TSG Hoffenheim - SC Freiburg &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="TSG Hoffenheim - VfL Wolfsburg &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="TSG Hoffenheim - Eintracht Frankfurt &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='TSG Hoffenheim'>TSG</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=10" title="die Ergebnisse dieser Mannschaft hervorheben">Werder Bremen</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="Werder Bremen - Bayern München &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="Werder Bremen - Bayer 04 Leverkusen &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="Werder Bremen - FSV Mainz 05 &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="Werder Bremen - VfB Stuttgart &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="Werder Bremen - VfL Bochum &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Werder Bremen - RB Leipzig &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Werder Bremen - 1.FC Heidenheim &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Werder Bremen - 1.FC Union Berlin &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="Werder Bremen - TSG Hoffenheim &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="Werder Bremen - Holstein Kiel &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Werder Bremen - FC St. Pauli &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Werder Bremen - Borussia Dortmund &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Werder Bremen - FC Augsburg &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="Werder Bremen - Borussia M'gladbach &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="Werder Bremen - SC Freiburg &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="Werder Bremen - VfL Wolfsburg &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="Werder Bremen - Eintracht Frankfurt &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Werder Bremen'>SVW</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=11" title="die Ergebnisse dieser Mannschaft hervorheben">Holstein Kiel</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="Holstein Kiel - Bayern München &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Holstein Kiel - Bayer 04 Leverkusen &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Holstein Kiel - FSV Mainz 05 &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Holstein Kiel - VfB Stuttgart &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Holstein Kiel - VfL Bochum &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Holstein Kiel - RB Leipzig &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Holstein Kiel - 1.FC Heidenheim &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Holstein Kiel - 1.FC Union Berlin &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Holstein Kiel - TSG Hoffenheim &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Holstein Kiel - Werder Bremen &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Holstein Kiel - FC St. Pauli &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Holstein Kiel - Borussia Dortmund &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Holstein Kiel - FC Augsburg &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Holstein Kiel - Borussia M'gladbach &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Holstein Kiel - SC Freiburg &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Holstein Kiel - VfL Wolfsburg &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Holstein Kiel - Eintracht Frankfurt &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Holstein Kiel'>HK</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=12" title="die Ergebnisse dieser Mannschaft hervorheben">FC St. Pauli</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="FC St. Pauli - Bayern München &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="FC St. Pauli - Bayer 04 Leverkusen &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="FC St. Pauli - FSV Mainz 05 &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="FC St. Pauli - VfB Stuttgart &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="FC St. Pauli - VfL Bochum &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="FC St. Pauli - RB Leipzig &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="FC St. Pauli - 1.FC Heidenheim &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="FC St. Pauli - 1.FC Union Berlin &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="FC St. Pauli - TSG Hoffenheim &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="FC St. Pauli - Werder Bremen &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="FC St. Pauli - Holstein Kiel &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="FC St. Pauli - Borussia Dortmund &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="FC St. Pauli - FC Augsburg &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="FC St. Pauli - Borussia M'gladbach &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="FC St. Pauli - SC Freiburg &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="FC St. Pauli - VfL Wolfsburg &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="FC St. Pauli - Eintracht Frankfurt &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='FC St. Pauli'>FCSTP</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=13" title="die Ergebnisse dieser Mannschaft hervorheben">Borussia Dortmund</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="Borussia Dortmund - Bayern München &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="Borussia Dortmund - Bayer 04 Leverkusen &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Borussia Dortmund - FSV Mainz 05 &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Borussia Dortmund - VfB Stuttgart &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Borussia Dortmund - VfL Bochum &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Borussia Dortmund - RB Leipzig &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="Borussia Dortmund - 1.FC Heidenheim &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Borussia Dortmund - 1.FC Union Berlin &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="Borussia Dortmund - TSG Hoffenheim &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="Borussia Dortmund - Werder Bremen &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="Borussia Dortmund - Holstein Kiel &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Borussia Dortmund - FC St. Pauli &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Borussia Dortmund - FC Augsburg &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="Borussia Dortmund - Borussia M'gladbach &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Borussia Dortmund - SC Freiburg &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="Borussia Dortmund - VfL Wolfsburg &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="Borussia Dortmund - Eintracht Frankfurt &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Borussia Dortmund'>BVB</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=14" title="die Ergebnisse dieser Mannschaft hervorheben">FC Augsburg</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="FC Augsburg - Bayern München &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="FC Augsburg - Bayer 04 Leverkusen &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="FC Augsburg - FSV Mainz 05 &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="FC Augsburg - VfB Stuttgart &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="FC Augsburg - VfL Bochum &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="FC Augsburg - RB Leipzig &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="FC Augsburg - 1.FC Heidenheim &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="FC Augsburg - 1.FC Union Berlin &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="FC Augsburg - TSG Hoffenheim &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="FC Augsburg - Werder Bremen &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="FC Augsburg - Holstein Kiel &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="FC Augsburg - FC St. Pauli &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="FC Augsburg - Borussia Dortmund &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="FC Augsburg - Borussia M'gladbach &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="FC Augsburg - SC Freiburg &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="FC Augsburg - VfL Wolfsburg &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="FC Augsburg - Eintracht Frankfurt &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='FC Augsburg'>FCA</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="die Ergebnisse dieser Mannschaft hervorheben">Borussia M'gladbach</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="Borussia M'gladbach - Bayern München &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="Borussia M'gladbach - Bayer 04 Leverkusen &#10;(1. Spieltag, Fri. 23.08.2024 20:30)">23.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Borussia M'gladbach - FSV Mainz 05 &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="Borussia M'gladbach - VfB Stuttgart &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="Borussia M'gladbach - VfL Bochum &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Borussia M'gladbach - RB Leipzig &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Borussia M'gladbach - 1.FC Heidenheim &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Borussia M'gladbach - 1.FC Union Berlin &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="Borussia M'gladbach - TSG Hoffenheim &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Borussia M'gladbach - Werder Bremen &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="Borussia M'gladbach - Holstein Kiel &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Borussia M'gladbach - FC St. Pauli &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Borussia M'gladbach - Borussia Dortmund &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Borussia M'gladbach - FC Augsburg &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Borussia M'gladbach - SC Freiburg &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="Borussia M'gladbach - VfL Wolfsburg &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Borussia M'gladbach - Eintracht Frankfurt &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Borussia M´gladbach'>BMG</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=16" title="die Ergebnisse dieser Mannschaft hervorheben">SC Freiburg</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="SC Freiburg - Bayern München &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="SC Freiburg - Bayer 04 Leverkusen &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="SC Freiburg - FSV Mainz 05 &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="SC Freiburg - VfB Stuttgart &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="SC Freiburg - VfL Bochum &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="SC Freiburg - RB Leipzig &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="SC Freiburg - 1.FC Heidenheim &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="SC Freiburg - 1.FC Union Berlin &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="SC Freiburg - TSG Hoffenheim &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="SC Freiburg - Werder Bremen &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="SC Freiburg - Holstein Kiel &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="SC Freiburg - FC St. Pauli &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="SC Freiburg - Borussia Dortmund &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="SC Freiburg - FC Augsburg &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="SC Freiburg - Borussia M´gladbach &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="SC Freiburg - VfL Wolfsburg &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="SC Freiburg - Eintracht Frankfurt &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='SC Freiburg'>SCF</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=17" title="die Ergebnisse dieser Mannschaft hervorheben">VfL Wolfsburg</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="VfL Wolfsburg - Bayern München &#10;(1. Spieltag, Sat. 24.08.2024 15:30)">24.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="VfL Wolfsburg - Bayer 04 Leverkusen &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="VfL Wolfsburg - FSV Mainz 05 &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="VfL Wolfsburg - VfB Stuttgart &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="VfL Wolfsburg - VfL Bochum &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="VfL Wolfsburg - RB Leipzig &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="VfL Wolfsburg - 1.FC Heidenheim &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="VfL Wolfsburg - 1.FC Union Berlin &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="VfL Wolfsburg - TSG Hoffenheim &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="VfL Wolfsburg - Werder Bremen &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="VfL Wolfsburg - Holstein Kiel &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="VfL Wolfsburg - FC St. Pauli &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="VfL Wolfsburg - Borussia Dortmund &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="VfL Wolfsburg - FC Augsburg &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="VfL Wolfsburg - Borussia M´gladbach &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="VfL Wolfsburg - SC Freiburg &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="VfL Wolfsburg - Eintracht Frankfurt &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='VfL Wolfsburg'>WOB</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=18" title="die Ergebnisse dieser Mannschaft hervorheben">Eintracht Frankfurt</a>
+</th>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="Eintracht Frankfurt - Bayern München &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="Eintracht Frankfurt - Bayer 04 Leverkusen &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Eintracht Frankfurt - FSV Mainz 05 &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Eintracht Frankfurt - VfB Stuttgart &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Eintracht Frankfurt - VfL Bochum &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Eintracht Frankfurt - RB Leipzig &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Eintracht Frankfurt - 1.FC Heidenheim &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Eintracht Frankfurt - 1.FC Union Berlin &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Eintracht Frankfurt - TSG Hoffenheim &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Eintracht Frankfurt - Werder Bremen &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="Eintracht Frankfurt - Holstein Kiel &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Eintracht Frankfurt - FC St. Pauli &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Eintracht Frankfurt - Borussia Dortmund &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Eintracht Frankfurt - FC Augsburg &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="Eintracht Frankfurt - Borussia M´gladbach &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Eintracht Frankfurt - SC Freiburg &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+</td>
+<td align='center'>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="Eintracht Frankfurt - VfL Wolfsburg &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+</td>
+<td class='lmoLeer'>&nbsp;</td>
+<th align='left'>
+<acronym title=''>
+</acronym>
+<acronym title='Eintracht Frankfurt'>SGE</acronym>
+</th>
+</tr>
+<tr>
+<th align='right'>
+</th>
+<th align='center'>
+<acronym title='Bayern München'>FCB</acronym>
+</th>
+<th align='center'>
+<acronym title='Bayer 04 Leverkusen'>B04</acronym>
+</th>
+<th align='center'>
+<acronym title='FSV Mainz 05'>FSV</acronym>
+</th>
+<th align='center'>
+<acronym title='VfB Stuttgart'>VfB</acronym>
+</th>
+<th align='center'>
+<acronym title='VfL Bochum'>1848</acronym>
+</th>
+<th align='center'>
+<acronym title='RB Leipzig'>RBL</acronym>
+</th>
+<th align='center'>
+<acronym title='1.FC Heidenheim'>1.FCH</acronym>
+</th>
+<th align='center'>
+<acronym title='1.FC Union Berlin'>FCU</acronym>
+</th>
+<th align='center'>
+<acronym title='TSG Hoffenheim'>TSG</acronym>
+</th>
+<th align='center'>
+<acronym title='Werder Bremen'>SVW</acronym>
+</th>
+<th align='center'>
+<acronym title='Holstein Kiel'>HK</acronym>
+</th>
+<th align='center'>
+<acronym title='FC St. Pauli'>FCSTP</acronym>
+</th>
+<th align='center'>
+<acronym title='Borussia Dortmund'>BVB</acronym>
+</th>
+<th align='center'>
+<acronym title='FC Augsburg'>FCA</acronym>
+</th>
+<th align='center'>
+<acronym title='Borussia M´gladbach'>BMG</acronym>
+</th>
+<th align='center'>
+<acronym title='SC Freiburg'>SCF</acronym>
+</th>
+<th align='center'>
+<acronym title='VfL Wolfsburg'>WOB</acronym>
+</th>
+<th align='center'>
+<acronym title='Eintracht Frankfurt'>SGE</acronym>
+</th>
+<th align='left'>&nbsp;</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

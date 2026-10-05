@@ -1,0 +1,336 @@
+### lmoadmin.php?action=admin&todo=edit&file=golden/basic.l98&st=-4
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=golden/" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
+</td>
+<td align="center">Spielerstatistik</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
+</td>
+</tr>
+</table>
+<script type="text/javascript"> function change(op,x) { var el=document.getElementsByName(x)[0]; var a=el.value; if (!isNaN(a)) { a=parseInt(a); document.getElementsByName(x)[0].value=eval(a+op+"1"); } lmotest=false; mark(el); return false; } function sel(x) { document.getElementsByName(x)[0].select(); } function mark(el) { el.className="lmoTabelleMeister"; } </script>
+<table class="lmoMiddle">
+<tr>
+<th align="center">
+<h1>Spielerstatistik</h1>
+</th>
+</tr>
+<tr>
+<td>
+<table class="lmoInner">
+<tr>
+<th align="left" colspan="2">Spieler verwalten</th>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<form action="/lmo/lmoadmin.php" method="post">
+<acronym title="Spieler hinzufügen - Bitte beachten Sie die Hinweise in der Hilfe für die erweiterten Funktionen">
+<input type="text" name="wert">
+</acronym>&nbsp;<input class="lmo-formular-button" type="submit" value=" + ">
+<input type="hidden" name="option" value="addplayer">
+<input type="hidden" name="sort" value="0">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="file" value="golden/basic.l98">
+</form>
+</td>
+<td class="nobr" align="left">
+<form action="/lmo/lmoadmin.php" method="post">
+<acronym title="Spieler löschen">
+<select name="wert" size="1">
+</select>
+</acronym>
+<input class="lmo-formular-button" type="submit" value=" &minus; ">
+<input type="hidden" name="option" value="delplayer">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="sort" value="0">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="file" value="golden/basic.l98">
+</form>
+</td>
+</tr>
+<tr>
+<th align="left" colspan="2">Spalten verwalten</th>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<form action="/lmo/lmoadmin.php" method="post" name="spalten">
+<acronym title="Spalte hinzufügen - Bitte beachten Sie die Hinweise in der Hilfe für die erweiterten Funktionen">
+<input type="text" name="wert">
+</acronym>
+<input class="lmo-formular-button" type="submit" value=" + ">
+<br>
+<acronym title="Typ der Spalte (beachten Sie auch die Hilfedatei zum Thema Spezialspalten!)">Typ:</acronym>
+<input type="radio" name="type" value="0" checked>&nbsp;Zahlen <input type="radio" name="type" value="___">&nbsp;Text <input type="radio" name="type" value="F">&nbsp;Formel <input type="hidden" name="option" value="addcolumn">
+<input type="hidden" name="sort" value="0">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="file" value="golden/basic.l98">
+</form>
+</td>
+<td class="nobr" align="left" valign="top">
+<form action="/lmo/lmoadmin.php" method="post" name="spieler">
+<acronym title="Spalte löschen">
+<select name="wert" size="1">
+<option value="0" disabled>Name</option>
+</select>
+</acronym>&nbsp;<input class="lmo-formular-button" type="submit" value=" &minus; ">
+<input type="hidden" name="option" value="delcolumn">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="sort" value="0">
+<input type="hidden" name="file" value="golden/basic.l98">
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th align="center">
+<h1>Eingabe der Spielerstatistiken</h1>
+</th>
+</tr>
+<tr>
+<td>
+<form action="/lmo/lmoadmin.php" method="post">
+<table id="stats" class="lmoInner">
+<thead>
+<tr>
+<th colspan="2" class="nobr" align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;st=-4&amp;sort=0&amp;file=golden/basic.l98&amp;sort_direction=asc" title="Aufsteigend sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.svg" width="10" border="0" alt="&and;">
+</a>
+<input type="text" name="spalten0" onChange="mark(this)" value="Name" size="4">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;st=-4&amp;sort=0&amp;file=golden/basic.l98&amp;sort_direction=desc" title="Absteigend sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.svg" width="10" border="0" alt="&or;">
+</a>
+</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td align="center" colspan="2">
+<input type="hidden" name="option" value="statupdate">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="sort" value="0">
+<input type="hidden" name="file" value="golden/basic.l98">
+<input class="lmo-formular-button" type="submit" value="Spielerstatistik updaten">
+</td>
+</tr>
+</tfoot>
+<tbody>
+</tbody>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<th align="center">
+<h1>Konfiguration</h1>
+</th>
+</tr>
+<tr>
+<td>
+<form action="/lmo/lmoadmin.php" method="post" name="form1">
+<input type="hidden" name="option" value="saveconfig">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="st" value="-4">
+<input type="hidden" name="file" value="golden/basic.l98">
+<table class="lmoInner">
+<tr>
+<th colspan="3">User</th>
+<th colspan="2">Admin</th>
+</tr>
+<tr>
+<td class="nobr">Anzeige pro Seite: </td>
+<td align="right">
+<input type="text" name="anzeige_pro_seite" value="10" size="2">
+</td>
+<td align="left">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="return change(\'+\',\'anzeige_pro_seite\');" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'1a\',img1)" onMouseOut="lmoimg(\'1a\',img0)">
+<img src="http://lmo.test/lmo/img/lmo-admin0.gif" name="ximg1a" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="return change(\'-\',\'anzeige_pro_seite\');" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'1b\',img3)" onMouseOut="lmoimg(\'1b\',img2)">
+<img src="http://lmo.test/lmo/img/lmo-admin2.gif" name="ximg1b" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+</table>
+</td>
+<td align="left" class="nobr">Vorsortierung Admin: </td>
+<td align="left">
+<select name="adminbereich_standard_sortierung" onChange="mark(this)" size="1">
+<option value="0" selected>Name</option>
+</select>
+</td>
+</tr>
+<tr>
+<td align="left" class="nobr">Vorsortierung User: </td>
+<td align="left" colspan="2">
+<select name="standard_sortierung" onChange="mark(this)" size="1">
+<option value="0" selected>Name</option>
+</select>
+</td>
+<td align="left" class="nobr">Hilfsadmin: </td>
+<td align="left">
+<input type="checkbox" name="adminbereich_hilfsadmin_zulassen" onChange="mark(this)" value="1" checked onClick="if (this.checked==true) document.form1.adminbereich_hilfsadmin_fuer_spalten.disabled=false; else {document.form1.adminbereich_hilfsadmin_fuer_spalten.disabled=true;document.form1.adminbereich_hilfsadmin_fuer_spalten.checked=false;}">
+</td>
+</tr>
+<tr>
+<td align="left" class="nobr" rowspan="2">Sortierung: </td>
+<td align="left" class="nobr" colspan="2">
+<input type="radio" name="standard_richtung" onClick="mark(this)" value="1" checked> absteigend</td>
+<td align="left" class="nobr">Hilfsadmin (Spalten): </td>
+<td align="left">
+<input type="checkbox" onChange="mark(this)" name="adminbereich_hilfsadmin_fuer_spalten" value="1" checked>
+</td>
+</tr>
+<tr>
+<td align="left" colspan="2" class="nobr">
+<input type="radio" name="standard_richtung" onClick="mark(this)" value="0"> aufsteigend</td>
+<td colspan="2" rowspan="4">&nbsp;</td>
+</tr>
+<tr>
+<td align="left" class="nobr">Linkbezeichnung: </td>
+<td colspan="2" align="left">
+<input type="text" name="ligalink" onChange="mark(this)" value="Spielerstatistik" size="16">
+</td>
+</tr>
+<tr>
+<td align="left" class="nobr">Extra Sortierspalte: </td>
+<td colspan="2" align="left">
+<input type="checkbox" name="extra_sortierspalte" onClick="mark(this)" value="1" checked>
+</td>
+</tr>
+<tr>
+<td align="left" class="nobr">Vereinsweise anzeigen: </td>
+<td colspan="2" align="left">
+<input type="checkbox" name="vereinsweise_anzeigen" onClick="mark(this)" value="0" disabled>
+</td>
+</tr>
+<tr>
+<td class="nobr">Nullwerte einblenden: </td>
+<td colspan="2" align="left">
+<input type="checkbox" name="nullwerte_anzeigen" onClick="mark(this)" value="1" checked>
+</td>
+</tr>
+<tr>
+<td colspan="5" align="center">
+<input class="lmo-formular-button" type="submit" value="Konfiguration speichern">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=golden/basic.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+NEU addon/spieler/stats/basic.stat (5 Bytes)
+Name
