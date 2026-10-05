@@ -1,13 +1,36 @@
 {
-    "name": "lmo/lmo-php8-tests",
-    "description": "Entwicklungswerkzeuge (Golden-Master-Tests) fuer lmo_php8",
+    "name": "lmo/lmo_php8",
+    "description": "The Liga Manager Online (LMO for short) is free software for managing sports leagues with tables on the Internet.",
     "type": "project",
-    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "LMO",
+        "Liga Manager Online",
+        "Sportligen verwalten"
+    ],
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Rene Marth (joker)",
+            "homepage": "https://www.liga-manager-online.de",
+            "role": "Extension developer"
+        },
+        {
+            "name": "Henshingly",
+            "homepage": "https://www.vest-sport.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "forum": "https://www.liga-manager-online.org/forum/"
+    },
     "require": {
         "php": ">=8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6"
+    },
+    "suggest": {
+        "ext-gd": "Fuer die Grafiken (Fieberkurve, Tippspiel-Grafiken)"
     },
     "autoload-dev": {
         "psr-4": {
