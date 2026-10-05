@@ -1,0 +1,257 @@
+### lmoadmin.php?action=admin&todo=vieweroptions
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; Viewer </td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<script src="http://lmo.test/lmo/js/viewer.js" type="text/javascript">
+</script>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
+<tr>
+<th align="center">
+<h1>Konfiguration LMO-Viewer 4.1</h1>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<form method="POST" action="/lmo/lmoadmin.php?action=admin&todo=vieweroptions">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<th colspan="2" align="center">Schritt 1 von 3 - Einstellung der Darstellung</th>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<!--snipp ---------------------------------->
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td class="nobr" colspan="4">Dateiname <input class="lmo-formular-input" type="text" name="dateiname" size="20" value="unbenannt"> &nbsp;'.view' wird angehängt </td>
+</tr>
+<tr>
+<td class="nobr" align="right" height="22">
+<input class="lmo-formular-input" type="radio" value="1" name="modus" checked onClick="byDate(this);">
+</td>
+<td class="nobr" align="left"> nach Datum</td>
+<td class="nobr" align="right">
+<input type="radio" value="2" name="modus" onClick="byDay(this);">
+</td>
+<td class="nobr" align="left">nach Spieltag</td>
+</tr>
+<tr>
+<td class="nobr" align="right" height="22">
+<input class="lmo-formular-input" type="text" name="anzahl_tage_plus" size="3" value="7">
+</td>
+<td class="nobr" align="left">Anzahl Tage plus</td>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="anzahl_spieltage_vor" size="3" value="3" disabled>
+</td>
+<td class="nobr" align="left">Anzahl Spieltage vor</td>
+</tr>
+<tr>
+<td class="nobr" align="right" height="22">
+<input class="lmo-formular-input" type="text" name="anzahl_tage_minus" size="3" value="7">
+</td>
+<td class="nobr" align="left"> Anzahl Tage minus</td>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="anzahl_spieltage_zurueck" size="3" value="3" disabled>
+</td>
+<td class="nobr" align="left"> Anzahl Spieltage zurück</td>
+</tr>
+</table>
+<br>
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+<td class="nobr" colspan="4">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="datumsformat" size="6" value="d.m.Y">
+</td>
+<td class="nobr" align="left">&nbsp;Datumsformat</td>
+<td class="nobr" align="right">Template</td>
+<td class="nobr" align="left">
+<select class="lmo-formular-input" name="template" size="1">
+<option>big_with_icons</option>
+<option>mini</option>
+<option>grosse_version</option>
+<option>standard</option>
+<option>mini_with_icons</option>
+<option>standard_spieltag</option>
+<option>standard_ohne_icons</option>
+<option>big_nur_icons</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="uhrzeitformat" size="6" value="H:i">
+</td>
+<td class="nobr" align="left">&nbsp;Uhrzeitformat</td>
+<td class="nobr" align="right">Titelzeile</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="titelzeile" size="20" value="">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="checkbox" name="favteam_highlight" checked>
+</td>
+<td class="nobr" align="left">&nbsp;Lieblingsmannschaft hervorheben</td>
+<td class="nobr" align="right">Mannschaftsnamen</td>
+<td class="nobr" align="left">&nbsp; <select class="lmo-formular-input" name="mannschaftsnamen" onChange="dolmoedit();">
+<option value="0">Lange</option>
+<option value="1">Kurze</option>
+<option value="2">Mittellange</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="checkbox" name="heute_highlight" checked>
+</td>
+<td class="nobr" align="left">&nbsp;Heute hervorheben</td>
+<td class="nobr" align="right">Berichtsymbol</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spielberichtesymbol" size="20" value="bericht.gif" onChange="document.getElementById('spielberichtesymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="spielberichtesymbol" src="http://lmo.test/lmo/img/viewer/bericht.gif" alt="">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="checkbox" name="spielberichte_neues_fenster">
+</td>
+<td class="nobr" align="left">&nbsp;Spielberichte in neuem Fenster</td>
+<td class="nobr" align="right">Tabellensymbol</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tabellensymbol" size="20" value="tabelle.gif" onChange="document.getElementById('tabellensymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="tabellensymbol" src="http://lmo.test/lmo/img/viewer/tabelle.gif" alt="">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="checkbox" name="tabelle_verlinken">
+</td>
+<td class="nobr" align="left">&nbsp;Tabelle in neuem Fenster</td>
+<td class="nobr" align="right">Notizsymbol</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="notizsymbol" size="20" value="notiz.gif" onChange="document.getElementById('notizsymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="notizsymbol" src="http://lmo.test/lmo/img/viewer/notiz.gif" alt="">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="checkbox" name="mannschaftshomepages_verlinken">
+</td>
+<td class="nobr" align="left">&nbsp; Mannschaftshomepages verlinken </td>
+<td class="nobr" align="right">Spieltagtext</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spieltagtext" size="10" value="ST">
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="cache_refresh" size="3" value="0">
+</td>
+<td class="nobr" align="left">&nbsp;<acronym title="Nach dem xx Aufrufen des Viewers wird der Cache erneuert (je mehr Besuche, destso höher kann der Wert sein)">Cachefaktor</acronym>
+</td>
+<td class="nobr" align="right">Tordummy</td>
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tordummy" size="1" value="_">
+</td>
+</tr>
+</table>
+<!--snipp ---------------------------------->
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input type="submit" class="lmo-formular-button" value="weiter>>" name="B1">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="formular1" value="1">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter">LMO-Viewer 4.1 © LMO-Group</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+(keine)

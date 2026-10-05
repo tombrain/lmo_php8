@@ -1,0 +1,686 @@
+### edit_round_without_changes
+=== Runde 1 unveraendert speichern ===
+### GESENDETE FELDER (POST, 28)
+action=admin
+todo=edit
+save=1
+file=pokal2.l98
+st=1
+xdatum1=
+xdatum2=
+xatdat00=
+xattim00=
+xteama0=0
+xteamb0=0
+xgoala00=_
+xgoalb00=_
+xmspez00=_
+xmnote00=
+xmberi00=
+xatdat10=
+xattim10=
+xteama1=0
+xteamb1=0
+xgoala10=_
+xgoalb10=_
+xmspez10=_
+xmnote10=
+xmberi10=
+xstx=0
+xnticker=0
+xnlines=
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=./" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">Ergebnisse</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Pokal 2</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align='center'>HF&nbsp;</td>
+<td align='center'>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=2" title="zum Finale wechseln">F</a>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="file" value="pokal2.l98">
+<input type="hidden" name="st" value="1">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="nobr" style="text-align:left" colspan="9"> 1. Spieltag <acronym title="Startdatum des Spieltags (Format TT.MM.JJJJ - ggf. mit führenden Nullen)"> vom</acronym>
+<input class="lmo-formular-input" type="text" name="xdatum1" tabindex="01" size="10" maxlength="10" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xdatum1\',\'\')" title="Datum mit Hilfe des PopUp-Kalenders auswählen" onMouseOver="lmoimg(\'d1\',img5)" onMouseOut="lmoimg(\'d1\',img4)">
+<img src="http://lmo.test/lmo/img/lmo-admin4.gif" name="ximgd1" width="12" height="11" border="0">
+</a>');</script>
+<acronym title="Enddatum des Spieltags (Format TT.MM.JJJJ - ggf. mit führenden Nullen)"> bis</acronym>
+<input class="lmo-formular-input" type="text" name="xdatum2" tabindex="02" size="10" maxlength="10" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xdatum2\',\'\')" title="Datum mit Hilfe des PopUp-Kalenders auswählen" onMouseOver="lmoimg(\'d2\',img5)" onMouseOut="lmoimg(\'d2\',img4)">
+<img src="http://lmo.test/lmo/img/lmo-admin4.gif" name="ximgd2" width="12" height="11" border="0">
+</a>');</script>
+</th>
+<th colspan="6">&nbsp;</th>
+<th style="text-align:center" class="nobr">
+<acronym title="Notiz zum Spiel (max. 255 Zeichen, eine eventuelle Grüne-Tisch-Entscheidung braucht hier nicht nochmal erwähnt zu werden)">
+<img src="http://lmo.test/lmo/img/notiz.svg" height="20" alt="Notiz zum Spiel">
+</acronym>
+</th>
+<th style="text-align:center" class="nobr">
+<acronym title="Tragen Sie hier den Link zum Spielbericht ein, falls Sie das anbieten möchten. (bitte eine komplette URL, die wird dann übrigens immer in einem neuen Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/spielbericht.svg" height="20" alt="URL des Spielber.">
+</acronym>
+</th>
+</tr>
+<tr>
+<td class="nobr">
+<input title="Anstoßdatum des Spiels (Format TT.MM.JJJJ - ggf. mit führenden Nullen)" class="lmo-formular-input" type="text" name="xatdat00" tabindex="0003" size="10" maxlength="10" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xatdat00\',\'\')" title="Datum mit Hilfe des PopUp-Kalenders auswählen" onMouseOver="lmoimg(\'00c\',img5)" onMouseOut="lmoimg(\'00c\',img4)">
+<img src="http://lmo.test/lmo/img/lmo-admin4.gif" name="ximg00c" width="12" height="11" border="0">
+<\/a>');</script>
+</td>
+<td>
+<input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim00" tabindex="0004" size="5" maxlength="5" value="" onChange="dolmoedit()">
+</td>
+<td width="2">&nbsp;</td>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xteama0" onChange="dolmoedit()" title="Heimmannschaft auswählen" tabindex="0005">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+</select>
+</td>
+<td align="center" width="10">-</td>
+<td class="nobr">
+<select class="lmo-formular-input" name="xteamb0" onChange="dolmoedit()" title="Gastmannschaft auswählen" tabindex="0006">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+</select>
+</td>
+<td width="2">&nbsp;</td>
+<td class="lmoBackMarkierung" align="right">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala00" tabindex="0007" size="4" maxlength="4" value="_" onChange="lmotorgte('a','00')" onKeyDown="lmotorclk('a','00',event.keyCode)">
+</td>
+<td class="lmoBackMarkierung" align="center">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'00\',1);return false;" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'00a\',img1)" onMouseOut="lmoimg(\'00a\',img0)">
+<img src="http://lmo.test/lmo/img/lmo-admin0.gif" name="ximg00a" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'00\',-1);return false;" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'00b\',img3)" onMouseOut="lmoimg(\'00b\',img2)">
+<img src="http://lmo.test/lmo/img/lmo-admin2.gif" name="ximg00b" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+</table>
+</td>
+<td class="lmoBackMarkierung" align="center" width="8">:</td>
+<td class="lmoBackMarkierung" align="right">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb00" tabindex="0008" size="4" maxlength="4" value="_" onChange="lmotorgte('b','00')" onKeyDown="lmotorclk('b','00',event.keyCode)">
+</td>
+<td class="lmoBackMarkierung" align="center">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'00\',1);return false;" title="Einstellung der Gasttore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'00f\',img1)" onMouseOut="lmoimg(\'00f\',img0)">
+<img src="http://lmo.test/lmo/img/lmo-admin0.gif" name="ximg00f" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'00\',-1);return false;" title="Einstellung der Gasttore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'00d\',img3)" onMouseOut="lmoimg(\'00d\',img2)">
+<img src="http://lmo.test/lmo/img/lmo-admin2.gif" name="ximg00d" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+</table>
+</td>
+<td class="lmoBackMarkierung" width="2">&nbsp;</td>
+<td class="lmoBackMarkierung">
+<select class="lmo-formular-input" name="xmspez00" onChange="dolmoedit()" title="Spielende auswählen" tabindex="0009">
+<option>_</option>
+<option>(n.V.)</option>
+<option>(i.E.)</option>
+</select>
+</td>
+<td width="2">&nbsp;</td>
+<td>
+<input class="lmo-formular-input" type="text" name="xmnote00" tabindex="0010" size="16" value="" onChange="dolmoedit()">
+</td>
+<td>
+<input class="lmo-formular-input" type="text" name="xmberi00" tabindex="0011" size="16" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input title="Anstoßdatum des Spiels (Format TT.MM.JJJJ - ggf. mit führenden Nullen)" class="lmo-formular-input" type="text" name="xatdat10" tabindex="1003" size="10" maxlength="10" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xatdat10\',\'\')" title="Datum mit Hilfe des PopUp-Kalenders auswählen" onMouseOver="lmoimg(\'10c\',img5)" onMouseOut="lmoimg(\'10c\',img4)">
+<img src="http://lmo.test/lmo/img/lmo-admin4.gif" name="ximg10c" width="12" height="11" border="0">
+<\/a>');</script>
+</td>
+<td>
+<input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim10" tabindex="1004" size="5" maxlength="5" value="" onChange="dolmoedit()">
+</td>
+<td width="2">&nbsp;</td>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xteama1" onChange="dolmoedit()" title="Heimmannschaft auswählen" tabindex="1005">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+</select>
+</td>
+<td align="center" width="10">-</td>
+<td class="nobr">
+<select class="lmo-formular-input" name="xteamb1" onChange="dolmoedit()" title="Gastmannschaft auswählen" tabindex="1006">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+</select>
+</td>
+<td width="2">&nbsp;</td>
+<td class="lmoBackMarkierung" align="right">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala10" tabindex="1007" size="4" maxlength="4" value="_" onChange="lmotorgte('a','10')" onKeyDown="lmotorclk('a','10',event.keyCode)">
+</td>
+<td class="lmoBackMarkierung" align="center">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'10\',1);return false;" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'10a\',img1)" onMouseOut="lmoimg(\'10a\',img0)">
+<img src="http://lmo.test/lmo/img/lmo-admin0.gif" name="ximg10a" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'10\',-1);return false;" title="Einstellung der Heimtore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'10b\',img3)" onMouseOut="lmoimg(\'10b\',img2)">
+<img src="http://lmo.test/lmo/img/lmo-admin2.gif" name="ximg10b" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+</table>
+</td>
+<td class="lmoBackMarkierung" align="center" width="8">:</td>
+<td class="lmoBackMarkierung" align="right">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb10" tabindex="1008" size="4" maxlength="4" value="_" onChange="lmotorgte('b','10')" onKeyDown="lmotorclk('b','10',event.keyCode)">
+</td>
+<td class="lmoBackMarkierung" align="center">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'10\',1);return false;" title="Einstellung der Gasttore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'10f\',img1)" onMouseOut="lmoimg(\'10f\',img0)">
+<img src="http://lmo.test/lmo/img/lmo-admin0.gif" name="ximg10f" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+<tr>
+<td>
+<script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'10\',-1);return false;" title="Einstellung der Gasttore (0 - 9999, _ oder X)" onMouseOver="lmoimg(\'10d\',img3)" onMouseOut="lmoimg(\'10d\',img2)">
+<img src="http://lmo.test/lmo/img/lmo-admin2.gif" name="ximg10d" width="7" height="7" border="0">
+<\/a>')</script>
+</td>
+</tr>
+</table>
+</td>
+<td class="lmoBackMarkierung" width="2">&nbsp;</td>
+<td class="lmoBackMarkierung">
+<select class="lmo-formular-input" name="xmspez10" onChange="dolmoedit()" title="Spielende auswählen" tabindex="1009">
+<option>_</option>
+<option>(n.V.)</option>
+<option>(i.E.)</option>
+</select>
+</td>
+<td width="2">&nbsp;</td>
+<td>
+<input class="lmo-formular-input" type="text" name="xmnote10" tabindex="1010" size="16" value="" onChange="dolmoedit()">
+</td>
+<td>
+<input class="lmo-formular-input" type="text" name="xmberi10" tabindex="1011" size="16" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<th class="nobr" colspan="19" align="center">Diese Einstellungen sind Spieltags-unabhängig</th>
+</tr>
+<tr>
+<td class="nobr" colspan="19" align="center">
+<acronym title="Welcher Spieltag soll beim ersten Start aufgerufen werden? Diese Einstellung muß nur dann geändert werden, wenn Sie diesen Spieltag nicht als den aktuellen Spieltag setzen wollen.">Aktueller Spieltag</acronym>
+<select class="lmo-formular-input" name="xstx" onChange="dolmoedit()" tabindex="2013">
+<option value="0">gewählter Spieltag</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="19" align="center">
+<acronym title="Soll der News-Ticker über der Liga angezeigt werden? (Für Einzeldarstellung des Ticker bitte in die Hilfedatei schauen)">Ticker anzeigen?</acronym>
+<select tabindex="2014" class="lmo-formular-input" name="xnticker" onChange="dolmoedit()">
+<option value="1">Ja</option>
+<option value="0" selected>Nein</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="19" align="center">
+<acronym title="Hier kommen die News für Ihren Ticker rein (immer 1 Meldung pro Zeile, bitte keine Leerzeilen lassen)">Tickertext: </acronym>
+<textarea tabindex="2015" class="lmo-formular-input" name="xnlines" cols="50" rows="4" onChange="dolmoedit()">
+</textarea>
+</td>
+</tr>
+<tr>
+<th style="text-align:center" colspan="19" align="center">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" tabindex="2016" class="lmo-formular-button" type="submit" name="best" value="Spieltag und Ticker speichern">
+</th>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=pokal2.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+GEAENDERT ligen/pokal2.l98
+--- vorher
++++ nachher
+@@ -25,4 +25,5 @@
+ 
+ [News]
++NC=0
+ 
+ [Teams]
+@@ -33,8 +34,8 @@
+ 
+ [Teamm]
+-1=
+-2=
+-3=
+-4=
++1=Mannschaft
++2=Mannschaft
++3=Mannschaft
++4=Mannschaft
+ 
+ [Teamk]
+@@ -91,5 +92,4 @@
+ GA11=-1
+ GB11=-1
+-SP11=0
+ NT11=
+ BE11=
+
+=== Mannschaften unveraendert speichern ===
+### GESENDETE FELDER (POST, 21)
+action=admin
+todo=edit
+save=1
+file=pokal2.l98
+st=-2
+xteams1=Mannschaft 1
+xteamm1=Mannschaft
+xteamk1=M1
+xteamu1=
+xteams2=Mannschaft 2
+xteamm2=Mannschaft
+xteamk2=M2
+xteamu2=
+xteams3=Mannschaft 3
+xteamm3=Mannschaft
+xteamk3=M3
+xteamu3=
+xteams4=Mannschaft 4
+xteamm4=Mannschaft
+xteamk4=M4
+xteamu4=
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=./" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
+</td>
+<td align="center">Mannschaften</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal2.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Pokal 2</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="file" value="pokal2.l98">
+<input type="hidden" name="st" value="-2">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="nobr" align="left">
+<acronym title="Name der Mannschaft (max. 64 Zeichen), Mittellanger Name der Mannschaft (max. 12 Zeichen), Kürzel der Mannschaft (max. 5 Zeichen)">Mannschaftsname (lang, mittel, kurz)</acronym>&nbsp;</th>
+<!-- Hack-Straftore Ende -->
+<th class="nobr" align="center">
+<acronym title="URL der Homepage der Mannschaft (diese wird später immer in einem neuen Fenster geöffnet werden)">
+<img src="http://lmo.test/lmo/img/spielbericht.svg" height="20" alt="Homepage-URL">
+</acronym>
+</th>
+<th class="nobr" colspan="2" align="center">&nbsp;</th>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams1" size="32" maxlength="64" value="Mannschaft 1" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm1" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk1" size="5" maxlength="5" value="M1" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="h1" class="lmo-formular-input" type="text" name="xteamu1" tabindex="114" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h1').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h1\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams2" size="32" maxlength="64" value="Mannschaft 2" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm2" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk2" size="5" maxlength="5" value="M2" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="h2" class="lmo-formular-input" type="text" name="xteamu2" tabindex="214" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h2').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h2\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams3" size="32" maxlength="64" value="Mannschaft 3" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm3" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk3" size="5" maxlength="5" value="M3" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="h3" class="lmo-formular-input" type="text" name="xteamu3" tabindex="314" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h3').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h3\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams4" size="32" maxlength="64" value="Mannschaft 4" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm4" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk4" size="5" maxlength="5" value="M4" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="h4" class="lmo-formular-input" type="text" name="xteamu4" tabindex="414" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h4').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h4\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr" colspan="2" align="right">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="Mannschaften speichern">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=pokal2.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+GEAENDERT ligen/pokal2.l98
+--- vorher
++++ nachher
+@@ -25,5 +25,4 @@
+ 
+ [News]
+-NC=0
+ 
+ [Teams]
+@@ -69,5 +68,4 @@
+ GA11=-1
+ GB11=-1
+-SP11=0
+ NT11=
+ BE11=
+@@ -78,5 +76,4 @@
+ GA21=-1
+ GB21=-1
+-SP21=0
+ NT21=
+ BE21=
+

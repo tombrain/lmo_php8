@@ -1,0 +1,190 @@
+### lmouserlang=English
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Please choose a League</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Please choose a League</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a <a href="/lmo/lmo.php?file=&amp;action=tipp" title="Prediction game">Prediction game&nbsp;&nbsp;<td class="lmoMenu" align="right">
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="left">
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="ligaliste" class="lmoInner" cellspacing="0" width="99%">
+<thead>
+<tr>
+<th>
+</th>
+<th class="nobr" align="left" title="until League Name Sort">
+<noscript>
+<a href="/lmo/lmo.php?liga_sort=liga_name&amp;liga_sort_direction=asc" title="Ascending until League Name Sort">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> League Name <a href="/lmo/lmo.php?liga_sort=liga_name&amp;liga_sort_direction=desc" title="Descending until League Name Sort">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('League Name');</script>
+</th>
+<th class="nobr" align="left" title="until Matchday/Round Sort">
+<noscript>
+<a href="/lmo/lmo.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=asc" title="Ascending until Matchday/Round Sort">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Matchday/Round <a href="/lmo/lmo.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=desc" title="Descending until Matchday/Round Sort">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Matchday/Round');</script>
+</th>
+<th class="nobr" align="left" title="until League Date Sort">
+<noscript>
+<a href="/lmo/lmo.php?liga_sort=file_date&amp;liga_sort_direction=asc" title="Ascending until League Date Sort">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> League Date <a href="/lmo/lmo.php?liga_sort=file_date&amp;liga_sort_direction=desc" title="Descending until League Date Sort">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('League Date');</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmo.php?todo=&amp;file=1l_2024-25.l98">1. Bundesliga 2024/25</a>
+</td>
+<td class="nobr" align="left">Matchday 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var ligaTable = new SortableTable(document.getElementById("ligaliste"), ["None", "CaseInsensitiveString", "RoundSort", "timeStamp"]);ligaTable.sort(3,1);</script>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align="left">
+<table class='lmoInner' cellspacing="0" width="99%">
+<tr>
+<th style="text-align:center" colspan="2">Archive</th>
+</tr>
+<tr>
+<td>
+<a href="/lmo/lmo.php?subdir=archiv/">archiv</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="/lmo/lmo.php?subdir=dfb/">dfb</a>
+</td>
+<td>
+<small>DFB-Schl&uuml;sselligen</small>
+</td>
+</tr>
+<tr>
+<td>
+<a href="/lmo/lmo.php?subdir=golden/">golden</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Deutsch" title="Deutsch">
+<img src="http://lmo.test/lmo/img/Deutsch.svg" height="16" style="margin-right:1mm" title="Deutsch" alt="Deutsch">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<img src="http://lmo.test/lmo/img/English.selected.svg" height="16" border="0" title="English" alt="English">
+<a href="/lmo/lmo.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+</td>
+<td class="lmoFooter" valign="bottom" align="right">
+<br>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

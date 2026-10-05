@@ -1,0 +1,345 @@
+### action=admin&todo=addons
+### GESENDETE FELDER (POST, 25)
+action=admin
+todo=addons
+save=1
+file=
+show=0
+xwithArchiv=1
+xunGreedy=1
+xbarWidth=120
+xstandardTemplate=mininext.tpl.php
+xcache_refresh=0
+xCacheTable=
+xTendenzPfeilUpImg=lmo-tab1.gif
+xTendenzPfeilDownImg=lmo-tab2.gif
+xTendenzPunktImg=lmo-tab0.gif
+xstandardLiga=
+xstandardAnzahlueber=
+xstandardAnzahlunter=
+xstandardTabellenPlatz=
+xtabelle_classMeister=
+xtabelle_classCLAufsteiger=
+xtabelle_classCLQuali=
+xtabelle_classUEFA=
+xtabelle_classAbstiegsRelegation=
+xtabelle_classAbsteiger=
+xclassFavorit=
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; Optionen&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen des Scripts festlegen">Optionen</a>
+</td>
+<td align="center">Addons</td>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=design" onclick="return chklmolink();" title="Design der Ausgabe festlegen (Schriften, Farben usw.)">Designeditor</a>
+</td>
+<td align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=user" onclick="return chklmolink();" title="Verwaltung der User, die auf diesen Admin-Bereich Zugriff erhalten sollen">Userverwaltung</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center" colspan="2">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Achtung! Bitte benutzen Sie diese Optionen nur, <br>wenn das Addon keine eigene Konfigurationsoberfläche bestitzt!</p>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<h1>Konfiguration der installierten Addons</h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right" class="active">mini</td>
+</tr>
+<tr>
+<td align="right" class="lmost4">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=1">classlib</a>
+</td>
+</tr>
+<tr>
+<td align="right" class="lmost4">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=2">tipp</a>
+</td>
+</tr>
+<tr>
+<td align="right" class="lmost4">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=3">ticker</a>
+</td>
+</tr>
+<tr>
+<td align="right" class="lmost4">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=4">spieler</a>
+</td>
+</tr>
+</table>
+</td>
+<td align="left" valign="top">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="addons">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="file" value="">
+<input type="hidden" name="show" value="0">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">withArchiv</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xwithArchiv" size="30" value="1" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">unGreedy</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xunGreedy" size="30" value="1" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">barWidth</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xbarWidth" size="30" value="120" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardTemplate</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardTemplate" size="30" value="mininext.tpl.php" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">cache_refresh</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xcache_refresh" size="30" value="0" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">CacheTable</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xCacheTable" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">TendenzPfeilUpImg</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xTendenzPfeilUpImg" size="30" value="lmo-tab1.gif" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">TendenzPfeilDownImg</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xTendenzPfeilDownImg" size="30" value="lmo-tab2.gif" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">TendenzPunktImg</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xTendenzPunktImg" size="30" value="lmo-tab0.gif" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardLiga</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardLiga" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardAnzahlueber</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardAnzahlueber" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardAnzahlunter</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardAnzahlunter" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardTabellenPlatz</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardTabellenPlatz" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classMeister</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classMeister" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classCLAufsteiger</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classCLAufsteiger" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classCLQuali</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classCLQuali" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classUEFA</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classUEFA" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classAbstiegsRelegation</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classAbstiegsRelegation" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">tabelle_classAbsteiger</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xtabelle_classAbsteiger" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">classFavorit</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xclassFavorit" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" colspan="3" align="center">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="Änderungen speichern">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+GEAENDERT config/cfg.txt
+[diff nicht verfuegbar; md5 vorher 0e7d413c097fa2a2877b5229e92bdbce, nachher 0e7d413c097fa2a2877b5229e92bdbce]
+GEAENDERT config/classlib/cfg.txt
+[diff nicht verfuegbar; md5 vorher fd39cfee46c7dd65970e19cbb9484b59, nachher fd39cfee46c7dd65970e19cbb9484b59]
+GEAENDERT config/mini/cfg.txt
+[diff nicht verfuegbar; md5 vorher 711e09548b00b041bc9abc9c5526a148, nachher 711e09548b00b041bc9abc9c5526a148]
+GEAENDERT config/spieler/cfg.txt
+[diff nicht verfuegbar; md5 vorher afdef1d5f5380d71e49c6ba14f26f60a, nachher afdef1d5f5380d71e49c6ba14f26f60a]
+GEAENDERT config/ticker/cfg.txt
+[diff nicht verfuegbar; md5 vorher ad85b53a00f229f239826eabbb7eed17, nachher ad85b53a00f229f239826eabbb7eed17]
+GEAENDERT config/tipp/cfg.txt
+[diff nicht verfuegbar; md5 vorher ef04b4843c1faa24f74b7f7fc3c7d661, nachher ef04b4843c1faa24f74b7f7fc3c7d661]

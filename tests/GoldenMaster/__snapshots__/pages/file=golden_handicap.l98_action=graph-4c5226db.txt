@@ -1,0 +1,128 @@
+### file=golden/handicap.l98&action=graph
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>handicap</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>handicap</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=cal&amp;st=3" title="Anzeige des Kalenders der Liga">Kalender</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=results" title="Anzeige der Spielergebnisse und Tabelle eines bestimmten Spieltags">Ergebnisse/Tabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=cross" title="Anzeige aller Ergebnisse auf einen Blick">Kreuztabelle</a>&nbsp;&nbsp;Fieberkurven&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=stats&amp;stat1=0&amp;stat2=0" title="Anzeige der Statistiken und Prognosen">Ligastatistik</a>&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="top" align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<br/>
+<canvas id="myChart" width="700" height="500">
+</canvas>
+<script src="http://lmo.test/lmo/js/chart.js">
+</script>
+<script> const ctx = document.getElementById('myChart'); new Chart(ctx, { type: 'line', data: { labels: [1,2,3,4,5,6,7,8,9,10], datasets: [{ label: 'Mannschaft 1', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [1,4,5,2,2,3,5,5,5,], hidden: false, },{ label: 'Mannschaft 2', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [{RGBA},3,4,6,2,3,], hidden: false, },{ label: 'Mannschaft 3', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [5,2,3,4,{RGBA},2,], hidden: true, },{ label: 'Mannschaft 4', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [4,{RGBA},{RGBA},], hidden: true, },{ label: 'Mannschaft 5', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [2,3,{RGBA},3,4,6,], hidden: true, },{ label: 'Mannschaft 6', fill: false, lineTension: 0.4, backgroundColor: 'rgba({RGBA})', borderColor: 'rgba({RGBA})', data: [3,6,2,{RGBA},3,4,], hidden: true, },] }, options: { scales: { x: { grid: { color: 'rgba(90, 90, 90, 1)' }, title: { display: true, text: 'SPIELTAGE', color: 'rgba(90, 90, 90, 1)', font: { size: 24, }, }, ticks: { color: 'rgba(90, 90, 90, 1)' } }, y: { grid: { color: 'rgba(90, 90, 90, 1)' }, title: { display: true, text: 'PLATZIERUNG', color: 'rgba(90, 90, 90, 1)', font: { size: 24, }, }, min: 1, max: 6, reverse: true, ticks: { maxTicksLimit: 6, color: 'rgba(90, 90, 90, 1)' } }, }, plugins: { tooltip: { displayColors: true, mode: 'index', callbacks: { label: function(context) { var label = context.dataset.label; var pos = "Platz: "; pos += context.parsed.y; return label + " - " + pos; }, title: function(context) { var label = context[0].label; label += ". Spieltag"; return label; } } } } } }); </script>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=golden/handicap.l98&amp;action=graph&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php?subdir=golden/" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

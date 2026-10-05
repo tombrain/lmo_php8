@@ -1,0 +1,506 @@
+### action=admin&todo=edit&file=golden/handicap.l98&st=-2
+### GESENDETE FELDER (POST, 59)
+action=admin
+todo=edit
+save=1
+file=golden/handicap.l98
+st=-2
+xteams1=Mannschaft 1
+xteamm1=Mannschaft
+xteamk1=Manns
+xstrafp1=0
+xtorkorrektur11=0
+xtorkorrektur21=0
+xstrafdat1=0
+xteamn1=
+xteamu1=
+xteams2=Mannschaft 2
+xteamm2=Mannschaft
+xteamk2=Manns
+xstrafp2=0
+xtorkorrektur12=0
+xtorkorrektur22=0
+xstrafdat2=0
+xteamn2=
+xteamu2=
+xteams3=Mannschaft 3
+xteamm3=Mannschaft
+xteamk3=Manns
+xstrafp3=0
+xtorkorrektur13=0
+xtorkorrektur23=0
+xstrafdat3=0
+xteamn3=
+xteamu3=
+xteams4=Mannschaft 4
+xteamm4=Mannschaft
+xteamk4=Manns
+xstrafp4=0
+xtorkorrektur14=0
+xtorkorrektur24=0
+xstrafdat4=0
+xteamn4=
+xteamu4=
+xteams5=Mannschaft 5
+xteamm5=Mannschaft
+xteamk5=Manns
+xstrafp5=0
+xtorkorrektur15=0
+xtorkorrektur25=0
+xstrafdat5=0
+xteamn5=
+xteamu5=
+xteams6=Mannschaft 6
+xteamm6=Mannschaft
+xteamk6=Manns
+xstrafp6=0
+xtorkorrektur16=0
+xtorkorrektur26=0
+xstrafdat6=0
+xteamn6=
+xteamu6=
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=golden/" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/handicap.l98&amp;st=3' onClick="return chklmolink();" title="Hier können Sie die Tabelle nochmal prüfen und ggf. umsortieren">Tabelle</a>
+</td>
+<td align="center">Mannschaften</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>handicap</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="file" value="golden/handicap.l98">
+<input type="hidden" name="st" value="-2">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="nobr" align="left">
+<acronym title="Name der Mannschaft (max. 64 Zeichen), Mittellanger Name der Mannschaft (max. 12 Zeichen), Kürzel der Mannschaft (max. 5 Zeichen)">Mannschaftsname (lang, mittel, kurz)</acronym>&nbsp;</th>
+<th class="nobr" colspan="2" align="center">
+<acronym title="Strafpunkte, die diese Mannschaft vom Verband erhalten hat">Strafe/Bonus</acronym>&nbsp;</th>
+<th class="nobr" align="center">
+<acronym title="Stafpunkte-/tore ab Spieltag X einrechnen">ab</acronym>&nbsp;</th>
+<!-- Hack-Straftore Ende -->
+<th class="nobr" align="center">
+<acronym title="Notiz zur Mannschaft (max. 255 Zeichen, eventuelle Strafpunkte brauchen hier nicht nochmal erwähnt zu werden)">
+<img src="http://lmo.test/lmo/img/notiz.svg" height="20" alt="Notiz zur Mannschaft">
+</acronym>
+</th>
+<th class="nobr" align="center">
+<acronym title="URL der Homepage der Mannschaft (diese wird später immer in einem neuen Fenster geöffnet werden)">
+<img src="http://lmo.test/lmo/img/spielbericht.svg" height="20" alt="Homepage-URL">
+</acronym>
+</th>
+<th class="nobr" colspan="4" align="center">&nbsp;</th>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams1" size="32" maxlength="64" value="Mannschaft 1" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm1" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk1" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp1" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur11" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur21" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat1" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n1" class="lmo-formular-input" type="text" name="xteamn1" tabindex="113" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n1').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n1\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h1" class="lmo-formular-input" type="text" name="xteamu1" tabindex="114" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h1').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h1\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=1' onclick="return dteamlmolink(this.href,'Mannschaft 1');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams2" size="32" maxlength="64" value="Mannschaft 2" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm2" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk2" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp2" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur12" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur22" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat2" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n2" class="lmo-formular-input" type="text" name="xteamn2" tabindex="213" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n2').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n2\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h2" class="lmo-formular-input" type="text" name="xteamu2" tabindex="214" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h2').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h2\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=2' onclick="return dteamlmolink(this.href,'Mannschaft 2');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams3" size="32" maxlength="64" value="Mannschaft 3" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm3" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk3" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp3" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur13" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur23" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat3" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n3" class="lmo-formular-input" type="text" name="xteamn3" tabindex="313" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n3').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n3\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h3" class="lmo-formular-input" type="text" name="xteamu3" tabindex="314" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h3').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h3\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=3' onclick="return dteamlmolink(this.href,'Mannschaft 3');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams4" size="32" maxlength="64" value="Mannschaft 4" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm4" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk4" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp4" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur14" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur24" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat4" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n4" class="lmo-formular-input" type="text" name="xteamn4" tabindex="413" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n4').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n4\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h4" class="lmo-formular-input" type="text" name="xteamu4" tabindex="414" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h4').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h4\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=4' onclick="return dteamlmolink(this.href,'Mannschaft 4');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams5" size="32" maxlength="64" value="Mannschaft 5" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm5" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk5" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp5" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur15" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur25" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat5" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n5" class="lmo-formular-input" type="text" name="xteamn5" tabindex="513" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n5').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n5\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h5" class="lmo-formular-input" type="text" name="xteamu5" tabindex="514" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h5').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h5\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=5' onclick="return dteamlmolink(this.href,'Mannschaft 5');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input class="lmo-formular-input" type="text" name="xteams6" size="32" maxlength="64" value="Mannschaft 6" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamm6" size="12" maxlength="12" value="Mannschaft" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xteamk6" size="5" maxlength="5" value="Manns" onChange="dolmoedit()"> &nbsp; </td>
+<td class="lmoBackMarkierung nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafp6" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Pkt. </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xtorkorrektur16" size="1" maxlength="4" value="0" onChange="dolmoedit()"> : <input class="lmo-formular-input" type="text" name="xtorkorrektur26" size="1" maxlength="4" value="0" onChange="dolmoedit()"> Tore </td>
+<td class="nobr" align="center">
+<input class="lmo-formular-input" type="text" name="xstrafdat6" size="2" maxlength="2" value="0" onChange="dolmoedit()"> &nbsp; </td>
+<td class="nobr" align="center">
+<input id="n6" class="lmo-formular-input" type="text" name="xteamn6" tabindex="613" size="20" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('n6').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n6\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr" align="center">
+<input id="h6" class="lmo-formular-input" type="text" name="xteamu6" tabindex="614" size="30" maxlength="255" value="" onChange="dolmoedit()">
+<script type="text/javascript">document.getElementById('h6').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h6\').style.display=\'inline\';return false;">+</a>');</script>
+</td>
+<td class="nobr">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=6' onclick="return dteamlmolink(this.href,'Mannschaft 6');" title="Diese Mannschaft vom Spielbetrieb zurückziehen">
+<img src="http://lmo.test/lmo/img/delete.svg" height="18" alt="" border="0">
+</a>
+</td>
+<td class="nobr">
+</td>
+<td class="nobr">
+</td>
+</tr>
+<tr>
+<td class="nobr" colspan="4" align="right">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="Mannschaften speichern">
+</td>
+<td class="nobr" colspan="4">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-2&amp;team=-1' onclick="return ateamlmolink(this.href);" title="Eine neue Mannschaft zum Spielbetrieb hinzufügen">Mannschaft hinzufügen</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/handicap.l98&amp;st=-3" onclick="return chklmolink();" title="Hier könen Sie die Anzahl der Spieltage und die Anzahl der Spiele pro Spieltag ändern. ACHTUNG: Das kann zu Datenverlust führen!">Spieltags- und Spiel-Anzahl</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=golden/handicap.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+GEAENDERT ligen/golden/handicap.l98
+--- vorher
++++ nachher
+@@ -59,4 +59,12 @@
+ 6=Mannschaft 6
+ 
++[Teamm]
++1=Mannschaft
++2=Mannschaft
++3=Mannschaft
++4=Mannschaft
++5=Mannschaft
++6=Mannschaft
++
+ [Teamk]
+ 1=Manns
+NEU output/handicap.l98.php (1764 Bytes)
+<?php
+$zutore[1]=7;
+$dstore[1]=3.5;
+$zutore[2]=10;
+$dstore[2]=3.33;
+$zutore[3]=6;
+$dstore[3]=2;
+$zutore[4]=6;
+$dstore[4]=3;
+$zutore[5]=6;
+$dstore[5]=3;
+$zutore[6]=4;
+$dstore[6]=2;
+$zutore[7]=0;
+$dstore[7]=0;
+$zutore[8]=1;
+$dstore[8]=1;
+$zutore[9]=6;
+$dstore[9]=2;
+$zutore[10]=2;
+$dstore[10]=1;
+$gzutore=48;
+$gdstore=2.4;
+$gzusieg1=6;
+$gzusieg2=13;
+$gzuunent=1;
+$gbeide=0;
+$gheimtore=16;
+$ggasttore=32;
+$dsheimtore=0.8;
+$dsgasttore=1.6;
+$hheimsieg="Mannschaft 2";
+$hgastsieg="Mannschaft 6";
+$hheimsiegtor="2";
+$hgastsiegtor="0";
+$spieltagflag=2;
+$hheimsieg1="Mannschaft 4";
+$hgastsieg1="Mannschaft 6";
+$hheimsiegtor1="2";
+$hgastsiegtor1="0";
+$spieltagflag1=6;
+$counteranz=3;
+$aheimsieg="Mannschaft 4";
+$agastsieg="Mannschaft 1";
+$aheimsiegtor="0";
+$agastsiegtor="3";
+$spieltagflag2=2;
+$aheimsieg1="Mannschaft 4";
+$agastsieg1="Mannschaft 5";
+$aheimsiegtor1="0";
+$agastsiegtor1="3";
+$spieltagflag3=9;
+$counteranz1=4;
+$htorreichm1="Mannschaft 5";
+$htorreichm2="Mannschaft 3";
+$htorreicht1="3";
+$htorreicht2="2";
+$spieltagflag4=2;
+$htorreichm3="0";
+$htorreichm4="0";
+$htorreicht3="0";
+$htorreicht4="0";
+$spieltagflag5=0;
+$counteranz5=1;
+$akt_gewonnen=2;
+$team_akt_gewonnen="Mannschaft 1";
+$akt_ungeschlagen=2;
+$team_akt_ungeschlagen="Mannschaft 1";
+$akt_unentschieden=0;
+$team_akt_unentschieden="";
+$akt_sieglos=2;
+$team_akt_sieglos="Mannschaft 6";
+$akt_verloren=2;
+$team_akt_verloren="Mannschaft 6";
+$max_gewonnen=3;
+$team_max_gewonnen="Mannschaft 5 (1-3.ST)";
+$max_ungeschlagen=3;
+$team_max_ungeschlagen="Mannschaft 5 (1-3.ST)";
+$max_unentschieden=1;
+$team_max_unentschieden="Mannschaft 6 (1-1.ST)
+Mannschaft 4 (1-1.ST)";
+$max_sieglos=3;
+$team_max_sieglos="Mannschaft 6 (1-3.ST)";
+$max_verloren=2;
+$team_max_verloren="Mannschaft 6 (9-10.ST)
+Mannschaft 3 (2-3.ST)";
+?>

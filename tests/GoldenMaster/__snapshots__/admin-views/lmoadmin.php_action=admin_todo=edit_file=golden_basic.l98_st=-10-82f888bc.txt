@@ -1,0 +1,1938 @@
+### lmoadmin.php?action=admin&todo=edit&file=golden/basic.l98&st=-10
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=golden/" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<a name="top">
+</a>
+<table class="lmoSubmenu" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left">
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
+</td>
+<td align="center">Spieltage</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>basic</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="file" value="golden/basic.l98">
+<input type="hidden" name="st" value="-10">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>1. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_1_1_7">
+<option value=1 selected>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_1_3_4">
+<option value=1 selected>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>0</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_1_5_2">
+<option value=1 selected>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_1_8_6">
+<option value=1 selected>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>2. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>0</td>
+<td>:</td>
+<td align='center'>4</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_2_2_3">
+<option value=1>1. Spieltag</option>
+<option value=2 selected>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>2</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_2_4_8">
+<option value=1>1. Spieltag</option>
+<option value=2 selected>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>4</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_2_6_1">
+<option value=1>1. Spieltag</option>
+<option value=2 selected>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_2_7_5">
+<option value=1>1. Spieltag</option>
+<option value=2 selected>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>3. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>1</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_3_1_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3 selected>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_3_3_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3 selected>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_3_6_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3 selected>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>1</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_3_8_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3 selected>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>4. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_4_2_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4 selected>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_4_4_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4 selected>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_4_5_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4 selected>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_4_7_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4 selected>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>5. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_5_1_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5 selected>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_5_4_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5 selected>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_5_6_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5 selected>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_5_8_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5 selected>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>6. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_6_1_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6 selected>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_6_3_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6 selected>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>1</td>
+<td>:</td>
+<td align='center'>2</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_6_5_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6 selected>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_6_7_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6 selected>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>7. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_7_2_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7 selected>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_7_4_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7 selected>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_7_6_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7 selected>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_7_8_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7 selected>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>8. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_8_7_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8 selected>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_8_4_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8 selected>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>1</td>
+<td>:</td>
+<td align='center'>4</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_8_2_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8 selected>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_8_6_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8 selected>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>9. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_9_3_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9 selected>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_9_8_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9 selected>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>0</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_9_1_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9 selected>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_9_5_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9 selected>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>10. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_10_5_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10 selected>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_10_7_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10 selected>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>0</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_10_4_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10 selected>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>2</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_10_2_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10 selected>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>11. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_11_6_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11 selected>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_11_1_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11 selected>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_11_3_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11 selected>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>4</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_11_8_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11 selected>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>12. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_12_3_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12 selected>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_12_2_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12 selected>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>2</td>
+<td>:</td>
+<td align='center'>2</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_12_7_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12 selected>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_12_5_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12 selected>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>13. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 2</td>
+<td>-</td>
+<td>Mannschaft 1</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_13_2_1">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13 selected>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 8</td>
+<td>-</td>
+<td>Mannschaft 3</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_13_8_3">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13 selected>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 6</td>
+<td>-</td>
+<td>Mannschaft 5</td>
+<td align='right'>1</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_13_6_5">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13 selected>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 4</td>
+<td>-</td>
+<td>Mannschaft 7</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_13_4_7">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13 selected>13. Spieltag</option>
+<option value=14>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th width="15" class="nobr">&nbsp;</th>
+<th style="text-align:left" colspan="6" class="nobr">
+<strong>14. Spieltag&nbsp;&nbsp;</strong> / 4 Partien </th>
+<th style="text-align:right" colspan="3" class="nobr">
+<a href="#top">Oben</a>&nbsp;/&nbsp;<a href="#bottom">Unten</a>
+</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 7</td>
+<td>-</td>
+<td>Mannschaft 2</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_14_7_2">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14 selected>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 5</td>
+<td>-</td>
+<td>Mannschaft 4</td>
+<td align='right'>__</td>
+<td>:</td>
+<td align='center'>__</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_14_5_4">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14 selected>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 3</td>
+<td>-</td>
+<td>Mannschaft 6</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>1</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_14_3_6">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14 selected>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>01.01.1970 01:00</td>
+<td>Mannschaft 1</td>
+<td>-</td>
+<td>Mannschaft 8</td>
+<td align='right'>3</td>
+<td>:</td>
+<td align='center'>3</td>
+<td>
+</td>
+<td>
+<select class="lmo-formular-input" onChange="dolmoedit()" name="sp_14_1_8">
+<option value=1>1. Spieltag</option>
+<option value=2>2. Spieltag</option>
+<option value=3>3. Spieltag</option>
+<option value=4>4. Spieltag</option>
+<option value=5>5. Spieltag</option>
+<option value=6>6. Spieltag</option>
+<option value=7>7. Spieltag</option>
+<option value=8>8. Spieltag</option>
+<option value=9>9. Spieltag</option>
+<option value=10>10. Spieltag</option>
+<option value=11>11. Spieltag</option>
+<option value=12>12. Spieltag</option>
+<option value=13>13. Spieltag</option>
+<option value=14 selected>14. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<th style="text-align:right" class="nobr" colspan="10">
+<acronym title="Klicken Sie hier, um Ihre Änderungen zu speichern">
+<input class="lmo-formular-button" type="submit" name="spPlan" value="Speichern">
+</acronym>&nbsp;&nbsp;&nbsp; </th>
+</tr>
+</table>
+</form>
+<a name="bottom">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-10&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=golden/basic.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+(keine)

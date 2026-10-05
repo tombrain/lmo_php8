@@ -1,0 +1,523 @@
+### action=admin&todo=edit&file=golden/wertung.l98&st=-1
+### GESENDETE FELDER (POST, 15)
+action=admin
+todo=edit
+save=1
+show=0
+file=golden/wertung.l98
+st=-1
+xtitel=wertung
+xnamepkt=Pkt.
+xnametor=Tore
+xpointsfaktor=1
+xgoalfaktor=1
+xfavteam=0
+xselteam=0
+xstat1=0
+xstat2=0
+### ANTWORT
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=golden/" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; Bearbeiten&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/wertung.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/wertung.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
+</td>
+<td align="center">Grundeinstellungen</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/wertung.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/wertung.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center" colspan="2">
+<h1>wertung</h1>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">Grundwerte</td>
+</tr>
+<tr>
+<td align="right">
+<a onclick="return chklmolink();" href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;show=2&amp;file=golden/wertung.l98&amp;st=-1">Anzeigen/Darstellung</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a onclick="return chklmolink();" href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;show=3&amp;file=golden/wertung.l98&amp;st=-1">Spielsystem</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a onclick="return chklmolink();" href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;show=4&amp;file=golden/wertung.l98&amp;st=-1">Tabelle</a>
+</td>
+</tr>
+<tr>
+<td align="right">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/wertung.l98&amp;st=-3' onclick="return chklmolink();" title="Hier könen Sie die Anzahl der Spieltage und die Anzahl der Spiele pro Spieltag ändern. ACHTUNG: Das kann zu Datenverlust führen!">Spieltags- und Spiel-Anzahl</a>
+</td>
+</tr>
+</table>
+</td>
+<td align="center" valign="top">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post" onSubmit="return chklmopass()">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="edit">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="show" value="0">
+<input type="hidden" name="file" value="golden/wertung.l98">
+<input type="hidden" name="st" value="-1">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="xtitel" size="40" maxlength="60" value="wertung" onChange="dolmoedit()">
+</td>
+<td class="nobr" align="left">
+<acronym title="Der Name der Liga wird den Nutzern immer als Überschrift angezeigt (max. 60 Zeichen, z.B. '1. Bundesliga 2001/02')">Name der Liga</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="xnamepkt" size="7" maxlength="60" value="Pkt." onChange="dolmoedit()">
+</td>
+<td class="nobr" align="left">
+<acronym title="Geben Sie hier den für diese Liga passenden Begriff ein, falls dieser von der Vorgabe abweichen sollte">Alternative für Pkt.</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<input class="lmo-formular-input" type="text" name="xnametor" size="7" maxlength="60" value="Tore" onChange="dolmoedit()">
+</td>
+<td class="nobr" align="left">
+<acronym title="Geben Sie hier den für diese Liga passenden Begriff ein, falls dieser von der Vorgabe abweichen sollte">Alternative für Tore</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xpointsfaktor" size="1" onChange="dolmoedit()">
+<option value="1" selected>Keine</option>
+<option value="10">Zehntel</option>
+<option value="100">Hundertstel</option>
+<option value="1000">Tausendstel</option>
+</select>
+</td>
+<td class="nobr" align="left">
+<acronym title="Sind Kommastellen benötigt? (Werden nur bei der Ausgabe berücksichtigt!)">Kommastellen Pkt.</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xgoalfaktor" size="1" onChange="dolmoedit()">
+<option value="1" selected>Keine</option>
+<option value="10">Zehntel</option>
+<option value="100">Hundertstel</option>
+<option value="1000">Tausendstel</option>
+</select>
+</td>
+<td class="nobr" align="left">
+<acronym title="Sind Kommastellen benötigt? (Werden nur bei der Ausgabe berücksichtigt!)">Kommastellen Tore</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xfavteam" onChange="dolmoedit()">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+<option value="5">Mannschaft 5</option>
+<option value="6">Mannschaft 6</option>
+<option value="7">Mannschaft 7</option>
+<option value="8">Mannschaft 8</option>
+</select>
+</td>
+<td class="nobr" align="left">
+<acronym title="Welche Mannschaft soll hervorgehoben dargestellt werden?">Lieblingsmannschaft</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xselteam" onChange="dolmoedit()">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+<option value="5">Mannschaft 5</option>
+<option value="6">Mannschaft 6</option>
+<option value="7">Mannschaft 7</option>
+<option value="8">Mannschaft 8</option>
+</select>
+</td>
+<td class="nobr" align="left">
+<acronym title="Standardmannschaft, die beim ersten Spielplan-Aufruf ausgewählt ist">Spielplan</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xstat1" onChange="dolmoedit()">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+<option value="5">Mannschaft 5</option>
+<option value="6">Mannschaft 6</option>
+<option value="7">Mannschaft 7</option>
+<option value="8">Mannschaft 8</option>
+</select>
+</td>
+<td class="nobr" align="left" rowspan="2">
+<acronym title="Standardmannschaften, die beim ersten Aufruf von Fieberkurve bzw. Statistik ausgewählt sind">Fieberkurve/Statistik</acronym>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<select class="lmo-formular-input" name="xstat2" onChange="dolmoedit()">
+<option value="0" selected>___</option>
+<option value="1">Mannschaft 1</option>
+<option value="2">Mannschaft 2</option>
+<option value="3">Mannschaft 3</option>
+<option value="4">Mannschaft 4</option>
+<option value="5">Mannschaft 5</option>
+<option value="6">Mannschaft 6</option>
+<option value="7">Mannschaft 7</option>
+<option value="8">Mannschaft 8</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="center" colspan="2" width="100%">
+<input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="Änderungen speichern">
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=golden/wertung.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+### DATEIAENDERUNGEN
+GEAENDERT ligen/golden/wertung.l98
+--- vorher
++++ nachher
+@@ -26,6 +26,6 @@
+ AR=0
+ AB=0
+-namePkt=Pkt.
+-nameTor=Tore
++namePkt=
++nameTor=
+ tableHinRueck=1
+ tableHeimAusw=1
+@@ -61,4 +61,14 @@
+ 8=Mannschaft 8
+ 
++[Teamm]
++1=Mannschaft
++2=Mannschaft
++3=Mannschaft
++4=Mannschaft
++5=Mannschaft
++6=Mannschaft
++7=Mannschaft
++8=Mannschaft
++
+ [Teamk]
+ 1=Manns
+@@ -73,4 +83,5 @@
+ [Team1]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -81,4 +92,5 @@
+ [Team2]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -89,4 +101,5 @@
+ [Team3]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -97,4 +110,5 @@
+ [Team4]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -105,4 +119,5 @@
+ [Team5]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -113,4 +128,5 @@
+ [Team6]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -121,4 +137,5 @@
+ [Team7]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -129,4 +146,5 @@
+ [Team8]
+ SP=0
++SM=0
+ TOR1=0
+ TOR2=0
+@@ -316,5 +334,4 @@
+ 
+ [Round6]
+-ET4=3
+ D1=
+ D2=
+@@ -347,4 +364,5 @@
+ GA4=3
+ GB4=3
++ET4=3
+ NT4=
+ BE4=
+@@ -425,5 +443,4 @@
+ 
+ [Round9]
+-ET3=3
+ D1=
+ D2=
+@@ -448,4 +465,5 @@
+ GA3=0
+ GB3=0
++ET3=3
+ NT3=
+ BE3=
+@@ -570,5 +588,4 @@
+ 
+ [Round13]
+-ET3=3
+ D1=
+ D2=
+@@ -593,4 +610,5 @@
+ GA3=0
+ GB3=2
++ET3=3
+ NT3=
+ BE3=
+@@ -607,5 +625,4 @@
+ 
+ [Round14]
+-ET4=3
+ D1=
+ D2=
+@@ -638,4 +655,5 @@
+ GA4=2
+ GB4=2
++ET4=3
+ NT4=
+ BE4=
+NEU output/wertung.l98.php (2000 Bytes)
+<?php
+$zutore[1]=10;
+$dstore[1]=2.5;
+$zutore[2]=10;
+$dstore[2]=2.5;
+$zutore[3]=11;
+$dstore[3]=3.67;
+$zutore[4]=7;
+$dstore[4]=2.33;
+$zutore[5]=1;
+$dstore[5]=1;
+$zutore[6]=12;
+$dstore[6]=3;
+$zutore[7]=3;
+$dstore[7]=1;
+$zutore[8]=7;
+$dstore[8]=3.5;
+$zutore[9]=9;
+$dstore[9]=2.25;
+$zutore[10]=7;
+$dstore[10]=1.75;
+$zutore[11]=11;
+$dstore[11]=2.75;
+$zutore[12]=2;
+$dstore[12]=1;
+$zutore[13]=6;
+$dstore[13]=2;
+$zutore[14]=8;
+$dstore[14]=2;
+$gzutore=104;
+$gdstore=2.31;
+$gzusieg1=18;
+$gzusieg2=12;
+$gzuunent=14;
+$gbeide=4;
+$gheimtore=59;
+$ggasttore=45;
+$dsheimtore=1.31;
+$dsgasttore=1;
+$hheimsieg="Mannschaft 5";
+$hgastsieg="Mannschaft 2";
+$hheimsiegtor="3";
+$hgastsiegtor="0";
+$spieltagflag=1;
+$hheimsieg1="Mannschaft 3";
+$hgastsieg1="Mannschaft 6";
+$hheimsiegtor1="3";
+$hgastsiegtor1="0";
+$spieltagflag1=14;
+$counteranz=4;
+$aheimsieg="Mannschaft 6";
+$agastsieg="Mannschaft 1";
+$aheimsiegtor="0";
+$agastsiegtor="3";
+$spieltagflag2=2;
+$aheimsieg1="Mannschaft 1";
+$agastsieg1="Mannschaft 2";
+$aheimsiegtor1="0";
+$agastsiegtor1="3";
+$spieltagflag3=6;
+$counteranz1=2;
+$htorreichm1="Mannschaft 1";
+$htorreichm2="Mannschaft 7";
+$htorreicht1="3";
+$htorreicht2="3";
+$spieltagflag4=1;
+$htorreichm3="Mannschaft 7";
+$htorreichm4="Mannschaft 4";
+$htorreicht3="3";
+$htorreicht4="3";
+$spieltagflag5=6;
+$counteranz5=2;
+$akt_gewonnen=2;
+$team_akt_gewonnen="Mannschaft 3
+Mannschaft 5";
+$akt_ungeschlagen=3;
+$team_akt_ungeschlagen="Mannschaft 5";
+$akt_unentschieden=1;
+$team_akt_unentschieden="Mannschaft 1
+Mannschaft 7
+Mannschaft 2
+Mannschaft 8";
+$akt_sieglos=6;
+$team_akt_sieglos="Mannschaft 4";
+$akt_verloren=3;
+$team_akt_verloren="Mannschaft 4";
+$max_gewonnen=3;
+$team_max_gewonnen="Mannschaft 2 (6-8.ST)";
+$max_ungeschlagen=7;
+$team_max_ungeschlagen="Mannschaft 2 (6-12.ST)";
+$max_unentschieden=3;
+$team_max_unentschieden="Mannschaft 2 (9-11.ST)
+Mannschaft 6 (9-11.ST)";
+$max_sieglos=6;
+$team_max_sieglos="Mannschaft 7 (6-11.ST)
+Mannschaft 4 (9-14.ST)";
+$max_verloren=3;
+$team_max_verloren="Mannschaft 4 (12-14.ST)";
+?>

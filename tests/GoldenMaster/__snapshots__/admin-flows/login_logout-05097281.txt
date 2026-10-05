@@ -1,0 +1,1003 @@
+### login_logout
+=== GET Anmeldeformular ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Anmeldung für den Admin-Bereich</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihren Benutzernamen ein"> Nutzername</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xusername" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihr Passwort ein"> Passwort</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="password" name="xuserpass" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="left">&nbsp;</td>
+<td align="left">
+<input title="Klicken Sie hier, um sich einzuloggen" class="lmo-formular-button" type="submit" name="xusersub" value="Anmelden">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" class="lmoMenu">
+<a href="http://lmo.test/lmo/lmo.php" title="Hier wechseln Sie in den Userbereich des LMO, dorthin wo Ihre Besucher auch landen">Wechsel in den User-Bereich</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="3" align="center">
+<p>Liga Manager Online 4<br>Copyright © 1997-2026 LMO-Group</p>
+<p>LigaManager Online comes with ABSOLUTELY NO WARRANTY.</p>
+<p>This is free software, and you are welcome to redistribute it under certain conditions.</p>
+<p>Read <a href="http://lmo.test/lmo/license.txt" target="_blank" title="GPL - GNU General Public License">this</a> for details.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== POST falsches Kennwort ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Anmeldung für den Admin-Bereich</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihren Benutzernamen ein"> Nutzername</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xusername" size="16" maxlength="32" value="admin">
+</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihr Passwort ein"> Passwort</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="password" name="xuserpass" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="left">&nbsp;</td>
+<td align="left">
+<input title="Klicken Sie hier, um sich einzuloggen" class="lmo-formular-button" type="submit" name="xusersub" value="Anmelden">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" class="lmoMenu">
+<a href="http://lmo.test/lmo/lmo.php" title="Hier wechseln Sie in den Userbereich des LMO, dorthin wo Ihre Besucher auch landen">Wechsel in den User-Bereich</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="3" align="center">
+<p>Liga Manager Online 4<br>Copyright © 1997-2026 LMO-Group</p>
+<p>LigaManager Online comes with ABSOLUTELY NO WARRANTY.</p>
+<p>This is free software, and you are welcome to redistribute it under certain conditions.</p>
+<p>Read <a href="http://lmo.test/lmo/license.txt" target="_blank" title="GPL - GNU General Public License">this</a> for details.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== POST unbekannter Benutzer ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Anmeldung für den Admin-Bereich</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihren Benutzernamen ein"> Nutzername</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xusername" size="16" maxlength="32" value="niemand">
+</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihr Passwort ein"> Passwort</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="password" name="xuserpass" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="left">&nbsp;</td>
+<td align="left">
+<input title="Klicken Sie hier, um sich einzuloggen" class="lmo-formular-button" type="submit" name="xusersub" value="Anmelden">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" class="lmoMenu">
+<a href="http://lmo.test/lmo/lmo.php" title="Hier wechseln Sie in den Userbereich des LMO, dorthin wo Ihre Besucher auch landen">Wechsel in den User-Bereich</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="3" align="center">
+<p>Liga Manager Online 4<br>Copyright © 1997-2026 LMO-Group</p>
+<p>LigaManager Online comes with ABSOLUTELY NO WARRANTY.</p>
+<p>This is free software, and you are welcome to redistribute it under certain conditions.</p>
+<p>Read <a href="http://lmo.test/lmo/license.txt" target="_blank" title="GPL - GNU General Public License">this</a> for details.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== POST richtiges Kennwort (Klartext in der Datei) ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Was möchten Sie jetzt tun?</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmost5" align="left">
+<ul>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new">Eine neue Liga erstellen</a>
+</li>
+<li>Eine Liga vom Server öffnen und bearbeiten: <script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="ligaliste" class="lmoInner" cellspacing="0" width="99%">
+<thead>
+<tr>
+<th>
+</th>
+<th class="nobr" align="left" title="nach Liganame sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Liganame <a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=desc" title="Absteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Liganame');</script>
+</th>
+<th class="nobr" align="left" title="nach Dateiname sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Dateiname <a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=desc" title="Absteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Dateiname');</script>
+</th>
+<th class="nobr" align="left" title="nach Spieltag/Runde sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=asc" title="Aufsteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Spieltag/Runde <a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=desc" title="Absteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Spieltag/Runde');</script>
+</th>
+<th class="nobr" align="left" title="nach Ligadatum sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=asc" title="Aufsteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Ligadatum <a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=desc" title="Absteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Ligadatum');</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=&amp;file=1l_2024-25.l98">1. Bundesliga 2024/25</a>
+</td>
+<td class="nobr" align="left">1l_2024-25.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var ligaTable = new SortableTable(document.getElementById("ligaliste"), ["None", "CaseInsensitiveString", "CaseInsensitiveString", "RoundSort", "timeStamp"]);ligaTable.sort(4,1);</script>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete">Eine Liga vom Server löschen</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload">Eine Liga von Deiner Festplatte auf den Server laden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download">Eine Liga vom Server downloaden oder per E-Mail versenden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options">Die Optionen des Scripts verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp">Tipps auswerten oder Tippspiel-Optionen verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout">Aus dem Admin-Bereich ausloggen</a>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+GEAENDERT config/lmo-auth.php
+--- vorher
++++ nachher
+@@ -1,2 +1,2 @@
+ <?php exit(); ?>
+-admin|lmo|2|||
+\ No newline at end of file
++admin|{HASH}|2|||
+
+=== GET Startseite Admin ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Was möchten Sie jetzt tun?</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmost5" align="left">
+<ul>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new">Eine neue Liga erstellen</a>
+</li>
+<li>Eine Liga vom Server öffnen und bearbeiten: <script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="ligaliste" class="lmoInner" cellspacing="0" width="99%">
+<thead>
+<tr>
+<th>
+</th>
+<th class="nobr" align="left" title="nach Liganame sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Liganame <a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=desc" title="Absteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Liganame');</script>
+</th>
+<th class="nobr" align="left" title="nach Dateiname sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Dateiname <a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=desc" title="Absteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Dateiname');</script>
+</th>
+<th class="nobr" align="left" title="nach Spieltag/Runde sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=asc" title="Aufsteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Spieltag/Runde <a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=desc" title="Absteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Spieltag/Runde');</script>
+</th>
+<th class="nobr" align="left" title="nach Ligadatum sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=asc" title="Aufsteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Ligadatum <a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=desc" title="Absteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Ligadatum');</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=&amp;file=1l_2024-25.l98">1. Bundesliga 2024/25</a>
+</td>
+<td class="nobr" align="left">1l_2024-25.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var ligaTable = new SortableTable(document.getElementById("ligaliste"), ["None", "CaseInsensitiveString", "CaseInsensitiveString", "RoundSort", "timeStamp"]);ligaTable.sort(4,1);</script>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete">Eine Liga vom Server löschen</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload">Eine Liga von Deiner Festplatte auf den Server laden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download">Eine Liga vom Server downloaden oder per E-Mail versenden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options">Die Optionen des Scripts verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp">Tipps auswerten oder Tippspiel-Optionen verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout">Aus dem Admin-Bereich ausloggen</a>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== GET Abmelden ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Anmeldung für den Admin-Bereich</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihren Benutzernamen ein"> Nutzername</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xusername" size="16" maxlength="32" value="admin">
+</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihr Passwort ein"> Passwort</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="password" name="xuserpass" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="left">&nbsp;</td>
+<td align="left">
+<input title="Klicken Sie hier, um sich einzuloggen" class="lmo-formular-button" type="submit" name="xusersub" value="Anmelden">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" class="lmoMenu">
+<a href="http://lmo.test/lmo/lmo.php" title="Hier wechseln Sie in den Userbereich des LMO, dorthin wo Ihre Besucher auch landen">Wechsel in den User-Bereich</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="3" align="center">
+<p>Liga Manager Online 4<br>Copyright © 1997-2026 LMO-Group</p>
+<p>LigaManager Online comes with ABSOLUTELY NO WARRANTY.</p>
+<p>This is free software, and you are welcome to redistribute it under certain conditions.</p>
+<p>Read <a href="http://lmo.test/lmo/license.txt" target="_blank" title="GPL - GNU General Public License">this</a> for details.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== GET nach dem Abmelden ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Anmeldung für den Admin-Bereich</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihren Benutzernamen ein"> Nutzername</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xusername" size="16" maxlength="32" value="admin">
+</td>
+</tr>
+<tr>
+<td align="right">
+<acronym title="Geben Sie hier Ihr Passwort ein"> Passwort</acronym>
+</td>
+<td align="left">
+<input class="lmo-formular-input" type="password" name="xuserpass" size="16" maxlength="32" value="">
+</td>
+</tr>
+<tr>
+<td align="left">&nbsp;</td>
+<td align="left">
+<input title="Klicken Sie hier, um sich einzuloggen" class="lmo-formular-button" type="submit" name="xusersub" value="Anmelden">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" class="lmoMenu">
+<a href="http://lmo.test/lmo/lmo.php" title="Hier wechseln Sie in den Userbereich des LMO, dorthin wo Ihre Besucher auch landen">Wechsel in den User-Bereich</a>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="3" align="center">
+<p>Liga Manager Online 4<br>Copyright © 1997-2026 LMO-Group</p>
+<p>LigaManager Online comes with ABSOLUTELY NO WARRANTY.</p>
+<p>This is free software, and you are welcome to redistribute it under certain conditions.</p>
+<p>Read <a href="http://lmo.test/lmo/license.txt" target="_blank" title="GPL - GNU General Public License">this</a> for details.</p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== POST Anmeldung mit bereits gehashtem Kennwort ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Delete install folder or set its chmod to 000!</p>
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp" onclick="return chklmolink();" title="Tippspiel">Tippspiel</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Was möchten Sie jetzt tun?</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmost5" align="left">
+<ul>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new">Eine neue Liga erstellen</a>
+</li>
+<li>Eine Liga vom Server öffnen und bearbeiten: <script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="ligaliste" class="lmoInner" cellspacing="0" width="99%">
+<thead>
+<tr>
+<th>
+</th>
+<th class="nobr" align="left" title="nach Liganame sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Liganame <a href="/lmo/lmoadmin.php?liga_sort=liga_name&amp;liga_sort_direction=desc" title="Absteigend nach Liganame sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Liganame');</script>
+</th>
+<th class="nobr" align="left" title="nach Dateiname sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=asc" title="Aufsteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Dateiname <a href="/lmo/lmoadmin.php?liga_sort=file_name&amp;liga_sort_direction=desc" title="Absteigend nach Dateiname sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Dateiname');</script>
+</th>
+<th class="nobr" align="left" title="nach Spieltag/Runde sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=asc" title="Aufsteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Spieltag/Runde <a href="/lmo/lmoadmin.php?liga_sort=aktueller_spieltag&amp;liga_sort_direction=desc" title="Absteigend nach Spieltag/Runde sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Spieltag/Runde');</script>
+</th>
+<th class="nobr" align="left" title="nach Ligadatum sortieren">
+<noscript>
+<a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=asc" title="Aufsteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="8" height="7" border="0" alt="&and;">
+</a> Ligadatum <a href="/lmo/lmoadmin.php?liga_sort=file_date&amp;liga_sort_direction=desc" title="Absteigend nach Ligadatum sortieren">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="8" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+<script type="text/javascript">document.write('Ligadatum');</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=&amp;file=1l_2024-25.l98">1. Bundesliga 2024/25</a>
+</td>
+<td class="nobr" align="left">1l_2024-25.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var ligaTable = new SortableTable(document.getElementById("ligaliste"), ["None", "CaseInsensitiveString", "CaseInsensitiveString", "RoundSort", "timeStamp"]);ligaTable.sort(4,1);</script>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete">Eine Liga vom Server löschen</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload">Eine Liga von Deiner Festplatte auf den Server laden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download">Eine Liga vom Server downloaden oder per E-Mail versenden</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options">Die Optionen des Scripts verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tipp">Tipps auswerten oder Tippspiel-Optionen verändern</a>
+</li>
+<li class="lmoadminli">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout">Aus dem Admin-Bereich ausloggen</a>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
