@@ -21,6 +21,13 @@ final class Normalizer
         // (z. B. ".../bin/http.php(57)"). Aendert sich ein Hilfsskript, verschiebt sich die Zeile.
         $html = preg_replace('#\S*/tests/GoldenMaster/bin/(\w+\.php)\(\d+\)#', '{HARNESS}/$1(N)', $html);
 
+        // Composer haengt die Pfade der PEAR-Pakete vor den include_path; PHP nennt ihn in
+        // "Failed opening required"-Meldungen. Nur die PHP-eigenen Eintraege vergleichen.
+        $html = preg_replace_callback("/\\(include_path='([^']*)'\\)/", static function (array $m): string {
+            $paths = array_filter(explode(':', $m[1]), static fn (string $p): bool => !str_contains($p, '/vendor/'));
+            return "(include_path='" . implode(':', $paths) . "')";
+        }, $html);
+
         // Session-ID in Links und Formularen (session.use_trans_sid)
         $html = preg_replace('/PHPSESSID=[A-Za-z0-9,-]+/', 'PHPSESSID={SID}', $html);
         $html = preg_replace('/(name="PHPSESSID"\s+value=")[^"]*(")/', '$1{SID}$2', $html);

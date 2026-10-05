@@ -100,8 +100,8 @@ require(PATH_TO_LMO . '/lmo-langload.php');
 require_once(PATH_TO_LMO . '/lmo-functions.php');
 // Übergang Classlib
 require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
-// Template System
-require_once(PATH_TO_LMO . '/includes/IT.php');
+// Composer-Autoloader: pear/html_template_it und LMO_Template (classmap)
+require_once(PATH_TO_LMO . '/vendor/autoload.php');
 
 // Remove Magic Quotes if necessary
 magicQuotesRemove($_GET);

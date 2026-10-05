@@ -131,6 +131,11 @@ final class Instance
             }
             $src = $from . '/' . $name;
             $dst = $to . '/' . $name;
+            // Composer-Abhaengigkeiten (inkl. PHPUnit) nur verlinken: wird nie beschrieben,
+            // und das Kopieren je Testinstanz waere teuer.
+            if ($topLevel && $name === 'vendor' && @symlink($src, $dst)) {
+                continue;
+            }
             if (is_dir($src)) {
                 self::copyTree($src, $dst);
             } else {

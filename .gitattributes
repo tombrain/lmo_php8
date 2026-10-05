@@ -1,0 +1,2 @@
+# Snapshots werden byte-genau verglichen: immer LF, auch unter Windows (core.autocrlf)
+tests/GoldenMaster/__snapshots__/** text eol=lf

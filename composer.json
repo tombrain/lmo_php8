@@ -24,13 +24,19 @@
         "forum": "https://www.liga-manager-online.org/forum/"
     },
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "pear/html_template_it": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6"
     },
     "suggest": {
         "ext-gd": "Fuer die Grafiken (Fieberkurve, Tippspiel-Grafiken)"
+    },
+    "autoload": {
+        "classmap": [
+            "lmo/includes/LmoTemplate.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -42,6 +48,8 @@
         "test:record": "GOLDEN_MODE=record phpunit"
     },
     "config": {
+        "vendor-dir": "lmo/vendor",
+        "bin-dir": "vendor/bin",
         "platform": {
             "php": "8.0.30"
         },

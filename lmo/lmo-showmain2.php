@@ -77,7 +77,7 @@ if (!defined('LMO_TEMPLATE')) define('LMO_TEMPLATE', 'lmo-standard.tpl.php');
 
 // Wenn ein Template der Form [liganame].tpl.php existiert, wird dieses benutzt. Das ermöglicht
 // die Nutzung verschiedener Templates für unterschiedliche Ligen
-$template = new HTML_Template_IT(PATH_TO_TEMPLATEDIR);
+$template = new LMO_Template(PATH_TO_TEMPLATEDIR);
 if (file_exists(PATH_TO_TEMPLATEDIR . '/' . basename($file) . '.tpl.php')) {
     $template->loadTemplatefile(basename($file) . '.tpl.php');
 } else {

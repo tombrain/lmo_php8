@@ -99,7 +99,7 @@ if ($viewer_cache_counter == 0 || $viewer_cache_counter > $multi_cfgarray['cache
     $anzahl_ligen = --$i;
 
     $template_file = $multi_cfgarray['template'];
-    $template = new HTML_Template_IT(PATH_TO_TEMPLATEDIR . '/viewer'); // Template Object
+    $template = new LMO_Template(PATH_TO_TEMPLATEDIR . '/viewer'); // Template Object
     $template->loadTemplatefile($template_file . '.tpl.php');
     // Template laden
     if (isset($multi_cfgarray['titelzeile'])) {

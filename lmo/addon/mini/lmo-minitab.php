@@ -94,7 +94,7 @@ if (empty($CacheOutput)) {
     //'Direkt Output: <br>';
     $liga = new liga();
     if (is_readable(PATH_TO_LMO . '/' . $dirliga . $m_liga) && $m_liga && $liga->loadFile(PATH_TO_LMO . '/' . $dirliga . $m_liga)) {
-        $template = new HTML_Template_IT( PATH_TO_TEMPLATEDIR . '/mini' );
+        $template = new LMO_Template( PATH_TO_TEMPLATEDIR . '/mini' );
         $template->loadTemplatefile($m_template . '.tpl.php');
 
         $AnzahlTeams = $liga->teamCount();

@@ -115,7 +115,7 @@ if (!file_exists($mini_cache_filename) ||
 <body><?php
     }
 
-    $template = new HTML_Template_IT($template_folder);  // folder
+    $template = new LMO_Template($template_folder);  // folder
     $template->loadTemplatefile($mini_template);
     $team_a = NULL;
     $team_b = NULL;
