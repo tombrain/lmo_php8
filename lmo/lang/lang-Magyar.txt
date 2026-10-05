@@ -663,3 +663,14 @@
 5010=Játéknap
 5011=Felett
 5012=Lent
+5013=Első beállítás
+5014=Még nincs adminisztrátori fiók. Adja meg most a fő adminisztrátor felhasználónevét és jelszavát.
+5015=Jelszó (legalább 8 karakter)
+5016=Jelszó megismétlése
+5017=Adminisztrátori fiók létrehozása
+5018=Felhasználónév: 3–40 karakter (betűk, számok, _ . @ -).
+5019=A jelszónak legalább 8 karakter hosszúnak kell lennie.
+5020=A jelszó nem tartalmazhat | karaktert.
+5021=A két jelszó nem egyezik.
+5022=Már létezik adminisztrátori fiók.
+5023=A config/lmo-auth.php nem hozható létre (ellenőrizze a config/ írási jogait).

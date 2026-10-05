@@ -663,3 +663,14 @@
 5010=Spieltag
 5011=Oben
 5012=Unten
+5013=Ersteinrichtung
+5014=Es gibt noch kein Admin-Konto. Legen Sie jetzt Benutzername und Passwort des Hauptadministrators fest.
+5015=Passwort (mind. 8 Zeichen)
+5016=Passwort wiederholen
+5017=Admin-Konto anlegen
+5018=Benutzername: 3 bis 40 Zeichen (Buchstaben, Ziffern, _ . @ -).
+5019=Das Passwort muss mindestens 8 Zeichen lang sein.
+5020=Das Passwort darf kein | enthalten.
+5021=Die beiden Passwörter stimmen nicht überein.
+5022=Es gibt bereits ein Admin-Konto.
+5023=config/lmo-auth.php konnte nicht angelegt werden (Schreibrechte von config/ prüfen).

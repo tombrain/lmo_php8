@@ -663,3 +663,14 @@
 5010=Spilldag
 5011=Ovenfor
 5012=Under
+5013=Førstegangsoppsett
+5014=Det finnes ingen administratorkonto ennå. Velg nå brukernavn og passord for hovedadministratoren.
+5015=Passord (minst 8 tegn)
+5016=Gjenta passord
+5017=Opprett administratorkonto
+5018=Brukernavn: 3 til 40 tegn (bokstaver, tall, _ . @ -).
+5019=Passordet må være minst 8 tegn langt.
+5020=Passordet kan ikke inneholde |.
+5021=De to passordene er ikke like.
+5022=Det finnes allerede en administratorkonto.
+5023=config/lmo-auth.php kunne ikke opprettes (sjekk skrivetilgangen til config/).

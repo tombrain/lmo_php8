@@ -673,3 +673,14 @@
 5010=Ziua jocului
 5011=Sus
 5012=Jos
+5013=Configurare inițială
+5014=Nu există încă un cont de administrator. Alegeți acum numele de utilizator și parola administratorului principal.
+5015=Parolă (min. 8 caractere)
+5016=Repetați parola
+5017=Creare cont de administrator
+5018=Nume de utilizator: 3 până la 40 de caractere (litere, cifre, _ . @ -).
+5019=Parola trebuie să aibă cel puțin 8 caractere.
+5020=Parola nu poate conține |.
+5021=Cele două parole nu coincid.
+5022=Există deja un cont de administrator.
+5023=Fișierul config/lmo-auth.php nu a putut fi creat (verificați drepturile de scriere pentru config/).

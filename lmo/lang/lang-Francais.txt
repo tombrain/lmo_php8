@@ -663,3 +663,14 @@
 5010=Jour de match
 5011=Au-dessus de
 5012=Ci-dessous
+5013=Première configuration
+5014=Il n'existe pas encore de compte administrateur. Choisissez maintenant le nom d'utilisateur et le mot de passe de l'administrateur principal.
+5015=Mot de passe (8 caractères min.)
+5016=Répéter le mot de passe
+5017=Créer le compte administrateur
+5018=Nom d'utilisateur : 3 à 40 caractères (lettres, chiffres, _ . @ -).
+5019=Le mot de passe doit contenir au moins 8 caractères.
+5020=Le mot de passe ne doit pas contenir de |.
+5021=Les deux mots de passe ne correspondent pas.
+5022=Un compte administrateur existe déjà.
+5023=Impossible de créer config/lmo-auth.php (vérifiez les droits d'écriture de config/).

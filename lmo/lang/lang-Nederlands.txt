@@ -663,3 +663,14 @@
 5010=Spel dag
 5011=Boven
 5012=Onderstaand
+5013=Eerste configuratie
+5014=Er is nog geen beheerdersaccount. Kies nu de gebruikersnaam en het wachtwoord van de hoofdbeheerder.
+5015=Wachtwoord (min. 8 tekens)
+5016=Wachtwoord herhalen
+5017=Beheerdersaccount aanmaken
+5018=Gebruikersnaam: 3 tot 40 tekens (letters, cijfers, _ . @ -).
+5019=Het wachtwoord moet minstens 8 tekens lang zijn.
+5020=Het wachtwoord mag geen | bevatten.
+5021=De twee wachtwoorden komen niet overeen.
+5022=Er bestaat al een beheerdersaccount.
+5023=config/lmo-auth.php kon niet worden aangemaakt (controleer de schrijfrechten van config/).

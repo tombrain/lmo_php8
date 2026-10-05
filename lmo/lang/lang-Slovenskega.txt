@@ -663,3 +663,14 @@
 5010=Igralni dan
 5011=Nad
 5012=Spodaj
+5013=Prva nastavitev
+5014=Skrbniški račun še ne obstaja. Zdaj izberite uporabniško ime in geslo glavnega skrbnika.
+5015=Geslo (najmanj 8 znakov)
+5016=Ponovite geslo
+5017=Ustvari skrbniški račun
+5018=Uporabniško ime: 3 do 40 znakov (črke, številke, _ . @ -).
+5019=Geslo mora imeti najmanj 8 znakov.
+5020=Geslo ne sme vsebovati |.
+5021=Gesli se ne ujemata.
+5022=Skrbniški račun že obstaja.
+5023=Datoteke config/lmo-auth.php ni bilo mogoče ustvariti (preverite pravice za pisanje v config/).

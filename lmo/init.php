@@ -25,7 +25,16 @@ if (!isset($_SESSION)) {
 }
 
 if (session_id() == '') session_start();
-require(__DIR__ . '/config/init-parameters.php');
+// Pfad/URL nur noch optional fest vorgegeben, sonst automatisch ermittelt (lmo-setup.php)
+require_once(__DIR__ . '/lmo-setup.php');
+if (is_file(__DIR__ . '/config/init-parameters.php')) {
+    require(__DIR__ . '/config/init-parameters.php');
+}
+if (empty($lmo_dateipfad)) $lmo_dateipfad = __DIR__;
+if (empty($lmo_url)) $lmo_url = lmo_detect_url($lmo_dateipfad);
+if (($lmo_setup_error = lmo_setup_files($lmo_dateipfad)) !== '') {
+    die('LMO: ' . htmlspecialchars($lmo_setup_error));
+}
 
 if (isset($_GET['debug']) || isset($_SESSION['debug'])) {
     $_SESSION['debug'] = true;

@@ -663,3 +663,14 @@
 5010=Kolo
 5011=Gore
 5012=Dolje
+5013=Prvo podešavanje
+5014=Još ne postoji administratorski račun. Sada odaberite korisničko ime i lozinku glavnog administratora.
+5015=Lozinka (najmanje 8 znakova)
+5016=Ponovite lozinku
+5017=Kreiraj administratorski račun
+5018=Korisničko ime: 3 do 40 znakova (slova, brojevi, _ . @ -).
+5019=Lozinka mora imati najmanje 8 znakova.
+5020=Lozinka ne smije sadržavati |.
+5021=Lozinke se ne podudaraju.
+5022=Administratorski račun već postoji.
+5023=Datoteku config/lmo-auth.php nije moguće kreirati (provjerite prava pisanja za config/).

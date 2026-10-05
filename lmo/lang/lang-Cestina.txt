@@ -663,3 +663,14 @@
 5010=Hrací den
 5011=Výše
 5012=Níže
+5013=Počáteční nastavení
+5014=Zatím neexistuje žádný administrátorský účet. Zvolte nyní uživatelské jméno a heslo hlavního administrátora.
+5015=Heslo (min. 8 znaků)
+5016=Zopakujte heslo
+5017=Vytvořit administrátorský účet
+5018=Uživatelské jméno: 3 až 40 znaků (písmena, číslice, _ . @ -).
+5019=Heslo musí mít alespoň 8 znaků.
+5020=Heslo nesmí obsahovat |.
+5021=Hesla se neshodují.
+5022=Administrátorský účet již existuje.
+5023=Soubor config/lmo-auth.php nelze vytvořit (zkontrolujte práva k zápisu do config/).

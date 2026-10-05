@@ -663,3 +663,14 @@
 5010=Matchday
 5011=Top
 5012=Bottom
+5013=First-time setup
+5014=There is no admin account yet. Please choose the user name and password of the main administrator.
+5015=Password (min. 8 characters)
+5016=Repeat password
+5017=Create admin account
+5018=User name: 3 to 40 characters (letters, digits, _ . @ -).
+5019=The password must be at least 8 characters long.
+5020=The password must not contain |.
+5021=The two passwords do not match.
+5022=An admin account already exists.
+5023=config/lmo-auth.php could not be created (check the write permissions of config/).

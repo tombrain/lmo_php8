@@ -17,9 +17,7 @@
   *
   */
 
-if (!file_exists(dirname(__FILE__) . '/config/init-parameters.php') || isset($_POST['lmo_install_step'])) {
-    include(dirname(__FILE__) . '/install/install.php');
-} else {
+    // Kein Installer mehr: init.php richtet LMO beim ersten Aufruf selbst ein (lmo-setup.php).
     define('LMO_AUTH', 1);
     require(__DIR__ . '/init.php');
     $subdir = '';
@@ -45,6 +43,15 @@ if (!file_exists(dirname(__FILE__) . '/config/init-parameters.php') || isset($_P
         $_SESSION['lmouserok'] = 0;
         $_SESSION['lmouserpass'] = '';
     }
+    // Ersteinrichtung: Formular vor jeder Ausgabe auswerten (neue Sitzungs-ID braucht freie Header)
+    $setup_error = 0;
+    if (!lmo_has_admin()) {
+        // Ohne Konto keine Admin-Sitzung (z. B. alte Sitzung nach geloeschter lmo-auth.php)
+        $_SESSION['lmouserok'] = 0;
+        if (isset($_POST['setup_submit'])) {
+            $setup_error = lmo_create_admin(trim($_POST['setup_user'] ?? ''), $_POST['setup_pass'] ?? '', $_POST['setup_pass2'] ?? '');
+        }
+    }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                 "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,7 +67,12 @@ if (!file_exists(dirname(__FILE__) . '/config/init-parameters.php') || isset($_P
 <?php
     $action = 'admin';
     $array = array();
-    require(PATH_TO_LMO . '/lmo-adminauth.php');
+    if (!lmo_has_admin()) {
+        require(PATH_TO_LMO . '/lmo-adminsetup.php');
+    }
+    if (lmo_has_admin()) {
+        require(PATH_TO_LMO . '/lmo-adminauth.php');
+    }
     if (isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0) {
         $file =! empty($_REQUEST['file']) ? $_REQUEST['file'] : '';
         if (!empty($file) && ($todo == 'open' || $todo == ''))
@@ -71,6 +83,4 @@ if (!file_exists(dirname(__FILE__) . '/config/init-parameters.php') || isset($_P
 ?>
 </div>
 </body>
-</html><?php
-}
-?>
+</html>

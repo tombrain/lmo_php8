@@ -43,7 +43,6 @@ if ($action == 'admin') {
 
     $warning = (int)0;
     if (version_compare(PHP_VERSION, $min_php_version, '<')) echo getMessage('This LMO requires a web server with PHP ' . $min_php_version . ' or higher installed.<br>Your web server does not currently support this because your PHP version is:: <mark>' . PHP_VERSION . '</mark>', $warning = $warning + 1, true);
-    if (@file_exists(PATH_TO_LMO . '/install/install.php') && @is_readable(PATH_TO_LMO . '/install/install.php')) echo getMessage('Delete install folder or set its chmod to 000!', $warning = $warning + 1,true);
 ?>
 <script type="text/javascript" src="<?php echo URL_TO_LMO;?>/js/admin.js.php"></script>
 <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">

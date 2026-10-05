@@ -60,6 +60,14 @@ if ($action == 'admin') {
         </form>
       </td>
     </tr>
+<?php
+        // Sprachauswahl wie im Adminbereich (lmo-adminmain.php); die Wahl bleibt in der Sitzung
+        if (!empty($einsprachwahl)) { ?>
+    <tr>
+      <td class="lmoFooter" colspan="3" align="left"><?php echo getLangSelector(); ?></td>
+    </tr>
+<?php
+        } ?>
     <tr>
       <td class="lmoFooter" colspan="3" align="center">
         <p><?php echo $text[54] . '<br>Copyright ' . $text[55]; ?></p>

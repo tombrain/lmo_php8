@@ -663,3 +663,14 @@
 5010=Dia de jogo
 5011=Acima
 5012=Abaixo
+5013=Configuração inicial
+5014=Ainda não existe uma conta de administrador. Escolha agora o nome de usuário e a senha do administrador principal.
+5015=Senha (mín. 8 caracteres)
+5016=Repetir senha
+5017=Criar conta de administrador
+5018=Nome de usuário: 3 a 40 caracteres (letras, números, _ . @ -).
+5019=A senha deve ter pelo menos 8 caracteres.
+5020=A senha não pode conter |.
+5021=As duas senhas não coincidem.
+5022=Já existe uma conta de administrador.
+5023=Não foi possível criar config/lmo-auth.php (verifique as permissões de escrita de config/).
