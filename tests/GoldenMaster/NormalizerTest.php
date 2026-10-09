@@ -56,4 +56,27 @@ final class NormalizerTest extends TestCase
 
         $this->assertSame($html, Normalizer::sortLangSelector($html));
     }
+
+    public function testHarnessPathInNoticeDoesNotDependOnCheckout(): void
+    {
+        $notice = static fn (string $root): string => '<!-- STDERR Notice: session_start(): Ignoring session_start() because a session is already active (started from '
+            . $root . '/tests/GoldenMaster/bin/http.php on line 50) in /tmp/x/lmo-admindownload.php on line 21 -->';
+
+        $docker = Normalizer::html($notice('/app'), '/tmp/x');
+
+        $this->assertSame($docker, Normalizer::html($notice('/home/runner/work/lmo_php8/lmo_php8'), '/tmp/x'));
+        $this->assertStringContainsString('(started from {HARNESS}/http.php on line N)', $docker);
+        // die Fehlerstelle in der LMO-Datei bleibt erhalten
+        $this->assertStringContainsString('{LMO_PATH}/lmo-admindownload.php on line 21', $docker);
+    }
+
+    public function testIncludePathDoesNotDependOnEnvironment(): void
+    {
+        $error = static fn (string $path): string => "<p>Failed opening required 'x.php' (include_path='" . $path . "') in /tmp/x/a.php</p>";
+
+        $docker = Normalizer::html($error('.:/usr/local/lib/php'), '/tmp/x');
+
+        $this->assertSame($docker, Normalizer::html($error('/app/lmo/vendor/pear/pear:.:/usr/share/php'), '/tmp/x'));
+        $this->assertStringContainsString("(include_path='{INCLUDE_PATH}')", $docker);
+    }
 }

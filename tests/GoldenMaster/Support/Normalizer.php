@@ -24,13 +24,13 @@ final class Normalizer
         // neue Zeilen oberhalb des Aufrufs sind keine Verhaltensaenderung. Die Fehlerstelle selbst
         // ("... on line 235") bleibt im Vergleich.
         $html = preg_replace('#(\#\d+ \{LMO_PATH\}/[\w./-]+\.php)\(\d+\)#', '$1(N)', $html);
+        // Notices nennen das Hilfsskript ohne Zeilen-Klammer ("started from /app/tests/GoldenMaster/bin/
+        // http.php on line 50"); der Checkout-Pfad unterscheidet sich zwischen Docker und GitHub.
+        $html = preg_replace('#\S*/tests/GoldenMaster/bin/(\w+\.php) on line \d+#', '{HARNESS}/$1 on line N', $html);
 
-        // Composer haengt die Pfade der PEAR-Pakete vor den include_path; PHP nennt ihn in
-        // "Failed opening required"-Meldungen. Nur die PHP-eigenen Eintraege vergleichen.
-        $html = preg_replace_callback("/\\(include_path='([^']*)'\\)/", static function (array $m): string {
-            $paths = array_filter(explode(':', $m[1]), static fn (string $p): bool => !str_contains($p, '/vendor/'));
-            return "(include_path='" . implode(':', $paths) . "')";
-        }, $html);
+        // PHP nennt den include_path in "Failed opening required"-Meldungen. Er haengt von der
+        // Umgebung ab (Composer-PEAR-Pfade, /usr/local/lib/php im Docker-Image, /usr/share/php auf GitHub).
+        $html = preg_replace("/\\(include_path='[^']*'\\)/", "(include_path='{INCLUDE_PATH}')", $html);
 
         // Session-ID in Links und Formularen (session.use_trans_sid)
         $html = preg_replace('/PHPSESSID=[A-Za-z0-9,-]+/', 'PHPSESSID={SID}', $html);

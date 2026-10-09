@@ -67,7 +67,13 @@ final class StateTracker
                 $report .= strlen($new) > self::MAX_DUMP ? "[Inhalt zu lang: md5 " . md5($new) . "]\n" : $new . (substr($new, -1) === "\n" ? '' : "\n");
                 continue;
             }
-            $report .= "GEAENDERT $path\n" . self::unifiedDiff(self::normalize($old, $instancePath), $new);
+            $old = self::normalize($old, $instancePath);
+            // Nur Zeilenenden geaendert (CRLF-Vorlage aus einem Windows-Checkout, LF geschrieben):
+            // auf Linux-Checkouts (GitHub) gibt es diese Aenderung gar nicht.
+            if ($old === $new) {
+                continue;
+            }
+            $report .= "GEAENDERT $path\n" . self::unifiedDiff($old, $new);
         }
         return $report;
     }

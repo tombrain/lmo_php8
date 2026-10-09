@@ -57,16 +57,16 @@
 <td valign="top">
 <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<td align="right" class="active">mini</td>
+<td align="right" class="active">classlib</td>
 </tr>
 <tr>
 <td align="right" class="lmost4">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=1">classlib</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=1">mini</a>
 </td>
 </tr>
 <tr>
 <td align="right" class="lmost4">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=2">tipp</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=2">spieler</a>
 </td>
 </tr>
 <tr>
@@ -76,7 +76,7 @@
 </tr>
 <tr>
 <td align="right" class="lmost4">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=4">spieler</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=addons&amp;show=4">tipp</a>
 </td>
 </tr>
 </table>
@@ -91,142 +91,9 @@
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
 <tr>
 <td class="lmost5" width="20">&nbsp;</td>
-<td align="right">withArchiv</td>
+<td align="right">img_types</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xwithArchiv" size="30" value="1" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">unGreedy</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xunGreedy" size="30" value="1" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">barWidth</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xbarWidth" size="30" value="120" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">standardTemplate</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xstandardTemplate" size="30" value="mininext.tpl.php" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">cache_refresh</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xcache_refresh" size="30" value="0" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">CacheTable</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xCacheTable" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">TendenzPfeilUpImg</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPfeilUpImg" size="30" value="lmo-tab1.gif" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">TendenzPfeilDownImg</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPfeilDownImg" size="30" value="lmo-tab2.gif" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">TendenzPunktImg</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPunktImg" size="30" value="lmo-tab0.gif" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">standardLiga</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xstandardLiga" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">standardAnzahlueber</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xstandardAnzahlueber" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">standardAnzahlunter</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xstandardAnzahlunter" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">standardTabellenPlatz</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xstandardTabellenPlatz" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classMeister</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classMeister" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classCLAufsteiger</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classCLAufsteiger" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classCLQuali</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classCLQuali" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classUEFA</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classUEFA" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classAbstiegsRelegation</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classAbstiegsRelegation" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">tabelle_classAbsteiger</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xtabelle_classAbsteiger" size="30" value="" onChange="dolmoedit()">
-</td>
-</tr>
-<tr>
-<td class="lmost5" width="20">&nbsp;</td>
-<td align="right">classFavorit</td>
-<td align="left">
-<input class="lmo-formular-input" type="text" name="xclassFavorit" size="30" value="" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="ximg_types" size="30" value=".gif,.jpg,.png,.jpeg" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>

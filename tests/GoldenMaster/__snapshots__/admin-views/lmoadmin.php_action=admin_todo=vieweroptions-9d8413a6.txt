@@ -93,14 +93,14 @@
 <td class="nobr" align="right">Template</td>
 <td class="nobr" align="left">
 <select class="lmo-formular-input" name="template" size="1">
-<option>big_with_icons</option>
-<option>mini</option>
-<option>grosse_version</option>
-<option>standard</option>
-<option>mini_with_icons</option>
-<option>standard_spieltag</option>
-<option>standard_ohne_icons</option>
 <option>big_nur_icons</option>
+<option>big_with_icons</option>
+<option>grosse_version</option>
+<option>mini</option>
+<option>mini_with_icons</option>
+<option>standard</option>
+<option>standard_ohne_icons</option>
+<option>standard_spieltag</option>
 </select>
 </td>
 </tr>

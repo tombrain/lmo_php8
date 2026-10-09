@@ -91,28 +91,6 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/minus2_direct.l98">minus2_direct</a>
-</td>
-<td class="nobr" align="left">minus2_direct.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_handicap.l98">direct_handicap</a>
-</td>
-<td class="nobr" align="left">direct_handicap.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 4 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
 <a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/wertung.l98">wertung</a>
 </td>
 <td class="nobr" align="left">wertung.l98 &nbsp;</td>
@@ -124,75 +102,9 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/penalties.l98">penalties</a>
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/viewopts.l98">viewopts</a>
 </td>
-<td class="nobr" align="left">penalties.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/kegel.l98">kegel</a>
-</td>
-<td class="nobr" align="left">kegel.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/basic.l98">basic</a>
-</td>
-<td class="nobr" align="left">basic.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_kegel.l98">direct_kegel</a>
-</td>
-<td class="nobr" align="left">direct_kegel.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/handicap.l98">handicap</a>
-</td>
-<td class="nobr" align="left">handicap.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 3 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/rankzones.l98">rankzones</a>
-</td>
-<td class="nobr" align="left">rankzones.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_special.l98">direct_special</a>
-</td>
-<td class="nobr" align="left">direct_special.l98 &nbsp;</td>
+<td class="nobr" align="left">viewopts.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
 <!--1735732800-->01.01.2025 13:00</td>
@@ -212,10 +124,54 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_wertung.l98">direct_wertung</a>
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/rankzones.l98">rankzones</a>
 </td>
-<td class="nobr" align="left">direct_wertung.l98 &nbsp;</td>
+<td class="nobr" align="left">rankzones.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/penalties.l98">penalties</a>
+</td>
+<td class="nobr" align="left">penalties.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/minus2_direct.l98">minus2_direct</a>
+</td>
+<td class="nobr" align="left">minus2_direct.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/kegel.l98">kegel</a>
+</td>
+<td class="nobr" align="left">kegel.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/handicap.l98">handicap</a>
+</td>
+<td class="nobr" align="left">handicap.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 3 &nbsp;</td>
 <td class="nobr" align="left">
 <!--1735732800-->01.01.2025 13:00</td>
 </tr>
@@ -234,9 +190,53 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/viewopts.l98">viewopts</a>
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_wertung.l98">direct_wertung</a>
 </td>
-<td class="nobr" align="left">viewopts.l98 &nbsp;</td>
+<td class="nobr" align="left">direct_wertung.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_special.l98">direct_special</a>
+</td>
+<td class="nobr" align="left">direct_special.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_kegel.l98">direct_kegel</a>
+</td>
+<td class="nobr" align="left">direct_kegel.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/direct_handicap.l98">direct_handicap</a>
+</td>
+<td class="nobr" align="left">direct_handicap.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 4 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=golden/basic.l98">basic</a>
+</td>
+<td class="nobr" align="left">basic.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
 <!--1735732800-->01.01.2025 13:00</td>

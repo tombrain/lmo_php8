@@ -215,15 +215,4 @@ show=0
 </html>
 
 ### DATEIAENDERUNGEN
-GEAENDERT config/cfg.txt
-[diff nicht verfuegbar; md5 vorher 0e7d413c097fa2a2877b5229e92bdbce, nachher 0e7d413c097fa2a2877b5229e92bdbce]
-GEAENDERT config/classlib/cfg.txt
-[diff nicht verfuegbar; md5 vorher fd39cfee46c7dd65970e19cbb9484b59, nachher fd39cfee46c7dd65970e19cbb9484b59]
-GEAENDERT config/mini/cfg.txt
-[diff nicht verfuegbar; md5 vorher 711e09548b00b041bc9abc9c5526a148, nachher 711e09548b00b041bc9abc9c5526a148]
-GEAENDERT config/spieler/cfg.txt
-[diff nicht verfuegbar; md5 vorher afdef1d5f5380d71e49c6ba14f26f60a, nachher afdef1d5f5380d71e49c6ba14f26f60a]
-GEAENDERT config/ticker/cfg.txt
-[diff nicht verfuegbar; md5 vorher ad85b53a00f229f239826eabbb7eed17, nachher ad85b53a00f229f239826eabbb7eed17]
-GEAENDERT config/tipp/cfg.txt
-[diff nicht verfuegbar; md5 vorher ef04b4843c1faa24f74b7f7fc3c7d661, nachher ef04b4843c1faa24f74b7f7fc3c7d661]
+(keine)

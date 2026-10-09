@@ -91,20 +91,9 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/08er-liga.l98">Schlüssel 08er Liga</a>
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/18er-liga.l98">Schlüssel 18er Liga</a>
 </td>
-<td class="nobr" align="left">08er-liga.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/12er-liga.l98">Schlüssel 12er Liga</a>
-</td>
-<td class="nobr" align="left">12er-liga.l98 &nbsp;</td>
+<td class="nobr" align="left">18er-liga.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
 <!--1735732800-->01.01.2025 13:00</td>
@@ -124,28 +113,6 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/18er-liga.l98">Schlüssel 18er Liga</a>
-</td>
-<td class="nobr" align="left">18er-liga.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
-<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/06er-liga.l98">Schlüssel 06er Liga</a>
-</td>
-<td class="nobr" align="left">06er-liga.l98 &nbsp;</td>
-<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
-<td class="nobr" align="left">
-<!--1735732800-->01.01.2025 13:00</td>
-</tr>
-<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">
 <a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/14er-liga.l98">Schlüssel 14er Liga</a>
 </td>
 <td class="nobr" align="left">14er-liga.l98 &nbsp;</td>
@@ -157,9 +124,42 @@
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/12er-liga.l98">Schlüssel 12er Liga</a>
+</td>
+<td class="nobr" align="left">12er-liga.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
 <a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/10er-liga.l98">Schlüssel 10er Liga</a>
 </td>
 <td class="nobr" align="left">10er-liga.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/08er-liga.l98">Schlüssel 08er Liga</a>
+</td>
+<td class="nobr" align="left">08er-liga.l98 &nbsp;</td>
+<td class="nobr" align="left">Spieltag 1 &nbsp;</td>
+<td class="nobr" align="left">
+<!--1735732800-->01.01.2025 13:00</td>
+</tr>
+<tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">
+<a href="/lmo/lmoadmin.php?todo=open&amp;file=dfb/06er-liga.l98">Schlüssel 06er Liga</a>
+</td>
+<td class="nobr" align="left">06er-liga.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
 <!--1735732800-->01.01.2025 13:00</td>
