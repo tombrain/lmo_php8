@@ -1598,8 +1598,8 @@ class liga {
                 elseif ($partie->gTore == -2) {  // O:0 Tore Gast gewinnt
                     $tableArray[$heimCount]['mPkt'] += $pointsForWin;
                     $tableArray[$gastCount]['pPkt'] += $pointsForWin;
-                    $tableArray[$heimCount]['mPkt'] += $pointsForLost;
-                    $tableArray[$gastCount]['pPkt'] += $pointsForLost;
+                    $tableArray[$heimCount]['pPkt'] += $pointsForLost;
+                    $tableArray[$gastCount]['mPkt'] += $pointsForLost;
                 }
             }  // foreach Partien
         }  // foreach Spieltage
