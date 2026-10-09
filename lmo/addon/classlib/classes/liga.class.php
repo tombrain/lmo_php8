@@ -1224,6 +1224,30 @@ class liga {
         return $stda <= $lastPlayed;
     }
 
+    /**
+    * Bucht ein Ergebnis fuer ein Team: Tore, Spiele, Sieg/Remis/Niederlage und Punkte.
+    *
+    * @access private
+    */
+    function addResult(&$row, $own, $other, $pointsForWin, $pointsForDraw, $pointsForLost) {
+        $row['pTor'] += $own;
+        $row['mTor'] += $other;
+        $row['spiele']++;
+        if ($own > $other) {
+            $result = array('s', $pointsForWin, $pointsForLost);
+        }
+        elseif ($own < $other) {
+            $result = array('n', $pointsForLost, $pointsForWin);
+        }
+        else {
+            $result = array('u', $pointsForDraw, $pointsForDraw);
+        }
+        if (isset($row[$result[0]])) {
+            $row[$result[0]]++;
+        }
+        $row['pPkt'] += $result[1];
+        $row['mPkt'] += $result[2];
+    }
 
     /**
     * Berechnet den Tabellenstand für einen Spieltag
@@ -1338,6 +1362,16 @@ class liga {
                 }
                 if ($partie->valuateGame() != -1) {
                     $lastPlayed = $spieltag->nr;
+                }
+                // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
+                if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
+                    if ($tableArt != 'gast') {
+                        $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    }
+                    if ($tableArt != 'heim') {
+                        $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    }
+                    continue;
                 }
 
                 if ($partie->hTore > -1) {
@@ -1602,6 +1636,12 @@ class liga {
                 }
                 if ($heimCount == -1 OR $gastCount == -1)
                     continue;
+                // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
+                if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
+                    $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    continue;
+                }
                 if ($partie->hTore > -1) {
                     // Tore für Heim hinzufügen
                     $tableArray[$heimCount]['pTor'] += $partie->hTore;
