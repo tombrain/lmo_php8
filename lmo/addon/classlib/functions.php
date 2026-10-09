@@ -42,7 +42,8 @@ function strBeforChar($str,$char) {
  * @return string
  */
 function strAfterChar($str,$char) {
-    return substr($str, strrpos($str, $char) + 1);
+    $pos = strrpos($str, $char);
+    return $pos === false ? '' : substr($str, $pos + 1);
 }
 
 /**
