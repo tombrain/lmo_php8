@@ -102,11 +102,11 @@
 <th class="text-center">&nbsp; </th>
 </tr>
 <tr>
-<td align="right">3</td>
+<td align="right">2</td>
 <th class="text-center">Tabellenposition</th>
 </tr>
 <tr>
-<td align="right">16</td>
+<td align="right">18</td>
 <th class="text-center">Pkt.</th>
 </tr>
 <tr>
@@ -114,7 +114,7 @@
 <th class="text-center">Spiele</th>
 </tr>
 <tr>
-<td align="right">1.45</td>
+<td align="right">1.64</td>
 <th class="text-center">Pkt./Spiel</th>
 </tr>
 <tr>
@@ -142,7 +142,7 @@
 <th class="top" style="text-align:center">Höchste Niederlage</th>
 </tr>
 <tr>
-<td align="right">3 Sp. o. Niederlage</td>
+<td align="right">5 Sp. o. Niederlage</td>
 <th class="top" style="text-align:center">Aktuelle Serie</th>
 </tr>
 <!-- OUTPUT Restprogramm START-->

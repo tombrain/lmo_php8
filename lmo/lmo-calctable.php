@@ -120,7 +120,8 @@ if ($file != "") {
               } elseif ((($goala[$j][$i]-$goalb[$j][$i]) == ($maxn1[$a]-$maxn2[$a])) && ($goala[$j][$i] == $maxn1[$a])) {
                 $maxn0[$a] = $maxn0[$a]."<br>".applyFactor($goala[$j][$i], $goalfaktor).":".applyFactor($goalb[$j][$i], $goalfaktor)." ".$text[72]." ".$teams[$teamb[$j][$i]]." ".$text[73];
               }
-            } elseif ($msieg[$j][$i] == 0) {
+            } elseif ($msieg[$j][$i] == 0 || $msieg[$j][$i] == 3) {
+              // 3 = beidseitiges Ergebnis: gilt fuer beide Teams aus Sicht der Heimmannschaft
               if ($goala[$j][$i] > $goalb[$j][$i]) {
                 $siege[$a] = $siege[$a]+1;
                 $punkte[$a] = $punkte[$a]+$p0s;
