@@ -421,9 +421,10 @@ class liga {
     function &aktuellerSpieltag() {
         $result = null;
         if (array_key_exists('Actual', $this->options->keyValues)) {
-            $aktSpTagNr = $this->options->keyValues['Actual'];
-            if (isset($aktSpTagNr) && ($aktSpTagNr >= 0) && isset($this->spieltage[$aktSpTagNr])) {
-                $result = $this->spieltage[$aktSpTagNr];
+            // Actual zaehlt ab 1, $this->spieltage ab 0
+            $aktSpTagNr = (int) $this->options->keyValues['Actual'];
+            if ($aktSpTagNr >= 1 && isset($this->spieltage[$aktSpTagNr - 1])) {
+                $result = $this->spieltage[$aktSpTagNr - 1];
             }
         }
         return $result;
