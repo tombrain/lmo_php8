@@ -1017,7 +1017,9 @@ class liga {
         // if there is a need for any update functionality for special addons,
         // you should define them inside of the function updateAddons() located
         // in update_addons.php file.
-        include PATH_TO_ADDONDIR . '/classlib/update_addons.php';
+        // require_once: die Datei deklariert updateAddons(); ein zweites writeFile() im selben
+        // Request brach mit include ab ("Cannot redeclare updateAddons()")
+        require_once PATH_TO_ADDONDIR . '/classlib/update_addons.php';
         $iniData = array(); // Inhalt des LigaFiles
         $aktSpTag = 1;
         $maxSp = 0;
