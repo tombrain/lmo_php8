@@ -305,7 +305,10 @@ if ($file != "") {
             for ($b = 1; $b <= count($tab1); $b++) {
               for ($f = 0; $f < count($tab0); $f++) {
                 if (intval(substr($tab0[$f], -7)) == intval(substr($tab1[$b-1], -7))) {
-                  $tab0[$f] = substr($tab0[$f], 0, 17-strlen($b)).$b.substr($tab0[$f], 17);
+                  // Rang als genau ein Zeichen an Stelle 16 (erste Ziffer der Tordifferenz). Ab Rang 10
+                  // folgen die Zeichen hinter "9" (":", ";", ...), die als String richtig dahinter sortieren.
+                  // Vorher ueberschrieb ein zweistelliger Rang die letzte Ziffer der Minuspunkte.
+                  $tab0[$f] = substr($tab0[$f], 0, 16).chr(ord('0') + $b).substr($tab0[$f], 17);
                 }
               }
             }
