@@ -76,7 +76,7 @@ function readLigaDir($dirName,&$dataArray) {
         while($data = $dir->read()){
             $ext = strtolower( strAfterChar($data, '.'));
             if ($ext == 'l98') {
-                $name = trim(substr($data, 0, strrpos($data, $ext) -1));
+                $name = trim(strBeforChar($data, '.'));
                 $dataArray[] = array(
                   'path' => $dir->path,
                   'src' => $data,
