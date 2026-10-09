@@ -2,7 +2,8 @@
 /**
  * Kindprozess: laedt eine Liga wie lmo-start.php/lmo-showmain2.php und fuehrt
  * lmo-calctable.php fuer alle Ansichten aus. Ausgabe: JSON auf stdout.
- * Aufruf: php calc.php <Instanzpfad> <Ligadatei relativ zu ligen/>
+ * Aufruf: php calc.php <Instanzpfad> <Ligadatei relativ zu ligen/> [alle]
+ * Mit "alle" wird jeder Spieltag gerechnet, sonst eine feste Auswahl (Golden Master).
  *
  * Bewusst ohne Funktionen und Klassen: lmo-calctable.php arbeitet mit dem
  * globalen Scope und muss genau so aufgerufen werden wie im Original.
@@ -10,6 +11,7 @@
  */
 $gm_instance = $argv[1];
 $gm_league = $argv[2];
+$gm_allRounds = ($argv[3] ?? '') === 'alle';
 chdir($gm_instance);
 if (getenv('GOLDEN_COVERAGE_DIR')) {
     require __DIR__ . '/coverage_prepend.php';
@@ -41,7 +43,9 @@ $gm_columns = ['spiele', 'siege', 'unent', 'nieder', 'punkte', 'negativ', 'etore
 $gm_scalars = ['stt', 'hoy', 'anzcnt', 'subteams'];
 
 $gm_anzst = (int)$anzst;
-$gm_endtabs = array_values(array_unique([$gm_anzst, max(1, $gm_anzst - 1), max(1, intdiv($gm_anzst, 2)), min(3, $gm_anzst), 1]));
+$gm_endtabs = $gm_allRounds
+    ? range($gm_anzst, 1)
+    : array_values(array_unique([$gm_anzst, max(1, $gm_anzst - 1), max(1, intdiv($gm_anzst, 2)), min(3, $gm_anzst), 1]));
 // [tabtype, newtabtype, action]: Gesamt, Heim, Auswaerts, Hin-, Rueckrunde und die
 // Kombinationen, die lmo-showrestab.php bei tabonres=2 erzeugt, plus Admin-Ansicht
 $gm_combos = [

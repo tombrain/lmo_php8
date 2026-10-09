@@ -32,9 +32,10 @@ final class Runner
     }
 
     /** Berechnet die Tabellen einer Liga in allen Ansichten, Rueckgabe: JSON. */
-    public function calc(string $leagueFile): string
+    /** @param bool $allRounds jeden Spieltag rechnen statt der festen Auswahl fuer den Golden Master */
+    public function calc(string $leagueFile, bool $allRounds = false): string
     {
-        return $this->run('calc.php', [$leagueFile]);
+        return $this->run('calc.php', $allRounds ? [$leagueFile, 'alle'] : [$leagueFile]);
     }
 
     /**
