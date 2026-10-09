@@ -30,13 +30,13 @@ trait AssertsSnapshots
         }
 
         if (!is_file($file)) {
-            $this->fail(
+            self::fail(
                 "Kein Snapshot fuer \"$name\" ($file). " .
                 'Am unveraenderten Originalstand aufzeichnen: GOLDEN_MODE=record-missing (siehe TESTING.md).'
             );
         }
 
-        $this->assertSame(
+        self::assertSame(
             file_get_contents($file),
             '### ' . $name . "\n" . $actual,
             "Ausgabe weicht vom Golden Master ab: $name"

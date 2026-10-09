@@ -35,26 +35,26 @@ final class NormalizerTest extends TestCase
         $a = Normalizer::html(self::footer(self::link('Magyar') . self::selected('English') . self::link('Bosanski')), '/tmp/x');
         $b = Normalizer::html(self::footer(self::link('Bosanski') . self::link('Magyar') . self::selected('English')), '/tmp/x');
 
-        $this->assertSame($a, $b);
+        self::assertSame($a, $b);
         preg_match_all('~lmouserlang=(\w+)"|img/(\w+)\.selected\.svg~', $a, $m);
         $order = array_map(static fn (string $x, string $y): string => $x . $y, $m[1], $m[2]);
-        $this->assertSame(['Bosanski', 'English', 'Magyar'], $order);
+        self::assertSame(['Bosanski', 'English', 'Magyar'], $order);
         // Bearbeiten-Link bleibt hinter der Sprachauswahl (kanonisch haengt sein ">>" am letzten Eintrag)
-        $this->assertMatchesRegularExpression('~Magyar">\n</a>>>\n<a href="[^"]*lmo-admintranslate~', $a);
+        self::assertMatchesRegularExpression('~Magyar">\n</a>>>\n<a href="[^"]*lmo-admintranslate~', $a);
     }
 
     public function testSortingIsIdempotentOnCanonicalForm(): void
     {
         $once = Normalizer::html(self::footer(self::link('Romanian') . self::link('Deutsch') . self::selected('English')), '/tmp/x');
 
-        $this->assertSame($once, Normalizer::sortLangSelector($once));
+        self::assertSame($once, Normalizer::sortLangSelector($once));
     }
 
     public function testOtherContentIsUntouched(): void
     {
         $html = "<p>\n<a href=\"/x?a=1\" title=\"Zeta\">\n<img src=\"z.svg\">\n</a>\n<a href=\"/x?a=2\" title=\"Alpha\">\n<img src=\"a.svg\">\n</a>\n</p>\n";
 
-        $this->assertSame($html, Normalizer::sortLangSelector($html));
+        self::assertSame($html, Normalizer::sortLangSelector($html));
     }
 
     public function testHarnessPathInNoticeDoesNotDependOnCheckout(): void
@@ -64,10 +64,10 @@ final class NormalizerTest extends TestCase
 
         $docker = Normalizer::html($notice('/app'), '/tmp/x');
 
-        $this->assertSame($docker, Normalizer::html($notice('/home/runner/work/lmo_php8/lmo_php8'), '/tmp/x'));
-        $this->assertStringContainsString('(started from {HARNESS}/http.php on line N)', $docker);
+        self::assertSame($docker, Normalizer::html($notice('/home/runner/work/lmo_php8/lmo_php8'), '/tmp/x'));
+        self::assertStringContainsString('(started from {HARNESS}/http.php on line N)', $docker);
         // die Fehlerstelle in der LMO-Datei bleibt erhalten
-        $this->assertStringContainsString('{LMO_PATH}/lmo-admindownload.php on line 21', $docker);
+        self::assertStringContainsString('{LMO_PATH}/lmo-admindownload.php on line 21', $docker);
     }
 
     public function testIncludePathDoesNotDependOnEnvironment(): void
@@ -76,7 +76,7 @@ final class NormalizerTest extends TestCase
 
         $docker = Normalizer::html($error('.:/usr/local/lib/php'), '/tmp/x');
 
-        $this->assertSame($docker, Normalizer::html($error('/app/lmo/vendor/pear/pear:.:/usr/share/php'), '/tmp/x'));
-        $this->assertStringContainsString("(include_path='{INCLUDE_PATH}')", $docker);
+        self::assertSame($docker, Normalizer::html($error('/app/lmo/vendor/pear/pear:.:/usr/share/php'), '/tmp/x'));
+        self::assertStringContainsString("(include_path='{INCLUDE_PATH}')", $docker);
     }
 }

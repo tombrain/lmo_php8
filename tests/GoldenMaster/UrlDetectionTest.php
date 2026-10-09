@@ -58,68 +58,68 @@ final class UrlDetectionTest extends TestCase
     public function testScriptInLmoFolder(): void
     {
         $this->request('/vereine/liga/lmo.php', $this->lmo . '/lmo.php');
-        $this->assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testScriptInAddonSubfolder(): void
     {
         $this->request('/vereine/liga/addon/tipp/lmo-tipp.php', $this->lmo . '/addon/tipp/lmo-tipp.php');
-        $this->assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testLmoFolderIsWebRoot(): void
     {
         $this->request('/lmo.php', $this->lmo . '/lmo.php');
-        $this->assertSame('http://www.example.org', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org', lmo_detect_url($this->lmo));
     }
 
     public function testAliasWithDifferentUrlPath(): void
     {
         // Apache-Alias: URL-Pfad hat nichts mit dem Dateipfad zu tun
         $this->request('/ergebnisse/addon/tipp/lmo-tipp.php', $this->lmo . '/addon/tipp/lmo-tipp.php');
-        $this->assertSame('http://www.example.org/ergebnisse', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org/ergebnisse', lmo_detect_url($this->lmo));
     }
 
     public function testEmbeddedFromPageOutsideLmoUsesDocumentRoot(): void
     {
         $this->request('/index.php', $this->root . '/htdocs/index.php', ['DOCUMENT_ROOT' => $this->root . '/htdocs']);
-        $this->assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testEmbeddedOutsideDocumentRootIsUnknown(): void
     {
         $this->request('/index.php', $this->root . '/htdocs/index.php', ['DOCUMENT_ROOT' => $this->root . '/anderswo']);
-        $this->assertSame('', lmo_detect_url($this->lmo));
+        self::assertSame('', lmo_detect_url($this->lmo));
     }
 
     public function testHttps(): void
     {
         $this->request('/vereine/liga/lmo.php', $this->lmo . '/lmo.php', ['HTTPS' => 'on', 'SERVER_PORT' => '443']);
-        $this->assertSame('https://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('https://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testHttpsOffIsHttp(): void
     {
         $this->request('/vereine/liga/lmo.php', $this->lmo . '/lmo.php', ['HTTPS' => 'off']);
-        $this->assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('http://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testHttpsBehindProxy(): void
     {
         $this->request('/vereine/liga/lmo.php', $this->lmo . '/lmo.php', ['HTTP_X_FORWARDED_PROTO' => 'https']);
-        $this->assertSame('https://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
+        self::assertSame('https://www.example.org/vereine/liga', lmo_detect_url($this->lmo));
     }
 
     public function testHostWithPort(): void
     {
         $this->request('/liga/lmo.php', $this->lmo . '/lmo.php', ['HTTP_HOST' => 'localhost:8081', 'SERVER_PORT' => '8081']);
-        $this->assertSame('http://localhost:8081/liga', lmo_detect_url($this->lmo));
+        self::assertSame('http://localhost:8081/liga', lmo_detect_url($this->lmo));
     }
 
     public function testCommandLineWithoutHostIsUnknown(): void
     {
         $this->request('/vereine/liga/lmo.php', $this->lmo . '/lmo.php');
         unset($_SERVER['HTTP_HOST']);
-        $this->assertSame('', lmo_detect_url($this->lmo));
+        self::assertSame('', lmo_detect_url($this->lmo));
     }
 }

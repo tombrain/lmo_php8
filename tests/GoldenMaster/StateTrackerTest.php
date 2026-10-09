@@ -16,7 +16,7 @@ final class StateTrackerTest extends TestCase
         $before = ['config/cfg.txt' => "a=1\r\nb=2\r\n"];
         $after = ['config/cfg.txt' => "a=1\nb=2\n"];
 
-        $this->assertSame('', StateTracker::diff($before, $after, '/tmp/x'));
+        self::assertSame('', StateTracker::diff($before, $after, '/tmp/x'));
     }
 
     public function testRealChangeIsStillReported(): void
@@ -24,7 +24,7 @@ final class StateTrackerTest extends TestCase
         $before = ['config/cfg.txt' => "a=1\r\nb=2\r\n"];
         $after = ['config/cfg.txt' => "a=1\nb=3\n"];
 
-        $this->assertStringStartsWith("GEAENDERT config/cfg.txt\n", StateTracker::diff($before, $after, '/tmp/x'));
+        self::assertStringStartsWith("GEAENDERT config/cfg.txt\n", StateTracker::diff($before, $after, '/tmp/x'));
     }
 
     public function testInstancePathOnlyChangeIsNotReported(): void
@@ -32,6 +32,6 @@ final class StateTrackerTest extends TestCase
         $before = ['config/cfg.txt' => "pfad={LMO_PATH}/ligen\n"];
         $after = ['config/cfg.txt' => "pfad=/tmp/x/ligen\n"];
 
-        $this->assertSame('', StateTracker::diff($before, $after, '/tmp/x'));
+        self::assertSame('', StateTracker::diff($before, $after, '/tmp/x'));
     }
 }

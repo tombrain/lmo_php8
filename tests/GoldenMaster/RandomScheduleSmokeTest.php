@@ -41,20 +41,20 @@ final class RandomScheduleSmokeTest extends TestCase
         $knownBugFired = strpos($response, self::KNOWN_WARNING) !== false;
         $response = str_replace(self::KNOWN_WARNING, '', $response);
 
-        $this->assertStringNotContainsString('STDERR', $response, 'Unerwartete PHP-Warnung/Fehler beim Erzeugen des Zufallsspielplans');
-        $this->assertStringNotContainsString('EXIT', $response, 'Abnormaler Abbruch beim Erzeugen des Zufallsspielplans');
+        self::assertStringNotContainsString('STDERR', $response, 'Unerwartete PHP-Warnung/Fehler beim Erzeugen des Zufallsspielplans');
+        self::assertStringNotContainsString('EXIT', $response, 'Abnormaler Abbruch beim Erzeugen des Zufallsspielplans');
 
         $edit = $c->get('lmoadmin.php', 'action=admin&todo=edit&file=zufallsliga.l98&st=1');
-        $this->assertStringNotContainsString('STDERR', $edit);
+        self::assertStringNotContainsString('STDERR', $edit);
 
         $content = (string)file_get_contents($c->instance()->path() . '/ligen/zufallsliga.l98');
-        $this->assertSchedulePlausibility($content, $knownBugFired);
+        self::assertSchedulePlausibility($content, $knownBugFired);
     }
 
-    private function assertSchedulePlausibility(string $content, bool $knownBugFired): void
+    private static function assertSchedulePlausibility(string $content, bool $knownBugFired): void
     {
         preg_match_all('/^\[Round(\d+)\]$/m', $content, $roundMatches);
-        $this->assertNotEmpty($roundMatches[1], 'Keine Spieltags-Abschnitte in der erzeugten Ligadatei gefunden');
+        self::assertNotEmpty($roundMatches[1], 'Keine Spieltags-Abschnitte in der erzeugten Ligadatei gefunden');
 
         $sections = preg_split('/^\[Round\d+\]$/m', $content);
         array_shift($sections); // Teil vor dem ersten [RoundN]
@@ -73,7 +73,7 @@ final class RandomScheduleSmokeTest extends TestCase
         if ($knownBugFired) {
             // Der bekannte Fehler ist aufgetreten: wir erwarten (und dokumentieren) einen
             // kaputten Spielplan, statt den Test daran scheitern zu lassen.
-            $this->assertNotEmpty(
+            self::assertNotEmpty(
                 $brokenDays,
                 'Die bekannte Zufalls-Warnung trat auf, aber der Spielplan ist dennoch vollstaendig - ' .
                 'Annahme ueber die Fehlerwirkung war falsch, bitte Befund pruefen.'
@@ -81,7 +81,7 @@ final class RandomScheduleSmokeTest extends TestCase
             return;
         }
 
-        $this->assertEmpty(
+        self::assertEmpty(
             $brokenDays,
             "Spielplan unvollstaendig, OHNE dass die bekannte Warnung auftrat (Spieltage: " .
             implode(', ', array_keys($brokenDays)) . ") - das waere ein NEUER Befund."
