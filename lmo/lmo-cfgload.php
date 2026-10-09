@@ -44,8 +44,8 @@ if (function_exists('date_default_timezone_set')) {
 }
 
 include(PATH_TO_LMO.'/lmo-updateoptions.php');
-$handle=opendir (PATH_TO_CONFIGDIR);
-while (false!==($f=readdir($handle))) {
+// scandir: Addons in fester (alphabetischer) Reihenfolge, readdir haengt vom Dateisystem ab
+foreach (scandir(PATH_TO_CONFIGDIR) as $f) {
   if (is_dir(PATH_TO_CONFIGDIR.'/'.$f) && $f!='.' && $f!='..') {
     $addon_cfgfile=PATH_TO_CONFIGDIR."/$f/cfg.txt";    // Konfigurationsdatei
     if (file_exists($addon_cfgfile)) {
@@ -55,5 +55,4 @@ while (false!==($f=readdir($handle))) {
     }
   }
 }
-closedir($handle);
 ?>

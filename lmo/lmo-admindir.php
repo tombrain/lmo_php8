@@ -30,10 +30,10 @@ $_SESSION['liga_sort_direction'] = (isset($_REQUEST['liga_sort_direction']) && i
     ? $_REQUEST['liga_sort_direction']
     : (in_array($liga_sort_direction, $valid_liga_sort_direction, true) ? $liga_sort_direction : 'asc');
 
-$verz = opendir(substr(PATH_TO_LMO . '/' . $dirliga, 0, -1));
+$verz = scandir(substr(PATH_TO_LMO . '/' . $dirliga, 0, -1));
 $liga_counter = 0;
 $unbenannte_liga_counter = 0;
-while($files = readdir($verz)) {
+foreach ($verz as $files) {  // sortiert: gleiche Liganamen und "Unbenannte Liga N" unabhaengig vom Dateisystem
     if (strtolower(substr($files, -4)) == '.l98') {
         if ($_SESSION['lmouserok'] == 1) {
             $hilfsadmin_berechtigung = false;
@@ -125,7 +125,6 @@ while($files = readdir($verz)) {
         }
     }
 }
-closedir($verz);
 
 usort($ligadatei, 'cmp');
 if (isset($_SESSION['liga_sort_direction']) && $_SESSION['liga_sort_direction'] == 'desc')

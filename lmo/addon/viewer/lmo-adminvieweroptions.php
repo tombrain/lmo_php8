@@ -24,10 +24,10 @@ require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
 <script src="<?php echo URL_TO_JSDIR;?>/viewer.js" type="text/javascript"></script>
 <?php
 if ($_SESSION['lmouserok'] == 2) {
-    $verz = substr($dirliga, -1) == '/' ? opendir(substr(PATH_TO_LMO . '/' . $dirliga, 0, -1)) : opendir(PATH_TO_LMO . '/' . $dirliga);
-    $tmpl_verz = substr($dirliga, -1) == '/' ? opendir(substr(PATH_TO_TEMPLATEDIR . '/viewer/', 0, -1)) : opendir(PATH_TO_TEMPLATEDIR . '/viewer/');
+    $verz = substr($dirliga, -1) == '/' ? scandir(substr(PATH_TO_LMO . '/' . $dirliga, 0, -1)) : scandir(PATH_TO_LMO . '/' . $dirliga);
+    $tmpl_verz = substr($dirliga, -1) == '/' ? scandir(substr(PATH_TO_TEMPLATEDIR . '/viewer/', 0, -1)) : scandir(PATH_TO_TEMPLATEDIR . '/viewer/');
     $tmpl_counter = 0;
-    while($t_files = readdir($tmpl_verz)) {
+    foreach ($tmpl_verz as $t_files) {  // scandir: sortiert, unabhaengig vom Dateisystem
         if (strtolower(substr($t_files, -8)) == '.tpl.php') {
             $tpl_files[$tmpl_counter++] = substr($t_files, 0, -8);
         }
@@ -35,7 +35,7 @@ if ($_SESSION['lmouserok'] == 2) {
     $liga_counter = 0;
     $unbenannte_liga_counter = 0;
     $ligadatei = array();
-    while($files = readdir($verz)) {
+    foreach ($verz as $files) {
         if (strtolower(substr($files, -4)) == '.l98') {
             $sekt = '';
             $datei = fopen(PATH_TO_LMO . '/' . $dirliga . $files, 'rb');
@@ -79,7 +79,6 @@ if ($_SESSION['lmouserok'] == 2) {
             }
         }
     }
-    closedir($verz);
 
     // usort($ligadatei, 'cmp');
 

@@ -23,12 +23,12 @@ $addi = $_SERVER['PHP_SELF'] . '?todo=' . $todo . '&amp;file=';
 $_SESSION['liga_sort'] = isset($_REQUEST['liga_sort']) ? $_REQUEST['liga_sort'] : $liga_sort;
 $_SESSION['liga_sort_direction'] = isset($_REQUEST['liga_sort_direction']) ? $_REQUEST['liga_sort_direction'] : $liga_sort_direction;
 $subdir = str_replace(array('../', './'), array('', ''), $subdir);
-$verz = substr($dirliga . $subdir, -1) == '/' ? opendir(substr(PATH_TO_LMO . '/' . $dirliga . $subdir, 0, -1)) : opendir(PATH_TO_LMO . '/' . $dirliga . $subdir);
+$verz = substr($dirliga . $subdir, -1) == '/' ? scandir(substr(PATH_TO_LMO . '/' . $dirliga . $subdir, 0, -1)) : scandir(PATH_TO_LMO . '/' . $dirliga . $subdir);
 $liga_counter = 0;
 $unbenannte_liga_counter = 0;
 $ligadatei = array();
 if ($verz !== false) {
-while($files = readdir($verz)) {
+foreach ($verz as $files) {  // sortiert: gleiche Liganamen und "Unbenannte Liga N" unabhaengig vom Dateisystem
     if (strtolower(substr($files,-4)) == '.l98') {
         $sekt = '';
         $datei = file_exists(PATH_TO_LMO . '/' . $dirliga . $subdir . $files) ? fopen(PATH_TO_LMO . '/' . $dirliga . $subdir . $files, 'rb') : false;
@@ -121,9 +121,6 @@ while($files = readdir($verz)) {
 }
 } else {
     echo getMessage($text[224], true);
-}
-if ($verz !== false) {
-    closedir($verz);
 }
 
 usort($ligadatei, 'cmp');
