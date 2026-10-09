@@ -1189,18 +1189,41 @@ class liga {
     * @package classLib
     * @access privat
     */
-    function strafen(&$team, $spTag) {
-        $stda = isset($team['team']->keyValues['STDA']) ? $team['team']->keyValues['STDA'] : 0;
-        if ($stda == $spTag || ($stda == 0 && $spTag == 1)) {
-            $team['pPkt'] -= isset($team['team']->keyValues['SP']) ? $team['team']->keyValues['SP'] : 0;
-            $team['pTor'] -= isset($team['team']->keyValues['TOR1']) ? $team['team']->keyValues['TOR1'] : 0;
-            // TOR1/TOR2 wie in der Ligadatei: lmo-adminteams.php speichert "+x" als -x
-            $team['mTor'] -= isset($team['team']->keyValues['TOR2']) ? $team['team']->keyValues['TOR2'] : 0;
-            if ($this->options->keyValues['MinusPoints'] == 2 && isset($team['team']->keyValues['SM'])) {
-                $team['mPkt'] -= $team['team']->keyValues['SM'];
-            }
+    function strafen(&$team) {
+        $keyValues = $team['team']->keyValues;
+        $team['pPkt'] -= isset($keyValues['SP']) ? $keyValues['SP'] : 0;
+        // TOR1/TOR2 wie in der Ligadatei: lmo-adminteams.php speichert "+x" als -x
+        $team['pTor'] -= isset($keyValues['TOR1']) ? $keyValues['TOR1'] : 0;
+        $team['mTor'] -= isset($keyValues['TOR2']) ? $keyValues['TOR2'] : 0;
+        if ($this->options->keyValues['MinusPoints'] == 2 && isset($keyValues['SM'])) {
+            $team['mPkt'] -= $keyValues['SM'];
         }
     }
+
+    /**
+    * Ob die Strafe eines Teams in dieser Tabelle zaehlt (wie lmo-calctable.php):
+    * nicht in Heim-/Auswaertstabelle, in der Hinrunde nur Strafen ab einem Spieltag der Hinrunde,
+    * in der Rueckrunde nur solche ab einem Spieltag der Rueckrunde, und erst wenn der Spieltag
+    * STDA erreicht ist (Ergebnisse hat).
+    *
+    * @access private
+    * @param array team Tabellenzeile
+    * @param string tableArt Art der Tabelle
+    * @param integer lastPlayed letzter Spieltag mit einem Ergebnis
+    * @return boolean
+    */
+    function strafeFaellig($team, $tableArt, $lastPlayed) {
+        $stda = isset($team['team']->keyValues['STDA']) ? (int) $team['team']->keyValues['STDA'] : 0;
+        $half = (int) ($this->spieltageCount() / 2);
+        if ($tableArt == 'heim' || $tableArt == 'gast') {
+            return false;
+        }
+        if (($tableArt == 'hin' && $stda > $half) || ($tableArt == 'rueck' && $stda <= $half)) {
+            return false;
+        }
+        return $stda <= $lastPlayed;
+    }
+
 
     /**
     * Berechnet den Tabellenstand für einen Spieltag
@@ -1252,6 +1275,18 @@ class liga {
               'possp' => array()
             );
         }
+        // Strafen: einmal je Team, sobald faellig - auch wenn das Team an dem Spieltag spielfrei ist
+        $lastPlayed = 0;
+        $bestraft = array();
+        $strafenBuchen = function () use (&$tableArray, &$bestraft, &$lastPlayed, $tableArt) {
+            foreach ($tableArray as $index => $row) {
+                if (empty($bestraft[$index]) && $this->strafeFaellig($row, $tableArt, $lastPlayed)) {
+                    $this->strafen($tableArray[$index]);
+                    $bestraft[$index] = true;
+                }
+            }
+        };
+        $strafenBuchen();  // Strafen ab Spieltag 0
         foreach ($this->spieltage as $spieltag) {
             if ($spieltag->getModus() > 0) {
                 continue;
@@ -1301,12 +1336,8 @@ class liga {
                         $gastCount = $count;
                     }
                 }
-                // Strafen berücksichtigen
-                if ($heimCount != -1) {
-                    $this->strafen($tableArray[$heimCount], $spTagCount);
-                }
-                if ($gastCount != -1) {
-                    $this->strafen($tableArray[$gastCount], $spTagCount);
+                if ($partie->valuateGame() != -1) {
+                    $lastPlayed = $spieltag->nr;
                 }
 
                 if ($partie->hTore > -1) {
@@ -1396,6 +1427,7 @@ class liga {
                     }
                 }
             } // foreach Partien
+            $strafenBuchen();
             //Zusätzliche Berechnung der Position für den jeweiligen Spieltag (Statisktik)
             if ($possp == true) {
                 for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
