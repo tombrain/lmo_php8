@@ -105,25 +105,21 @@ class liga {
     * @param file string Pfad zur Ligadatei (*.l98)
     * @return object ein object passend zum Ligafile
     */
-    function &factory($file) {
-        if (file_exists($file)) {
-            $ligaFile = file($file);
-            foreach ($ligaFile as $configLine) {
-                if (preg_match("/^LigaType=([^\n]+)/", $configLine, $ligaType)) {
-                    break;
+    static function factory($file) {
+        if (!file_exists($file)) {
+            return null;
+        }
+        // LigaType=Handball -> ligaHandball, ohne/unbekannter Typ -> liga
+        foreach (file($file) as $configLine) {
+            if (preg_match('/^LigaType=(\w+)/', $configLine, $ligaType)) {
+                $class = 'liga' . ucfirst(strtolower($ligaType[1]));
+                if (class_exists($class) && is_subclass_of($class, 'liga')) {
+                    return new $class();
                 }
-            }
-            $ligaType[1] .= 'Liga';
-            if (class_exists($ligaType[1])) {
-                return new $ligaType[1]();
-            }
-            else {
-                return new liga();
+                break;
             }
         }
-        else 
-            $null = null;
-        return $null;
+        return new liga();
     }
 
     /**
