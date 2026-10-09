@@ -121,8 +121,14 @@ final class Runner
         $outFile = tempnam(sys_get_temp_dir(), 'lmo-out');
         $errFile = tempnam(sys_get_temp_dir(), 'lmo-err');
         $env = null;
+        if ($this->hasFaketime()) {
+            // Neuere libfaketime-Versionen (z. B. Ubuntu auf dem GitHub-Runner) verschieben auch die
+            // Dateizeiten aus stat() um den Zeitversatz; die fixierte Ligadatei-Zeit (Instance::FIXED_MTIME)
+            // wuerde dann je nach echtem Datum anders angezeigt. Nur die Uhr faelschen.
+            $env = array_merge(getenv(), ['NO_FAKE_STAT' => '1']);
+        }
         if ($coverageDir !== null) {
-            $env = array_merge(getenv(), [
+            $env = array_merge($env ?? getenv(), [
                 'GOLDEN_COVERAGE_DIR' => $coverageDir,
                 'GOLDEN_INSTANCE' => $this->instance->path(),
             ]);

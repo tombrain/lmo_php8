@@ -186,45 +186,45 @@
 </tr>
 <tr>
 <td class="lmoFooter" colspan="2" align="left">
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=dfb/16er-liga.l98&amp;action=program&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>

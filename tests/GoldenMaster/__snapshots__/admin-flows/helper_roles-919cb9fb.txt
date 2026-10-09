@@ -114,45 +114,45 @@
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -292,45 +292,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -830,45 +830,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -1034,45 +1034,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-1&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -1583,45 +1583,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -1689,45 +1689,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -1777,45 +1777,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=options&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -1961,45 +1961,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -2082,45 +2082,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=download&amp;file=golden/basic.l98&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -2516,45 +2516,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=golden/basic.l98&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -2637,45 +2637,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td class="lmoFooter" colspan="3" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -2809,45 +2809,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -3201,45 +3201,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-2&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>
@@ -3403,45 +3403,45 @@ GEAENDERT config/lmo-auth.php
 </tr>
 <tr>
 <td colspan="2" class="lmoFooter" align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Espanol" title="Espanol">
-<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Romanian" title="Romanian">
-<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Magyar" title="Magyar">
-<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Slovenskega" title="Slovenskega">
-<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Portugues" title="Portugues">
-<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
-</a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Nederlands" title="Nederlands">
-<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
-</a>
-<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Italiano" title="Italiano">
-<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Cestina" title="Cestina">
 <img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Francais" title="Francais">
-<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
-</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=English" title="English">
 <img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Hrvatski" title="Hrvatski">
 <img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
 </a>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Bosanski" title="Bosanski">
-<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
 </a>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Norsk" title="Norsk">
 <img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-3&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
 </a>
 </td>
 </tr>

@@ -41,7 +41,32 @@ final class Normalizer
             $html = preg_replace('/\b\d{1,3},\d{1,3},\d{1,3},1\b/', '{RGBA}', $html);
         }
 
-        return self::canonical($html);
+        return self::sortLangSelector(self::canonical($html));
+    }
+
+    /**
+     * Sprachauswahl in der Fusszeile (getLangSelector) sortieren: Die Reihenfolge kommt aus
+     * readdir() und haengt damit vom Dateisystem ab (Docker-Volume vs. GitHub-Runner).
+     * Erwartet die kanonische Form; ein Eintrag ist entweder ein Link (3 Zeilen) oder das
+     * Bild der aktuellen Sprache (1 Zeile), sortiert wird nach dem Sprachnamen. Folgt der
+     * Bearbeiten-Link (" >> "), haengt dessen ">>" ohne Zeilenumbruch am letzten Eintrag.
+     */
+    public static function sortLangSelector(string $html): string
+    {
+        $entry = static fn (string $end): string => '(?:<a href="[^"\n]*lmouserlang=[^"\n]*" title="[^"\n]*">\n<img [^\n]*>\n</a>'
+            . $end . '|<img src="[^"\n]*\.selected\.svg"[^\n]*?>' . $end . ')';
+        return preg_replace_callback('~(?:' . $entry('(?:\n|(?=>>))') . '){2,}~', static function (array $m) use ($entry): string {
+            // Im ausgeschnittenen Block fehlt das folgende ">>", der letzte Eintrag endet dort am Textende.
+            preg_match_all('~' . $entry('(?:\n|$)') . '~', $m[0], $parts);
+            $tail = str_ends_with($m[0], "\n") ? "\n" : '';
+            $items = array_map(static fn (string $i): string => rtrim($i, "\n"), $parts[0]);
+            usort($items, static function (string $a, string $b): int {
+                preg_match('/title="([^"]*)"/', $a, $ta);
+                preg_match('/title="([^"]*)"/', $b, $tb);
+                return strcmp($ta[1], $tb[1]);
+            });
+            return implode("\n", $items) . $tail;
+        }, $html);
     }
 
     /**
