@@ -71,6 +71,9 @@ class stats {
                       );
         foreach ($this->liga->spieltage as $spieltag) {
             foreach ($spieltag->partien as $partie) {
+                if ($partie->valuateGame() == -1) {  // noch nicht gespielt
+                    continue;
+                }
                 $statsArray['spiele']++;
                 if ($partie->hTore> - 1) {
                     $statsArray['hTore'] += $partie->hTore;
