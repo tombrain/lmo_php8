@@ -498,7 +498,7 @@ class stats {
         if ($serienArray['su'] > 0){
             if ($output != '')
                 $output .='<br>';
-            $output = $serienArray['su'] . ' Spiele o. Niederlage';
+            $output .= $serienArray['su'] . ' Spiele o. Niederlage';
         }
         return $output;
     }  // END SerieToHTML()
