@@ -1449,35 +1449,55 @@ class liga {
         }
         // BEGIN Direkter Vergleich
         if ($this->options->keyValues['Direct'] == 1) {
-            $subteams = array();
-            $pPkt = 0;
-            $mPkt = 0;
-            for ($abc = 0; $abc < count($tableArray); $abc++) {
-                if ($pPkt == $tableArray[$abc]['pPkt'] && $mPkt == $tableArray[$abc]['mPkt']) {
-                    $subteams[$tableArray[$abc]['team']->nr] = $tableArray[$abc]['team'];
-                }
-                else {
-                    if (count($subteams) > 1) {
-                        $tmp_table = $this->calcTableforTeams($subteams);
-                        $tmp_tablearray = $tableArray;
-                        $nextpos = $abc - count($tmp_table);
-                        for ($b = 0; $b < count($tmp_table); $b++) {
-                            for ($f = $nextpos; $f < $abc; $f++) {
-                                if ($tmp_tablearray[$f]['team'] === $tmp_table[$b]['team']) {
-                                    $tableArray[$nextpos + $b] = $tmp_tablearray[$f];
-                                }
-                            }
-                        }
-                    } // END if (count($subteams)>1)
-                    $subteams = array();
-                    $pPkt = $tableArray[$abc]['pPkt'];
-                    $mPkt = $tableArray[$abc]['mPkt'];
-                    $subteams[$tableArray[$abc]['team']->nr] = $tableArray[$abc]['team'];
-                }
-            }  // END for ($abc = 0; $abc < count($tableArray); $abc++)
+            $tableArray = $this->sortTiedGroups($tableArray, array('pPkt', 'mPkt'));
         }  // END Direkter Vergleich
         for ($i = 0; $i < count($tableArray); $i++) {  // Position setzen
             $tableArray[$i]['pos'] = $i + 1;
+        }
+        return $tableArray;
+    }
+
+    /**
+    * Direkter Vergleich: Gruppen gleichauf liegender Teams (gleiche Werte in $keys) werden
+    * nach der Tabelle ihrer Partien untereinander (calcTableforTeams) neu sortiert.
+    *
+    * Nur Gruppen, die kleiner als die ganze Tabelle sind, werden neu berechnet. Sonst würde
+    * calcTableforTeams() -> sortTable() dieselbe Gruppe endlos weiterrechnen (z.B. bei einem
+    * Unentschieden im direkten Duell).
+    *
+    * @access protected
+    * @param array tableArray sortierte Tabelle
+    * @param array keys Spalten, die für einen Gleichstand übereinstimmen müssen
+    * @return array
+    */
+    function sortTiedGroups($tableArray, $keys) {
+        $count = count($tableArray);
+        $start = 0;
+        for ($i = 1; $i <= $count; $i++) {
+            $tied = $i < $count;
+            foreach ($keys as $key) {
+                $tied = $tied && $tableArray[$i][$key] == $tableArray[$start][$key];
+            }
+            if ($tied) {
+                continue;
+            }
+            $size = $i - $start;
+            if ($size > 1 && $size < $count) {
+                $group = array_slice($tableArray, $start, $size);
+                $subteams = array();
+                foreach ($group as $row) {
+                    $subteams[$row['team']->nr] = $row['team'];
+                }
+                foreach ($this->calcTableforTeams($subteams) as $b => $directRow) {
+                    foreach ($group as $row) {
+                        if ($row['team'] === $directRow['team']) {
+                            $tableArray[$start + $b] = $row;
+                            break;
+                        }
+                    }
+                }
+            }
+            $start = $i;
         }
         return $tableArray;
     }
