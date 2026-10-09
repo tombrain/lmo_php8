@@ -279,8 +279,10 @@ if ($file != "") {
   if ($direkt == 1) {
     $cba = 1;
     for ($abc = 1; $abc < $anzteams; $abc++) {
-      $x1 = substr($tab0[$abc-1], 7, 9);
-      $x2 = substr($tab0[$abc], 7, 9);
+      // Gleichstand = gleicher Punkte- und Minuspunkteblock (je 8 Stellen). Vorher substr(..., 7, 9):
+      // nur die letzte Ziffer der Punkte, 59 und 49 Punkte galten als gleich.
+      $x1 = substr($tab0[$abc-1], 0, 16);
+      $x2 = substr($tab0[$abc], 0, 16);
       if ($x1 == $x2) {
         $cba++;
       }
