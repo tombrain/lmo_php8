@@ -244,18 +244,24 @@ final class RealLeague
         return $this->data['teams'][$nr - 1]['name'];
     }
 
-    public function toL98(): string
+    /** @return array<int,array> Spieltag => Partien [Heim-Nr, Gast-Nr, Heimtore, Gasttore, weitere Schluessel] */
+    private function matchesByRound(): array
     {
-        [$win, $draw, $lost] = $this->points;
         $byRound = [];
         foreach ($this->data['matches'] as $match) {
             [$round, $home, $away, $hg, $ag] = $match;
             $byRound[$round][] = [$this->nr[$home], $this->nr[$away], $hg ?? -1, $ag ?? -1, $match[5] ?? []];
         }
-        $teams = count($this->data['teams']);
+        return $byRound;
+    }
+
+    /** @return array<string,mixed> Werte fuer [Options] */
+    public function options(): array
+    {
+        [$win, $draw, $lost] = $this->points;
         $options = [
-            'Title' => 'LMO', 'Name' => $this->data['name'], 'Type' => 0, 'Teams' => $teams,
-            'Rounds' => $this->rounds(), 'Matches' => max(array_map('count', $byRound)),
+            'Title' => 'LMO', 'Name' => $this->data['name'], 'Type' => 0, 'Teams' => count($this->data['teams']),
+            'Rounds' => $this->rounds(), 'Matches' => max(array_map('count', $this->matchesByRound())),
             'Actual' => $this->lastPlayedRound(),
             'PointsForWin' => $win, 'PointsForDraw' => $draw, 'PointsForLost' => $lost,
             'Kegel' => 0, 'HandS' => 0, 'Spez' => 0, 'HideDraw' => 0, 'OnRun' => 0,
@@ -263,7 +269,66 @@ final class RealLeague
             'Champ' => 1, 'CL' => 0, 'CK' => 0, 'UC' => 0, 'AR' => 0, 'AB' => 0,
             'namePkt' => 'Pkt.', 'nameTor' => 'Tore', 'DatF' => 'd.m.Y H:i',
         ];
-        $options = array_merge($options, $this->data['options'] ?? []);
+        return array_merge($options, $this->data['options'] ?? []);
+    }
+
+    /** @return array{SP:int,SM:int,TOR1:int,TOR2:int,STDA:int} Werte fuer [TeamN] wie in der Ligadatei */
+    public function teamKeys(int $nr): array
+    {
+        $deductions = $this->deductions();
+        $keys = ($this->data['penalties'][$this->data['teams'][$nr - 1]['id']] ?? [])
+            + ['SP' => $deductions[$nr] ?? 0, 'SM' => 0, 'TOR1' => 0, 'TOR2' => 0, 'STDA' => 0];
+        $result = [];
+        foreach (['SP', 'SM', 'TOR1', 'TOR2', 'STDA'] as $key) {
+            $result[$key] = (int)$keys[$key];
+        }
+        return $result;
+    }
+
+    /**
+     * Dieselbe Liga, komplett ueber die classlib angelegt (Teams, Spieltage, Partien, Optionen,
+     * Strafen, Sonderwertungen) - ohne Ligadatei. Die classlib muss geladen sein.
+     */
+    public function buildLiga(): \liga
+    {
+        $liga = new \liga($this->data['name']);
+        foreach ($this->data['teams'] as $i => $team) {
+            $nr = $i + 1;
+            $lmoTeam = new \team($team['name'], $team['short'] ?: $team['name'], $nr);
+            foreach ($this->teamKeys($nr) as $key => $value) {
+                $lmoTeam->addKeyValue($key, $value);
+            }
+            $liga->addTeam($lmoTeam);
+        }
+        $byRound = $this->matchesByRound();
+        for ($round = 1; $round <= $this->rounds(); $round++) {
+            $spieltag = new \spieltag($round, '', '');
+            foreach ($byRound[$round] ?? [] as $i => [$home, $away, $hg, $ag, $extra]) {
+                $heim = $liga->teamForNumber($home);
+                $gast = $liga->teamForNumber($away);
+                $partie = new \partie($i + 1, '', '', $heim, $gast, $hg, $ag);
+                unset($heim, $gast);  // partie haelt Referenzen auf die Variablen
+                foreach ($extra as $key => $value) {
+                    if ($key === 'SP') {
+                        $partie->setSpielEnde((int)$value);
+                    } else {
+                        $partie->setParameter($value, $key);
+                    }
+                }
+                $liga->addPartie($partie);
+                $spieltag->addPartie($partie);
+            }
+            $liga->addSpieltag($spieltag);
+        }
+        $liga->options = new \optionsSektion($liga, $this->options());
+        return $liga;
+    }
+
+    public function toL98(): string
+    {
+        $byRound = $this->matchesByRound();
+        $teams = count($this->data['teams']);
+        $options = $this->options();
         $out = "[Options]\n";
         foreach ($options as $key => $value) {
             $out .= "$key=$value\n";
@@ -276,13 +341,10 @@ final class RealLeague
         foreach ($this->data['teams'] as $i => $team) {
             $out .= ($i + 1) . '=' . ($team['short'] ?: $team['name']) . "\n";
         }
-        $deductions = $this->deductions();
-        foreach ($this->data['teams'] as $i => $team) {
-            $nr = $i + 1;
-            $keys = ($this->data['penalties'][$team['id']] ?? []) + ['SP' => $deductions[$nr] ?? 0, 'SM' => 0, 'TOR1' => 0, 'TOR2' => 0, 'STDA' => 0];
+        for ($nr = 1; $nr <= $teams; $nr++) {
             $out .= "\n[Team$nr]\n";
-            foreach (['SP', 'SM', 'TOR1', 'TOR2', 'STDA'] as $key) {
-                $out .= "$key={$keys[$key]}\n";
+            foreach ($this->teamKeys($nr) as $key => $value) {
+                $out .= "$key=$value\n";
             }
             $out .= "URL=\nNOT=\n";
         }

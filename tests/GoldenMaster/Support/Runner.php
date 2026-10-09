@@ -39,6 +39,17 @@ final class Runner
     }
 
     /**
+     * Legt Ligen ueber die classlib an und speichert sie mit writeFile() (bin/classlib_write.php).
+     *
+     * @param string[] $fixtures Fixture-Dateien (tests/RealData/fixtures)
+     * @return string JSON Liga-ID => true oder Fehlertext, ggf. mit STDERR/EXIT-Kommentar
+     */
+    public function classlibWrite(string $prefix, array $fixtures): string
+    {
+        return $this->run('classlib_write.php', array_merge([$prefix], $fixtures));
+    }
+
+    /**
      * Allgemeine Anfrage (GET/POST, beliebiger Einstiegspunkt, optional mit Sitzung).
      *
      * @param array{script:string,query?:string,method?:string,post?:array,sid?:string} $spec
