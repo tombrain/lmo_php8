@@ -45,6 +45,18 @@ if ($file != "") {
   $ser3 = array_pad($array, $anzteams+1, "0");
   $ser4 = array_pad($array, $anzteams+1, "0");
 
+  // letzter Spieltag mit einem Ergebnis: Strafen "ab Spieltag X" zaehlen erst, wenn X erreicht ist
+  // (die Standardtabelle rechnet bis $endtab = $anzst, auch wenn die Saison noch nicht so weit ist)
+  $calc_lastst = 0;
+  for ($j = 0; $j < $anzst; $j++) {
+    for ($i = 0; $i < $anzsp; $i++) {
+      if ($goala[$j][$i] != "_" && $goalb[$j][$i] != "_") {
+        $calc_lastst = $j+1;
+        break;
+      }
+    }
+  }
+
   $tab0 = array();
   $stt = 0;
   $hoy = 0;
@@ -257,13 +269,13 @@ if ($file != "") {
         }
       }
     }
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
+    if (min($endtab, $calc_lastst) >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $etore[$a] = $etore[$a]-$torkorrektur1[$a]; // Hack-Straftore
       $atore[$a] = $atore[$a]-$torkorrektur2[$a]; // Hack-Straftore
     }
     $dtore[$a] = $etore[$a]-$atore[$a];
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
+    if (min($endtab, $calc_lastst) >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $punkte[$a] = $punkte[$a]-$strafp[$a];
       if ($minus == 2) {
