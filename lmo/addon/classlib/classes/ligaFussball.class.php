@@ -21,6 +21,10 @@ class ligaFussball extends liga {
     * @return array
     */
     function sortTable($tableArray) {
+        if (empty($tableArray)) {
+            return $tableArray;
+        }
+        $sort_pPkt = $sort_spiele = $sort_dTor = $sort_pTor = array();
         foreach($tableArray as $table) {
             $sort_pPkt[] = $table['pPkt'];
             $sort_spiele[] = $table['spiele'];
@@ -29,56 +33,54 @@ class ligaFussball extends liga {
         }
         // ASC = auf-, DESC = absteigend
         array_multisort($sort_pPkt, SORT_DESC, $sort_spiele, SORT_ASC, $sort_dTor, SORT_DESC, $sort_pTor, SORT_DESC, $tableArray, SORT_DESC);
-        for ($i = 0; $i < count($tableArray); $i++) {
-            if ($i > 200) {
-                die('Fehler im Script');
+        $count = count($tableArray);
+        for ($i = 0; $i + 1 < $count; $i++) {
+            $a = $tableArray[$i]['team'];
+            $b = $tableArray[$i + 1]['team'];
+            if ($sort_pPkt[$i] != $sort_pPkt[$i + 1] || $sort_spiele[$i] != $sort_spiele[$i + 1] || $sort_dTor[$i] != $sort_dTor[$i + 1] || $sort_pTor[$i] != $sort_pTor[$i + 1]) {
+                continue;
             }
-            if ( $sort_pPkt[$i] == $sort_pPkt[$i + 1] && $sort_spiele[$i] == $sort_spiele[$i + 1] && $sort_dTor[$i] == $sort_dTor[$i + 1] && $sort_pTor[$i] == $sort_pTor[$i + 1]) {
-                // Partien für den Direkten Vergleich suchen.
-                $allParties = $this->allPartieForTeams($tableArray[$i]['team'], $tableArray[$i + 1]['team'], true);
-                foreach ($allParties as $partie) {
-                    $tore[$partie->heim->nr] += $partie->hTore > -1 ? $partie->hTore : 0;
-                    $tore[$partie->gast->nr] += $partie->gTore > -1 ? $partie->gTore : 0;
-                    $gastTore[$partie->gast->nr] = $partie->gTore > -1 ? $partie->gTore : 0;
-                }
-                // das Gesamtergebnis aus Hin- und Rückspiel im direkten Vergleich
-                if ($tore[$tableArray[$i]['team']->nr] == $tore[$tableArray[$i + 1]['team']->nr]) {
+            // Partien für den Direkten Vergleich
+            $tore = array($a->nr => 0, $b->nr => 0);
+            $gastTore = array($a->nr => 0, $b->nr => 0);
+            foreach ((array) $this->allPartieForTeams($a, $b, true) as $partie) {
+                $tore[$partie->heim->nr] += max(0, (int) $partie->hTore);
+                $tore[$partie->gast->nr] += max(0, (int) $partie->gTore);
+                $gastTore[$partie->gast->nr] += max(0, (int) $partie->gTore);
+            }
+            // das Gesamtergebnis aus Hin- und Rückspiel im direkten Vergleich
+            if ($tore[$a->nr] == $tore[$b->nr]) {
+                if ($gastTore[$a->nr] != $gastTore[$b->nr]) {
                     // die Anzahl der auswärts erzielten Tore im direkten Vergleich
-                    if ( $gastTore[$tableArray[$i]['team']->nr] == $gastTore[$tableArray[$i + 1]['team']->nr] ) {
-                        unset ($tore);
-                        // die Anzahl aller auswärts erzielten Tore
-                        foreach ($this->spieltage as $spieltag) {
-                            foreach ($spieltag->partien as $partie) {
-                                $tore[$partie->gast->nr] += $partie->gTore > -1 ? $partie->gTore : 0;
+                    $tore = $gastTore;
+                }
+                else {
+                    // die Anzahl aller auswärts erzielten Tore
+                    $tore = array($a->nr => 0, $b->nr => 0);
+                    foreach ($this->spieltage as $spieltag) {
+                        foreach ($spieltag->partien as $partie) {
+                            if (isset($tore[$partie->gast->nr])) {
+                                $tore[$partie->gast->nr] += max(0, (int) $partie->gTore);
                             }
                         }
                     }
-                    else {
-                        $tore[$tableArray[$i]['team']->nr] = $gastTore[$tableArray[$i]['team']->nr];
-                        $tore[$tableArray[$i + 1]['team']->nr] = $gastTore[$tableArray[$i + 1]['team']->nr];
-                    }
-                }
-                // Auswertung des Direkten Vergleichs
-                if ($tore[$tableArray[$i]['team']->nr] < $tore[$tableArray[$i + 1]['team']->nr]) {
-                    $newTable[$i] = $tableArray[$i + 1];
-                    $newTable[$i + 1] = $tableArray[$i];
-                    $newTable[$i]['pos'] = ++$i;
-                }
-                else {
-                    $newTable[$i] = $tableArray[$i];
                 }
             }
-            else {  // END if ($sort_pPkt[$i] == $sort...
-                $newTable[$i] = $tableArray[$i];
+            if ($tore[$a->nr] < $tore[$b->nr]) {
+                $row = $tableArray[$i];
+                $tableArray[$i] = $tableArray[$i + 1];
+                $tableArray[$i + 1] = $row;
+                $i++;  // getauschtes Paar ist entschieden
             }
-            $newTable[$i]['pos'] = $i + 1;
         }
-        return $newTable;
+        for ($i = 0; $i < $count; $i++) {
+            $tableArray[$i]['pos'] = $i + 1;
+        }
+        return $tableArray;
     } // END function sortTable
 
     function sortDirectTable($tableArray) {
-        echo "function sortDirectTable($tableArray) {";
-        return false;
+        return liga::sortTable($tableArray);
     }
 
 } // END class FussballLiga
