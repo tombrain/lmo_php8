@@ -1194,7 +1194,8 @@ class liga {
         if ($stda == $spTag || ($stda == 0 && $spTag == 1)) {
             $team['pPkt'] -= isset($team['team']->keyValues['SP']) ? $team['team']->keyValues['SP'] : 0;
             $team['pTor'] -= isset($team['team']->keyValues['TOR1']) ? $team['team']->keyValues['TOR1'] : 0;
-            $team['mTor'] -= isset($team['team']->keyValues['TOR2']) ? abs($team['team']->keyValues['TOR2']) : 0;
+            // TOR1/TOR2 wie in der Ligadatei: lmo-adminteams.php speichert "+x" als -x
+            $team['mTor'] -= isset($team['team']->keyValues['TOR2']) ? $team['team']->keyValues['TOR2'] : 0;
             if ($this->options->keyValues['MinusPoints'] == 2 && isset($team['team']->keyValues['SM'])) {
                 $team['mPkt'] -= $team['team']->keyValues['SM'];
             }
