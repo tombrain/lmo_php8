@@ -36,6 +36,16 @@ class ligaHandball extends liga {
     }
 
     /**
+    * Vergleich im direkten Vergleich: Punkte, Anzahl Spiele, Tordifferenz (wie sortDirectTable)
+    *
+    * @access protected
+    * @return integer
+    */
+    function compareDirect($a, $b) {
+        return array($b['pPkt'], $a['spiele'], $b['dTor']) <=> array($a['pPkt'], $b['spiele'], $a['dTor']);
+    }
+
+    /**
     * Sortiert die errechnete Tabelle bei Direktem Vergleich und gibt diese als Array zurück
     *   Sortierung PlusPkt / Anzahl Spiele / Differenz Tore
     *

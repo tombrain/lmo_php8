@@ -1446,7 +1446,9 @@ class liga {
         }
         // BEGIN Direkter Vergleich
         if ($this->options->keyValues['Direct'] == 1) {
-            $tableArray = $this->sortTiedGroups($tableArray, array('pPkt', 'mPkt'));
+            // Minuspunkte zaehlen nur bei der Zwei-Punkte-Regel (wie lmo-calctable.php)
+            $keys = $this->options->keyValues['MinusPoints'] == 2 ? array('pPkt', 'mPkt') : array('pPkt');
+            $tableArray = $this->sortTiedGroups($tableArray, $keys);
         }  // END Direkter Vergleich
         for ($i = 0; $i < count($tableArray); $i++) {  // Position setzen
             $tableArray[$i]['pos'] = $i + 1;
@@ -1456,11 +1458,9 @@ class liga {
 
     /**
     * Direkter Vergleich: Gruppen gleichauf liegender Teams (gleiche Werte in $keys) werden
-    * nach der Tabelle ihrer Partien untereinander (calcTableforTeams) neu sortiert.
-    *
-    * Nur Gruppen, die kleiner als die ganze Tabelle sind, werden neu berechnet. Sonst würde
-    * calcTableforTeams() -> sortTable() dieselbe Gruppe endlos weiterrechnen (z.B. bei einem
-    * Unentschieden im direkten Duell).
+    * nach der Tabelle ihrer Partien untereinander (calcTableforTeams) sortiert, siehe
+    * compareDirect(). Bleiben Teams auch dort gleichauf, behalten sie ihre bisherige
+    * Reihenfolge (z.B. nach Tordifferenz) - wie lmo-calctable.php.
     *
     * @access protected
     * @param array tableArray sortierte Tabelle
@@ -1479,24 +1479,43 @@ class liga {
                 continue;
             }
             $size = $i - $start;
-            if ($size > 1 && $size < $count) {
+            if ($size > 1) {
                 $group = array_slice($tableArray, $start, $size);
                 $subteams = array();
                 foreach ($group as $row) {
                     $subteams[$row['team']->nr] = $row['team'];
                 }
-                foreach ($this->calcTableforTeams($subteams) as $b => $directRow) {
-                    foreach ($group as $row) {
-                        if ($row['team'] === $directRow['team']) {
-                            $tableArray[$start + $b] = $row;
-                            break;
-                        }
-                    }
+                $direct = array();
+                foreach ($this->calcTableforTeams($subteams) as $directRow) {
+                    $direct[$directRow['team']->nr] = $directRow;
+                }
+                $order = array_keys($group);
+                usort($order, function ($a, $b) use ($group, $direct) {
+                    $result = $this->compareDirect($direct[$group[$a]['team']->nr], $direct[$group[$b]['team']->nr]);
+                    return $result != 0 ? $result : $a - $b;  // sonst bisherige Reihenfolge
+                });
+                foreach ($order as $b => $index) {
+                    $tableArray[$start + $b] = $group[$index];
                 }
             }
             $start = $i;
         }
         return $tableArray;
+    }
+
+    /**
+    * Vergleich zweier Zeilen der Tabelle des direkten Vergleichs (calcTableforTeams):
+    * Punkte, Minuspunkte (nur bei der Zwei-Punkte-Regel), Tordifferenz, Tore;
+    * bei Kegelwertung Tore vor Tordifferenz. Negativ: $a steht vor $b.
+    *
+    * @access protected
+    * @return integer
+    */
+    function compareDirect($a, $b) {
+        $minus = $this->options->keyValues['MinusPoints'] == 2;
+        $goals = $this->options->keyValues['Kegel'] == 1 ? array('pTor', 'dTor') : array('dTor', 'pTor');
+        return array($b['pPkt'], $minus ? $a['mPkt'] : 0, $b[$goals[0]], $b[$goals[1]])
+           <=> array($a['pPkt'], $minus ? $b['mPkt'] : 0, $a[$goals[0]], $a[$goals[1]]);
     }
 
     /**
@@ -1616,7 +1635,13 @@ class liga {
     * @return array
     */
     function sortDirectTable($tableArray) {
-        return liga::sortTable($tableArray);
+        // ohne erneuten direkten Vergleich: sortTiedGroups() wertet nur einmal aus
+        // (wie lmo-calctable.php), sonst rechnet sortTable() die Gruppe endlos weiter
+        $direct = $this->options->keyValues['Direct'];
+        $this->options->keyValues['Direct'] = 0;
+        $tableArray = liga::sortTable($tableArray);
+        $this->options->keyValues['Direct'] = $direct;
+        return $tableArray;
     }
 
 } // End Class Liga

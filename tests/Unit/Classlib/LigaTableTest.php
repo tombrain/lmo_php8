@@ -192,6 +192,37 @@ final class LigaTableTest extends ClasslibTestCase
         self::assertSame(['D', 'C', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D'], $rounds, ['Direct' => 1])->calcTable(3)));
     }
 
+    /**
+     * A und B je 3 Punkte, C und D je 0 - ohne Duell untereinander. Der direkte Vergleich
+     * entscheidet nichts, es bleibt bei der Tordifferenz (wie lmo-calctable.php).
+     *   Spieltag 1: A-C 3:0, B-D 1:0
+     */
+    public function testUndecidedDirectComparisonKeepsGoalDifferenceOrder(): void
+    {
+        $liga = self::league(['A', 'B', 'C', 'D'], [[[1, 3, 3, 0], [2, 4, 1, 0]]], ['Direct' => 1]);
+
+        self::assertSame(['A', 'B', 'D', 'C'], self::order($liga->calcTable(1)));
+    }
+
+    /**
+     * Ohne Zwei-Punkte-Regel zaehlen fuer den Gleichstand nur die Pluspunkte (wie lmo-calctable.php).
+     * A (1 Sieg, 3 Niederlagen) und B (1 Niederlage, 3 Remis) haben je 3 Punkte, aber verschieden
+     * viele Minuspunkte; A gewann das Duell. C, D, E spielen untereinander nur 0:0.
+     */
+    public function testDirectComparisonGroupsByPointsOnlyWithoutTwoPointRule(): void
+    {
+        $rounds = [
+            [[1, 2, 1, 0], [3, 4, 0, 0]],
+            [[3, 1, 5, 0], [2, 5, 0, 0]],
+            [[4, 1, 4, 0], [2, 3, 0, 0]],
+            [[5, 1, 3, 0], [4, 2, 0, 0]],
+            [[4, 5, 0, 0], [3, 5, 0, 0]],
+        ];
+
+        self::assertSame(['C', 'D', 'E', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D', 'E'], $rounds)->calcTable(5)));
+        self::assertSame(['C', 'D', 'E', 'A', 'B'], self::order(self::league(['A', 'B', 'C', 'D', 'E'], $rounds, ['Direct' => 1])->calcTable(5)));
+    }
+
     public function testDirectComparisonTableHomeWinAtGreenTable(): void
     {
         $liga = self::league(['A', 'B'], [[[1, 2, -2, 0]]], ['PointsForLost' => 1]);
