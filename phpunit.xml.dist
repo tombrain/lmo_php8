@@ -4,6 +4,9 @@
          cacheResult="false"
          beStrictAboutOutputDuringTests="true">
     <testsuites>
+        <testsuite name="unit">
+            <directory suffix="Test.php">tests/Unit</directory>
+        </testsuite>
         <testsuite name="golden-master">
             <directory suffix="Test.php">tests/GoldenMaster</directory>
         </testsuite>

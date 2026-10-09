@@ -40,7 +40,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Lmo\\Tests\\GoldenMaster\\": "tests/GoldenMaster/"
+            "Lmo\\Tests\\GoldenMaster\\": "tests/GoldenMaster/",
+            "Lmo\\Tests\\Unit\\": "tests/Unit/"
         }
     },
     "scripts": {
