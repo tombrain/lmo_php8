@@ -84,6 +84,15 @@ class liga {
     var $sections = array();
 
     /**
+    * Spieltage und Tabellenart der Tabelle, die calcTable() gerade sortiert. Der direkte
+    * Vergleich (calcTableforTeams) wertet nur diese Partien, wie lmo-calctable1.php.
+    * Ausserhalb von calcTable() null: dann zaehlen alle Partien.
+    * @var array|null array('rounds' => array(Spieltagsnr => true), 'art' => Tabellenart)
+    * @access private
+    */
+    var $directContext = null;
+
+    /**
     * Konstruktor
     *
     * @param string $name
@@ -1311,6 +1320,7 @@ class liga {
             }
         };
         $strafenBuchen();  // Strafen ab Spieltag 0
+        $processed = array();  // gewertete Spieltage, fuer den direkten Vergleich
         foreach ($this->spieltage as $spieltag) {
             if ($spieltag->getModus() > 0) {
                 continue;
@@ -1333,6 +1343,7 @@ class liga {
                 }
                 continue;
             }
+            $processed[$spieltag->nr] = true;
             foreach ($spieltag->partien as $partie) {
                 $heimCount = -1;
                 $gastCount = -1;
@@ -1467,6 +1478,7 @@ class liga {
                 for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
                     $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
                 }
+                $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
                 $tableArray = $this->sortTable($tableArray);
                 for ($i = 0; $i < count($tableArray); $i++) {
                     $tableArray[$i]['possp'][$spTagCount - 1] = $tableArray[$i]['pos'];
@@ -1483,7 +1495,10 @@ class liga {
         for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
             $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
         }
-        return $this->sortTable($tableArray);
+        $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
+        $tableArray = $this->sortTable($tableArray);
+        $this->directContext = null;
+        return $tableArray;
     }
 
     /**
@@ -1609,7 +1624,13 @@ class liga {
               'mPkt' => 0
             );
         }
+        // nur die Partien der Tabelle, die calcTable() gerade sortiert (Spieltage, Heim/Gast)
+        $context = $this->directContext;
+        $art = $context === null ? 'all' : $context['art'];
         foreach ($this->spieltage as $spieltag) {
+            if ($spieltag->getModus() > 0 || ($context !== null && empty($context['rounds'][$spieltag->nr]))) {
+                continue;
+            }
             foreach ($spieltag->partien as $partie) {
                 if ($partie->spielEnde == 2) {  // Nach Verlängerung
                     $pointsForWin = $this->options->keyValues['XtraS'];
@@ -1636,10 +1657,13 @@ class liga {
                 }
                 if ($heimCount == -1 OR $gastCount == -1)
                     continue;
+                // Heim-/Auswaertstabelle: die andere Seite der Partie wird danach zurueckgesetzt
+                $before = array($heimCount => $tableArray[$heimCount], $gastCount => $tableArray[$gastCount]);
                 // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
                 if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
                     $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
                     $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    $this->keepSide($tableArray, $before, $heimCount, $gastCount, $art);
                     continue;
                 }
                 if ($partie->hTore > -1) {
@@ -1690,12 +1714,28 @@ class liga {
                     $tableArray[$heimCount]['pPkt'] += $pointsForLost;
                     $tableArray[$gastCount]['mPkt'] += $pointsForLost;
                 }
+                $this->keepSide($tableArray, $before, $heimCount, $gastCount, $art);
             }  // foreach Partien
         }  // foreach Spieltage
         for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
             $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
         }
         return $this->sortDirectTable($tableArray);
+    }
+
+    /**
+    * Heimtabelle: nur die Heimmannschaft einer Partie wird gewertet, Auswaertstabelle nur die
+    * Gastmannschaft. Setzt die Zeile der anderen Seite auf den Stand vor der Partie zurueck.
+    *
+    * @access private
+    */
+    function keepSide(&$tableArray, $before, $heimCount, $gastCount, $art) {
+        if ($art == 'heim') {
+            $tableArray[$gastCount] = $before[$gastCount];
+        }
+        elseif ($art == 'gast') {
+            $tableArray[$heimCount] = $before[$heimCount];
+        }
     }
 
     /**
