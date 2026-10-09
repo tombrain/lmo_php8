@@ -41,7 +41,8 @@
     "autoload-dev": {
         "psr-4": {
             "Lmo\\Tests\\GoldenMaster\\": "tests/GoldenMaster/",
-            "Lmo\\Tests\\Unit\\": "tests/Unit/"
+            "Lmo\\Tests\\Unit\\": "tests/Unit/",
+            "Lmo\\Tests\\RealData\\": "tests/RealData/"
         }
     },
     "scripts": {

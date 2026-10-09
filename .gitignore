@@ -10,3 +10,5 @@ lmo/config/.defaults-stamp
 lmo/config/cfg.txt
 lmo/config/*/cfg.txt
 lmo/addon/tipp/lmo-tippauth.txt
+# Rohdaten von tests/RealData/bin/fetch_openligadb.php
+tests/RealData/.cache/
