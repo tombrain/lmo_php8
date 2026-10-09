@@ -633,7 +633,8 @@ class liga {
                         // Spielbericht
                         $partie->setreportUrl($this->getIniData('BE', $iniData[$roundSektion][$pCounter], $partienNumber));
                         // Spielende (normal / n.V. / n.E ...)
-                        $partie->setSpielEnde($this->getIniData('SP', $iniData[$roundSektion][$pCounter], $partienNumber));
+                        // aus der Datei kommt ein String, setSpielEnde() erwartet int
+                        $partie->setSpielEnde((int) $this->getIniData('SP', $iniData[$roundSektion][$pCounter], $partienNumber));
                         // Alle Anderen bisher unbekannten Parameter
                         $partie->setParameter($iniData[$roundSektion][$pCounter][$partienNumber]);
                         $this->addPartie($partie);  // Partien werden zusätzlich zu der Liga hinzugefügt
