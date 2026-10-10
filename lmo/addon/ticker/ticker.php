@@ -25,8 +25,8 @@ $ticker_tickerart = isset($tickerart) ? $tickerart : $ticker_tickerart;
 $ticker_ligen = isset($tickerligen) ? $tickerligen : $ticker_standard_ligen;
 $ticker_tickertitel = isset($tickertitel) ? $tickertitel : $ticker_tickertitel;
 $ticker_notizanzeigen = isset($tickernotizen) ? $tickernotizen : $ticker_notizanzeigen;
-$ticker_breite = isset($tickerbreite) ? $breite : $ticker_breite;
-$ticker_geschwindigkeit = isset($tickergeschwindigkeit) ? $geschwindigkeit : $ticker_geschwindigkeit;
+$ticker_breite = isset($tickerbreite) ? $tickerbreite : $ticker_breite;
+$ticker_geschwindigkeit = isset($tickergeschwindigkeit) ? $tickergeschwindigkeit : $ticker_geschwindigkeit;
 
 $trenner = ' +++ ';
 $array = array();
