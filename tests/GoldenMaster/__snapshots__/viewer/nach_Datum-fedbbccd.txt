@@ -1,0 +1,125 @@
+### nach Datum
+<style type="text/css"> .viewer * { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 10px; } .viewer { background-color: #ffe4b5; color: black; } .viewer h2 { font-size: 12px; font-weight: bold; padding:0.3em;margin:0; color: black; background-color: #c0c0c0; white-space:nowrap; text-align: left; } .viewer a { text-decoration: none; color: #000; } .viewer a:visited { text-decoration: none; color: #999; } .viewer table { } .viewer .vRow { font-size: 10px; background-color:#e0e0e0; } .viewer .vRowHighlight { background: #c0c0c0; } </style>
+<table class="viewer">
+<tr>
+<th>Begegnungen von 08.03.2025 bis 22.03.2025</th>
+</tr>
+<tr>
+<td>
+<table>
+<tr>
+<td>
+<h2>1. Bundesliga 2024/25</h2>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" cellspacing="0" cellpadding="2">
+<tr class="vRow">
+<td>ST 25</td>
+<td>08.03.2025</td>
+<td>15:30</td>
+<td align="right">Bayer 04 Leverkusen</td>
+<td align="center">
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td align="center">
+</td>
+<td align="left">Werder Bremen</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=25" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr class="vRow">
+<td>ST 25</td>
+<td>08.03.2025</td>
+<td>15:30</td>
+<td align="right">Bayern München</td>
+<td align="center">
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td align="center">
+</td>
+<td align="left">VfL Bochum</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=25" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr class="vRowHighlight">
+<td>ST 26</td>
+<td>15.03.2025</td>
+<td>15:30</td>
+<td align="right">VfB Stuttgart</td>
+<td align="center">
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td align="center">
+</td>
+<td align="left">Bayer 04 Leverkusen</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=26" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr class="vRowHighlight">
+<td>ST 26</td>
+<td>15.03.2025</td>
+<td>15:30</td>
+<td align="right">1.FC Union Berlin</td>
+<td align="center">
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td align="center">
+</td>
+<td align="left">Bayern München</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=26" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="right">
+<small>[<acronym title="Viewer 4.1.1 © LMO-Group">©</acronym>]</small>
+</td>
+</tr>
+</table>
