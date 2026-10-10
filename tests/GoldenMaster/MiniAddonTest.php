@@ -115,6 +115,48 @@ final class MiniAddonTest extends TestCase
         self::assertSame(0, array_sum($tendencies));
     }
 
+    /** @return string[] bisherige Begegnungen (Listeneintraege) im Mini-Spielplan */
+    private static function previousMatches(string $query): array
+    {
+        $html = self::page('lmo-mininext.php', $query);
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        preg_match_all('~<li class="[^"]*">(.*?)</li>~s', $html, $items);
+        return array_map(static fn (string $item): string => trim((string)preg_replace('/\s+/', ' ', strip_tags($item))), $items[1]);
+    }
+
+    public function testPreviousMatchesIncludeLeaguesOfTheArchiveFolder(): void
+    {
+        // zwei fruehere Saisons mit denselben Mannschaften im Archivordner
+        $ligen = self::$app->ligenDir();
+        mkdir($ligen . '/fruehere');
+        copy($ligen . '/golden/basic.l98', $ligen . '/fruehere/saison1.l98');
+        copy($ligen . '/golden/basic.l98', $ligen . '/fruehere/saison2.l98');
+        // erste gespielte Partie der Liga: diese beiden Mannschaften haben sicher gegeneinander gespielt
+        $content = str_replace("\r\n", "\n", (string)file_get_contents($ligen . '/golden/basic.l98'));
+        self::assertSame(1, preg_match('/^TA1=(\d+)\nTB1=(\d+)\nGA1=\d+\nGB1=\d+$/m', $content, $pair), 'gespielte Partie in der Testliga');
+        $query = 'file=golden/basic.l98&a=' . $pair[1] . '&b=' . $pair[2];
+
+        $own = self::previousMatches($query . '&mini_withArchiv=0');
+        $all = self::previousMatches($query . '&folder=fruehere');
+
+        self::assertNotEmpty($own, 'Begegnungen der beiden Mannschaften in der eigenen Liga');
+        self::assertCount(3 * count($own), $all, 'eigene Liga und zwei Ligen des Archivs');
+    }
+
+    public function testTeamsThatNeverMeetShowNoPreviousMatches(): void
+    {
+        // Mannschaft gegen sich selbst: diese Paarung gibt es in keinem Spielplan
+        self::assertSame([], self::previousMatches('file=golden/basic.l98&a=1&b=1&mini_withArchiv=0'));
+    }
+
+    public function testMissingArchiveFolderShowsMessage(): void
+    {
+        $html = self::page('lmo-mininext.php', 'file=golden/basic.l98&a=1&b=2&folder=gibtesnicht');
+
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        self::assertStringContainsString('class="error"', $html);
+    }
+
     public static function pages(): array
     {
         return [

@@ -99,4 +99,40 @@ final class TickerAddonTest extends TestCase
         self::assertStringContainsString('Erste Meldung +++ Zweite Meldung', $text);
         self::assertStringNotContainsString('Mannschaft 1 - Mannschaft 7', $text, 'keine Ergebnisse im News-Ticker');
     }
+
+    /** Lauftext des direkt aufgerufenen Tickers fuer mehrere Ligen (kommagetrennt). */
+    private static function tickerFor(string $leagues): string
+    {
+        $html = self::$runner->http(['script' => 'addon/ticker/ticker.php', 'query' => 'tickerligen=' . $leagues])['body'];
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        self::assertSame(1, preg_match('~<div data-duration[^>]*class="marquee".*?</div>~s', $html, $marquee), 'Lauftext vorhanden');
+        return trim((string)preg_replace('/\s+/', ' ', strip_tags($marquee[0])));
+    }
+
+    public function testSeveralLeaguesEachShowTheirOwnResults(): void
+    {
+        self::ticker(['ticker' => 1, 'Actual' => 1]);  // wertung steht am 1. Spieltag
+        $own = 'Mannschaft 1 - Mannschaft 7 3:3';
+
+        $one = self::tickerFor(self::LIGA);
+        $two = self::tickerFor(self::LIGA . ',golden/kegel.l98');
+
+        self::assertSame(1, substr_count($one, $own));
+        self::assertStringContainsString('wertung (1.Spieltag):', $two);
+        self::assertStringContainsString('kegel (', $two);
+        // die Spiele der ersten Liga stehen nicht noch einmal bei der zweiten
+        self::assertSame(1, substr_count($two, $own));
+        self::assertStringStartsWith(rtrim($one, ' +'), $two, 'erste Liga unveraendert, zweite angehaengt');
+        self::assertGreaterThan(strlen($one) + 50, strlen($two), 'zweite Liga bringt eigene Spiele mit');
+    }
+
+    public function testUnknownLeagueDoesNotRemoveTheOthers(): void
+    {
+        self::ticker(['ticker' => 1, 'Actual' => 1]);
+
+        $text = self::tickerFor(self::LIGA . ',gibtesnicht.l98');
+
+        self::assertStringContainsString('Mannschaft 1 - Mannschaft 7 3:3', $text);
+        self::assertStringContainsString('keine passenden Ligen gefunden', $text);
+    }
 }

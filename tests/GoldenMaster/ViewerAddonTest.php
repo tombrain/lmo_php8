@@ -109,6 +109,47 @@ final class ViewerAddonTest extends TestCase
         self::assertSame('2', trim((string)file_get_contents($counter)), 'Cache-Zaehler');
     }
 
+    /** Ansicht direkt als Datei anlegen: Spiele nach Spieltag, alle Mannschaften der angegebenen Ligen. */
+    private static function writeView(string $name, array $leagues): void
+    {
+        $lines = ['[config]', 'modus=2', 'anzahl_tage_plus=7', 'anzahl_tage_minus=7', 'anzahl_spieltage_vor=1',
+            'anzahl_spieltage_zurueck=1', 'datumsformat=d.m.Y', 'heute_highlight=1', 'tabelle_verlinken=1',
+            'spielberichte_neues_fenster=', 'mannschaftshomepages_verlinken=', 'mannschaftsnamen=0', 'titelzeile=Mehrere Ligen',
+            'anstosstermin=', 'template=standard_spieltag', 'uhrzeitformat=H:i', 'tordummy=_', 'tabellensymbol=tabelle.gif',
+            'spielberichtesymbol=bericht.gif', 'notizsymbol=notiz.gif', 'spieltagtext=ST', 'cache_refresh=0',
+            'favteam_highlight=1', '[Viewer Ligen]'];
+        foreach (array_values($leagues) as $i => $league) {
+            $lines[] = 'liga' . ($i + 1) . '=' . $league;
+        }
+        $dir = self::$client->instance()->path() . '/config/viewer';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        file_put_contents($dir . '/' . $name . '.view', implode("\n", $lines) . "\n");
+    }
+
+    public function testViewOverSeveralLeagues(): void
+    {
+        // zweite und dritte Liga mit eigenen Mannschaftsnamen neben die Bundesliga legen
+        $ligen = self::$client->instance()->ligenDir();
+        foreach (['basic' => 'Alpha', 'kegel' => 'Kegler'] as $source => $prefix) {
+            $content = (string)file_get_contents($ligen . '/golden/' . $source . '.l98');
+            file_put_contents($ligen . '/mehr-' . $source . '.l98', str_replace('Mannschaft ', $prefix . ' ', $content));
+        }
+        self::writeView('eine', [self::LIGA]);
+        self::writeView('drei', [self::LIGA, 'mehr-basic.l98', 'mehr-kegel.l98']);
+
+        $one = self::view('eine');
+        $three = self::view('drei');
+
+        self::assertStringNotContainsString('STDERR', $one . $three, 'PHP-Meldungen');
+        self::assertStringContainsString('Bayern München', $one);
+        self::assertStringNotContainsString('Alpha 1', $one);
+        foreach (['Bayern München', 'Alpha 1', 'Kegler 1'] as $team) {
+            self::assertStringContainsString($team, $three, "Spiele von $team in der Ansicht ueber drei Ligen");
+        }
+    }
+
     public function testUnknownView(): void
     {
         $html = self::view('gibtesnicht');
