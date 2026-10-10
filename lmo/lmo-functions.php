@@ -146,6 +146,24 @@ function getMessage($message, $error = false)
 }
 
 /**
+ * Returns a PHPMailer object prepared for LMO: PHP mail(), UTF-8, sender set.
+ * Exceptions are switched off: send() returns false on failure, the reason is in $mail->ErrorInfo.
+ *
+ * @param   string  $from       Sender address
+ * @param   string  $fromName   Sender name
+ * @return  \PHPMailer\PHPMailer\PHPMailer
+ */
+function lmo_mailer($from, $fromName = '')
+{
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(false);
+    $mail->isMail();
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
+    $mail->setFrom($from, $fromName);
+    return $mail;
+}
+
+/**
  * Returns which team is the winner on a
  *
  * @param   string  $gst

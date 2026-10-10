@@ -18,7 +18,6 @@
   */
 
 require_once(PATH_TO_ADDONDIR . '/tipp/lmo-tipptest.php');
-require_once(PATH_TO_LMO . '/includes/PHPMailer.php');
 
 if (isset($xtippername2)) {
     $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
@@ -58,29 +57,24 @@ if (isset($xtippername2)) {
         file_put_contents($pswfile, implode('', $lines), LOCK_EX);
 
         // 5. E-Mail versenden
-        try {
-            $mail = new PHPMailer(true);
-            $mail->isMail();
-            $mail->CharSet = 'UTF-8';
-            $mail->Encoding = 'base64';
-            $mail->Subject = $text['tipp'][79] . ' (' . $_SERVER['HTTP_HOST'] . ')';
-            $mail->setFrom($aadr, $text['tipp'][92]);
-            $mail->addAddress($recipientEmail);
+        $mail = lmo_mailer($aadr, $text['tipp'][92]);
+        $mail->Subject = $text['tipp'][79] . ' (' . $_SERVER['HTTP_HOST'] . ')';
+        $mail->addAddress($recipientEmail);
 
-            $loginUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?action=tipp';
+        $loginUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?action=tipp';
 
-            $emailbody = $text['tipp'][297] . ' ' . $tipperName . ",\n\n" .
-                         $text['tipp'][77] . "\n\n" .
-                         $text['tipp'][23] . ': ' . $tipperName . "\n" .
-                         $text[308] . ': ' . $newPassword . "\n\n" .
-                         $text['tipp'][255] . ': ' . $loginUrl;
+        $emailbody = $text['tipp'][297] . ' ' . $tipperName . ",\n\n" .
+                     $text['tipp'][77] . "\n\n" .
+                     $text['tipp'][23] . ': ' . $tipperName . "\n" .
+                     $text[308] . ': ' . $newPassword . "\n\n" .
+                     $text['tipp'][255] . ': ' . $loginUrl;
 
-            $mail->Body = $emailbody;
-            $mail->send();
+        $mail->Body = $emailbody;
+        if ($mail->send()) {
             echo getMessage($text['tipp'][78]); // Erfolgsmeldung
             $_SESSION['lmotipperok'] = 0;
-        } catch (Exception $e) {
-            echo $text['tipp'][80] . " Details: {$mail->ErrorInfo}<br>";
+        } else {
+            echo getMessage($text['tipp'][80] . " Details: {$mail->ErrorInfo}", true);
         }
     } else {
         $_SESSION['lmotipperok'] = -3; // Benutzer nicht gefunden

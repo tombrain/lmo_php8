@@ -19,8 +19,7 @@
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
 require_once(PATH_TO_ADDONDIR . '/tipp/lmo-tippaenderbar.php');
-require_once(PATH_TO_LMO . '/includes/PHPMailer.php');
-$mail = new PHPMailer(true);
+$mail = lmo_mailer($aadr, $text['tipp'][92]);
 
 // Basis-URL für den [pass]-Platzhalter: da Passwoerter seit der Umstellung
 // auf password_hash() nicht mehr im Klartext vorliegen, wird statt des
@@ -38,11 +37,7 @@ if ($message != '') {
         return !str_starts_with(trim($line), '<?php');
     }));
 
-    $mail->isMail();
-    $mail->CharSet = 'UTF-8';
-    $mail->Encoding = 'base64';
     $mail->Subject = $betreff . ' (' . $_SERVER['HTTP_HOST'] . ')';
-    $mail->setFrom($aadr, $text['tipp'][92]);
     $anzemail = 0;
     $anztipper = count($dumma);
     if (!isset($start)) {
@@ -275,7 +270,7 @@ if ($message != '') {
             $mail->ClearAllRecipients();
             $mail->ClearReplyTos();
         } else {
-            $sent = mail($dummb[4], $subject, $textmessage, $header);
+            echo $mail->ErrorInfo;
         }
     }
 }
