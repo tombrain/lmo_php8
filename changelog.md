@@ -24,6 +24,29 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ***
+## [4.2.1] - 2026-10-10
+
+_Hier hätten wir die Changelogs für 4.2.1._  
+
+### Added  
+* Automatische Tests für „Rückrundenspielplan erstellen“ und das Verschieben von Partien im Admin-Bereich.  
+* Automatische Tests für das Addon „mini“: Die Minitabelle muss dieselbe Tabelle zeigen wie die Haupttabelle.  
+
+### Changed  
+
+### Deprecated  
+
+### Removed  
+
+### Fixed  
+* „Rückrundenspielplan erstellen“ bei einer Liga mit ungerader Anzahl Spieltage: Die Fehlermeldung erschien nicht, und die Liga wurde trotzdem neu gespeichert und als erfolgreich gemeldet. Jetzt erscheint die Meldung, gespeichert wird nichts.  
+* Minitabelle: Der Aufruf mit den mitgelieferten Standardeinstellungen brach unter PHP 8 mit einem Fehler ab (leere Werte für „Plätze darüber/darunter“). Ohne Liga erscheint jetzt die Meldung „Liga nicht gefunden“ ohne PHP-Warnung.  
+* classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
+
+### Security  
+
+
+***
 ## [4.2.0] - 2026-10-10
 
 _Hier hätten wir die Changelogs für 4.2.0._  
@@ -155,6 +178,29 @@ _Here we write changelog notes for the next version._
 
 ### Fixed  
 
+
+### Security  
+
+
+***
+## [4.2.1] - 2026-10-10
+
+_Here we had the changelogs for 4.2.1._  
+
+### Added  
+* Automated tests for "create second half of season" and for moving matches in the admin area.  
+* Automated tests for the "mini" addon: the mini table must show the same table as the main table.  
+
+### Changed  
+
+### Deprecated  
+
+### Removed  
+
+### Fixed  
+* "Create second half of season" for a league with an odd number of match days: the error message was not shown, and the league was saved again anyway and reported as successful. Now the message is shown and nothing is saved.  
+* Mini table: the call with the shipped default settings aborted with an error under PHP 8 (empty values for "places above/below"). Without a league the message "league not found" is now shown without a PHP warning.  
+* classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
 
 ### Security  
 
