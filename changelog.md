@@ -32,6 +32,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Automatische Tests für „Rückrundenspielplan erstellen“ und das Verschieben von Partien im Admin-Bereich.  
 * Automatische Tests für das Addon „mini“: Die Minitabelle muss dieselbe Tabelle zeigen wie die Haupttabelle.  
 * Automatische Tests für die Addons „viewer“ (Ansicht speichern, Spiele nach Datum und Spieltag, Cache) und „ticker“ (Lauftext mit Wertungen, News).  
+* Automatische Tests für das Addon „spieler“ (Spielerstatistik): Spieler und Spalten verwalten, Formelspalten, öffentliche Seite und Druckansicht.  
 
 ### Changed  
 
@@ -47,8 +48,11 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Ticker: Breite und Geschwindigkeit ließen sich beim Einbinden nicht übergeben; die Einstellung „Notizen anzeigen“ wirkte bei Pokal-Ligen nicht.  
 * Viewer: PHP-Warnung beim ersten Aufruf einer Ansicht (Cache-Datei noch nicht vorhanden); im Admin-Formular eine PHP-Warnung, wenn das Ligenverzeichnis nicht `ligen/` heißt.  
 * classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
+* Spielerstatistik: Eine ungültige Formel erzeugte PHP-Warnungen statt des Fehlertexts, eine unvollständige Formel (z.B. `Tore/`) brach die Admin-Seite ab; außerdem erschienen Reste der Formel als Debug-Ausgabe in der Seite.  
+* Spielerstatistik: Die öffentliche Seite und die Druckansicht brachen bei einem nicht-numerischen Seitenanfang ab und warnten bei einer unbekannten Sortierspalte; die Druckansicht warnte, wenn es zur Liga keine Statistik gibt.  
 
 ### Security  
+* Spielerstatistik: Die Parameter für Sortierung, Seite und Mannschaft wurden unmaskiert in die Seite geschrieben (Cross-Site-Scripting).  
 
 
 ***
@@ -196,6 +200,7 @@ _Here we had the changelogs for 4.2.1._
 * Automated tests for "create second half of season" and for moving matches in the admin area.  
 * Automated tests for the "mini" addon: the mini table must show the same table as the main table.  
 * Automated tests for the addons "viewer" (saving a view, matches by date and by match day, cache) and "ticker" (ticker text with ratings, news).  
+* Automated tests for the "spieler" addon (player statistics): managing players and columns, formula columns, public page and print view.  
 
 ### Changed  
 
@@ -211,8 +216,11 @@ _Here we had the changelogs for 4.2.1._
 * Ticker: width and speed could not be passed when including the ticker; the setting "show notes" had no effect for cup leagues.  
 * Viewer: PHP warning on the first call of a view (cache file not yet present); a PHP warning in the admin form when the league directory is not named `ligen/`.  
 * classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
+* Player statistics: an invalid formula produced PHP warnings instead of the error text, an incomplete formula (e.g. `Tore/`) aborted the admin page; in addition, remains of the formula appeared in the page as debug output.  
+* Player statistics: the public page and the print view aborted on a non-numeric page start and warned on an unknown sort column; the print view warned when there are no statistics for the league.  
 
 ### Security  
+* Player statistics: the parameters for sorting, page and team were written into the page unescaped (cross-site scripting).  
 
 
 ***
