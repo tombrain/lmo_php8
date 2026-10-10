@@ -1043,10 +1043,16 @@ class liga {
                 }
             }
         }
-        // aktualisierte Optionen setzen <acronym title="Liga Manager Online">LMO</acronym>
-        $this->options->keyValues['Title'] = "<acronym title='Liga Manager Online " . CLASSLIB_VERSION . "'>LMO</acronym>";
+        // aktualisierte Optionen setzen. Titel und aktuellen Spieltag aus der Oberflaeche nicht
+        // ueberschreiben: nur setzen, wenn sie fehlen bzw. kein gueltiger Spieltag sind
+        if (empty($this->options->keyValues['Title'])) {
+            $this->options->keyValues['Title'] = "<acronym title='Liga Manager Online " . CLASSLIB_VERSION . "'>LMO</acronym>";
+        }
         $this->options->keyValues['Matches'] = $maxSp;
-        $this->options->keyValues['Actual'] = isset($aktSpTag) ? $aktSpTag : 1;
+        $actual = isset($this->options->keyValues['Actual']) ? (int) $this->options->keyValues['Actual'] : 0;
+        if ($actual < 1 || $actual > $this->spieltageCount()) {
+            $this->options->keyValues['Actual'] = $aktSpTag;
+        }
         foreach ($this->options->keyValues as $key => $value) {
             $iniData['Options'][$key] = $value;
         }
