@@ -538,6 +538,13 @@ class liga {
             for ($y = 0; $y < count($sections[0]); $y++) {
                 // Parameter und werte trennen
                 preg_match_all('/^([^=\[]+)=(.*)/m', $sections[0][$y], $parameter, PREG_PATTERN_ORDER);
+                // Modus des Spieltags (MO): 0/leer = Liga, sonst Pokal mit mehreren Spielen je Paarung
+                $roundModus = 0;
+                foreach ($parameter[1] as $moIndex => $moKey) {
+                    if (trim($moKey) == 'MO') {
+                        $roundModus = (int) trim($parameter[2][$moIndex]);
+                    }
+                }
                 for ($i = 0, $partieNumber = 0; $i < count($parameter[0]); $i++) {
                     // Spieltagswerte ohne Partienummer: D1, D2 und Schluessel nur aus Buchstaben (MO, HS)
                     if (!str_contains(strtolower($sections[1][$y]), 'round') || preg_match('/^D[12]$|^[A-Za-z]+$/', trim($parameter[1][$i]))) {
@@ -550,6 +557,22 @@ class liga {
                             continue; // Parameter passt nicht zum erwarteten Format
                         }
                         // $infoPerPartie -> 0 kompletter treffer / 1 Art des Parameters (GA/GB ...) / 2 Nummer der Partie
+                        if ($roundModus < 1) {
+                            // Liga: die Nummer im Schluessel ist die Partie (SP3 gehoert zu TA3), unabhaengig
+                            // von der Reihenfolge der Zeilen - wie lmo-openfile.php
+                            $ligaPartie = (int) $infoPerPartie[2];
+                            if (preg_match('/^T[AB]$/', $infoPerPartie[1])) {
+                                $iniData[$sections[1][$y]][$ligaPartie][$infoPerPartie[1]] = trim($parameter[2][$i]);
+                            }
+                            else {
+                                if ($infoPerPartie[1] == 'GA') {
+                                    $iniData[$sections[1][$y]][$ligaPartie][1]['SpNr'] = $infoPerPartie[2];
+                                }
+                                $iniData[$sections[1][$y]][$ligaPartie][1][$infoPerPartie[1]] = trim($parameter[2][$i]);
+                            }
+                            continue;
+                        }
+                        // Pokal: GA11, GA12 ... die Nummer ist mehrdeutig, zugeordnet wird ueber die Reihenfolge
                         if (!isset($gameNumber)) $gameNumber = 0;
                         if ($infoPerPartie[1] == 'TA') {
                             $partieNumber++;

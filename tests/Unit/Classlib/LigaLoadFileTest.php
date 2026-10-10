@@ -208,6 +208,21 @@ L98;
         self::assertSame(['Eigenes' => ['Foo' => 'Bar']], $liga->sections);
     }
 
+    public function testMatchValuesMayPrecedeTheTeams(): void
+    {
+        // SP1 und ET1 stehen vor TA1: die Nummer im Schluessel bestimmt die Partie, nicht die Reihenfolge
+        $content = str_replace("SP1=2\nNT1=Spielnotiz", 'NT1=Spielnotiz', self::LIGA);
+        $content = str_replace("[Round1]\nHS=030102\n", "[Round1]\nHS=030102\nSP1=2\nET1=3\nGB1=1\n", $content);
+        self::assertStringContainsString("SP1=2\nET1=3\nGB1=1\nD1=23.08.2024", $content);
+
+        $partie = $this->load($content)->SpieltagForNumber(1)->partieForNumber(1);
+
+        self::assertSame(2, $partie->getSpielEnde());
+        self::assertSame('3', $partie->getParameter('ET'));
+        self::assertSame(['Alpha', 'Beta'], [$partie->heim->name, $partie->gast->name]);
+        self::assertEquals([2, 1], [$partie->hTore, $partie->gTore]);
+    }
+
     public function testMatchEndIsRead(): void
     {
         $liga = $this->load(self::LIGA);

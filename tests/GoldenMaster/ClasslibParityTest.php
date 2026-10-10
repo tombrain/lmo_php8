@@ -52,7 +52,7 @@ final class ClasslibParityTest extends TestCase
         $fixture = Fixture::get();
         $core = json_decode($fixture->runner()->calc($leagueFile, true), true);
         $liga = new \liga();
-        $liga->loadFile(self::lmoOrder($fixture->app()->ligenDir() . '/' . $leagueFile));
+        $liga->loadFile($fixture->app()->ligenDir() . '/' . $leagueFile);
         if (($liga->options->keyValues['Type'] ?? 0) == 1) {
             self::markTestSkipped('Pokal: keine Tabelle');
         }
@@ -100,36 +100,5 @@ final class ClasslibParityTest extends TestCase
 
         self::assertGreaterThan(0, $views, 'keine Tabellen verglichen');
         self::assertSame([], array_slice($lines, 0, 20), count($lines) . ' Abweichungen (Spiele/Punkte/Minuspunkte/Tore/Gegentore)');
-    }
-
-    /**
-     * Kopie der Ligadatei mit Partiezeilen in der Reihenfolge, die lmo-savefile.php schreibt
-     * (TA, TB, GA, GB, dann der Rest je Partie). Die Testligen setzen SP/ET vor TA1; der Kern liest
-     * unabhaengig von der Reihenfolge, die classlib ordnet Werte dem zuletzt gelesenen TA zu.
-     */
-    private static function lmoOrder(string $file): string
-    {
-        $content = str_replace("\r\n", "\n", (string)file_get_contents($file));
-        $out = preg_replace_callback('/^(\[Round\d+\]\n)(.*?)(?=^\[|\z)/ms', static function (array $m): string {
-            $head = $matches = [];
-            foreach (array_filter(explode("\n", $m[2])) as $line) {
-                if (preg_match('/^([A-Z]{2})(\d+)=/', $line, $k)) {
-                    $rank = array_search($k[1], ['TA', 'TB', 'GA', 'GB'], true);
-                    $matches[(int)$k[2]][] = [$rank === false ? 9 : $rank, $line];
-                } else {
-                    $head[] = $line;
-                }
-            }
-            ksort($matches);
-            $lines = $head;
-            foreach ($matches as $entries) {
-                usort($entries, static fn ($a, $b) => $a[0] <=> $b[0]);
-                $lines = array_merge($lines, array_column($entries, 1));
-            }
-            return $m[1] . implode("\n", $lines) . "\n\n";
-        }, $content);
-        $copy = sys_get_temp_dir() . '/parity-' . basename($file);
-        file_put_contents($copy, $out);
-        return $copy;
     }
 }
