@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Snapshots stammen von 8.3; 8.0 ist die aelteste unterstuetzte Version (lmo/composer.json), 8.4 die neueste
-        php: ['8.0', '8.3', '8.4']
+        # Snapshots stammen von 8.3; 8.0 ist die aelteste unterstuetzte Version (lmo/composer.json), 8.4 die neueste laut README; 8.5 zur Probe
+        php: ['8.0', '8.3', '8.4', '8.5']
     name: PHP ${{ matrix.php }}
 
     steps:
