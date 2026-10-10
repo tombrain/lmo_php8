@@ -135,6 +135,12 @@ final class Instance
         return $this->path . '/.sessions';
     }
 
+    /** Hier legt bin/sendmail.php die Mails ab, die LMO in dieser Instanz verschickt. */
+    public function mailDir(): string
+    {
+        return $this->path . '/.mails';
+    }
+
     /** Nach dem Anlegen weiterer Ligen aufrufen (Datum "Stand" und Sortierung nach Dateidatum). */
     public function freezeLeagueTimes(): void
     {

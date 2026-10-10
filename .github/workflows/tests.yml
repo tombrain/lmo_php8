@@ -27,7 +27,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: gd
+          extensions: gd, zip
           # wie das offizielle Docker-Image: keine php.ini, nur Standardwerte
           ini-file: none
           coverage: none

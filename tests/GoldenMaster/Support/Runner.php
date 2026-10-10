@@ -126,7 +126,9 @@ final class Runner
             // dann auf den lokalen Fallback zurueck (Ergebnis wird nur im Admin-Bereich angezeigt).
             '-d', 'allow_url_fopen=0',
             '-d', 'date.timezone=Europe/Berlin',
-            '-d', 'session.save_path=' . $this->instance->sessionDir()
+            '-d', 'session.save_path=' . $this->instance->sessionDir(),
+            // Mails landen als Dateien in der Testinstanz statt bei einem Mailprogramm
+            '-d', 'sendmail_path=' . PHP_BINARY . ' ' . dirname(__DIR__) . '/bin/sendmail.php ' . $this->instance->mailDir()
         );
         $coverageDir = self::coverageDir();
         if ($coverageDir !== null) {
