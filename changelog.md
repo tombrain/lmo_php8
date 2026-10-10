@@ -31,6 +31,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 ### Added  
 * Automatische Tests für „Rückrundenspielplan erstellen“ und das Verschieben von Partien im Admin-Bereich.  
 * Automatische Tests für das Addon „mini“: Die Minitabelle muss dieselbe Tabelle zeigen wie die Haupttabelle.  
+* Automatische Tests für die Addons „viewer“ (Ansicht speichern, Spiele nach Datum und Spieltag, Cache) und „ticker“ (Lauftext mit Wertungen, News).  
 
 ### Changed  
 
@@ -41,6 +42,10 @@ _Hier hätten wir die Changelogs für 4.2.1._
 ### Fixed  
 * „Rückrundenspielplan erstellen“ bei einer Liga mit ungerader Anzahl Spieltage: Die Fehlermeldung erschien nicht, und die Liga wurde trotzdem neu gespeichert und als erfolgreich gemeldet. Jetzt erscheint die Meldung, gespeichert wird nichts.  
 * Minitabelle: Der Aufruf mit den mitgelieferten Standardeinstellungen brach unter PHP 8 mit einem Fehler ab (leere Werte für „Plätze darüber/darunter“). Ohne Liga erscheint jetzt die Meldung „Liga nicht gefunden“ ohne PHP-Warnung.  
+* Minitabelle: Am ersten Spieltag wurde eine Tendenz angezeigt, obwohl es keinen Vorspieltag gibt. Jetzt ist sie dort für alle Mannschaften 0.  
+* Ticker: Der Hinweis „… bekam den Sieg zugesprochen“ stand nach einem gewerteten Spiel auch bei allen folgenden Spielen des Spieltags.  
+* Ticker: Breite und Geschwindigkeit ließen sich beim Einbinden nicht übergeben; die Einstellung „Notizen anzeigen“ wirkte bei Pokal-Ligen nicht.  
+* Viewer: PHP-Warnung beim ersten Aufruf einer Ansicht (Cache-Datei noch nicht vorhanden); im Admin-Formular eine PHP-Warnung, wenn das Ligenverzeichnis nicht `ligen/` heißt.  
 * classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
 
 ### Security  
@@ -190,6 +195,7 @@ _Here we had the changelogs for 4.2.1._
 ### Added  
 * Automated tests for "create second half of season" and for moving matches in the admin area.  
 * Automated tests for the "mini" addon: the mini table must show the same table as the main table.  
+* Automated tests for the addons "viewer" (saving a view, matches by date and by match day, cache) and "ticker" (ticker text with ratings, news).  
 
 ### Changed  
 
@@ -200,6 +206,10 @@ _Here we had the changelogs for 4.2.1._
 ### Fixed  
 * "Create second half of season" for a league with an odd number of match days: the error message was not shown, and the league was saved again anyway and reported as successful. Now the message is shown and nothing is saved.  
 * Mini table: the call with the shipped default settings aborted with an error under PHP 8 (empty values for "places above/below"). Without a league the message "league not found" is now shown without a PHP warning.  
+* Mini table: on the first match day a trend was shown although there is no previous match day. Now it is 0 for all teams there.  
+* Ticker: after a match decided by ruling, the note "… was awarded the win" also appeared on all following matches of the match day.  
+* Ticker: width and speed could not be passed when including the ticker; the setting "show notes" had no effect for cup leagues.  
+* Viewer: PHP warning on the first call of a view (cache file not yet present); a PHP warning in the admin form when the league directory is not named `ligen/`.  
 * classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
 
 ### Security  
