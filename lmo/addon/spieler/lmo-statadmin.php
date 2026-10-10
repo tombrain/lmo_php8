@@ -711,7 +711,7 @@ function cmpstrlength ($a, $b) {
 }
 
 function formel_berechnen ($formel, $formel_str,$spalten) {
-    global $data;
+    global $data, $text;
     uasort($spalten, 'cmpstrlength');
     for ($i = 0; $i < count($spalten); $i++) {
         if ($formel[$i]) {
@@ -724,7 +724,6 @@ function formel_berechnen ($formel, $formel_str,$spalten) {
                 }
             }
             $help_str = strtr($help_str, '+-*/0123456789.(),', '                  ');
-            echo (chop($help_str));
             if (strlen(trim($help_str)) == 0 || trim($help_str) == 'MAX' || trim($help_str) == 'MIN') {
                 $formel_str[$i] = '$help2 = round(' . $formel_str[$i] . ', 2);';
             } else {
@@ -740,6 +739,9 @@ function formel_berechnen ($formel, $formel_str,$spalten) {
                     @eval($formel_str[$i]);
                 } catch (\DivisionByZeroError $e) {
                     $help2 = 0.0; 
+                } catch (\Throwable $e) {
+                    // unvollstaendige Formel (z.B. "Tore/"): Fehlertext statt Abbruch der Seite
+                    $help2 = $text['spieler'][55];
                 }
                 $data[$j][$i] = $help2;
             }
