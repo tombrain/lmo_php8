@@ -10,14 +10,18 @@ if (isset($file) && $file != "" && ($_SESSION['lmouserok'] == 2 || $_SESSION['lm
   $liga = new Liga();
   if ($liga->loadFile(PATH_TO_LMO.'/'.$dirliga.$file))
   {
-    completeSchedule($liga);
-    $liga->writeFile(PATH_TO_LMO.'/'.$dirliga.$file);
-    echo getMessage($text[3002]);
+    // nur speichern, wenn ein Rueckrundenspielplan erstellt wurde (gerade Anzahl Spieltage)
+    if (completeSchedule($liga))
+    {
+      $liga->writeFile(PATH_TO_LMO.'/'.$dirliga.$file);
+      echo getMessage($text[3002]);
+    }
   }
 }
 
 function completeSchedule($liga)
 {
+  global $text;
   $rounds = $liga->options->keyValues["Rounds"];
 
   if ($rounds % 2 == 0)
@@ -43,7 +47,9 @@ function completeSchedule($liga)
         $liga->spieltage[$i + $daysPerRound]->addPartie($partie);
       }
     }
+    return true;
   }
-  else echo getMessage($text[3001], true);
+  echo getMessage($text[3001], true);
+  return false;
 }
 ?>
