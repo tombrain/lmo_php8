@@ -250,4 +250,67 @@ final class LigaTableTest extends ClasslibTestCase
         self::assertSame(['B', 'A'], self::order($table));
         self::assertSame([1, 1, 0, 3], [self::row($table, 'B')['spiele'], self::row($table, 'B')['pTor'], self::row($table, 'B')['mTor'], self::row($table, 'B')['pPkt']]);
     }
+
+    /** Voelliger Gleichstand: wie lmo-calctable.php steht das Team mit der hoeheren Nummer vorn. */
+    public function testFullTiePutsHigherTeamNumberFirst(): void
+    {
+        $rounds = [[[1, 2, 1, 1], [3, 4, 1, 1]]];
+
+        self::assertSame(['D', 'C', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D'], $rounds)->calcTable(1)));
+        self::assertSame(['D', 'C', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D'], $rounds, ['Direct' => 1])->calcTable(1)));
+        self::assertSame(['D', 'C', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D'], $rounds, ['Kegel' => 1])->calcTable(1)));
+    }
+
+    /** Errechnete Tabelle nach Spieltag 1: A, C, D, B */
+    private static function handicapLeague(array $handicap, int $actual): \liga
+    {
+        $liga = self::league(['A', 'B', 'C', 'D'], [[[1, 2, 3, 0], [3, 4, 1, 0]], [[1, 3, -1, -1], [2, 4, -1, -1]]], ['HandS' => 1, 'Actual' => $actual]);
+        foreach ($handicap as $round => $value) {
+            $liga->SpieltagForNumber($round)->setParameter($value, 'HS');
+        }
+        return $liga;
+    }
+
+    public function testHandicapOrderMovesTeamsToTheGivenPlaces(): void
+    {
+        // je Platz der errechneten Tabelle der neue Platz: A -> 4, C -> 3, D -> 1, B -> 2
+        $liga = self::handicapLeague([1 => '04030102'], 1);
+
+        $table = $liga->calcTable(1);
+
+        self::assertSame(['D', 'B', 'C', 'A'], self::order($table));
+        self::assertSame([1, 2, 3, 4], array_column($table, 'pos'));
+    }
+
+    public function testHandicapWithEqualPlacesReversesTheCalculatedOrder(): void
+    {
+        $liga = self::handicapLeague([1 => '01010202'], 1);
+
+        self::assertSame(['C', 'A', 'B', 'D'], self::order($liga->calcTable(1)));
+    }
+
+    public function testHandicapAppliesOnlyToTheOverallTable(): void
+    {
+        $liga = self::handicapLeague([1 => '04030102'], 1);
+
+        self::assertSame(['A', 'C', 'D', 'B'], self::order($liga->calcTable(1, 'heim')));
+    }
+
+    public function testNoHandicapWithoutOrderOrOption(): void
+    {
+        self::assertSame(['A', 'C', 'D', 'B'], self::order(self::handicapLeague([], 1)->calcTable(1)));
+        self::assertSame(['A', 'C', 'D', 'B'], self::order(self::handicapLeague([1 => '0'], 1)->calcTable(1)));
+
+        $liga = self::handicapLeague([1 => '04030102'], 1);
+        $liga->options->keyValues['HandS'] = 0;
+        self::assertSame(['A', 'C', 'D', 'B'], self::order($liga->calcTable(1)));
+    }
+
+    /** Die Tabelle der ganzen Saison nimmt die Reihenfolge des aktuellen Spieltags (wie lmo-calctable.php). */
+    public function testHandicapOfTheSeasonTableUsesTheCurrentMatchday(): void
+    {
+        $liga = self::handicapLeague([1 => '04030102', 2 => '01020304'], 1);
+
+        self::assertSame(['D', 'B', 'C', 'A'], self::order($liga->calcTable(2)));
+    }
 }

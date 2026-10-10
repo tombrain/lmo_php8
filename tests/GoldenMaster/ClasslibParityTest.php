@@ -10,13 +10,8 @@ use PHPUnit\Framework\TestCase;
  * Kern (lmo-calctable.php) und classlib (liga::calcTable()) muessen dieselbe Tabelle liefern:
  * fuer jede Liga der Testinstanz, in Gesamt-, Heim-, Auswaerts-, Hin- und Rueckrundentabelle
  * und nach jedem einzelnen Spieltag. Verglichen werden Spiele, Punkte, Minuspunkte, Tore,
- * Gegentore und die Reihenfolge.
- *
- * Bewusst ausgenommen:
- * - vollstaendiger Gleichstand (gleiche Punkte, Minuspunkte und Tore, die Zahl der Spiele zaehlt
- *   nicht): der Kern sortiert dann nach Teamnummer, die classlib nach Team-Objekt; dafuer gibt es
- *   keine Regel
- * - Handicap (HandS): kennt nur der Kern, und nur in der Gesamttabelle
+ * Gegentore und die Reihenfolge - auf jedem Platz muss dasselbe Team stehen, auch bei
+ * vollstaendigem Gleichstand (hoehere Teamnummer vorn) und mit Handicap-Reihenfolge (HandS).
  */
 final class ClasslibParityTest extends TestCase
 {
@@ -58,7 +53,6 @@ final class ClasslibParityTest extends TestCase
         }
         $rounds = $liga->spieltageCount();
         $minus = ($liga->options->keyValues['MinusPoints'] ?? 1) == 2;
-        $handicap = ($liga->options->keyValues['HandS'] ?? 0) == 1;
 
         $lines = [];
         $views = 0;
@@ -67,9 +61,6 @@ final class ClasslibParityTest extends TestCase
                 continue;
             }
             [$tabtype, $endtab] = [(int)$m[1], (int)$m[2]];
-            if ($handicap && $tabtype === 0) {
-                continue;
-            }
             $views++;
             // Kern: die Hinrundentabelle endet immer bei der Saisonhaelfte
             $table = $liga->calcTable($tabtype === 4 ? $rounds : $endtab, self::ARTEN[$tabtype]);
@@ -86,10 +77,7 @@ final class ClasslibParityTest extends TestCase
             $libValues = array_column($libRows, 1, 0);
             foreach ($coreRows as $pos => [$nr, $values]) {
                 $sameValues = isset($libValues[$nr]) && array_map('intval', $libValues[$nr]) === array_map('intval', $values);
-                // gleicher Platz oder vollstaendiger Gleichstand mit dem Team auf diesem Platz; die Zahl
-                // der Spiele ist kein Sortierkriterium, verglichen werden Punkte, Minuspunkte und Tore
-                $samePlace = isset($libRows[$pos])
-                    && array_map('intval', array_slice($libRows[$pos][1], 1)) === array_map('intval', array_slice($values, 1));
+                $samePlace = isset($libRows[$pos]) && $libRows[$pos][0] === $nr;
                 if (!$sameValues || !$samePlace) {
                     $lines[] = sprintf('%s nach Spieltag %d, Platz %d: Kern Team %d %s, classlib Team %d %s',
                         self::ARTEN[$tabtype], $endtab, $pos + 1, $nr, implode('/', $values),

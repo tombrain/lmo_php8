@@ -47,9 +47,6 @@ final class MiniAddonTest extends TestCase
     public function testMiniTableShowsTheSameTableAsTheMainTable(string $leagueFile): void
     {
         $content = (string)file_get_contents(self::$app->ligenDir() . '/' . $leagueFile);
-        if (preg_match('/^HandS=1/m', $content)) {
-            self::markTestSkipped('Handicap-Reihenfolge kennt nur die Haupttabelle');
-        }
         preg_match('/^\[Teams\]\R(.*?)(?=^\[)/ms', $content, $section);
         preg_match_all('/^(\d+)=(.*?)\s*$/m', $section[1], $names, PREG_SET_ORDER);
         $teamName = array_column($names, 2, 1);
@@ -59,7 +56,6 @@ final class MiniAddonTest extends TestCase
         // Haupttabelle nach dem letzten Spieltag
         $core = json_decode(self::$runner->calc($leagueFile), true)['tabtype=0 newtabtype=0 action=table endtab=' . $rounds[1]];
         $expected = [];
-        $keys = [];
         foreach ($core['tab0'] as $key) {
             $nr = (int)substr($key, -7);
             $diff = $core['dtore'][$nr];
@@ -68,7 +64,6 @@ final class MiniAddonTest extends TestCase
                 $minus ? $core['punkte'][$nr] . ':' . $core['negativ'][$nr] : (string)$core['punkte'][$nr],
                 ($diff > 0 ? '+' : '') . $diff,
             ];
-            $keys[] = [$core['punkte'][$nr], $core['negativ'][$nr], $core['etore'][$nr], $core['atore'][$nr]];
         }
 
         // Minitabelle mit allen Plaetzen
@@ -87,12 +82,7 @@ final class MiniAddonTest extends TestCase
         self::assertSame(range(1, count($actual)), array_map(static fn (array $r): int => (int)$r[1], $rows), 'Platznummern');
         self::assertSame(array_column($expected, 1), array_column($actual, 1), 'Punkte je Platz');
         self::assertSame(array_column($expected, 2), array_column($actual, 2), 'Tordifferenz je Platz');
-        // Mannschaft je Platz; bei vollstaendigem Gleichstand (Punkte und Tore) ist die Reihenfolge nicht geregelt
-        $position = array_flip(array_column($expected, 0));
-        foreach ($actual as $pos => [$name]) {
-            self::assertArrayHasKey($name, $position, "unbekannte Mannschaft $name");
-            self::assertSame($keys[$pos], $keys[$position[$name]], 'Platz ' . ($pos + 1) . ": $name steht in der Haupttabelle auf Platz " . ($position[$name] + 1));
-        }
+        self::assertSame(array_column($expected, 0), array_column($actual, 0), 'Mannschaft je Platz');
     }
 
     /** @return int[] Tendenz je Tabellenzeile (title des Tendenz-Bildes) fuer golden/basic mit dem angegebenen aktuellen Spieltag */
