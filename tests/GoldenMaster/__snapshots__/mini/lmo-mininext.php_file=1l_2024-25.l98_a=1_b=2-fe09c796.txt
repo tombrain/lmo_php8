@@ -14,7 +14,7 @@
 <table width="100%">
 <caption>Spielpaarung</caption>
 <tr>
-<th>Tage: -168, Stunden: 1, Minuten: 30</th>
+<th>Tage: -168, Stunden: 1, Minuten: {MIN}</th>
 </tr>
 <tr>
 <th>28.09.2024 15:30</th>

@@ -133,6 +133,8 @@ final class MiniAddonTest extends TestCase
     public function testPageOutputIsUnchanged(string $script, string $query): void
     {
         $html = self::page($script, $query);
+        // Countdown bis zum Spiel: die Testuhr laeuft weiter, je nach Dauer des Aufrufs ist schon eine Minute weniger uebrig
+        $html = (string)preg_replace('/(Minuten: )\d+/', '$1{MIN}', $html);
 
         $this->assertMatchesSnapshot('mini', $script . '?' . $query, Normalizer::html($html, self::$app->path(), $query));
     }

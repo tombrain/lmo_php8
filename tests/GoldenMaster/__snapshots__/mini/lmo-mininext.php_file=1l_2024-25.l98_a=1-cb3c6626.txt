@@ -14,7 +14,7 @@
 <table width="100%">
 <caption>Nächstes Spiel</caption>
 <tr>
-<th>Tage: 0, Stunden: 2, Minuten: 30</th>
+<th>Tage: 0, Stunden: 2, Minuten: {MIN}</th>
 </tr>
 <tr>
 <th>15.03.2025 15:30</th>
