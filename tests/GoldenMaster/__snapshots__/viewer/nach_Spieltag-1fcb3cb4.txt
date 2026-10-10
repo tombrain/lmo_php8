@@ -1,0 +1,157 @@
+### nach Spieltag
+<style type="text/css"> .viewer * { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 11px; } .viewer { border: none; margin: 0 0 0 0; background-color: Blue; color: white; } .viewer a { text-decoration: none; color: #fff; } .viewer a:visited { text-decoration: none; color: #999; } .viewer td, .viewer th { font-size: 12px; margin: 0 0 0 0; border: none; } .viewer h2 { font-size: 12px; font-weight: bold; padding:0.3em;margin:0; color: black; background-color: #c0c0c0; white-space:nowrap; text-align: left; } .viewer .vRow, .vRowHighlight { font-size: 10px; background-color:white; color: black; } .viewer .vRow a, .viewer .vRowHighlight a{ color: black; } .viewer .vRowHighlight { font-weight: bold; } </style>
+<table class="viewer">
+<tr>
+<th>Aktueller Spieltag +<!--Anfangsdatum-->1 / -<!--Enddatum-->1</th>
+</tr>
+<tr>
+<td>
+<table>
+<tr>
+<td colspan="6">
+<h2>1. Bundesliga 2024/25</h2>
+</td>
+</tr>
+<tr>
+<td>
+<table width=100% cellspacing="0" cellpadding="2">
+<tr>
+<th colspan="10">
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=1">1</th>
+</tr>
+<tr class="vRow">
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=1">ST 1</a>
+</td>
+<td>23.08.2024</td>
+<td>20:30</td>
+<td align="right">
+<acronym title="Borussia M'gladbach">Borussia M'gladbach</acronym>
+</td>
+<td>
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td>
+</td>
+<td align="left">
+<acronym title="Bayer 04 Leverkusen">Bayer 04 Leverkusen</acronym>
+</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=1" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr class="vRow">
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=1">ST 1</a>
+</td>
+<td>24.08.2024</td>
+<td>15:30</td>
+<td align="right">
+<acronym title="VfL Wolfsburg">VfL Wolfsburg</acronym>
+</td>
+<td>
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td>
+</td>
+<td align="left">
+<acronym title="Bayern München">Bayern München</acronym>
+</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=1" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr>
+<th colspan="10">
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=2">2</th>
+</tr>
+<tr class="vRow">
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=2">ST 2</a>
+</td>
+<td>31.08.2024</td>
+<td>15:30</td>
+<td align="right">
+<acronym title="Bayer 04 Leverkusen">Bayer 04 Leverkusen</acronym>
+</td>
+<td>
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td>
+</td>
+<td align="left">
+<acronym title="RB Leipzig">RB Leipzig</acronym>
+</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=2" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+<tr class="vRow">
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results&amp;st=2">ST 2</a>
+</td>
+<td>31.08.2024</td>
+<td>15:30</td>
+<td align="right">
+<acronym title="Bayern München">Bayern München</acronym>
+</td>
+<td>
+</td>
+<td>&nbsp;-&nbsp;</td>
+<td>
+</td>
+<td align="left">
+<acronym title="SC Freiburg">SC Freiburg</acronym>
+</td>
+<td>_ : _ </td>
+<td>
+<a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=2" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+</a>
+</td>
+<td>
+<!--Notiz-->
+</td>
+<td>
+<!--Spielbericht-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="right">
+<small>[<acronym title="Viewer 4.1.1 © LMO-Group">©</acronym>]</small>
+</td>
+</tr>
+</table>

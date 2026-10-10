@@ -8,16 +8,16 @@ on:
 
 jobs:
   golden-master:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
-        # vorerst nur die Version, mit der die Snapshots aufgezeichnet wurden
-        php: ['8.3']
+        # Snapshots stammen von 8.3; 8.0 ist die aelteste unterstuetzte Version (lmo/composer.json), 8.5 die neueste (README)
+        php: ['8.0', '8.3', '8.4', '8.5']
     name: PHP ${{ matrix.php }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # faketime fixiert die Zeit (Kalender, "heute"-Markierungen) wie im Docker-Image
       - name: faketime installieren
@@ -27,14 +27,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: gd
+          extensions: gd, zip
           # wie das offizielle Docker-Image: keine php.ini, nur Standardwerte
           ini-file: none
           coverage: none
           tools: composer:v2
 
       - name: Composer-Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.composer/cache
           key: composer-${{ matrix.php }}-${{ hashFiles('composer.lock') }}

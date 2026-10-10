@@ -84,6 +84,15 @@ class liga {
     var $sections = array();
 
     /**
+    * Spieltage und Tabellenart der Tabelle, die calcTable() gerade sortiert. Der direkte
+    * Vergleich (calcTableforTeams) wertet nur diese Partien, wie lmo-calctable1.php.
+    * Ausserhalb von calcTable() null: dann zaehlen alle Partien.
+    * @var array|null array('rounds' => array(Spieltagsnr => true), 'art' => Tabellenart)
+    * @access private
+    */
+    var $directContext = null;
+
+    /**
     * Konstruktor
     *
     * @param string $name
@@ -105,25 +114,21 @@ class liga {
     * @param file string Pfad zur Ligadatei (*.l98)
     * @return object ein object passend zum Ligafile
     */
-    function &factory($file) {
-        if (file_exists($file)) {
-            $ligaFile = file($file);
-            foreach ($ligaFile as $configLine) {
-                if (preg_match("/^LigaType=([^\n]+)/", $configLine, $ligaType)) {
-                    break;
+    static function factory($file) {
+        if (!file_exists($file)) {
+            return null;
+        }
+        // LigaType=Handball -> ligaHandball, ohne/unbekannter Typ -> liga
+        foreach (file($file) as $configLine) {
+            if (preg_match('/^LigaType=(\w+)/', $configLine, $ligaType)) {
+                $class = 'liga' . ucfirst(strtolower($ligaType[1]));
+                if (class_exists($class) && is_subclass_of($class, 'liga')) {
+                    return new $class();
                 }
-            }
-            $ligaType[1] .= 'Liga';
-            if (class_exists($ligaType[1])) {
-                return new $ligaType[1]();
-            }
-            else {
-                return new liga();
+                break;
             }
         }
-        else 
-            $null = null;
-        return $null;
+        return new liga();
     }
 
     /**
@@ -425,9 +430,10 @@ class liga {
     function &aktuellerSpieltag() {
         $result = null;
         if (array_key_exists('Actual', $this->options->keyValues)) {
-            $aktSpTagNr = $this->options->keyValues['Actual'];
-            if (isset($aktSpTagNr) && ($aktSpTagNr >= 0) && isset($this->spieltage[$aktSpTagNr])) {
-                $result = $this->spieltage[$aktSpTagNr];
+            // Actual zaehlt ab 1, $this->spieltage ab 0
+            $aktSpTagNr = (int) $this->options->keyValues['Actual'];
+            if ($aktSpTagNr >= 1 && isset($this->spieltage[$aktSpTagNr - 1])) {
+                $result = $this->spieltage[$aktSpTagNr - 1];
             }
         }
         return $result;
@@ -532,8 +538,16 @@ class liga {
             for ($y = 0; $y < count($sections[0]); $y++) {
                 // Parameter und werte trennen
                 preg_match_all('/^([^=\[]+)=(.*)/m', $sections[0][$y], $parameter, PREG_PATTERN_ORDER);
+                // Modus des Spieltags (MO): 0/leer = Liga, sonst Pokal mit mehreren Spielen je Paarung
+                $roundModus = 0;
+                foreach ($parameter[1] as $moIndex => $moKey) {
+                    if (trim($moKey) == 'MO') {
+                        $roundModus = (int) trim($parameter[2][$moIndex]);
+                    }
+                }
                 for ($i = 0, $partieNumber = 0; $i < count($parameter[0]); $i++) {
-                    if (!str_contains(strtolower($sections[1][$y]), 'round') || preg_match('/^D[12]$|^MO$/', trim($parameter[1][$i]))) {
+                    // Spieltagswerte ohne Partienummer: D1, D2 und Schluessel nur aus Buchstaben (MO, HS)
+                    if (!str_contains(strtolower($sections[1][$y]), 'round') || preg_match('/^D[12]$|^[A-Za-z]+$/', trim($parameter[1][$i]))) {
                         // andere Section oder SpieltagParameter
                         $iniData[$sections[1][$y]][trim($parameter[1][$i])] = trim($parameter[2][$i]);
                     }
@@ -543,6 +557,22 @@ class liga {
                             continue; // Parameter passt nicht zum erwarteten Format
                         }
                         // $infoPerPartie -> 0 kompletter treffer / 1 Art des Parameters (GA/GB ...) / 2 Nummer der Partie
+                        if ($roundModus < 1) {
+                            // Liga: die Nummer im Schluessel ist die Partie (SP3 gehoert zu TA3), unabhaengig
+                            // von der Reihenfolge der Zeilen - wie lmo-openfile.php
+                            $ligaPartie = (int) $infoPerPartie[2];
+                            if (preg_match('/^T[AB]$/', $infoPerPartie[1])) {
+                                $iniData[$sections[1][$y]][$ligaPartie][$infoPerPartie[1]] = trim($parameter[2][$i]);
+                            }
+                            else {
+                                if ($infoPerPartie[1] == 'GA') {
+                                    $iniData[$sections[1][$y]][$ligaPartie][1]['SpNr'] = $infoPerPartie[2];
+                                }
+                                $iniData[$sections[1][$y]][$ligaPartie][1][$infoPerPartie[1]] = trim($parameter[2][$i]);
+                            }
+                            continue;
+                        }
+                        // Pokal: GA11, GA12 ... die Nummer ist mehrdeutig, zugeordnet wird ueber die Reihenfolge
                         if (!isset($gameNumber)) $gameNumber = 0;
                         if ($infoPerPartie[1] == 'TA') {
                             $partieNumber++;
@@ -609,6 +639,13 @@ class liga {
                 $spieltag = new spieltag($rCounter, $startTime, $endTime);
                 // Modus des Spieltags
                 $spieltag->setModus($this->getIniData('MO', $iniData[$roundSektion]));
+                // weitere Spieltagswerte (z.B. HS = Handicap-Reihenfolge) unveraendert merken
+                foreach ($iniData[$roundSektion] as $roundKey => $roundValue) {
+                    if (is_string($roundKey)) {
+                        $spieltag->setParameter($roundValue, $roundKey);
+                        unset($iniData[$roundSektion][$roundKey]);
+                    }
+                }
                 for ($pCounter = 1; isset($iniData[$roundSektion][$pCounter]['TA']); $pCounter++) {
                     $heimTeam = &$this->teamForNumber($this->getIniData('TA', $iniData[$roundSektion], $pCounter));
                     $gastTeam = &$this->teamForNumber($this->getIniData('TB', $iniData[$roundSektion], $pCounter));
@@ -633,7 +670,8 @@ class liga {
                         // Spielbericht
                         $partie->setreportUrl($this->getIniData('BE', $iniData[$roundSektion][$pCounter], $partienNumber));
                         // Spielende (normal / n.V. / n.E ...)
-                        $partie->setSpielEnde($this->getIniData('SP', $iniData[$roundSektion][$pCounter], $partienNumber));
+                        // aus der Datei kommt ein String, setSpielEnde() erwartet int
+                        $partie->setSpielEnde((int) $this->getIniData('SP', $iniData[$roundSektion][$pCounter], $partienNumber));
                         // Alle Anderen bisher unbekannten Parameter
                         $partie->setParameter($iniData[$roundSektion][$pCounter][$partienNumber]);
                         $this->addPartie($partie);  // Partien werden zusätzlich zu der Liga hinzugefügt
@@ -1010,7 +1048,9 @@ class liga {
         // if there is a need for any update functionality for special addons,
         // you should define them inside of the function updateAddons() located
         // in update_addons.php file.
-        include PATH_TO_ADDONDIR . '/classlib/update_addons.php';
+        // require_once: die Datei deklariert updateAddons(); ein zweites writeFile() im selben
+        // Request brach mit include ab ("Cannot redeclare updateAddons()")
+        require_once PATH_TO_ADDONDIR . '/classlib/update_addons.php';
         $iniData = array(); // Inhalt des LigaFiles
         $aktSpTag = 1;
         $maxSp = 0;
@@ -1026,10 +1066,16 @@ class liga {
                 }
             }
         }
-        // aktualisierte Optionen setzen <acronym title="Liga Manager Online">LMO</acronym>
-        $this->options->keyValues['Title'] = "<acronym title='Liga Manager Online " . CLASSLIB_VERSION . "'>LMO</acronym>";
+        // aktualisierte Optionen setzen. Titel und aktuellen Spieltag aus der Oberflaeche nicht
+        // ueberschreiben: nur setzen, wenn sie fehlen bzw. kein gueltiger Spieltag sind
+        if (empty($this->options->keyValues['Title'])) {
+            $this->options->keyValues['Title'] = "<acronym title='Liga Manager Online " . CLASSLIB_VERSION . "'>LMO</acronym>";
+        }
         $this->options->keyValues['Matches'] = $maxSp;
-        $this->options->keyValues['Actual'] = isset($aktSpTag) ? $aktSpTag : 1;
+        $actual = isset($this->options->keyValues['Actual']) ? (int) $this->options->keyValues['Actual'] : 0;
+        if ($actual < 1 || $actual > $this->spieltageCount()) {
+            $this->options->keyValues['Actual'] = $aktSpTag;
+        }
         foreach ($this->options->keyValues as $key => $value) {
             $iniData['Options'][$key] = $value;
         }
@@ -1062,6 +1108,9 @@ class liga {
                 $iniData['Round' . $roundCount]['D1'] = $spieltag->vonString();
                 $iniData['Round' . $roundCount]['D2'] = $spieltag->bisString();
                 $iniData['Round' . $roundCount]['MO'] = $spieltag->getModus();
+                foreach ($spieltag->getParameter() as $roundKey => $roundValue) {  // z.B. HS
+                    $iniData['Round' . $roundCount][$roundKey] = $roundValue;
+                }
                 for ($teamCounter = 1, $pCounter = 0; $pCounter < $spieltag->partienCount(); $teamCounter++) {
                     $partienCounter = 0;
                     $iniData['Round' . $roundCount]['TA' . $teamCounter] = $spieltag->partien[$pCounter]->heim->nr;
@@ -1191,16 +1240,64 @@ class liga {
     * @package classLib
     * @access privat
     */
-    function strafen(&$team, $spTag) {
-        $stda = isset($team['team']->keyValues['STDA']) ? $team['team']->keyValues['STDA'] : 0;
-        if ($stda == $spTag || ($stda == 0 && $spTag == 1)) {
-            $team['pPkt'] -= isset($team['team']->keyValues['SP']) ? $team['team']->keyValues['SP'] : 0;
-            $team['pTor'] -= isset($team['team']->keyValues['TOR1']) ? $team['team']->keyValues['TOR1'] : 0;
-            $team['mTor'] -= isset($team['team']->keyValues['TOR2']) ? abs($team['team']->keyValues['TOR2']) : 0;
-            if ($this->options->keyValues['MinusPoints'] == 2 && isset($team['team']->keyValues['SM'])) {
-                $team['mPkt'] -= $team['team']->keyValues['SM'];
-            }
+    function strafen(&$team) {
+        $keyValues = $team['team']->keyValues;
+        $team['pPkt'] -= isset($keyValues['SP']) ? $keyValues['SP'] : 0;
+        // TOR1/TOR2 wie in der Ligadatei: lmo-adminteams.php speichert "+x" als -x
+        $team['pTor'] -= isset($keyValues['TOR1']) ? $keyValues['TOR1'] : 0;
+        $team['mTor'] -= isset($keyValues['TOR2']) ? $keyValues['TOR2'] : 0;
+        if ($this->options->keyValues['MinusPoints'] == 2 && isset($keyValues['SM'])) {
+            $team['mPkt'] -= $keyValues['SM'];
         }
+    }
+
+    /**
+    * Ob die Strafe eines Teams in dieser Tabelle zaehlt (wie lmo-calctable.php):
+    * nicht in Heim-/Auswaertstabelle, in der Hinrunde nur Strafen ab einem Spieltag der Hinrunde,
+    * in der Rueckrunde nur solche ab einem Spieltag der Rueckrunde, und erst wenn der Spieltag
+    * STDA erreicht ist (Ergebnisse hat).
+    *
+    * @access private
+    * @param array team Tabellenzeile
+    * @param string tableArt Art der Tabelle
+    * @param integer lastPlayed letzter Spieltag mit einem Ergebnis
+    * @return boolean
+    */
+    function strafeFaellig($team, $tableArt, $lastPlayed) {
+        $stda = isset($team['team']->keyValues['STDA']) ? (int) $team['team']->keyValues['STDA'] : 0;
+        $half = (int) ($this->spieltageCount() / 2);
+        if ($tableArt == 'heim' || $tableArt == 'gast') {
+            return false;
+        }
+        if (($tableArt == 'hin' && $stda > $half) || ($tableArt == 'rueck' && $stda <= $half)) {
+            return false;
+        }
+        return $stda <= $lastPlayed;
+    }
+
+    /**
+    * Bucht ein Ergebnis fuer ein Team: Tore, Spiele, Sieg/Remis/Niederlage und Punkte.
+    *
+    * @access private
+    */
+    function addResult(&$row, $own, $other, $pointsForWin, $pointsForDraw, $pointsForLost) {
+        $row['pTor'] += $own;
+        $row['mTor'] += $other;
+        $row['spiele']++;
+        if ($own > $other) {
+            $result = array('s', $pointsForWin, $pointsForLost);
+        }
+        elseif ($own < $other) {
+            $result = array('n', $pointsForLost, $pointsForWin);
+        }
+        else {
+            $result = array('u', $pointsForDraw, $pointsForDraw);
+        }
+        if (isset($row[$result[0]])) {
+            $row[$result[0]]++;
+        }
+        $row['pPkt'] += $result[1];
+        $row['mPkt'] += $result[2];
     }
 
     /**
@@ -1253,6 +1350,19 @@ class liga {
               'possp' => array()
             );
         }
+        // Strafen: einmal je Team, sobald faellig - auch wenn das Team an dem Spieltag spielfrei ist
+        $lastPlayed = 0;
+        $bestraft = array();
+        $strafenBuchen = function () use (&$tableArray, &$bestraft, &$lastPlayed, $tableArt) {
+            foreach ($tableArray as $index => $row) {
+                if (empty($bestraft[$index]) && $this->strafeFaellig($row, $tableArt, $lastPlayed)) {
+                    $this->strafen($tableArray[$index]);
+                    $bestraft[$index] = true;
+                }
+            }
+        };
+        $strafenBuchen();  // Strafen ab Spieltag 0
+        $processed = array();  // gewertete Spieltage, fuer den direkten Vergleich
         foreach ($this->spieltage as $spieltag) {
             if ($spieltag->getModus() > 0) {
                 continue;
@@ -1275,6 +1385,7 @@ class liga {
                 }
                 continue;
             }
+            $processed[$spieltag->nr] = true;
             foreach ($spieltag->partien as $partie) {
                 $heimCount = -1;
                 $gastCount = -1;
@@ -1302,12 +1413,18 @@ class liga {
                         $gastCount = $count;
                     }
                 }
-                // Strafen berücksichtigen
-                if ($heimCount != -1) {
-                    $this->strafen($tableArray[$heimCount], $spTagCount);
+                if ($partie->valuateGame() != -1) {
+                    $lastPlayed = $spieltag->nr;
                 }
-                if ($gastCount != -1) {
-                    $this->strafen($tableArray[$gastCount], $spTagCount);
+                // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
+                if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
+                    if ($tableArt != 'gast') {
+                        $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    }
+                    if ($tableArt != 'heim') {
+                        $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    }
+                    continue;
                 }
 
                 if ($partie->hTore > -1) {
@@ -1397,11 +1514,13 @@ class liga {
                     }
                 }
             } // foreach Partien
+            $strafenBuchen();
             //Zusätzliche Berechnung der Position für den jeweiligen Spieltag (Statisktik)
             if ($possp == true) {
                 for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
                     $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
                 }
+                $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
                 $tableArray = $this->sortTable($tableArray);
                 for ($i = 0; $i < count($tableArray); $i++) {
                     $tableArray[$i]['possp'][$spTagCount - 1] = $tableArray[$i]['pos'];
@@ -1418,7 +1537,47 @@ class liga {
         for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
             $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
         }
-        return $this->sortTable($tableArray);
+        $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
+        $tableArray = $this->sortTable($tableArray);
+        $this->directContext = null;
+        if ($this->options->keyValues['HandS'] == 1 && $tableArt == 'all') {
+            $tableArray = $this->sortHandicap($tableArray, $spTag);
+        }
+        return $tableArray;
+    }
+
+    /**
+    * Handicap-Reihenfolge (Option HandS, nur Gesamttabelle), wie lmo-calctable.php:
+    * Der Wert HS des Spieltags enthaelt je Platz der errechneten Tabelle zwei Ziffern mit dem
+    * Platz, auf den das dort stehende Team gesetzt wird. Bei gleichen Ziffern stehen die Teams
+    * in umgekehrter Reihenfolge der errechneten Tabelle.
+    * Fuer die Tabelle der ganzen Saison gilt die Reihenfolge des aktuellen Spieltags (Actual),
+    * sonst die des angegebenen Spieltags.
+    *
+    * @access protected
+    * @param array tableArray sortierte Tabelle
+    * @param integer spTag Spieltag der Tabelle
+    * @return array
+    */
+    function sortHandicap($tableArray, $spTag) {
+        if ($spTag >= $this->spieltageCount()) {
+            $spTag = max(1, (int) $this->options->keyValues['Actual']);
+        }
+        $spieltag = $this->spieltagForNumber($spTag);
+        $handicap = is_object($spieltag) ? (string) $spieltag->getParameter('HS') : '';
+        if ($handicap === '' || $handicap == 0) {
+            return $tableArray;
+        }
+        $order = array_keys($tableArray);
+        usort($order, function ($a, $b) use ($handicap) {
+            return array(intval(substr($handicap, $a * 2, 2)), $b) <=> array(intval(substr($handicap, $b * 2, 2)), $a);
+        });
+        $sorted = array();
+        foreach ($order as $pos => $index) {
+            $sorted[$pos] = $tableArray[$index];
+            $sorted[$pos]['pos'] = $pos + 1;
+        }
+        return $sorted;
     }
 
     /**
@@ -1438,47 +1597,88 @@ class liga {
             $sort_pTor[] = $table['pTor'];
             $sort_mTor[] = $table['mTor'];
             $sort_dTor[] = $table['dTor'];
+            $sort_nr[] = (int) $table['team']->nr;
         }
         // ASC = auf-, DESC = absteigend
+        // Bei voelligem Gleichstand steht das Team mit der hoeheren Nummer vorn (wie lmo-calctable.php)
         if ($this->options->keyValues['Kegel'] == 1) {  // Sortierung Punkte,erzielte Tore
-            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_pTor, SORT_DESC, $sort_dTor, SORT_DESC, $tableArray, SORT_DESC);
+            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_pTor, SORT_DESC, $sort_dTor, SORT_DESC, $sort_nr, SORT_DESC, $tableArray, SORT_DESC);
         }
         else {  // Sortierung PlusPkt,Tordiff
-            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_dTor, SORT_DESC, $sort_pTor, SORT_DESC, $sort_mTor, SORT_ASC, $tableArray, SORT_DESC);
+            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_dTor, SORT_DESC, $sort_pTor, SORT_DESC, $sort_mTor, SORT_ASC, $sort_nr, SORT_DESC, $tableArray, SORT_DESC);
         }
         // BEGIN Direkter Vergleich
         if ($this->options->keyValues['Direct'] == 1) {
-            $subteams = array();
-            $pPkt = 0;
-            $mPkt = 0;
-            for ($abc = 0; $abc < count($tableArray); $abc++) {
-                if ($pPkt == $tableArray[$abc]['pPkt'] && $mPkt == $tableArray[$abc]['mPkt']) {
-                    $subteams[$tableArray[$abc]['team']->nr] = $tableArray[$abc]['team'];
-                }
-                else {
-                    if (count($subteams) > 1) {
-                        $tmp_table = $this->calcTableforTeams($subteams);
-                        $tmp_tablearray = $tableArray;
-                        $nextpos = $abc - count($tmp_table);
-                        for ($b = 0; $b < count($tmp_table); $b++) {
-                            for ($f = $nextpos; $f < $abc; $f++) {
-                                if ($tmp_tablearray[$f]['team'] === $tmp_table[$b]['team']) {
-                                    $tableArray[$nextpos + $b] = $tmp_tablearray[$f];
-                                }
-                            }
-                        }
-                    } // END if (count($subteams)>1)
-                    $subteams = array();
-                    $pPkt = $tableArray[$abc]['pPkt'];
-                    $mPkt = $tableArray[$abc]['mPkt'];
-                    $subteams[$tableArray[$abc]['team']->nr] = $tableArray[$abc]['team'];
-                }
-            }  // END for ($abc = 0; $abc < count($tableArray); $abc++)
+            // Minuspunkte zaehlen nur bei der Zwei-Punkte-Regel (wie lmo-calctable.php)
+            $keys = $this->options->keyValues['MinusPoints'] == 2 ? array('pPkt', 'mPkt') : array('pPkt');
+            $tableArray = $this->sortTiedGroups($tableArray, $keys);
         }  // END Direkter Vergleich
         for ($i = 0; $i < count($tableArray); $i++) {  // Position setzen
             $tableArray[$i]['pos'] = $i + 1;
         }
         return $tableArray;
+    }
+
+    /**
+    * Direkter Vergleich: Gruppen gleichauf liegender Teams (gleiche Werte in $keys) werden
+    * nach der Tabelle ihrer Partien untereinander (calcTableforTeams) sortiert, siehe
+    * compareDirect(). Bleiben Teams auch dort gleichauf, behalten sie ihre bisherige
+    * Reihenfolge (z.B. nach Tordifferenz) - wie lmo-calctable.php.
+    *
+    * @access protected
+    * @param array tableArray sortierte Tabelle
+    * @param array keys Spalten, die für einen Gleichstand übereinstimmen müssen
+    * @return array
+    */
+    function sortTiedGroups($tableArray, $keys) {
+        $count = count($tableArray);
+        $start = 0;
+        for ($i = 1; $i <= $count; $i++) {
+            $tied = $i < $count;
+            foreach ($keys as $key) {
+                $tied = $tied && $tableArray[$i][$key] == $tableArray[$start][$key];
+            }
+            if ($tied) {
+                continue;
+            }
+            $size = $i - $start;
+            if ($size > 1) {
+                $group = array_slice($tableArray, $start, $size);
+                $subteams = array();
+                foreach ($group as $row) {
+                    $subteams[$row['team']->nr] = $row['team'];
+                }
+                $direct = array();
+                foreach ($this->calcTableforTeams($subteams) as $directRow) {
+                    $direct[$directRow['team']->nr] = $directRow;
+                }
+                $order = array_keys($group);
+                usort($order, function ($a, $b) use ($group, $direct) {
+                    $result = $this->compareDirect($direct[$group[$a]['team']->nr], $direct[$group[$b]['team']->nr]);
+                    return $result != 0 ? $result : $a - $b;  // sonst bisherige Reihenfolge
+                });
+                foreach ($order as $b => $index) {
+                    $tableArray[$start + $b] = $group[$index];
+                }
+            }
+            $start = $i;
+        }
+        return $tableArray;
+    }
+
+    /**
+    * Vergleich zweier Zeilen der Tabelle des direkten Vergleichs (calcTableforTeams):
+    * Punkte, Minuspunkte (nur bei der Zwei-Punkte-Regel), Tordifferenz, Tore;
+    * bei Kegelwertung Tore vor Tordifferenz. Negativ: $a steht vor $b.
+    *
+    * @access protected
+    * @return integer
+    */
+    function compareDirect($a, $b) {
+        $minus = $this->options->keyValues['MinusPoints'] == 2;
+        $goals = $this->options->keyValues['Kegel'] == 1 ? array('pTor', 'dTor') : array('dTor', 'pTor');
+        return array($b['pPkt'], $minus ? $a['mPkt'] : 0, $b[$goals[0]], $b[$goals[1]])
+           <=> array($a['pPkt'], $minus ? $b['mPkt'] : 0, $a[$goals[0]], $a[$goals[1]]);
     }
 
     /**
@@ -1505,7 +1705,13 @@ class liga {
               'mPkt' => 0
             );
         }
+        // nur die Partien der Tabelle, die calcTable() gerade sortiert (Spieltage, Heim/Gast)
+        $context = $this->directContext;
+        $art = $context === null ? 'all' : $context['art'];
         foreach ($this->spieltage as $spieltag) {
+            if ($spieltag->getModus() > 0 || ($context !== null && empty($context['rounds'][$spieltag->nr]))) {
+                continue;
+            }
             foreach ($spieltag->partien as $partie) {
                 if ($partie->spielEnde == 2) {  // Nach Verlängerung
                     $pointsForWin = $this->options->keyValues['XtraS'];
@@ -1532,6 +1738,15 @@ class liga {
                 }
                 if ($heimCount == -1 OR $gastCount == -1)
                     continue;
+                // Heim-/Auswaertstabelle: die andere Seite der Partie wird danach zurueckgesetzt
+                $before = array($heimCount => $tableArray[$heimCount], $gastCount => $tableArray[$gastCount]);
+                // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
+                if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
+                    $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
+                    $this->keepSide($tableArray, $before, $heimCount, $gastCount, $art);
+                    continue;
+                }
                 if ($partie->hTore > -1) {
                     // Tore für Heim hinzufügen
                     $tableArray[$heimCount]['pTor'] += $partie->hTore;
@@ -1577,15 +1792,31 @@ class liga {
                 elseif ($partie->gTore == -2) {  // O:0 Tore Gast gewinnt
                     $tableArray[$heimCount]['mPkt'] += $pointsForWin;
                     $tableArray[$gastCount]['pPkt'] += $pointsForWin;
-                    $tableArray[$heimCount]['mPkt'] += $pointsForLost;
-                    $tableArray[$gastCount]['pPkt'] += $pointsForLost;
+                    $tableArray[$heimCount]['pPkt'] += $pointsForLost;
+                    $tableArray[$gastCount]['mPkt'] += $pointsForLost;
                 }
+                $this->keepSide($tableArray, $before, $heimCount, $gastCount, $art);
             }  // foreach Partien
         }  // foreach Spieltage
         for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
             $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
         }
         return $this->sortDirectTable($tableArray);
+    }
+
+    /**
+    * Heimtabelle: nur die Heimmannschaft einer Partie wird gewertet, Auswaertstabelle nur die
+    * Gastmannschaft. Setzt die Zeile der anderen Seite auf den Stand vor der Partie zurueck.
+    *
+    * @access private
+    */
+    function keepSide(&$tableArray, $before, $heimCount, $gastCount, $art) {
+        if ($art == 'heim') {
+            $tableArray[$gastCount] = $before[$gastCount];
+        }
+        elseif ($art == 'gast') {
+            $tableArray[$heimCount] = $before[$heimCount];
+        }
     }
 
     /**
@@ -1598,7 +1829,13 @@ class liga {
     * @return array
     */
     function sortDirectTable($tableArray) {
-        return liga::sortTable($tableArray);
+        // ohne erneuten direkten Vergleich: sortTiedGroups() wertet nur einmal aus
+        // (wie lmo-calctable.php), sonst rechnet sortTable() die Gruppe endlos weiter
+        $direct = $this->options->keyValues['Direct'];
+        $this->options->keyValues['Direct'] = 0;
+        $tableArray = liga::sortTable($tableArray);
+        $this->options->keyValues['Direct'] = $direct;
+        return $tableArray;
     }
 
 } // End Class Liga

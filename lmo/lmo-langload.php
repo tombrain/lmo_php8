@@ -17,6 +17,9 @@
   *
   * $Id: lmo-langload.php 514 2009-11-01 17:52:09Z jokerlmo $
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 // Langdateien laden (zuerst Standarddatei, wenn vorhanden werden die alten Werte
 // von der neuen Sprache überschrieben (So werden auch unvollständige Übersetzungen

@@ -71,6 +71,9 @@ class stats {
                       );
         foreach ($this->liga->spieltage as $spieltag) {
             foreach ($spieltag->partien as $partie) {
+                if ($partie->valuateGame() == -1) {  // noch nicht gespielt
+                    continue;
+                }
                 $statsArray['spiele']++;
                 if ($partie->hTore> - 1) {
                     $statsArray['hTore'] += $partie->hTore;
@@ -495,7 +498,7 @@ class stats {
         if ($serienArray['su'] > 0){
             if ($output != '')
                 $output .='<br>';
-            $output = $serienArray['su'] . ' Spiele o. Niederlage';
+            $output .= $serienArray['su'] . ' Spiele o. Niederlage';
         }
         return $output;
     }  // END SerieToHTML()

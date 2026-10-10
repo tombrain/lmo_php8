@@ -34,12 +34,17 @@
  */
 function HTML_icon($img_name, $img_type, $img_size = 'small', $html = '', $alternative_text = '') {
     $subFolder = '/' . $img_type . '/' . $img_size . '/';
+    $imgHTML = '';
+    // Alternativtext erst nach allen Endungen, sonst endet die Suche schon bei der ersten
     foreach( const_array( CLASSLIB_IMG_TYPES ) as $extension) {
-        if ($imgHTML = findImage($img_name, $subFolder, $extension, $html, $alternative_text) ) {
+        if ($imgHTML = findImage($img_name, $subFolder, $extension, $html) ) {
             break;
         }
     }
-    if ($imgHTML == '') {
+    if ($imgHTML == '' && $alternative_text != '') {
+        $imgHTML = $alternative_text;
+    }
+    elseif ($imgHTML == '') {
         $imgHTML = substr($html, 6, strrpos($html, "'") - 6);
     }
     return $imgHTML;

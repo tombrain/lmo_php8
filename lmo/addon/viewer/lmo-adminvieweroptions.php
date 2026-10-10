@@ -159,7 +159,6 @@ if ($_SESSION['lmouserok'] == 2) {
                 $team = substr($team, 0, strrpos($team, ']'));
                 $liga1 = new liga();
                 if ($liga1->loadFile(PATH_TO_LMO . '/' . $dirliga . $ligen_datei) == true) { // Ligenfile vorhanden?
-                    $file_ligen_datei = file(chop(PATH_TO_LMO . '/ligen/' . $ligen_datei));
                     if ($ligen_datei != $doppelt_check) {
                         $doppelt_check = $ligen_datei;
                         $zz++;

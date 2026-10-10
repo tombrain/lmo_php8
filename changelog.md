@@ -9,7 +9,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
-* Seitenquelltextausgabe der beiden Datein lmo-savehtml.php und lmo-savehtml1.php verbessert. Außerdem den Tabellen der beiden Seiten runde Ecken verpasst.
+
 
 ### Deprecated  
 
@@ -21,7 +21,102 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+
+
+***
+## [4.2.1] - 2026-10-10
+
+_Hier hätten wir die Changelogs für 4.2.1._  
+
+### Added  
+* Automatische Tests für „Rückrundenspielplan erstellen“ und das Verschieben von Partien im Admin-Bereich.  
+* Automatische Tests für das Addon „mini“: Die Minitabelle muss dieselbe Tabelle zeigen wie die Haupttabelle.  
+* Automatische Tests für die Addons „viewer“ (Ansicht speichern, Spiele nach Datum und Spieltag, Cache) und „ticker“ (Lauftext mit Wertungen, News).  
+* Automatische Tests für das Addon „spieler“ (Spielerstatistik): Spieler und Spalten verwalten, Formelspalten, öffentliche Seite und Druckansicht.  
+* Automatische Tests für den Mailversand (Liga per E-Mail, Passwort vergessen im Tippspiel).  
+* Automatische Tests für Ticker, Viewer und Mini-Spielplan über mehrere Ligen.  
+
+### Changed  
+* PHPMailer wird jetzt über Composer installiert (`phpmailer/phpmailer` 7.1) statt als veränderte Kopie in `lmo/includes`.  
+* Entwicklungsumgebung (Docker): lokales Postfach für alle Mails von LMO, Übersichtsseite der Addons mit zwei Beispielligen, Doku in `docker/README.md`.  
+* GitHub Action: Die Tests laufen mit PHP 8.0, 8.3, 8.4 und 8.5.  
+* PHP 8.5 wird unterstützt (README: PHP 8.0 bis 8.5).  
+
+### Deprecated  
+
+### Removed  
+* Reste des PDF-Addons (PDF-Erzeuger der Anleitung unter `help/`, auskommentierte Einbindung) und die unbenutzte Datei `lmo-paintgraph.php`. Das separat erhältliche PDF-Addon lässt sich weiterhin einbinden.  
+
+### Fixed  
+* „Rückrundenspielplan erstellen“ bei einer Liga mit ungerader Anzahl Spieltage: Die Fehlermeldung erschien nicht, und die Liga wurde trotzdem neu gespeichert und als erfolgreich gemeldet. Jetzt erscheint die Meldung, gespeichert wird nichts.  
+* Minitabelle: Der Aufruf mit den mitgelieferten Standardeinstellungen brach unter PHP 8 mit einem Fehler ab (leere Werte für „Plätze darüber/darunter“). Ohne Liga erscheint jetzt die Meldung „Liga nicht gefunden“ ohne PHP-Warnung.  
+* Minitabelle: Am ersten Spieltag wurde eine Tendenz angezeigt, obwohl es keinen Vorspieltag gibt. Jetzt ist sie dort für alle Mannschaften 0.  
+* Ticker: Der Hinweis „… bekam den Sieg zugesprochen“ stand nach einem gewerteten Spiel auch bei allen folgenden Spielen des Spieltags.  
+* Ticker: Breite und Geschwindigkeit ließen sich beim Einbinden nicht übergeben; die Einstellung „Notizen anzeigen“ wirkte bei Pokal-Ligen nicht.  
+* Ticker mit mehreren Ligen: Die Spiele der ersten Liga standen bei jeder weiteren Liga noch einmal. Eine fehlende Liga in der Liste zeigte die Spiele der vorigen statt der Meldung „keine passenden Ligen gefunden“.  
+* Mini-Spielplan: PHP-Warnung, wenn die beiden Mannschaften in einer Liga nie aufeinandertreffen. Bei den früheren Begegnungen aus dem Archiv konnte die falsche Mannschaft erscheinen, wenn sich zwei Namen nur in Ziffern unterscheiden (z.B. „TSV Muster“ und „TSV Muster 2“).  
+* Viewer: PHP-Warnung beim ersten Aufruf einer Ansicht (Cache-Datei noch nicht vorhanden); im Admin-Formular eine PHP-Warnung, wenn das Ligenverzeichnis nicht `ligen/` heißt.  
+* classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
+* classlib: Bei völligem Gleichstand (gleiche Punkte und Tore) war die Reihenfolge zufällig. Jetzt steht wie in der Haupttabelle die Mannschaft mit der höheren Nummer vorn.  
+* classlib: Die Handicap-Reihenfolge (Option „HandS“) wird jetzt wie in der Haupttabelle auf die Gesamttabelle angewendet. Minitabelle und Statistik zeigten bei solchen Ligen bisher andere Plätze.  
+* Spielerstatistik: Eine ungültige Formel erzeugte PHP-Warnungen statt des Fehlertexts, eine unvollständige Formel (z.B. `Tore/`) brach die Admin-Seite ab; außerdem erschienen Reste der Formel als Debug-Ausgabe in der Seite.  
+* Spielerstatistik: Die öffentliche Seite und die Druckansicht brachen bei einem nicht-numerischen Seitenanfang ab und warnten bei einer unbekannten Sortierspalte; die Druckansicht warnte, wenn es zur Liga keine Statistik gibt.  
+* Mailversand: Ein fehlgeschlagener Versand (Liga per E-Mail; Tippspiel: Rundmail, Freischaltung, Benachrichtigung) endete mit einem Fatal Error statt einer Meldung; bei der Rundmail brach schon eine ungültige Adresse den ganzen Lauf ab.  
+* Tippspiel: Links in Mails waren fehlerhaft, wenn der Webserver `REQUEST_SCHEME` nicht liefert, und konnten die Parameter der aktuellen Anfrage enthalten.  
+* „Liga per E-Mail“ ohne die PHP-Erweiterung `zip` brach mit einem Fehler ab; jetzt erscheint eine Meldung.  
+* „Alle Ligen herunterladen“ brach ohne die PHP-Erweiterung `zip` ebenfalls ab; jetzt erscheint eine Meldung. Das Archiv entsteht im Ausgabeordner statt im Programmverzeichnis.  
+* Spielerstatistik: Das Löschen einer Spalte, die es nicht gibt, erzeugte eine PHP-Warnung.  
+* Zufallsspielplan: Beim Mischen der Mannschaften wurde gelegentlich neben die Liste gegriffen (bei 6 Mannschaften in etwa jedem siebten Aufruf); im erzeugten Spielplan fehlte dann eine Mannschaft.  
+* Admin-Bereich ohne Anmeldung: Die Sprachauswahl erzeugte je Sprache eine PHP-Warnung.  
+* Admin-Bereich: Der Aufruf der PDF-Optionen ohne installiertes PDF-Addon endete mit einem Fatal Error.  
+* Liga aus einer Vorlage mit mehr Mannschaften anlegen: PHP-Warnungen beim Erzeugen der Statistikdatei; Partien mit Mannschaften, die es in der Liga nicht gibt, wurden mitgezählt.  
+* Admin-Bereich: Rief ein Hilfsadmin ohne erweiterte Rechte die Mannschaftsverwaltung auf, erschien der Ergebnis-Editor für einen Spieltag, den es nicht gibt (PHP-Warnungen, unbrauchbares Formular). Jetzt öffnet sich der aktuelle Spieltag.  
+
+### Security  
+* Spielerstatistik: Die Parameter für Sortierung, Seite und Mannschaft wurden unmaskiert in die Seite geschrieben (Cross-Site-Scripting).  
+* Dateien, die LMO nur einbindet (131 Dateien in `lmo/` und den Addons), beenden sich bei direktem Aufruf im Browser sofort. Bisher liefen sie ohne Konfiguration und Rechteprüfung los und gaben Warnungen, Seitenbruchstücke und teils Fehlermeldungen mit Dateipfaden aus.  
+
+
+***
+## [4.2.0] - 2026-10-10
+
+_Hier hätten wir die Changelogs für 4.2.0._  
+
+### Added  
+* Ersteinrichtung ohne Installer: Beim ersten Aufruf wird die Konfiguration aus `config-default/` angelegt, das erste Admin-Konto wird über ein Formular erstellt (Texte dafür in allen Sprachen).  
+* Sprachauswahl im Fuß des Admin-Bereichs.  
+* Automatische Tests (PHPUnit, Docker, GitHub Action), siehe TESTING.md: Golden-Master-Tests für öffentliche Seiten und Admin-Bereich, Unit-Tests für die classlib, Tabellenvergleich mit 75 echten Ligen (OpenLigaDB, Abschlusstabellen aus Wikipedia) und 10 konstruierten Ligen.  
+* classlib: Spieltage merken sich weitere Werte der Ligadatei (`spieltag::setParameter()` / `getParameter()`), z.B. die Handicap-Reihenfolge.  
+
+### Changed  
+* Die Mindestanforderung des Webservers beträgt jetzt PHP 8.0 (bisher 7.4). Der Admin-Bereich weist bei älteren PHP-Versionen darauf hin.  
+* Seitenquelltextausgabe der beiden Datein lmo-savehtml.php und lmo-savehtml1.php verbessert. Außerdem den Tabellen der beiden Seiten runde Ecken verpasst.  
+* Template-System über Composer (`pear/html_template_it`, neue Klasse `LMO_Template`) statt der mitgelieferten Dateien IT.php und ITX.php.  
+* Addon-Reiter, Viewer-Vorlagen und Ligalisten im Admin-Bereich erscheinen in fester (alphabetischer) Reihenfolge statt in der des Dateisystems.  
+* Wertung „beidseitiges Ergebnis“: Das Ergebnis zählt für beide Mannschaften vollständig aus Sicht der Heimmannschaft (Sieg/Unentschieden/Niederlage, Punkte, Minuspunkte). Bisher wurden nur Spiel und Tore gezählt.  
+* Straf-/Bonuspunkte und -tore „ab Spieltag X“ zählen erst, wenn Spieltag X Ergebnisse hat. Bisher wurden sie in der Gesamttabelle sofort eingerechnet.  
+* Die classlib rechnet Tabellen jetzt wie die Haupttabelle (direkter Vergleich, Strafen, beidseitiges Ergebnis). Minitabelle und Statistik zeigen damit dieselbe Tabelle.  
+
+### Deprecated  
+
+
+### Removed  
+* Installer (`install/`) entfernt, ebenso die nicht mehr benötigten PEAR-Dateien für FTP, Socket und Cache.  
+
+### Fixed  
+* Direkter Vergleich: Gleichstand wurde nur an der letzten Ziffer der Punkte erkannt (59 und 49 Punkte galten als gleich).  
+* Direkter Vergleich mit zehn und mehr punktgleichen Teams und Minuspunkten: Das beste Team stand am Ende der Gruppe.  
+* classlib: Spielende (n.V./i.E.) wurde aus der Ligadatei nicht gelesen und ging beim Speichern verloren.  
+* classlib, direkter Vergleich: Gleichstand am Tabellenende wurde nicht ausgewertet, ein zugesprochener Auswärtssieg falsch gebucht, und es wurden immer alle Spiele der Saison gewertet statt nur die der angezeigten Tabelle (Spieltag, Heim/Auswärts).  
+* classlib, Strafen: Strafe entfiel, wenn die Mannschaft am Spieltag des Strafbeginns spielfrei war; Bonus-Gegentore wurden mit falschem Vorzeichen verrechnet; Strafen zählten auch in Heim- und Auswärtstabelle.  
+* classlib, Speichern (`writeFile()`, genutzt von „Rückrunde erzeugen“ und „Spieltage verschieben“): Handicap-Reihenfolge, Titel und aktueller Spieltag gingen verloren; ein zweites Speichern im selben Aufruf brach ab; Ligen in Unterordnern wurden danach nicht gefunden (HTML-Export und Statistik ohne Daten).  
+* classlib, Statistik: Es wurden auch nicht gespielte Partien gezählt; die Serienanzeige überschrieb ihren eigenen Text.  
+* classlib: `ligaFussball::sortTable()` lief unter PHP 8 nur mit Warnungen, `liga::factory()` war nicht aufrufbar, `aktuellerSpieltag()` lieferte den folgenden Spieltag, `strAfterChar()`, `readLigaDir()` (Endung `.L98`) und `HTML_icon()` (Suche nach .jpg/.png mit Alternativtext) korrigiert.  
+
+### Security  
 * Cross Site Scripting/XSS Lücke geschlossen   
+* `lmo-rueckrunde.php` ließ sich ohne Anmeldung direkt aufrufen und schrieb dann die angegebene Ligadatei neu. Jetzt nur noch für angemeldete Admins.  
+* Tippspiel: Neue Passwörter werden mit Argon2id bzw. bcrypt gespeichert.  
 
 
 ***
@@ -116,6 +211,102 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+
+
+***
+## [4.2.1] - 2026-10-10
+
+_Here we had the changelogs for 4.2.1._  
+
+### Added  
+* Automated tests for "create second half of season" and for moving matches in the admin area.  
+* Automated tests for the "mini" addon: the mini table must show the same table as the main table.  
+* Automated tests for the addons "viewer" (saving a view, matches by date and by match day, cache) and "ticker" (ticker text with ratings, news).  
+* Automated tests for the "spieler" addon (player statistics): managing players and columns, formula columns, public page and print view.  
+* Automated tests for sending mail (league by e-mail, forgotten password in the betting game).  
+* Automated tests for ticker, viewer and mini schedule across several leagues.  
+
+### Changed  
+* PHPMailer is now installed via Composer (`phpmailer/phpmailer` 7.1) instead of the modified copy in `lmo/includes`.  
+* Development environment (Docker): local mailbox for all mails sent by LMO, overview page of the addons with two sample leagues, documentation in `docker/README.md`.  
+* GitHub Action: the tests run with PHP 8.0, 8.3, 8.4 and 8.5.  
+* PHP 8.5 is supported (README: PHP 8.0 to 8.5).  
+
+### Deprecated  
+
+### Removed  
+* Remains of the PDF addon (PDF generator of the manual under `help/`, commented-out includes) and the unused file `lmo-paintgraph.php`. The separately available PDF addon can still be plugged in.  
+
+### Fixed  
+* "Create second half of season" for a league with an odd number of match days: the error message was not shown, and the league was saved again anyway and reported as successful. Now the message is shown and nothing is saved.  
+* Mini table: the call with the shipped default settings aborted with an error under PHP 8 (empty values for "places above/below"). Without a league the message "league not found" is now shown without a PHP warning.  
+* Mini table: on the first match day a trend was shown although there is no previous match day. Now it is 0 for all teams there.  
+* Ticker: after a match decided by ruling, the note "… was awarded the win" also appeared on all following matches of the match day.  
+* Ticker: width and speed could not be passed when including the ticker; the setting "show notes" had no effect for cup leagues.  
+* Ticker with several leagues: the matches of the first league were repeated for every further league. A missing league in the list showed the matches of the previous one instead of the message "no matching leagues found".  
+* Mini schedule: PHP warning when the two teams never meet in a league. For previous meetings from the archive the wrong team could appear when two names differ only in digits (e.g. "TSV Muster" and "TSV Muster 2").  
+* Viewer: PHP warning on the first call of a view (cache file not yet present); a PHP warning in the admin form when the league directory is not named `ligen/`.  
+* classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
+* classlib: with a complete tie (same points and goals) the order was arbitrary. Now, as in the main table, the team with the higher number comes first.  
+* classlib: the handicap order (option "HandS") is now applied to the overall table as in the main table. Until now the mini table and the statistics showed different places for such leagues.  
+* Player statistics: an invalid formula produced PHP warnings instead of the error text, an incomplete formula (e.g. `Tore/`) aborted the admin page; in addition, remains of the formula appeared in the page as debug output.  
+* Player statistics: the public page and the print view aborted on a non-numeric page start and warned on an unknown sort column; the print view warned when there are no statistics for the league.  
+* Sending mail: a failed dispatch (league by e-mail; betting game: circular mail, activation, notification) ended with a fatal error instead of a message; with the circular mail a single invalid address aborted the whole run.  
+* Betting game: links in mails were broken when the web server does not provide `REQUEST_SCHEME`, and could contain the parameters of the current request.  
+* "League by e-mail" without the PHP extension `zip` aborted with an error; now a message is shown.  
+* "Download all leagues" also aborted without the PHP extension `zip`; now a message is shown. The archive is created in the output folder instead of the program directory.  
+* Player statistics: deleting a column that does not exist produced a PHP warning.  
+* Random schedule: shuffling the teams occasionally accessed an entry outside the list (with 6 teams in about every seventh call); the generated schedule then lacked a team.  
+* Admin area without login: the language selection produced a PHP warning per language.  
+* Admin area: calling the PDF options without the PDF addon installed ended with a fatal error.  
+* Creating a league from a template with more teams: PHP warnings while generating the statistics file; matches with teams that do not exist in the league were counted.  
+* Admin area: when a helper admin without extended rights opened the team administration, the result editor appeared for a match day that does not exist (PHP warnings, unusable form). Now the current match day opens.  
+
+### Security  
+* Player statistics: the parameters for sorting, page and team were written into the page unescaped (cross-site scripting).  
+* Files that LMO only includes (131 files in `lmo/` and the addons) now exit immediately when called directly in the browser. Until now they started without configuration and permission check and printed warnings, page fragments and in some cases error messages with file paths.  
+
+
+***
+## [4.2.0] - 2026-10-10
+
+_Here we had the changelogs for 4.2.0._  
+
+### Added  
+* First-time setup without the installer: on the first request the configuration is created from `config-default/`, and the first admin account is created through a form (texts available in all languages).  
+* Language selection in the footer of the admin area.  
+* Automated tests (PHPUnit, Docker, GitHub Action), see TESTING.md: golden master tests for public pages and the admin area, unit tests for the classlib, table comparison against 75 real leagues (OpenLigaDB, final tables from Wikipedia) and 10 constructed leagues.  
+* classlib: match days keep additional values of the league file (`spieltag::setParameter()` / `getParameter()`), e.g. the handicap order.  
+
+### Changed  
+* The minimum requirement for the web server is now PHP 8.0 (previously 7.4). The admin area shows a notice on older PHP versions.  
+* Improved the page source output of lmo-savehtml.php and lmo-savehtml1.php; the tables on both pages now have rounded corners.  
+* Template system via Composer (`pear/html_template_it`, new class `LMO_Template`) instead of the bundled files IT.php and ITX.php.  
+* Addon tabs, viewer templates and league lists in the admin area appear in a fixed (alphabetical) order instead of the file system order.  
+* Rating "result for both sides": the result counts completely for both teams from the home team's point of view (win/draw/loss, points, minus points). Previously only the match and the goals were counted.  
+* Penalty/bonus points and goals "from match day X" only count once match day X has results. Previously they were included in the overall table immediately.  
+* The classlib now calculates tables like the main table (head-to-head comparison, penalties, result for both sides). The mini table and the statistics therefore show the same table.  
+
+### Deprecated  
+
+
+### Removed  
+* Removed the installer (`install/`) and the PEAR files for FTP, socket and cache that are no longer needed.  
+
+### Fixed  
+* Head-to-head comparison: a tie was detected by the last digit of the points only (59 and 49 points were treated as equal).  
+* Head-to-head comparison with ten or more tied teams and minus points: the best team was placed last in its group.  
+* classlib: the end of a match (after extra time / penalties) was not read from the league file and was lost when saving.  
+* classlib, head-to-head comparison: ties at the bottom of the table were not evaluated, an awarded away win was booked incorrectly, and all matches of the season were counted instead of only those of the displayed table (match day, home/away).  
+* classlib, penalties: a penalty was dropped if the team had no match on the match day the penalty starts; bonus goals against were applied with the wrong sign; penalties also counted in the home and away tables.  
+* classlib, saving (`writeFile()`, used by "create second half of season" and "move match days"): handicap order, title and current match day were lost; a second save in the same request aborted; leagues in subfolders were not found afterwards (HTML export and statistics without data).  
+* classlib, statistics: unplayed matches were counted as well; the streak output overwrote its own text.  
+* classlib: `ligaFussball::sortTable()` only ran with warnings under PHP 8, `liga::factory()` could not be called, `aktuellerSpieltag()` returned the following match day; fixed `strAfterChar()`, `readLigaDir()` (extension `.L98`) and `HTML_icon()` (search for .jpg/.png with alternative text).  
+
+### Security  
+* Closed a cross site scripting (XSS) vulnerability.  
+* `lmo-rueckrunde.php` could be called directly without login and then rewrote the given league file. Now restricted to logged-in admins.  
+* Prediction game: new passwords are stored with Argon2id or bcrypt.  
 
 
 ***

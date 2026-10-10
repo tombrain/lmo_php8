@@ -194,7 +194,6 @@ message=Hallo Tipper [nick],
 </div>
 </body>
 </html>
-<!-- STDERR Warning: Undefined array key "REQUEST_SCHEME" in {LMO_PATH}/addon/tipp/lmo-tippemail.php on line 29 -->
 
 ### DATEIAENDERUNGEN
 (keine)

@@ -660,7 +660,6 @@ xprogram=ligen/golden/basic.l98
 </div>
 </body>
 </html>
-<!-- STDERR Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 8 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 8 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 102 Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 101 Warning: Undefined array key 8 in {LMO_PATH}/lmo-zustat.php on line 101 Warning: Undefined array key 7 in {LMO_PATH}/lmo-zustat.php on line 101 -->
 --- Dateiaenderungen ---
 NEU ligen/ausvorlage.l98 (2488 Bytes)
 [Options]
@@ -1128,7 +1127,7 @@ $htorreichm4="0";
 $htorreicht3="0";
 $htorreicht4="0";
 $spieltagflag5=0;
-$counteranz5=30;
+$counteranz5=21;
 $akt_gewonnen=0;
 $team_akt_gewonnen="";
 $akt_ungeschlagen=0;

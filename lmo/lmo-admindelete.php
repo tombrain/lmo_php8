@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
 if (($action == 'admin') && ($todo == 'delete') && ($_SESSION['lmouserok'] == 2)) {

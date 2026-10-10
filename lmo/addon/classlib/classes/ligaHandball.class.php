@@ -27,38 +27,22 @@ class ligaHandball extends liga {
         }
         // Sortierung PlusPkt / Anzahl Spiele
         array_multisort($sort_pPkt, SORT_DESC, $sort_spiele, SORT_ASC, $tableArray, SORT_DESC);
-        // BEGIN Direkter Vergleich
-        $subteams = array();
-        $pPkt = 0;
-        $spiele = 0;
-        for ($position = 0; $position < count($tableArray); $position++) {
-            if ($pPkt == $tableArray[$position]['pPkt'] && $spiele == $tableArray[$position]['spiele']) {
-                $subteams[$tableArray[$position]['team']->nr] = $tableArray[$position]['team'];
-            }
-            else {
-                if (count($subteams) > 1) {
-                    $tmp_table = $this->calcTableforTeams($subteams);
-                    $tmp_tablearray = $tableArray;
-                    $nextpos = $position - count($tmp_table) ;
-                    for ($b = 0; $b < count($tmp_table); $b++) {
-                        for ($f = $nextpos; $f < $position; $f++) {
-                            if ($tmp_tablearray[$f]['team'] === $tmp_table[$b]['team']) {
-                                $tableArray[$nextpos + $b] = $tmp_tablearray[$f];
-                            }
-                        }
-                    }
-                }  // END if (count($subteams) > 1)
-                $subteams = array();
-                $pPkt = $tableArray[$position]['pPkt'];
-                $spiele = $tableArray[$position]['spiele'];
-                $subteams[$tableArray[$position]['team']->nr] = $tableArray[$position]['team'];
-            }
-        }  // END for ($abc = 0; $abc < count($tableArray); $abc++)
-        // END Direkter Vergleich
+        // Direkter Vergleich bei gleichen Punkten und gleicher Anzahl Spiele
+        $tableArray = $this->sortTiedGroups($tableArray, array('pPkt', 'spiele'));
         for ($i = 0; $i < count($tableArray); $i++) { // Position setzen
             $tableArray[$i]['pos'] = $i + 1;
         }
         return $tableArray;
+    }
+
+    /**
+    * Vergleich im direkten Vergleich: Punkte, Anzahl Spiele, Tordifferenz (wie sortDirectTable)
+    *
+    * @access protected
+    * @return integer
+    */
+    function compareDirect($a, $b) {
+        return array($b['pPkt'], $a['spiele'], $b['dTor']) <=> array($a['pPkt'], $b['spiele'], $a['dTor']);
     }
 
     /**

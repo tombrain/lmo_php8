@@ -16,6 +16,9 @@
 * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
 *
 */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 
 if ($file != "") {
@@ -44,6 +47,18 @@ if ($file != "") {
   $ser2 = array_pad($array, $anzteams+1, "0");
   $ser3 = array_pad($array, $anzteams+1, "0");
   $ser4 = array_pad($array, $anzteams+1, "0");
+
+  // letzter Spieltag mit einem Ergebnis: Strafen "ab Spieltag X" zaehlen erst, wenn X erreicht ist
+  // (die Standardtabelle rechnet bis $endtab = $anzst, auch wenn die Saison noch nicht so weit ist)
+  $calc_lastst = 0;
+  for ($j = 0; $j < $anzst; $j++) {
+    for ($i = 0; $i < $anzsp; $i++) {
+      if ($goala[$j][$i] != "_" && $goalb[$j][$i] != "_") {
+        $calc_lastst = $j+1;
+        break;
+      }
+    }
+  }
 
   $tab0 = array();
   $stt = 0;
@@ -120,7 +135,8 @@ if ($file != "") {
               } elseif ((($goala[$j][$i]-$goalb[$j][$i]) == ($maxn1[$a]-$maxn2[$a])) && ($goala[$j][$i] == $maxn1[$a])) {
                 $maxn0[$a] = $maxn0[$a]."<br>".applyFactor($goala[$j][$i], $goalfaktor).":".applyFactor($goalb[$j][$i], $goalfaktor)." ".$text[72]." ".$teams[$teamb[$j][$i]]." ".$text[73];
               }
-            } elseif ($msieg[$j][$i] == 0) {
+            } elseif ($msieg[$j][$i] == 0 || $msieg[$j][$i] == 3) {
+              // 3 = beidseitiges Ergebnis: gilt fuer beide Teams aus Sicht der Heimmannschaft
               if ($goala[$j][$i] > $goalb[$j][$i]) {
                 $siege[$a] = $siege[$a]+1;
                 $punkte[$a] = $punkte[$a]+$p0s;
@@ -256,13 +272,13 @@ if ($file != "") {
         }
       }
     }
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
+    if (min($endtab, $calc_lastst) >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $etore[$a] = $etore[$a]-$torkorrektur1[$a]; // Hack-Straftore
       $atore[$a] = $atore[$a]-$torkorrektur2[$a]; // Hack-Straftore
     }
     $dtore[$a] = $etore[$a]-$atore[$a];
-    if ($endtab >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
+    if (min($endtab, $calc_lastst) >= $strafdat[$a] && ($tabtype == 0 or ($tabtype == 3 && $strafdat[$a] > ($hoy = (int)($anzst/2))) or ($tabtype == 4 && $strafdat[$a] <= ($endtab = (int)($anzst/2))))) {
                                                   // Hack-Straftore
       $punkte[$a] = $punkte[$a]-$strafp[$a];
       if ($minus == 2) {
@@ -279,8 +295,10 @@ if ($file != "") {
   if ($direkt == 1) {
     $cba = 1;
     for ($abc = 1; $abc < $anzteams; $abc++) {
-      $x1 = substr($tab0[$abc-1], 7, 9);
-      $x2 = substr($tab0[$abc], 7, 9);
+      // Gleichstand = gleicher Punkte- und Minuspunkteblock (je 8 Stellen). Vorher substr(..., 7, 9):
+      // nur die letzte Ziffer der Punkte, 59 und 49 Punkte galten als gleich.
+      $x1 = substr($tab0[$abc-1], 0, 16);
+      $x2 = substr($tab0[$abc], 0, 16);
       if ($x1 == $x2) {
         $cba++;
       }
@@ -303,7 +321,10 @@ if ($file != "") {
             for ($b = 1; $b <= count($tab1); $b++) {
               for ($f = 0; $f < count($tab0); $f++) {
                 if (intval(substr($tab0[$f], -7)) == intval(substr($tab1[$b-1], -7))) {
-                  $tab0[$f] = substr($tab0[$f], 0, 17-strlen($b)).$b.substr($tab0[$f], 17);
+                  // Rang als genau ein Zeichen an Stelle 16 (erste Ziffer der Tordifferenz). Ab Rang 10
+                  // folgen die Zeichen hinter "9" (":", ";", ...), die als String richtig dahinter sortieren.
+                  // Vorher ueberschrieb ein zweistelliger Rang die letzte Ziffer der Minuspunkte.
+                  $tab0[$f] = substr($tab0[$f], 0, 16).chr(ord('0') + $b).substr($tab0[$f], 17);
                 }
               }
             }

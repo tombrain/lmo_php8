@@ -16,6 +16,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
 function getmicrotime()
@@ -229,8 +232,8 @@ if ($action == 'admin') {
         } elseif ($todo == 'vieweroptions') {
             /*Viewer-Addon*/
             require(PATH_TO_ADDONDIR.'/viewer/lmo-adminvieweroptions.php');
-        } elseif ($todo == 'pdfoptions') {
-            /*PDF-Addon*/
+        } elseif ($todo == 'pdfoptions' && file_exists(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php')) {
+            /*PDF-Addon (separat erhaeltlich): nur wenn es installiert ist*/
             require(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php');
         } elseif ($todo == '') {
             require(PATH_TO_LMO . '/lmo-adminpad.php');

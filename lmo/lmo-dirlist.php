@@ -16,6 +16,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $todo = isset($_GET['todo']) && $_GET['todo'] != '' ? $_GET['todo'] : (isset($_GET['file']) && $_GET['file'] != '' ? 'edit' : '');
 $addi = $_SERVER['PHP_SELF'] . '?todo=' . $todo . '&amp;file=';

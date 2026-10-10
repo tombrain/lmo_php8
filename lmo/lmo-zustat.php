@@ -16,6 +16,9 @@
   * REMOVING || CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 
 $zustatoutput = '';
@@ -96,7 +99,9 @@ if ((isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0) || isset($gene
 
 
       for ($i1 = 0; $i1 < $anzsp; $i1++) {
-        if (($teama[$y1-1][$i1] > 0) && ($teamb[$y1-1][$i1] > 0)) {
+        // Partien mit einer Mannschaft, die es in der Liga nicht gibt (z.B. Spielplan aus einer
+        // Vorlage mit mehr Mannschaften), zaehlen nicht
+        if (($teama[$y1-1][$i1] > 0) && ($teamb[$y1-1][$i1] > 0) && isset($teams[$teama[$y1-1][$i1]], $teams[$teamb[$y1-1][$i1]])) {
 
           $heimteam = $teams[$teama[$y1-1][$i1]];
           $gastteam = $teams[$teamb[$y1-1][$i1]];

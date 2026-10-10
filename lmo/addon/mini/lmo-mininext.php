@@ -231,7 +231,7 @@ if (!file_exists($mini_cache_filename) ||
             // determine games of the current league
 
             $spiele = $liga->allPartieForTeams($team_a, $team_b, true);
-            foreach($spiele as $spiel) {
+            foreach($spiele ?? array() as $spiel) {  // null: die beiden treffen in dieser Liga nie aufeinander
                 if ($spiel->hTore != -1 && $spiel->gTore != -1) {
                     $archivSortDummy[] = $spiel->zeit;
                     if ($spiel->heim == $team_a) {
@@ -265,7 +265,7 @@ if (!file_exists($mini_cache_filename) ||
                         }
                         if (!is_null($newTeam_a) && !is_null($newTeam_b)) {
                             $spiele = $newLiga->allPartieForTeams($newTeam_a, $newTeam_b, true);
-                            foreach($spiele as $spiel) {
+                            foreach($spiele ?? array() as $spiel) {  // null: die beiden treffen in dieser Liga nie aufeinander
                                 if ($spiel->hTore != -1 && $spiel->gTore != -1) {
                                     $archivSortDummy[] = $spiel->zeit;
                                     if ($spiel->heim == $newTeam_a) {

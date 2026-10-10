@@ -1,4 +1,8 @@
-            <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+<?php
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
+?>            <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
               <tr>
 <?php
 if (isset($anzst)) {

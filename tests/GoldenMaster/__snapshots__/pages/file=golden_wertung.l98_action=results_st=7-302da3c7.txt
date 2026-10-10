@@ -194,7 +194,7 @@
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">6</td>
 <td class="nobr" align="right">3</td>
-<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">3</td>
 <td class="nobr" align="right">0</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">9</td>
@@ -203,13 +203,13 @@
 <td class="nobr" align="right">1</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>11</strong>
+<strong>12</strong>
 </td>
 <td class="nobr" align="center" style="width:4px;">
 <strong>:</strong>
 </td>
 <td class="nobr">
-<strong>2</strong>
+<strong>3</strong>
 </td>
 </tr>
 <tr>
@@ -287,7 +287,7 @@
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">6</td>
 <td class="nobr" align="right">2</td>
-<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">3</td>
 <td class="nobr" align="right">1</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">12</td>
@@ -296,13 +296,13 @@
 <td class="nobr" align="right">-1</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>8</strong>
+<strong>9</strong>
 </td>
 <td class="nobr" align="center" style="width:4px;">
 <strong>:</strong>
 </td>
 <td class="nobr">
-<strong>5</strong>
+<strong>6</strong>
 </td>
 </tr>
 <tr>

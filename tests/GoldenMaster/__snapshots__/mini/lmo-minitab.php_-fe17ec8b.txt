@@ -1,0 +1,13 @@
+### lmo-minitab.php?
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Minitable</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> html,body {margin:0;padding:0;background:transparent;} </style>
+</head>
+<body>
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Fehler: Liga nicht gefunden! </p>
+</body>
+</html>

@@ -32,9 +32,33 @@ final class Runner
     }
 
     /** Berechnet die Tabellen einer Liga in allen Ansichten, Rueckgabe: JSON. */
-    public function calc(string $leagueFile): string
+    /** @param bool $allRounds jeden Spieltag rechnen statt der festen Auswahl fuer den Golden Master */
+    public function calc(string $leagueFile, bool $allRounds = false): string
     {
-        return $this->run('calc.php', [$leagueFile]);
+        return $this->run('calc.php', $allRounds ? [$leagueFile, 'alle'] : [$leagueFile]);
+    }
+
+    /**
+     * Legt Ligen ueber die classlib an und speichert sie mit writeFile() (bin/classlib_write.php).
+     *
+     * @param string[] $fixtures Fixture-Dateien (tests/RealData/fixtures)
+     * @return string JSON Liga-ID => true oder Fehlertext, ggf. mit STDERR/EXIT-Kommentar
+     */
+    public function classlibWrite(string $prefix, array $fixtures): string
+    {
+        return $this->run('classlib_write.php', array_merge([$prefix], $fixtures));
+    }
+
+    /**
+     * Ligadateien erst mit LMO selbst, dann mit der classlib speichern und vergleichen
+     * (bin/classlib_roundtrip.php). Achtung: speichert die Ligen in der Instanz neu.
+     *
+     * @param string[] $leagues Ligadateien relativ zum Ligenverzeichnis
+     * @return string JSON Ligadatei => verlorene, neue und geaenderte Schluessel
+     */
+    public function classlibRoundtrip(array $leagues): string
+    {
+        return $this->run('classlib_roundtrip.php', $leagues);
     }
 
     /**
@@ -102,7 +126,9 @@ final class Runner
             // dann auf den lokalen Fallback zurueck (Ergebnis wird nur im Admin-Bereich angezeigt).
             '-d', 'allow_url_fopen=0',
             '-d', 'date.timezone=Europe/Berlin',
-            '-d', 'session.save_path=' . $this->instance->sessionDir()
+            '-d', 'session.save_path=' . $this->instance->sessionDir(),
+            // Mails landen als Dateien in der Testinstanz statt bei einem Mailprogramm
+            '-d', 'sendmail_path=' . PHP_BINARY . ' ' . dirname(__DIR__) . '/bin/sendmail.php ' . $this->instance->mailDir()
         );
         $coverageDir = self::coverageDir();
         if ($coverageDir !== null) {

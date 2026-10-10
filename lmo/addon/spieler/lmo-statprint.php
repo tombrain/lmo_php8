@@ -25,18 +25,19 @@ $file = isset($_GET['file']) ? $_GET['file'] : exit;
 //Konfiguration laden
 require(PATH_TO_ADDONDIR . '/spieler/lmo-statloadconfig.php');
 
-$sort = isset($_GET['sort']) ? $_GET['sort'] : $spieler_standard_sortierung;
+// Zahlen aus der Anfrage als Zahlen behandeln: mit ihnen wird gerechnet
+$sort = (int)(isset($_GET['sort']) ? $_GET['sort'] : $spieler_standard_sortierung);
 if (isset($_GET['begin'])) {
-    $begin = $_GET['begin'];
+    $begin = max(0, (int)$_GET['begin']);
     $all = false;
 } else {
     $begin = 0;
     $all = true;
 }
-$direction = isset($_GET['direction']) ? $_GET['direction'] : $spieler_standard_richtung;
+$direction = (int)(isset($_GET['direction']) ? $_GET['direction'] : $spieler_standard_richtung);
 $team = isset($_GET['team']) ? urldecode($_GET['team']) : '';
 
-if ($filepointer = fopen($filename, 'r+b')) {
+if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
     $spalten = array();  // Spaltenbezeichnung
     $data = array();  // Daten
     $typ = array();  // Spaltentyp (true=String)
@@ -52,6 +53,10 @@ if ($filepointer = fopen($filename, 'r+b')) {
         }
     }
     if ($formel) fgetcsv($filepointer, separator: '#', escape: '');  // Zeile mit Formeln
+    // Sortierspalte aus der Anfrage oder Konfiguration muss es in der Statistik geben
+    if (!isset($spalten[$sort])) {
+        $sort = 0;
+    }
 
     $linkspalte = array_search($text['spieler'][32], $spalten);  // Linkunterstützung aktiviert?
 
@@ -117,7 +122,7 @@ if ($filepointer = fopen($filename, 'r+b')) {
     <h1><?php
     echo $text['spieler'][18];
     if ($team != '') {
-        echo ' - ' . $team;
+        echo ' - ' . htmlspecialchars($team);
     }?>
     </h1>
       <table cellpadding="0" cellspacing="1" border="0">

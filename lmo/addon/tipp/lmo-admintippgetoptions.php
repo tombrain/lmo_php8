@@ -1,4 +1,7 @@
 <?php 
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
   switch ($show) {
     case 0:
       isset($_POST["xtippmodus"])?                            $tipp_tippmodus=$_POST["xtippmodus"]:                   $tipp_tippmodus=0;

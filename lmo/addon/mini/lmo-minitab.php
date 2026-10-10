@@ -62,6 +62,12 @@ $m_platz= !empty($_GET['mini_platz'])
         ? $cfgarray['mini']['standardTabellenPlatz']
         : NULL));
 
+// Als Zahlen weiterrechnen: in der mitgelieferten Konfiguration sind die Werte leer (''), und
+// PHP 8 bricht bei "Zahl - ''" mit einem TypeError ab. Standard wie oben: 2 Plaetze darueber/darunter.
+$m_ueber = is_numeric($m_ueber) ? (int) $m_ueber : 2;
+$m_unter = is_numeric($m_unter) ? (int) $m_unter : 2;
+$m_platz = is_numeric($m_platz) ? (int) $m_platz : NULL;
+
 
 //If IFRAME - complete HTML document
 if (basename($_SERVER['PHP_SELF']) == 'lmo-minitab.php') {?>
@@ -99,7 +105,11 @@ if (empty($CacheOutput)) {
 
         $AnzahlTeams = $liga->teamCount();
         $LigaTabelle = $liga->calcTable($liga->options->keyValues['Rounds']);
-        $LastGameDay = $liga->calcTable($liga->options->keyValues['Actual'] - 1);
+        // Tendenz = Platz am Vorspieltag minus Platz jetzt. Vor dem ersten Spieltag gibt es keinen
+        // Vorspieltag (calcTable(0) rechnet mit dem aktuellen Spieltag): Tendenz 0 fuer alle.
+        $LastGameDay = $liga->options->keyValues['Actual'] > 1
+            ? $liga->calcTable($liga->options->keyValues['Actual'] - 1)
+            : $LigaTabelle;
         $Favorit = $liga->teamForNumber($liga->options->keyValues['favTeam']);
         $viewPosition = 1;
         if (is_null($m_platz) || $m_platz <= 0 || $m_platz > $AnzahlTeams ) {
@@ -249,7 +259,7 @@ if (empty($CacheOutput)) {
         }
         $template->show();
     } else {
-        echo getMessage($text['mini'][5] . ' ' . $mini_liga, true);
+        echo getMessage($text['mini'][5] . ' ' . $m_liga, true);
     }
 }
 //Falls IFRAME - komplettes HTML-Dokument

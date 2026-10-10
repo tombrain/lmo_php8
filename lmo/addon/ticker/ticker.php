@@ -25,8 +25,8 @@ $ticker_tickerart = isset($tickerart) ? $tickerart : $ticker_tickerart;
 $ticker_ligen = isset($tickerligen) ? $tickerligen : $ticker_standard_ligen;
 $ticker_tickertitel = isset($tickertitel) ? $tickertitel : $ticker_tickertitel;
 $ticker_notizanzeigen = isset($tickernotizen) ? $tickernotizen : $ticker_notizanzeigen;
-$ticker_breite = isset($tickerbreite) ? $breite : $ticker_breite;
-$ticker_geschwindigkeit = isset($tickergeschwindigkeit) ? $geschwindigkeit : $ticker_geschwindigkeit;
+$ticker_breite = isset($tickerbreite) ? $tickerbreite : $ticker_breite;
+$ticker_geschwindigkeit = isset($tickergeschwindigkeit) ? $tickergeschwindigkeit : $ticker_geschwindigkeit;
 
 $trenner = ' +++ ';
 $array = array();
@@ -52,8 +52,11 @@ $file2 = $file;
 $ticker_array = explode(",", $ticker_ligen);
 
 foreach($ticker_array as $file) {
+    // je Liga neu beginnen: sonst stehen die Spiele der vorigen Ligen noch einmal bei der naechsten
+    $hilf = $hilf1 = '';
     require(PATH_TO_LMO . '/lmo-openfile.php');
-    if (isset($lmtype)) {
+    // lmo-openfile.php laesst bei einer fehlenden Liga die Daten der vorigen stehen
+    if (isset($lmtype) && $file != '' && file_exists(PATH_TO_LMO . '/' . $dirliga . $file)) {
         if($ticker_tickerart == 2) {
             if (isset($nlines)) {
                 for($i = 0; $i < count($nlines); $i++) {
@@ -84,7 +87,7 @@ foreach($ticker_array as $file) {
                                 $dummy2 = $text['ticker'][2] . ':' . addslashes($teams[$teamb[$stx-1][$i]] . ' ' . $text[211]);
                             }
                             else {
-                                $dumm2y = '';
+                                $dummy2 = '';
                             }
                             if ($msieg[$stx-1][$i] == 3) {
                                 $dummy3 = $text['ticker'][2] . ':' . addslashes($text['ticker'][3]);
@@ -114,7 +117,7 @@ foreach($ticker_array as $file) {
                                 $mspezhilf = ' ' . $mspez[$stx-1][$i][$n];
                             }
                             if ($favteam == $teama[$stx-1][$i] || $favteam == $teamb[$stx-1][$i] || $ticker_tickerart == 1) {
-                                if ($mnote[$stx-1][$i][$n] != '' && $notizanzeigen == 1) {
+                                if ($mnote[$stx-1][$i][$n] != '' && $ticker_notizanzeigen == 1) {
                                     $dummy4 = ' ' . $text[22] . ': ' . $mnote[$stx-1][$i][$n];
                                 }
                                 else {
@@ -130,7 +133,8 @@ foreach($ticker_array as $file) {
         $ticker_text .= " $trenner $titel ($stx{$text['ticker'][1]}): $hilf $hilf1";
     }
     else {
-        $ticker_text = $text[224] . $trenner;
+        // anhaengen statt ersetzen: eine fehlende Liga loescht nicht den Text der anderen
+        $ticker_text .= $text[224] . $trenner;
     }
 } //foreach
 $ticker_formnumber = 't' . substr(md5(microtime()), 3, 4);

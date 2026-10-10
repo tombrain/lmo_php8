@@ -148,10 +148,10 @@
 </tr>
 <!-- OUTPUT Restprogramm START-->
 <tr>
-<td align="right" valign="top">(A)&nbsp;Mannschaft 6&nbsp;(6.)<br>(H)&nbsp;Mannschaft 4&nbsp;(3.)<br>(A)&nbsp;Mannschaft 3&nbsp;(4.)<br>
+<td align="right" valign="top">(A)&nbsp;Mannschaft 6&nbsp;(3.)<br>(H)&nbsp;Mannschaft 4&nbsp;(6.)<br>(A)&nbsp;Mannschaft 3&nbsp;(1.)<br>
 </td>
 <th class="top" style="text-align:center">Restprogramm</th>
-<td align="left" valign="top">(4.)&nbsp;Mannschaft 3&nbsp;(A)<br>(4.)&nbsp;Mannschaft 3&nbsp;(H)<br>(6.)&nbsp;Mannschaft 6&nbsp;(A)<br>(3.)&nbsp;Mannschaft 4&nbsp;(H)<br>(2.)&nbsp;Mannschaft 5&nbsp;(A)<br>
+<td align="left" valign="top">(1.)&nbsp;Mannschaft 3&nbsp;(A)<br>(1.)&nbsp;Mannschaft 3&nbsp;(H)<br>(3.)&nbsp;Mannschaft 6&nbsp;(A)<br>(6.)&nbsp;Mannschaft 4&nbsp;(H)<br>(5.)&nbsp;Mannschaft 5&nbsp;(A)<br>
 </td>
 </tr>
 <tr>

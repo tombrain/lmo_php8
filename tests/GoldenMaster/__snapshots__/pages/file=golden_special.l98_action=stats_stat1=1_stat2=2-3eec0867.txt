@@ -158,9 +158,9 @@
 <th style="text-align:center" colspan="3">Bewertung der Restprogramme</th>
 </tr>
 <tr>
-<td align="right">9:15 (-6)</td>
+<td align="right">12:16 (-4)</td>
 <th class="top" style="text-align:center">∑ Pkt.verhältnis Gegner</th>
-<td align="left">26:23 (+3)</td>
+<td align="left">27:24 (+3)</td>
 </tr>
 <tr>
 <td align="right">leichter</td>

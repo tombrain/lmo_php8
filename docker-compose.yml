@@ -19,6 +19,7 @@ services:
 
   # Webserver zum Ausprobieren, arbeitet live auf ./lmo:  docker compose up -d web
   # Aufruf: http://localhost:${WEB_PORT:-8082}/lmo/
+  # Addons mit Beispielligen ausprobieren: http://localhost:${WEB_PORT:-8082}/demo/
   web:
     build:
       context: .
@@ -37,6 +38,20 @@ services:
       - web-output:/var/www/html/lmo/output
       - web-tipps:/var/www/html/lmo/addon/tipp/tipps
       - web-stats:/var/www/html/lmo/addon/spieler/stats
+      # Uebersichtsseite der Addons und Beispieldaten (werden beim Start in die Volumes kopiert)
+      - ./docker/demo/index.php:/var/www/html/demo/index.php:ro
+      - ./docker/demo:/srv/lmo-demo:ro
+    environment:
+      MAIL_PORT: ${MAIL_PORT:-8025}
+    depends_on:
+      - mail
+
+  # Faengt alle Mails ab, die LMO im Web-Container verschickt (nichts geht nach draussen).
+  # Postfach im Browser: http://localhost:${MAIL_PORT:-8025}/
+  mail:
+    image: axllent/mailpit
+    ports:
+      - "${MAIL_PORT:-8025}:8025"
 
 volumes:
   web-config:

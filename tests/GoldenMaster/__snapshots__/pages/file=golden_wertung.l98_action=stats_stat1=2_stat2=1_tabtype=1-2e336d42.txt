@@ -110,12 +110,12 @@
 <tr>
 <td align="right">1</td>
 <th class="text-center">Tabellenposition</th>
-<td align="left">5</td>
+<td align="left">4</td>
 </tr>
 <tr>
 <td align="right">15</td>
 <th class="text-center">Pkt.</th>
-<td align="left">8</td>
+<td align="left">10</td>
 </tr>
 <tr>
 <td align="right">6</td>
@@ -125,7 +125,7 @@
 <tr>
 <td align="right">2.5</td>
 <th class="text-center">Pkt./Spiel</th>
-<td align="left">1.14</td>
+<td align="left">1.43</td>
 </tr>
 <tr>
 <td align="right">8:4</td>
@@ -160,7 +160,7 @@
 <tr>
 <td align="right">5 Sieg(e)<br>5 Sp. o. Niederlage</td>
 <th class="top" style="text-align:center">Aktuelle Serie</th>
-<td align="left">2 Sp. o. Sieg</td>
+<td align="left">4 Sp. o. Sieg</td>
 </tr>
 <!-- OUTPUT Restprogramm START-->
 <tr>

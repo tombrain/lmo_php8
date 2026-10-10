@@ -1,4 +1,7 @@
 <?php 
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 // 
 // LigaManager Online 3.02
 // Copyright (C) 1997-2002 by Frank Hollwitz

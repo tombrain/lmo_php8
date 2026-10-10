@@ -23,10 +23,12 @@ require_once(__DIR__ . '/../../init.php');
 //Konfiguration laden
 require(PATH_TO_ADDONDIR . '/spieler/lmo-statloadconfig.php');
 
-$sort = isset($_GET['sort']) ? $_GET['sort'] : $spieler_standard_sortierung;
-$begin = isset($_GET['begin']) ? $_GET['begin'] : 0;
-$direction = isset($_GET['direction']) ? $_GET['direction'] : $spieler_standard_richtung;
+// Zahlen aus der Anfrage als Zahlen behandeln: sie werden zum Rechnen und in Links verwendet
+$sort = (int)(isset($_GET['sort']) ? $_GET['sort'] : $spieler_standard_sortierung);
+$begin = max(0, (int)(isset($_GET['begin']) ? $_GET['begin'] : 0));
+$direction = (int)(isset($_GET['direction']) ? $_GET['direction'] : $spieler_standard_richtung);
 $team = !empty($_GET['team']) ? urldecode($_GET['team'] ): '';
+$team_link = htmlspecialchars(urlencode($team));
 
 if (!isset($filename)) {
     $filename = $_GET['file'];
@@ -48,6 +50,10 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
         }
     }
     if ($formel) fgetcsv($filepointer, separator: '#', escape: "");  // Zeile mit Formeln
+    // Sortierspalte aus der Anfrage oder Konfiguration muss es in der Statistik geben
+    if (!isset($spalten[$sort])) {
+        $sort = 0;
+    }
 
     $linkspalte = array_search($text['spieler'][32], $spalten);      // Linkunterstützung aktiviert?
 
@@ -139,7 +145,7 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
             <th class="nobr" align="center"><?php
             if ($spieler_extra_sortierspalte == 0) {
                 ?><a href="<?php
-                echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$i&amp;direction=1&amp;team=$team";?>" title="<?php echo $text['spieler'][36] . ' ' . $spalten[$i] . ' ' . $text['spieler'][48] . ' ' . $text['spieler'][37];?>"><img title="<?php echo $text['spieler'][48];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/downsimple.png';?>" width="10" alt="&or;"></a><?php
+                echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$i&amp;direction=1&amp;team=$team_link";?>" title="<?php echo $text['spieler'][36] . ' ' . $spalten[$i] . ' ' . $text['spieler'][48] . ' ' . $text['spieler'][37];?>"><img title="<?php echo $text['spieler'][48];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/downsimple.png';?>" width="10" alt="&or;"></a><?php
             } //Anfang der Suche nach Bildern für die Spaltenüberschriften
             if (file_exists(PATH_TO_IMGDIR . '/spieler/' . $spalten[$i] . '.png')) {
                 echo '&nbsp;<acronym title="' . $spalten[$i] . '"><img border="0" src="' . URL_TO_IMGDIR . '/spieler/' . rawurlencode($spalten[$i]) . '.png" alt="' . $spalten[$i] . '"></acronym>&nbsp;';
@@ -150,7 +156,7 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
             } //Ende der Suche nach Bildern für die Spaltenüberschriften
             if ($spieler_extra_sortierspalte == 0) {
                 ?><a href="<?php
-                echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$i&amp;direction=0&amp;team=$team";?>" title="<?php echo $text['spieler'][36] . ' ' . $spalten[$i] . ' ' . $text['spieler'][47] . ' ' . $text['spieler'][37];?>"><img title="<?php echo $text['spieler'][47];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/upsimple.svg';?>" width="10" alt="&and;"></a><?php
+                echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$i&amp;direction=0&amp;team=$team_link";?>" title="<?php echo $text['spieler'][36] . ' ' . $spalten[$i] . ' ' . $text['spieler'][47] . ' ' . $text['spieler'][37];?>"><img title="<?php echo $text['spieler'][47];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/upsimple.svg';?>" width="10" alt="&and;"></a><?php
             }?></th>
 <?php
         }
@@ -164,14 +170,14 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
             <th colspan="<?php echo $spaltenzahl + 2;?>" align="center"><?php
         if ($begin == 0) {
         } elseif (($newbegin = $begin - $spieler_anzeige_pro_seite) >= 0) {
-            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>">&lt;&lt;&nbsp;<?php echo $text['spieler'][16];?></a><?php
+            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>">&lt;&lt;&nbsp;<?php echo $text['spieler'][16];?></a><?php
         } else {
-            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>">&lt;&lt;&nbsp;<?php echo $text['spieler'][16];?></a><?php
+            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=0&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>">&lt;&lt;&nbsp;<?php echo $text['spieler'][16];?></a><?php
         }
         $newbegin = 0;
-        ?>&nbsp;|&nbsp;<a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>"><?php echo $text['spieler'][17];?>&nbsp;<?php echo $spieler_anzeige_pro_seite;?></a>&nbsp;|&nbsp;<?php
+        ?>&nbsp;|&nbsp;<a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>"><?php echo $text['spieler'][17];?>&nbsp;<?php echo $spieler_anzeige_pro_seite;?></a>&nbsp;|&nbsp;<?php
         if (($newbegin = $begin + $maxdisplay) < $zeile) {
-            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>"><?php echo $text['spieler'][15];?>&nbsp;&gt;&gt;</a><?php
+            ?><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$newbegin&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>"><?php echo $text['spieler'][15];?>&nbsp;&gt;&gt;</a><?php
         }?></th>
           </tr>
         </tfoot>
@@ -252,10 +258,10 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
 <?php
         for ($i = 0;$i < $spaltenzahl;$i++) { ?>
         <tr>
-          <td class="nobr"><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$begin&amp;sort=$i&amp;direction=1&amp;team=$team";?>">
+          <td class="nobr"><a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$begin&amp;sort=$i&amp;direction=1&amp;team=$team_link";?>">
               <img title="<?php echo $text['spieler'][48];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/downsimple.svg';?>" alt="&or;" width="10"></a>
                  <?php echo $spalten[$i] . "\n";?>
-              <a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$begin&amp;sort=$i&amp;direction=0&amp;team=$team";?>">
+              <a href="<?php echo $_SERVER['PHP_SELF'] . "?file=$file&amp;action=$action&amp;begin=$begin&amp;sort=$i&amp;direction=0&amp;team=$team_link";?>">
               <img title="<?php echo $text['spieler'][47];?>" border="0" src="<?php echo URL_TO_IMGDIR . '/upsimple.svg';?>" alt="&and;" width="10"></a>
           </td>
         </tr>
@@ -270,11 +276,11 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
 <table width="99%">
   <tr>
     <td align="center">
-      <a href="<?php echo URL_TO_ADDONDIR . "/spieler/lmo-statprint.php?file=$file&amp;begin=$begin&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>"><?php echo $text['spieler'][56];?></a>
+      <a href="<?php echo URL_TO_ADDONDIR . "/spieler/lmo-statprint.php?file=$file&amp;begin=$begin&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>"><?php echo $text['spieler'][56];?></a>
     </td><?php
     if ($spieler_anzeige_pro_seite != 0) { ?>
     <td align="center">
-      <a href="<?php echo URL_TO_ADDONDIR . "/spieler/lmo-statprint.php?file=$file&amp;sort=$sort&amp;direction=$direction&amp;team=$team";?>"><?php echo $text['spieler'][57];?></a>
+      <a href="<?php echo URL_TO_ADDONDIR . "/spieler/lmo-statprint.php?file=$file&amp;sort=$sort&amp;direction=$direction&amp;team=$team_link";?>"><?php echo $text['spieler'][57];?></a>
     </td>
 <?php
     }?>

@@ -2597,7 +2597,7 @@ GEAENDERT output/basic.l98.php
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">7</td>
 <td class="nobr" align="right">4</td>
-<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">1</td>
 <td class="nobr" align="right">2</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">17</td>
@@ -2606,13 +2606,13 @@ GEAENDERT output/basic.l98.php
 <td class="nobr" align="right">7</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>12</strong>
+<strong>13</strong>
 </td>
 </tr>
 <tr>
 <td class="nobr" align="right">4</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -2622,7 +2622,7 @@ GEAENDERT output/basic.l98.php
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">7</td>
 <td class="nobr" align="right">3</td>
-<td class="nobr" align="right">1</td>
+<td class="nobr" align="right">2</td>
 <td class="nobr" align="right">2</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">18</td>
@@ -2631,13 +2631,13 @@ GEAENDERT output/basic.l98.php
 <td class="nobr" align="right">0</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>10</strong>
+<strong>11</strong>
 </td>
 </tr>
 <tr>
 <td class="nobr" align="right">5</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -3528,20 +3528,20 @@ NEU output/basic.l98-sp.html (22388 Bytes)
     <tr>
       <td align="right">1&nbsp;</td>
       <td>&nbsp;</td>
+      <td>Mannschaft 8&nbsp;</td>
+      <td align="right">2&nbsp;</td>
+      <td align="right">4      </td>
+      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;2</td>
+    </tr>
+    <tr>
+      <td align="right">2&nbsp;</td>
+      <td>&nbsp;</td>
       <td>Mannschaft 2&nbsp;</td>
       <td align="right">2&nbsp;</td>
       <td align="right">4      </td>
       <td align="left">&nbsp;</td>      <td align="right">0:2&nbsp;</td>
       <td align="right">&nbsp;&nbsp;-2</td>
-    </tr>
-    <tr>
-      <td align="right">2&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>Mannschaft 8&nbsp;</td>
-      <td align="right">2&nbsp;</td>
-      <td align="right">3      </td>
-      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
-      <td align="right">&nbsp;&nbsp;2</td>
     </tr>
     <tr>
       <td align="right">3&nbsp;</td>
@@ -3555,6 +3555,15 @@ NEU output/basic.l98-sp.html (22388 Bytes)
     <tr>
       <td align="right">4&nbsp;</td>
       <td>&nbsp;</td>
+      <td>Mannschaft 4&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">5&nbsp;</td>
+      <td>&nbsp;</td>
       <td>Mannschaft 5&nbsp;</td>
       <td align="right">1&nbsp;</td>
       <td align="right">1      </td>
@@ -3562,22 +3571,13 @@ NEU output/basic.l98-sp.html (22388 Bytes)
       <td align="right">&nbsp;&nbsp;0</td>
     </tr>
     <tr>
-      <td align="right">5&nbsp;</td>
+      <td align="right">6&nbsp;</td>
       <td>&nbsp;</td>
       <td>Mannschaft 3&nbsp;</td>
       <td align="right">1&nbsp;</td>
       <td align="right">0      </td>
       <td align="left">&nbsp;</td>      <td align="right">2:0&nbsp;</td>
       <td align="right">&nbsp;&nbsp;2</td>
-    </tr>
-    <tr>
-      <td align="right">6&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>Mannschaft 4&nbsp;</td>
-      <td align="right">1&nbsp;</td>
-      <td align="right">0      </td>
-      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
-      <td align="right">&nbsp;&nbsp;0</td>
     </tr>
     <tr>
       <td align="right">7&nbsp;</td>
@@ -3678,20 +3678,20 @@ NEU output/basic.l98-st.html (5843 Bytes)
     <tr>
       <td align="right">1&nbsp;</td>
       <td>&nbsp;</td>
+      <td>Mannschaft 8&nbsp;</td>
+      <td align="right">2&nbsp;</td>
+      <td align="right">4</td>
+      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;2</td>
+    </tr>
+    <tr>
+      <td align="right">2&nbsp;</td>
+      <td>&nbsp;</td>
       <td>Mannschaft 2&nbsp;</td>
       <td align="right">2&nbsp;</td>
       <td align="right">4</td>
       <td align="left">&nbsp;</td>      <td align="right">0:2&nbsp;</td>
       <td align="right">&nbsp;&nbsp;-2</td>
-    </tr>
-    <tr>
-      <td align="right">2&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>Mannschaft 8&nbsp;</td>
-      <td align="right">2&nbsp;</td>
-      <td align="right">3</td>
-      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
-      <td align="right">&nbsp;&nbsp;2</td>
     </tr>
     <tr>
       <td align="right">3&nbsp;</td>
@@ -3705,6 +3705,15 @@ NEU output/basic.l98-st.html (5843 Bytes)
     <tr>
       <td align="right">4&nbsp;</td>
       <td>&nbsp;</td>
+      <td>Mannschaft 4&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1</td>
+      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">5&nbsp;</td>
+      <td>&nbsp;</td>
       <td>Mannschaft 5&nbsp;</td>
       <td align="right">1&nbsp;</td>
       <td align="right">1</td>
@@ -3712,22 +3721,13 @@ NEU output/basic.l98-st.html (5843 Bytes)
       <td align="right">&nbsp;&nbsp;0</td>
     </tr>
     <tr>
-      <td align="right">5&nbsp;</td>
+      <td align="right">6&nbsp;</td>
       <td>&nbsp;</td>
       <td>Mannschaft 3&nbsp;</td>
       <td align="right">1&nbsp;</td>
       <td align="right">0</td>
       <td align="left">&nbsp;</td>      <td align="right">2:0&nbsp;</td>
       <td align="right">&nbsp;&nbsp;2</td>
-    </tr>
-    <tr>
-      <td align="right">6&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>Mannschaft 4&nbsp;</td>
-      <td align="right">1&nbsp;</td>
-      <td align="right">0</td>
-      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
-      <td align="right">&nbsp;&nbsp;0</td>
     </tr>
     <tr>
       <td align="right">7&nbsp;</td>
@@ -4279,8 +4279,19 @@ NEU output/basic.l98-st.html (5843 Bytes)
 GEAENDERT output/basic.l98-sp.html
 --- vorher
 +++ nachher
-@@ -700,21 +700,12 @@
-       <td align="right">1&nbsp;</td>
+@@ -701,7 +701,7 @@
+       <td>&nbsp;</td>
+       <td>Mannschaft 8&nbsp;</td>
+-      <td align="right">2&nbsp;</td>
+-      <td align="right">4      </td>
+-      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
++      <td align="right">1&nbsp;</td>
++      <td align="right">3      </td>
++      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
+       <td align="right">&nbsp;&nbsp;2</td>
+     </tr>
+@@ -709,13 +709,4 @@
+       <td align="right">2&nbsp;</td>
        <td>&nbsp;</td>
 -      <td>Mannschaft 2&nbsp;</td>
 -      <td align="right">2&nbsp;</td>
@@ -4289,45 +4300,48 @@ GEAENDERT output/basic.l98-sp.html
 -      <td align="right">&nbsp;&nbsp;-2</td>
 -    </tr>
 -    <tr>
--      <td align="right">2&nbsp;</td>
--      <td>&nbsp;</td>
-       <td>Mannschaft 8&nbsp;</td>
--      <td align="right">2&nbsp;</td>
-+      <td align="right">1&nbsp;</td>
-       <td align="right">3      </td>
--      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
-+      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
-       <td align="right">&nbsp;&nbsp;2</td>
-     </tr>
-     <tr>
 -      <td align="right">3&nbsp;</td>
-+      <td align="right">2&nbsp;</td>
-       <td>&nbsp;</td>
+-      <td>&nbsp;</td>
        <td>Mannschaft 1&nbsp;</td>
-@@ -725,5 +716,5 @@
+       <td align="right">1&nbsp;</td>
+@@ -725,16 +716,16 @@
      </tr>
      <tr>
 -      <td align="right">4&nbsp;</td>
 +      <td align="right">3&nbsp;</td>
        <td>&nbsp;</td>
-       <td>Mannschaft 5&nbsp;</td>
-@@ -734,19 +725,28 @@
+-      <td>Mannschaft 4&nbsp;</td>
++      <td>Mannschaft 5&nbsp;</td>
+       <td align="right">1&nbsp;</td>
+       <td align="right">1      </td>
+-      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
++      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+       <td align="right">&nbsp;&nbsp;0</td>
      </tr>
      <tr>
 -      <td align="right">5&nbsp;</td>
 +      <td align="right">4&nbsp;</td>
        <td>&nbsp;</td>
--      <td>Mannschaft 3&nbsp;</td>
+-      <td>Mannschaft 5&nbsp;</td>
 +      <td>Mannschaft 2&nbsp;</td>
        <td align="right">1&nbsp;</td>
-+      <td align="right">1      </td>
+       <td align="right">1      </td>
+@@ -743,11 +734,20 @@
+     </tr>
+     <tr>
++      <td align="right">5&nbsp;</td>
++      <td>&nbsp;</td>
++      <td>Mannschaft 4&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0      </td>
 +      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
 +      <td align="right">&nbsp;&nbsp;0</td>
 +    </tr>
 +    <tr>
-+      <td align="right">5&nbsp;</td>
-+      <td>&nbsp;</td>
-+      <td>Mannschaft 4&nbsp;</td>
+       <td align="right">6&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>Mannschaft 3&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
 +      <td align="right">0&nbsp;</td>
        <td align="right">0      </td>
 -      <td align="left">&nbsp;</td>      <td align="right">2:0&nbsp;</td>
@@ -4336,17 +4350,6 @@ GEAENDERT output/basic.l98-sp.html
 +      <td align="right">&nbsp;&nbsp;0</td>
      </tr>
      <tr>
-       <td align="right">6&nbsp;</td>
-       <td>&nbsp;</td>
--      <td>Mannschaft 4&nbsp;</td>
--      <td align="right">1&nbsp;</td>
-+      <td>Mannschaft 3&nbsp;</td>
-+      <td align="right">0&nbsp;</td>
-       <td align="right">0      </td>
--      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
-+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
-       <td align="right">&nbsp;&nbsp;0</td>
-     </tr>
 GEAENDERT output/basic.l98-st.html
 --- vorher
 +++ nachher
@@ -4417,8 +4420,19 @@ GEAENDERT output/basic.l98-st.html
 +    <caption>Tabelle - 1. Spieltag</caption>
      <tr>
        <th colspan=3>&nbsp;</th>
-@@ -75,21 +72,12 @@
-       <td align="right">1&nbsp;</td>
+@@ -76,7 +73,7 @@
+       <td>&nbsp;</td>
+       <td>Mannschaft 8&nbsp;</td>
+-      <td align="right">2&nbsp;</td>
+-      <td align="right">4</td>
+-      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
++      <td align="right">1&nbsp;</td>
++      <td align="right">3</td>
++      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
+       <td align="right">&nbsp;&nbsp;2</td>
+     </tr>
+@@ -84,13 +81,4 @@
+       <td align="right">2&nbsp;</td>
        <td>&nbsp;</td>
 -      <td>Mannschaft 2&nbsp;</td>
 -      <td align="right">2&nbsp;</td>
@@ -4427,45 +4441,48 @@ GEAENDERT output/basic.l98-st.html
 -      <td align="right">&nbsp;&nbsp;-2</td>
 -    </tr>
 -    <tr>
--      <td align="right">2&nbsp;</td>
--      <td>&nbsp;</td>
-       <td>Mannschaft 8&nbsp;</td>
--      <td align="right">2&nbsp;</td>
-+      <td align="right">1&nbsp;</td>
-       <td align="right">3</td>
--      <td align="left">&nbsp;</td>      <td align="right">4:2&nbsp;</td>
-+      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
-       <td align="right">&nbsp;&nbsp;2</td>
-     </tr>
-     <tr>
 -      <td align="right">3&nbsp;</td>
-+      <td align="right">2&nbsp;</td>
-       <td>&nbsp;</td>
+-      <td>&nbsp;</td>
        <td>Mannschaft 1&nbsp;</td>
-@@ -100,5 +88,5 @@
+       <td align="right">1&nbsp;</td>
+@@ -100,16 +88,16 @@
      </tr>
      <tr>
 -      <td align="right">4&nbsp;</td>
 +      <td align="right">3&nbsp;</td>
        <td>&nbsp;</td>
-       <td>Mannschaft 5&nbsp;</td>
-@@ -109,19 +97,28 @@
+-      <td>Mannschaft 4&nbsp;</td>
++      <td>Mannschaft 5&nbsp;</td>
+       <td align="right">1&nbsp;</td>
+       <td align="right">1</td>
+-      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
++      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+       <td align="right">&nbsp;&nbsp;0</td>
      </tr>
      <tr>
 -      <td align="right">5&nbsp;</td>
 +      <td align="right">4&nbsp;</td>
        <td>&nbsp;</td>
--      <td>Mannschaft 3&nbsp;</td>
+-      <td>Mannschaft 5&nbsp;</td>
 +      <td>Mannschaft 2&nbsp;</td>
        <td align="right">1&nbsp;</td>
-+      <td align="right">1</td>
+       <td align="right">1</td>
+@@ -118,11 +106,20 @@
+     </tr>
+     <tr>
++      <td align="right">5&nbsp;</td>
++      <td>&nbsp;</td>
++      <td>Mannschaft 4&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0</td>
 +      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
 +      <td align="right">&nbsp;&nbsp;0</td>
 +    </tr>
 +    <tr>
-+      <td align="right">5&nbsp;</td>
-+      <td>&nbsp;</td>
-+      <td>Mannschaft 4&nbsp;</td>
+       <td align="right">6&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>Mannschaft 3&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
 +      <td align="right">0&nbsp;</td>
        <td align="right">0</td>
 -      <td align="left">&nbsp;</td>      <td align="right">2:0&nbsp;</td>
@@ -4474,17 +4491,6 @@ GEAENDERT output/basic.l98-st.html
 +      <td align="right">&nbsp;&nbsp;0</td>
      </tr>
      <tr>
-       <td align="right">6&nbsp;</td>
-       <td>&nbsp;</td>
--      <td>Mannschaft 4&nbsp;</td>
--      <td align="right">1&nbsp;</td>
-+      <td>Mannschaft 3&nbsp;</td>
-+      <td align="right">0&nbsp;</td>
-       <td align="right">0</td>
--      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
-+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
-       <td align="right">&nbsp;&nbsp;0</td>
-     </tr>
 @@ -147,25 +144,29 @@
    <p><small>Hinweis: Tabellenstand ohne vorgezogene Spiele!</small></p>
    <table>

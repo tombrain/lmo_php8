@@ -16,6 +16,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $trans_lang = array(
     'Monday' => $text['date'][0], 'Tuesday' => $text['date'][1],
@@ -146,6 +149,40 @@ function getMessage($message, $error = false)
 }
 
 /**
+ * Returns a PHPMailer object prepared for LMO: PHP mail(), UTF-8, sender set.
+ * Exceptions are switched off: send() returns false on failure, the reason is in $mail->ErrorInfo.
+ *
+ * @param   string  $from       Sender address
+ * @param   string  $fromName   Sender name
+ * @return  \PHPMailer\PHPMailer\PHPMailer
+ */
+function lmo_mailer($from, $fromName = '')
+{
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(false);
+    $mail->isMail();
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
+    $mail->setFrom($from, $fromName);
+    return $mail;
+}
+
+/**
+ * Returns scheme and host of the current request (e.g. https://www.example.org) for links in mails.
+ * $_SERVER['REQUEST_SCHEME'] is not set by every web server.
+ *
+ * @return  string
+ */
+function lmo_request_origin()
+{
+    if (!empty($_SERVER['REQUEST_SCHEME'])) {
+        $scheme = $_SERVER['REQUEST_SCHEME'];
+    } else {
+        $scheme = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) != 'off') ? 'https' : 'http';
+    }
+    return $scheme . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
+}
+
+/**
  * Returns which team is the winner on a
  *
  * @param   string  $gst
@@ -208,7 +245,7 @@ function getLangSelector()
     while (false !== ($f = readdir($handle))) {
         if (preg_match('/^lang-?(.*)?\.txt$/', $f,$lang) > 0) {
             if ($lang[1] == '') return '';
-            if ($lang[1] != $_SESSION['lmouserlang']) {
+            if ($lang[1] != ($_SESSION['lmouserlang'] ?? '')) {
                 $border = '1mm';
                 $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.svg';
                 $output_sprachauswahl .= '

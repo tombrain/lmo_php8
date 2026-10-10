@@ -187,6 +187,68 @@
 </td>
 <td class="nobr" align="center">
 </td>
+<td class="nobr" align="left">Mannschaft 5</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">7</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">3</td>
+<td class="nobr" align="right">0</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">3</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>15</strong>
+</td>
+<td class="nobr" align="center" style="width:4px;">
+<strong>:</strong>
+</td>
+<td class="nobr">
+<strong>3</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">2</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
+<td class="nobr" align="left">Mannschaft 3</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr">&nbsp;</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">7</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" align="right">1</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">4</td>
+<td class="nobr" align="center" style="width:4px;">:</td>
+<td class="nobr">2</td>
+<td class="nobr" align="right">2</td>
+<td class="nobr" style="width:2px;">&nbsp;</td>
+<td class="nobr" align="right">
+<strong>14</strong>
+</td>
+<td class="nobr" align="center" style="width:4px;">
+<strong>:</strong>
+</td>
+<td class="nobr">
+<strong>5</strong>
+</td>
+</tr>
+<tr>
+<td class="nobr" align="right">3</td>
+<td class="nobr">
+<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+</td>
+<td class="nobr" align="center">
+</td>
 <td class="nobr" align="left">Mannschaft 7</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr">&nbsp;</td>
@@ -212,69 +274,38 @@
 </td>
 </tr>
 <tr>
-<td class="nobr" align="right">2</td>
-<td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
-</td>
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">Mannschaft 5</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr">&nbsp;</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">7</td>
-<td class="nobr" align="right">3</td>
-<td class="nobr" align="right">3</td>
-<td class="nobr" align="right">0</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">4</td>
-<td class="nobr" align="center" style="width:4px;">:</td>
-<td class="nobr">3</td>
-<td class="nobr" align="right">1</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">
-<strong>12</strong>
-</td>
-<td class="nobr" align="center" style="width:4px;">
-<strong>:</strong>
-</td>
-<td class="nobr">
-<strong>3</strong>
-</td>
-</tr>
-<tr>
-<td class="nobr" align="right">3</td>
 <td class="nobr">
 <img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
-<td class="nobr" align="left">Mannschaft 3</td>
+<td class="nobr" align="left">Mannschaft 8</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr">&nbsp;</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">7</td>
-<td class="nobr" align="right">3</td>
 <td class="nobr" align="right">1</td>
+<td class="nobr" align="right">5</td>
 <td class="nobr" align="right">1</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">5</td>
 <td class="nobr" align="center" style="width:4px;">:</td>
-<td class="nobr">2</td>
-<td class="nobr" align="right">2</td>
+<td class="nobr">5</td>
+<td class="nobr" align="right">0</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>10</strong>
+<strong>8</strong>
 </td>
 <td class="nobr" align="center" style="width:4px;">
 <strong>:</strong>
 </td>
 <td class="nobr">
-<strong>4</strong>
+<strong>8</strong>
 </td>
 </tr>
 <tr>
-<td class="nobr" align="right">4</td>
+<td class="nobr" align="right">5</td>
 <td class="nobr">
 <img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
 </td>
@@ -305,7 +336,7 @@
 </td>
 </tr>
 <tr>
-<td class="nobr" align="right">5</td>
+<td class="nobr" align="right">6</td>
 <td class="nobr">
 <img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
 </td>
@@ -333,37 +364,6 @@
 </td>
 <td class="nobr">
 <strong>11</strong>
-</td>
-</tr>
-<tr>
-<td class="nobr" align="right">6</td>
-<td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
-</td>
-<td class="nobr" align="center">
-</td>
-<td class="nobr" align="left">Mannschaft 8</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr">&nbsp;</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">7</td>
-<td class="nobr" align="right">1</td>
-<td class="nobr" align="right">4</td>
-<td class="nobr" align="right">1</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">5</td>
-<td class="nobr" align="center" style="width:4px;">:</td>
-<td class="nobr">5</td>
-<td class="nobr" align="right">0</td>
-<td class="nobr" style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">
-<strong>7</strong>
-</td>
-<td class="nobr" align="center" style="width:4px;">
-<strong>:</strong>
-</td>
-<td class="nobr">
-<strong>7</strong>
 </td>
 </tr>
 <tr>
@@ -410,7 +410,7 @@
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">7</td>
 <td class="nobr" align="right">1</td>
-<td class="nobr" align="right">0</td>
+<td class="nobr" align="right">2</td>
 <td class="nobr" align="right">4</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">3</td>
@@ -419,13 +419,13 @@
 <td class="nobr" align="right">0</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr" align="right">
-<strong>3</strong>
+<strong>5</strong>
 </td>
 <td class="nobr" align="center" style="width:4px;">
 <strong>:</strong>
 </td>
 <td class="nobr">
-<strong>12</strong>
+<strong>14</strong>
 </td>
 </tr>
 <tr>

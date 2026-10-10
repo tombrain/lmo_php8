@@ -21,7 +21,10 @@ function updateAddons($fileName) {
     //anzeigen zu lassen, um evtl. nicht gesetzte Variablen frühzeitig zu erkennen
     //error_reporting(E_ALL);
     $liga = basename($fileName, '.l98');
-    $file = $liga . '.l98';
+    // $file relativ zum Ligenverzeichnis wie im restlichen LMO; mit basename() wurden Ligen in
+    // Unterordnern nicht gefunden (HTML-Export und Statistik liefen dann ohne Daten)
+    $ligenDir = PATH_TO_LMO . '/' . $dirliga;
+    $file = strpos($fileName, $ligenDir) === 0 ? substr($fileName, strlen($ligenDir)) : $liga . '.l98';
     $action = 'admin';
     $array = array();
     //Liga-Datei öffnen
