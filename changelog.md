@@ -39,6 +39,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * PHPMailer wird jetzt über Composer installiert (`phpmailer/phpmailer` 7.1) statt als veränderte Kopie in `lmo/includes`.  
 * Entwicklungsumgebung (Docker): lokales Postfach für alle Mails von LMO, Übersichtsseite der Addons mit zwei Beispielligen, Doku in `docker/README.md`.  
 * GitHub Action: Die Tests laufen mit PHP 8.0, 8.3, 8.4 und 8.5.  
+* PHP 8.5 wird unterstützt (README: PHP 8.0 bis 8.5).  
 
 ### Deprecated  
 
@@ -219,6 +220,7 @@ _Here we had the changelogs for 4.2.1._
 * PHPMailer is now installed via Composer (`phpmailer/phpmailer` 7.1) instead of the modified copy in `lmo/includes`.  
 * Development environment (Docker): local mailbox for all mails sent by LMO, overview page of the addons with two sample leagues, documentation in `docker/README.md`.  
 * GitHub Action: the tests run with PHP 8.0, 8.3, 8.4 and 8.5.  
+* PHP 8.5 is supported (README: PHP 8.0 to 8.5).  
 
 ### Deprecated  
 

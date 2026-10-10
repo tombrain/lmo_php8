@@ -39,7 +39,7 @@ docker compose run --rm tests
 docker compose run --rm tests --filter CalculationTest
 docker compose run --rm tests --filter 'PagesTest.*action=table'
 
-# Andere PHP-Version (README nennt 8.0 bis 8.4)
+# Andere PHP-Version (README nennt 8.0 bis 8.5)
 PHP_VERSION=8.0 docker compose run --rm tests
 ```
 
