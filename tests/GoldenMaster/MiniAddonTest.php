@@ -95,6 +95,36 @@ final class MiniAddonTest extends TestCase
         }
     }
 
+    /** @return int[] Tendenz je Tabellenzeile (title des Tendenz-Bildes) fuer golden/basic mit dem angegebenen aktuellen Spieltag */
+    private static function tendencies(int $actual): array
+    {
+        $source = str_replace("\r\n", "\n", (string)file_get_contents(self::$app->ligenDir() . '/golden/basic.l98'));
+        $content = preg_replace('/^Actual=.*$/m', 'Actual=' . $actual, $source, 1, $count);
+        self::assertSame(1, $count);
+        file_put_contents(self::$app->ligenDir() . '/tendenz' . $actual . '.l98', $content);
+
+        $html = self::page('lmo-minitab.php', 'mini_liga=tendenz' . $actual . '.l98&mini_template=standard&mini_ueber=99&mini_unter=99');
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        preg_match_all('~<img src="[^"]*lmo-tab\d\.gif" border="0" title="(-?\d+)">~', $html, $titles);
+        self::assertCount(8, $titles[1], 'Tendenz fuer alle 8 Mannschaften');
+        return array_map('intval', $titles[1]);
+    }
+
+    public function testNoTendencyBeforeTheSecondMatchday(): void
+    {
+        // am 1. Spieltag gibt es keinen Vorspieltag
+        self::assertSame(array_fill(0, 8, 0), self::tendencies(1));
+    }
+
+    public function testTendencyComparesWithThePreviousMatchday(): void
+    {
+        $tendencies = self::tendencies(3);
+
+        self::assertNotSame(array_fill(0, 8, 0), $tendencies, 'Plaetze haben sich seit Spieltag 2 veraendert');
+        // jeder gewonnene Platz ist fuer eine andere Mannschaft ein verlorener
+        self::assertSame(0, array_sum($tendencies));
+    }
+
     public static function pages(): array
     {
         return [

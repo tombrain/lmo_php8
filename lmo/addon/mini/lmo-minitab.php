@@ -105,7 +105,11 @@ if (empty($CacheOutput)) {
 
         $AnzahlTeams = $liga->teamCount();
         $LigaTabelle = $liga->calcTable($liga->options->keyValues['Rounds']);
-        $LastGameDay = $liga->calcTable($liga->options->keyValues['Actual'] - 1);
+        // Tendenz = Platz am Vorspieltag minus Platz jetzt. Vor dem ersten Spieltag gibt es keinen
+        // Vorspieltag (calcTable(0) rechnet mit dem aktuellen Spieltag): Tendenz 0 fuer alle.
+        $LastGameDay = $liga->options->keyValues['Actual'] > 1
+            ? $liga->calcTable($liga->options->keyValues['Actual'] - 1)
+            : $LigaTabelle;
         $Favorit = $liga->teamForNumber($liga->options->keyValues['favTeam']);
         $viewPosition = 1;
         if (is_null($m_platz) || $m_platz <= 0 || $m_platz > $AnzahlTeams ) {
