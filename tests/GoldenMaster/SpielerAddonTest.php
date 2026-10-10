@@ -244,6 +244,16 @@ final class SpielerAddonTest extends TestCase
         self::assertSame(['Ahrens' => ['3', '4'], 'Müller' => ['5', '10']], $players);
     }
 
+    public function testDeletingUnknownColumnChangesNothing(): void
+    {
+        $before = self::rows();
+
+        $html = self::admin(['option' => 'delcolumn', 'wert' => '9']);
+
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        self::assertSame($before, self::rows());
+    }
+
     public function testStatisticsCannotBeChangedWithoutLogin(): void
     {
         $anonymous = Fixture::anonymousClient();
