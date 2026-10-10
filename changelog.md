@@ -34,6 +34,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Automatische Tests für die Addons „viewer“ (Ansicht speichern, Spiele nach Datum und Spieltag, Cache) und „ticker“ (Lauftext mit Wertungen, News).  
 * Automatische Tests für das Addon „spieler“ (Spielerstatistik): Spieler und Spalten verwalten, Formelspalten, öffentliche Seite und Druckansicht.  
 * Automatische Tests für den Mailversand (Liga per E-Mail, Passwort vergessen im Tippspiel).  
+* Automatische Tests für Ticker, Viewer und Mini-Spielplan über mehrere Ligen.  
 
 ### Changed  
 * PHPMailer wird jetzt über Composer installiert (`phpmailer/phpmailer` 7.1) statt als veränderte Kopie in `lmo/includes`.  
@@ -51,6 +52,8 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Minitabelle: Am ersten Spieltag wurde eine Tendenz angezeigt, obwohl es keinen Vorspieltag gibt. Jetzt ist sie dort für alle Mannschaften 0.  
 * Ticker: Der Hinweis „… bekam den Sieg zugesprochen“ stand nach einem gewerteten Spiel auch bei allen folgenden Spielen des Spieltags.  
 * Ticker: Breite und Geschwindigkeit ließen sich beim Einbinden nicht übergeben; die Einstellung „Notizen anzeigen“ wirkte bei Pokal-Ligen nicht.  
+* Ticker mit mehreren Ligen: Die Spiele der ersten Liga standen bei jeder weiteren Liga noch einmal. Eine fehlende Liga in der Liste zeigte die Spiele der vorigen statt der Meldung „keine passenden Ligen gefunden“.  
+* Mini-Spielplan: PHP-Warnung, wenn die beiden Mannschaften in einer Liga nie aufeinandertreffen. Bei den früheren Begegnungen aus dem Archiv konnte die falsche Mannschaft erscheinen, wenn sich zwei Namen nur in Ziffern unterscheiden (z.B. „TSV Muster“ und „TSV Muster 2“).  
 * Viewer: PHP-Warnung beim ersten Aufruf einer Ansicht (Cache-Datei noch nicht vorhanden); im Admin-Formular eine PHP-Warnung, wenn das Ligenverzeichnis nicht `ligen/` heißt.  
 * classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
 * classlib: Bei völligem Gleichstand (gleiche Punkte und Tore) war die Reihenfolge zufällig. Jetzt steht wie in der Haupttabelle die Mannschaft mit der höheren Nummer vorn.  
@@ -218,6 +221,7 @@ _Here we had the changelogs for 4.2.1._
 * Automated tests for the addons "viewer" (saving a view, matches by date and by match day, cache) and "ticker" (ticker text with ratings, news).  
 * Automated tests for the "spieler" addon (player statistics): managing players and columns, formula columns, public page and print view.  
 * Automated tests for sending mail (league by e-mail, forgotten password in the betting game).  
+* Automated tests for ticker, viewer and mini schedule across several leagues.  
 
 ### Changed  
 * PHPMailer is now installed via Composer (`phpmailer/phpmailer` 7.1) instead of the modified copy in `lmo/includes`.  
@@ -235,6 +239,8 @@ _Here we had the changelogs for 4.2.1._
 * Mini table: on the first match day a trend was shown although there is no previous match day. Now it is 0 for all teams there.  
 * Ticker: after a match decided by ruling, the note "… was awarded the win" also appeared on all following matches of the match day.  
 * Ticker: width and speed could not be passed when including the ticker; the setting "show notes" had no effect for cup leagues.  
+* Ticker with several leagues: the matches of the first league were repeated for every further league. A missing league in the list showed the matches of the previous one instead of the message "no matching leagues found".  
+* Mini schedule: PHP warning when the two teams never meet in a league. For previous meetings from the archive the wrong team could appear when two names differ only in digits (e.g. "TSV Muster" and "TSV Muster 2").  
 * Viewer: PHP warning on the first call of a view (cache file not yet present); a PHP warning in the admin form when the league directory is not named `ligen/`.  
 * classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
 * classlib: with a complete tie (same points and goals) the order was arbitrary. Now, as in the main table, the team with the higher number comes first.  
