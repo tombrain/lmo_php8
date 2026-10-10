@@ -114,7 +114,7 @@ foreach($ticker_array as $file) {
                                 $mspezhilf = ' ' . $mspez[$stx-1][$i][$n];
                             }
                             if ($favteam == $teama[$stx-1][$i] || $favteam == $teamb[$stx-1][$i] || $ticker_tickerart == 1) {
-                                if ($mnote[$stx-1][$i][$n] != '' && $notizanzeigen == 1) {
+                                if ($mnote[$stx-1][$i][$n] != '' && $ticker_notizanzeigen == 1) {
                                     $dummy4 = ' ' . $text[22] . ': ' . $mnote[$stx-1][$i][$n];
                                 }
                                 else {
