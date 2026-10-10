@@ -52,6 +52,8 @@ $file2 = $file;
 $ticker_array = explode(",", $ticker_ligen);
 
 foreach($ticker_array as $file) {
+    // je Liga neu beginnen: sonst stehen die Spiele der vorigen Ligen noch einmal bei der naechsten
+    $hilf = $hilf1 = '';
     require(PATH_TO_LMO . '/lmo-openfile.php');
     if (isset($lmtype)) {
         if($ticker_tickerart == 2) {
