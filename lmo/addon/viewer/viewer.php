@@ -65,7 +65,9 @@ if (empty($multi_cfgarray['liga1']) && isset($viewer_league)) {
 //check if one of the leagues is newer than the cache file
 $i = 1;
 while (isset($multi_cfgarray['liga' . $i])) {
-    if (filemtime(PATH_TO_LMO . '/' . $diroutput . 'viewer_' . $multi . '.txt') < filemtime(PATH_TO_LMO . '/' . $dirliga . $multi_cfgarray['liga' . $i])) {
+    // beim ersten Aufruf gibt es die Cache-Datei noch nicht (filemtime() warnte dann)
+    $viewer_cache_filename = PATH_TO_LMO . '/' . $diroutput . 'viewer_' . $multi . '.txt';
+    if (!file_exists($viewer_cache_filename) || filemtime($viewer_cache_filename) < filemtime(PATH_TO_LMO . '/' . $dirliga . $multi_cfgarray['liga' . $i])) {
         $viewer_cache_counter = 0;
     }
     $i++;
