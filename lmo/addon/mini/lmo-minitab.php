@@ -255,7 +255,7 @@ if (empty($CacheOutput)) {
         }
         $template->show();
     } else {
-        echo getMessage($text['mini'][5] . ' ' . $mini_liga, true);
+        echo getMessage($text['mini'][5] . ' ' . $m_liga, true);
     }
 }
 //Falls IFRAME - komplettes HTML-Dokument
