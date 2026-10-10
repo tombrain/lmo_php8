@@ -1120,9 +1120,7 @@ GEAENDERT config/lmo-auth.php
 <td colspan="2" align="center">
 <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1' onClick="return chklmolink();" title="Wechseln Sie hier wieder zur Ergebnisübersicht zurück">Ergebnisse</a>
-</td>
+<td align="center">Ergebnisse</td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=-4' onClick="return chklmolink();" title="Eingabe der Spielerstatistiken">Spielerstatistik</a>
 </td>
@@ -1144,8 +1142,7 @@ GEAENDERT config/lmo-auth.php
 <td align="center">
 <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<td align='center'>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=1" title="auf diesen Spieltag wechseln">01</a>&nbsp;</td>
+<td align='center'>01&nbsp;</td>
 <td align='center'>
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/basic.l98&amp;st=2" title="auf diesen Spieltag wechseln">02</a>&nbsp;</td>
 <td align='center'>
@@ -1179,7 +1176,7 @@ GEAENDERT config/lmo-auth.php
 <input type="hidden" name="todo" value="edit">
 <input type="hidden" name="save" value="990">
 <input type="hidden" name="file" value="golden/basic.l98">
-<input type="hidden" name="st" value="-2">
+<input type="hidden" name="st" value="1">
 <input type="submit" name="rueckrundeButton" class="lmo-formular-button" value="Rückrundenspielplan erstellen">
 </form>
 </td>
@@ -1191,10 +1188,10 @@ GEAENDERT config/lmo-auth.php
 <input type="hidden" name="todo" value="edit">
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="file" value="golden/basic.l98">
-<input type="hidden" name="st" value="-2">
+<input type="hidden" name="st" value="1">
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<th class="nobr" style="text-align:left" colspan="8"> -2. Spieltag </th>
+<th class="nobr" style="text-align:left" colspan="8"> 1. Spieltag </th>
 <th colspan="5">&nbsp;</th>
 <th style="text-align:center" class="nobr">
 <acronym title="spezielle Grüne-Tisch-Entscheidung (bitte nur auswählen, wenn es wirklich eine solche Entscheidung unabhängig vom Ergebnis gegeben hat!)">
@@ -1223,14 +1220,12 @@ GEAENDERT config/lmo-auth.php
 <input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim0" tabindex="004" size="5" maxlength="5" value="" onChange="dolmoedit()" ondblclick="fillAll(this);">
 </td>
 <td width="2">&nbsp;</td>
-<td class="nobr" align="right">
-</td>
+<td class="nobr" align="right"> Mannschaft 1 </td>
 <td align="center" width="10">-</td>
-<td class="nobr">
-</td>
+<td class="nobr"> Mannschaft 7 </td>
 <td width="2">&nbsp;</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala0" tabindex="007" size="2" maxlength="4" value="" onChange="lmotorgte('a','0')" onKeyDown="lmotorclk('a','0',event.keyCode)">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala0" tabindex="007" size="2" maxlength="4" value="_" onChange="lmotorgte('a','0')" onKeyDown="lmotorclk('a','0',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung nobr" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1252,7 +1247,7 @@ GEAENDERT config/lmo-auth.php
 </td>
 <td class="lmoBackMarkierung" align="center" width="8">:</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb0" tabindex="008" size="2" maxlength="4" value="" onChange="lmotorgte('b','0')" onKeyDown="lmotorclk('b','0',event.keyCode)">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb0" tabindex="008" size="2" maxlength="4" value="_" onChange="lmotorgte('b','0')" onKeyDown="lmotorclk('b','0',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1302,14 +1297,12 @@ GEAENDERT config/lmo-auth.php
 <input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim1" tabindex="104" size="5" maxlength="5" value="" onChange="dolmoedit()" ondblclick="fillAll(this);">
 </td>
 <td width="2">&nbsp;</td>
-<td class="nobr" align="right">
-</td>
+<td class="nobr" align="right"> Mannschaft 3 </td>
 <td align="center" width="10">-</td>
-<td class="nobr">
-</td>
+<td class="nobr"> Mannschaft 4 </td>
 <td width="2">&nbsp;</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala1" tabindex="107" size="2" maxlength="4" value="" onChange="lmotorgte('a','1')" onKeyDown="lmotorclk('a','1',event.keyCode)">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala1" tabindex="107" size="2" maxlength="4" value="_" onChange="lmotorgte('a','1')" onKeyDown="lmotorclk('a','1',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung nobr" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1331,7 +1324,7 @@ GEAENDERT config/lmo-auth.php
 </td>
 <td class="lmoBackMarkierung" align="center" width="8">:</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb1" tabindex="108" size="2" maxlength="4" value="" onChange="lmotorgte('b','1')" onKeyDown="lmotorclk('b','1',event.keyCode)">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb1" tabindex="108" size="2" maxlength="4" value="_" onChange="lmotorgte('b','1')" onKeyDown="lmotorclk('b','1',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1381,14 +1374,12 @@ GEAENDERT config/lmo-auth.php
 <input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim2" tabindex="204" size="5" maxlength="5" value="" onChange="dolmoedit()" ondblclick="fillAll(this);">
 </td>
 <td width="2">&nbsp;</td>
-<td class="nobr" align="right">
-</td>
+<td class="nobr" align="right"> Mannschaft 5 </td>
 <td align="center" width="10">-</td>
-<td class="nobr">
-</td>
+<td class="nobr"> Mannschaft 2 </td>
 <td width="2">&nbsp;</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala2" tabindex="207" size="2" maxlength="4" value="" onChange="lmotorgte('a','2')" onKeyDown="lmotorclk('a','2',event.keyCode)">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala2" tabindex="207" size="2" maxlength="4" value="0" onChange="lmotorgte('a','2')" onKeyDown="lmotorclk('a','2',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung nobr" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1410,7 +1401,7 @@ GEAENDERT config/lmo-auth.php
 </td>
 <td class="lmoBackMarkierung" align="center" width="8">:</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb2" tabindex="208" size="2" maxlength="4" value="" onChange="lmotorgte('b','2')" onKeyDown="lmotorclk('b','2',event.keyCode)">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb2" tabindex="208" size="2" maxlength="4" value="0" onChange="lmotorgte('b','2')" onKeyDown="lmotorclk('b','2',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1460,14 +1451,12 @@ GEAENDERT config/lmo-auth.php
 <input title="AnstoßZeit des Spiels (Format HH:MM - ggf. mit führenden Nullen) - lassen Sie dieses Feld leer, wird beim Speichern automatisch die Standard-Anstoßzeit eingesetzt" class="lmo-formular-input" type="text" name="xattim3" tabindex="304" size="5" maxlength="5" value="" onChange="dolmoedit()" ondblclick="fillAll(this);">
 </td>
 <td width="2">&nbsp;</td>
-<td class="nobr" align="right">
-</td>
+<td class="nobr" align="right"> Mannschaft 8 </td>
 <td align="center" width="10">-</td>
-<td class="nobr">
-</td>
+<td class="nobr"> Mannschaft 6 </td>
 <td width="2">&nbsp;</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala3" tabindex="307" size="2" maxlength="4" value="" onChange="lmotorgte('a','3')" onKeyDown="lmotorclk('a','3',event.keyCode)">
+<input title="Heimtore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoala3" tabindex="307" size="2" maxlength="4" value="3" onChange="lmotorgte('a','3')" onKeyDown="lmotorclk('a','3',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung nobr" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1489,7 +1478,7 @@ GEAENDERT config/lmo-auth.php
 </td>
 <td class="lmoBackMarkierung" align="center" width="8">:</td>
 <td class="lmoBackMarkierung" align="right">
-<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb3" tabindex="308" size="2" maxlength="4" value="" onChange="lmotorgte('b','3')" onKeyDown="lmotorclk('b','3',event.keyCode)">
+<input title="Gasttore (0 - 9999, _ oder X)" class="lmo-formular-input" type="text" name="xgoalb3" tabindex="308" size="2" maxlength="4" value="1" onChange="lmotorgte('b','3')" onKeyDown="lmotorclk('b','3',event.keyCode)">
 </td>
 <td class="lmoBackMarkierung" align="center">
 <table cellpadding="0" cellspacing="0" border="0">
@@ -1635,7 +1624,6 @@ GEAENDERT config/lmo-auth.php
 </div>
 </body>
 </html>
-<!-- STDERR Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 370 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 376 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 543 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 545 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 550 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 552 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 543 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 545 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 550 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 552 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 543 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 545 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 550 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 552 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 467 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key "" in {LMO_PATH}/lmo-adminedit.php on line 483 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 485 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 488 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 493 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 505 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 531 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 532 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 533 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 534 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 537 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 543 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 543 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 545 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 545 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 550 Deprecated: htmlentities(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 550 Warning: Undefined array key -3 in {LMO_PATH}/lmo-adminedit.php on line 552 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminedit.php on line 552 Deprecated: trim(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/lmo-adminedit.php on line 552 -->
 --- Dateiaenderungen ---
 (keine)
 

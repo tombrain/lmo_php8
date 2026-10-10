@@ -44,6 +44,11 @@ if ($file != '') {
     }
 
     require_once(PATH_TO_LMO . '/lmo-openfile.php');
+    // Spieltag, den es in der Liga nicht gibt (z.B. st=-2 als Hilfsadmin ohne Recht auf die
+    // Mannschaftsverwaltung): stattdessen den aktuellen Spieltag bearbeiten
+    if ($st < 1 || $st > $anzst) {
+        $st = ($stx >= 1 && $stx <= $anzst) ? $stx : 1;
+    }
     if (!isset($save)) {
         $save = 0;
     }
