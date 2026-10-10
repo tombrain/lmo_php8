@@ -62,10 +62,13 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * „Liga per E-Mail“ ohne die PHP-Erweiterung `zip` brach mit einem Fehler ab; jetzt erscheint eine Meldung.  
 * „Alle Ligen herunterladen“ brach ohne die PHP-Erweiterung `zip` ebenfalls ab; jetzt erscheint eine Meldung. Das Archiv entsteht im Ausgabeordner statt im Programmverzeichnis.  
 * Spielerstatistik: Das Löschen einer Spalte, die es nicht gibt, erzeugte eine PHP-Warnung.  
+* Admin-Bereich ohne Anmeldung: Die Sprachauswahl erzeugte je Sprache eine PHP-Warnung.  
+* Liga aus einer Vorlage mit mehr Mannschaften anlegen: PHP-Warnungen beim Erzeugen der Statistikdatei; Partien mit Mannschaften, die es in der Liga nicht gibt, wurden mitgezählt.  
 * Admin-Bereich: Rief ein Hilfsadmin ohne erweiterte Rechte die Mannschaftsverwaltung auf, erschien der Ergebnis-Editor für einen Spieltag, den es nicht gibt (PHP-Warnungen, unbrauchbares Formular). Jetzt öffnet sich der aktuelle Spieltag.  
 
 ### Security  
 * Spielerstatistik: Die Parameter für Sortierung, Seite und Mannschaft wurden unmaskiert in die Seite geschrieben (Cross-Site-Scripting).  
+* Dateien, die LMO nur einbindet (131 Dateien in `lmo/` und den Addons), beenden sich bei direktem Aufruf im Browser sofort. Bisher liefen sie ohne Konfiguration und Rechteprüfung los und gaben Warnungen, Seitenbruchstücke und teils Fehlermeldungen mit Dateipfaden aus.  
 
 
 ***
@@ -243,10 +246,13 @@ _Here we had the changelogs for 4.2.1._
 * "League by e-mail" without the PHP extension `zip` aborted with an error; now a message is shown.  
 * "Download all leagues" also aborted without the PHP extension `zip`; now a message is shown. The archive is created in the output folder instead of the program directory.  
 * Player statistics: deleting a column that does not exist produced a PHP warning.  
+* Admin area without login: the language selection produced a PHP warning per language.  
+* Creating a league from a template with more teams: PHP warnings while generating the statistics file; matches with teams that do not exist in the league were counted.  
 * Admin area: when a helper admin without extended rights opened the team administration, the result editor appeared for a match day that does not exist (PHP warnings, unusable form). Now the current match day opens.  
 
 ### Security  
 * Player statistics: the parameters for sorting, page and team were written into the page unescaped (cross-site scripting).  
+* Files that LMO only includes (131 files in `lmo/` and the addons) now exit immediately when called directly in the browser. Until now they started without configuration and permission check and printed warnings, page fragments and in some cases error messages with file paths.  
 
 
 ***
