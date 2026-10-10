@@ -1,8 +1,11 @@
 <?php
 require_once(__DIR__.'/init.php');
 require_once(PATH_TO_ADDONDIR."/classlib/ini.php");
+// nur aus dem Admin-Bereich (lmo-adminedit.php) und angemeldet: ein direkter Aufruf
+// lmo-rueckrunde.php?file=... schrieb die Liga sonst ohne Anmeldung neu
+require_once(PATH_TO_LMO."/lmo-admintest.php");
 
-if (isset($file) && $file != "")
+if (isset($file) && $file != "" && ($_SESSION['lmouserok'] == 2 || $_SESSION['lmouserok'] == 1))
 {
   $liga = new Liga();
   if ($liga->loadFile(PATH_TO_LMO.'/'.$dirliga.$file))
