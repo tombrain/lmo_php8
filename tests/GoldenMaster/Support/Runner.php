@@ -50,6 +50,18 @@ final class Runner
     }
 
     /**
+     * Ligadateien erst mit LMO selbst, dann mit der classlib speichern und vergleichen
+     * (bin/classlib_roundtrip.php). Achtung: speichert die Ligen in der Instanz neu.
+     *
+     * @param string[] $leagues Ligadateien relativ zum Ligenverzeichnis
+     * @return string JSON Ligadatei => verlorene, neue und geaenderte Schluessel
+     */
+    public function classlibRoundtrip(array $leagues): string
+    {
+        return $this->run('classlib_roundtrip.php', $leagues);
+    }
+
+    /**
      * Allgemeine Anfrage (GET/POST, beliebiger Einstiegspunkt, optional mit Sitzung).
      *
      * @param array{script:string,query?:string,method?:string,post?:array,sid?:string} $spec
