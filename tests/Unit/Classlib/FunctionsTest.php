@@ -98,11 +98,19 @@ final class FunctionsTest extends ClasslibTestCase
         self::assertSame([], findTeamName($names, 'Hertha'));
     }
 
-    public function testFindTeamNameReturnsOnlyFirstMatch(): void
+    public function testFindTeamNameIgnoresDigits(): void
     {
         $names = ['SC Freiburg', 'SC Freiburg II'];
 
         self::assertSame(['SC Freiburg'], findTeamName($names, 'SC Freiburg 2'));
+    }
+
+    /** Namen, die sich nur in Ziffern unterscheiden: alle Treffer, damit der Aufrufer die Mehrdeutigkeit erkennt */
+    public function testFindTeamNameReturnsAllMatches(): void
+    {
+        $names = ['TSV Muster', 'TSV Muster 2', 'SV Anders'];
+
+        self::assertSame(['TSV Muster', 'TSV Muster 2'], findTeamName($names, 'TSV Muster 2'));
     }
 
     public function testFindTeamNameWithoutArray(): void

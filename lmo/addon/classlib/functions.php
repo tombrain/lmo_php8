@@ -104,8 +104,9 @@ function findTeamName(&$teamNamesArray, $search) {
         foreach($teamNamesArray as $teamName) {
             $match_with = strtolower(preg_replace($expr, '', $teamName));
             if ($match_with == $match) {
+                // alle Treffer liefern: der Aufrufer erkennt daran eine mehrdeutige Suche
+                // (z.B. "TSV Muster" und "TSV Muster 2" unterscheiden sich nur in Ziffern)
                 $results[] = $teamName;
-                break;
             }
         }
     }
