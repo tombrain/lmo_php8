@@ -161,7 +161,8 @@ for ($spieltag = 0; $spieltag < $spieltageHinrunde; $spieltag++) {
 $abbildungsarray = range(1,$anzteams);
 // Fisher-Yates Shuffle
 for ($i = count($abbildungsarray); --$i; $i > 0) {
-    $j = @mt_rand(0, $i+1);
+    // 0 bis $i: mit $i+1 lag der Index manchmal ausserhalb des Arrays, der Spielplan verlor ein Team
+    $j = mt_rand(0, $i);
     $temp = $abbildungsarray[$i];
     $abbildungsarray[$i] = $abbildungsarray[$j];
     $abbildungsarray[$j] = $temp;

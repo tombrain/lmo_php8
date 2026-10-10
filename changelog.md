@@ -65,6 +65,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * „Liga per E-Mail“ ohne die PHP-Erweiterung `zip` brach mit einem Fehler ab; jetzt erscheint eine Meldung.  
 * „Alle Ligen herunterladen“ brach ohne die PHP-Erweiterung `zip` ebenfalls ab; jetzt erscheint eine Meldung. Das Archiv entsteht im Ausgabeordner statt im Programmverzeichnis.  
 * Spielerstatistik: Das Löschen einer Spalte, die es nicht gibt, erzeugte eine PHP-Warnung.  
+* Zufallsspielplan: Beim Mischen der Mannschaften wurde gelegentlich neben die Liste gegriffen (bei 6 Mannschaften in etwa jedem siebten Aufruf); im erzeugten Spielplan fehlte dann eine Mannschaft.  
 * Admin-Bereich ohne Anmeldung: Die Sprachauswahl erzeugte je Sprache eine PHP-Warnung.  
 * Liga aus einer Vorlage mit mehr Mannschaften anlegen: PHP-Warnungen beim Erzeugen der Statistikdatei; Partien mit Mannschaften, die es in der Liga nicht gibt, wurden mitgezählt.  
 * Admin-Bereich: Rief ein Hilfsadmin ohne erweiterte Rechte die Mannschaftsverwaltung auf, erschien der Ergebnis-Editor für einen Spieltag, den es nicht gibt (PHP-Warnungen, unbrauchbares Formular). Jetzt öffnet sich der aktuelle Spieltag.  
@@ -252,6 +253,7 @@ _Here we had the changelogs for 4.2.1._
 * "League by e-mail" without the PHP extension `zip` aborted with an error; now a message is shown.  
 * "Download all leagues" also aborted without the PHP extension `zip`; now a message is shown. The archive is created in the output folder instead of the program directory.  
 * Player statistics: deleting a column that does not exist produced a PHP warning.  
+* Random schedule: shuffling the teams occasionally accessed an entry outside the list (with 6 teams in about every seventh call); the generated schedule then lacked a team.  
 * Admin area without login: the language selection produced a PHP warning per language.  
 * Creating a league from a template with more teams: PHP warnings while generating the statistics file; matches with teams that do not exist in the league were counted.  
 * Admin area: when a helper admin without extended rights opened the team administration, the result editor appeared for a match day that does not exist (PHP warnings, unusable form). Now the current match day opens.  
