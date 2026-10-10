@@ -539,7 +539,8 @@ class liga {
                 // Parameter und werte trennen
                 preg_match_all('/^([^=\[]+)=(.*)/m', $sections[0][$y], $parameter, PREG_PATTERN_ORDER);
                 for ($i = 0, $partieNumber = 0; $i < count($parameter[0]); $i++) {
-                    if (!str_contains(strtolower($sections[1][$y]), 'round') || preg_match('/^D[12]$|^MO$/', trim($parameter[1][$i]))) {
+                    // Spieltagswerte ohne Partienummer: D1, D2 und Schluessel nur aus Buchstaben (MO, HS)
+                    if (!str_contains(strtolower($sections[1][$y]), 'round') || preg_match('/^D[12]$|^[A-Za-z]+$/', trim($parameter[1][$i]))) {
                         // andere Section oder SpieltagParameter
                         $iniData[$sections[1][$y]][trim($parameter[1][$i])] = trim($parameter[2][$i]);
                     }
@@ -615,6 +616,13 @@ class liga {
                 $spieltag = new spieltag($rCounter, $startTime, $endTime);
                 // Modus des Spieltags
                 $spieltag->setModus($this->getIniData('MO', $iniData[$roundSektion]));
+                // weitere Spieltagswerte (z.B. HS = Handicap-Reihenfolge) unveraendert merken
+                foreach ($iniData[$roundSektion] as $roundKey => $roundValue) {
+                    if (is_string($roundKey)) {
+                        $spieltag->setParameter($roundValue, $roundKey);
+                        unset($iniData[$roundSektion][$roundKey]);
+                    }
+                }
                 for ($pCounter = 1; isset($iniData[$roundSektion][$pCounter]['TA']); $pCounter++) {
                     $heimTeam = &$this->teamForNumber($this->getIniData('TA', $iniData[$roundSektion], $pCounter));
                     $gastTeam = &$this->teamForNumber($this->getIniData('TB', $iniData[$roundSektion], $pCounter));
@@ -1071,6 +1079,9 @@ class liga {
                 $iniData['Round' . $roundCount]['D1'] = $spieltag->vonString();
                 $iniData['Round' . $roundCount]['D2'] = $spieltag->bisString();
                 $iniData['Round' . $roundCount]['MO'] = $spieltag->getModus();
+                foreach ($spieltag->getParameter() as $roundKey => $roundValue) {  // z.B. HS
+                    $iniData['Round' . $roundCount][$roundKey] = $roundValue;
+                }
                 for ($teamCounter = 1, $pCounter = 0; $pCounter < $spieltag->partienCount(); $teamCounter++) {
                     $partienCounter = 0;
                     $iniData['Round' . $roundCount]['TA' . $teamCounter] = $spieltag->partien[$pCounter]->heim->nr;

@@ -60,6 +60,19 @@ final class SpieltagTest extends ClasslibTestCase
         self::assertSame(2, $spieltag->getModus());
     }
 
+    public function testParameter(): void
+    {
+        $spieltag = new \spieltag(1, '', '');
+        self::assertSame([], $spieltag->getParameter());
+        self::assertNull($spieltag->getParameter('HS'));
+
+        $spieltag->setParameter('0102030405', 'HS');
+        $spieltag->setParameter(['XY' => 'a', 'HS' => '0201']);
+
+        self::assertSame('0201', $spieltag->getParameter('HS'));
+        self::assertSame(['HS' => '0201', 'XY' => 'a'], $spieltag->getParameter());
+    }
+
     public function testPartieForNumber(): void
     {
         $spieltag = $this->spieltag();

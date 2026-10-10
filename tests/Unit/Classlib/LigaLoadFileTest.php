@@ -52,6 +52,7 @@ NOT=Gegruendet 1900
 Foo=Bar
 
 [Round1]
+HS=030102
 D1=23.08.2024
 D2=24.08.2024
 TA1=1
@@ -194,6 +195,17 @@ L98;
         $offen = $liga->SpieltagForNumber(2)->partieForNumber(1);
         self::assertSame(-1, $offen->valuateGame());
         self::assertSame('', $offen->datumString());
+    }
+
+    public function testRoundValuesWithoutMatchNumberAreKept(): void
+    {
+        $liga = $this->load(self::LIGA);
+
+        // HS = Handicap-Reihenfolge, gehoert zum Spieltag und nicht zu einer Partie
+        self::assertSame('030102', $liga->SpieltagForNumber(1)->getParameter('HS'));
+        self::assertSame([], $liga->SpieltagForNumber(2)->getParameter());
+        self::assertSame(1, $liga->SpieltagForNumber(1)->partienCount());
+        self::assertSame(['Eigenes' => ['Foo' => 'Bar']], $liga->sections);
     }
 
     public function testMatchEndIsRead(): void

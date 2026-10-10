@@ -51,6 +51,13 @@ class spieltag {
     var $partien;
 
     /**
+    * Weitere Werte des Spieltags aus der Ligadatei, z.B. HS (Handicap-Reihenfolge)
+    * @var array Schluessel => Wert
+    * @access private
+    */
+    var $parameter = array();
+
+    /**
     * Konstruktor
     *
     * @param integer $new_nr
@@ -127,6 +134,36 @@ class spieltag {
     */
     function getModus() {
         return $this->modus;
+    }
+
+    /**
+    * Weiteren Wert des Spieltags setzen, z.B. HS (Handicap-Reihenfolge)
+    *
+    * @access public
+    * @param mixed value Wert, oder ein Array Schluessel => Wert
+    * @param string key Schluessel wie in der Ligadatei
+    */
+    function setParameter($value, $key = '') {
+        if (is_array($value)) {
+            $this->parameter = array_merge($this->parameter, $value);
+        }
+        else {
+            $this->parameter[$key] = $value;
+        }
+    }
+
+    /**
+    * Weiteren Wert des Spieltags lesen; ohne Schluessel alle Werte
+    *
+    * @access public
+    * @param string key Schluessel wie in der Ligadatei
+    * @return mixed Wert, null wenn nicht gesetzt
+    */
+    function getParameter($key = '') {
+        if ($key == '') {
+            return $this->parameter;
+        }
+        return $this->parameter[$key] ?? null;
     }
 
     /**
