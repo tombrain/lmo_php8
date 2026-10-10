@@ -33,8 +33,12 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Automatische Tests für das Addon „mini“: Die Minitabelle muss dieselbe Tabelle zeigen wie die Haupttabelle.  
 * Automatische Tests für die Addons „viewer“ (Ansicht speichern, Spiele nach Datum und Spieltag, Cache) und „ticker“ (Lauftext mit Wertungen, News).  
 * Automatische Tests für das Addon „spieler“ (Spielerstatistik): Spieler und Spalten verwalten, Formelspalten, öffentliche Seite und Druckansicht.  
+* Automatische Tests für den Mailversand (Liga per E-Mail, Passwort vergessen im Tippspiel).  
 
 ### Changed  
+* PHPMailer wird jetzt über Composer installiert (`phpmailer/phpmailer` 7.1) statt als veränderte Kopie in `lmo/includes`.  
+* Entwicklungsumgebung (Docker): lokales Postfach für alle Mails von LMO, Übersichtsseite der Addons mit zwei Beispielligen, Doku in `docker/README.md`.  
+* GitHub Action: Die Tests laufen mit PHP 8.0, 8.3, 8.4 und 8.5.  
 
 ### Deprecated  
 
@@ -52,6 +56,9 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * classlib: Die Handicap-Reihenfolge (Option „HandS“) wird jetzt wie in der Haupttabelle auf die Gesamttabelle angewendet. Minitabelle und Statistik zeigten bei solchen Ligen bisher andere Plätze.  
 * Spielerstatistik: Eine ungültige Formel erzeugte PHP-Warnungen statt des Fehlertexts, eine unvollständige Formel (z.B. `Tore/`) brach die Admin-Seite ab; außerdem erschienen Reste der Formel als Debug-Ausgabe in der Seite.  
 * Spielerstatistik: Die öffentliche Seite und die Druckansicht brachen bei einem nicht-numerischen Seitenanfang ab und warnten bei einer unbekannten Sortierspalte; die Druckansicht warnte, wenn es zur Liga keine Statistik gibt.  
+* Mailversand: Ein fehlgeschlagener Versand (Liga per E-Mail; Tippspiel: Rundmail, Freischaltung, Benachrichtigung) endete mit einem Fatal Error statt einer Meldung; bei der Rundmail brach schon eine ungültige Adresse den ganzen Lauf ab.  
+* Tippspiel: Links in Mails waren fehlerhaft, wenn der Webserver `REQUEST_SCHEME` nicht liefert, und konnten die Parameter der aktuellen Anfrage enthalten.  
+* „Liga per E-Mail“ ohne die PHP-Erweiterung `zip` brach mit einem Fehler ab; jetzt erscheint eine Meldung.  
 
 ### Security  
 * Spielerstatistik: Die Parameter für Sortierung, Seite und Mannschaft wurden unmaskiert in die Seite geschrieben (Cross-Site-Scripting).  
@@ -203,8 +210,12 @@ _Here we had the changelogs for 4.2.1._
 * Automated tests for the "mini" addon: the mini table must show the same table as the main table.  
 * Automated tests for the addons "viewer" (saving a view, matches by date and by match day, cache) and "ticker" (ticker text with ratings, news).  
 * Automated tests for the "spieler" addon (player statistics): managing players and columns, formula columns, public page and print view.  
+* Automated tests for sending mail (league by e-mail, forgotten password in the betting game).  
 
 ### Changed  
+* PHPMailer is now installed via Composer (`phpmailer/phpmailer` 7.1) instead of the modified copy in `lmo/includes`.  
+* Development environment (Docker): local mailbox for all mails sent by LMO, overview page of the addons with two sample leagues, documentation in `docker/README.md`.  
+* GitHub Action: the tests run with PHP 8.0, 8.3, 8.4 and 8.5.  
 
 ### Deprecated  
 
@@ -222,6 +233,9 @@ _Here we had the changelogs for 4.2.1._
 * classlib: the handicap order (option "HandS") is now applied to the overall table as in the main table. Until now the mini table and the statistics showed different places for such leagues.  
 * Player statistics: an invalid formula produced PHP warnings instead of the error text, an incomplete formula (e.g. `Tore/`) aborted the admin page; in addition, remains of the formula appeared in the page as debug output.  
 * Player statistics: the public page and the print view aborted on a non-numeric page start and warned on an unknown sort column; the print view warned when there are no statistics for the league.  
+* Sending mail: a failed dispatch (league by e-mail; betting game: circular mail, activation, notification) ended with a fatal error instead of a message; with the circular mail a single invalid address aborted the whole run.  
+* Betting game: links in mails were broken when the web server does not provide `REQUEST_SCHEME`, and could contain the parameters of the current request.  
+* "League by e-mail" without the PHP extension `zip` aborted with an error; now a message is shown.  
 
 ### Security  
 * Player statistics: the parameters for sorting, page and team were written into the page unescaped (cross-site scripting).  
