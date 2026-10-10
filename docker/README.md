@@ -61,8 +61,11 @@ docker compose logs -f web
 ## Addons ausprobieren (`/demo/`)
 
 http://localhost:8082/demo/ zeigt alle Addons auf einer Seite, jeweils eingebettet und mit dem
-direkten Link: Minitabelle, Mini-Spielplan, Viewer (nach Spieltag und nach Datum), Ticker und
-Spielerstatistik. Oben lässt sich zwischen zwei Beispielligen umschalten.
+direkten Link:
+
+- mit einer Liga: Minitabelle und Spielerstatistik; die Liga lässt sich oben umschalten
+- einmal mit einer und einmal mit drei Ligen: Ticker, Viewer und Mini-Spielplan
+- Viewer nach Datum über drei Ligen
 
 Die Seite und ihre Daten liegen in `docker/demo/` und gehören nicht zu LMO; sie werden nicht mit
 ausgeliefert. Beim Start des Containers werden fehlende Dateien in die Volumes kopiert, vorhandene
@@ -71,9 +74,19 @@ bleiben unangetastet:
 | Datei in `docker/demo/` | Ziel im Container | Inhalt |
 |---|---|---|
 | `ligen/demo-laufend.l98` | `lmo/ligen/` | 1. Bundesliga 2026/27, Stand 5. Spieltag |
-| `ligen/demo-beendet.l98` | `lmo/ligen/` | 1. Bundesliga 2025/26, komplett |
-| `viewer/demo-*.view` | `lmo/config/viewer/` | zwei Viewer-Ansichten über beide Ligen |
+| `ligen/demo-beendet.l98` | `lmo/ligen/` und `lmo/ligen/demo-archiv/` | 1. Bundesliga 2025/26, komplett |
+| `ligen/demo-aelter.l98` | `lmo/ligen/` und `lmo/ligen/demo-archiv/` | 1. Bundesliga 2024/25, komplett |
+| `viewer/demo-*.view` | `lmo/config/viewer/` | Viewer-Ansichten über eine und über drei Ligen |
 | `stats/demo-laufend.stat` | `lmo/addon/spieler/stats/` | erfundene Spielerstatistik |
+
+So kommen mehrere Ligen in ein Addon:
+
+- Viewer: Die Ansicht nennt die Ligen als `liga1`, `liga2`, ...
+- Ticker: kommagetrennte Liste, direkt aufgerufen über `tickerligen=a.l98,b.l98` oder in der
+  Konfiguration als `standard_ligen`
+- Mini-Spielplan: Die bisherigen Begegnungen sucht er zusätzlich in allen Ligen eines Archivordners
+  (`folder=demo-archiv`); die Mannschaften werden über ihren Namen gefunden. Mit `mini_withArchiv=0`
+  bleibt es bei der eigenen Liga.
 
 Die Ergebnisse der Beispielligen stammen von OpenLigaDB. Die Termine sind erfunden: ein Spieltag pro
 Woche, alle Spiele samstags 15:30 Uhr. Wer eine Beispieldatei im Container verändert hat und den

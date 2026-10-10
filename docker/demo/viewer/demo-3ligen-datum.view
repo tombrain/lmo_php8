@@ -19,8 +19,9 @@ notizsymbol=notiz.gif
 spieltagtext=ST
 cache_refresh=0
 favteam_highlight=1
-titelzeile=Beispielligen nach Datum
+titelzeile=Drei Ligen nach Datum
 template=standard
 [Viewer Ligen]
 liga1=demo-laufend.l98
 liga2=demo-beendet.l98
+liga3=demo-aelter.l98

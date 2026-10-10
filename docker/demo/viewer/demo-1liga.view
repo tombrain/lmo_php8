@@ -19,8 +19,7 @@ notizsymbol=notiz.gif
 spieltagtext=ST
 cache_refresh=0
 favteam_highlight=1
-titelzeile=Beispielligen nach Spieltag
+titelzeile=Eine Liga nach Spieltag
 template=standard_spieltag
 [Viewer Ligen]
 liga1=demo-laufend.l98
-liga2=demo-beendet.l98
