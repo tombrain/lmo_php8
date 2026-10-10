@@ -48,6 +48,8 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Ticker: Breite und Geschwindigkeit ließen sich beim Einbinden nicht übergeben; die Einstellung „Notizen anzeigen“ wirkte bei Pokal-Ligen nicht.  
 * Viewer: PHP-Warnung beim ersten Aufruf einer Ansicht (Cache-Datei noch nicht vorhanden); im Admin-Formular eine PHP-Warnung, wenn das Ligenverzeichnis nicht `ligen/` heißt.  
 * classlib: Werte einer Partie (z.B. Verlängerung, beidseitiges Ergebnis) werden im Ligamodus auch gelesen, wenn sie in der Ligadatei vor den Mannschaften der Partie stehen. Minitabelle und Statistik zeigten für solche Dateien andere Punkte als die Haupttabelle.  
+* classlib: Bei völligem Gleichstand (gleiche Punkte und Tore) war die Reihenfolge zufällig. Jetzt steht wie in der Haupttabelle die Mannschaft mit der höheren Nummer vorn.  
+* classlib: Die Handicap-Reihenfolge (Option „HandS“) wird jetzt wie in der Haupttabelle auf die Gesamttabelle angewendet. Minitabelle und Statistik zeigten bei solchen Ligen bisher andere Plätze.  
 * Spielerstatistik: Eine ungültige Formel erzeugte PHP-Warnungen statt des Fehlertexts, eine unvollständige Formel (z.B. `Tore/`) brach die Admin-Seite ab; außerdem erschienen Reste der Formel als Debug-Ausgabe in der Seite.  
 * Spielerstatistik: Die öffentliche Seite und die Druckansicht brachen bei einem nicht-numerischen Seitenanfang ab und warnten bei einer unbekannten Sortierspalte; die Druckansicht warnte, wenn es zur Liga keine Statistik gibt.  
 
@@ -216,6 +218,8 @@ _Here we had the changelogs for 4.2.1._
 * Ticker: width and speed could not be passed when including the ticker; the setting "show notes" had no effect for cup leagues.  
 * Viewer: PHP warning on the first call of a view (cache file not yet present); a PHP warning in the admin form when the league directory is not named `ligen/`.  
 * classlib: values of a match (e.g. extra time, result for both sides) are now also read in league mode when they precede the teams of the match in the league file. For such files the mini table and the statistics showed different points than the main table.  
+* classlib: with a complete tie (same points and goals) the order was arbitrary. Now, as in the main table, the team with the higher number comes first.  
+* classlib: the handicap order (option "HandS") is now applied to the overall table as in the main table. Until now the mini table and the statistics showed different places for such leagues.  
 * Player statistics: an invalid formula produced PHP warnings instead of the error text, an incomplete formula (e.g. `Tore/`) aborted the admin page; in addition, remains of the formula appeared in the page as debug output.  
 * Player statistics: the public page and the print view aborted on a non-numeric page start and warned on an unknown sort column; the print view warned when there are no statistics for the league.  
 
