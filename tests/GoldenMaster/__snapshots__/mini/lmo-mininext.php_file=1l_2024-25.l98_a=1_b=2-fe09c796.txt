@@ -1,0 +1,76 @@
+### lmo-mininext.php?file=1l_2024-25.l98&a=1&b=2
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>LMO Nextgame</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> html,body {margin:0;padding:0;background:transparent;} </style>
+</head>
+<body>
+<style type="text/css"> .nextgame caption, .nextgame td, .nextgame th {font-family:sans-serif;font-size:11px;color:000;white-space:nowrap;} .nextgame table{border:none;border-collapse:collapse;border:1px solid #ccc;margin-bottom:0.5em;} .nextgame .lost {color: #900;} .nextgame .win {color: #090;} .nextgame .draw {color: #999;} .nextgame .noResult {color: #000;} .nextgame .result {font-weight:bold;font-size:160%;} .nextgame ul {margin:1em 0;padding:0;list-style:none;} .nextgame caption { background:#69c;color:#fff;font-weight:bold;margin-bottom:0.3em;padding:0.2em;} .nextgame acronym { cursor:help;border-bottom:1px dotted;color:blue; } .nextgame small{font-size:11px;} </style>
+<table class="nextgame">
+<tr>
+<td>
+<table width="100%">
+<caption>Spielpaarung</caption>
+<tr>
+<th>Tage: -168, Stunden: 1, Minuten: 30</th>
+</tr>
+<tr>
+<th>28.09.2024 15:30</th>
+</tr>
+<tr>
+<td align="center">Bayern München</td>
+</tr>
+<tr>
+<td align="center">&nbsp;<span class="result">
+<!--homeTore-->&nbsp;:&nbsp;<!--guestTore-->
+</span>&nbsp;</td>
+</tr>
+<tr>
+<td align="center">Bayer 04 Leverkusen</td>
+</tr>
+<tr>
+<td>
+<small>
+<!--gameNote-->
+</small>
+</td>
+</tr>
+<tr>
+<th>Spiele gegeneinander:</th>
+</tr>
+<tr>
+<td align="center">0 / 0 / 0 (S/U/N)</td>
+</tr>
+<tr>
+<th>
+<table align="center" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<th bgcolor="#009900" height="7" width="0">
+</th>
+<th bgcolor="#999999" height="7" width="0">
+</th>
+<th bgcolor="#990000" height="7" width="0">
+</th>
+</tr>
+</table>
+</th>
+</tr>
+<tr>
+<td align="center">
+<ul>
+</ul>
+</td>
+</tr>
+<tr>
+<td align="right">
+<small>Stand: 01.01.2025&nbsp;[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group (classlib&nbsp;2.8)'>©</acronym>]</small>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
