@@ -1560,13 +1560,15 @@ class liga {
             $sort_pTor[] = $table['pTor'];
             $sort_mTor[] = $table['mTor'];
             $sort_dTor[] = $table['dTor'];
+            $sort_nr[] = (int) $table['team']->nr;
         }
         // ASC = auf-, DESC = absteigend
+        // Bei voelligem Gleichstand steht das Team mit der hoeheren Nummer vorn (wie lmo-calctable.php)
         if ($this->options->keyValues['Kegel'] == 1) {  // Sortierung Punkte,erzielte Tore
-            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_pTor, SORT_DESC, $sort_dTor, SORT_DESC, $tableArray, SORT_DESC);
+            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_pTor, SORT_DESC, $sort_dTor, SORT_DESC, $sort_nr, SORT_DESC, $tableArray, SORT_DESC);
         }
         else {  // Sortierung PlusPkt,Tordiff
-            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_dTor, SORT_DESC, $sort_pTor, SORT_DESC, $sort_mTor, SORT_ASC, $tableArray, SORT_DESC);
+            array_multisort($sort_pPkt, SORT_DESC, $sort_mPkt, SORT_ASC, $sort_dTor, SORT_DESC, $sort_pTor, SORT_DESC, $sort_mTor, SORT_ASC, $sort_nr, SORT_DESC, $tableArray, SORT_DESC);
         }
         // BEGIN Direkter Vergleich
         if ($this->options->keyValues['Direct'] == 1) {
