@@ -31,7 +31,8 @@
         "phpunit/phpunit": "^9.6"
     },
     "suggest": {
-        "ext-gd": "Fuer die Grafiken (Fieberkurve, Tippspiel-Grafiken)"
+        "ext-gd": "Fuer die Grafiken (Fieberkurve, Tippspiel-Grafiken)",
+        "ext-zip": "Fuer Download und E-Mail-Versand der Ligadateien im Admin-Bereich"
     },
     "autoload": {
         "classmap": [

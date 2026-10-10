@@ -37,6 +37,15 @@ services:
       - web-output:/var/www/html/lmo/output
       - web-tipps:/var/www/html/lmo/addon/tipp/tipps
       - web-stats:/var/www/html/lmo/addon/spieler/stats
+    depends_on:
+      - mail
+
+  # Faengt alle Mails ab, die LMO im Web-Container verschickt (nichts geht nach draussen).
+  # Postfach im Browser: http://localhost:${MAIL_PORT:-8025}/
+  mail:
+    image: axllent/mailpit
+    ports:
+      - "${MAIL_PORT:-8025}:8025"
 
 volumes:
   web-config:
