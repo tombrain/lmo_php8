@@ -249,17 +249,10 @@ hoch; mit Wahrscheinlichkeit 1/(Teamzahl+1) wird ein Index ausserhalb des Arrays
 erzeugt nicht nur eine "Undefined array key"-Warnung, sondern laesst eine Teamposition auf `NULL`
 stehen - der erzeugte Zufallsspielplan verliert ein Team. Bei 6 Teams: ca. 14% der Aufrufe.
 
-Der Test toleriert nur GENAU diese eine bekannte Warnung (exakter Text, inkl. Dateipfad und
-Zeilennummer) und prueft dann zusaetzlich, ob der Spielplan dadurch tatsaechlich ein Team verliert.
-Jede andere/unerwartete PHP-Meldung laesst den Test weiterhin scheitern. Weil der Fehler
-probabilistisch ist, zeigt ein einzelner Testlauf nur einen der beiden Zweige (Bug getroffen
-oder nicht); beide Zweige sind im Test abgedeckt und werden ueber mehrere Laeufe hinweg beide
-auftreten.
-
-**Korrektur waere** `mt_rand(0, $i+1)` zu `mt_rand(0, $i)` zu aendern - das ist eine echte
-Verhaltensaenderung (das Zufallsergebnis wird dadurch anders/korrekter) und daher bewusst NICHT
-Teil des Golden Masters, sondern ein eigener, separat zu entscheidender Fix, wie die beiden
-anderen Befunde (extract() in init.php, ungeprueftes $xprogram in lmo-adminopenprogram.php).
+**Behoben in 4.2.1:** `mt_rand(0, $i+1)` ist durch `mt_rand(0, $i)` ersetzt. Der Test toleriert die
+Warnung nicht mehr. Weil der Fehler nur manchmal auftrat, erzeugt er 30 Zufallsspielplaene und prueft
+bei jedem, dass an jedem Spieltag alle Mannschaften genau einmal spielen und keine PHP-Meldung
+erscheint.
 
 ## KO-Ligen / Pokalmodus (v16)
 
