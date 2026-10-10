@@ -9,7 +9,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
-* Seitenquelltextausgabe der beiden Datein lmo-savehtml.php und lmo-savehtml1.php verbessert. Außerdem den Tabellen der beiden Seiten runde Ecken verpasst.
+
 
 ### Deprecated  
 
@@ -21,7 +21,48 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+
+
+***
+## [4.2.0] - 2026-10-10
+
+_Hier hätten wir die Changelogs für 4.2.0._  
+
+### Added  
+* Ersteinrichtung ohne Installer: Beim ersten Aufruf wird die Konfiguration aus `config-default/` angelegt, das erste Admin-Konto wird über ein Formular erstellt (Texte dafür in allen Sprachen).  
+* Sprachauswahl im Fuß des Admin-Bereichs.  
+* Automatische Tests (PHPUnit, Docker, GitHub Action), siehe TESTING.md: Golden-Master-Tests für öffentliche Seiten und Admin-Bereich, Unit-Tests für die classlib, Tabellenvergleich mit 75 echten Ligen (OpenLigaDB, Abschlusstabellen aus Wikipedia) und 10 konstruierten Ligen.  
+* classlib: Spieltage merken sich weitere Werte der Ligadatei (`spieltag::setParameter()` / `getParameter()`), z.B. die Handicap-Reihenfolge.  
+
+### Changed  
+* Die Mindestanforderung des Webservers beträgt jetzt PHP 8.0 (bisher 7.4). Der Admin-Bereich weist bei älteren PHP-Versionen darauf hin.  
+* Seitenquelltextausgabe der beiden Datein lmo-savehtml.php und lmo-savehtml1.php verbessert. Außerdem den Tabellen der beiden Seiten runde Ecken verpasst.  
+* Template-System über Composer (`pear/html_template_it`, neue Klasse `LMO_Template`) statt der mitgelieferten Dateien IT.php und ITX.php.  
+* Addon-Reiter, Viewer-Vorlagen und Ligalisten im Admin-Bereich erscheinen in fester (alphabetischer) Reihenfolge statt in der des Dateisystems.  
+* Wertung „beidseitiges Ergebnis“: Das Ergebnis zählt für beide Mannschaften vollständig aus Sicht der Heimmannschaft (Sieg/Unentschieden/Niederlage, Punkte, Minuspunkte). Bisher wurden nur Spiel und Tore gezählt.  
+* Straf-/Bonuspunkte und -tore „ab Spieltag X“ zählen erst, wenn Spieltag X Ergebnisse hat. Bisher wurden sie in der Gesamttabelle sofort eingerechnet.  
+* Die classlib rechnet Tabellen jetzt wie die Haupttabelle (direkter Vergleich, Strafen, beidseitiges Ergebnis). Minitabelle und Statistik zeigen damit dieselbe Tabelle.  
+
+### Deprecated  
+
+
+### Removed  
+* Installer (`install/`) entfernt, ebenso die nicht mehr benötigten PEAR-Dateien für FTP, Socket und Cache.  
+
+### Fixed  
+* Direkter Vergleich: Gleichstand wurde nur an der letzten Ziffer der Punkte erkannt (59 und 49 Punkte galten als gleich).  
+* Direkter Vergleich mit zehn und mehr punktgleichen Teams und Minuspunkten: Das beste Team stand am Ende der Gruppe.  
+* classlib: Spielende (n.V./i.E.) wurde aus der Ligadatei nicht gelesen und ging beim Speichern verloren.  
+* classlib, direkter Vergleich: Gleichstand am Tabellenende wurde nicht ausgewertet, ein zugesprochener Auswärtssieg falsch gebucht, und es wurden immer alle Spiele der Saison gewertet statt nur die der angezeigten Tabelle (Spieltag, Heim/Auswärts).  
+* classlib, Strafen: Strafe entfiel, wenn die Mannschaft am Spieltag des Strafbeginns spielfrei war; Bonus-Gegentore wurden mit falschem Vorzeichen verrechnet; Strafen zählten auch in Heim- und Auswärtstabelle.  
+* classlib, Speichern (`writeFile()`, genutzt von „Rückrunde erzeugen“ und „Spieltage verschieben“): Handicap-Reihenfolge, Titel und aktueller Spieltag gingen verloren; ein zweites Speichern im selben Aufruf brach ab; Ligen in Unterordnern wurden danach nicht gefunden (HTML-Export und Statistik ohne Daten).  
+* classlib, Statistik: Es wurden auch nicht gespielte Partien gezählt; die Serienanzeige überschrieb ihren eigenen Text.  
+* classlib: `ligaFussball::sortTable()` lief unter PHP 8 nur mit Warnungen, `liga::factory()` war nicht aufrufbar, `aktuellerSpieltag()` lieferte den folgenden Spieltag, `strAfterChar()`, `readLigaDir()` (Endung `.L98`) und `HTML_icon()` (Suche nach .jpg/.png mit Alternativtext) korrigiert.  
+
+### Security  
 * Cross Site Scripting/XSS Lücke geschlossen   
+* `lmo-rueckrunde.php` ließ sich ohne Anmeldung direkt aufrufen und schrieb dann die angegebene Ligadatei neu. Jetzt nur noch für angemeldete Admins.  
+* Tippspiel: Neue Passwörter werden mit Argon2id bzw. bcrypt gespeichert.  
 
 
 ***
@@ -116,6 +157,48 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+
+
+***
+## [4.2.0] - 2026-10-10
+
+_Here we had the changelogs for 4.2.0._  
+
+### Added  
+* First-time setup without the installer: on the first request the configuration is created from `config-default/`, and the first admin account is created through a form (texts available in all languages).  
+* Language selection in the footer of the admin area.  
+* Automated tests (PHPUnit, Docker, GitHub Action), see TESTING.md: golden master tests for public pages and the admin area, unit tests for the classlib, table comparison against 75 real leagues (OpenLigaDB, final tables from Wikipedia) and 10 constructed leagues.  
+* classlib: match days keep additional values of the league file (`spieltag::setParameter()` / `getParameter()`), e.g. the handicap order.  
+
+### Changed  
+* The minimum requirement for the web server is now PHP 8.0 (previously 7.4). The admin area shows a notice on older PHP versions.  
+* Improved the page source output of lmo-savehtml.php and lmo-savehtml1.php; the tables on both pages now have rounded corners.  
+* Template system via Composer (`pear/html_template_it`, new class `LMO_Template`) instead of the bundled files IT.php and ITX.php.  
+* Addon tabs, viewer templates and league lists in the admin area appear in a fixed (alphabetical) order instead of the file system order.  
+* Rating "result for both sides": the result counts completely for both teams from the home team's point of view (win/draw/loss, points, minus points). Previously only the match and the goals were counted.  
+* Penalty/bonus points and goals "from match day X" only count once match day X has results. Previously they were included in the overall table immediately.  
+* The classlib now calculates tables like the main table (head-to-head comparison, penalties, result for both sides). The mini table and the statistics therefore show the same table.  
+
+### Deprecated  
+
+
+### Removed  
+* Removed the installer (`install/`) and the PEAR files for FTP, socket and cache that are no longer needed.  
+
+### Fixed  
+* Head-to-head comparison: a tie was detected by the last digit of the points only (59 and 49 points were treated as equal).  
+* Head-to-head comparison with ten or more tied teams and minus points: the best team was placed last in its group.  
+* classlib: the end of a match (after extra time / penalties) was not read from the league file and was lost when saving.  
+* classlib, head-to-head comparison: ties at the bottom of the table were not evaluated, an awarded away win was booked incorrectly, and all matches of the season were counted instead of only those of the displayed table (match day, home/away).  
+* classlib, penalties: a penalty was dropped if the team had no match on the match day the penalty starts; bonus goals against were applied with the wrong sign; penalties also counted in the home and away tables.  
+* classlib, saving (`writeFile()`, used by "create second half of season" and "move match days"): handicap order, title and current match day were lost; a second save in the same request aborted; leagues in subfolders were not found afterwards (HTML export and statistics without data).  
+* classlib, statistics: unplayed matches were counted as well; the streak output overwrote its own text.  
+* classlib: `ligaFussball::sortTable()` only ran with warnings under PHP 8, `liga::factory()` could not be called, `aktuellerSpieltag()` returned the following match day; fixed `strAfterChar()`, `readLigaDir()` (extension `.L98`) and `HTML_icon()` (search for .jpg/.png with alternative text).  
+
+### Security  
+* Closed a cross site scripting (XSS) vulnerability.  
+* `lmo-rueckrunde.php` could be called directly without login and then rewrote the given league file. Now restricted to logged-in admins.  
+* Prediction game: new passwords are stored with Argon2id or bcrypt.  
 
 
 ***
