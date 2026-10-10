@@ -245,7 +245,7 @@ function getLangSelector()
     while (false !== ($f = readdir($handle))) {
         if (preg_match('/^lang-?(.*)?\.txt$/', $f,$lang) > 0) {
             if ($lang[1] == '') return '';
-            if ($lang[1] != $_SESSION['lmouserlang']) {
+            if ($lang[1] != ($_SESSION['lmouserlang'] ?? '')) {
                 $border = '1mm';
                 $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.svg';
                 $output_sprachauswahl .= '
