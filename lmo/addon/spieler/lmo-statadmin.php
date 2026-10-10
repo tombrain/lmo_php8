@@ -283,7 +283,7 @@ if (isset($file) && $file != '') {
                 }
             break;
             case 'delcolumn':
-                if ($wert > 0) {
+                if ($wert > 0 && isset($spalten[$wert])) {
                     $filepointer = @fopen($filename, 'w+b');
                     stream_set_write_buffer($filepointer, 0);
                     if ($formel[$wert]) $formel_ges--;
