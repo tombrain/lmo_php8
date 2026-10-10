@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
  *   eigener, vom extract()-Fund unabhaengiger Befund (Pfad-Handling ohne Whitelist), hier als
  *   Nebenprodukt der Abdeckung dokumentiert statt separat ausgewertet.
  *
- * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-admindir.php und lmo-paintgraph.php sind
+ * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-admindir.php ist
  * toter Code (keine einzige Referenz irgendwo im Repository); lmo-adminuserpass.php und
  * lmo-openfiledat.php werden ausschliesslich vom Tippspiel-Addon genutzt, das als eigener,
  * groesserer Block aussteht; lmo-adminrndprogram.php wird separat als Rauchtest gefuehrt
