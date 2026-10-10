@@ -27,7 +27,7 @@
 </tr>
 <tr>
 <td colspan="2" align="center">
-<!-- STDERR Warning: require({LMO_PATH}/addon/pdf/lmo-adminpdfoptions.inc.php): Failed to open stream: No such file or directory in {LMO_PATH}/lmo-adminmain.php on line 234 Fatal error: Uncaught Error: Failed opening required '{LMO_PATH}/addon/pdf/lmo-adminpdfoptions.inc.php' (include_path='{INCLUDE_PATH}') in {LMO_PATH}/lmo-adminmain.php:234 Stack trace: #0 {LMO_PATH}/lmoadmin.php(N): require() #1 {HARNESS}/http.php(N): require('/tmp/lmo-golden...') #2 {main} thrown in {LMO_PATH}/lmo-adminmain.php on line 234 -->
+<!-- STDERR Warning: require({LMO_PATH}/addon/pdf/lmo-adminpdfoptions.inc.php): Failed to open stream: No such file or directory in {LMO_PATH}/lmo-adminmain.php on line 237 Fatal error: Uncaught Error: Failed opening required '{LMO_PATH}/addon/pdf/lmo-adminpdfoptions.inc.php' (include_path='{INCLUDE_PATH}') in {LMO_PATH}/lmo-adminmain.php:237 Stack trace: #0 {LMO_PATH}/lmoadmin.php(N): require() #1 {HARNESS}/http.php(N): require('/tmp/lmo-golden...') #2 {main} thrown in {LMO_PATH}/lmo-adminmain.php on line 237 -->
 <!-- EXIT 255 -->
 
 ### DATEIAENDERUNGEN
