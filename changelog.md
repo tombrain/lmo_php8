@@ -45,6 +45,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 ### Deprecated  
 
 ### Removed  
+* Reste des PDF-Addons (PDF-Erzeuger der Anleitung unter `help/`, auskommentierte Einbindung) und die unbenutzte Datei `lmo-paintgraph.php`. Das separat erhältliche PDF-Addon lässt sich weiterhin einbinden.  
 
 ### Fixed  
 * „Rückrundenspielplan erstellen“ bei einer Liga mit ungerader Anzahl Spieltage: Die Fehlermeldung erschien nicht, und die Liga wurde trotzdem neu gespeichert und als erfolgreich gemeldet. Jetzt erscheint die Meldung, gespeichert wird nichts.  
@@ -67,6 +68,7 @@ _Hier hätten wir die Changelogs für 4.2.1._
 * Spielerstatistik: Das Löschen einer Spalte, die es nicht gibt, erzeugte eine PHP-Warnung.  
 * Zufallsspielplan: Beim Mischen der Mannschaften wurde gelegentlich neben die Liste gegriffen (bei 6 Mannschaften in etwa jedem siebten Aufruf); im erzeugten Spielplan fehlte dann eine Mannschaft.  
 * Admin-Bereich ohne Anmeldung: Die Sprachauswahl erzeugte je Sprache eine PHP-Warnung.  
+* Admin-Bereich: Der Aufruf der PDF-Optionen ohne installiertes PDF-Addon endete mit einem Fatal Error.  
 * Liga aus einer Vorlage mit mehr Mannschaften anlegen: PHP-Warnungen beim Erzeugen der Statistikdatei; Partien mit Mannschaften, die es in der Liga nicht gibt, wurden mitgezählt.  
 * Admin-Bereich: Rief ein Hilfsadmin ohne erweiterte Rechte die Mannschaftsverwaltung auf, erschien der Ergebnis-Editor für einen Spieltag, den es nicht gibt (PHP-Warnungen, unbrauchbares Formular). Jetzt öffnet sich der aktuelle Spieltag.  
 
@@ -233,6 +235,7 @@ _Here we had the changelogs for 4.2.1._
 ### Deprecated  
 
 ### Removed  
+* Remains of the PDF addon (PDF generator of the manual under `help/`, commented-out includes) and the unused file `lmo-paintgraph.php`. The separately available PDF addon can still be plugged in.  
 
 ### Fixed  
 * "Create second half of season" for a league with an odd number of match days: the error message was not shown, and the league was saved again anyway and reported as successful. Now the message is shown and nothing is saved.  
@@ -255,6 +258,7 @@ _Here we had the changelogs for 4.2.1._
 * Player statistics: deleting a column that does not exist produced a PHP warning.  
 * Random schedule: shuffling the teams occasionally accessed an entry outside the list (with 6 teams in about every seventh call); the generated schedule then lacked a team.  
 * Admin area without login: the language selection produced a PHP warning per language.  
+* Admin area: calling the PDF options without the PDF addon installed ended with a fatal error.  
 * Creating a league from a template with more teams: PHP warnings while generating the statistics file; matches with teams that do not exist in the league were counted.  
 * Admin area: when a helper admin without extended rights opened the team administration, the result editor appeared for a match day that does not exist (PHP warnings, unusable form). Now the current match day opens.  
 
