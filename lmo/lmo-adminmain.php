@@ -232,8 +232,8 @@ if ($action == 'admin') {
         } elseif ($todo == 'vieweroptions') {
             /*Viewer-Addon*/
             require(PATH_TO_ADDONDIR.'/viewer/lmo-adminvieweroptions.php');
-        } elseif ($todo == 'pdfoptions') {
-            /*PDF-Addon*/
+        } elseif ($todo == 'pdfoptions' && file_exists(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php')) {
+            /*PDF-Addon (separat erhaeltlich): nur wenn es installiert ist*/
             require(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php');
         } elseif ($todo == '') {
             require(PATH_TO_LMO . '/lmo-adminpad.php');
