@@ -35,7 +35,7 @@ if (($action == 'admin') && ($todo == 'download') && (($_SESSION['lmouserok'] ==
         }
         closedir($verz);
         sort($dummy);
-        if ($dummy[(int) $down - 1] != '' && check_hilfsadmin($dummy[(int) $down - 1])) {
+        if (isset($dummy[(int) $down - 1]) && check_hilfsadmin($dummy[(int) $down - 1])) {
             header('Content-Type: text/x-lmo4');
             header('Content-Disposition: attachment; filename="' . $dummy[$down - 1] . '"');
             readfile(sprintf('%s/%s', $dirliga, $dummy[$down - 1]));
@@ -52,9 +52,16 @@ if (($action == 'admin') && ($todo == 'download') && (($_SESSION['lmouserok'] ==
         }
         closedir($verz);
         sort($dummy);
-        if (count($dummy) > 0) {
-            $zipfile = new zipArchive;
-            $zip = $zipfile->open('ligen.zip', ZipArchive::CREATE);
+        if (!class_exists('ZipArchive')) {
+            // ohne die PHP-Erweiterung zip lassen sich die Ligen nicht packen
+            header('Content-Type: text/html; charset=utf-8');
+            echo getMessage($text[314] . ': PHP extension "zip" is missing.', true);
+        }
+        elseif (count($dummy) > 0) {
+            // im Ausgabeordner packen: das Programmverzeichnis muss nicht beschreibbar sein
+            $temp = PATH_TO_LMO . '/' . $diroutput . 'ligen.zip';
+            $zipfile = new ZipArchive;
+            $zip = $zipfile->open($temp, ZipArchive::CREATE);
             for ($i = 0; $i < count($dummy); $i++) {
                 if (check_hilfsadmin($dummy[$i])) {
                     $zipfile->addFile(PATH_TO_LMO . '/' . $dirliga . $dummy[$i], $dummy[$i]);
@@ -63,8 +70,8 @@ if (($action == 'admin') && ($todo == 'download') && (($_SESSION['lmouserok'] ==
             $zipfile->close();
             header('Content-Type: application/zip');
             header('Content-Disposition: attachment; filename="ligen.zip"');
-            readfile('ligen.zip');
-            unlink('ligen.zip');
+            readfile($temp);
+            unlink($temp);
         }
     }
 }
