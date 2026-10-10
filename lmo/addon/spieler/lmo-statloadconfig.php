@@ -21,6 +21,9 @@
  *
  *
 */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 //Datei auslesen
 $filename = basename($file);

@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 if (($file!='') && ($_SESSION['lmouserok'] == 2)) {
     if (!isset($team)) {

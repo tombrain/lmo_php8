@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 foreach ($fav_team[$i] as $akt_team) {
     if (isset($multi_cfgarray['modus']) && $multi_cfgarray['modus'] == 1) {

@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $startzeit = zeitberechnung('1', - $multi_cfgarray['anzahl_tage_minus']);
 $endzeit = zeitberechnung('2', $multi_cfgarray['anzahl_tage_plus']);

@@ -2,6 +2,9 @@
 /** Anfang der Änderung durch Dietmar Kersting (henshingly(ät)vest-sport.de)
   * Funktion für Silent Upgrade Passwörter 15.02.2026
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 
 // Die Passwort Upgrade Funktion am Anfang der Datei

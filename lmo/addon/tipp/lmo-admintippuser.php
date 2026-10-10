@@ -16,6 +16,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $tipper_sort = isset($_REQUEST['tipper_sort']) ? $_REQUEST['tipper_sort'] : '';
 $del = isset($_REQUEST['del']) ? $_REQUEST['del'] : '';

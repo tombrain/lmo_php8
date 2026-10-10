@@ -1,19 +1,16 @@
 ### direct_include_access
 === direkter Aufruf lmo-adminmain.php ===
-<!-- STDERR Fatal error: Uncaught Error: Undefined constant "PATH_TO_LMO" in {LMO_PATH}/lmo-adminmain.php:20 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-adminmain.php on line 20 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-adminedit.php ===
-<!-- STDERR Fatal error: Uncaught Error: Undefined constant "PATH_TO_LMO" in {LMO_PATH}/lmo-adminedit.php:22 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-adminedit.php on line 22 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-savefile.php ===
-<!-- STDERR Fatal error: Uncaught Error: Undefined constant "PATH_TO_LMO" in {LMO_PATH}/lmo-savefile.php:21 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-savefile.php on line 21 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 
@@ -33,8 +30,7 @@
 (keine)
 
 === direkter Aufruf lmo-adminjavascript.php ===
-<script type="text/javascript"> name="lmo3"; img0 = new Image(); img0.src = " <!-- STDERR Fatal error: Uncaught Error: Undefined constant "URL_TO_IMGDIR" in {LMO_PATH}/lmo-adminjavascript.php:5 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-adminjavascript.php on line 5 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 
@@ -207,39 +203,22 @@
 (keine)
 
 === direkter Aufruf lmo-adminrounds.php ===
-<!-- STDERR Warning: Undefined variable $file in {LMO_PATH}/lmo-adminrounds.php on line 21 -->
+
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-adminsubnavi.php ===
-<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
-<tr>
-<td align="center">
-<a href='1' onClick="return chklmolink();" title="">
-</a>
-</td>
-<td align="center">
-<a href='-1' onClick="return chklmolink();" title="">
-</a>
-</td>
-<td align="center">
-<a href='-10' onclick="return chklmolink(this.href);" title="">
-</a>
-</td>
-</tr>
-</table>
-<!-- STDERR Warning: Undefined variable $st in {LMO_PATH}/lmo-adminsubnavi.php on line 25 Warning: Undefined variable $todo in {LMO_PATH}/lmo-adminsubnavi.php on line 25 Warning: Undefined variable $addr in {LMO_PATH}/lmo-adminsubnavi.php on line 26 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 26 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 26 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 26 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 26 Warning: Undefined variable $einspieler in {LMO_PATH}/lmo-adminsubnavi.php on line 33 Warning: Undefined variable $st in {LMO_PATH}/lmo-adminsubnavi.php on line 44 Warning: Undefined variable $addr in {LMO_PATH}/lmo-adminsubnavi.php on line 45 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 45 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 45 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 45 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 45 Warning: Undefined variable $hands in {LMO_PATH}/lmo-adminsubnavi.php on line 53 Warning: Undefined variable $st in {LMO_PATH}/lmo-adminsubnavi.php on line 75 Warning: Undefined variable $addr in {LMO_PATH}/lmo-adminsubnavi.php on line 76 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 76 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 76 Warning: Undefined variable $text in {LMO_PATH}/lmo-adminsubnavi.php on line 76 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-adminsubnavi.php on line 76 -->
+
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-savehtml.php ===
-<!-- STDERR Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $text in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Trying to access array offset on null in {LMO_PATH}/lmo-savehtml.php on line 22 Warning: Undefined variable $st in {LMO_PATH}/lmo-savehtml.php on line 27 Warning: Undefined variable $stx in {LMO_PATH}/lmo-savehtml.php on line 30 Warning: Undefined variable $lmtype in {LMO_PATH}/lmo-savehtml.php on line 33 Warning: Undefined variable $anzsp in {LMO_PATH}/lmo-savehtml.php on line 34 Fatal error: Uncaught Error: Undefined constant "PATH_TO_LMO" in {LMO_PATH}/lmo-savehtml.php:39 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-savehtml.php on line 39 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-kocal.php ===
-<!-- STDERR Warning: Undefined variable $file in {LMO_PATH}/lmo-kocal.php on line 21 -->
+
 --- Dateiaenderungen ---
 (keine)
 
@@ -249,8 +228,7 @@
 (keine)
 
 === direkter Aufruf lmo-dirlist.php ===
-<!-- STDERR Warning: Undefined variable $liga_sort in {LMO_PATH}/lmo-dirlist.php on line 23 Warning: Undefined variable $liga_sort_direction in {LMO_PATH}/lmo-dirlist.php on line 24 Warning: Undefined variable $subdir in {LMO_PATH}/lmo-dirlist.php on line 25 Deprecated: str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in {LMO_PATH}/lmo-dirlist.php on line 25 Warning: Undefined variable $dirliga in {LMO_PATH}/lmo-dirlist.php on line 26 Fatal error: Uncaught Error: Undefined constant "PATH_TO_LMO" in {LMO_PATH}/lmo-dirlist.php:26 Stack trace: #0 {HARNESS}/http.php(N): require() #1 {main} thrown in {LMO_PATH}/lmo-dirlist.php on line 26 -->
-<!-- EXIT 255 -->
+
 --- Dateiaenderungen ---
 (keine)
 

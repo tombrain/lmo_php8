@@ -12,6 +12,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 // Texte aus den Sprachdateien (lang/lang-*.txt, Nummern 5013-5023; 306 = Nutzername)
 // Das abgeschickte Formular wertet lmoadmin.php vor der Ausgabe aus ($setup_error).

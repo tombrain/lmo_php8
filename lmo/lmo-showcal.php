@@ -1,4 +1,8 @@
-<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0"><?php if (strlen($cal)>4){ ?>
+<?php
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
+?><table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0"><?php if (strlen($cal)>4){ ?>
   <tr>
     <td align="center">
       <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">

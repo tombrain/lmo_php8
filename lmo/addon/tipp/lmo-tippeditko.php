@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 for ($n = 0; $n < $modus[$st - 1]; $n++) {
     if (($klfin == 1) && ($st == $anzst)) { ?>

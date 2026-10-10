@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 function zeitberechnung($modus, $wert) {
     // Gibt verschiedene Werte je nach $Modus zurück:

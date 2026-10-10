@@ -16,6 +16,9 @@
   * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $xtipperpass = isset($_REQUEST['xtipperpass']) ? $_REQUEST['xtipperpass'] : '';
 $xtipperpassneu = isset($_REQUEST['xtipperpassneu']) ? $_REQUEST['xtipperpassneu'] : '';

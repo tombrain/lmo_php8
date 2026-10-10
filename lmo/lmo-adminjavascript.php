@@ -1,4 +1,8 @@
-<script type="text/javascript">
+<?php
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
+?><script type="text/javascript">
 
 name="lmo3";
 img0 = new Image();

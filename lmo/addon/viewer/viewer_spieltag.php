@@ -17,6 +17,9 @@
   *
   *
   */
+if (!defined('PATH_TO_LMO')) {
+    exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
+}
 
 $template->setVariable('Spieltageminus', $multi_cfgarray['anzahl_spieltage_zurueck']);
 $template->setVariable('Spieltageplus', $multi_cfgarray['anzahl_spieltage_vor']);
