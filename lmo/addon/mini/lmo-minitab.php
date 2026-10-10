@@ -62,6 +62,12 @@ $m_platz= !empty($_GET['mini_platz'])
         ? $cfgarray['mini']['standardTabellenPlatz']
         : NULL));
 
+// Als Zahlen weiterrechnen: in der mitgelieferten Konfiguration sind die Werte leer (''), und
+// PHP 8 bricht bei "Zahl - ''" mit einem TypeError ab. Standard wie oben: 2 Plaetze darueber/darunter.
+$m_ueber = is_numeric($m_ueber) ? (int) $m_ueber : 2;
+$m_unter = is_numeric($m_unter) ? (int) $m_unter : 2;
+$m_platz = is_numeric($m_platz) ? (int) $m_platz : NULL;
+
 
 //If IFRAME - complete HTML document
 if (basename($_SERVER['PHP_SELF']) == 'lmo-minitab.php') {?>
