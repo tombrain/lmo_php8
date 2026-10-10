@@ -25,8 +25,7 @@ $mail = lmo_mailer($aadr, $text['tipp'][92]);
 // auf password_hash() nicht mehr im Klartext vorliegen, wird statt des
 // (nutzlosen) Hash-Werts ein personalisierter Link zum Passwort-Reset
 // verschickt (nutzt denselben Mechanismus wie lmo-tippemailpass.php).
-$tippResetBaseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST']
-    . $_SERVER['PHP_SELF'] . '?action=tipp&todo=getpass&xtippername2=';
+$tippResetBaseUrl = lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp&todo=getpass&xtippername2=';
 
 if ($message != '') {
     $dumma = array();

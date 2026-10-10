@@ -164,6 +164,22 @@ function lmo_mailer($from, $fromName = '')
 }
 
 /**
+ * Returns scheme and host of the current request (e.g. https://www.example.org) for links in mails.
+ * $_SERVER['REQUEST_SCHEME'] is not set by every web server.
+ *
+ * @return  string
+ */
+function lmo_request_origin()
+{
+    if (!empty($_SERVER['REQUEST_SCHEME'])) {
+        $scheme = $_SERVER['REQUEST_SCHEME'];
+    } else {
+        $scheme = (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) != 'off') ? 'https' : 'http';
+    }
+    return $scheme . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
+}
+
+/**
  * Returns which team is the winner on a
  *
  * @param   string  $gst

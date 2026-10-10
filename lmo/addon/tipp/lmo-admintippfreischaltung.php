@@ -20,7 +20,7 @@
 
 require_once(PATH_TO_ADDONDIR . '/tipp/lmo-tipptest.php');
 $mail = lmo_mailer($aadr, $text['tipp'][92]);
-$tipp_mailtext = str_replace(array('\n', '[nick]', '[pass]', '[url]'), array("\n", $xtippernick, $xtipperpass,  $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?action=tipp&xtippername=' . $xtippernick . '&xtipperpass=' . $xtipperpass), $text['tipp'][298]);
+$tipp_mailtext = str_replace(array('\n', '[nick]', '[pass]', '[url]'), array("\n", $xtippernick, $xtipperpass,  lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp&xtippername=' . $xtippernick . '&xtipperpass=' . $xtipperpass), $text['tipp'][298]);
 
 $mail->Subject = $text['tipp'][77] . ' (' . $_SERVER['HTTP_HOST'] . ')';
 

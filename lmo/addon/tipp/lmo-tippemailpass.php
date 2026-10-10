@@ -61,7 +61,7 @@ if (isset($xtippername2)) {
         $mail->Subject = $text['tipp'][79] . ' (' . $_SERVER['HTTP_HOST'] . ')';
         $mail->addAddress($recipientEmail);
 
-        $loginUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?action=tipp';
+        $loginUrl = lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp';
 
         $emailbody = $text['tipp'][297] . ' ' . $tipperName . ",\n\n" .
                      $text['tipp'][77] . "\n\n" .
