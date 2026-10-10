@@ -52,7 +52,11 @@ if (($action == 'admin') && ($todo == 'email') && (($_SESSION['lmouserok'] == 1)
         closedir($verz);
         sort($dummy);
         $temp = $diroutput . 'ligen.zip';
-        if ($down > 0) {
+        if (!class_exists('ZipArchive')) {
+            // ohne die PHP-Erweiterung zip laesst sich der Anhang nicht packen
+            echo getMessage($text[550] . ' Details: PHP extension "zip" is missing.', true);
+        }
+        elseif ($down > 0) {
             if ($dummy[$down-1] != '' && check_hilfsadmin($dummy[$down-1])) {
                 $zipfile = new ZipArchive;
                 $zipfile->open($temp, ZipArchive::CREATE);
@@ -100,7 +104,9 @@ if (($action == 'admin') && ($todo == 'email') && (($_SESSION['lmouserok'] == 1)
 <?php
             }
         }
-        unlink($temp);
+        if (file_exists($temp)) {
+            unlink($temp);
+        }
     }
     else {?>
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
