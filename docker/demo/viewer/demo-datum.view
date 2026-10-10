@@ -1,0 +1,26 @@
+[config]
+modus=1
+anzahl_tage_plus=14
+anzahl_tage_minus=14
+anzahl_spieltage_vor=1
+anzahl_spieltage_zurueck=1
+datumsformat=d.m.Y
+heute_highlight=1
+tabelle_verlinken=1
+spielberichte_neues_fenster=
+mannschaftshomepages_verlinken=
+mannschaftsnamen=0
+anstosstermin=
+uhrzeitformat=H:i
+tordummy=_
+tabellensymbol=tabelle.gif
+spielberichtesymbol=bericht.gif
+notizsymbol=notiz.gif
+spieltagtext=ST
+cache_refresh=0
+favteam_highlight=1
+titelzeile=Beispielligen nach Datum
+template=standard
+[Viewer Ligen]
+liga1=demo-laufend.l98
+liga2=demo-beendet.l98

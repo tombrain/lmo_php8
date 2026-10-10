@@ -1,0 +1,87 @@
+<?php
+// Uebersichtsseite der Docker-Entwicklungsumgebung: alle Addons mit den Beispielligen zum Ausprobieren.
+// Liegt ausserhalb von lmo/ und wird nicht mit LMO ausgeliefert (siehe docker/README.md).
+$ligen = [
+    'demo-laufend.l98' => '1. Bundesliga 2026/27 (laufend, 5. Spieltag)',
+    'demo-beendet.l98' => '1. Bundesliga 2025/26 (beendet)',
+];
+$liga = isset($_GET['liga'], $ligen[$_GET['liga']]) ? $_GET['liga'] : 'demo-laufend.l98';
+$q = rawurlencode($liga);
+$lmo = '/lmo';
+$frames = [
+    'Minitabelle' => [
+        'Tabellenausschnitt zum Einbinden in eine eigene Seite. Rechnet mit der classlib.',
+        "$lmo/addon/mini/lmo-minitab.php?mini_liga=$q&mini_template=standard&mini_platz=5&mini_ueber=4&mini_unter=4", 330,
+    ],
+    'Mini-Spielplan' => [
+        'Nächstes und letztes Spiel einer Mannschaft (hier Mannschaft 1).',
+        "$lmo/addon/mini/lmo-mininext.php?file=$q&a=1", 220,
+    ],
+    'Viewer nach Spieltag' => [
+        'Spiele mehrerer Ligen auf einer Seite. Ansicht „demo-spieltag“, zu bearbeiten im Admin-Bereich unter den Viewer-Optionen.',
+        "$lmo/addon/viewer/viewer.php?multi=demo-spieltag", 420,
+    ],
+    'Viewer nach Datum' => [
+        'Ansicht „demo-datum“: Spiele 14 Tage vor und nach heute. Die Termine der Beispielligen sind fest, die Liste wird also mit der Zeit leer.',
+        "$lmo/addon/viewer/viewer.php?multi=demo-datum", 420,
+    ],
+    'Ticker' => [
+        'Lauftext auf der Ligaseite, eingeschaltet über „ticker=1“ in der Ligadatei.',
+        "$lmo/lmo.php?file=$q&action=results", 520,
+    ],
+    'Spielerstatistik' => [
+        'Öffentliche Seite. Spieler und Spalten pflegt man im Admin-Bereich der Liga unter „Spielerstatistik“. Beispieldaten gibt es nur für die laufende Liga.',
+        "$lmo/lmo.php?file=$q&action=spieler", 520,
+    ],
+];
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LMO Addons ausprobieren</title>
+<style>
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 0; background: #f4f5f7; color: #1d2330; }
+  header { background: #1d2330; color: #fff; padding: 16px 24px; }
+  header h1 { margin: 0 0 4px; font-size: 20px; }
+  header a { color: #9ecbff; }
+  nav { padding: 12px 24px; background: #fff; border-bottom: 1px solid #d9dce3; }
+  nav a { margin-right: 16px; }
+  nav a.aktiv { font-weight: 600; color: #1d2330; text-decoration: none; }
+  main { padding: 16px 24px 40px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+  section { background: #fff; border: 1px solid #d9dce3; border-radius: 6px; padding: 12px 16px 16px; min-width: 0; }
+  section h2 { margin: 0; font-size: 16px; }
+  section p { margin: 4px 0 8px; color: #55607a; font-size: 13px; }
+  iframe { width: 100%; border: 1px solid #d9dce3; background: #fff; }
+  .link { font-size: 13px; word-break: break-all; }
+  @media (max-width: 480px) { main { grid-template-columns: 1fr; padding: 16px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>LMO Addons ausprobieren</h1>
+  Entwicklungsumgebung:
+  <a href="<?= $lmo ?>/">Ligaseite</a> ·
+  <a href="<?= $lmo ?>/lmoadmin.php">Admin-Bereich</a> ·
+  <a href="<?= $lmo ?>/lmo.php?action=tipp">Tippspiel</a> ·
+  <a href="http://localhost:<?= htmlspecialchars(getenv('MAIL_PORT') ?: '8025') ?>/">Postfach</a>
+</header>
+<nav>
+  Beispielliga:
+  <?php foreach ($ligen as $datei => $name): ?>
+    <a href="?liga=<?= rawurlencode($datei) ?>"<?= $datei === $liga ? ' class="aktiv"' : '' ?>><?= htmlspecialchars($name) ?></a>
+  <?php endforeach; ?>
+</nav>
+<main>
+<?php foreach ($frames as $titel => [$beschreibung, $url, $hoehe]): ?>
+  <section>
+    <h2><?= htmlspecialchars($titel) ?></h2>
+    <p><?= htmlspecialchars($beschreibung) ?></p>
+    <iframe src="<?= htmlspecialchars($url) ?>" height="<?= $hoehe ?>" title="<?= htmlspecialchars($titel) ?>"></iframe>
+    <div class="link"><a href="<?= htmlspecialchars($url) ?>" target="_blank"><?= htmlspecialchars($url) ?></a></div>
+  </section>
+<?php endforeach; ?>
+</main>
+</body>
+</html>

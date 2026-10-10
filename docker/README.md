@@ -5,6 +5,7 @@
 | Dienst | Zweck | Zugriff |
 |---|---|---|
 | `web` | LMO im Browser ausprobieren | http://localhost:8082/lmo/ |
+| `web` | Addons mit Beispielligen ausprobieren | http://localhost:8082/demo/ |
 | `mail` | Postfach für alle Mails, die LMO verschickt | http://localhost:8025/ |
 | `tests` | automatische Tests (PHPUnit) | nur Kommandozeile, siehe [TESTING.md](../TESTING.md) |
 
@@ -56,6 +57,27 @@ docker compose exec web bash
 # Ausgaben des Webservers
 docker compose logs -f web
 ```
+
+## Addons ausprobieren (`/demo/`)
+
+http://localhost:8082/demo/ zeigt alle Addons auf einer Seite, jeweils eingebettet und mit dem
+direkten Link: Minitabelle, Mini-Spielplan, Viewer (nach Spieltag und nach Datum), Ticker und
+Spielerstatistik. Oben lässt sich zwischen zwei Beispielligen umschalten.
+
+Die Seite und ihre Daten liegen in `docker/demo/` und gehören nicht zu LMO; sie werden nicht mit
+ausgeliefert. Beim Start des Containers werden fehlende Dateien in die Volumes kopiert, vorhandene
+bleiben unangetastet:
+
+| Datei in `docker/demo/` | Ziel im Container | Inhalt |
+|---|---|---|
+| `ligen/demo-laufend.l98` | `lmo/ligen/` | 1. Bundesliga 2026/27, Stand 5. Spieltag |
+| `ligen/demo-beendet.l98` | `lmo/ligen/` | 1. Bundesliga 2025/26, komplett |
+| `viewer/demo-*.view` | `lmo/config/viewer/` | zwei Viewer-Ansichten über beide Ligen |
+| `stats/demo-laufend.stat` | `lmo/addon/spieler/stats/` | erfundene Spielerstatistik |
+
+Die Ergebnisse der Beispielligen stammen von OpenLigaDB. Die Termine sind erfunden: ein Spieltag pro
+Woche, alle Spiele samstags 15:30 Uhr. Wer eine Beispieldatei im Container verändert hat und den
+Ausgangsstand zurückhaben will, löscht sie dort und startet den Container neu.
 
 ## Mails (`mail`)
 
