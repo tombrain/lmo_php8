@@ -84,7 +84,7 @@ foreach($ticker_array as $file) {
                                 $dummy2 = $text['ticker'][2] . ':' . addslashes($teams[$teamb[$stx-1][$i]] . ' ' . $text[211]);
                             }
                             else {
-                                $dumm2y = '';
+                                $dummy2 = '';
                             }
                             if ($msieg[$stx-1][$i] == 3) {
                                 $dummy3 = $text['ticker'][2] . ':' . addslashes($text['ticker'][3]);
