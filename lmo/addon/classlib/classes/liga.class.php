@@ -1540,7 +1540,44 @@ class liga {
         $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
         $tableArray = $this->sortTable($tableArray);
         $this->directContext = null;
+        if ($this->options->keyValues['HandS'] == 1 && $tableArt == 'all') {
+            $tableArray = $this->sortHandicap($tableArray, $spTag);
+        }
         return $tableArray;
+    }
+
+    /**
+    * Handicap-Reihenfolge (Option HandS, nur Gesamttabelle), wie lmo-calctable.php:
+    * Der Wert HS des Spieltags enthaelt je Platz der errechneten Tabelle zwei Ziffern mit dem
+    * Platz, auf den das dort stehende Team gesetzt wird. Bei gleichen Ziffern stehen die Teams
+    * in umgekehrter Reihenfolge der errechneten Tabelle.
+    * Fuer die Tabelle der ganzen Saison gilt die Reihenfolge des aktuellen Spieltags (Actual),
+    * sonst die des angegebenen Spieltags.
+    *
+    * @access protected
+    * @param array tableArray sortierte Tabelle
+    * @param integer spTag Spieltag der Tabelle
+    * @return array
+    */
+    function sortHandicap($tableArray, $spTag) {
+        if ($spTag >= $this->spieltageCount()) {
+            $spTag = max(1, (int) $this->options->keyValues['Actual']);
+        }
+        $spieltag = $this->spieltagForNumber($spTag);
+        $handicap = is_object($spieltag) ? (string) $spieltag->getParameter('HS') : '';
+        if ($handicap === '' || $handicap == 0) {
+            return $tableArray;
+        }
+        $order = array_keys($tableArray);
+        usort($order, function ($a, $b) use ($handicap) {
+            return array(intval(substr($handicap, $a * 2, 2)), $b) <=> array(intval(substr($handicap, $b * 2, 2)), $a);
+        });
+        $sorted = array();
+        foreach ($order as $pos => $index) {
+            $sorted[$pos] = $tableArray[$index];
+            $sorted[$pos]['pos'] = $pos + 1;
+        }
+        return $sorted;
     }
 
     /**
