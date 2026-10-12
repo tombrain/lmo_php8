@@ -674,3 +674,9 @@
 5021=The two passwords do not match.
 5022=An admin account already exists.
 5023=config/lmo-auth.php could not be created (check the write permissions of config/).
+5030=Direct comparison only after goal difference and goals
+5031=The direct comparison only decides when teams are also level on goal difference and goals (otherwise right after the points)
+5032=Fewer games first
+5033=With equal points the team that has played fewer games is ranked first
+5034=Away goals in the direct comparison
+5035=If teams are also level in the direct comparison, the away goals scored there count, then all away goals

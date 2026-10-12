@@ -79,9 +79,17 @@ L98;
         $t->add('Anzeige: alles aus', self::speichere($c, $liga, 2, ['xdatf2' => 'j.n.Y', 'xdatc' => 'on']), $c->changes());
         $t->add('Punkte: Minuspunkte, Verlaengerung, Handicap', self::speichere($c, $liga, 3, [
             'xminus' => 'on', 'xspez' => 'on', 'xhands' => 'on', 'xdirekt' => 'on',
+            'xdirektnach' => 'on', 'xdirektauswaerts' => 'on', 'xsortgames' => 'on',
             'xpns' => ' 2 ', 'xpnu' => '1', 'xpnn' => '0', 'xpxs' => '2', 'xpxu' => '1', 'xpxn' => '1', 'xpps' => '2', 'xppu' => '0', 'xppn' => '1',
         ]), $c->changes());
         $t->add('Punkte: alles aus, Kegeln', self::speichere($c, $liga, 3, ['xkegel' => 'on', 'xhidr' => 'on', 'xpns' => '3']), $c->changes());
+        // ohne direkten Vergleich gelten dessen beide Zusaetze nicht und werden auch nicht gespeichert
+        $t->add('Punkte: Zusaetze zum direkten Vergleich ohne ihn', self::speichere($c, $liga, 3, [
+            'xdirektnach' => 'on', 'xdirektauswaerts' => 'on', 'xsortgames' => 'on', 'xpns' => '3',
+        ]), $c->changes());
+        $t->add('Punkte: direkter Vergleich vor der Tordifferenz, mit Auswaertstoren', self::speichere($c, $liga, 3, [
+            'xdirekt' => 'on', 'xdirektauswaerts' => 'on', 'xpns' => '3',
+        ]), $c->changes());
         $t->add('Tabelle', self::speichere($c, $liga, 4, [
             'xeinhinrueck' => 'on', 'xchamp' => 'on', 'xanzcl' => '2', 'xanzck' => '1', 'xanzuc' => '0', 'xanzar' => '1', 'xanzab' => ' 2',
         ]), $c->changes());

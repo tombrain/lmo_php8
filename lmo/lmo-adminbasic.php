@@ -128,7 +128,11 @@ if ($file != '') {
                     $lmo_opt['MinusPoints'] = isset($_POST['xminus']) ? 2 : 1;
                     $lmo_opt['Spez'] = isset($_POST['xspez']) ? 1 : 0;
                     $lmo_opt['HideDraw'] = isset($_POST['xhidr']) ? 1 : 0;
-                    $lmo_opt['Direct'] = isset($_POST['xdirekt']) ? 1 : 0;
+                    // direkter Vergleich: 1 = vor der Tordifferenz, 2 = erst nach Tordifferenz und Toren
+                    $lmo_opt['Direct'] = isset($_POST['xdirekt']) ? (isset($_POST['xdirektnach']) ? 2 : 1) : 0;
+                    // Auswaertstore gibt es nur im direkten Vergleich
+                    $lmo_opt['DirectAway'] = ($lmo_opt['Direct'] != 0 && isset($_POST['xdirektauswaerts'])) ? 1 : 0;
+                    $lmo_opt['SortGames'] = isset($_POST['xsortgames']) ? 1 : 0;
                     $lmo_opt['Kegel'] = isset($_POST['xkegel']) ? 1 : 0;
                     $lmo_opt['HandS'] = isset($_POST['xhands']) ? 1 : 0;
 
@@ -495,9 +499,35 @@ if ($file != '') {
                         <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[242]; ?>"><?php echo $text[241]; ?></acronym></td>
                       </tr>
                       <tr>
-                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirekt" onChange="dolmoedit()"<?php if ($lmo_opt['Direct'] == 1) {echo ' checked';}?>>&nbsp;</td>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirekt" onChange="dolmoedit()" onClick="lmoDirektAbhaengige()"<?php if ($lmo_opt['Direct'] != 0) {echo ' checked';}?>>&nbsp;</td>
                         <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[187]; ?>"><?php echo $text[186]; ?></acronym></td>
                       </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirektnach" onChange="dolmoedit()"<?php if ($lmo_opt['Direct'] == 2) {echo ' checked';} if ($lmo_opt['Direct'] == 0) {echo ' disabled';}?>>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[5031]; ?>"><?php echo $text[5030]; ?></acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirektauswaerts" onChange="dolmoedit()"<?php if ($lmo_opt['DirectAway'] == 1 && $lmo_opt['Direct'] != 0) {echo ' checked';} if ($lmo_opt['Direct'] == 0) {echo ' disabled';}?>>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[5035]; ?>"><?php echo $text[5034]; ?></acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xsortgames" onChange="dolmoedit()"<?php if ($lmo_opt['SortGames'] == 1) {echo ' checked';}?>>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[5033]; ?>"><?php echo $text[5032]; ?></acronym></td>
+                      </tr>
+                      <script type="text/javascript">
+                        // die beiden Kaestchen zum direkten Vergleich gelten nur, wenn er eingeschaltet ist
+                        function lmoDirektAbhaengige() {
+                          var an = document.getElementsByName('xdirekt')[0].checked;
+                          var namen = ['xdirektnach', 'xdirektauswaerts'];
+                          for (var i = 0; i < namen.length; i++) {
+                            var feld = document.getElementsByName(namen[i])[0];
+                            feld.disabled = !an;
+                            if (!an) {
+                              feld.checked = false;
+                            }
+                          }
+                        }
+                      </script>
                       <tr>
                         <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xkegel" onChange="dolmoedit()"<?php if ($lmo_opt['Kegel'] == 1) {echo ' checked';}?>>&nbsp;</td>
                         <td class="nobr" align="left">&nbsp;<acronym title="<?php echo $text[396]; ?>"><?php echo $text[395]; ?></acronym></td>
