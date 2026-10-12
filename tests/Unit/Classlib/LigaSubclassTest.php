@@ -5,18 +5,43 @@ namespace Lmo\Tests\Unit\Classlib;
 /**
  * ligaFussball, ligaHandball und liga::factory().
  *
+ * Beide Klassen rechnen wie liga; ihre frueheren Regeln sind Einstellungen der Liga (FUSSBALL, HANDBALL).
+ *
  * Bei Gleichstand ohne Entscheidung sortiert array_multisort() nach dem Teamnamen absteigend
  * (B vor A). Die Szenarien lassen deshalb A das direkte Duell gewinnen: Steht A vorn, hat der
  * direkte Vergleich entschieden.
  */
 final class LigaSubclassTest extends ClasslibTestCase
 {
+    /** Die frueheren Regeln der Klassen als Einstellungen der Liga */
+    private const FUSSBALL = ['SortGames' => 1, 'Direct' => 2, 'DirectAway' => 1];
+    private const HANDBALL = ['SortGames' => 1, 'Direct' => 1];
+
+    /**
+     * Die Klassen geben keine eigene Reihenfolge mehr vor: ohne die Einstellungen in der Liga
+     * rechnet auch ligaHandball wie liga (hier: B vor A nach der Tordifferenz, kein direkter Vergleich).
+     */
+    public function testSubclassesFollowTheLeagueSettings(): void
+    {
+        $runden = [
+            [[1, 2, 1, 0], [3, 4, 0, 0]],
+            [[1, 3, 0, 5], [2, 4, 1, 0]],
+        ];
+        $ohne = self::league(['A', 'B', 'C', 'D'], $runden, ['PointsForWin' => 2], 'ligaHandball');
+        $grundklasse = self::league(['A', 'B', 'C', 'D'], $runden, ['PointsForWin' => 2], 'liga');
+        $mit = self::league(['A', 'B', 'C', 'D'], $runden, ['PointsForWin' => 2] + self::HANDBALL, 'ligaHandball');
+
+        self::assertSame(self::order($grundklasse->calcTable(2)), self::order($ohne->calcTable(2)));
+        self::assertSame(['C', 'B', 'A', 'D'], self::order($ohne->calcTable(2)));
+        self::assertSame(['C', 'A', 'B', 'D'], self::order($mit->calcTable(2)), 'mit direktem Vergleich: A gewann gegen B');
+    }
+
     public function testFootballTableWithoutTies(): void
     {
         $liga = self::league(['A', 'B', 'C', 'D'], [
             [[1, 2, 2, 0], [3, 4, 2, 1]],
             [[2, 3, 3, 1], [4, 1, 0, 1]],
-        ], [], 'ligaFussball');
+        ], self::FUSSBALL, 'ligaFussball');
 
         $table = $liga->calcTable(2);
 
@@ -34,7 +59,7 @@ final class LigaSubclassTest extends ClasslibTestCase
         $liga = self::league(['A', 'B', 'C', 'D'], [
             [[1, 2, 1, 0], [3, 4, 2, 2]],
             [[3, 1, 1, 0], [2, 4, 1, 0]],
-        ], [], 'ligaFussball');
+        ], self::FUSSBALL, 'ligaFussball');
 
         self::assertSame(['C', 'A', 'B', 'D'], self::order($liga->calcTable(2)));
     }
@@ -50,7 +75,7 @@ final class LigaSubclassTest extends ClasslibTestCase
         $liga = self::league(['A', 'B', 'C', 'D'], [
             [[1, 2, 1, 0], [3, 4, 0, 0]],
             [[1, 3, 0, 5], [2, 4, 1, 0]],
-        ], ['PointsForWin' => 2], 'ligaHandball');
+        ], ['PointsForWin' => 2] + self::HANDBALL, 'ligaHandball');
 
         self::assertSame(['C', 'A', 'B', 'D'], self::order($liga->calcTable(2)));
     }
@@ -67,24 +92,9 @@ final class LigaSubclassTest extends ClasslibTestCase
             [[1, 2, 1, 0], [3, 4, 2, 2]],
             [[2, 3, 1, 0], [1, 4, 0, 5]],
             [[3, 1, 4, 0], [4, 2, 3, 0]],
-        ], [], 'ligaHandball');
+        ], self::HANDBALL, 'ligaHandball');
 
         self::assertSame(['D', 'C', 'A', 'B'], self::order($liga->calcTable(3)));
-    }
-
-    public function testHandballDirectTableSortsByGoalDifference(): void
-    {
-        $liga = new \ligaHandball();
-        $rows = [
-            ['team' => new \team('A'), 'pPkt' => 2, 'spiele' => 2, 'dTor' => -1],
-            ['team' => new \team('B'), 'pPkt' => 2, 'spiele' => 2, 'dTor' => 3],
-            ['team' => new \team('C'), 'pPkt' => 4, 'spiele' => 2, 'dTor' => -5],
-        ];
-
-        $sorted = $liga->sortDirectTable($rows);
-
-        self::assertSame(['C', 'B', 'A'], self::order($sorted));
-        self::assertSame([1, 2, 3], array_column($sorted, 'pos'));
     }
 
     public function testFactoryCreatesClassFromLeagueType(): void
@@ -119,19 +129,11 @@ final class LigaSubclassTest extends ClasslibTestCase
      *
      * @dataProvider leagueClasses
      */
-    public function testSortingAnEmptyTable(string $class): void
+    public function testTableOfALeagueWithoutTeams(string $class): void
     {
         $liga = self::league([], [], [], $class);
 
-        self::assertSame([], $liga->sortTable([]));
-    }
-
-    public function testHandballSortingAnEmptyDirectTable(): void
-    {
-        /** @var \ligaHandball $liga */
-        $liga = self::league([], [], [], 'ligaHandball');
-
-        self::assertSame([], $liga->sortDirectTable([]));
+        self::assertSame([], $liga->calcTable(1));
     }
 
     /** LigaType steht im Abschnitt [Options]; eine gleichnamige Zeile woanders zaehlt nicht. */
