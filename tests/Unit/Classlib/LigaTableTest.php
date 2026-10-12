@@ -141,16 +141,33 @@ final class LigaTableTest extends ClasslibTestCase
 
     public function testPointsAfterExtraTimeAndPenalties(): void
     {
-        $liga = self::league(['A', 'B', 'C', 'D'], [[[1, 2, 2, 1, 2], [3, 4, 1, 0, 1]]], [
+        $punkte = [
             'XtraS' => 2, 'XtraU' => 1, 'XtraV' => 1,
             'SpezS' => 2, 'SpezU' => 1, 'SpezV' => 0,
-        ]);
+        ];
+        $liga = self::league(['A', 'B', 'C', 'D'], [[[1, 2, 2, 1, 2], [3, 4, 1, 0, 1]]], ['Spez' => 1] + $punkte);
         $table = $liga->calcTable(1);
 
         self::assertSame([2, 1], [self::row($table, 'A')['pPkt'], self::row($table, 'A')['mPkt']]);
         self::assertSame([1, 2], [self::row($table, 'B')['pPkt'], self::row($table, 'B')['mPkt']]);
         self::assertSame(2, self::row($table, 'C')['pPkt']);
         self::assertSame(0, self::row($table, 'D')['pPkt']);
+    }
+
+    /**
+     * Wie auf den Seiten des LMO: Fuehrt die Liga keine Verlaengerung (Spez), zaehlt ein Zusatz am
+     * Spiel nicht, es gibt die normalen Punkte.
+     */
+    public function testExtraTimeOnlyCountsIfTheLeagueUsesIt(): void
+    {
+        $liga = self::league(['A', 'B', 'C', 'D'], [[[1, 2, 2, 1, 2], [3, 4, 1, 0, 1]]], [
+            'XtraS' => 2, 'XtraU' => 1, 'XtraV' => 1,
+            'SpezS' => 2, 'SpezU' => 1, 'SpezV' => 0,
+        ]);
+        $table = $liga->calcTable(1);
+
+        self::assertSame([3, 0], [self::row($table, 'A')['pPkt'], self::row($table, 'A')['mPkt']]);
+        self::assertSame(3, self::row($table, 'C')['pPkt']);
     }
 
     public function testGreenTable(): void

@@ -1063,7 +1063,6 @@ class liga {
         // require_once: die Datei deklariert updateAddons(); ein zweites writeFile() im selben
         // Request brach mit include ab ("Cannot redeclare updateAddons()")
         require_once PATH_TO_ADDONDIR . '/classlib/update_addons.php';
-        $iniData = array(); // Inhalt des LigaFiles
         $aktSpTag = 1;
         $maxSp = 0;
         // Key "Matches" bestimmen
@@ -1088,6 +1087,29 @@ class liga {
         if ($actual < 1 || $actual > $this->spieltageCount()) {
             $this->options->keyValues['Actual'] = $aktSpTag;
         }
+        $rohdaten = $this->alsRohdaten($deleteEmptyRounds);
+        if (!$rohdaten->schreibe($fileName)) {
+            echo '<font color="#ff0000">Cannot open file for writing (write permissions?) CLASS liga function writeFile()</font>';
+            return false;
+        }
+        if ($message == 1) {
+            echo '<font color="#008800">Writing File $fileName</font>';
+        }
+        // start the update function
+        updateAddons($fileName);
+        return true;
+    }
+
+    /**
+    * Die Liga mit ihrem jetzigen Stand als Rohdaten (Lmo\Liga\Rohdaten\Liga): so wird sie
+    * geschrieben (writeFile()) und so rechnet der Kern ihre Tabelle (calcTable()).
+    *
+    * @access public
+    * @param integer $deleteEmptyRounds 1 = Spieltage ohne Partien weglassen
+    * @return \Lmo\Liga\Rohdaten\Liga
+    */
+    function alsRohdaten($deleteEmptyRounds = 0) {
+        $iniData = array(); // Inhalt des LigaFiles
         foreach ($this->options->keyValues as $key => $value) {
             $iniData['Options'][$key] = $value;
         }
@@ -1161,17 +1183,7 @@ class liga {
             }
             $abschnitte[] = array((string) $sek, $zeilen);
         }
-        $rohdaten = \Lmo\Liga\Rohdaten\Liga::ausEintraegen(\Lmo\Liga\LigaDatei::eintraege($abschnitte));
-        if (!$rohdaten->schreibe($fileName)) {
-            echo '<font color="#ff0000">Cannot open file for writing (write permissions?) CLASS liga function writeFile()</font>';
-            return false;
-        }
-        if ($message == 1) {
-            echo '<font color="#008800">Writing File $fileName</font>';
-        }
-        // start the update function
-        updateAddons($fileName);
-        return true;
+        return \Lmo\Liga\Rohdaten\Liga::ausEintraegen(\Lmo\Liga\LigaDatei::eintraege($abschnitte));
     }
 
     /**
@@ -1337,224 +1349,129 @@ class liga {
     * @return array Tabelle des Angegebenen Spieltages
     */
     function calcTable($spTag = 1, $tableArt = 'all', $possp = false) {
-
         $actual = $this->options->keyValues['Actual'];
         $spTag = ($spTag < 1) ? $actual : $spTag;
-        $spTagCount = 1;
+        $spTag = (int) $spTag;
 
-        // FIX (PHP 8): vorinitialisieren, sonst "Undefined variable"
-        // falls $this->teams leer ist.
-        $tableArray = array();
-        foreach ($this->teams as $team) {
-            $tableArray[] = array(
-              'pos' => -1,
-              'team' => $team,
-              'spiele' => 0,
-              's' => 0,
-              'u' => 0,
-              'n' => 0,
-              'pTor' => 0,
-              'mTor' => 0,
-              'dTor' => 0,
-              'pPkt' => 0,
-              'mPkt' => 0,
-              'possp' => array()
-            );
-        }
-        // Strafen: einmal je Team, sobald faellig - auch wenn das Team an dem Spieltag spielfrei ist
-        $lastPlayed = 0;
-        $bestraft = array();
-        $strafenBuchen = function () use (&$tableArray, &$bestraft, &$lastPlayed, $tableArt) {
-            foreach ($tableArray as $index => $row) {
-                if (empty($bestraft[$index]) && $this->strafeFaellig($row, $tableArt, $lastPlayed)) {
-                    $this->strafen($tableArray[$index]);
-                    $bestraft[$index] = true;
-                }
-            }
-        };
-        $strafenBuchen();  // Strafen ab Spieltag 0
-        $processed = array();  // gewertete Spieltage, fuer den direkten Vergleich
-        foreach ($this->spieltage as $spieltag) {
-            if ($spieltag->getModus() > 0) {
-                continue;
-            }
-            if ($tableArt == 'hin' && ($spieltag->nr > ($this->spieltageCount() / 2))) {
-                if ($spTagCount < $spTag) {
-                    $spTagCount++;
-                }
-                else {
-                    break;
-                }
-                continue;
-            }
-            elseif ($tableArt == 'rueck' && ($spieltag->nr <= $this->spieltageCount() / 2)) {
-                if ($spTagCount < $spTag) {
-                    $spTagCount++;
-                }
-                else {
-                    break;
-                }
-                continue;
-            }
-            $processed[$spieltag->nr] = true;
-            foreach ($spieltag->partien as $partie) {
-                $heimCount = -1;
-                $gastCount = -1;
-                $count = 0;
-                if ($partie->spielEnde == 2) {  // Nach Verlängerung
-                    $pointsForWin = $this->options->keyValues['XtraS'];
-                    $pointsForDraw = $this->options->keyValues['XtraU'];
-                    $pointsForLost = $this->options->keyValues['XtraV'];
-                }
-                elseif ($partie->spielEnde == 1) {  // Nach Elfmetersch. oder nach Penalty
-                    $pointsForWin = $this->options->keyValues['SpezS'];
-                    $pointsForDraw = $this->options->keyValues['SpezU'];
-                    $pointsForLost = $this->options->keyValues['SpezV'];
-                }
-                else {  // normales Spielende
-                    $pointsForWin = $this->options->keyValues['PointsForWin'];
-                    $pointsForDraw = $this->options->keyValues['PointsForDraw'];
-                    $pointsForLost = $this->options->keyValues['PointsForLost'];
-                }
-                for ($count = 0; $count < count($tableArray) && ($heimCount == -1 || $gastCount == -1); $count++) {  // Teams der Partie finden
-                    if ($tableArray[$count]['team'] === $partie->heim) {
-                        $heimCount = $count;
-                    }
-                    if ($tableArray[$count]['team'] === $partie->gast) {
-                        $gastCount = $count;
-                    }
-                }
-                if ($partie->valuateGame() != -1) {
-                    $lastPlayed = $spieltag->nr;
-                }
-                // ET=3: beidseitiges Ergebnis, gilt fuer beide Teams aus Sicht der Heimmannschaft
-                if ($partie->getParameter('ET') == 3 && $partie->hTore > -1 && $partie->gTore > -1) {
-                    if ($tableArt != 'gast') {
-                        $this->addResult($tableArray[$heimCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
-                    }
-                    if ($tableArt != 'heim') {
-                        $this->addResult($tableArray[$gastCount], $partie->hTore, $partie->gTore, $pointsForWin, $pointsForDraw, $pointsForLost);
-                    }
-                    continue;
-                }
+        // Gerechnet wird im Kern (Lmo\Liga\Tabelle) auf dem jetzigen Stand der Liga: dieselbe
+        // Tabelle wie auf den Seiten des LMO
+        $arten = array(
+            'heim' => \Lmo\Liga\Tabelle::HEIM, 'gast' => \Lmo\Liga\Tabelle::AUSWAERTS,
+            'hin' => \Lmo\Liga\Tabelle::HINRUNDE, 'rueck' => \Lmo\Liga\Tabelle::RUECKRUNDE,
+        );
+        $art = isset($arten[$tableArt]) ? $arten[$tableArt] : \Lmo\Liga\Tabelle::GESAMT;
+        $haelfte = intdiv($this->spieltageCount(), 2);
+        $von = $tableArt == 'rueck' ? $haelfte + 1 : 1;
+        $bis = $tableArt == 'hin' ? min($spTag, $haelfte) : $spTag;
+        $rohdaten = $this->rohdatenFuerTabelle(false);
+        // Minuspunkte nennt die classlib auch fuer Ligen, die sie nicht fuehren
+        $mitMinuspunkten = $rohdaten->einstellungen()->mitMinuspunkten();
+        $rohdatenMinus = $mitMinuspunkten ? $rohdaten : $this->rohdatenFuerTabelle(true);
 
-                if ($partie->hTore > -1) {
-                    // Tore für Heim hinzufügen
-                    $tableArray[$heimCount]['pTor'] += $tableArt != 'gast' ? $partie->hTore : 0;
-                    $tableArray[$gastCount]['mTor'] += $tableArt != 'heim' ? $partie->hTore : 0;
-                }
-                if ($partie->gTore > -1) {
-                    // Tore für Gast hinzufügen
-                    $tableArray[$gastCount]['pTor'] += $tableArt != 'heim' ? $partie->gTore : 0;
-                    $tableArray[$heimCount]['mTor'] += $tableArt != 'gast' ? $partie->gTore : 0;
-                }
-                if ($partie->hTore > -1 && $partie->gTore > -1) {  // Ein normales Ergebnis?
-                    if ($partie->gTore == $partie->hTore) {  // Unendschieden
-                        if ($tableArt != 'gast') {
-                            $tableArray[$heimCount]['pPkt'] += $pointsForDraw;
-                            $tableArray[$heimCount]['mPkt'] += $pointsForDraw;
-                            $tableArray[$heimCount]['u']++;
-                            $tableArray[$heimCount]['spiele']++;
-                        }
-                        if ($tableArt != 'heim') {
-                            $tableArray[$gastCount]['pPkt'] += $pointsForDraw;
-                            $tableArray[$gastCount]['mPkt'] += $pointsForDraw;
-                            $tableArray[$gastCount]['u']++;
-                            $tableArray[$gastCount]['spiele']++;
-                        }
-                    }
-                    elseif ($partie->gTore > $partie->hTore) {  // Gast hat gewonnen
-                        if ($tableArt != 'gast') {
-                            $tableArray[$heimCount]['mPkt'] += $pointsForWin;
-                            $tableArray[$heimCount]['pPkt'] += $pointsForLost;
-                            $tableArray[$heimCount]['n']++;
-                            $tableArray[$heimCount]['spiele']++;
-                        }
-                        if ($tableArt != 'heim') {
-                            $tableArray[$gastCount]['pPkt'] += $pointsForWin;
-                            $tableArray[$gastCount]['mPkt'] += $pointsForLost;
-                            $tableArray[$gastCount]['s']++;
-                            $tableArray[$gastCount]['spiele']++;
-                        }
-                    }
-                    elseif ($partie->gTore < $partie->hTore) {  // Heim hat gewonnen
-                        if ($tableArt != 'gast') {
-                            $tableArray[$heimCount]['pPkt'] += $pointsForWin;
-                            $tableArray[$heimCount]['mPkt'] += $pointsForLost;
-                            $tableArray[$heimCount]['s']++;
-                            $tableArray[$heimCount]['spiele']++;
-                        }
-                        if ($tableArt != 'heim') {
-                            $tableArray[$gastCount]['mPkt'] += $pointsForWin;
-                            $tableArray[$gastCount]['pPkt'] += $pointsForLost;
-                            $tableArray[$gastCount]['n']++;
-                            $tableArray[$gastCount]['spiele']++;
-                        }
-                    }
-                    else {  // nur während der Entwicklung
-                        echo 'Fehler in Punkteermittlung (Normales Ergebnis)';
-                        echo $partie->showDetailsHTML();
+        // eine eigene Sortierung (ligaFussball, ligaHandball) gilt weiter
+        $sortTable = new \ReflectionMethod($this, 'sortTable');
+        $eigeneSortierung = $sortTable->getDeclaringClass()->getName() !== self::class;
+        $rechne = function ($bis) use ($rohdaten, $rohdatenMinus, $mitMinuspunkten, $art, $von, $tableArt, $eigeneSortierung) {
+            $tabelle = \Lmo\Liga\Tabelle::berechne($rohdaten, $art, $von, $bis);
+            $minus = $mitMinuspunkten ? $tabelle : \Lmo\Liga\Tabelle::berechne($rohdatenMinus, $art, $von, $bis);
+            $tableArray = array();
+            foreach ($this->teams as $team) {
+                $zeile = isset($tabelle->zeilen[(int) $team->nr]) ? $tabelle->zeilen[(int) $team->nr] : new \Lmo\Liga\Tabellenzeile((int) $team->nr);
+                $zeileMinus = isset($minus->zeilen[(int) $team->nr]) ? $minus->zeilen[(int) $team->nr] : $zeile;
+                $tableArray[] = array(
+                  'pos' => -1,
+                  'team' => $team,
+                  'spiele' => $zeile->spiele,
+                  's' => $zeile->siege,
+                  'u' => $zeile->unentschieden,
+                  'n' => $zeile->niederlagen,
+                  'pTor' => $zeile->tore,
+                  'mTor' => $zeile->gegentore,
+                  'dTor' => $zeile->tordifferenz(),
+                  'pPkt' => $zeile->punkte,
+                  'mPkt' => $zeileMinus->minuspunkte,
+                  'possp' => array()
+                );
+            }
+            if ($eigeneSortierung) {
+                $runden = array();
+                foreach ($this->spieltage as $spieltag) {
+                    if ($spieltag->getModus() == 0 && $spieltag->nr >= $von && $spieltag->nr <= $bis) {
+                        $runden[$spieltag->nr] = true;
                     }
                 }
-                elseif ($partie->hTore == -2) {  // O:0 Tore Heim gewinnt
-                    if ($tableArt != 'gast') {
-                        $tableArray[$heimCount]['pPkt'] += $pointsForWin;
-                        $tableArray[$heimCount]['mPkt'] += $pointsForLost;
-                        $tableArray[$heimCount]['s']++;
-                        $tableArray[$heimCount]['spiele']++;
-                    }
-                    if ($tableArt != 'heim') {
-                        $tableArray[$gastCount]['mPkt'] += $pointsForWin;
-                        $tableArray[$gastCount]['pPkt'] += $pointsForLost;
-                        $tableArray[$gastCount]['n']++;
-                        $tableArray[$gastCount]['spiele']++;
-                    }
-                }
-                elseif ($partie->gTore == -2) {  // O:0 Tore Gast gewinnt
-                    if ($tableArt != 'gast') {
-                        $tableArray[$heimCount]['mPkt'] += $pointsForWin;
-                        $tableArray[$heimCount]['pPkt'] += $pointsForLost;
-                        $tableArray[$heimCount]['n']++;
-                        $tableArray[$heimCount]['spiele']++;
-                    }
-                    if ($tableArt != 'heim') {
-                        $tableArray[$gastCount]['pPkt'] += $pointsForWin;
-                        $tableArray[$gastCount]['mPkt'] += $pointsForLost;
-                        $tableArray[$gastCount]['s']++;
-                        $tableArray[$gastCount]['spiele']++;
-                    }
-                }
-            } // foreach Partien
-            $strafenBuchen();
-            //Zusätzliche Berechnung der Position für den jeweiligen Spieltag (Statisktik)
-            if ($possp == true) {
-                for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
-                    $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
-                }
-                $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
+                $this->directContext = array('rounds' => $runden, 'art' => $tableArt);
                 $tableArray = $this->sortTable($tableArray);
-                for ($i = 0; $i < count($tableArray); $i++) {
-                    $tableArray[$i]['possp'][$spTagCount - 1] = $tableArray[$i]['pos'];
+                $this->directContext = null;
+                return $tableArray;
+            }
+            // die Reihenfolge des Kerns
+            $platz = array_flip($tabelle->reihenfolge);
+            usort($tableArray, function ($a, $b) use ($platz) {
+                $platzA = isset($platz[(int) $a['team']->nr]) ? $platz[(int) $a['team']->nr] : PHP_INT_MAX;
+                $platzB = isset($platz[(int) $b['team']->nr]) ? $platz[(int) $b['team']->nr] : PHP_INT_MAX;
+                return $platzA <=> $platzB;
+            });
+            foreach ($tableArray as $i => $row) {
+                $tableArray[$i]['pos'] = $i + 1;
+            }
+            return $tableArray;
+        };
+
+        $tableArray = $rechne($bis);
+        // Position an jedem Spieltag (Statistik)
+        if ($possp == true) {
+            for ($runde = max(1, $von); $runde <= min($bis, $this->spieltageCount()); $runde++) {
+                $platz = array();
+                foreach ($rechne($runde) as $row) {
+                    $platz[(int) $row['team']->nr] = $row['pos'];
+                }
+                foreach ($tableArray as $i => $row) {
+                    $tableArray[$i]['possp'][$runde - 1] = $platz[(int) $row['team']->nr];
                 }
             }
-            if ($spTagCount < $spTag) {
-                $spTagCount++;
-            }
-            else {
-                break;
-            }
-        } // foreach Spieltage
-
-        for ($i = 0; $i < count($tableArray); $i++) {  // Tordiff.
-            $tableArray[$i]['dTor'] = $tableArray[$i]['pTor'] - $tableArray[$i]['mTor'];
         }
-        $this->directContext = array('rounds' => $processed, 'art' => $tableArt);
-        $tableArray = $this->sortTable($tableArray);
-        $this->directContext = null;
         if ($this->options->keyValues['HandS'] == 1 && $tableArt == 'all') {
             $tableArray = $this->sortHandicap($tableArray, $spTag);
         }
         return $tableArray;
+    }
+
+    /**
+    * Rohdaten des jetzigen Stands fuer die Tabellenberechnung des Kerns: Anzahl der Mannschaften,
+    * Spieltage und Partien richten sich nach dem, was die Liga gerade enthaelt, nicht nach ihren
+    * Einstellungen; Runden im Pokalmodus zaehlen nicht.
+    *
+    * @access private
+    * @param boolean $mitMinuspunkten true: mit Minuspunkten rechnen, obwohl die Liga keine fuehrt
+    *                                 (ohne Strafminuspunkte, wie bisher)
+    * @return \Lmo\Liga\Rohdaten\Liga
+    */
+    function rohdatenFuerTabelle($mitMinuspunkten) {
+        $rohdaten = $this->alsRohdaten();
+        $teams = 0;
+        foreach ($this->teams as $team) {
+            $teams = max($teams, (int) $team->nr);
+        }
+        $partien = 0;
+        foreach ($this->spieltage as $spieltag) {
+            if ($spieltag->getModus() > 0) {
+                unset($rohdaten->spieltage[$spieltag->nr]);
+                continue;
+            }
+            $partien = max($partien, $spieltag->partienCount());
+        }
+        $rohdaten->optionen['Type'] = '0';
+        $rohdaten->optionen['Teams'] = (string) $teams;
+        $rohdaten->optionen['Rounds'] = (string) $this->spieltageCount();
+        $rohdaten->optionen['Matches'] = (string) $partien;
+        if ($mitMinuspunkten) {
+            $rohdaten->optionen['MinusPoints'] = '2';
+            foreach ($rohdaten->mannschaften as $mannschaft) {
+                unset($mannschaft->werte['SM']);
+            }
+        }
+        return $rohdaten;
     }
 
     /**
