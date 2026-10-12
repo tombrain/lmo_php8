@@ -6,28 +6,40 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
-- Drei neue Einstellungen einer Liga für die Reihenfolge der Tabelle bei Punktgleichheit, im Adminbereich unter „Spielsystem“: „Weniger Spiele vorn“ (`SortGames`), „Direkter Vergleich erst nach Tordifferenz und Toren“ (`Direct=2`; bisher gab es nur den Vergleich direkt nach den Punkten, `Direct=1`) und „Auswärtstore im direkten Vergleich“ (`DirectAway`). Die beiden Zusätze zum direkten Vergleich lassen sich nur ankreuzen, wenn er eingeschaltet ist, und werden sonst beim Speichern verworfen. Ohne die neuen Einstellungen bleibt jede Tabelle, wie sie ist. Die Texte dazu sind deutsch und englisch; die übrigen Sprachdateien enthalten vorerst den englischen Text.
-- Classlib: `liga::alsRohdaten()` liefert den jetzigen Stand der Liga als `Lmo\Liga\Rohdaten\Liga`.
-- Die Rohdaten einer Liga lassen sich über benannte Methoden ändern, die die Schlüssel und Sonderwerte der Ligadatei kennen: an der Partie `setzeMannschaften()`, `setzeErgebnis()` (mit Wertung am grünen Tisch), `setzeZusatz()`, `setzeAnstoss()`, `setzeNotiz()`, `setzeBericht()`, `setzeOhneTippwertung()`; am Spieltag `partie()`, `setzeErstenTag()`, `setzeLetztenTag()`, `setzeTabellenkorrektur()`, `setzeSpieleJePaarung()`; an der Mannschaft `setzeUrl()`, `setzeNotiz()`, `setzeStrafpunkte()`, `setzeStrafminuspunkte()`, `setzeTorkorrektur()`, `setzeStrafeAbSpieltag()`; an der Liga `setzeEinstellung()` und `setzeNews()`.
 
 
 ### Changed  
-- Classlib: `liga::calcTable()` rechnet die Tabelle nicht mehr selbst, sondern über `Lmo\Liga\Tabelle` – dieselbe Rechnung wie auf den Seiten des LMO. Format und Inhalt des Ergebnisses bleiben gleich; Mini-Tabelle und Statistik können damit nicht mehr von der Tabellenseite abweichen. `ligaFussball` und `ligaHandball` rechnen wie `liga`: Die Reihenfolge bestimmen die Einstellungen der Liga, nicht mehr die Klasse. Ihre früheren Regeln lassen sich in der Liga einstellen (Fußball: weniger Spiele vorn, direkter Vergleich nach Tordifferenz und Toren, Auswärtstore; Handball: weniger Spiele vorn, direkter Vergleich). Die eigene Sortierung der Classlib (`sortTable()`, `sortDirectTable()`, `calcTableforTeams()`, `compareDirect()`) gibt es nicht mehr. Eine weitere Abweichung: Punkte für Verlängerung und Elfmeterschießen zählen wie auf den Seiten nur, wenn die Liga sie führt (`Spez=1`); bisher wertete die Classlib den Zusatz eines Spiels auch ohne diese Einstellung.
-- Die Seiten des Adminbereichs tragen ihre Änderungen über diese Methoden ein statt über die Schlüssel der Datei (`GA`, `ET`, `HS` …). Die geschriebenen Dateien sind unverändert.
-- Die HTML-Ausgabe zum Drucken (`lmo-savehtml.php`, `lmo-savehtml1.php`) rechnet ihre Tabelle über `Lmo\Liga\Tabelle`. Die erzeugten Seiten sind unverändert.
 
 
 ### Deprecated  
 
 
 ### Removed  
-- `lmo-calctable.php` gibt es nicht mehr. Die Datei hat die Tabelle zuletzt nur noch aus `Lmo\Liga\Tabelle` in die alten Einzelvariablen (`$punkte`, `$tab0` …) übersetzt; keine Seite braucht das mehr. Eigene Erweiterungen rechnen die Tabelle mit `Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, …)`.
 
 
 ### Fixed  
 
 
 ### Security  
+
+
+***
+## [4.5.0] - 2026-10-12
+
+_Hier hätten wir die Changelogs für 4.5.0._  
+
+### Added  
+* Drei neue Einstellungen einer Liga für die Reihenfolge der Tabelle bei Punktgleichheit, im Adminbereich unter „Spielsystem“: „Weniger Spiele vorn“ (`SortGames`), „Direkter Vergleich erst nach Tordifferenz und Toren“ (`Direct=2`; bisher gab es nur den Vergleich direkt nach den Punkten, `Direct=1`) und „Auswärtstore im direkten Vergleich“ (`DirectAway`). Die beiden Zusätze zum direkten Vergleich lassen sich nur ankreuzen, wenn er eingeschaltet ist, und werden sonst beim Speichern verworfen. Ohne die neuen Einstellungen bleibt jede Tabelle, wie sie ist. Die Texte dazu sind deutsch und englisch; die übrigen Sprachdateien enthalten vorerst den englischen Text.  
+* Classlib: `liga::alsRohdaten()` liefert den jetzigen Stand der Liga als `Lmo\Liga\Rohdaten\Liga`.  
+* Die Rohdaten einer Liga lassen sich über benannte Methoden ändern, die die Schlüssel und Sonderwerte der Ligadatei kennen: an der Partie `setzeMannschaften()`, `setzeErgebnis()` (mit Wertung am grünen Tisch), `setzeZusatz()`, `setzeAnstoss()`, `setzeNotiz()`, `setzeBericht()`, `setzeOhneTippwertung()`; am Spieltag `partie()`, `setzeErstenTag()`, `setzeLetztenTag()`, `setzeTabellenkorrektur()`, `setzeSpieleJePaarung()`; an der Mannschaft `setzeUrl()`, `setzeNotiz()`, `setzeStrafpunkte()`, `setzeStrafminuspunkte()`, `setzeTorkorrektur()`, `setzeStrafeAbSpieltag()`; an der Liga `setzeEinstellung()` und `setzeNews()`.  
+
+### Changed  
+* Classlib: `liga::calcTable()` rechnet die Tabelle nicht mehr selbst, sondern über `Lmo\Liga\Tabelle` – dieselbe Rechnung wie auf den Seiten des LMO. Format und Inhalt des Ergebnisses bleiben gleich; Mini-Tabelle und Statistik können damit nicht mehr von der Tabellenseite abweichen. `ligaFussball` und `ligaHandball` rechnen wie `liga`: Die Reihenfolge bestimmen die Einstellungen der Liga, nicht mehr die Klasse. Ihre früheren Regeln lassen sich in der Liga einstellen (Fußball: weniger Spiele vorn, direkter Vergleich nach Tordifferenz und Toren, Auswärtstore; Handball: weniger Spiele vorn, direkter Vergleich). Die eigene Sortierung der Classlib (`sortTable()`, `sortDirectTable()`, `calcTableforTeams()`, `compareDirect()`) gibt es nicht mehr. Eine weitere Abweichung: Punkte für Verlängerung und Elfmeterschießen zählen wie auf den Seiten nur, wenn die Liga sie führt (`Spez=1`); bisher wertete die Classlib den Zusatz eines Spiels auch ohne diese Einstellung.  
+* Die Seiten des Adminbereichs tragen ihre Änderungen über diese Methoden ein statt über die Schlüssel der Datei (`GA`, `ET`, `HS` …). Die geschriebenen Dateien sind unverändert.  
+* Die HTML-Ausgabe zum Drucken (`lmo-savehtml.php`, `lmo-savehtml1.php`) rechnet ihre Tabelle über `Lmo\Liga\Tabelle`. Die erzeugten Seiten sind unverändert.  
+
+### Removed  
+* `lmo-calctable.php` gibt es nicht mehr. Die Datei hat die Tabelle zuletzt nur noch aus `Lmo\Liga\Tabelle` in die alten Einzelvariablen (`$punkte`, `$tab0` …) übersetzt; keine Seite braucht das mehr. Eigene Erweiterungen rechnen die Tabelle mit `Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, …)`.  
 
 
 ***
@@ -326,28 +338,40 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
-- Three new league settings for the order of the table when teams are level on points, in the admin area under "Spielsystem": "fewer games first" (`SortGames`), "direct comparison only after goal difference and goals" (`Direct=2`; until now there was only the comparison right after the points, `Direct=1`) and "away goals in the direct comparison" (`DirectAway`). The two additions to the direct comparison can only be ticked when it is switched on and are discarded on saving otherwise. Without the new settings every table stays as it is. The texts are German and English; the other language files contain the English text for now.
-- Classlib: `liga::alsRohdaten()` returns the current state of the league as `Lmo\Liga\Rohdaten\Liga`.
-- The raw data of a league can be changed through named methods that know the keys and special values of the league file: on the pairing `setzeMannschaften()`, `setzeErgebnis()` (with awarded results), `setzeZusatz()`, `setzeAnstoss()`, `setzeNotiz()`, `setzeBericht()`, `setzeOhneTippwertung()`; on the round `partie()`, `setzeErstenTag()`, `setzeLetztenTag()`, `setzeTabellenkorrektur()`, `setzeSpieleJePaarung()`; on the team `setzeUrl()`, `setzeNotiz()`, `setzeStrafpunkte()`, `setzeStrafminuspunkte()`, `setzeTorkorrektur()`, `setzeStrafeAbSpieltag()`; on the league `setzeEinstellung()` and `setzeNews()`.
 
 
 ### Changed  
-- Classlib: `liga::calcTable()` no longer computes the table itself but through `Lmo\Liga\Tabelle` – the same calculation as on the LMO pages. Format and content of the result stay the same; mini table and statistics can no longer differ from the table page. `ligaFussball` and `ligaHandball` compute like `liga`: the order is determined by the settings of the league, no longer by the class. Their former rules can be set in the league (football: fewer games first, direct comparison after goal difference and goals, away goals; handball: fewer games first, direct comparison). The classlib's own sorting (`sortTable()`, `sortDirectTable()`, `calcTableforTeams()`, `compareDirect()`) is gone. One more difference: points for extra time and penalty shoot-out only count, as on the pages, if the league uses them (`Spez=1`); until now the classlib evaluated the extra info of a game even without this setting.
-- The admin pages enter their changes through these methods instead of the keys of the file (`GA`, `ET`, `HS` …). The written files are unchanged.
-- The HTML output for printing (`lmo-savehtml.php`, `lmo-savehtml1.php`) computes its table through `Lmo\Liga\Tabelle`. The generated pages are unchanged.
 
 
 ### Deprecated  
 
 
 ### Removed  
-- `lmo-calctable.php` is gone. Lately the file only translated the table from `Lmo\Liga\Tabelle` into the old individual variables (`$punkte`, `$tab0` …); no page needs that any more. Custom extensions compute the table with `Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, …)`.
 
 
 ### Fixed  
 
 
 ### Security  
+
+
+***
+## [4.5.0] - 2026-10-12
+
+_Here we had the changelogs for 4.5.0._  
+
+### Added  
+* Three new league settings for the order of the table when teams are level on points, in the admin area under "Spielsystem": "fewer games first" (`SortGames`), "direct comparison only after goal difference and goals" (`Direct=2`; until now there was only the comparison right after the points, `Direct=1`) and "away goals in the direct comparison" (`DirectAway`). The two additions to the direct comparison can only be ticked when it is switched on and are discarded on saving otherwise. Without the new settings every table stays as it is. The texts are German and English; the other language files contain the English text for now.  
+* Classlib: `liga::alsRohdaten()` returns the current state of the league as `Lmo\Liga\Rohdaten\Liga`.  
+* The raw data of a league can be changed through named methods that know the keys and special values of the league file: on the pairing `setzeMannschaften()`, `setzeErgebnis()` (with awarded results), `setzeZusatz()`, `setzeAnstoss()`, `setzeNotiz()`, `setzeBericht()`, `setzeOhneTippwertung()`; on the round `partie()`, `setzeErstenTag()`, `setzeLetztenTag()`, `setzeTabellenkorrektur()`, `setzeSpieleJePaarung()`; on the team `setzeUrl()`, `setzeNotiz()`, `setzeStrafpunkte()`, `setzeStrafminuspunkte()`, `setzeTorkorrektur()`, `setzeStrafeAbSpieltag()`; on the league `setzeEinstellung()` and `setzeNews()`.  
+
+### Changed  
+* Classlib: `liga::calcTable()` no longer computes the table itself but through `Lmo\Liga\Tabelle` – the same calculation as on the LMO pages. Format and content of the result stay the same; mini table and statistics can no longer differ from the table page. `ligaFussball` and `ligaHandball` compute like `liga`: the order is determined by the settings of the league, no longer by the class. Their former rules can be set in the league (football: fewer games first, direct comparison after goal difference and goals, away goals; handball: fewer games first, direct comparison). The classlib's own sorting (`sortTable()`, `sortDirectTable()`, `calcTableforTeams()`, `compareDirect()`) is gone. One more difference: points for extra time and penalty shoot-out only count, as on the pages, if the league uses them (`Spez=1`); until now the classlib evaluated the extra info of a game even without this setting.  
+* The admin pages enter their changes through these methods instead of the keys of the file (`GA`, `ET`, `HS` …). The written files are unchanged.  
+* The HTML output for printing (`lmo-savehtml.php`, `lmo-savehtml1.php`) computes its table through `Lmo\Liga\Tabelle`. The generated pages are unchanged.  
+
+### Removed  
+* `lmo-calctable.php` is gone. Lately the file only translated the table from `Lmo\Liga\Tabelle` into the old individual variables (`$punkte`, `$tab0` …); no page needs that any more. Custom extensions compute the table with `Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, …)`.  
 
 
 ***
