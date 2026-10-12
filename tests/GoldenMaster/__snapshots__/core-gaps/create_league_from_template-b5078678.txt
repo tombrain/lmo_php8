@@ -661,7 +661,7 @@ xprogram=ligen/golden/basic.l98
 </body>
 </html>
 --- Dateiaenderungen ---
-NEU ligen/ausvorlage.l98 (2566 Bytes)
+NEU ligen/ausvorlage.l98 (2591 Bytes)
 [Options]
 Title=Liga Manager Online 4
 Name=Aus Vorlage
@@ -683,6 +683,8 @@ HideDraw=0
 OnRun=0
 MinusPoints=1
 Direct=0
+SortGames=0
+DirectAway=0
 Champ=1
 CL=1
 CK=1

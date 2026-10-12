@@ -101,7 +101,7 @@ if ($newpage == 3) {
         $lmo_neu += array(
             'Rounds' => (string)$xanzst, 'Matches' => (string)$xanzsp, 'Spez' => '0', 'HandS' => '0', 'Kegel' => '0',
             'PointsForWin' => '3', 'PointsForDraw' => '1', 'PointsForLost' => '0', 'HideDraw' => '0', 'OnRun' => '0',
-            'MinusPoints' => '1', 'Direct' => '0', 'Champ' => '1', 'CL' => '1', 'CK' => '1', 'UC' => '3', 'AR' => '0', 'AB' => '3',
+            'MinusPoints' => '1', 'Direct' => '0', 'SortGames' => '0', 'DirectAway' => '0', 'Champ' => '1', 'CL' => '1', 'CK' => '1', 'UC' => '3', 'AR' => '0', 'AB' => '3',
             'tableHinRueck' => '1', 'tableHeimAusw' => '1', 'Graph' => '1', 'Kreuz' => '1', 'Tabelle' => '1', 'Ligastats' => '1',
             'kurve1' => '0', 'kurve2' => '0',
         );

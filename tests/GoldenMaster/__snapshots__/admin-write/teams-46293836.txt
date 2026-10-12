@@ -473,14 +473,21 @@ xtorkorrektur22=1
 GEAENDERT ligen/golden/basic.l98
 --- vorher
 +++ nachher
-@@ -52,5 +52,5 @@
+@@ -20,4 +20,6 @@
+ MinusPoints=1
+ Direct=0
++SortGames=0
++DirectAway=0
+ Champ=0
+ CL=0
+@@ -52,5 +54,5 @@
  
  [Teams]
 -1=Mannschaft 1
 +1=Neu Team Eins
  2=Mannschaft 2
  3=Mannschaft 3
-@@ -61,6 +61,16 @@
+@@ -61,6 +63,16 @@
  8=Mannschaft 8
  
 +[Teamm]
@@ -498,7 +505,7 @@ GEAENDERT ligen/golden/basic.l98
 +1=NE1
  2=Manns
  3=Manns
-@@ -76,12 +86,12 @@
+@@ -76,12 +88,12 @@
  TOR2=0
  STDA=0
 -URL=

@@ -674,3 +674,9 @@
 5021=Die beiden Passwörter stimmen nicht überein.
 5022=Es gibt bereits ein Admin-Konto.
 5023=config/lmo-auth.php konnte nicht angelegt werden (Schreibrechte von config/ prüfen).
+5030=Direkter Vergleich erst nach Tordifferenz und Toren
+5031=Der direkte Vergleich entscheidet erst, wenn Mannschaften auch in Tordifferenz und Toren gleichauf liegen (sonst gleich nach den Punkten)
+5032=Weniger Spiele vorn
+5033=Bei Punktgleichheit steht vorn, wer weniger Spiele ausgetragen hat
+5034=Auswärtstore im direkten Vergleich
+5035=Sind Mannschaften auch im direkten Vergleich gleichauf, zählen die dort auswärts erzielten Tore, danach alle Auswärtstore

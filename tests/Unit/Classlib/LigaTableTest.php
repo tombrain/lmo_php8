@@ -3,7 +3,7 @@
 namespace Lmo\Tests\Unit\Classlib;
 
 /**
- * liga::calcTable(), sortTable() und der direkte Vergleich.
+ * liga::calcTable() mit dem direkten Vergleich; gerechnet wird im Kern (Lmo\Liga\Tabelle).
  *
  * Grundliga (Punkte 3/1/0):
  *   Spieltag 1: A-B 2:0, C-D 2:1
@@ -238,34 +238,6 @@ final class LigaTableTest extends ClasslibTestCase
 
         self::assertSame(['C', 'D', 'E', 'B', 'A'], self::order(self::league(['A', 'B', 'C', 'D', 'E'], $rounds)->calcTable(5)));
         self::assertSame(['C', 'D', 'E', 'A', 'B'], self::order(self::league(['A', 'B', 'C', 'D', 'E'], $rounds, ['Direct' => 1])->calcTable(5)));
-    }
-
-    public function testDirectComparisonTableHomeWinAtGreenTable(): void
-    {
-        $liga = self::league(['A', 'B'], [[[1, 2, -2, 0]]], ['PointsForLost' => 1]);
-        $table = $liga->calcTableforTeams([1 => $liga->teamForNumber(1), 2 => $liga->teamForNumber(2)]);
-
-        self::assertSame([3, 1], [self::row($table, 'A')['pPkt'], self::row($table, 'A')['mPkt']]);
-        self::assertSame([1, 3], [self::row($table, 'B')['pPkt'], self::row($table, 'B')['mPkt']]);
-    }
-
-    public function testDirectComparisonTableAwayWinAtGreenTable(): void
-    {
-        $liga = self::league(['A', 'B'], [[[1, 2, 0, -2]]], ['PointsForLost' => 1]);
-        $table = $liga->calcTableforTeams([1 => $liga->teamForNumber(1), 2 => $liga->teamForNumber(2)]);
-
-        self::assertSame([1, 3], [self::row($table, 'A')['pPkt'], self::row($table, 'A')['mPkt']]);
-        self::assertSame([3, 1], [self::row($table, 'B')['pPkt'], self::row($table, 'B')['mPkt']]);
-    }
-
-    public function testDirectComparisonTableIgnoresOtherTeams(): void
-    {
-        $rounds = [[[1, 2, 0, 1], [3, 4, 0, 0]], [[1, 3, 5, 0], [2, 4, 0, 1]]];
-        $liga = self::league(['A', 'B', 'C', 'D'], $rounds);
-        $table = $liga->calcTableforTeams([1 => $liga->teamForNumber(1), 2 => $liga->teamForNumber(2)]);
-
-        self::assertSame(['B', 'A'], self::order($table));
-        self::assertSame([1, 1, 0, 3], [self::row($table, 'B')['spiele'], self::row($table, 'B')['pTor'], self::row($table, 'B')['mTor'], self::row($table, 'B')['pPkt']]);
     }
 
     /** Voelliger Gleichstand: wie lmo-calctable.php steht das Team mit der hoeheren Nummer vorn. */
