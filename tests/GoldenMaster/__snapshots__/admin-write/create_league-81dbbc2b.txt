@@ -661,7 +661,7 @@ xprogram=none
 </body>
 </html>
 --- Dateiaenderungen ---
-NEU ligen/testliga.l98 (1505 Bytes)
+NEU ligen/testliga.l98 (1530 Bytes)
 [Options]
 Title=Liga Manager Online 4
 Name=Testliga
@@ -683,6 +683,8 @@ HideDraw=0
 OnRun=0
 MinusPoints=1
 Direct=0
+SortGames=0
+DirectAway=0
 Champ=1
 CL=1
 CK=1

@@ -299,7 +299,14 @@ xstat2=0
 GEAENDERT ligen/golden/basic.l98
 --- vorher
 +++ nachher
-@@ -26,6 +26,6 @@
+@@ -20,4 +20,6 @@
+ MinusPoints=1
+ Direct=0
++SortGames=0
++DirectAway=0
+ Champ=0
+ CL=0
+@@ -26,6 +28,6 @@
  AR=0
  AB=0
 -namePkt=Pkt.
@@ -308,7 +315,7 @@ GEAENDERT ligen/golden/basic.l98
 +nameTor=
  tableHinRueck=1
  tableHeimAusw=1
-@@ -61,4 +61,14 @@
+@@ -61,4 +63,14 @@
  8=Mannschaft 8
  
 +[Teamm]

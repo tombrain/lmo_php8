@@ -393,7 +393,14 @@
 GEAENDERT ligen/golden/penalties.l98
 --- vorher
 +++ nachher
-@@ -53,24 +53,35 @@
+@@ -20,4 +20,6 @@
+ MinusPoints=2
+ Direct=1
++SortGames=0
++DirectAway=0
+ Champ=0
+ CL=0
+@@ -53,24 +55,35 @@
  [Teams]
  1=Mannschaft 1
 -2=Mannschaft 2
@@ -444,7 +451,7 @@ GEAENDERT ligen/golden/penalties.l98
 +SM=0
  TOR1=0
  TOR2=0
-@@ -79,28 +90,28 @@
+@@ -79,28 +92,28 @@
  NOT=
  
 -SM=0
@@ -489,25 +496,25 @@ GEAENDERT ligen/golden/penalties.l98
 +STDA=7
  URL=
  NOT=
-@@ -108,4 +119,5 @@
+@@ -108,4 +121,5 @@
  [Team5]
  SP=0
 +SM=0
  TOR1=0
  TOR2=0
-@@ -116,4 +128,5 @@
+@@ -116,4 +130,5 @@
  [Team6]
  SP=0
 +SM=0
  TOR1=0
  TOR2=0
-@@ -124,4 +137,5 @@
+@@ -124,4 +139,5 @@
  [Team7]
  SP=0
 +SM=0
  TOR1=0
  TOR2=0
-@@ -132,4 +146,5 @@
+@@ -132,4 +148,5 @@
  [Team8]
  SP=0
 +SM=0

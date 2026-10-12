@@ -374,7 +374,14 @@ xplatz6=3
 GEAENDERT ligen/golden/handicap.l98
 --- vorher
 +++ nachher
-@@ -59,4 +59,12 @@
+@@ -20,4 +20,6 @@
+ MinusPoints=1
+ Direct=0
++SortGames=0
++DirectAway=0
+ Champ=0
+ CL=0
+@@ -59,4 +61,12 @@
  6=Mannschaft 6
  
 +[Teamm]

@@ -464,7 +464,14 @@ GEAENDERT ligen/golden/basic.l98
 +Actual=3
  Kegel=0
  HandS=0
-@@ -61,4 +61,14 @@
+@@ -20,4 +20,6 @@
+ MinusPoints=1
+ Direct=0
++SortGames=0
++DirectAway=0
+ Champ=0
+ CL=0
+@@ -61,4 +63,14 @@
  8=Mannschaft 8
  
 +[Teamm]
