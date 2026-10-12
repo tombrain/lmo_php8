@@ -124,6 +124,8 @@ class EinstellungenTest extends TestCase
             'punkteFuerNiederlageImElfmeterschiessen' => ['SpezV', 'int'],
             'mitVerlaengerung' => ['Spez', 'bool'],
             'mitDirektemVergleich' => ['Direct', 'bool'],
+            'wenigerSpieleVorn' => ['SortGames', 'bool'],
+            'mitAuswaertstorenImDirektenVergleich' => ['DirectAway', 'bool'],
             'mitHandicap' => ['HandS', 'bool'],
             'istKegelliga' => ['Kegel', 'bool'],
             'ohneUnentschieden' => ['HideDraw', 'bool'],

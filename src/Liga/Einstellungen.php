@@ -60,6 +60,8 @@ final class Einstellungen
         'SpezV' => [self::LIGA, 0],
         'MinusPoints' => [self::LIGA, 1],
         'Direct' => [self::LIGA, null],
+        'SortGames' => [self::LIGA, 0],
+        'DirectAway' => [self::LIGA, 0],
         'Champ' => [self::LIGA, 1],
         'CL' => [self::LIGA, 1],
         'CK' => [self::LIGA, 2],
@@ -277,10 +279,38 @@ final class Einstellungen
         return $this->schalter('Spez');
     }
 
-    /** Direct: bei Punktgleichheit zaehlt der direkte Vergleich */
+    /**
+     * Direct: bei Punktgleichheit zaehlt der direkte Vergleich (1 = vor der Tordifferenz,
+     * 2 = erst nach Tordifferenz und Toren, siehe direkterVergleichNachToren())
+     */
     public function mitDirektemVergleich(): bool
     {
-        return $this->schalter('Direct');
+        return $this->zahl('Direct') > 0;
+    }
+
+    /**
+     * Direct=2: der direkte Vergleich entscheidet erst, wenn Mannschaften auch in Tordifferenz und
+     * Toren gleichauf liegen; sonst (Direct=1) gleich nach den Punkten.
+     */
+    public function direkterVergleichNachToren(): bool
+    {
+        return $this->zahl('Direct') === 2;
+    }
+
+    /** SortGames: bei Punktgleichheit steht vorn, wer weniger Spiele ausgetragen hat */
+    public function wenigerSpieleVorn(): bool
+    {
+        return $this->schalter('SortGames');
+    }
+
+    /**
+     * DirectAway: sind Mannschaften auch im direkten Vergleich gleichauf, zaehlen die dort auswaerts
+     * erzielten Tore, danach alle auswaerts erzielten Tore. Ohne direkten Vergleich gilt das nicht,
+     * auch wenn es in der Datei steht.
+     */
+    public function mitAuswaertstorenImDirektenVergleich(): bool
+    {
+        return $this->schalter('DirectAway') && $this->mitDirektemVergleich();
     }
 
     /** HandS: je Spieltag eine Handicap-Reihenfolge */

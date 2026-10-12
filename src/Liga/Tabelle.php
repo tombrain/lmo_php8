@@ -254,6 +254,7 @@ final class Tabelle
 
     /**
      * Die Mannschaften nach Punkten, Minuspunkten, Tordifferenz und Toren, vom ersten zum letzten.
+     * Mit der Einstellung "weniger Spiele vorn" zaehlt nach den Punkten die Anzahl der Spiele.
      *
      * @param array<int, Tabellenzeile> $zeilen
      * @return list<int>
@@ -261,10 +262,11 @@ final class Tabelle
     private function sortiere(array $zeilen): array
     {
         $kegel = $this->einstellungen->istKegelliga();
-        $schluessel = static function (Tabellenzeile $z) use ($kegel): array {
+        $spiele = $this->einstellungen->wenigerSpieleVorn();
+        $schluessel = static function (Tabellenzeile $z) use ($kegel, $spiele): array {
             return $kegel
-                ? [$z->punkte, -$z->minuspunkte, $z->tore, $z->tordifferenz(), $z->mannschaft]
-                : [$z->punkte, -$z->minuspunkte, $z->tordifferenz(), $z->tore, $z->mannschaft];
+                ? [$z->punkte, -$z->minuspunkte, $spiele ? -$z->spiele : 0, $z->tore, $z->tordifferenz(), $z->mannschaft]
+                : [$z->punkte, -$z->minuspunkte, $spiele ? -$z->spiele : 0, $z->tordifferenz(), $z->tore, $z->mannschaft];
         };
         $nummern = array_keys($zeilen);
         usort($nummern, static fn (int $a, int $b): int => $schluessel($zeilen[$b]) <=> $schluessel($zeilen[$a]));
@@ -273,19 +275,38 @@ final class Tabelle
     }
 
     /**
-     * Ordnet Mannschaften mit gleichen Punkten und Minuspunkten nach der Tabelle ihrer Spiele
-     * gegeneinander. Haben sie noch nicht gegeneinander gespielt, bleibt ihre Reihenfolge.
+     * Ordnet Mannschaften, die gleichauf liegen, nach der Tabelle ihrer Spiele gegeneinander. Haben
+     * sie noch nicht gegeneinander gespielt, bleibt ihre Reihenfolge.
+     *
+     * Gleichauf heisst: gleiche Punkte und Minuspunkte, mit "weniger Spiele vorn" auch gleich viele
+     * Spiele; entscheidet der direkte Vergleich erst nach den Toren (Direct=2), auch gleiche
+     * Tordifferenz und Tore. Mit "Auswaertstore im direkten Vergleich" zaehlen bei Gleichstand auch
+     * dort die auswaerts erzielten Tore dieser Spiele, danach alle auswaerts erzielten Tore.
      */
     private function vergleicheDirekt(): void
     {
+        $e = $this->einstellungen;
+        $mitSpielen = $e->wenigerSpieleVorn();
+        $nachToren = $e->direkterVergleichNachToren();
+        $mitAuswaertstoren = $e->mitAuswaertstorenImDirektenVergleich();
+        $gleichauf = static function (Tabellenzeile $z) use ($mitSpielen, $nachToren): array {
+            return [$z->punkte, $z->minuspunkte, $mitSpielen ? $z->spiele : 0, $nachToren ? $z->tordifferenz() : 0, $nachToren ? $z->tore : 0];
+        };
+        // alle auswaerts erzielten Tore der gewaehlten Spieltage
+        $auswaertsGesamt = [];
+        if ($mitAuswaertstoren) {
+            foreach ($this->spiele as $spiel) {
+                $auswaertsGesamt[$spiel->gast] = ($auswaertsGesamt[$spiel->gast] ?? 0) + (int) $spiel->toreGast;
+            }
+        }
         $gruppen = [];
         foreach ($this->reihenfolge as $nr) {
             $zeile = $this->zeilen[$nr];
             $ende = count($gruppen) - 1;
-            if ($ende >= 0 && $gruppen[$ende]['punkte'] === [$zeile->punkte, $zeile->minuspunkte]) {
+            if ($ende >= 0 && $gruppen[$ende]['punkte'] === $gleichauf($zeile)) {
                 $gruppen[$ende]['mannschaften'][] = $nr;
             } else {
-                $gruppen[] = ['punkte' => [$zeile->punkte, $zeile->minuspunkte], 'mannschaften' => [$nr]];
+                $gruppen[] = ['punkte' => $gleichauf($zeile), 'mannschaften' => [$nr]];
             }
         }
 
@@ -301,9 +322,11 @@ final class Tabelle
             foreach ($mannschaften as $nr) {
                 $zeilen[$nr] = new Tabellenzeile($nr);
             }
+            $auswaerts = [];
             foreach ($this->spiele as $spiel) {
                 if (isset($zeilen[$spiel->heim], $zeilen[$spiel->gast])) {
                     $this->werte($spiel, $zeilen);
+                    $auswaerts[$spiel->gast] = ($auswaerts[$spiel->gast] ?? 0) + (int) $spiel->toreGast;
                 }
             }
             $wertungen = 0;
@@ -313,10 +336,11 @@ final class Tabelle
             // bei Gleichstand auch im direkten Vergleich bleibt die bisherige Reihenfolge
             $platz = array_flip($mannschaften);
             $kegel = $this->einstellungen->istKegelliga();
-            $schluessel = static function (Tabellenzeile $z) use ($kegel, $platz): array {
-                return $kegel
-                    ? [$z->punkte, -$z->minuspunkte, $z->tore, $z->tordifferenz(), -$platz[$z->mannschaft]]
-                    : [$z->punkte, -$z->minuspunkte, $z->tordifferenz(), $z->tore, -$platz[$z->mannschaft]];
+            $schluessel = static function (Tabellenzeile $z) use ($kegel, $platz, $mitSpielen, $mitAuswaertstoren, $auswaerts, $auswaertsGesamt): array {
+                $tore = $kegel ? [$z->tore, $z->tordifferenz()] : [$z->tordifferenz(), $z->tore];
+                $auswaertstore = $mitAuswaertstoren ? [$auswaerts[$z->mannschaft] ?? 0, $auswaertsGesamt[$z->mannschaft] ?? 0] : [0, 0];
+
+                return array_merge([$z->punkte, -$z->minuspunkte, $mitSpielen ? -$z->spiele : 0], $tore, $auswaertstore, [-$platz[$z->mannschaft]]);
             };
             $neu = $mannschaften;
             usort($neu, static fn (int $a, int $b): int => $schluessel($zeilen[$b]) <=> $schluessel($zeilen[$a]));
