@@ -39,11 +39,11 @@ docker compose run --rm tests
 docker compose run --rm tests --filter CalculationTest
 docker compose run --rm tests --filter 'PagesTest.*action=table'
 
-# Andere PHP-Version (README nennt 8.0 bis 8.5)
-PHP_VERSION=8.0 docker compose run --rm tests
+# Andere PHP-Version (README nennt 8.1 bis 8.5)
+PHP_VERSION=8.1 docker compose run --rm tests
 ```
 
-Ohne Docker: `composer install && php vendor/bin/phpunit` (PHP ≥ 8.0, optional `faketime`).
+Ohne Docker: `composer install && php vendor/bin/phpunit` (PHP ≥ 8.1, optional `faketime`).
 
 **Wichtig:** Snapshots nur am unveränderten Original aufzeichnen und nur dann neu aufzeichnen, wenn
 eine Abweichung geprüft und gewollt ist. Eine Abweichung ist zunächst ein Befund, kein Grund
@@ -76,7 +76,7 @@ eine Datei typisiert und von globalen Variablen befreit, kommt sie in `phpstan-s
 Auf Stufe 0 ist der gesamte Code ohne Meldung; eine Baseline gibt es deshalb nicht. Die einzige
 Ausnahme steht mit Begruendung in `phpstan.neon.dist` (`ignoreErrors`).
 
-Geprueft wird fuer PHP 8.0 bis 8.5 (`phpVersion` in der Konfiguration), unabhaengig davon, mit
+Geprueft wird fuer PHP 8.1 bis 8.5 (`phpVersion` in der Konfiguration), unabhaengig davon, mit
 welcher PHP-Version PHPStan selbst laeuft.
 
 ### Kopfkommentar einer alten Datei
