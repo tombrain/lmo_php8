@@ -71,7 +71,7 @@
 </td>
 </tr>
 <tr>
-<td class="lmoFooter" align="center" width="100%" colspan="11">&nbsp;</td>
+<td class="lmoFooter" align="center" width="100%" colspan="11">&nbsp;Tore: 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore/Spiel: 0</td>
 </tr>
 <tr>
 <td align="center" width="100%" colspan="11">Spielfrei: <a href="/lmo/lmo.php?action=program&amp;file=dfb/04er-liga.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 2</a>&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=dfb/04er-liga.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">Mannschaft 4</a>&nbsp;</td>
@@ -214,7 +214,7 @@
 </td>
 </tr>
 <tr>
-<td class="lmoFooter" align="center" colspan="22">&nbsp;</td>
+<td class="lmoFooter" align="center" colspan="22">&nbsp;Gesamt-Tore: 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore&nbsp;/Spiel: 0</td>
 </tr>
 </table>
 </td>
