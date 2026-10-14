@@ -1,0 +1,12 @@
+{#- Auswahl der Spieltage (Lmo\Web\Seiten\SpieltagsMenue); Links und Sprachtexte sind fertiges HTML -#}
+            <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+{% for e in eintraege %}
+                <td align='center'>{% if e.link is not null %}<a href="{{ e.link|raw }}" title="{{ e.titel|raw }}">{{ e.text|raw }}</a>{% else %}{{ e.text|raw }}{% endif %}&nbsp;</td>
+{% if e.umbruch %}
+              </tr>
+              <tr>
+{% endif %}
+{% endfor %}
+              </tr>
+            </table>

@@ -7,6 +7,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 ### Added  
 * Twig 3 als Vorlagensprache (per Composer). Die erste Seite ist die Tabelle: `lmo/vorlagen/tabelle.html.twig`, gefüllt von `Lmo\Web\Seiten\TabellenSeite`, die die Tabellen aus den Rohdaten der Liga rechnet.  
+* Die Auswahl der Spieltage über Ergebnissen, Tabelle, Tippspiel und Adminbereich ist die Vorlage `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` ruft sie nur noch auf. Die Ausgabe ist unverändert.  
 
 
 ### Changed  
@@ -342,6 +343,7 @@ _Here we write changelog notes for the next version._
 
 ### Added  
 * Twig 3 as template language (via Composer). The first page is the table: `lmo/vorlagen/tabelle.html.twig`, filled by `Lmo\Web\Seiten\TabellenSeite`, which computes the tables from the raw data of the league.  
+* The round selection above results, table, prediction game and admin area is the template `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` only calls it. The output is unchanged.  
 
 
 ### Changed  
