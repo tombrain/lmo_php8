@@ -47,125 +47,49 @@ if (!defined('PATH_TO_LMO')) {
 
 // Einstellungen der Liga mit Vorgabewerten (Lmo\Liga\Einstellungen)
 $lmo_einstellungen = $lmo_liga->einstellungen();
-if ($lmo_einstellungen->mitMinuspunkten()) {
-    $dummy = ' colspan="3" align="center"';
-} else {
-    $dummy = ' align="right"';
-}
 $breite = 11;
 if ($lmo_einstellungen->mitMinuspunkten()) {
     $breite = $breite+2;
 }
-if ($tabonres == 2) {
-    $gesamtbreite = 3 * $breite + 11;
-} else {
-    $gesamtbreite = $breite + 11;
-}
-?>
 
-<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
-  <caption><?php
+// Auswahl der Tabellenart ueber der Tabelle: Gesamt, Heim, Auswaerts, Hinrunde, Rueckrunde
+$lmo_auswahl = array();
 if ($lmo_einstellungen->mitHinRueckrundentabelle() || $lmo_einstellungen->mitHeimAuswaertstabelle()) {
-    if ($tabtype != 0) { ?><a href="<?php echo $addt1 . '0' ?>" title="<?php echo $text[27]; ?>"><?php echo $text[16]; ?></a><?php } else {echo $text[16];} ?>&nbsp;<?php
+    $lmo_arten = array(array(0, 16, 27));
     if ($tabonres != 2 && $lmo_einstellungen->mitHeimAuswaertstabelle()) {
-        if ($tabtype != 1) { ?><a href="<?php echo $addt1 . '1'; ?>" title="<?php echo $text[28]; ?>"><?php echo $text[41]; ?></a><?php } else {echo $text[41];} ?>&nbsp;<?php
-        if ($tabtype != 2) { ?><a href="<?php echo $addt1 . '2'; ?>" title="<?php echo $text[29]; ?>"><?php echo $text[42]; ?></a><?php } else {echo $text[42];} ?>&nbsp;<?php
+        $lmo_arten[] = array(1, 41, 28);
+        $lmo_arten[] = array(2, 42, 29);
     }
     if ($lmo_einstellungen->mitHinRueckrundentabelle()) {
-        if ($tabtype != 4) { ?><a href="<?php echo $addt1 . '4'; ?>" title="<?php echo $text[4003]; ?>"><?php echo $text[4003]; ?></a><?php } else {echo $text[4003];} ?>&nbsp;<?php
-        if ($tabtype != 3) { ?><a href="<?php echo $addt1 . '3'; ?>" title="<?php echo $text[4002]; ?>"><?php echo $text[4002]; ?></a><?php } else {echo $text[4002];}
+        $lmo_arten[] = array(4, 4003, 4003);
+        $lmo_arten[] = array(3, 4002, 4002);
     }
-} ?>
-  </caption><?php
-/** Inklusive Heim & Auswärts **/
-if ($tabonres == 2) { ?>
-  <tr>
-    <th style="text-align:left" colspan="7"><?php echo $tabdat; ?>&nbsp;</th>
-    <th colspan="<?php echo $breite; ?>">&nbsp;</th>
-    <th style="width:2px;">&nbsp;</th>
-    <th style="text-align:left" colspan="<?php echo $breite; ?>"><?php echo $text[41]; ?></th>
-    <th style="width:2px;">&nbsp;</th>
-    <th style="text-align:left" colspan="<?php echo $breite; ?>"><?php echo $text[42]; ?></th>
-  </tr>
-<?php
-} ?>
-  <tr>
-    <th style="text-align:left" colspan="7"><?php if ($tabonres!=2) {echo $tabdat;} ?>&nbsp;</th>
-    <th style="text-align:center"><acronym title="<?php echo $text[63]; ?>"><?php echo $text[33]; ?></acronym></th>
-    <th style="text-align:center"><acronym title="<?php echo $text[199]; ?>"><?php echo $text[34]; ?></acronym></th>
-<?php
-if (!$lmo_einstellungen->ohneUnentschieden()) { ?>
-    <th style="text-align:right"><acronym title="<?php echo $text[200]; ?>"><?php echo $text[35]; ?></acronym></th>
-<?php
-} ?>
-    <th style="text-align:enter"><acronym title="<?php echo $text[201]; ?>"><?php echo $text[36]; ?></acronym></th>
-<?php
-if ($tabpkt == 0) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]; ?></th>
-<?php
-} ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th style="text-align:center" colspan="3"><?php echo $text[38]; ?></th>
-    <th style="text-align:right"><?php echo $text[39]; ?></th>
-<?php
-if ($tabpkt == 1) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]; ?></th>
-<?php
+    foreach ($lmo_arten as list($lmo_art, $lmo_text, $lmo_titel)) {
+        $lmo_auswahl[] = array(
+            'art' => $lmo_art,
+            'text' => $text[$lmo_text],
+            'titel' => $text[$lmo_titel],
+            'link' => $tabtype != $lmo_art ? $addt1 . $lmo_art : null,
+        );
+    }
 }
-if ($tabonres == 2) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th style="text-align:right"><acronym title="<?php echo $text[63]; ?>"><?php echo $text[33]; ?></acronym></th>
-    <th style="text-align:right"><acronym title="<?php echo $text[199]; ?>"><?php echo $text[34]; ?></acronym></th>
-<?php
-    if (!$lmo_einstellungen->ohneUnentschieden()) { ?>
-    <th style="text-align:right"><acronym title="<?php echo $text[200]; ?>"><?php echo $text[35]; ?></acronym></th>
-<?php
-    } ?>
-    <th style="text-align:right"><acronym title="<?php echo $text[201]; ?>"><?php echo $text[36]; ?></acronym></th>
-<?php
-    if ($tabpkt == 0) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]; ?></th>
-<?php
-    } ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th colspan="3" align="center"><?php echo $text[38]; ?></th>
-    <th style="text-align:right"><?php echo $text[39]; ?></th>
-<?php
-    if ($tabpkt == 1) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]; ?></th>
-<?php
-    } ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th style="text-align:right"><acronym title="<?php echo $text[63]; ?>"><?php echo $text[33]; ?></acronym></th>
-    <th style="text-align:right"><acronym title="<?php echo $text[199]; ?>"><?php echo $text[34]; ?></acronym></th>
-<?php
-    if (!$lmo_einstellungen->ohneUnentschieden()) { ?>
-    <th style="text-align:right"><acronym title="<?php echo $text[200]; ?>"><?php echo $text[35]; ?></acronym></th>
-<?php
-    } ?>
-    <th style="text-align:right"><acronym title="<?php echo $text[201]; ?>"><?php echo $text[36]; ?></acronym></th>
-<?php
-    if ($tabpkt == 0) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]?></th>
-<?php
-    } ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th colspan="3" align="center"><?php echo $text[38]; ?></th>
-    <th style="text-align:right"><?php echo $text[39]; ?></th>
-<?php
-    if ($tabpkt == 1) { ?>
-    <th style="width:2px;">&nbsp;</th>
-    <th <?php echo $dummy; ?>><?php echo $text[37]; ?></th>
-<?php
-    }
-} ?>
-  </tr>
-<?php
+
+// Werte einer Zeile zum Anzeigen, Punkte und Tore mit den Faktoren der Liga
+$lmo_werte = static function (\Lmo\Liga\Tabellenzeile $lmo_z) use ($lmo_einstellungen): array {
+    return array(
+        'spiele' => $lmo_z->spiele,
+        'siege' => $lmo_z->siege,
+        'unentschieden' => $lmo_z->unentschieden,
+        'niederlagen' => $lmo_z->niederlagen,
+        'punkte' => applyFactor($lmo_z->punkte, $lmo_einstellungen->punktfaktor()),
+        'minuspunkte' => applyFactor($lmo_z->minuspunkte, $lmo_einstellungen->punktfaktor()),
+        'tore' => applyFactor($lmo_z->tore, $lmo_einstellungen->torfaktor()),
+        'gegentore' => applyFactor($lmo_z->gegentore, $lmo_einstellungen->torfaktor()),
+        'tordifferenz' => applyFactor($lmo_z->tordifferenz(), $lmo_einstellungen->torfaktor()),
+    );
+};
+
+$lmo_zeilen = array();
 $j = 1;
 for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
     // Mannschaft auf diesem Platz und ihre Zeile (Lmo\Liga\Tabellenzeile)
@@ -181,13 +105,8 @@ for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
     $lmo_strafdat = $lmo_mannschaft->werte['STDA'] ?? '0';
     $lmo_notiz = $lmo_mannschaft->werte['NOT'] ?? '';
     $lmo_url = $lmo_mannschaft->werte['URL'] ?? '';
-    if ($i == $lmo_einstellungen->lieblingsmannschaft()) {
-        $dummy = '<strong>';
-        $dumm2 = '</strong>';
-    } else {
-        $dummy = '';
-        $dumm2 = '';
-    }
+
+    // Farbe der Zeile: Meister, Europapokal, Relegation, Abstieg (nur in der Gesamttabelle)
     $lmo_tabelle_class = 'nobr';
     if ($tabtype == 0) {
         if (($x == 1) && $lmo_einstellungen->mitMeister()) {
@@ -201,7 +120,7 @@ for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
             $lmo_tabelle_class = 'lmoTabelleCleaguequali nobr';
         }
         if (($x >= $j+$lmo_einstellungen->plaetzeChampionsLeague()+$lmo_einstellungen->plaetzeClQualifikation()) && ($x < $j+$lmo_einstellungen->plaetzeChampionsLeague()+$lmo_einstellungen->plaetzeClQualifikation()+$lmo_einstellungen->plaetzeUefaCup()) && ($lmo_einstellungen->plaetzeUefaCup() > 0)) {
-        $lmo_tabelle_class = 'lmoTabelleUefa nobr';
+            $lmo_tabelle_class = 'lmoTabelleUefa nobr';
         }
         if (($x <= $lmo_einstellungen->mannschaften()-$lmo_einstellungen->plaetzeAbstieg()) && ($x > $lmo_einstellungen->mannschaften()-$lmo_einstellungen->plaetzeAbstieg()-$lmo_einstellungen->plaetzeRelegation()) && ($lmo_einstellungen->plaetzeRelegation() > 0)) {
             $lmo_tabelle_class = 'lmoTabelleRelegation nobr';
@@ -209,10 +128,9 @@ for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
         if (($x <= $lmo_einstellungen->mannschaften()) && ($x > $lmo_einstellungen->mannschaften()-$lmo_einstellungen->plaetzeAbstieg()) && ($lmo_einstellungen->plaetzeAbstieg() > 0)) {
             $lmo_tabelle_class = 'lmoTabelleAbsteiger nobr';
         }
-    } ?>
-  <tr>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $x . $dumm2; ?></td>
-<?php
+    }
+
+    // Pfeil: 1 nach oben, 2 nach unten gegenueber dem Spieltag davor
     $y = 0;
     if ($endtab > 1 && isset($platz0[$i])) {
         if ($platz0[$i] < $platz1[$i]) {
@@ -220,180 +138,88 @@ for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
         } elseif ($platz0[$i] > $platz1[$i]) {
             $y = 2;
         }
-    } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><img src='<?php echo URL_TO_IMGDIR . '/lmo-tab' . $y . '.gif'; ?>' width="9" height="9" border="0" alt=""></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center"><?php echo HTML_smallTeamIcon($file, $lmo_name, ' alt=""'); ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="left"><?php
-    echo $dummy . $lmo_name . $dumm2;
-    if (($lmo_url != '') && $lmo_einstellungen->mitMannschaftslinks()) { ?>
-        <a href="<?php echo $lmo_url; ?>" target="_blank"><img border="0" title="<?php echo $text[46]; ?>" width="11" src="<?php echo URL_TO_IMGDIR . '/url.png'; ?>" alt="<?php echo $text[564]?>"></a><?php
-    } ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><?php
+    }
 
+    $lmo_tabellennotiz = '&nbsp;';
     if ($lmo_notiz != '' || $lmo_strafp != 0 || $lmo_strafm != 0 || $lmo_tor1 != 0 || $lmo_tor2 != 0) {
         /** Notizen anzeigen
         *
         * Achtung: Da beim Speichern Strafpunkte/-tore positiv sind und Bonuspunkte negativ (altes System des LMO)
         * muss mit -1 multipliziert werden, um die Punkte/Tore richtig anzuzeigen
         */
-
-        $lmo_tabellennotiz = ' <strong>' . HTML_smallTeamIcon($file, $lmo_name, ' alt=""') . $lmo_name . '</strong>';
+        $lmo_info = ' <strong>' . HTML_smallTeamIcon($file, $lmo_name, ' alt=""') . $lmo_name . '</strong>';
         //Straf-/Bonuspunkte
         if ($lmo_strafp != 0 || $lmo_strafm != 0) {
-
-            $lmo_tabellennotiz .= '<strong>' . $text[128] . ':</strong>';
+            $lmo_info .= '<strong>' . $text[128] . ':</strong>';
             //Punkte
-            $lmo_tabellennotiz .= $lmo_strafp < 0 ? '+' . ((-1) * applyFactor($lmo_strafp, $lmo_einstellungen->punktfaktor())) : ((-1) * applyFactor($lmo_strafp, $lmo_einstellungen->punktfaktor()));
+            $lmo_info .= $lmo_strafp < 0 ? '+' . ((-1) * applyFactor($lmo_strafp, $lmo_einstellungen->punktfaktor())) : ((-1) * applyFactor($lmo_strafp, $lmo_einstellungen->punktfaktor()));
             //Minuspunkte
             if ($lmo_einstellungen->mitMinuspunkten()) {
-                $lmo_tabellennotiz .= ':' . ($lmo_strafm < 0 ? '+' . ((-1) * applyFactor($lmo_strafm, $lmo_einstellungen->punktfaktor())) : ((-1) * applyFactor($lmo_strafm, $lmo_einstellungen->punktfaktor())));
+                $lmo_info .= ':' . ($lmo_strafm < 0 ? '+' . ((-1) * applyFactor($lmo_strafm, $lmo_einstellungen->punktfaktor())) : ((-1) * applyFactor($lmo_strafm, $lmo_einstellungen->punktfaktor())));
             }
             //Ab Spieltag
             if ($lmo_strafdat != 0)
-                $lmo_tabellennotiz .= '<br>' . $text[524] . '&nbsp;' . $text[2] . '&nbsp;' . $lmo_strafdat . '<br>';
+                $lmo_info .= '<br>' . $text[524] . '&nbsp;' . $text[2] . '&nbsp;' . $lmo_strafdat . '<br>';
         }
         //Straf-/Bonustore
         if ($lmo_tor1 != 0 || $lmo_tor2 != 0) {
-            $lmo_tabellennotiz .= '<br>';
-            $lmo_tabellennotiz .= '<strong>' . $text[522] . ':</strong>';
+            $lmo_info .= '<br>';
+            $lmo_info .= '<strong>' . $text[522] . ':</strong>';
             //Tore
-            $lmo_tabellennotiz .= $lmo_tor1 < 0 ? '+' . ((-1) * applyFactor($lmo_tor1, $lmo_einstellungen->torfaktor())) . ':' : ((-1) * applyFactor($lmo_tor1, $lmo_einstellungen->torfaktor())) . ':';
+            $lmo_info .= $lmo_tor1 < 0 ? '+' . ((-1) * applyFactor($lmo_tor1, $lmo_einstellungen->torfaktor())) . ':' : ((-1) * applyFactor($lmo_tor1, $lmo_einstellungen->torfaktor())) . ':';
             //Gegentore
-            $lmo_tabellennotiz .= $lmo_tor2 < 0 ? '+' . ((-1) * applyFactor($lmo_tor2, $lmo_einstellungen->torfaktor())) : ((-1) * applyFactor($lmo_tor2, $lmo_einstellungen->torfaktor()));
+            $lmo_info .= $lmo_tor2 < 0 ? '+' . ((-1) * applyFactor($lmo_tor2, $lmo_einstellungen->torfaktor())) : ((-1) * applyFactor($lmo_tor2, $lmo_einstellungen->torfaktor()));
             //Ab Spieltag
             if ($lmo_strafdat != 0)
-                $lmo_tabellennotiz .= '<br>' . $text[524] . '&nbsp;' . $text[2] . '&nbsp;' . $lmo_strafdat . '<br>';
+                $lmo_info .= '<br>' . $text[524] . '&nbsp;' . $text[2] . '&nbsp;' . $lmo_strafdat . '<br>';
         }
         //Teamnotizen
         if ($lmo_notiz != '') {
-            $lmo_tabellennotiz .= '<br>';
-            $lmo_tabellennotiz .= '<strong>' . $text[22] . ':</strong>' . $lmo_notiz;
+            $lmo_info .= '<br>';
+            $lmo_info .= '<strong>' . $text[22] . ':</strong>' . $lmo_notiz;
         }
         //Ausgabe als neutrales Element (kein Link)
-        echo '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars(nl2br($lmo_tabellennotiz)) . '" class="tooltip-trigger"><img src="' . URL_TO_IMGDIR . '/lmo-st2.svg" height="15" class="svg-no-style" alt=""></span>';
-        $lmo_tabellennotiz = '';
-    } else {
-        echo '&nbsp;';
-    } ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_zeile->spiele . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_zeile->siege . $dumm2; ?></td>
-<?php
-    if (!$lmo_einstellungen->ohneUnentschieden()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_zeile->unentschieden . $dumm2; ?></td>
-<?php
-    } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_zeile->niederlagen . $dumm2; ?></td>
-<?php
-    if ($tabpkt == 0) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_zeile->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-        if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class?>"><strong><?php echo applyFactor($lmo_zeile->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-        }
-    } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_zeile->tore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><?php echo $dummy; ?>:<?php echo $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><?php echo $dummy . applyFactor($lmo_zeile->gegentore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_zeile->tordifferenz(), $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-<?php
-    if ($tabpkt == 1) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_zeile->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-        if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><strong><?php echo applyFactor($lmo_zeile->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-        }
+        $lmo_tabellennotiz = '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars(nl2br($lmo_info)) . '" class="tooltip-trigger"><img src="' . URL_TO_IMGDIR . '/lmo-st2.svg" height="15" class="svg-no-style" alt=""></span>';
     }
-    if ($tabonres == 2) {
-        $lmo_tabelle_class = 'lmoTabelleHeimbilanz'; ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_heim->zeilen[$i]->spiele . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_heim->zeilen[$i]->siege . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_heim->zeilen[$i]->unentschieden . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_heim->zeilen[$i]->niederlagen . $dumm2; ?></td>
-<?php
-        if ($tabpkt == 0) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_tab_heim->zeilen[$i]->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><strong><?php echo applyFactor($lmo_tab_heim->zeilen[$i]->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            }
-        } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_tab_heim->zeilen[$i]->tore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><?php echo $dummy; ?>:<?php echo $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><?php echo $dummy . applyFactor($lmo_tab_heim->zeilen[$i]->gegentore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_tab_heim->zeilen[$i]->tordifferenz(), $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-<?php
-        if ($tabpkt == 1) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_tab_heim->zeilen[$i]->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><strong><?php echo applyFactor($lmo_tab_heim->zeilen[$i]->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            }
-        }
-        $lmo_tabelle_class = 'lmoTabelleGastbilanz'; ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_auswaerts->zeilen[$i]->spiele . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_auswaerts->zeilen[$i]->siege . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_auswaerts->zeilen[$i]->unentschieden . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . $lmo_tab_auswaerts->zeilen[$i]->niederlagen . $dumm2; ?></td>
-<?php
-        if ($tabpkt == 0) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_tab_auswaerts->zeilen[$i]->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><strong><?php echo applyFactor($lmo_tab_auswaerts->zeilen[$i]->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            }
-        } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_tab_auswaerts->zeilen[$i]->tore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><?php echo $dummy; ?>:<?php echo $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><?php echo $dummy . applyFactor($lmo_tab_auswaerts->zeilen[$i]->gegentore, $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><?php echo $dummy . applyFactor($lmo_tab_auswaerts->zeilen[$i]->tordifferenz(), $lmo_einstellungen->torfaktor()) . $dumm2; ?></td>
-<?php
-        if ($tabpkt == 1) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="right"><strong><?php echo applyFactor($lmo_tab_auswaerts->zeilen[$i]->punkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            if ($lmo_einstellungen->mitMinuspunkten()) { ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>" align="center" style="width:4px;"><strong>:</strong></td>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><strong><?php echo applyFactor($lmo_tab_auswaerts->zeilen[$i]->minuspunkte, $lmo_einstellungen->punktfaktor())?></strong></td>
-<?php
-            }
-        }
-    }  /*tabonres == 2*/
-?>
-  </tr>
-<?php
-}/*for*/
-?>
-  <tr>
-    <td class="lmoFooter" align="center" colspan="<?php echo $gesamtbreite; ?>">&nbsp;<?php
+
+    $lmo_zeilen[] = array(
+        'platz' => $x,
+        'klasse' => $lmo_tabelle_class,
+        'fett' => $i == $lmo_einstellungen->lieblingsmannschaft(),
+        'pfeil' => $y,
+        'symbol' => HTML_smallTeamIcon($file, $lmo_name, ' alt=""'),
+        'name' => $lmo_name,
+        'url' => ($lmo_url != '' && $lmo_einstellungen->mitMannschaftslinks()) ? $lmo_url : null,
+        'notiz' => $lmo_tabellennotiz,
+        'gesamt' => $lmo_werte($lmo_zeile),
+        'heim' => $tabonres == 2 ? $lmo_werte($lmo_tab_heim->zeilen[$i]) : null,
+        'auswaerts' => $tabonres == 2 ? $lmo_werte($lmo_tab_auswaerts->zeilen[$i]) : null,
+    );
+}
+
+// Torstatistik der Saison unter der Tabelle (aus der Statistikdatei, lmo-zustat.php)
+$lmo_torstatistik = '';
 if ($einzutoretab == 1) {
     $zustat_file = str_replace('.l98', '.l98.php',  basename($file));
     $zustat_dir = basename($diroutput);
     if (file_exists(PATH_TO_LMO . '/' . $zustat_dir . '/' . $zustat_file)) {
         require(PATH_TO_LMO . '/' . $zustat_dir . '/' . $zustat_file);
-        echo $text[4000] . $text[38] . ': ' . applyFactor($gzutore, $lmo_einstellungen->torfaktor()) . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ' ' . $text[38] . '&nbsp;' . $text[4001] . ': ' . applyFactor($gdstore, $lmo_einstellungen->torfaktor());
+        $lmo_torstatistik = $text[4000] . $text[38] . ': ' . applyFactor($gzutore, $lmo_einstellungen->torfaktor()) . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ' ' . $text[38] . '&nbsp;' . $text[4001] . ': ' . applyFactor($gdstore, $lmo_einstellungen->torfaktor());
     }
-} ?></td>
-  </tr>
-</table>
+}
+
+echo \Lmo\Web\Vorlagen::zeige(PATH_TO_LMO . '/vorlagen', 'tabelle.html.twig', array(
+    'text' => $text,
+    'bilder' => URL_TO_IMGDIR,
+    'auswahl' => $lmo_auswahl,
+    'tabonres' => (int)$tabonres,
+    'tabpkt' => (int)$tabpkt,
+    'tabdat' => (string)$tabdat,
+    'breite' => $breite,
+    'gesamtbreite' => $tabonres == 2 ? 3 * $breite + 11 : $breite + 11,
+    'punkte_attr' => $lmo_einstellungen->mitMinuspunkten() ? ' colspan="3" align="center"' : ' align="right"',
+    'minus' => $lmo_einstellungen->mitMinuspunkten(),
+    'ohne_unentschieden' => $lmo_einstellungen->ohneUnentschieden(),
+    'zeilen' => $lmo_zeilen,
+    'torstatistik' => $lmo_torstatistik,
+));

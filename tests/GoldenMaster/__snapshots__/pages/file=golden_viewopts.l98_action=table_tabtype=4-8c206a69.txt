@@ -286,7 +286,7 @@
 </td>
 <td class="nobr" align="center">
 </td>
-<td class="nobr" align="left">Mannschaft 4 <a href="https://example.org/team4?a=1&b=2" target="_blank">
+<td class="nobr" align="left">Mannschaft 4 <a href="https://example.org/team4?a=1&amp;b=2" target="_blank">
 <img border="0" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;">
 </a>
 </td>
