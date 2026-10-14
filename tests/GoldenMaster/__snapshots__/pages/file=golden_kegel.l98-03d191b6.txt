@@ -113,7 +113,7 @@
 </td>
 </tr>
 <tr>
-<td class="lmoFooter" align="center" width="100%" colspan="11">&nbsp;</td>
+<td class="lmoFooter" align="center" width="100%" colspan="11">&nbsp;Tore: 38&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore/Spiel: 12.67</td>
 </tr>
 <tr>
 <td align="center" width="100%" colspan="11">
@@ -307,7 +307,7 @@
 </td>
 </tr>
 <tr>
-<td class="lmoFooter" align="center" colspan="22">&nbsp;</td>
+<td class="lmoFooter" align="center" colspan="22">&nbsp;Gesamt-Tore: 237&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tore&nbsp;/Spiel: 9.88</td>
 </tr>
 </table>
 </td>
