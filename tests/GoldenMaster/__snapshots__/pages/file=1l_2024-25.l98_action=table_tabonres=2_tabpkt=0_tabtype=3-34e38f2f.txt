@@ -554,7 +554,7 @@
 </td>
 <td class="nobr" align="center">
 </td>
-<td class="nobr" align="left">Borussia M'gladbach</td>
+<td class="nobr" align="left">Borussia M&#039;gladbach</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
 <td class="nobr">&nbsp;</td>
 <td class="nobr" style="width:2px;">&nbsp;</td>

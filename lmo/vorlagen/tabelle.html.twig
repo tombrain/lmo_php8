@@ -1,0 +1,119 @@
+{#
+  Die Tabelle einer Liga (lmo-showtable.php): Auswahl der Tabellenart, Kopf, eine Zeile je Mannschaft
+  mit Heim- und Auswaertsbilanz daneben (tabonres = 2) und die Torstatistik darunter.
+  Sprachtexte, Links und Bilder sind fertiges HTML (|raw); Namen werden maskiert.
+#}
+{%- macro wert(wert, fett) -%}
+  {%- if fett -%}<strong>{{ wert }}</strong>{%- else -%}{{ wert }}{%- endif -%}
+{%- endmacro -%}
+
+{%- macro bilanz(werte, klasse, fett, tabpkt, minus, ohne_unentschieden, mit_unentschieden_immer) -%}
+{%- import _self as m -%}
+    <td class="{{ klasse }}" style="width:2px;">&nbsp;</td>
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.spiele, fett) }}</td>
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.siege, fett) }}</td>
+{% if mit_unentschieden_immer or not ohne_unentschieden %}
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.unentschieden, fett) }}</td>
+{% endif %}
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.niederlagen, fett) }}</td>
+{% if tabpkt == 0 %}
+    <td class="{{ klasse }}" style="width:2px;">&nbsp;</td>
+    <td class="{{ klasse }}" align="right"><strong>{{ werte.punkte }}</strong></td>
+{% if minus %}
+    <td class="{{ klasse }}" align="center" style="width:4px;"><strong>:</strong></td>
+    <td class="{{ klasse }}"><strong>{{ werte.minuspunkte }}</strong></td>
+{% endif %}
+{% endif %}
+    <td class="{{ klasse }}" style="width:2px;">&nbsp;</td>
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.tore, fett) }}</td>
+    <td class="{{ klasse }}" align="center" style="width:4px;">{{ m.wert(':', fett) }}</td>
+    <td class="{{ klasse }}">{{ m.wert(werte.gegentore, fett) }}</td>
+    <td class="{{ klasse }}" align="right">{{ m.wert(werte.tordifferenz, fett) }}</td>
+{% if tabpkt == 1 %}
+    <td class="{{ klasse }}" style="width:2px;">&nbsp;</td>
+    <td class="{{ klasse }}" align="right"><strong>{{ werte.punkte }}</strong></td>
+{% if minus %}
+    <td class="{{ klasse }}" align="center" style="width:4px;"><strong>:</strong></td>
+    <td class="{{ klasse }}"><strong>{{ werte.minuspunkte }}</strong></td>
+{% endif %}
+{% endif %}
+{%- endmacro -%}
+
+{%- macro kopfspalten(text, tabpkt, punkte_attr, ohne_unentschieden, ausrichtung) -%}
+{% if not ohne_unentschieden %}
+    <th style="text-align:right"><acronym title="{{ text[200]|raw }}">{{ text[35]|raw }}</acronym></th>
+{% endif %}
+    <th style="text-align:{{ ausrichtung }}"><acronym title="{{ text[201]|raw }}">{{ text[36]|raw }}</acronym></th>
+{% if tabpkt == 0 %}
+    <th style="width:2px;">&nbsp;</th>
+    <th {{ punkte_attr|raw }}>{{ text[37]|raw }}</th>
+{% endif %}
+    <th style="width:2px;">&nbsp;</th>
+{%- endmacro -%}
+
+{%- import _self as m -%}
+
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>
+{%- for eintrag in auswahl -%}
+  {%- if eintrag.link is not null -%}<a href="{{ eintrag.link|raw }}" title="{{ eintrag.titel|raw }}">{{ eintrag.text|raw }}</a>{%- else -%}{{ eintrag.text|raw }}{%- endif -%}
+  {%- if eintrag.art != 3 -%}&nbsp;{%- endif -%}
+{%- endfor %}
+  </caption>
+{% if tabonres == 2 %}
+  <tr>
+    <th style="text-align:left" colspan="7">{{ tabdat|raw }}&nbsp;</th>
+    <th colspan="{{ breite }}">&nbsp;</th>
+    <th style="width:2px;">&nbsp;</th>
+    <th style="text-align:left" colspan="{{ breite }}">{{ text[41]|raw }}</th>
+    <th style="width:2px;">&nbsp;</th>
+    <th style="text-align:left" colspan="{{ breite }}">{{ text[42]|raw }}</th>
+  </tr>
+{% endif %}
+  <tr>
+    <th style="text-align:left" colspan="7">{% if tabonres != 2 %}{{ tabdat|raw }}{% endif %}&nbsp;</th>
+    <th style="text-align:center"><acronym title="{{ text[63]|raw }}">{{ text[33]|raw }}</acronym></th>
+    <th style="text-align:center"><acronym title="{{ text[199]|raw }}">{{ text[34]|raw }}</acronym></th>
+{{ m.kopfspalten(text, tabpkt, punkte_attr, ohne_unentschieden, 'enter') }}
+    <th style="text-align:center" colspan="3">{{ text[38]|raw }}</th>
+    <th style="text-align:right">{{ text[39]|raw }}</th>
+{% if tabpkt == 1 %}
+    <th style="width:2px;">&nbsp;</th>
+    <th {{ punkte_attr|raw }}>{{ text[37]|raw }}</th>
+{% endif %}
+{% if tabonres == 2 %}
+{% for bilanz in 1..2 %}
+    <th style="width:2px;">&nbsp;</th>
+    <th style="text-align:right"><acronym title="{{ text[63]|raw }}">{{ text[33]|raw }}</acronym></th>
+    <th style="text-align:right"><acronym title="{{ text[199]|raw }}">{{ text[34]|raw }}</acronym></th>
+{{ m.kopfspalten(text, tabpkt, punkte_attr, ohne_unentschieden, 'right') }}
+    <th colspan="3" align="center">{{ text[38]|raw }}</th>
+    <th style="text-align:right">{{ text[39]|raw }}</th>
+{% if tabpkt == 1 %}
+    <th style="width:2px;">&nbsp;</th>
+    <th {{ punkte_attr|raw }}>{{ text[37]|raw }}</th>
+{% endif %}
+{% endfor %}
+{% endif %}
+  </tr>
+{% for zeile in zeilen %}
+  <tr>
+    <td class="{{ zeile.klasse }}" align="right">{{ m.wert(zeile.platz, zeile.fett) }}</td>
+    <td class="{{ zeile.klasse }}"><img src='{{ bilder|raw }}/lmo-tab{{ zeile.pfeil }}.gif' width="9" height="9" border="0" alt=""></td>
+    <td class="{{ zeile.klasse }}" align="center">{{ zeile.symbol|raw }}</td>
+    <td class="{{ zeile.klasse }}" align="left">{{ m.wert(zeile.name, zeile.fett) }}
+{%- if zeile.url is not null %} <a href="{{ zeile.url }}" target="_blank"><img border="0" title="{{ text[46]|raw }}" width="11" src="{{ bilder|raw }}/url.png" alt="{{ text[564]|raw }}"></a>{% endif -%}
+    </td>
+    <td class="{{ zeile.klasse }}" style="width:2px;">&nbsp;</td>
+    <td class="{{ zeile.klasse }}">{{ zeile.notiz|raw }}</td>
+{{ m.bilanz(zeile.gesamt, zeile.klasse, zeile.fett, tabpkt, minus, ohne_unentschieden, false) }}
+{% if tabonres == 2 %}
+{{ m.bilanz(zeile.heim, 'lmoTabelleHeimbilanz', zeile.fett, tabpkt, minus, ohne_unentschieden, true) }}
+{{ m.bilanz(zeile.auswaerts, 'lmoTabelleGastbilanz', zeile.fett, tabpkt, minus, ohne_unentschieden, true) }}
+{% endif %}
+  </tr>
+{% endfor %}
+  <tr>
+    <td class="lmoFooter" align="center" colspan="{{ gesamtbreite }}">&nbsp;{{ torstatistik|raw }}</td>
+  </tr>
+</table>

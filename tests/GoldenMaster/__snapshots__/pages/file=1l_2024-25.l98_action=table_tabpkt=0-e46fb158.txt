@@ -390,7 +390,7 @@
 </td>
 <td class="lmoTabelleCleague nobr" align="center">
 </td>
-<td class="lmoTabelleCleague nobr" align="left">Borussia M'gladbach</td>
+<td class="lmoTabelleCleague nobr" align="left">Borussia M&#039;gladbach</td>
 <td class="lmoTabelleCleague nobr" style="width:2px;">&nbsp;</td>
 <td class="lmoTabelleCleague nobr">&nbsp;</td>
 <td class="lmoTabelleCleague nobr" style="width:2px;">&nbsp;</td>

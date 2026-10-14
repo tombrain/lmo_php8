@@ -45,7 +45,8 @@
         "psr-4": {
             "Lmo\\Install\\": "src/Install/",
             "Lmo\\Liga\\": "src/Liga/",
-            "Lmo\\Tipp\\": "src/Tipp/"
+            "Lmo\\Tipp\\": "src/Tipp/",
+            "Lmo\\Web\\": "src/Web/"
         }
     },
     "bin": [
