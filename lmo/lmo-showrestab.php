@@ -52,7 +52,6 @@ if (!defined('PATH_TO_LMO')) {
 
 if (isset($file) && $file != "") {
   $tabtype=isset($_GET['tabtype'])?$_GET['tabtype']:0;
-  $newtabtype=0;
   if (!empty($_GET['st'])) { $endtab = $st;}
   // Ursprünglichen Wert sichern: die Tabellenberechnung konnte $endtab bei Hin-/Rückrunden-Tabellen (tabtype 3/4) intern ueberschreiben, daher
   // reicht ein einfaches $endtab--/$endtab++ nicht aus, um ihn nach dem require() wieder zuverlaessig herzustellen.
@@ -78,35 +77,6 @@ if (isset($file) && $file != "") {
   }
   if ($lmo_einstellungen->mitAnstosszeit()) {
     $breite = $breite+1;
-  }
-  // Die Tabellen zum Anzeigen (Lmo\Liga\Tabelle). Fuehrt die Liga ein Handicap, gilt in der Gesamttabelle
-  // dessen Reihenfolge: die des aktuellen Spieltags, bei einer Tabelle "bis Spieltag X" die von X.
-  $lmo_tab_art = (int)$tabtype;
-  $lmo_tab_reihenfolge = static function (\Lmo\Liga\Tabelle $lmo_t) use ($lmo_liga, $lmo_einstellungen, $lmo_tab_art, $tabdat): array {
-    if (!$lmo_einstellungen->mitHandicap() || $lmo_tab_art != 0) {
-      return $lmo_t->reihenfolge;
-    }
-    $lmo_runde = empty($tabdat) ? $lmo_einstellungen->aktuellerSpieltag() : $lmo_t->bis;
-    return $lmo_t->reihenfolgeNachHandicap(isset($lmo_liga->spieltage[$lmo_runde]) ? ($lmo_liga->spieltage[$lmo_runde]->werte['HS'] ?? '0') : '0');
-  };
-  // Platz je Mannschaft am Spieltag davor, fuer die Pfeile
-  if ($endtab_original > 1) {
-    $platz1 = array_pad($array, $lmo_anzteams+1, "");
-    foreach ($lmo_tab_reihenfolge(\Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, $lmo_tab_art, (int)$endtab_original - 1)) as $x => $lmo_nr) {
-      $platz1[$lmo_nr] = $x+1;
-    }
-  }
-  // Heim- und Auswaertsbilanz neben der Tabelle; bei Hin- oder Rueckrundentabelle auf diese Haelfte beschraenkt
-  if ($tabonres == 2) {
-    $newtabtype = $tabtype;
-    $lmo_tab_heim = \Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, \Lmo\Liga\Tabelle::HEIM, (int)$endtab_original, $lmo_tab_art);
-    $lmo_tab_auswaerts = \Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, \Lmo\Liga\Tabelle::AUSWAERTS, (int)$endtab_original, $lmo_tab_art);
-  }
-  $lmo_tabelle = \Lmo\Liga\Tabelle::fuerAnsicht($lmo_liga, $lmo_tab_art, (int)$endtab_original);
-  $lmo_tab_plaetze = $lmo_tab_reihenfolge($lmo_tabelle);
-  $platz0 = array_pad($array, $lmo_anzteams+1, "");
-  foreach ($lmo_tab_plaetze as $x => $lmo_nr) {
-    $platz0[$lmo_nr] = $x+1;
   }
   $endtab = $endtab_original;
   if ($tabdat == "") {

@@ -6,9 +6,12 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Twig 3 als Vorlagensprache (per Composer). Die erste Seite ist die Tabelle: `lmo/vorlagen/tabelle.html.twig`, gefüllt von `Lmo\Web\Seiten\TabellenSeite`, die die Tabellen aus den Rohdaten der Liga rechnet.  
 
 
 ### Changed  
+* Mindestversion ist PHP 8.1 (Twig 3 läuft nicht unter PHP 8.0).  
+* Die Tabelle auf der Tabellen- und der Ergebnisseite entsteht aus der Twig-Vorlage. Die Ausgabe ist gleich bis auf das Escaping: Sonderzeichen in Mannschaftsnamen und Links werden jetzt durchgehend als HTML-Entitäten ausgegeben (`&` als `&amp;`, `'` als `&#039;`).  
 
 
 ### Deprecated  
@@ -338,9 +341,12 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Twig 3 as template language (via Composer). The first page is the table: `lmo/vorlagen/tabelle.html.twig`, filled by `Lmo\Web\Seiten\TabellenSeite`, which computes the tables from the raw data of the league.  
 
 
 ### Changed  
+* Minimum version is PHP 8.1 (Twig 3 does not run on PHP 8.0).  
+* The table on the table and results pages is rendered from the Twig template. The output is the same except for escaping: special characters in team names and links are now consistently output as HTML entities (`&` as `&amp;`, `'` as `&#039;`).  
 
 
 ### Deprecated  
