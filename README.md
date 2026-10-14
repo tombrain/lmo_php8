@@ -29,7 +29,7 @@ Currently supported languages (_sorted alphabetically_)
 - [![Spanish](https://www.liga-manager-online.org/forum_files/md/Espanol.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Espanol) Spanish
 
 ### System requirement
-- Web server with at least PHP 8.0 - maximum PHP 8.5
+- Web server with at least PHP 8.1 - maximum PHP 8.5
 
 ### Installation
 LMO is installed with [Composer](https://getcomposer.org/).
@@ -77,7 +77,7 @@ Momentan unterstützte Sprachen (_alphabetisch sortiert_)
 - [![Hungarian](https://www.liga-manager-online.org/forum_files/md/Magyar.svg)](https://www.liga-manager-online.org/test/lmo_git/lmo.php?file=1l_2023-24.l98&lmouserlang=Magyar) Ungarisch
 
 ### Systemvorraussetzung
-- Webserver mit mindestens PHP 8.0  -  maximal PHP 8.5
+- Webserver mit mindestens PHP 8.1  -  maximal PHP 8.5
 
 ### Installation
 Der LMO wird mit [Composer](https://getcomposer.org/) installiert.
