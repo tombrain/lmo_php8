@@ -10,6 +10,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Auswahl der Spieltage über Ergebnissen, Tabelle, Tippspiel und Adminbereich ist die Vorlage `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` ruft sie nur noch auf. Die Ausgabe ist unverändert.  
 * Die Ergebnisse eines Spieltags sind die Vorlage `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); Ein vorhandenes Addon `addon/stats/lmo-showprogram.inc.php` wird weiter je Spiel eingebunden, sieht aber nur noch `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` und `$text`.  
 * Die Ergebnis- und die Tabellenseite (`action=results`, `action=table`) laufen über den Controller `Lmo\Web\Controller\ErgebnisseController`: Er liest Spieltag, Tabellenstand und Tabellenart selbst aus der Anfrage (`Lmo\Web\Anfrage`) und die Torstatistik aus der Statistikdatei (`Lmo\Web\Statistikdatei`) und setzt die Seite mit der Vorlage `lmo/vorlagen/ergebnisse_tabelle.html.twig` zusammen. `lmo-showrestab.php` verbindet ihn nur noch mit der Konfiguration.  
+* Konfiguration, Sprachtexte und Liga lassen sich ohne globale Variablen laden: `Lmo\Web\Konfiguration` (config/cfg.txt und die der Addons, mit typisierten Gettern), `Lmo\Web\Sprachtexte` (Deutsch, darüber Standard- und Besuchersprache, Addon-Texte; eigene Bezeichnungen der Liga für Punkte und Tore) und `Lmo\Web\LigaLader` (nur .l98-Dateien im Ligenordner, mit Berechtigungsprüfung für Hilfsadmins). Der `ErgebnisseController` bekommt die Konfiguration als Objekt.  
 
 
 ### Changed  
@@ -28,7 +29,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
-
+* Ergebnis- und Tabellenseite übernehmen aus der Adresse nur noch die Anzeige-Optionen `tabonres` und `tabpkt` (`Konfiguration::ANZEIGEOPTIONEN`); alle anderen Einstellungen kommen nur aus `config/cfg.txt`. Bisher konnte jeder Aufruf über die Adresse jede Einstellung überschreiben (Folge des `extract($_GET)` in `init.php`, das für die übrigen Seiten vorerst bleibt).  
 
 ***
 ## [4.5.0] - 2026-10-12
@@ -349,6 +350,7 @@ _Here we write changelog notes for the next version._
 * The round selection above results, table, prediction game and admin area is the template `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` only calls it. The output is unchanged.  
 * The results of a round are the template `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); An existing add-on `addon/stats/lmo-showprogram.inc.php` is still included for each game but only sees `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` and `$text`.  
 * The results and table pages (`action=results`, `action=table`) run through the controller `Lmo\Web\Controller\ErgebnisseController`: it reads round, table state and table type from the request itself (`Lmo\Web\Anfrage`) and the goal statistics from the statistics file (`Lmo\Web\Statistikdatei`) and assembles the page with the template `lmo/vorlagen/ergebnisse_tabelle.html.twig`. `lmo-showrestab.php` only connects it to the configuration.  
+* Configuration, language texts and league can be loaded without global variables: `Lmo\Web\Konfiguration` (config/cfg.txt and those of the add-ons, with typed getters), `Lmo\Web\Sprachtexte` (German, overlaid by default and visitor language, add-on texts; the league's own names for points and goals) and `Lmo\Web\LigaLader` (only .l98 files inside the league folder, with the permission check for helper admins). The `ErgebnisseController` receives the configuration as an object.  
 
 
 ### Changed  
@@ -367,7 +369,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
-
+* The results and table pages take only the display options `tabonres` and `tabpkt` from the address (`Konfiguration::ANZEIGEOPTIONEN`); all other settings come from `config/cfg.txt` only. Until now any request could override any setting through the address (a consequence of the `extract($_GET)` in `init.php`, which stays for the other pages for now).  
 
 ***
 ## [4.5.0] - 2026-10-12
