@@ -43,6 +43,4 @@ parameters:
         - lmo/lmo-showgraph.php
         - lmo/lmo-showprogram.php
         - lmo/lmo-showrestab.php
-        - lmo/lmo-showresults.php
-        - lmo/lmo-showtable.php
         - lmo/lmo-spieltagsmenu.php
