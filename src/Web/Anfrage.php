@@ -23,6 +23,12 @@ final class Anfrage
         return new self($_POST + $_GET);
     }
 
+    /** Ist der Parameter da, auch leer (wie isset())? */
+    public function gesetzt(string $name): bool
+    {
+        return isset($this->werte[$name]);
+    }
+
     /** Ist der Parameter gesetzt und nicht leer (wie empty(): "" und "0" gelten als leer)? */
     public function hat(string $name): bool
     {

@@ -7,6 +7,7 @@ use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\ErgebnisseController;
 use Lmo\Web\Darstellung;
+use Lmo\Web\Konfiguration;
 use Lmo\Web\Statistikdatei;
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 class ErgebnisseControllerTest extends TestCase
 {
     /**
-     * @param array<string, int|bool|string> $konfiguration Abweichungen von der Vorgabe
+     * @param array<string, int|string> $konfiguration Werte der cfg.txt, abweichend von der Vorgabe
      */
     private static function controller(array $konfiguration = [], ?Statistikdatei $statistik = null): ErgebnisseController
     {
@@ -39,7 +40,7 @@ class ErgebnisseControllerTest extends TestCase
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
             dirname(__DIR__, 3) . '/lmo/vorlagen',
             'IMG',
-            $konfiguration + ['tabonres' => 0, 'tabpkt' => 0, 'einzutore' => false, 'einzutoretab' => false, 'einspielfrei' => false, 'datumsformat' => 'd.m.Y'],
+            new Konfiguration($konfiguration + ['tabonres' => 0, 'tabpkt' => 0, 'einzutore' => 0, 'einzutoretab' => 0, 'einspielfrei' => 0, 'defdateformat' => 'd.m.Y']),
             $statistik
         );
     }
@@ -103,12 +104,12 @@ class ErgebnisseControllerTest extends TestCase
     public function testTorstatistik(): void
     {
         $statistik = new Statistikdatei(['gzutore' => 8, 'gdstore' => 2, 'zutore' => [2 => 7], 'dstore' => [2 => 3.5]]);
-        $html = self::seite('table', [], ['tabonres' => 1, 'einzutore' => true, 'einzutoretab' => true], $statistik);
+        $html = self::seite('table', [], ['tabonres' => 1, 'einzutore' => 1, 'einzutoretab' => 1], $statistik);
 
         self::assertStringContainsString('T38: 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T38T4001: 3.5', $html, 'Spieltag');
         self::assertStringContainsString('T4000T38: 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T38&nbsp;T4001: 2', $html, 'Saison');
 
-        $ohneDatei = self::seite('results', [], ['einzutore' => true]);
+        $ohneDatei = self::seite('results', [], ['einzutore' => 1]);
         self::assertStringContainsString('class="lmoFooter"', $ohneDatei, 'leere Zeile ohne Statistikdatei');
     }
 

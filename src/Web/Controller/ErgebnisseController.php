@@ -7,6 +7,7 @@ use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Liga\Spiel;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Darstellung;
+use Lmo\Web\Konfiguration;
 use Lmo\Web\Seiten\ErgebnisListe;
 use Lmo\Web\Seiten\SpieltagsMenue;
 use Lmo\Web\Seiten\TabellenSeite;
@@ -32,8 +33,7 @@ final class ErgebnisseController
     private Darstellung $darstellung;
     private string $vorlagen;
     private string $bilder;
-    /** @var array{tabonres: int, tabpkt: int, einzutore: bool, einzutoretab: bool, einspielfrei: bool, datumsformat: string} */
-    private array $konfiguration;
+    private Konfiguration $konfiguration;
     private ?Statistikdatei $statistik;
     /** @var (Closure(Spiel): string)|null */
     private ?Closure $zusatz;
@@ -42,13 +42,11 @@ final class ErgebnisseController
      * @param array<int|string, mixed> $text Sprachtexte
      * @param string $vorlagen Ordner der Twig-Vorlagen
      * @param string $bilder Adresse des Bilderordners (URL_TO_IMGDIR)
-     * @param array{tabonres: int, tabpkt: int, einzutore: bool, einzutoretab: bool, einspielfrei: bool, datumsformat: string} $konfiguration
-     *        Einstellungen der Installation: Ergebnisse und Tabelle zusammen (tabonres), Punktespalte
-     *        (tabpkt), Torstatistik unter Ergebnissen und Tabelle, spielfreie Mannschaften, Datumsformat
+     * @param Konfiguration $konfiguration Konfiguration der Installation (tabonres, tabpkt, Torstatistik, spielfrei, Datumsformat)
      * @param Statistikdatei|null $statistik Statistikdatei der Liga (fuer die Torstatistik), null ohne
      * @param (Closure(Spiel): string)|null $zusatz weiteres HTML am Ende jeder Ergebniszeile (Addons)
      */
-    public function __construct(Liga $liga, array $text, Darstellung $darstellung, string $vorlagen, string $bilder, array $konfiguration, ?Statistikdatei $statistik, ?Closure $zusatz = null)
+    public function __construct(Liga $liga, array $text, Darstellung $darstellung, string $vorlagen, string $bilder, Konfiguration $konfiguration, ?Statistikdatei $statistik, ?Closure $zusatz = null)
     {
         $this->liga = $liga;
         $this->text = $text;
@@ -70,7 +68,8 @@ final class ErgebnisseController
     public function zeige(Anfrage $anfrage, string $action, string $adresse, string $datei): string
     {
         $e = $this->liga->einstellungen();
-        $k = $this->konfiguration;
+        // Anzeige-Optionen wie tabonres darf der Aufruf ueberschreiben (Konfiguration::ANZEIGEOPTIONEN)
+        $k = $this->konfiguration->mitAnzeigeoptionen($anfrage);
         $text = $this->text;
         $st = $anfrage->zahl('st', $e->aktuellerSpieltag());
         $tabtype = $anfrage->zahl('tabtype');
@@ -94,15 +93,15 @@ final class ErgebnisseController
         $menue = (new SpieltagsMenue($text, $this->vorlagen))->zeige($this->liga, $st, $spieltagLink);
 
         $ergebnisse = null;
-        if ($k['tabonres'] >= 1 || $action == 'results') {
+        if ($k->tabonres() >= 1 || $action == 'results') {
             $ergebnisse = (new ErgebnisListe($this->liga, $text, $this->darstellung, $this->vorlagen, $this->bilder))
-                ->zeige($st, $datei, $spielplan, $k['datumsformat'], $this->torstatistikSpieltag($st), $k['einspielfrei'], $this->zusatz);
+                ->zeige($st, $datei, $spielplan, $k->datumsformat(), $this->torstatistikSpieltag($st), $k->spielfreiNennen(), $this->zusatz);
         }
 
         $tabelle = null;
-        if ($k['tabonres'] >= 1 || $action == 'table') {
+        if ($k->tabonres() >= 1 || $action == 'table') {
             $tabelle = (new TabellenSeite($this->liga, $text, $this->darstellung, $this->vorlagen, $this->bilder))
-                ->zeige($tabtype, $endtab, $stand, $tabellenLink, $datei, $k['tabonres'], $k['tabpkt'], $this->torstatistikSaison());
+                ->zeige($tabtype, $endtab, $stand, $tabellenLink, $datei, $k->tabonres(), $k->tabpkt(), $this->torstatistikSaison());
         }
 
         return Vorlagen::zeige($this->vorlagen, 'ergebnisse_tabelle.html.twig', [
@@ -118,7 +117,7 @@ final class ErgebnisseController
     /** Torstatistik des Spieltags unter den Ergebnissen; null ohne die Zeile, '' ohne Statistikdatei. */
     private function torstatistikSpieltag(int $st): ?string
     {
-        if (!$this->konfiguration['einzutore']) {
+        if (!$this->konfiguration->torstatistikErgebnisse()) {
             return null;
         }
         if ($this->statistik === null) {
@@ -134,7 +133,7 @@ final class ErgebnisseController
     /** Torstatistik der Saison unter der Tabelle; '' ohne. */
     private function torstatistikSaison(): string
     {
-        if (!$this->konfiguration['einzutoretab'] || $this->statistik === null) {
+        if (!$this->konfiguration->torstatistikTabelle() || $this->statistik === null) {
             return '';
         }
         $faktor = $this->liga->einstellungen()->torfaktor();

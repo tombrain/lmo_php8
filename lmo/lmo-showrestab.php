@@ -30,13 +30,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var array<int|string, mixed> $text Sprachtexte
  * @var string $action gewaehlte Seite (Aufrufparameter)
- * @var string $diroutput Ordner fuer erzeugte Dateien (Konfiguration)
- * @var string $defdateformat Datumsformat in date()-Schreibweise (Konfiguration)
- * @var int|string $tabonres Ergebnisse und Tabelle zusammen (Konfiguration)
- * @var int|string $tabpkt Punktespalte: 0 in der Mitte, 1 am rechten Rand (Konfiguration)
- * @var int|string $einzutore Torstatistik unter den Ergebnissen (Konfiguration)
- * @var int|string $einzutoretab Torstatistik unter der Tabelle (Konfiguration)
- * @var int|string $einspielfrei spielfreie Mannschaften nennen (Konfiguration)
+ * @var array<string, mixed> $cfgarray Konfiguration der Installation (lmo-cfgload.php)
  */
 
 if (isset($file) && $file != "") {
@@ -53,22 +47,17 @@ if (isset($file) && $file != "") {
     };
   }
 
+  // Konfiguration der Installation (lmo-cfgload.php)
+  $lmo_konfiguration = new \Lmo\Web\Konfiguration($cfgarray);
   $lmo_controller = new \Lmo\Web\Controller\ErgebnisseController(
     $lmo_liga,
     $text,
     new \Lmo\Web\Darstellung(static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute)),
     PATH_TO_LMO . '/vorlagen',
     URL_TO_IMGDIR,
-    [
-      'tabonres' => (int)$tabonres,
-      'tabpkt' => (int)$tabpkt,
-      'einzutore' => $einzutore == 1,
-      'einzutoretab' => $einzutoretab == 1,
-      'einspielfrei' => $einspielfrei == 1,
-      'datumsformat' => $defdateformat,
-    ],
+    $lmo_konfiguration,
     // Statistikdatei der Liga (lmo-zustat.php)
-    \Lmo\Web\Statistikdatei::lies(PATH_TO_LMO . '/' . basename($diroutput) . '/' . str_replace('.l98', '.l98.php', basename($file))),
+    \Lmo\Web\Statistikdatei::lies(PATH_TO_LMO . '/' . basename($lmo_konfiguration->ausgabeordner()) . '/' . str_replace('.l98', '.l98.php', basename($file))),
     $lmo_addon_vergleich
   );
   echo $lmo_controller->zeige(\Lmo\Web\Anfrage::ausGlobalen(), $action, $_SERVER['PHP_SELF'], $file);
