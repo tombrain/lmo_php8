@@ -21,93 +21,55 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 /**
+ * Die Ergebnis- und die Tabellenseite einer Liga (action=results und action=table): verbindet
+ * den Controller Lmo\Web\Controller\ErgebnisseController mit der Konfiguration und dem alten Code.
+ *
  * Diese Datei wird eingebunden und erwartet:
  *
  * @var \Lmo\Liga\Rohdaten\Liga $lmo_liga Rohdaten der geladenen Liga (lmo-openfile.php)
+ * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var array<int|string, mixed> $text Sprachtexte
- * @var int|string $st gewaehlter Spieltag
  * @var string $action gewaehlte Seite (Aufrufparameter)
- * @var array<int|string, mixed> $array leeres Array als Vorlage fuer array_pad()
- *
- * Einstellungen:
- * @var int|string $tabonres Einstellung aus cfg.txt
- *
- * Weitere Variablen des einbindenden Codes:
- * @var mixed $atore
- * @var mixed $dtore
- * @var mixed $etore
- * @var mixed $negativ
- * @var mixed $nieder
- * @var mixed $punkte
- * @var mixed $siege
- * @var mixed $spiele
- * @var array<int|string, mixed> $tab0
- * @var mixed $tabdat
- * @var mixed $unent
- *
- * Werden auch in dieser Datei gesetzt, aber nicht auf jedem Weg (koennen von aussen kommen):
- * @var mixed $endtab
+ * @var string $diroutput Ordner fuer erzeugte Dateien (Konfiguration)
+ * @var string $defdateformat Datumsformat in date()-Schreibweise (Konfiguration)
+ * @var int|string $tabonres Ergebnisse und Tabelle zusammen (Konfiguration)
+ * @var int|string $tabpkt Punktespalte: 0 in der Mitte, 1 am rechten Rand (Konfiguration)
+ * @var int|string $einzutore Torstatistik unter den Ergebnissen (Konfiguration)
+ * @var int|string $einzutoretab Torstatistik unter der Tabelle (Konfiguration)
+ * @var int|string $einspielfrei spielfreie Mannschaften nennen (Konfiguration)
  */
 
-
 if (isset($file) && $file != "") {
-  $tabtype=isset($_GET['tabtype'])?$_GET['tabtype']:0;
-  if (!empty($_GET['st'])) { $endtab = $st;}
-  // Ursprünglichen Wert sichern: die Tabellenberechnung konnte $endtab bei Hin-/Rückrunden-Tabellen (tabtype 3/4) intern ueberschreiben, daher
-  // reicht ein einfaches $endtab--/$endtab++ nicht aus, um ihn nach dem require() wieder zuverlaessig herzustellen.
-  $endtab_original = $endtab;
-  $addp = $_SERVER['PHP_SELF']."?action=program&amp;file=".$file."&amp;selteam=";
-  $addr = $_SERVER['PHP_SELF']."?action=$action&amp;tabtype=$tabtype&amp;file=".$file."&amp;st=";
-  // Einstellungen der Liga mit Vorgabewerten (Lmo\Liga\Einstellungen)
-  $lmo_einstellungen = $lmo_liga->einstellungen();
-  $endtab = $endtab_original;
-  if ($tabdat == "") {
-    $addt1 = $_SERVER['PHP_SELF']."?action=$action&amp;file=".$file."&amp;endtab=".$endtab."&amp;st=".$st."&amp;tabtype=";
-  } else {
-    $addt1 = $_SERVER['PHP_SELF']."?action=$action&amp;file=".$file."&amp;endtab=".$endtab."&amp;st=".$st."&amp;tabtype=";
-  }
-  $addt2 = $_SERVER['PHP_SELF']."?action=$action&amp;file=".$file."&amp;tabtype=".$tabtype."&amp;st=".$st."&amp;endtab=";
+  // bisherige Ergebnisse je Spiel (AddOn Team Vergleich, nicht Teil des LMO); $i wie bisher: Partie ab 0
+  $lmo_addon_vergleich = null;
+  if (file_exists(PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php')) {
+    $lmo_addon_vergleich = static function (\Lmo\Liga\Spiel $lmo_spiel) use ($lmo_liga, $text, $file): string {
+      $i = $lmo_spiel->partie - 1;
+      $st = $lmo_spiel->spieltag;
+      ob_start();
+      include(PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php');
 
-?>
-
-<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0"><?php
-
-  /** Spieltagsauswahl*/?>
-  <tr>
-    <td align="center"><?php  include(PATH_TO_LMO."/lmo-spieltagsmenu.php")?></td>
-  </tr><?php
-
-  /** Ergebnisse*/
-  if ($tabonres >= 1 || $action=="results") {?>
-  <tr>
-    <td align="center"><?php  include(PATH_TO_LMO."/lmo-showresults.php")?></td>
-  </tr><?php
+      return (string)ob_get_clean();
+    };
   }
 
-  /** Vor und Zurück-Pfeile*/?>
-  <tr>
-    <td>
-      <table width="100%" cellspacing="0" cellpadding="0" border="0">
-        <tr><?php
-   $st0 = $st-1;
-   if ($st > 1) {?>
-          <td align="left">&nbsp;<a href="<?php echo $addr.$st0?>" title="<?php echo $text[6]?>"><?php echo $text[5]?> <?php echo $text[6]?></a>&nbsp;</td><?php
-   }
-   $st0 = $st+1;
-   if ($st < $lmo_einstellungen->spieltage()) {?>
-          <td align="right">&nbsp;<a href="<?php echo $addr.$st0?>" title="<?php echo $text[8]?>"><?php echo $text[8]?> <?php echo $text[7]?></a>&nbsp;</td><?php
-   }?>
-        </tr>
-      </table>
-    </td>
-  </tr><?php
-
-  /** Tabelle*/
-  if ($tabonres >= 1 || $action=="table") {?>
-  <tr>
-    <td align="center"><?php  include(PATH_TO_LMO."/lmo-showtable.php")?></td>
-  </tr><?php
-  }?>
-
-</table><?php
-}?>
+  $lmo_controller = new \Lmo\Web\Controller\ErgebnisseController(
+    $lmo_liga,
+    $text,
+    new \Lmo\Web\Darstellung(static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute)),
+    PATH_TO_LMO . '/vorlagen',
+    URL_TO_IMGDIR,
+    [
+      'tabonres' => (int)$tabonres,
+      'tabpkt' => (int)$tabpkt,
+      'einzutore' => $einzutore == 1,
+      'einzutoretab' => $einzutoretab == 1,
+      'einspielfrei' => $einspielfrei == 1,
+      'datumsformat' => $defdateformat,
+    ],
+    // Statistikdatei der Liga (lmo-zustat.php)
+    \Lmo\Web\Statistikdatei::lies(PATH_TO_LMO . '/' . basename($diroutput) . '/' . str_replace('.l98', '.l98.php', basename($file))),
+    $lmo_addon_vergleich
+  );
+  echo $lmo_controller->zeige(\Lmo\Web\Anfrage::ausGlobalen(), $action, $_SERVER['PHP_SELF'], $file);
+}

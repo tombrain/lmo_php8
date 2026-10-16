@@ -8,7 +8,8 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 ### Added  
 * Twig 3 als Vorlagensprache (per Composer). Die erste Seite ist die Tabelle: `lmo/vorlagen/tabelle.html.twig`, gefüllt von `Lmo\Web\Seiten\TabellenSeite`, die die Tabellen aus den Rohdaten der Liga rechnet.  
 * Die Auswahl der Spieltage über Ergebnissen, Tabelle, Tippspiel und Adminbereich ist die Vorlage `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` ruft sie nur noch auf. Die Ausgabe ist unverändert.  
-* Die Ergebnisse eines Spieltags sind die Vorlage `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); `lmo-showresults.php` rechnet nur noch die Torstatistik des Spieltags. Ein vorhandenes Addon `addon/stats/lmo-showprogram.inc.php` wird weiter je Spiel eingebunden, sieht aber nur noch `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` und `$text`.  
+* Die Ergebnisse eines Spieltags sind die Vorlage `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); Ein vorhandenes Addon `addon/stats/lmo-showprogram.inc.php` wird weiter je Spiel eingebunden, sieht aber nur noch `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` und `$text`.  
+* Die Ergebnis- und die Tabellenseite (`action=results`, `action=table`) laufen über den Controller `Lmo\Web\Controller\ErgebnisseController`: Er liest Spieltag, Tabellenstand und Tabellenart selbst aus der Anfrage (`Lmo\Web\Anfrage`) und die Torstatistik aus der Statistikdatei (`Lmo\Web\Statistikdatei`) und setzt die Seite mit der Vorlage `lmo/vorlagen/ergebnisse_tabelle.html.twig` zusammen. `lmo-showrestab.php` verbindet ihn nur noch mit der Konfiguration.  
 
 
 ### Changed  
@@ -20,6 +21,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Removed  
+* `lmo-showresults.php` und `lmo-showtable.php` gibt es nicht mehr; Ergebnisse und Tabelle zeigt der `ErgebnisseController`.  
 
 
 ### Fixed  
@@ -345,7 +347,8 @@ _Here we write changelog notes for the next version._
 ### Added  
 * Twig 3 as template language (via Composer). The first page is the table: `lmo/vorlagen/tabelle.html.twig`, filled by `Lmo\Web\Seiten\TabellenSeite`, which computes the tables from the raw data of the league.  
 * The round selection above results, table, prediction game and admin area is the template `lmo/vorlagen/spieltagsmenu.html.twig` (`Lmo\Web\Seiten\SpieltagsMenue`); `lmo-spieltagsmenu.php` only calls it. The output is unchanged.  
-* The results of a round are the template `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); `lmo-showresults.php` only computes the goal statistics of the round. An existing add-on `addon/stats/lmo-showprogram.inc.php` is still included for each game but only sees `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` and `$text`.  
+* The results of a round are the template `lmo/vorlagen/ergebnisse.html.twig` (`Lmo\Web\Seiten\ErgebnisListe`); An existing add-on `addon/stats/lmo-showprogram.inc.php` is still included for each game but only sees `$lmo_spiel`, `$lmo_liga`, `$i`, `$st`, `$file` and `$text`.  
+* The results and table pages (`action=results`, `action=table`) run through the controller `Lmo\Web\Controller\ErgebnisseController`: it reads round, table state and table type from the request itself (`Lmo\Web\Anfrage`) and the goal statistics from the statistics file (`Lmo\Web\Statistikdatei`) and assembles the page with the template `lmo/vorlagen/ergebnisse_tabelle.html.twig`. `lmo-showrestab.php` only connects it to the configuration.  
 
 
 ### Changed  
@@ -357,6 +360,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Removed  
+* `lmo-showresults.php` and `lmo-showtable.php` are gone; results and table are shown by the `ErgebnisseController`.  
 
 
 ### Fixed  
