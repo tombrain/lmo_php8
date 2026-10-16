@@ -7,7 +7,10 @@ use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\ErgebnisseController;
 use Lmo\Web\Darstellung;
+use Lmo\Web\GeladeneLiga;
 use Lmo\Web\Konfiguration;
+use Lmo\Web\Kontext;
+use Lmo\Web\Pfade;
 use Lmo\Web\Statistikdatei;
 use PHPUnit\Framework\TestCase;
 
@@ -17,38 +20,83 @@ use PHPUnit\Framework\TestCase;
  */
 class ErgebnisseControllerTest extends TestCase
 {
-    /**
-     * @param array<string, int|string> $konfiguration Werte der cfg.txt, abweichend von der Vorgabe
-     */
-    private static function controller(array $konfiguration = [], ?Statistikdatei $statistik = null): ErgebnisseController
+    private static ?string $ordner = null;
+
+    public static function tearDownAfterClass(): void
     {
-        $zeilen = [
-            '[Options]', 'Teams=4', 'Rounds=3', 'Matches=2', 'Actual=2',
+        if (self::$ordner !== null) {
+            array_map('unlink', glob(self::$ordner . '/output/*') ?: []);
+            @rmdir(self::$ordner . '/output');
+            @rmdir(self::$ordner);
+        }
+    }
+
+    /**
+     * @param array<string, string> $parameter Parameter der Anfrage
+     * @param array<string, int|string> $konfiguration Werte der cfg.txt, abweichend von der Vorgabe
+     * @param list<string> $optionen weitere Zeilen fuer [Options] der Liga
+     */
+    private static function kontext(string $action, array $parameter = [], array $konfiguration = [], array $optionen = []): Kontext
+    {
+        $zeilen = array_merge(['[Options]', 'Teams=4', 'Rounds=3', 'Matches=2', 'Actual=2'], $optionen, [
             '[Teams]', '1=A', '2=B', '3=C', '4=D',
             '[Round1]', 'TA1=1', 'TB1=2', 'GA1=1', 'GB1=0', 'TA2=3', 'TB2=4', 'GA2=0', 'GB2=0',
             '[Round2]', 'TA1=2', 'TB1=3', 'GA1=5', 'GB1=0', 'TA2=4', 'TB2=1', 'GA2=2', 'GB2=0',
             '[Round3]', 'TA1=1', 'TB1=3', 'TA2=2', 'TB2=4',
-        ];
+        ]);
         $text = [];
         for ($i = 0; $i <= 5100; $i++) {
             $text[$i] = 'T' . $i;
         }
+        self::$ordner ??= sys_get_temp_dir() . '/lmo-controller-' . bin2hex(random_bytes(4));
 
-        return new ErgebnisseController(
-            Liga::ausEintraegen(LigaDatei::zerlege($zeilen)),
+        return new Kontext(
+            new Anfrage($parameter),
+            $action,
+            new GeladeneLiga('x.l98', Liga::ausEintraegen(LigaDatei::zerlege($zeilen)), ''),
+            new Konfiguration($konfiguration + ['tabonres' => 0, 'tabpkt' => 0, 'einzutore' => 0, 'einzutoretab' => 0, 'einspielfrei' => 0, 'defdateformat' => 'd.m.Y', 'diroutput' => 'output/']),
             $text,
-            new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
-            dirname(__DIR__, 3) . '/lmo/vorlagen',
-            'IMG',
-            new Konfiguration($konfiguration + ['tabonres' => 0, 'tabpkt' => 0, 'einzutore' => 0, 'einzutoretab' => 0, 'einspielfrei' => 0, 'defdateformat' => 'd.m.Y']),
-            $statistik
+            '/lmo.php',
+            new Pfade(self::$ordner, dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
+            new Darstellung(static fn (string $datei, string $name, string $attribute): string => '')
         );
     }
 
-    /** @param array<string, string> $parameter */
-    private static function seite(string $action, array $parameter = [], array $konfiguration = [], ?Statistikdatei $statistik = null): string
+    /**
+     * @param array<string, string> $parameter
+     * @param array<string, int|string> $konfiguration
+     */
+    private static function seite(string $action, array $parameter = [], array $konfiguration = []): string
     {
-        return self::controller($konfiguration, $statistik)->zeige(new Anfrage($parameter), $action, '/lmo.php', 'x.l98');
+        return (new ErgebnisseController())->zeige(self::kontext($action, $parameter, $konfiguration))->html;
+    }
+
+    /** Legt die Statistikdatei der Liga an (output/x.l98.php). */
+    private static function statistikdatei(string $inhalt): void
+    {
+        self::kontext('results');
+        @mkdir(self::$ordner . '/output', 0777, true);
+        file_put_contents(self::$ordner . '/output/x.l98.php', "<?php\n" . $inhalt);
+    }
+
+    public function testZustaendigFuerErgebnisseUndTabelleEinerLiga(): void
+    {
+        $c = new ErgebnisseController();
+
+        self::assertTrue($c->zustaendig(self::kontext('results')));
+        self::assertTrue($c->zustaendig(self::kontext('table')));
+        self::assertFalse($c->zustaendig(self::kontext('cross')));
+        self::assertFalse($c->zustaendig(self::kontext('results', [], [], ['Type=1'])), 'Pokal');
+    }
+
+    public function testDruckbarUndAbschaltbar(): void
+    {
+        $c = new ErgebnisseController();
+
+        self::assertTrue($c->zeige(self::kontext('table'))->druckbar);
+        $aus = $c->zeige(self::kontext('results', [], [], ['Ergebnis=0']));
+        self::assertSame('', $aus->html, 'Ergebnisse in der Liga abgeschaltet');
+        self::assertFalse($aus->druckbar);
     }
 
     public function testErgebnisseOhneTabelle(): void
@@ -103,14 +151,21 @@ class ErgebnisseControllerTest extends TestCase
 
     public function testTorstatistik(): void
     {
-        $statistik = new Statistikdatei(['gzutore' => 8, 'gdstore' => 2, 'zutore' => [2 => 7], 'dstore' => [2 => 3.5]]);
-        $html = self::seite('table', [], ['tabonres' => 1, 'einzutore' => 1, 'einzutoretab' => 1], $statistik);
+        $ohneDatei = self::seite('results', [], ['einzutore' => 1]);
+        self::assertStringContainsString('class="lmoFooter"', $ohneDatei, 'leere Zeile ohne Statistikdatei');
+
+        self::statistikdatei('$gzutore=8; $gdstore=2; $zutore[2]=7; $dstore[2]=3.5;');
+        $html = self::seite('table', [], ['tabonres' => 1, 'einzutore' => 1, 'einzutoretab' => 1]);
 
         self::assertStringContainsString('T38: 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T38T4001: 3.5', $html, 'Spieltag');
         self::assertStringContainsString('T4000T38: 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T38&nbsp;T4001: 2', $html, 'Saison');
+    }
 
-        $ohneDatei = self::seite('results', [], ['einzutore' => 1]);
-        self::assertStringContainsString('class="lmoFooter"', $ohneDatei, 'leere Zeile ohne Statistikdatei');
+    public function testTabonresPerAnfrage(): void
+    {
+        $html = self::seite('table', ['tabonres' => '1']);
+
+        self::assertStringContainsString('2. T2', $html, 'Ergebnisse dazu');
     }
 
     public function testAnfrage(): void

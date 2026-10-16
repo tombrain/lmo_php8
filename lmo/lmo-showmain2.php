@@ -277,13 +277,17 @@ if ($file != '') {
 
     $druck = 0;
 
-    if ($action != 'tipp') {
+    // Seiten mit eigenem Controller zeigt die Anwendung (Lmo\Web\Anwendung), die anderen noch der alte Code
+    require(PATH_TO_LMO . '/lmo-anwendung.php');
+    $lmo_seite = $lmo_anwendung->bearbeite(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
+    if ($lmo_seite !== null) {
+        echo $lmo_seite->html;
+        $druck = $lmo_seite->druckbar ? 1 : 0;
+    } elseif ($action != 'tipp') {
         if (!$lmo_main_e->istPokal()) {
             // Normale Liga
             switch($action) {
                 case 'cal': if ($lmo_main_e->mitKalender()) {require(PATH_TO_LMO . '/lmo-cal.php');}break;
-                case 'results': if ($lmo_main_e->mitErgebnissen()) {$druck = 1;require(PATH_TO_LMO . '/lmo-showrestab.php');}break;
-                case 'table': if ($lmo_main_e->mitTabelle()) {$druck = 1;require(PATH_TO_LMO . '/lmo-showrestab.php');}break;
                 case 'cross': if ($lmo_main_e->mitKreuztabelle()) {require(PATH_TO_LMO . '/lmo-showcross.php');}break;
                 case 'program': if ($lmo_main_e->mitSpielplan()) {require(PATH_TO_LMO . '/lmo-showprogram.php');}break;
                 case 'graph': if ($lmo_main_e->mitFieberkurve()) {require(PATH_TO_LMO . '/lmo-showgraph.php');}break;
