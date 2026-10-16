@@ -1,0 +1,52 @@
+{#- Ergebnisse eines Spieltags (Lmo\Web\Seiten\ErgebnisListe). Sprachtexte, Links, Wappen und Hinweise sind fertiges HTML. -#}
+{%- macro mannschaft(m, spielplan, text) -%}
+{% if spielplan is not null %}<a href="{{ spielplan|raw }}{{ m.nr }}" title="{{ text[269]|raw }}">{% endif %}{% if m.fett %}<strong>{% endif %}{{ m.name }}{% if m.fett %}</strong>{% endif %}{% if spielplan is not null %}</a>{% endif %}
+{%- endmacro -%}
+{%- import _self as e -%}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <th colspan="{{ breite }}" align="left">{{ titel|raw }}</th>
+  </tr>
+{#- Ergebnisse -#}
+{% for z in zeilen %}
+  <tr>
+{% if anstoss %}
+    <td class="nobr">{{ z.anstoss }}</td>
+{% endif %}
+    <td width="2">&nbsp;</td>
+    <td class="nobr" align="right">{{ e.mannschaft(z.heim, spielplan, text) }}&nbsp;{{ z.heim.wappen|raw }}</td>
+    <td align="center" width="10">-</td>
+    <td class="nobr" align="left">{{ z.gast.wappen|raw }}&nbsp;{{ e.mannschaft(z.gast, spielplan, text) }}</td>
+    <td width="2">&nbsp;</td>
+    <td align="right">{{ z.tore_heim }}</td>
+    <td align="center" width="8">:</td>
+    <td align="left">{{ z.tore_gast }}</td>
+{% if verlaengerung %}
+    <td width="2">&nbsp;</td>
+    <td>{{ z.zusatz|raw }}</td>
+{% endif %}
+{% if z.gegen_beide %}
+    <td align="center" width="2">/</td>
+    <td align="right">{{ z.tore_gast }}</td>
+    <td align="center" width="8">:</td>
+    <td align="left">{{ z.tore_heim }}</td>
+{% endif %}
+    <td width="2">&nbsp;</td>
+    {#- Spielbericht, Notiz und bisherige Ergebnisse (AddOn Team Vergleich) #}
+    <td class="nobr">{% if z.bericht is not null %}{% if z.bericht != '' %}{{ z.bericht|raw }}{% endif %}&nbsp;{% endif %}{{ z.hinweis|raw }}{% if z.addon is not null %}&nbsp;{{ z.addon|raw }}{% endif %}</td>
+
+  </tr>
+{% endfor %}
+{#- Torstatistik des Spieltags -#}
+{% if torstatistik is not null %}
+  <tr>
+    <td class="lmoFooter" align="center" width="100%" colspan="{{ breite }}">&nbsp;{{ torstatistik|raw }}</td>
+  </tr>
+{% endif %}
+{#- Spielfrei-Hack: Mannschaften ohne Spiel -#}
+{% if spielfrei %}
+  <tr>
+    <td align="center" width="100%" colspan="{{ breite }}">{% for m in frei %}{% if loop.first %}{{ text[4004]|raw }}: {% endif %}{{ e.mannschaft(m, spielplan, text) }}&nbsp;{{ m.wappen|raw }}{% endfor %}</td>
+  </tr>
+{% endif %}
+</table>

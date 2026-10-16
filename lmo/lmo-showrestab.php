@@ -60,24 +60,6 @@ if (isset($file) && $file != "") {
   $addr = $_SERVER['PHP_SELF']."?action=$action&amp;tabtype=$tabtype&amp;file=".$file."&amp;st=";
   // Einstellungen der Liga mit Vorgabewerten (Lmo\Liga\Einstellungen)
   $lmo_einstellungen = $lmo_liga->einstellungen();
-  $lmo_anzteams = $lmo_einstellungen->mannschaften();
-  $breite = 10;
-  if ($lmo_einstellungen->mitVerlaengerung()) {
-    $breite = $breite+2;
-  }
-  // hat der Spieltag ein Spiel, das gegen beide gewertet ist? Dann braucht die Ergebnisliste vier Spalten mehr
-  $lmo_gegen_beide = false;
-  foreach ($lmo_liga->spiele((int)$st) as $lmo_spiel) {
-    if ($lmo_spiel->wertung == 3) {
-      $lmo_gegen_beide = true;
-    }
-  }
-  if ($lmo_gegen_beide) {
-    $breite = $breite+4;
-  }
-  if ($lmo_einstellungen->mitAnstosszeit()) {
-    $breite = $breite+1;
-  }
   $endtab = $endtab_original;
   if ($tabdat == "") {
     $addt1 = $_SERVER['PHP_SELF']."?action=$action&amp;file=".$file."&amp;endtab=".$endtab."&amp;st=".$st."&amp;tabtype=";

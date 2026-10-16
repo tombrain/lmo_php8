@@ -192,7 +192,7 @@
 <td class="nobr" align="right">
 <a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=17" title="Hier gehts zum Spielplan der Mannschaft">VfL Wolfsburg</a>&nbsp;</td>
 <td align="center" width="10">-</td>
-<td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15" title="Hier gehts zum Spielplan der Mannschaft">Borussia M'gladbach</a>
+<td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15" title="Hier gehts zum Spielplan der Mannschaft">Borussia M&#039;gladbach</a>
 </td>
 <td width="2">&nbsp;</td>
 <td align="right">_</td>
