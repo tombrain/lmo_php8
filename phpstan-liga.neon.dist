@@ -42,5 +42,5 @@ parameters:
         - lmo/lmo-showcross.php
         - lmo/lmo-showgraph.php
         - lmo/lmo-showprogram.php
-        - lmo/lmo-showrestab.php
+        - lmo/lmo-anwendung.php
         - lmo/lmo-spieltagsmenu.php
