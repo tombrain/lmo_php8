@@ -26,6 +26,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Alle Klassen unter `src/` prüfen Typen streng (`declare(strict_types=1)`); ein Unit-Test achtet darauf, dass neue Dateien das auch tun. Für Aufrufe aus den alten Dateien unter `lmo/` ändert sich nichts.  
 * PHPStan prüft `src/` auf der höchsten Stufe (`level: max` in `phpstan-strict.neon.dist`). Dafür trennt `Lmo\Web\Sprachtexte` die Kerntexte (`array<int, string>`) von den Texten der Unterordner von `lang/` (Datumsnamen, Addons); ein Controller holt Letztere mit `$kontext->texteVon('date')`, ein Addon seine eigenen mit `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` liest Werte über `hat()`, `zahl()` und `text()`.  
 * Der Rahmen der öffentlichen Seiten (Titel, Menü, Fußzeile) entsteht aus den Twig-Vorlagen `lmo/vorlagen/rahmen.html.twig` (LMO eingebunden) und `lmo/vorlagen/rahmen_komplett.html.twig` (`lmo.php` direkt aufgerufen), mit `Lmo\Web\Rahmen`; das Menü baut `Lmo\Web\Seiten\Hauptmenue`. Sie ersetzen `template/lmo-standard.tpl.php` und `template/lmo-standard-komplett.tpl.php`: Änderungen an diesen beiden Dateien wirken nicht mehr. Wer sie angepasst hat, legt die Anpassung als eigene Vorlage an und setzt `LMO_TEMPLATE`.  
+* Fußzeile des Rahmens (Link zur Ligenübersicht, letzte Auswertung, Berechnungszeit) aus `Lmo\Web\Seiten\Fusszeile`; die Sprachauswahl baut `Lmo\Web\Seiten\Sprachauswahl`, auch im Adminbereich (`getLangSelector()` ruft sie auf). Die Sprachen stehen jetzt alphabetisch statt in der Reihenfolge des Dateisystems.  
 
 
 ### Deprecated  
@@ -384,6 +385,7 @@ _Here we write changelog notes for the next version._
 * All classes under `src/` check types strictly (`declare(strict_types=1)`); a unit test makes sure new files do so as well. Calls from the old files under `lmo/` are not affected.  
 * PHPStan checks `src/` at the highest level (`level: max` in `phpstan-strict.neon.dist`). For this, `Lmo\Web\Sprachtexte` separates the core texts (`array<int, string>`) from the texts of the subfolders of `lang/` (date names, add-ons); a controller gets the latter with `$kontext->texteVon('date')`, an add-on its own with `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` reads values through `hat()`, `zahl()` and `text()`.  
 * The frame of the public pages (title, menu, footer) is rendered from the Twig templates `lmo/vorlagen/rahmen.html.twig` (LMO embedded) and `lmo/vorlagen/rahmen_komplett.html.twig` (`lmo.php` called directly), with `Lmo\Web\Rahmen`; the menu is built by `Lmo\Web\Seiten\Hauptmenue`. They replace `template/lmo-standard.tpl.php` and `template/lmo-standard-komplett.tpl.php`: changes to these two files no longer take effect. Whoever customised them creates the customisation as an own template and sets `LMO_TEMPLATE`.  
+* Footer of the frame (link to the league overview, last evaluation, calculation time) from `Lmo\Web\Seiten\Fusszeile`; the language selection is built by `Lmo\Web\Seiten\Sprachauswahl`, in the admin area as well (`getLangSelector()` calls it). The languages are now listed alphabetically instead of in file system order.  
 
 
 ### Deprecated  
