@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Tests\Unit\Addon;
 
 use Lmo\Addon\Addon;

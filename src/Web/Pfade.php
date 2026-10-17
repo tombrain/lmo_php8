@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Web;
 
 /** Ordner und Adressen der Installation, die die Seiten brauchen. */

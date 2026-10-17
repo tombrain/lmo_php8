@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Liga\Rohdaten;
 
 use Lmo\Liga\Einstellungen;

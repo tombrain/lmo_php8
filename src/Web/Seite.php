@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Web;
 
 /** Was ein Controller liefert: das HTML des Hauptteils und ob es dazu eine Druckansicht gibt. */
