@@ -64,4 +64,24 @@ final class HtmlExportTest extends TestCase
         }
         $this->assertMatchesSnapshot('html-export', (string) $this->dataName(), $text);
     }
+
+    /**
+     * Auch das Speichern ueber die classlib (liga::writeFile(), z. B. Rueckrunde erstellen) schreibt
+     * die Dateien: updateAddons() in addon/classlib/update_addons.php, fuer den aktuellen Spieltag.
+     * Der Roundtrip speichert golden/basic.l98 als golden/basic.classlib.l98.
+     */
+    public function testSpeichernUeberDieClasslib(): void
+    {
+        [$app, $runner] = Fixture::freshInstance();
+        $ausgabe = $app->path() . '/output/basic.classlib.l98';
+
+        $runner->classlibRoundtrip(['golden/basic.l98']);
+
+        $text = '';
+        foreach (['-st.html', '-sp.html'] as $endung) {
+            self::assertFileExists($ausgabe . $endung);
+            $text .= '=== basic.classlib.l98' . $endung . " ===\n" . str_replace("\r\n", "\n", (string) file_get_contents($ausgabe . $endung)) . "\n";
+        }
+        $this->assertMatchesSnapshot('html-export', 'classlib_basic', $text);
+    }
 }
