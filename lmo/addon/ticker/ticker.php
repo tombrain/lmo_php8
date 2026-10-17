@@ -45,118 +45,17 @@ $ticker_notizanzeigen = isset($tickernotizen) ? $tickernotizen : $ticker_notizan
 $ticker_breite = isset($tickerbreite) ? $tickerbreite : $ticker_breite;
 $ticker_geschwindigkeit = isset($tickergeschwindigkeit) ? $tickergeschwindigkeit : $ticker_geschwindigkeit;
 
-$trenner = ' +++ ';
-$array = array();
-$hilf = $hilf1 = '';
-$ticker_text = $dummy1 = $dummy2 = $dummy3 = $dummy4 = '';
-?>
-
-          <script type="text/javascript" src="<?php echo URL_TO_LMO; ?>/js/jquery.min.js"></script>
-          <script type="text/javascript" src="<?php echo URL_TO_LMO;?>/js/jquery.marquee.min.js"></script>
-          <script type="text/javascript">
-            $(function(){$('.marquee').marquee();});
-          </script>
-          <div align="center">
-<?php
-if ($ticker_tickertitel == 1) { ?>
-            <p><?php echo $text['ticker'][0];?></p><?php
-}
-if (!isset($file)) {
-    $file = '';
-}
-$file2 = $file;
-$ticker_array = explode(",", $ticker_ligen);
-
-foreach($ticker_array as $file) {
-    // je Liga neu beginnen: sonst stehen die Spiele der vorigen Ligen noch einmal bei der naechsten
-    $hilf = $hilf1 = '';
-    // Die Liga wird als Rohdaten gelesen (Lmo\Liga\Rohdaten\Liga); die Liga der Seite in $lmo_liga bleibt unberuehrt.
-    $lmo_ticker_pfad = PATH_TO_LMO . '/' . $dirliga . $file;
-    if (!empty($file) && file_exists($lmo_ticker_pfad) && check_hilfsadmin($file)) {
-        $lmo_ticker_liga = substr($file, -4) == '.l98' ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_ticker_pfad) : new \Lmo\Liga\Rohdaten\Liga();
-        $lmo_ticker_e = $lmo_ticker_liga->einstellungen();
-        // der aktuelle Spieltag der Liga
-        $lmo_ticker_st = $lmo_ticker_e->aktuellerSpieltag();
-        if($ticker_tickerart == 2) {
-            // Zeilen des Newstickers aus [News]; NC ist nur deren Anzahl
-            foreach ($lmo_ticker_liga->news as $lmo_schl => $lmo_zeile) {
-                if ($lmo_schl != 'NC' && strlen(stripslashes($lmo_zeile)) > 0) {
-                    $hilf .= $trenner . stripslashes($lmo_zeile);
-                }
-            }
-            $ticker_text .= $hilf;
-        }
-        else {
-            // die Paarungen des Spieltags und ihre Spiele (Lmo\Liga\Paarung, Lmo\Liga\Spiel); in der Liga je eines
-            foreach ($lmo_ticker_liga->paarungen($lmo_ticker_st) as $lmo_paarung) {
-                if (!(($lmo_paarung->heim > 0) && ($lmo_paarung->gast > 0))) {
-                    continue;
-                }
-                $lmo_heim = $lmo_paarung->heimMannschaft()->anzeigename();
-                $lmo_gast = $lmo_paarung->gastMannschaft()->anzeigename();
-                $lmo_favteam = $lmo_ticker_e->lieblingsmannschaft();
-                foreach ($lmo_paarung->spiele as $lmo_spiel) {
-                    $lmo_zusatz = $lmo_spiel->zusatzText($text[0], $text[1]);
-                    if ($lmo_zusatz == '&nbsp;') {
-                        $mspezhilf = '';
-                    }
-                    else {
-                        $mspezhilf = ' ' . $lmo_zusatz;
-                    }
-                    if (!($lmo_favteam == $lmo_paarung->heim || $lmo_favteam == $lmo_paarung->gast || $ticker_tickerart == 1)) {
-                        continue;
-                    }
-                    $lmo_ergebnis = $lmo_heim . " - " . $lmo_gast . " " . $lmo_spiel->toreHeimText($lmo_ticker_e->torfaktor()) . ":" . $lmo_spiel->toreGastText($lmo_ticker_e->torfaktor()) . $mspezhilf;
-                    if (!$lmo_ticker_e->istPokal()) {
-                        if ($lmo_spiel->wertung == 1) {
-                            $dummy1 = $text['ticker'][2] . ':' . addslashes($lmo_heim . ' ' . $text[211]);
-                        }
-                        else {
-                            $dummy1 = '';
-                        }
-                        if ($lmo_spiel->wertung == 2) {
-                            $dummy2 = $text['ticker'][2] . ':' . addslashes($lmo_gast . ' ' . $text[211]);
-                        }
-                        else {
-                            $dummy2 = '';
-                        }
-                        if ($lmo_spiel->wertung == 3) {
-                            $dummy3 = $text['ticker'][2] . ':' . addslashes($text['ticker'][3]);
-                        }
-                        else {
-                            $dummy3 = '';
-                        }
-                        if ($lmo_spiel->notiz != '' && $ticker_notizanzeigen == 1) {
-                            $dummy4 = ' Notiz' . ': ' . $lmo_spiel->notiz;
-                        }
-                        else {
-                            $dummy4 = '';
-                        }
-                        $hilf = $hilf . $lmo_ergebnis . $dummy1 . $dummy2 . $dummy3 . $dummy4 . $trenner;
-                    }
-                    else {
-                        if ($lmo_spiel->notiz != '' && $ticker_notizanzeigen == 1) {
-                            $dummy4 = ' ' . $text[22] . ': ' . $lmo_spiel->notiz;
-                        }
-                        else {
-                            $dummy4 = '';
-                        }
-                        $hilf1 = $hilf1 . $lmo_ergebnis . $dummy4 . $trenner;
-                    }
-                }
-            }
-        }
-        $ticker_text .= " $trenner {$lmo_ticker_e->name()} ({$lmo_ticker_st}{$text['ticker'][1]}): $hilf $hilf1";
+// Die Ligen werden als Rohdaten gelesen (Lmo\Liga\Rohdaten\Liga); die Liga der Seite in $lmo_liga bleibt unberuehrt.
+$lmo_ticker_ligen = array();
+foreach (explode(",", $ticker_ligen) as $lmo_ticker_datei) {
+    $lmo_ticker_pfad = PATH_TO_LMO . '/' . $dirliga . $lmo_ticker_datei;
+    if (!empty($lmo_ticker_datei) && file_exists($lmo_ticker_pfad) && check_hilfsadmin($lmo_ticker_datei)) {
+        $lmo_ticker_ligen[] = substr($lmo_ticker_datei, -4) == '.l98' ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_ticker_pfad) : new \Lmo\Liga\Rohdaten\Liga();
+    } else {
+        $lmo_ticker_ligen[] = null;
     }
-    else {
-        // anhaengen statt ersetzen: eine fehlende Liga loescht nicht den Text der anderen
-        $ticker_text .= $text[224] . $trenner;
-    }
-} //foreach
-$ticker_formnumber = 't' . substr(md5(microtime()), 3, 4);
-$file = $file2;
-?>
-
-            <div data-duration="<?php echo $ticker_geschwindigkeit;?>" class="marquee" style="width: <?php echo $ticker_breite;?>em; overflow: hidden; background-color: var(--bs-secondary-bg-subtle);"><?php echo $ticker_text;?></div>
-          </div>
-        
+}
+// der Lauftext (Lmo\Addon\Ticker\Ticker)
+$lmo_ticker_texte = \Lmo\Web\Sprachtexte::ausAltemText($text);
+$lmo_ticker = new \Lmo\Addon\Ticker\Ticker((int)$ticker_tickerart, $ticker_notizanzeigen == 1, $lmo_ticker_texte->kern, $lmo_ticker_texte->von('ticker'));
+echo $lmo_ticker->html(PATH_TO_LMO . '/vorlagen', URL_TO_LMO, $lmo_ticker->text($lmo_ticker_ligen), $ticker_tickertitel == 1, (string)$ticker_breite, (string)$ticker_geschwindigkeit);

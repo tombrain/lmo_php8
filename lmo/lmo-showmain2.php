@@ -146,16 +146,6 @@ if ($file != '' && $einspieler == 1 && $lmo_main_e->mitToren()) {
     $output_spielerstatistik .= '&nbsp;&nbsp;';
 }
 
-// Ticker-Addon
-$output_newsticker = '';
-if ($file != '' && $lmo_main_e->mitNewsticker()) {
-    ob_start();
-    $tickerligen = $file;
-    include(PATH_TO_ADDONDIR . '/ticker/ticker.php');
-    $output_newsticker .= ob_get_contents();
-    ob_end_clean();
-}
-
 // Tippspiel-Addon
 $output_tippspiel = '';
 if ($eintippspiel == 1) {
@@ -169,7 +159,6 @@ if ($eintippspiel == 1) {
 $lmo_teile += [
     'Spielerstatistik' => $output_spielerstatistik,
     'Infolink' => $p1,
-    'Newsticker' => $output_newsticker,  // Ticker-Addon
     'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
 ];
 // Teile, die Addons nach neuer Art zum Rahmen beitragen (Lmo\Addon\MitRahmenteilen), stehen dahinter
@@ -183,6 +172,8 @@ if (\Lmo\Web\Rahmen::ersetzt($lmo_alte_vorlage)) {
     $template = new LMO_Template(PATH_TO_TEMPLATEDIR);
     $template->loadTemplatefile($lmo_alte_vorlage);
     d($template->toString());
+    // jeder Platzhalter wird ersetzt, auch die der Teile, die es auf dieser Seite nicht gibt
+    $lmo_teile += array_fill_keys(\Lmo\Web\Rahmen::TEILE, '');
     foreach ($lmo_teile as $lmo_teil => $lmo_wert) {
         $template->setVariable($lmo_teil, $lmo_wert);
     }

@@ -72,3 +72,5 @@ Addons nach neuer Art:
 
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.
+
+- Beispiel: das Ticker-Addon (addon/ticker/addon.php, Klassen unter src/Addon/Ticker/).

@@ -1,0 +1,12 @@
+{#- Newsticker (Lmo\Addon\Ticker\Ticker): Lauftext mit jQuery Marquee; der Lauftext ist fertiges HTML -#}
+<script type="text/javascript" src="{{ adresse|raw }}/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ adresse|raw }}/js/jquery.marquee.min.js"></script>
+<script type="text/javascript">
+  $(function(){$('.marquee').marquee();});
+</script>
+<div align="center">
+{% if titel != '' %}
+  <p>{{ titel|raw }}</p>
+{% endif %}
+  <div data-duration="{{ geschwindigkeit }}" class="marquee" style="width: {{ breite }}em; overflow: hidden; background-color: var(--bs-secondary-bg-subtle);">{{ lauftext|raw }}</div>
+</div>
