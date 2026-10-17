@@ -83,4 +83,5 @@ Addons nach neuer Art:
   Lmo\Addon\Brain\Teil\Klasse liegt in addon/brain/src/Teil/Klasse.php. Ein Eintrag in
   composer.json ist nicht noetig; das Addon funktioniert, sobald sein Ordner da ist.
 
-- Beispiel: das Ticker-Addon (addon/ticker/).
+- Beispiele: das Ticker-Addon (addon/ticker/, Teil des Rahmens) und das Spieler-Addon
+  (addon/spieler/, eigene Seite mit Menuepunkt).

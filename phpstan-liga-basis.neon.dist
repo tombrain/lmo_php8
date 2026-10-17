@@ -21,7 +21,6 @@ parameters:
             identifier: isset.variable
     paths:
         - lmo/addon/spieler/lmo-statadmin.php
-        - lmo/addon/spieler/lmo-statshow.php
         - lmo/addon/tipp/lmo-tippauth.php
         - lmo/addon/tipp/lmo-tippcalceinsicht.php
         - lmo/addon/tipp/lmo-tippcalctable.php

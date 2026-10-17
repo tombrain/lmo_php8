@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Addon "spieler" (Spielerstatistik): Der Admin legt Spieler und Spalten an und traegt Werte ein
  * (lmo-statadmin.php, gespeichert in addon/spieler/stats/<liga>.stat), die Ligaseite zeigt sie
- * unter action=spieler (lmo-statshow.php).
+ * unter action=spieler (Lmo\Addon\Spieler\StatistikController).
  *
  * Die Tests bauen aufeinander auf und laufen in dieser Reihenfolge auf einer eigenen Testinstanz.
  */

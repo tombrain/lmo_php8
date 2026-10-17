@@ -64,7 +64,8 @@ return new \Lmo\Web\Anwendung(
     new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR, URL_TO_LMO),
     new \Lmo\Web\Darstellung(
         static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute),
-        static fn (string $datei, string $attribute): string => (string)HTML_smallLigaIcon($datei, $attribute, '')
+        static fn (string $datei, string $attribute): string => (string)HTML_smallLigaIcon($datei, $attribute, ''),
+        static fn (string $name, string $attribute): string => (string)HTML_smallSpielerIcon($name, $attribute)
     ),
     array_merge([
         new \Lmo\Web\Controller\ErgebnisseController(),

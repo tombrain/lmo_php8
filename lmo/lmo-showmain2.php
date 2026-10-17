@@ -30,14 +30,12 @@ if (!defined('PATH_TO_LMO')) {
  *
  * Einstellungen:
  * @var int|string $calctime Einstellung aus cfg.txt
- * @var int|string $einspieler Einstellung aus cfg.txt
  * @var int|string $einsprachwahl Einstellung aus cfg.txt
  * @var int|string $eintippspiel Einstellung aus cfg.txt
  * @var int|string $tipp_immeralle Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_ligenzutippen Einstellung aus tipp/cfg.txt
  *
  * Weitere Variablen des einbindenden Codes:
- * @var mixed $spieler_ligalink
  * @var mixed $startzeit
  *
  * Werden auch in dieser Datei gesetzt, aber nicht auf jedem Weg (koennen von aussen kommen):
@@ -109,11 +107,6 @@ $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
 if ($lmo_seite !== null) {
     echo $lmo_seite->html;
     $lmo_druckbar = $lmo_seite->druckbar;
-} elseif ($file != '' && $action == 'spieler') {
-    // Spieler-Addon (nach alter Art: seine Funktionen lesen Variablen mit global, deshalb hier eingebunden)
-    if ($lmo_main_e->mitToren()) {
-        require(PATH_TO_ADDONDIR . '/spieler/lmo-statshow.php');
-    }
 }
 // Tippspiel-Addon (nach alter Art, wie das Spieler-Addon)
 if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippstart.php');}
@@ -138,14 +131,6 @@ if ($file != '' && isset($stand)) {
     // PDF-Addon
 }
 
-// Spieler-Addon
-$output_spielerstatistik = '';
-if ($file != '' && $einspieler == 1 && $lmo_main_e->mitToren()) {
-    include(PATH_TO_ADDONDIR . '/spieler/lmo-statloadconfig.php');
-    $output_spielerstatistik .= $action != 'spieler' ? '<a href="' . $addm . 'spieler" title="' . $text['spieler'][12] . '">' . $spieler_ligalink . '</a>' : $spieler_ligalink;
-    $output_spielerstatistik .= '&nbsp;&nbsp;';
-}
-
 // Tippspiel-Addon
 $output_tippspiel = '';
 if ($eintippspiel == 1) {
@@ -157,7 +142,6 @@ if ($eintippspiel == 1) {
 // Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu die der
 // Addons nach alter Art und der Copyright-Hinweis
 $lmo_teile += [
-    'Spielerstatistik' => $output_spielerstatistik,
     'Infolink' => $p1,
     'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
 ];
