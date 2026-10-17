@@ -87,10 +87,13 @@ class SpielerTest extends TestCase
         self::assertSame([2, 0, true, 5, false, false, 'Torjäger'], [$liga->sortierung, $liga->richtung, $liga->vereinsweise, $liga->proSeite, $liga->nullwerte, $liga->extraSortierspalte, $liga->ligalink]);
     }
 
-    /** @param array<string, string> $parameter */
-    private function kontext(string $action, bool $mitToren = true, array $parameter = []): Kontext
+    /**
+     * @param array<string, string> $parameter
+     * @param list<string> $weitere weitere Zeilen der Ligadatei
+     */
+    private function kontext(string $action, bool $mitToren = true, array $parameter = [], array $weitere = []): Kontext
     {
-        $liga = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'Teams=2', 'mittore=' . ($mitToren ? '1' : '0'), '[Teams]', '1=Eins', '2=Zwei']));
+        $liga = Liga::ausEintraegen(LigaDatei::zerlege(array_merge(['[Options]', 'Teams=2', 'mittore=' . ($mitToren ? '1' : '0'), '[Teams]', '1=Eins', '2=Zwei'], $weitere)));
         $texte = self::TEXTE + [14 => 'Keine Daten', 15 => 'weiter', 16 => 'zurueck', 17 => 'Top', 34 => 'Zum Spieler', 36 => 'Nach', 37 => 'sortieren', 43 => '___',
             47 => 'auf', 48 => 'ab', 51 => 'Alle', 56 => 'Drucken', 57 => 'Alles drucken'];
 
@@ -137,6 +140,18 @@ class SpielerTest extends TestCase
         self::assertStringContainsString('<a href="/lmo.php?file=x.l98&amp;action=spieler&amp;begin=0&amp;sort=0&amp;direction=1">Alle</a>', $html);
         self::assertStringNotContainsString('Ahrens', $html, 'nur die Spieler des Vereins');
         self::assertStringNotContainsString('333', $html, 'kein Rest vom Debuggen im Kopf der Vereinsspalte');
+    }
+
+    public function testHomepageDesVereins(): void
+    {
+        $this->statistik("Name#Verein#Tore\nMüller#Eins#5\nAhrens#Zwei#7\n");
+        $controller = new StatistikController($this->ordner);
+        $mitLinks = ['[Options]', 'urlT=1', '[Team1]', 'URL=https://eins.example/?a=1&b=2'];
+
+        $html = $controller->zeige($this->kontext('spieler', true, [], $mitLinks))->html;
+        self::assertStringContainsString('Eins&nbsp;<a href="https://eins.example/?a=1&amp;b=2" target="_blank" title="Homepage"><img border="0" width="11" src="IMG/url.png" alt="&#8599;" title="Homepage"></a></td>', $html, 'Link in der Zelle des Vereins');
+        self::assertSame(1, substr_count($html, 'url.png'), 'Zwei hat keine Homepage');
+        self::assertStringNotContainsString('url.png', $controller->zeige($this->kontext('spieler', true, [], ['[Options]', 'urlT=0', '[Team1]', 'URL=https://eins.example/']))->html, 'Liga ohne Links (urlT)');
     }
 
     public function testMenuepunkt(): void
