@@ -287,7 +287,6 @@ if ($file != '') {
         if (!$lmo_main_e->istPokal()) {
             // Normale Liga
             switch($action) {
-                case 'graph': if ($lmo_main_e->mitFieberkurve()) {require(PATH_TO_LMO . '/lmo-showgraph.php');}break;
                 case 'stats': if ($lmo_main_e->mitLigastatistik()) {require(PATH_TO_LMO . '/lmo-showstats.php');}break;
                 case '': /*Auswahlseite*/break;
             }
@@ -304,7 +303,6 @@ if ($file != '') {
         }
         // Spieler-Addon
     }
-    if ($action == 'info') {require(PATH_TO_LMO . '/lmo-showinfo.php');}
     $p0 = 'p1';
     $$p0 = c(1).c(0);
 } elseif ($backlink == 1 && $action != 'tipp') {require(PATH_TO_LMO . '/lmo-showdir.php');}

@@ -37,6 +37,5 @@ parameters:
         - lmo/lmo-saveliga.php
         - lmo/lmo-savehtml.php
         - lmo/lmo-savehtml1.php
-        - lmo/lmo-showgraph.php
         - lmo/lmo-anwendung.php
         - lmo/lmo-spieltagsmenu.php
