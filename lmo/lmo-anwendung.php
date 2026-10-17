@@ -50,6 +50,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
     new \Lmo\Web\Darstellung(static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute)),
     [
         new \Lmo\Web\Controller\ErgebnisseController(),
+        new \Lmo\Web\Controller\KreuztabelleController(),
     ],
     $lmo_addons
 );

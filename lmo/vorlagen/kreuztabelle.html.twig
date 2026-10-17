@@ -1,0 +1,35 @@
+{#- Kreuztabelle (Lmo\Web\Controller\KreuztabelleController). Namen, Wappen, Titel und Sprachtexte
+    kommen als fertiges HTML (schon escaped). Erste und letzte Zeile und Spalte sind Kopf und Rand. -#}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="lmoKreuz">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{#- Kopfzeile: Kurznamen der Gastmannschaften #}
+<tr><th align='right'>&nbsp;</th>
+{% for m in mannschaften %}
+<th align='center'><a href="{{ link|raw }}{{ m.nr }}" title="{{ m.name|raw }}: {{ text[26]|raw }}">{{ m.kurz|raw }}</a></th>
+{% endfor %}
+<th align='left'></th>
+</tr>
+{#- je Heimmannschaft eine Zeile #}
+{% for z in zeilen %}
+<tr><th align='right'>{% if z.markiert %}{{ z.mannschaft.name|raw }}{% else %}<a href="{{ link|raw }}{{ z.mannschaft.nr }}" title="{{ text[26]|raw }}">{{ z.mannschaft.name|raw }}</a>{% endif %}</th>
+{% for zelle in z.zellen %}
+{% if zelle.markiert %}<td align='center' class='lmoBackMarkierung'>{% elseif zelle.leer %}<td class='lmoLeer'>{% else %}<td align='center'>{% endif %}
+{%- for s in zelle.spiele %}{% if not loop.first %}<br>{% endif %}<a href="{{ s.link|raw }}" title="{{ s.titel|raw }}">{{ s.text|raw }}</a>{% endfor %}
+{%- if zelle.leer %}&nbsp;{% endif %}</td>
+{% endfor %}
+<th align='left'><acronym title=''>{{ leeres_wappen|raw }}</acronym><acronym title='{{ z.mannschaft.name|raw }}'>{{ z.mannschaft.wappen|raw }}</acronym></th>
+</tr>
+{% endfor %}
+{#- Randzeile: Wappen der Gastmannschaften #}
+<tr><th align='right'></th>
+{% for m in mannschaften %}
+<th align='center'><acronym title='{{ m.name|raw }}'>{{ m.wappen|raw }}</acronym></th>
+{% endfor %}
+<th align='left'>&nbsp;</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
