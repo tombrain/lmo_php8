@@ -8,19 +8,30 @@ use Closure;
 
 /**
  * Was die Seiten-Klassen aus dem alten Code des LMO brauchen, solange er noch als Funktionen
- * vorliegt: das kleine Vereinswappen einer Mannschaft (HTML_smallTeamIcon() in lmo-functions.php).
+ * vorliegt: das kleine Vereinswappen einer Mannschaft (HTML_smallTeamIcon()) und das kleine
+ * Symbol einer Liga (HTML_smallLigaIcon(), beide in addon/classlib/html_output.php).
  */
 final class Darstellung
 {
     /** @var Closure(string, string, string): string */
     private Closure $wappen;
+    /** @var Closure(string, string): string */
+    private Closure $ligaSymbol;
 
     /**
      * @param Closure(string, string, string): string $wappen Ligadatei, Name der Mannschaft, weitere Attribute => <img ...> oder ''
+     * @param (Closure(string, string): string)|null $ligaSymbol Ligadatei, weitere Attribute => <img ...> oder ''; null: keins
      */
-    public function __construct(Closure $wappen)
+    public function __construct(Closure $wappen, ?Closure $ligaSymbol = null)
     {
         $this->wappen = $wappen;
+        $this->ligaSymbol = $ligaSymbol ?? static fn (string $datei, string $attribute): string => '';
+    }
+
+    /** Das kleine Symbol einer Liga als HTML, '' ohne Bild. */
+    public function ligaSymbol(string $datei, string $attribute = ''): string
+    {
+        return ($this->ligaSymbol)($datei, $attribute);
     }
 
     /** Das kleine Wappen einer Mannschaft als HTML, '' ohne Bild. */
