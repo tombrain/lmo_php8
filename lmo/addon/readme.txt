@@ -64,7 +64,8 @@ Addons nach neuer Art:
 
     # Lmo\Addon\MitSeiten          controller(): eigene Seiten im öffentlichen Teil (Lmo\Web\Controller\Controller,
                                    z.B. für action=brain); die Controller des LMO werden zuerst gefragt
-    # Lmo\Addon\MitZusatzJeSpiel   zusatzJeSpiel(): HTML am Ende jeder Ergebniszeile
+    # Lmo\Addon\MitZusatzJeSpiel   zusatzJeSpiel(): HTML am Ende jeder Zeile in Ergebnissen und Spielplan
+    # Lmo\Addon\MitZusatzUnterSeite zusatzUnterSeite(): HTML unter einer Seite ($kontext->action sagt, welche)
 
   Weitere Erweiterungspunkte (Bereiche im Seitenrahmen, Menüpunkte, Adminseiten, Ereignisse wie
   "Liga gespeichert") folgen.

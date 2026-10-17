@@ -100,6 +100,19 @@ final class Addons
         return $html;
     }
 
+    /** Das HTML aller Addons unter der Seite, hintereinander. */
+    public function zusatzUnterSeite(Kontext $kontext): string
+    {
+        $html = '';
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitZusatzUnterSeite) {
+                $html .= $addon->zusatzUnterSeite($kontext);
+            }
+        }
+
+        return $html;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

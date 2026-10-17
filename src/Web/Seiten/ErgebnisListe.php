@@ -153,48 +153,17 @@ final class ErgebnisListe
             $wappenHeim = $this->darstellung->wappen($datei, $heim, ' alt=""');
             $wappenGast = $this->darstellung->wappen($datei, $gast, ' alt=""');
         }
-        $paarung = '<strong>' . $heim . $wappenHeim . ' - ' . $wappenGast . $gast;
+        $paarung = SpielHinweis::paarung($heim, $wappenHeim, $wappenGast, $gast);
 
         /** Spielbericht verlinken **/
         // null ohne die Spalte, '' wenn das Spiel keinen hat
         $bericht = null;
         if ($e->mitSpielberichten()) {
-            $bericht = '';
-            if ($spiel->bericht != '') {
-                //Spielbericht Inhalt: $paarung . '</strong>' . Sprachtext 270
-                // Link mit Mouseover-Funktion und data-info Attribut
-                $bericht = '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars($paarung . '</strong>' . nl2br($text[270])) . '" class="tooltip-trigger"><a href="' . $spiel->bericht . '" target="_blank"><img src="' . $this->bilder . '/lmo-st1.svg" height="15" class="svg-no-style" border="0" alt=""></a></span>';
-            }
+            $bericht = $spiel->bericht != '' ? SpielHinweis::bericht($paarung, $text[270], $this->bilder, $spiel->bericht) : '';
         }
 
         /** Notizen anzeigen **/
-        $hinweis = '';
-        if ($spiel->notiz != '' || $spiel->wertung > 0) {
-            //Grüner Tisch: Beidseitiges Ergebnis vorbereiten (" / Gast:Heim")
-            //Alles in EIN Tag packen, damit das CSS es als EINE zentrierte Zeile erkennt
-            $info = $paarung . '&nbsp;&nbsp;' . $toreHeim . ':' . $toreGast . ($spiel->wertung == 3 ? ' / ' . $toreGast . ':' . $toreHeim : '') . '</strong>';
-            if ($e->mitVerlaengerung()) {
-                $info .= '&nbsp;' . $zusatzText . '<br>';
-            }
-            //Grüner Tisch: Heimteam siegt
-            if ($spiel->wertung == 1) {
-                $info .= '<strong>' . $text[219] . ':</strong>' . $heim . '&nbsp;' . $text[211] . '<br>';
-            }
-            //Grüner Tisch: Gastteam siegt
-            if ($spiel->wertung == 2) {
-                $info .= '<strong>' . $text[219] . ':</strong>' . $gast . '&nbsp;' . $text[211] . '<br>';
-            }
-            //Grüner Tisch: Beidseitiges Ergebnis
-            if ($spiel->wertung == 3) {
-                $info .= '<strong>' . $text[219] . ':</strong>' . $text[212] . '<br>';
-            }
-            //Allgemeine Notiz
-            if ($spiel->notiz != '') {
-                $info .= '<strong>' . $text[22] . ':</strong>' . $spiel->notiz;
-            }
-            //Ausgabe als neutrales Element (kein Link)
-            $hinweis = '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars(nl2br($info)) . '" class="tooltip-trigger"><img src="' . $this->bilder . '/lmo-st2.svg" height="15" class="svg-no-style" alt=""></span>';
-        }
+        $hinweis = SpielHinweis::hinweis($spiel, $text, $paarung, $heim, $gast, $toreHeim, $toreGast, $e->mitVerlaengerung() ? $zusatzText : null, $this->bilder);
 
         return [
             'anstoss' => $anstoss,

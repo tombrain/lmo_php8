@@ -23,6 +23,16 @@ final class Anfrage
         return new self($_POST + $_GET);
     }
 
+    /**
+     * Alle Parameter, wie sie kamen (fuer Addons nach alter Art, die sie als Variablen erwarten).
+     *
+     * @return array<string, mixed>
+     */
+    public function alle(): array
+    {
+        return $this->werte;
+    }
+
     /** Ist der Parameter da, auch leer (wie isset())? */
     public function gesetzt(string $name): bool
     {
