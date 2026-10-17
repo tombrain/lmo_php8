@@ -29,12 +29,10 @@ if (!defined('PATH_TO_LMO')) {
  * @var string $action gewaehlte Seite (Aufrufparameter)
  *
  * Einstellungen:
- * @var int|string $backlink Einstellung aus cfg.txt
  * @var int|string $calctime Einstellung aus cfg.txt
  * @var int|string $einspieler Einstellung aus cfg.txt
  * @var int|string $einsprachwahl Einstellung aus cfg.txt
  * @var int|string $eintippspiel Einstellung aus cfg.txt
- * @var int|string $tabonres Einstellung aus cfg.txt
  * @var int|string $tipp_immeralle Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_ligenzutippen Einstellung aus tipp/cfg.txt
  *
@@ -90,28 +88,6 @@ if ($file != '') {
 $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
 $lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
 
-// Alle Teile für die Startansicht
-$output_titel = '';
-$output_html_lang = '';
-$output_sprachauswahl = '';
-$output_kalender = '';
-$output_ergebnisse = '';
-$output_tabelle = '';
-$output_spielplan = '';
-$output_kreuztabelle = '';
-$output_fieberkurve = '';
-$output_ligastatistik = '';
-$output_spielerstatistik = '';
-$output_info = '';
-$output_hauptteil = '';
-$output_ligenuebersicht = '';
-$output_savehtml = '';
-$output_letzteauswertung = '';
-$output_berechnungszeit = '';
-$output_stylesheet = '';
-$output_javascript = '';
-$p1 = '';
-
 if (!defined('LMO_TEMPLATE')) define('LMO_TEMPLATE', 'lmo-standard.tpl.php');
 
 // Wenn ein Template der Form [liganame].tpl.php existiert, wird dieses benutzt. Das ermöglicht
@@ -119,107 +95,20 @@ if (!defined('LMO_TEMPLATE')) define('LMO_TEMPLATE', 'lmo-standard.tpl.php');
 // ersetzt der Rahmen mit Twig (Lmo\Web\Rahmen); eigene nach alter Art gelten weiter (veraltet).
 $lmo_alte_vorlage = \Lmo\Web\Rahmen::alteVorlage(PATH_TO_TEMPLATEDIR, $file, LMO_TEMPLATE);
 
-// Titel
+// Copyright-Hinweis
+$p1 = '';
 if ($file != '') {
-    $output_titel .= $lmo_main_e->name();
-} else {
-    $output_titel .= $action == 'tipp' ? $text['tipp'][0] : $text[53];
-}
-
-// Output <html lang=""> with ISO language codes in Template
-$output_html_lang .= $text[798];
-
-// Stylesheet
-$output_stylesheet .= '  <link type="text/css" rel="stylesheet" href="' . URL_TO_LMO . '/lmo-style-nc.php">
-  <style type="text/css">@import url("' . URL_TO_LMO . '/lmo-style.php");</style>';
-
-// Javascript
-$output_javascript .= '<!-- Dieser Container dient als das schwebende Fenster -->
-<div id="globalLMOTooltip" class="lmo-smart-tooltip"></div>
-
-<script>
-// Das Tooltip-Element referenzieren
-const sportTooltip = document.getElementById("globalLMOTooltip");
-
-function showLMOTooltip(element) {
-  // Text aus dem data-info Attribut auslesen
-  const infoText = element.getAttribute("data-info");
-  if (!infoText) return;
-
-  // Inhalt in das Fenster schreiben und sichtbar machen
-  sportTooltip.innerHTML = infoText;
-  sportTooltip.style.visibility = "visible";
-  sportTooltip.style.opacity = "1";
-
-  // Position des SVG-Icons auf dem Bildschirm ermitteln
-  const rect = element.getBoundingClientRect();
-  const winW = window.innerWidth;
-  const winH = window.innerHeight;
-
-  // Standard-Position: Direkt unter dem Icon (8px Abstand)
-  let top = rect.bottom + window.scrollY + 8;
-  let left = rect.left + window.scrollX;
-
-  // Fixed Koordinaten
-  sportTooltip.style.position = "fixed";
-  top = rect.bottom + 8;
-  left = rect.left;
-
-  // AUTO-KORREKTUR: Unten
-  if (top + sportTooltip.offsetHeight > winH) {
-    // Über dem Icon anzeigen
-    top = rect.top - sportTooltip.offsetHeight - 8;
-  }
-
-  // AUTO-KORREKTUR: Rechts
-  if (left + sportTooltip.offsetWidth > winW) {
-    // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand
-    left = winW - sportTooltip.offsetWidth - 15;
-  }
-
-  // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten
-  if (left < 10) left = 10;
-
-  // Positionswerte zuweisen
-  sportTooltip.style.top = top + "px";
-  sportTooltip.style.left = left + "px";
-}
-
-function hideLMOTooltip() {
-  // Fenster wieder ausblenden
-  sportTooltip.style.visibility = "hidden";
-  sportTooltip.style.opacity = "0";
-}
-</script>';
-
-// Sprachauswahl
-if ($einsprachwahl == 1) {
-    $output_sprachauswahl = getLangSelector();
-}
-
-ob_start();
-if ($file != '') {
-    // das Menue der Liga (Lmo\Web\Seiten\Hauptmenue)
-    $lmo_menue = \Lmo\Web\Seiten\Hauptmenue::teile($lmo_kontext);
-    $output_kalender .= $lmo_menue['Kalender'];
-    $output_ergebnisse .= $lmo_menue['Ergebnisse'];
-    $output_tabelle .= $lmo_menue['Tabelle'];
-    $output_spielplan .= $lmo_menue['Spielplan'];
-    $output_kreuztabelle .= $lmo_menue['Kreuztabelle'];
-    $output_fieberkurve .= $lmo_menue['Fieberkurve'];
-    $output_ligastatistik .= $lmo_menue['Ligastatistik'];
-    $output_info .= $lmo_menue['Info'];
-
-    $druck = 0;
     $p0 = 'p1';
     $$p0 = c(1).c(0);
 }
 
 // die Seite: Controller des Kerns und der Addons (Lmo\Web\Anwendung), auch die Ligenuebersicht
+ob_start();
+$lmo_druckbar = false;
 $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
 if ($lmo_seite !== null) {
     echo $lmo_seite->html;
-    $druck = $lmo_seite->druckbar ? 1 : 0;
+    $lmo_druckbar = $lmo_seite->druckbar;
 } elseif ($file != '' && $action == 'spieler') {
     // Spieler-Addon (nach alter Art: seine Funktionen lesen Variablen mit global, deshalb hier eingebunden)
     if ($lmo_main_e->mitToren()) {
@@ -228,24 +117,29 @@ if ($lmo_seite !== null) {
 }
 // Tippspiel-Addon (nach alter Art, wie das Spieler-Addon)
 if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippstart.php');}
-$output_hauptteil .= ob_get_contents();
+$lmo_hauptteil = (string) ob_get_contents();
 ob_end_clean();
 
-// Links zur Druckansicht (Lmo\Web\Seiten\Druckansicht); die Dateien schreibt das Speichern der Liga
-$output_savehtml .= \Lmo\Web\Seiten\Druckansicht::html($lmo_kontext, isset($druck) && $druck == 1);
+// die Teile des Kerns: Kopf, Menue, Hauptteil, Druckansicht, Fusszeile (Lmo\Web\Rahmen)
+$lmo_teile = \Lmo\Web\Rahmen::teile(
+    $lmo_kontext,
+    $lmo_hauptteil,
+    $lmo_druckbar,
+    $einsprachwahl == 1 ? getLangSelector() : '',
+    $calctime == 1 ? getmicrotime() - $startzeit : null
+);
+
 if ($file != '' && isset($stand)) {
-    // PDF-Addon (nach alter Art, nicht mitgeliefert: sieht alle Variablen dieser Datei, z. B. $output_savehtml)
+    // PDF-Addon (nach alter Art, nicht mitgeliefert: ergaenzt $output_savehtml)
+    $druck = $lmo_druckbar ? 1 : 0;
+    $output_savehtml = $lmo_teile['Savehtml'];
     if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php')) include(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php');
+    $lmo_teile['Savehtml'] = $output_savehtml;
     // PDF-Addon
 }
 
-// Fusszeile: Ligenuebersicht, letzte Auswertung, Berechnungszeit (Lmo\Web\Seiten\Fusszeile)
-$lmo_fusszeile = \Lmo\Web\Seiten\Fusszeile::teile($lmo_kontext, $backlink == 1, $calctime == 1 ? getmicrotime() - $startzeit : null);
-$output_ligenuebersicht .= $lmo_fusszeile['Ligenuebersicht'];
-$output_letzteauswertung .= $lmo_fusszeile['LetzteAuswertung'];
-$output_berechnungszeit .= $lmo_fusszeile['Berechnungszeit'];
-
 // Spieler-Addon
+$output_spielerstatistik = '';
 if ($file != '' && $einspieler == 1 && $lmo_main_e->mitToren()) {
     include(PATH_TO_ADDONDIR . '/spieler/lmo-statloadconfig.php');
     $output_spielerstatistik .= $action != 'spieler' ? '<a href="' . $addm . 'spieler" title="' . $text['spieler'][12] . '">' . $spieler_ligalink . '</a>' : $spieler_ligalink;
@@ -270,28 +164,11 @@ if ($eintippspiel == 1) {
     }
 }
 
-// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen
-$lmo_teile = [
-    'Ligenuebersicht' => $output_ligenuebersicht,
-    'Berechnungszeit' => $output_berechnungszeit,
-    'LetzteAuswertung' => $output_letzteauswertung,
-    'Savehtml' => $output_savehtml,
-    'Hauptteil' => $output_hauptteil,
-    'Tabelle' => $output_tabelle,
-    'Kreuztabelle' => $output_kreuztabelle,
-    'Fieberkurve' => $output_fieberkurve,
+// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu die der
+// Addons nach alter Art und der Copyright-Hinweis
+$lmo_teile += [
     'Spielerstatistik' => $output_spielerstatistik,
-    'Ligastatistik' => $output_ligastatistik,
-    'Kalender' => $output_kalender,
-    'Ergebnisse' => $output_ergebnisse,
-    'Spielplan' => $output_spielplan,
-    'Info' => $output_info,
-    'HTML_LANG' => $output_html_lang,
     'Infolink' => $p1,
-    'Sprachauswahl' => $output_sprachauswahl,
-    'Titel' => $output_titel,
-    'Stylesheet' => $output_stylesheet,
-    'Javascript' => $output_javascript,
     'Newsticker' => $output_newsticker,  // Ticker-Addon
     'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
 ];

@@ -111,6 +111,62 @@ class RahmenTest extends TestCase
         self::assertFalse(Rahmen::ersetzt('eigen.tpl.php'));
     }
 
+    public function testTeileMitLiga(): void
+    {
+        $text = [];
+        for ($i = 0; $i <= 900; $i++) {
+            $text[$i] = 'T' . $i;
+        }
+        $liga = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'Name=Kreisliga', 'Teams=4', 'Rounds=6']));
+        $kontext = new Kontext(
+            new Anfrage([]),
+            'table',
+            new GeladeneLiga('x.l98', $liga, '17.05.2025'),
+            new Konfiguration(['backlink' => '1']),
+            $text,
+            '/lmo.php',
+            new Pfade('/lmo', dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG', '/url'),
+            new Darstellung(static fn (string $datei, string $name, string $attribute): string => '')
+        );
+
+        $teile = Rahmen::teile($kontext, '<p>Seite</p>', false, '[Sprachen]', null);
+
+        self::assertSame('Kreisliga', $teile['Titel']);
+        self::assertSame('T798', $teile['HTML_LANG']);
+        self::assertStringContainsString('href="/url/lmo-style-nc.php"', $teile['Stylesheet']);
+        self::assertStringStartsWith('<!-- Dieser Container dient als das schwebende Fenster -->', $teile['Javascript']);
+        self::assertStringEndsWith('</script>', $teile['Javascript']);
+        self::assertSame('<p>Seite</p>', $teile['Hauptteil']);
+        self::assertSame('[Sprachen]', $teile['Sprachauswahl']);
+        self::assertSame('', $teile['Savehtml'], 'Druckansicht abgeschaltet');
+        self::assertSame('T16&nbsp;&nbsp;', $teile['Tabelle'], 'Menue');
+        self::assertSame('T406:&nbsp;17.05.2025', $teile['LetzteAuswertung'], 'Fusszeile');
+        self::assertStringContainsString('T391</a>', $teile['Ligenuebersicht'], 'backlink');
+        self::assertSame('', $teile['Berechnungszeit']);
+    }
+
+    public function testTeileOhneLiga(): void
+    {
+        $kontext = static fn (string $action): Kontext => new Kontext(
+            new Anfrage([]),
+            $action,
+            null,
+            new Konfiguration([]),
+            [53 => 'Ligen', 798 => 'de'],
+            '/lmo.php',
+            new Pfade('/lmo', dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
+            new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
+            weitereTexte: ['tipp' => [0 => 'Tippspiel']]
+        );
+
+        $teile = Rahmen::teile($kontext(''), '', false, '', null);
+
+        self::assertSame('Ligen', $teile['Titel']);
+        self::assertSame('', $teile['Kalender'] . $teile['Ergebnisse'] . $teile['Info'], 'Menue leer, aber vorhanden');
+        self::assertSame('', $teile['LetzteAuswertung']);
+        self::assertSame('Tippspiel', Rahmen::teile($kontext('tipp'), '', false, '', null)['Titel']);
+    }
+
     public function testSeite(): void
     {
         $vorlagen = dirname(__DIR__, 3) . '/lmo/vorlagen';
