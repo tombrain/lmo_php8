@@ -70,6 +70,12 @@ final class RahmenTest extends TestCase
             file_put_contents($lmo . '/ohne-infolink.php', "<?php\ndefine('LMO_TEMPLATE', 'ohne-infolink.tpl.php');\nrequire __DIR__ . '/lmo.php';\n");
             // ligaeigene Vorlage: gilt nur fuer golden/kegel.l98
             file_put_contents($lmo . '/template/kegel.l98.tpl.php', "<p>Kegelvorlage</p>\n<!--Titel-->|<!--Tabelle-->|<!--Hauptteil-->|<!--Infolink-->");
+            // Druckansicht: die Dateien entstehen beim Speichern; fuer die Links genuegt, dass es sie gibt
+            foreach (['basic.l98', 'kegel.l98'] as $liga) {
+                foreach (['-st.html', '-sp.html'] as $endung) {
+                    touch($lmo . '/output/' . $liga . $endung);
+                }
+            }
             self::$instanz = [$app, $runner];
         }
 
