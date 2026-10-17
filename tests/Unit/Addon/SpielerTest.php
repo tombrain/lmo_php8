@@ -127,6 +127,18 @@ class SpielerTest extends TestCase
         self::assertStringContainsString('<img src="IMG/wrong.svg" border="0" width="20" alt=""> Keine Daten</p>', $controller->zeige($this->kontext('spieler'))->html);
     }
 
+    public function testVereinsweise(): void
+    {
+        $this->statistik("Name#Verein#Tore\nMüller#Eins#5\nAhrens#Zwei#7\n");
+        file_put_contents($this->ordner . '/x.cfg', 'Vereinsweise anzeigen=1');
+
+        $html = (new StatistikController($this->ordner))->zeige($this->kontext('spieler', true, ['team' => 'Eins']))->html;
+
+        self::assertStringContainsString('<a href="/lmo.php?file=x.l98&amp;action=spieler&amp;begin=0&amp;sort=0&amp;direction=1">Alle</a>', $html);
+        self::assertStringNotContainsString('Ahrens', $html, 'nur die Spieler des Vereins');
+        self::assertStringNotContainsString('333', $html, 'kein Rest vom Debuggen im Kopf der Vereinsspalte');
+    }
+
     public function testMenuepunkt(): void
     {
         $addon = new SpielerAddon($this->ordner);
