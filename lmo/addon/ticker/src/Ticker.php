@@ -59,7 +59,6 @@ final class Ticker
                         $hilf .= $trenner . stripslashes($zeile);
                     }
                 }
-                $ticker_text .= $hilf;
             } else {
                 // die Paarungen des Spieltags und ihre Spiele (Lmo\Liga\Paarung, Lmo\Liga\Spiel); in der Liga je eines
                 foreach ($liga->paarungen($st) as $paarung) {

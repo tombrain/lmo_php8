@@ -63,6 +63,11 @@ class TickerTest extends TestCase
         self::assertStringNotContainsString('Alpha', $text, 'keine Ergebnisse');
         self::assertStringContainsString('keine Liga +++ ', $text, 'eine fehlende Liga loescht die anderen nicht');
         self::assertLessThan(strpos($text, 'Zweite Liga'), (int) strpos($text, 'keine Liga'), 'in der Reihenfolge der Ligen');
+        self::assertSame(
+            '  +++  Testliga (1.Spieltag):  +++ Erste +++ Zweite ',
+            (new Ticker(2, true, self::TEXT, self::TICKER))->text([self::liga()]),
+            'jede Meldung einmal, hinter dem Namen der Liga'
+        );
     }
 
     public function testHtml(): void
