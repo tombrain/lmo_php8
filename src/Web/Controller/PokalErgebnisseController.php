@@ -113,10 +113,11 @@ final class PokalErgebnisseController implements Controller
     /** @return array<string, mixed> */
     private function zeile(Kontext $kontext, Paarung $paarung, Spiel $spiel, int $n): array
     {
-        $e = $kontext->liga?->liga->einstellungen();
-        assert($e !== null && $kontext->liga !== null);
+        $geladen = $kontext->liga;
+        assert($geladen !== null);
+        $e = $geladen->liga->einstellungen();
         $text = $kontext->text;
-        $datei = $kontext->liga->datei;
+        $datei = $geladen->datei;
         $bilder = $kontext->pfade->bilder;
         $heim = $paarung->heimMannschaft()->anzeigename();
         $gast = $paarung->gastMannschaft()->anzeigename();

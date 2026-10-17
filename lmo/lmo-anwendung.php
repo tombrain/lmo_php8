@@ -21,7 +21,7 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 /**
- * Legt die Anwendung an (Lmo\Web\Anwendung), die die Seiten mit eigenem Controller zeigt, mit den
+ * Legt die Anwendung an und gibt sie zurueck (Lmo\Web\Anwendung), die die Seiten mit eigenem Controller zeigt, mit den
  * Addons der Installation (Lmo\Addon\Addons), und
  * verbindet sie mit dem alten Code: Konfiguration, Sprachtexte, Vereinswappen und Rechte kommen
  * vorerst noch aus init.php und lmo-functions.php.
@@ -55,7 +55,7 @@ $lmo_statistik_erzeugen = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, st
     include(PATH_TO_LMO . '/lmo-zustat.php');
 };
 
-$lmo_anwendung = new \Lmo\Web\Anwendung(
+return new \Lmo\Web\Anwendung(
     $lmo_konfiguration,
     $text,
     // Hilfsadmins sehen nur ihre eigenen Ligen
@@ -71,7 +71,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
         new \Lmo\Web\Controller\PokalSpielplanController(),
         new \Lmo\Web\Controller\FieberkurveController(),
         new \Lmo\Web\Controller\StatistikController($lmo_statistik_erzeugen),
-        new \Lmo\Web\Controller\InfoController(LMO_VERSION_NR),
+        new \Lmo\Web\Controller\InfoController((string)constant('LMO_VERSION_NR')),
     ],
     $lmo_addons
 );

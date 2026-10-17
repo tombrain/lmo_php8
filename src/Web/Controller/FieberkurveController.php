@@ -59,7 +59,7 @@ final class FieberkurveController implements Controller
             $reihe = array_slice($platz[$nr], 0, $e->spieltage());
             $reihe[] = '';
             $plaetze = array_filter($reihe, static fn (int|string $p): bool => $p !== 0);
-            if ($erste == 0 && $zweite == 0) {
+            if ($erste == 0) {  // dann ist nach dem Tausch oben auch $zweite 0
                 $versteckt = $nr >= 3;
             } else {
                 $versteckt = $nr != $erste && $nr != $zweite;

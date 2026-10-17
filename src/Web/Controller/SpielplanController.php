@@ -77,10 +77,11 @@ final class SpielplanController implements Controller
     /** @return array<string, mixed> */
     private function zeile(Spiel $spiel, int $gewaehlt, Kontext $kontext): array
     {
-        $e = $kontext->liga?->liga->einstellungen();
-        assert($e !== null && $kontext->liga !== null);
+        $geladen = $kontext->liga;
+        assert($geladen !== null);
+        $e = $geladen->liga->einstellungen();
         $text = $kontext->text;
-        $datei = $kontext->liga->datei;
+        $datei = $geladen->datei;
         $bilder = $kontext->pfade->bilder;
         // steht eine Mannschaft noch nicht fest, heisst sie "___"
         $heim = $spiel->heim > 0 ? $spiel->heimMannschaft()->anzeigename() : '___';

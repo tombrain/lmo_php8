@@ -42,7 +42,8 @@ class AnwendungTest extends TestCase
     private static function controller(string $action, ?Kontext &$gesehen = null): Controller
     {
         return new class ($action, $gesehen) implements Controller {
-            public function __construct(private string $action, private ?Kontext &$gesehen)
+            /** @param Kontext|null $gesehen wird ueber die Referenz vom Test gelesen */
+            public function __construct(private string $action, public ?Kontext &$gesehen)
             {
             }
 
