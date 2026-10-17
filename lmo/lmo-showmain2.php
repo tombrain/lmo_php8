@@ -27,12 +27,10 @@ if (!defined('PATH_TO_LMO')) {
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var int|string $st gewaehlter Spieltag
  * @var string $action gewaehlte Seite (Aufrufparameter)
- * @var string $diroutput Ordner fuer erzeugte Dateien (Konfiguration)
  *
  * Einstellungen:
  * @var int|string $backlink Einstellung aus cfg.txt
  * @var int|string $calctime Einstellung aus cfg.txt
- * @var int|string $einsavehtml Einstellung aus cfg.txt
  * @var int|string $einspieler Einstellung aus cfg.txt
  * @var int|string $einsprachwahl Einstellung aus cfg.txt
  * @var int|string $eintippspiel Einstellung aus cfg.txt
@@ -233,27 +231,10 @@ if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/
 $output_hauptteil .= ob_get_contents();
 ob_end_clean();
 
+// Links zur Druckansicht (Lmo\Web\Seiten\Druckansicht); die Dateien schreibt das Speichern der Liga
+$output_savehtml .= \Lmo\Web\Seiten\Druckansicht::html($lmo_kontext, isset($druck) && $druck == 1);
 if ($file != '' && isset($stand)) {
-    // SaveHTML
-    if ($einsavehtml == 1) {
-        ob_start();?>
-
-        <table width="100%" cellspacing="0" cellpadding="0" border="0">
-          <tr>
-<?php
-        // die Dateien schreibt das Speichern der Liga (lmo-saveliga.php); hier nur die Links darauf ?>
-            <td align="center"><?php
-        if (!$lmo_main_e->istPokal() && isset($druck) && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-st.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-st.html" title="' . $text[477] . '">' . $text[478] . '</a>&nbsp;';}?>
-            </td>
-            <td align="center"><?php
-        if (!$lmo_main_e->istPokal() && isset($druck) && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-sp.html" title="' . $text[479] . '">' . $text[480] . '</a>&nbsp;';}?>
-            </td>
-          </tr>
-        </table><?php
-        $output_savehtml .= ob_get_contents();
-        ob_end_clean();
-    }
-    // PDF-Addon
+    // PDF-Addon (nach alter Art, nicht mitgeliefert: sieht alle Variablen dieser Datei, z. B. $output_savehtml)
     if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php')) include(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php');
     // PDF-Addon
 }
