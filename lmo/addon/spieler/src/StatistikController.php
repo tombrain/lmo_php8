@@ -78,7 +78,6 @@ final class StatistikController implements Controller
             $kurz[$nr] = $mannschaft->kurzname();
             $urls[$nr] = (string) ($mannschaft->werte['URL'] ?? '');
         }
-        $urls[] = '';
 
         $basis = $kontext->adresse . '?file=' . $datei . '&amp;action=' . $kontext->action;
         $link = static fn (int $anfang, int $spalte, int $richtung, ?string $verein = null): string => $basis . '&amp;begin=' . $anfang . '&amp;sort=' . $spalte . '&amp;direction=' . $richtung . ($verein !== null ? '&amp;team=' . $verein : '');
@@ -139,13 +138,13 @@ final class StatistikController implements Controller
                         . "\n" . '<td align="left" class="lmoBackMarkierung">' . $kontext->darstellung->spielerbild($wert) . '</td>';
                 }
 
-                //Vereinslinks
+                //Vereinslinks: Wappen, Name und die Homepage des Vereins, wenn die Liga Links zeigt (urlT)
                 if ($spalten[$j2] == ($t[25] ?? '')) {
-                    $zellen .= "\n" . '<td' . $klasse . ' align="left">' . $kontext->darstellung->wappen($datei, $wert) . str_replace(' ', '&nbsp;', $wert) . '&nbsp;</td>';
-                    $pos = array_search($wert, $urls, true);
-                    if (!empty($pos) && $urls[$pos] != '' && $liga->liga->einstellungen()->mitMannschaftslinks()) {
-                        $zellen .= '<a href="' . $urls[$pos] . '" target="_blank" title="' . ($text[46] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.png" alt="" title="' . ($text[46] ?? '') . '"></a></td>';
-                    }
+                    $nr = array_search($wert, $namen, true);
+                    $url = $nr !== false && $nr > 0 && $liga->liga->einstellungen()->mitMannschaftslinks() ? $urls[$nr] : '';
+                    $zellen .= "\n" . '<td' . $klasse . ' align="left">' . $kontext->darstellung->wappen($datei, $wert) . str_replace(' ', '&nbsp;', $wert) . '&nbsp;'
+                        . ($url != '' ? '<a href="' . htmlspecialchars($url) . '" target="_blank" title="' . ($text[46] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.png" alt="' . ($text[564] ?? '') . '" title="' . ($text[46] ?? '') . '"></a>' : '')
+                        . '</td>';
 
                 //Spielerlinks
                 } elseif ($j2 == 0 && $linkspalte !== false && ($data[$j1][$linkspalte] ?? null) != ($t[43] ?? '')) {
