@@ -61,7 +61,7 @@ class SpielerTest extends TestCase
         self::assertSame([0 => true, 1 => true], $alle->textspalten);
 
         $verein = Statistik::lies($datei, 'Eins', true, 'Verein');
-        self::assertSame(['Müller', 'Zander'], array_column($verein?->zeilen ?? [], 0), 'nur die Spieler des Vereins');
+        self::assertSame(['Müller', 'Zander'], array_column($verein->zeilen ?? [], 0), 'nur die Spieler des Vereins');
         self::assertSame([], Statistik::lies($datei, 'Eins', false, 'Verein')?->zeilen, 'nicht vereinsweise: ein Verein zeigt niemanden');
         self::assertNull(Statistik::lies($this->ordner . '/fehlt.stat', '', false, 'Verein'));
     }
