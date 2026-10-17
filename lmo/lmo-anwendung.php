@@ -66,7 +66,7 @@ return new \Lmo\Web\Anwendung(
         static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute),
         static fn (string $datei, string $attribute): string => (string)HTML_smallLigaIcon($datei, $attribute, '')
     ),
-    [
+    array_merge([
         new \Lmo\Web\Controller\ErgebnisseController(),
         new \Lmo\Web\Controller\KreuztabelleController(),
         new \Lmo\Web\Controller\SpielplanController(),
@@ -76,8 +76,9 @@ return new \Lmo\Web\Anwendung(
         new \Lmo\Web\Controller\FieberkurveController(),
         new \Lmo\Web\Controller\StatistikController($lmo_statistik_erzeugen),
         new \Lmo\Web\Controller\InfoController((string)constant('LMO_VERSION_NR')),
-        // angemeldet (Admin oder Hilfsadmin): die Liste zeigt die Dateinamen
+    ], $lmo_konfiguration->schalter('backlink') ? [
+        // Ligenuebersicht ohne gewaehlte Liga (backlink); angemeldet (Admin oder Hilfsadmin) mit den Dateinamen
         new \Lmo\Web\Controller\LigenuebersichtController(isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, static fn (string $datei): bool => check_hilfsadmin($datei)),
-    ],
+    ] : []),
     $lmo_addons
 );

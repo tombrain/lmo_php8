@@ -8,6 +8,7 @@ use Lmo\Addon\Addon;
 use Lmo\Addon\Addons;
 use Lmo\Addon\AltesSeitenInclude;
 use Lmo\Addon\AltesSpielInclude;
+use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSeiten;
 use Lmo\Addon\MitZusatzJeSpiel;
 use Lmo\Addon\MitZusatzUnterSeite;
@@ -198,6 +199,30 @@ class AddonsTest extends TestCase
         self::assertSame('pdf', $bruecke->name());
         self::assertSame('Plan 2 aus x.l98, Eins, 1', $bruecke->zusatzUnterSeite($mitTeam), 'Parameter als Variablen, $file aber die geladene Liga');
         self::assertSame('', (new AltesSeitenInclude('pdf', 'program', $datei))->zusatzUnterSeite($mitTeam), 'nur unter seiner Seite');
+    }
+
+    public function testRahmenteileHintereinander(): void
+    {
+        $teil = static fn (string $name, array $teile): Addon => new class ($name, $teile) implements MitRahmenteilen {
+            /** @param array<string, string> $teile */
+            public function __construct(private string $name, private array $teile)
+            {
+            }
+
+            public function name(): string
+            {
+                return $this->name;
+            }
+
+            public function rahmenteile(Kontext $kontext): array
+            {
+                return $this->teile;
+            }
+        };
+        $addons = new Addons([$teil('a', ['Newsticker' => '<a>', 'Tippspiel' => 'T']), self::zusatz('ohne'), $teil('b', ['Newsticker' => '<b>'])]);
+
+        self::assertSame(['Newsticker' => '<a><b>', 'Tippspiel' => 'T'], $addons->rahmenteile(self::kontext()));
+        self::assertSame([], (new Addons())->rahmenteile(self::kontext()));
     }
 
     public function testBrueckeZumAltenInclude(): void

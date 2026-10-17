@@ -213,41 +213,22 @@ if ($file != '') {
     $output_info .= $lmo_menue['Info'];
 
     $druck = 0;
-
-    // Seiten mit eigenem Controller zeigt die Anwendung (Lmo\Web\Anwendung), die anderen noch der alte Code
-    $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
-    if ($lmo_seite !== null) {
-        echo $lmo_seite->html;
-        $druck = $lmo_seite->druckbar ? 1 : 0;
-    } elseif ($action != 'tipp') {
-        if (!$lmo_main_e->istPokal()) {
-            // Normale Liga
-            switch($action) {
-                case '': /*Auswahlseite*/break;
-            }
-        } else {
-            // Pokal Liga
-            switch($action) {
-            }
-        }
-        // Spieler-Addon
-        if ($action == 'spieler') {
-            if ($lmo_main_e->mitToren()) {
-                require(PATH_TO_ADDONDIR .'/spieler/lmo-statshow.php');
-            }
-        }
-        // Spieler-Addon
-    }
     $p0 = 'p1';
     $$p0 = c(1).c(0);
-} elseif ($backlink == 1 && $action != 'tipp') {
-    // Ligenuebersicht (Lmo\Web\Controller\LigenuebersichtController)
-    $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
-    if ($lmo_seite !== null) {
-        echo $lmo_seite->html;
-    }
 }
 
+// die Seite: Controller des Kerns und der Addons (Lmo\Web\Anwendung), auch die Ligenuebersicht
+$lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
+if ($lmo_seite !== null) {
+    echo $lmo_seite->html;
+    $druck = $lmo_seite->druckbar ? 1 : 0;
+} elseif ($file != '' && $action == 'spieler') {
+    // Spieler-Addon (nach alter Art: seine Funktionen lesen Variablen mit global, deshalb hier eingebunden)
+    if ($lmo_main_e->mitToren()) {
+        require(PATH_TO_ADDONDIR . '/spieler/lmo-statshow.php');
+    }
+}
+// Tippspiel-Addon (nach alter Art, wie das Spieler-Addon)
 if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippstart.php');}
 $output_hauptteil .= ob_get_contents();
 ob_end_clean();
@@ -336,6 +317,10 @@ $lmo_teile = [
     'Newsticker' => $output_newsticker,  // Ticker-Addon
     'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
 ];
+// Teile, die Addons nach neuer Art zum Rahmen beitragen (Lmo\Addon\MitRahmenteilen), stehen dahinter
+foreach ($lmo_kontext->addons->rahmenteile($lmo_kontext) as $lmo_teil => $lmo_wert) {
+    $lmo_teile[$lmo_teil] = ($lmo_teile[$lmo_teil] ?? '') . $lmo_wert;
+}
 if (\Lmo\Web\Rahmen::ersetzt($lmo_alte_vorlage)) {
     echo \Lmo\Web\Rahmen::zeige(PATH_TO_LMO . '/vorlagen', $lmo_alte_vorlage, $lmo_teile);
 } else {
