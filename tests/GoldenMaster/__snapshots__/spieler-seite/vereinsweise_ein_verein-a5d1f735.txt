@@ -35,7 +35,8 @@
 <td align="right" class="nobr">
 <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=0&amp;direction=1">Alle</a>
 </td>
-<td align="right">333 </td>
+<td>
+</td>
 </tr>
 <tr>
 <td align="right" class="nobr">

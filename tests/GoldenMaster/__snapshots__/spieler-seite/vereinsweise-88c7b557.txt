@@ -33,7 +33,8 @@
 <table class="lmoMenu">
 <tr>
 <td align="right" class="nobr">Alle </td>
-<td align="right">333 </td>
+<td>
+</td>
 </tr>
 <tr>
 <td align="right" class="nobr">
