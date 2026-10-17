@@ -253,7 +253,8 @@ final class TabellenSeite
         }
         $name = $mannschaft->anzeigename();
         $umgekehrt = static function (string $wert, int $faktor): string {
-            $angezeigt = (-1) * Darstellung::mitFaktor($wert, $faktor);
+            $zahl = Darstellung::mitFaktor($wert, $faktor);
+            $angezeigt = is_numeric($zahl) ? -1 * ($zahl + 0) : $zahl;
 
             return ($wert < 0 ? '+' : '') . $angezeigt;
         };

@@ -110,7 +110,7 @@ final class KalenderController implements Controller
      * Die Links auf die Spieltage je Tag (Monat) bzw. je Monat (Jahr) des Zeitraums $md.
      *
      * @param array<int|string, mixed> $text
-     * @return list<string> Index Tag bzw. Monat => fertiges HTML
+     * @return array<int, string> Index Tag bzw. Monat => fertiges HTML
      */
     private function eintraege(Liga $liga, array $text, string $spieltagLink, string $md, string $regel, string $regel2, int $anzahl): array
     {
@@ -185,7 +185,7 @@ final class KalenderController implements Controller
      * Die Wochen eines Monats, Montag bis Sonntag; Tage vor dem 1. und nach dem letzten sind leer.
      *
      * @param string $mj " Monat Jahr" fuer strtotime()
-     * @param list<string> $links Index Tag => Links auf die Spieltage
+     * @param array<int, string> $links Index Tag => Links auf die Spieltage
      * @return list<list<array{leer: bool, tag?: int, klasse?: string, links?: string}>>
      */
     private function wochen(string $mj, array $links): array
@@ -223,7 +223,7 @@ final class KalenderController implements Controller
     /**
      * Die Monate eines Jahres in zwei Zeilen zu sechs.
      *
-     * @param list<string> $links Index Monat => Links auf die Spieltage
+     * @param array<int, string> $links Index Monat => Links auf die Spieltage
      * @return list<list<array{nr: string, index: int, links: string}>> nr zweistellig fuer den Link
      */
     private function monate(array $links): array

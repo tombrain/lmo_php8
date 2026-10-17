@@ -278,7 +278,7 @@ if ($file != '') {
     $druck = 0;
 
     // Seiten mit eigenem Controller zeigt die Anwendung (Lmo\Web\Anwendung), die anderen noch der alte Code
-    require(PATH_TO_LMO . '/lmo-anwendung.php');
+    $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
     $lmo_seite = $lmo_anwendung->bearbeite(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
     if ($lmo_seite !== null) {
         echo $lmo_seite->html;
