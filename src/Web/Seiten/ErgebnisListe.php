@@ -21,14 +21,14 @@ final class ErgebnisListe
 {
     private Liga $liga;
     private Einstellungen $einstellungen;
-    /** @var array<int|string, mixed> */
+    /** @var array<int, string> */
     private array $text;
     private Darstellung $darstellung;
     private string $vorlagen;
     private string $bilder;
 
     /**
-     * @param array<int|string, mixed> $text Sprachtexte
+     * @param array<int, string> $text Sprachtexte
      * @param string $vorlagen Ordner der Twig-Vorlagen
      * @param string $bilder Adresse des Bilderordners (URL_TO_IMGDIR)
      */

@@ -24,6 +24,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Mindestversion ist PHP 8.1 (Twig 3 läuft nicht unter PHP 8.0).  
 * Die Tabelle auf der Tabellen- und der Ergebnisseite entsteht aus der Twig-Vorlage. Die Ausgabe ist gleich bis auf das Escaping: Sonderzeichen in Mannschaftsnamen (Tabelle und Ergebnisse) und Links werden jetzt durchgehend als HTML-Entitäten ausgegeben (`&` als `&amp;`, `'` als `&#039;`).  
 * Alle Klassen unter `src/` prüfen Typen streng (`declare(strict_types=1)`); ein Unit-Test achtet darauf, dass neue Dateien das auch tun. Für Aufrufe aus den alten Dateien unter `lmo/` ändert sich nichts.  
+* PHPStan prüft `src/` auf der höchsten Stufe (`level: max` in `phpstan-strict.neon.dist`). Dafür trennt `Lmo\Web\Sprachtexte` die Kerntexte (`array<int, string>`) von den Texten der Unterordner von `lang/` (Datumsnamen, Addons); ein Controller holt Letztere mit `$kontext->texteVon('date')`, ein Addon seine eigenen mit `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` liest Werte über `hat()`, `zahl()` und `text()`.  
 
 
 ### Deprecated  
@@ -379,6 +380,7 @@ _Here we write changelog notes for the next version._
 * Minimum version is PHP 8.1 (Twig 3 does not run on PHP 8.0).  
 * The table on the table and results pages is rendered from the Twig template. The output is the same except for escaping: special characters in team names (table and results) and links are now consistently output as HTML entities (`&` as `&amp;`, `'` as `&#039;`).  
 * All classes under `src/` check types strictly (`declare(strict_types=1)`); a unit test makes sure new files do so as well. Calls from the old files under `lmo/` are not affected.  
+* PHPStan checks `src/` at the highest level (`level: max` in `phpstan-strict.neon.dist`). For this, `Lmo\Web\Sprachtexte` separates the core texts (`array<int, string>`) from the texts of the subfolders of `lang/` (date names, add-ons); a controller gets the latter with `$kontext->texteVon('date')`, an add-on its own with `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` reads values through `hat()`, `zahl()` and `text()`.  
 
 
 ### Deprecated  

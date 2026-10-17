@@ -93,26 +93,38 @@ class LadenTest extends TestCase
         $this->datei('tipp/lang-English.txt', "1=Tip\n");
         $this->datei('tipp/lang-Francais.txt', "2=Pari\n");
 
-        $text = Sprachtexte::lies($this->ordner, 'English', 'Francais');
+        $texte = Sprachtexte::lies($this->ordner, 'English', 'Francais');
 
-        self::assertSame('Eins', $text[1], 'nur deutsch vorhanden');
-        self::assertSame('Two', $text[2], 'Standardsprache ueber Deutsch');
-        self::assertSame('Trois', $text[3], 'Sprache des Besuchers ueber allem');
-        self::assertSame('', $text[4]);
-        self::assertSame([1 => 'Tip', 2 => 'Pari'], $text['tipp']);
+        self::assertSame('Eins', $texte->kern[1], 'nur deutsch vorhanden');
+        self::assertSame('Two', $texte->kern[2], 'Standardsprache ueber Deutsch');
+        self::assertSame('Trois', $texte->kern[3], 'Sprache des Besuchers ueber allem');
+        self::assertSame('', $texte->kern[4]);
+        self::assertSame([1 => 'Tip', 2 => 'Pari'], $texte->von('tipp'), 'Unterordner getrennt');
+        self::assertSame([], $texte->von('fehlt'));
 
-        self::assertSame('Two', Sprachtexte::lies($this->ordner, 'English')[2], 'ohne Wahl des Besuchers');
+        self::assertSame('Two', Sprachtexte::lies($this->ordner, 'English')->kern[2], 'ohne Wahl des Besuchers');
     }
 
     public function testEigeneBezeichnungenDerLiga(): void
     {
-        $text = [37 => 'Punkte', 38 => 'Tore'];
+        $texte = new Sprachtexte([37 => 'Punkte', 38 => 'Tore'], ['date' => [1 => 'Montag']]);
         $liga = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'namePkt=Zaehler', 'nameTor=Kegel']));
         $pokal = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'Type=1', 'namePkt=Zaehler']));
 
-        self::assertSame([37 => 'Zaehler', 38 => 'Kegel'], Sprachtexte::fuerLiga($text, $liga));
-        self::assertSame($text, Sprachtexte::fuerLiga($text, $pokal), 'im Pokal nicht');
-        self::assertSame($text, Sprachtexte::fuerLiga($text, new Liga()));
+        self::assertSame([37 => 'Zaehler', 38 => 'Kegel'], $texte->fuerLiga($liga)->kern);
+        self::assertSame([1 => 'Montag'], $texte->fuerLiga($liga)->von('date'));
+        self::assertSame($texte, $texte->fuerLiga($pokal), 'im Pokal nicht');
+        self::assertSame($texte->kern, $texte->fuerLiga(new Liga())->kern);
+    }
+
+    public function testTexteDesAltenCodes(): void
+    {
+        $texte = Sprachtexte::ausAltemText([1 => 'Eins', 2 => 2, 'tipp' => [1 => 'Tip', 'x' => 'kein'], 'kaputt' => 'kein Array']);
+
+        self::assertSame([1 => 'Eins', 2 => '2'], $texte->kern);
+        self::assertSame([1 => 'Tip'], $texte->von('tipp'));
+        self::assertSame([], $texte->von('kaputt'));
+        self::assertSame([1 => 'Eins', 2 => '2', 'tipp' => [1 => 'Tip']], $texte->alsAltesArray());
     }
 
     public function testLigaLaden(): void

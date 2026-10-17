@@ -34,7 +34,6 @@ class KalenderControllerTest extends TestCase
         for ($i = 0; $i <= 5100; $i++) {
             $text[$i] = 'T' . $i;
         }
-        $text['date'] = [14 => 'Januar', 16 => 'Maerz', 30 => 'Mai'];
 
         return new Kontext(
             new Anfrage($parameter),
@@ -44,7 +43,9 @@ class KalenderControllerTest extends TestCase
             $text,
             '/lmo.php',
             new Pfade('/lmo', dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
-            new Darstellung(static fn (string $datei, string $name, string $attribute): string => '')
+            new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
+            new \Lmo\Addon\Addons(),
+            ['date' => [14 => 'Januar', 16 => 'Maerz', 30 => 'Mai']]
         );
     }
 
@@ -128,7 +129,7 @@ class KalenderControllerTest extends TestCase
 
     public function testUebersetzteNamen(): void
     {
-        $text = ['date' => [14 => 'Januar', 30 => 'Mai']];
+        $text = [14 => 'Januar', 30 => 'Mai'];
 
         self::assertSame('Januar 2025', KalenderController::uebersetzt('January 2025', $text));
         self::assertSame('Mai 2025', KalenderController::uebersetzt('May 2025', $text), 'May wie bisher mit Text 30');

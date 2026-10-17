@@ -43,7 +43,7 @@ final class SpielHinweis
     /**
      * Das Symbol fuer den Hinweis zu einem Spiel mit Notiz oder Wertung am gruenen Tisch; '' ohne.
      *
-     * @param array<int|string, mixed> $text Sprachtexte
+     * @param array<int, string> $text Sprachtexte
      * @param string $paarung aus paarung()
      * @param string $zusatz Zusatz zum Ergebnis (n.V., i.E.); null ohne die Angabe
      * @param bool $umbruchNachNotiz ein <br> nach der Notiz (Spielplan)
@@ -94,7 +94,7 @@ final class SpielHinweis
      * Das Symbol fuer die Notiz zu einem Pokalspiel; '' ohne Notiz. Im Pokal steht unter der
      * Paarung mit Ergebnis nur die Notiz (keine Wertung am gruenen Tisch).
      *
-     * @param array<int|string, mixed> $text Sprachtexte
+     * @param array<int, string> $text Sprachtexte
      * @param string $paarung aus paarung()
      */
     public static function pokalNotiz(Spiel $spiel, array $text, string $paarung, string $toreHeim, string $toreGast, string $bilder): string

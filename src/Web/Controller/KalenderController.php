@@ -102,7 +102,7 @@ final class KalenderController implements Controller
             'weiter' => date($monat ? 'mY' : 'Y', $danach),
             'heute' => date('mY', $this->jetzt),
             'jahr' => date('Y', $dieser),
-            'titel' => $monat ? self::uebersetzt($md, $text) : $md,
+            'titel' => $monat ? self::uebersetzt($md, $kontext->texteVon('date')) : $md,
             'wochen' => $monat ? $this->wochen($mj, $eintraege) : [],
             'monate' => $monat ? [] : $this->monate($eintraege),
         ]));
@@ -111,7 +111,7 @@ final class KalenderController implements Controller
     /**
      * Die Links auf die Spieltage je Tag (Monat) bzw. je Monat (Jahr) des Zeitraums $md.
      *
-     * @param array<int|string, mixed> $text
+     * @param array<int, string> $text
      * @return array<int, string> Index Tag bzw. Monat => fertiges HTML
      */
     private function eintraege(Liga $liga, array $text, string $spieltagLink, string $md, string $regel, string $regel2, int $anzahl): array
@@ -239,23 +239,23 @@ final class KalenderController implements Controller
     }
 
     /**
-     * Englische Wochentags- und Monatsnamen (von date()) in der Sprache der Sprachtexte
-     * (lang/date/), wie $trans_lang in lmo-functions.php.
+     * Englische Wochentags- und Monatsnamen (von date()) in der Sprache der Sprachtexte, wie
+     * $trans_lang in lmo-functions.php.
      *
-     * @param array<int|string, mixed> $text
+     * @param array<int, string> $namen Texte aus lang/date/ (Kontext::texteVon('date'))
      */
-    public static function uebersetzt(string $datum, array $text): string
+    public static function uebersetzt(string $datum, array $namen): string
     {
-        $namen = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',
+        $englisch = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun',
             'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         $uebersetzung = [];
-        foreach ($namen as $nr => $name) {
+        foreach ($englisch as $nr => $name) {
             // "May" gibt es lang und kurz; wie bisher gilt die kurze Form (Text 30)
-            if ($nr == 18 || !isset($text['date'][$nr])) {
+            if ($nr == 18 || !isset($namen[$nr])) {
                 continue;
             }
-            $uebersetzung[$name] = $text['date'][$nr];
+            $uebersetzung[$name] = $namen[$nr];
         }
 
         return strtr($datum, $uebersetzung);

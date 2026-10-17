@@ -58,7 +58,7 @@ Addons nach neuer Art:
 
 - name() ist der Name des Ordners; Konfiguration und Sprachtexte liegen wie oben beschrieben unter
   config/[Addonname]/ und lang/[Addonname]/ ($kontext->konfiguration->addon('brain'),
-  $kontext->text['brain']).
+  $kontext->texteVon('brain')).
 
 - Was ein Addon beiträgt, sagen die Erweiterungspunkte, die es implementiert:
 

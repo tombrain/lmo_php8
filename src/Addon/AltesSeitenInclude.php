@@ -41,6 +41,6 @@ final class AltesSeitenInclude implements MitZusatzUnterSeite
             include $lmo_addon_datei;
 
             return (string) ob_get_clean();
-        })($this->datei, $kontext->anfrage->alle(), $kontext->liga->datei, $kontext->text, $kontext->liga->liga);
+        })($this->datei, $kontext->anfrage->alle(), $kontext->liga->datei, $kontext->text + $kontext->weitereTexte, $kontext->liga->liga);
     }
 }

@@ -22,7 +22,12 @@ final class Anfrage
     /** Die Parameter des laufenden Aufrufs; wie $_REQUEST gilt das Formular vor der Adresse. */
     public static function ausGlobalen(): self
     {
-        return new self($_POST + $_GET);
+        $werte = [];
+        foreach ($_POST + $_GET as $name => $wert) {
+            $werte[(string) $name] = $wert;
+        }
+
+        return new self($werte);
     }
 
     /**

@@ -68,7 +68,7 @@ class AnwendungTest extends TestCase
     {
         return new Anwendung(
             new Konfiguration([]),
-            [37 => 'Punkte'],
+            new \Lmo\Web\Sprachtexte([37 => 'Punkte'], ['date' => [1 => 'Montag']]),
             new LigaLader($this->ordner . '/', 'd.m.Y'),
             new Pfade($this->ordner, $this->ordner, 'IMG'),
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
