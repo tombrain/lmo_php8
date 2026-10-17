@@ -247,9 +247,6 @@ $output_hauptteil .= ob_get_contents();
 ob_end_clean();
 
 if ($file != '' && isset($stand)) {
-    // Letzte Auswertung
-    $output_letzteauswertung .= $text[406] . ':&nbsp;' . $stand;
-
     // SaveHTML
     if ($einsavehtml == 1) {
         ob_start();?>
@@ -277,19 +274,11 @@ if ($file != '' && isset($stand)) {
     // PDF-Addon
 }
 
-// Ligenübersicht
-if ($backlink == 1 && ($file != '' || $action == 'tipp')) {
-    if (basename($file) == $file) {
-        $output_ligenuebersicht .= '<a href="' . $_SERVER['PHP_SELF'] . '" title="' . $text[392] . '">' . $text[391] . '</a>&nbsp;&nbsp;&nbsp;';
-    } else {
-        $output_ligenuebersicht .= '<a href="' . $_SERVER['PHP_SELF'] . '?subdir=' . dirname($file) . '/" title="' . $text[392] . '">' . $text[391] . '</a>&nbsp;&nbsp;&nbsp;';
-    }
-}
-
-// Berechnungszeit
-if ($calctime == 1) {
-    $output_berechnungszeit .= $text[471] . ': ' . number_format((getmicrotime() - $startzeit), 4, '.', ',') . ' ' . $text[799] . '.<br>';
-}
+// Fusszeile: Ligenuebersicht, letzte Auswertung, Berechnungszeit (Lmo\Web\Seiten\Fusszeile)
+$lmo_fusszeile = \Lmo\Web\Seiten\Fusszeile::teile($lmo_kontext, $backlink == 1, $calctime == 1 ? getmicrotime() - $startzeit : null);
+$output_ligenuebersicht .= $lmo_fusszeile['Ligenuebersicht'];
+$output_letzteauswertung .= $lmo_fusszeile['LetzteAuswertung'];
+$output_berechnungszeit .= $lmo_fusszeile['Berechnungszeit'];
 
 // Spieler-Addon
 if ($file != '' && $einspieler == 1 && $lmo_main_e->mitToren()) {
