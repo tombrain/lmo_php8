@@ -25,14 +25,18 @@ final class Anwendung
     private LigaLader $lader;
     private Pfade $pfade;
     private Darstellung $darstellung;
-    /** @var list<Controller> */
+    /** @var list<Controller> alle Controller in der Reihenfolge, in der sie gefragt werden: erst die des Kerns, dann die der Addons */
     private array $controller;
     private Addons $addons;
 
     /**
-     * @param array<int|string, mixed> $text Sprachtexte
+     * @param Konfiguration $konfiguration Konfiguration der Installation (config/cfg.txt)
+     * @param array<int|string, mixed> $text Sprachtexte; fuer die geladene Liga passt sie kontext() an
+     * @param LigaLader $lader laedt die Ligadatei aus der Anfrage
+     * @param Pfade $pfade Ordner und Adressen der Installation
+     * @param Darstellung $darstellung Vereinswappen und Faktoren fuer die Seiten
      * @param list<Controller> $controller Controller des Kerns, in der Reihenfolge, in der sie gefragt werden
-     * @param Addons $addons Addons der Installation; ihre Controller kommen nach denen des Kerns
+     * @param Addons $addons Addons der Installation; ihre Controller (Lmo\Addon\MitSeiten) werden nach denen des Kerns gefragt
      */
     public function __construct(Konfiguration $konfiguration, array $text, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons())
     {
