@@ -1,0 +1,314 @@
+### vorsortierung_und_richtung
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>basic</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>basic</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=cal&amp;st=1" title="Anzeige des Kalenders der Liga">Kalender</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=results" title="Anzeige der Spielergebnisse und Tabelle eines bestimmten Spieltags">Ergebnisse/Tabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=cross" title="Anzeige aller Ergebnisse auf einen Blick">Kreuztabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=graph" title="Anzeige der Fieberkurven">Fieberkurven</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=stats&amp;stat1=0&amp;stat2=0" title="Anzeige der Statistiken und Prognosen">Ligastatistik</a>&nbsp;&nbsp;Spielerstatistik&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle">
+<tr>
+<td valign="top">
+<table id="stats" class="lmoInner" cellpadding="0" cellspacing="1" border="0">
+<thead>
+<tr>
+<th>
+</th>
+<th>
+</th>
+<th class="nobr" align="center">&nbsp;Name&nbsp;</th>
+<th class="nobr" align="center">&nbsp;Verein&nbsp;</th>
+<th class="nobr" align="center">&nbsp;<acronym title="Tore">
+<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.png" alt="Tore">
+</acronym>&nbsp;</th>
+<th class="nobr" align="center">&nbsp;<acronym title="Spiele">
+<img border="0" src="http://lmo.test/lmo/img/spieler/Spiele.gif" alt="Spiele">
+</acronym>&nbsp;</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<th colspan="7" align="center">&nbsp;|&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=3&amp;direction=0&amp;team=">Top&nbsp;10</a>&nbsp;|&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=10&amp;sort=3&amp;direction=0&amp;team=">weiter&nbsp;&gt;&gt;</a>
+</th>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>1. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Fuchs&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;6&nbsp;</td>
+<td class="nobr" align="center">&nbsp;0&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;0&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>2. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Jung&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;2&nbsp;</td>
+<td class="nobr" align="center">&nbsp;3&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;1&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>3. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Zander&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;1&nbsp;</td>
+<td class="nobr" align="center">&nbsp;0&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;2&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>4. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Engel&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;5&nbsp;</td>
+<td class="nobr" align="center">&nbsp;1&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;3&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>5. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Ahrens&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;2&nbsp;</td>
+<td class="nobr" align="center">&nbsp;3&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;4&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>6. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Graf&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;1&nbsp;</td>
+<td class="nobr" align="center">&nbsp;2&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;5&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>7. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Hahn&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;3&nbsp;</td>
+<td class="nobr" align="center">&nbsp;3&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;6&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>8. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Bauer&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;3&nbsp;</td>
+<td class="nobr" align="center">&nbsp;3&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;7&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>9. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Lange&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;2&nbsp;</td>
+<td class="nobr" align="center">&nbsp;3&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;8&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="lmoBackMarkierung">
+<strong>10. </strong>
+</td>
+<td align="left" class="lmoBackMarkierung">
+</td>
+<td class="nobr" align="left">&nbsp;Krause&nbsp;</td>
+<td class="nobr" align="left">Mannschaft&nbsp;4&nbsp;</td>
+<td class="nobr" align="center">&nbsp;7&nbsp;</td>
+<td class="lmoBackMarkierung nobr" align="center">&nbsp;9&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top" align="center">
+<table class="lmoMenu">
+<tr>
+<td class="lmost4">Sortierung</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=0&amp;direction=1&amp;team=">
+<img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.svg" alt="&or;" width="10">
+</a> Name <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=0&amp;direction=0&amp;team=">
+<img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" alt="&and;" width="10">
+</a>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=1&amp;direction=1&amp;team=">
+<img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.svg" alt="&or;" width="10">
+</a> Verein <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=1&amp;direction=0&amp;team=">
+<img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" alt="&and;" width="10">
+</a>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=2&amp;direction=1&amp;team=">
+<img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.svg" alt="&or;" width="10">
+</a> Tore <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=2&amp;direction=0&amp;team=">
+<img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" alt="&and;" width="10">
+</a>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=3&amp;direction=1&amp;team=">
+<img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.svg" alt="&or;" width="10">
+</a> Spiele <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=3&amp;direction=0&amp;team=">
+<img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" alt="&and;" width="10">
+</a>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=4&amp;direction=1&amp;team=">
+<img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.svg" alt="&or;" width="10">
+</a> Spielerlink <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=4&amp;direction=0&amp;team=">
+<img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" alt="&and;" width="10">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table width="99%">
+<tr>
+<td align="center">
+<a href="http://lmo.test/lmo/addon/spieler/lmo-statprint.php?file=golden/basic.l98&amp;begin=0&amp;sort=3&amp;direction=0&amp;team=">Ansicht ausdrucken</a>
+</td>
+<td align="center">
+<a href="http://lmo.test/lmo/addon/spieler/lmo-statprint.php?file=golden/basic.l98&amp;sort=3&amp;direction=0&amp;team=">Gesamtansicht ausdrucken</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php?subdir=golden/" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;17.10.2026 21:11<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>
