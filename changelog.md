@@ -14,6 +14,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Addons nach neuer Art: Eine Datei `addon/<name>/addon.php` gibt ein Objekt zurück, das `Lmo\Addon\Addon` implementiert, dazu die Erweiterungspunkte, die es braucht: `Lmo\Addon\MitSeiten` (eigene Seiten im öffentlichen Teil, nach denen des LMO gefragt) und `Lmo\Addon\MitZusatzJeSpiel` (HTML am Ende jeder Zeile in Ergebnissen und Spielplan). `Lmo\Addon\Addons` lädt sie, die Anwendung und jeder Controller kennen sie über den `Kontext`. Beschreibung in `lmo/addon/readme.txt`. Addons nach alter Art laufen unverändert weiter; das Einbinden von `addon/stats/lmo-showprogram.inc.php` in die Ergebniszeile geht über die Brücke `Lmo\Addon\AltesSpielInclude`.  
 * Die Kreuztabelle (`action=cross`) läuft über den `Lmo\Web\Controller\KreuztabelleController` mit der Vorlage `lmo/vorlagen/kreuztabelle.html.twig`.  
 * Der Spielplan (`action=program`) läuft über den `Lmo\Web\Controller\SpielplanController` mit der Vorlage `lmo/vorlagen/spielplan.html.twig`; die Tooltips zu Spielbericht und Hinweis baut für Ergebnisse und Spielplan gemeinsam `Lmo\Web\Seiten\SpielHinweis`. Neuer Erweiterungspunkt für Addons: `Lmo\Addon\MitZusatzUnterSeite` (HTML unter einer Seite); ein vorhandenes `addon/pdf/lmo-showprogram.inc.php` (Teamplan) wird darüber unter dem Spielplan eingebunden (Brücke `Lmo\Addon\AltesSeitenInclude`).  
+* Der Kalender (`action=cal`) läuft für Liga und Pokal über den `Lmo\Web\Controller\KalenderController` mit der Vorlage `lmo/vorlagen/kalender.html.twig`. Die Seitentests decken jetzt auch einen vorgegebenen Monat und die Jahresansicht ab.  
 
 
 ### Changed  
@@ -28,6 +29,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * `lmo-showrestab.php`, `lmo-showresults.php` und `lmo-showtable.php` gibt es nicht mehr; Ergebnisse und Tabelle zeigt der `ErgebnisseController`.  
 * `lmo-showcross.php` gibt es nicht mehr; die Kreuztabelle zeigt der `KreuztabelleController`.  
 * `lmo-showprogram.php` gibt es nicht mehr; den Spielplan zeigt der `SpielplanController`.  
+* `lmo-cal.php`, `lmo-kocal.php` und `lmo-showcal.php` gibt es nicht mehr; den Kalender zeigt der `KalenderController`.  
 
 
 ### Fixed  
@@ -360,6 +362,7 @@ _Here we write changelog notes for the next version._
 * Add-ons in the new style: a file `addon/<name>/addon.php` returns an object implementing `Lmo\Addon\Addon`, plus the extension points it needs: `Lmo\Addon\MitSeiten` (own pages in the public part, asked after those of the LMO) and `Lmo\Addon\MitZusatzJeSpiel` (HTML at the end of every line in results and fixtures). `Lmo\Addon\Addons` loads them; the application and every controller know them through the `Kontext`. Described in `lmo/addon/readme.txt`. Old-style add-ons keep working; including `addon/stats/lmo-showprogram.inc.php` in the result line goes through the bridge `Lmo\Addon\AltesSpielInclude`.  
 * The cross table (`action=cross`) runs through the `Lmo\Web\Controller\KreuztabelleController` with the template `lmo/vorlagen/kreuztabelle.html.twig`.  
 * The fixtures (`action=program`) run through the `Lmo\Web\Controller\SpielplanController` with the template `lmo/vorlagen/spielplan.html.twig`; the tooltips for match report and note are built for results and fixtures together by `Lmo\Web\Seiten\SpielHinweis`. New extension point for add-ons: `Lmo\Addon\MitZusatzUnterSeite` (HTML below a page); an existing `addon/pdf/lmo-showprogram.inc.php` (team schedule) is included below the fixtures through it (bridge `Lmo\Addon\AltesSeitenInclude`).  
+* The calendar (`action=cal`) runs for league and cup through the `Lmo\Web\Controller\KalenderController` with the template `lmo/vorlagen/kalender.html.twig`. The page tests now also cover a given month and the year view.  
 
 
 ### Changed  
@@ -374,6 +377,7 @@ _Here we write changelog notes for the next version._
 * `lmo-showrestab.php`, `lmo-showresults.php` and `lmo-showtable.php` are gone; results and table are shown by the `ErgebnisseController`.  
 * `lmo-showcross.php` is gone; the cross table is shown by the `KreuztabelleController`.  
 * `lmo-showprogram.php` is gone; the fixtures are shown by the `SpielplanController`.  
+* `lmo-cal.php`, `lmo-kocal.php` and `lmo-showcal.php` are gone; the calendar is shown by the `KalenderController`.  
 
 
 ### Fixed  

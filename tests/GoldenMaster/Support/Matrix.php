@@ -75,6 +75,8 @@ final class Matrix
             $add($f . '&action=program&selteam=1');
             $add($f . '&action=graph');
             $add($f . '&action=cal');
+            $add($f . '&action=cal&cal=032025'); // ein vorgegebener Monat
+            $add($f . '&action=cal&cal=2025'); // Jahresansicht
             $add($f . '&action=info');
             $add($f . '&action=table&lmouserlang=English');
         }

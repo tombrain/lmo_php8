@@ -88,7 +88,7 @@
 <td align='left' height="50" valign="top" class="">20</td>
 <td align='left' height="50" valign="top" class="">21</td>
 <td align='left' height="50" valign="top" class="">22</td>
-<td align='left' height="50" valign="top" class="">23<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="1. Spieltag: &#10;Borussia M'gladbach - Bayer 04 Leverkusen">1. ST</a>
+<td align='left' height="50" valign="top" class="">23<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="1. Spieltag: &#10;Borussia M&#039;gladbach - Bayer 04 Leverkusen">1. ST</a>
 <br>
 </td>
 <td align='left' height="50" valign="top" class="lmoFrontMarkierung">24<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="1. Spieltag: &#10;Borussia Dortmund - Eintracht Frankfurt, &#10;RB Leipzig - VfL Bochum, &#10;TSG Hoffenheim - Holstein Kiel, &#10;SC Freiburg - VfB Stuttgart, &#10;FC Augsburg - Werder Bremen, &#10;VfL Wolfsburg - Bayern München, &#10;FSV Mainz 05 - 1.FC Union Berlin, &#10;FC St. Pauli - 1.FC Heidenheim">1. ST</a>
@@ -102,7 +102,7 @@
 <td align='left' height="50" valign="top" class="">28</td>
 <td align='left' height="50" valign="top" class="">29</td>
 <td align='left' height="50" valign="top" class="">30</td>
-<td align='left' height="50" valign="top" class="lmoFrontMarkierung">31<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="2. Spieltag: &#10;Bayer 04 Leverkusen - RB Leipzig, &#10;VfB Stuttgart - FSV Mainz 05, &#10;Bayern München - SC Freiburg, &#10;Eintracht Frankfurt - TSG Hoffenheim, &#10;1.FC Heidenheim - FC Augsburg, &#10;Werder Bremen - Borussia Dortmund, &#10;1.FC Union Berlin - FC St. Pauli, &#10;VfL Bochum - Borussia M'gladbach, &#10;Holstein Kiel - VfL Wolfsburg">2. ST</a>
+<td align='left' height="50" valign="top" class="lmoFrontMarkierung">31<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="2. Spieltag: &#10;Bayer 04 Leverkusen - RB Leipzig, &#10;VfB Stuttgart - FSV Mainz 05, &#10;Bayern München - SC Freiburg, &#10;Eintracht Frankfurt - TSG Hoffenheim, &#10;1.FC Heidenheim - FC Augsburg, &#10;Werder Bremen - Borussia Dortmund, &#10;1.FC Union Berlin - FC St. Pauli, &#10;VfL Bochum - Borussia M&#039;gladbach, &#10;Holstein Kiel - VfL Wolfsburg">2. ST</a>
 <br>
 </td>
 <td class="lmoLeer">&nbsp;</td>

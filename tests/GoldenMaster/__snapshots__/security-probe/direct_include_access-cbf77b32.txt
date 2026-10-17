@@ -217,11 +217,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-kocal.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-rueckrunde.php ===
 
 --- Dateiaenderungen ---
