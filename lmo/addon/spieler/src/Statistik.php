@@ -65,7 +65,7 @@ final class Statistik
                         $textspalten[$i] = true;
                     }
                 }
-                $zeilen[] = array_values($zeile);
+                $zeilen[] = $zeile;
             }
         }
         fclose($zeiger);
