@@ -2,6 +2,8 @@
 
 namespace Lmo\Tests\Unit\Web;
 
+use Lmo\Addon\Addons;
+use Lmo\Addon\MitSeiten;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Anfrage;
@@ -59,7 +61,7 @@ class AnwendungTest extends TestCase
     }
 
     /** @param list<Controller> $controller */
-    private function anwendung(array $controller): Anwendung
+    private function anwendung(array $controller, ?Addons $addons = null): Anwendung
     {
         return new Anwendung(
             new Konfiguration([]),
@@ -67,7 +69,8 @@ class AnwendungTest extends TestCase
             new LigaLader($this->ordner . '/', 'd.m.Y'),
             new Pfade($this->ordner, $this->ordner, 'IMG'),
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
-            $controller
+            $controller,
+            $addons ?? new Addons()
         );
     }
 
@@ -85,6 +88,35 @@ class AnwendungTest extends TestCase
         self::assertSame('3', $gesehen->anfrage->text('st'));
         self::assertSame('/lmo.php', $gesehen->adresse);
         self::assertSame('Zaehler', $gesehen->text[37], 'Sprachtexte fuer die Liga');
+    }
+
+    public function testSeitenDerAddonsNachDenenDesKerns(): void
+    {
+        $gesehen = null;
+        $addon = new class (self::controller('spieler', $gesehen), self::controller('table')) implements MitSeiten {
+            public function __construct(private \Lmo\Web\Controller\Controller $spieler, private \Lmo\Web\Controller\Controller $tabelle)
+            {
+            }
+
+            public function name(): string
+            {
+                return 'spieler';
+            }
+
+            public function controller(): array
+            {
+                return [$this->spieler, $this->tabelle];
+            }
+        };
+        $kern = null;
+        $anwendung = $this->anwendung([self::controller('table', $kern)], new Addons([$addon]));
+
+        $seite = $anwendung->bearbeite(new Anfrage(['file' => 'a.l98', 'action' => 'spieler']), '/lmo.php');
+        self::assertSame('Seite spieler', $seite?->html);
+        self::assertTrue($gesehen?->addons->hat('spieler'), 'der Kontext kennt die Addons');
+
+        $anwendung->bearbeite(new Anfrage(['file' => 'a.l98', 'action' => 'table']), '/lmo.php');
+        self::assertNotNull($kern, 'der Kern geht vor');
     }
 
     public function testOhneZustaendigenControllerNull(): void

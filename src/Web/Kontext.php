@@ -2,9 +2,11 @@
 
 namespace Lmo\Web;
 
+use Lmo\Addon\Addons;
+
 /**
  * Alles, was ein Controller fuer seine Seite bekommt: die Anfrage, die gewaehlte Seite (action),
- * die geladene Liga und die Umgebung der Installation. Ersetzt die globalen Variablen.
+ * die geladene Liga, die Umgebung der Installation und ihre Addons. Ersetzt die globalen Variablen.
  */
 final class Kontext
 {
@@ -23,6 +25,7 @@ final class Kontext
         public readonly string $adresse,
         public readonly Pfade $pfade,
         public readonly Darstellung $darstellung,
+        public readonly Addons $addons = new Addons(),
     ) {
     }
 }

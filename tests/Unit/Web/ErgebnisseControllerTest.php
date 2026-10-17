@@ -2,7 +2,10 @@
 
 namespace Lmo\Tests\Unit\Web;
 
+use Lmo\Addon\Addons;
+use Lmo\Addon\MitZusatzJeSpiel;
 use Lmo\Liga\LigaDatei;
+use Lmo\Liga\Spiel;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\ErgebnisseController;
@@ -36,7 +39,7 @@ class ErgebnisseControllerTest extends TestCase
      * @param array<string, int|string> $konfiguration Werte der cfg.txt, abweichend von der Vorgabe
      * @param list<string> $optionen weitere Zeilen fuer [Options] der Liga
      */
-    private static function kontext(string $action, array $parameter = [], array $konfiguration = [], array $optionen = []): Kontext
+    private static function kontext(string $action, array $parameter = [], array $konfiguration = [], array $optionen = [], ?Addons $addons = null): Kontext
     {
         $zeilen = array_merge(['[Options]', 'Teams=4', 'Rounds=3', 'Matches=2', 'Actual=2'], $optionen, [
             '[Teams]', '1=A', '2=B', '3=C', '4=D',
@@ -58,7 +61,8 @@ class ErgebnisseControllerTest extends TestCase
             $text,
             '/lmo.php',
             new Pfade(self::$ordner, dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
-            new Darstellung(static fn (string $datei, string $name, string $attribute): string => '')
+            new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
+            $addons ?? new Addons()
         );
     }
 
@@ -87,6 +91,28 @@ class ErgebnisseControllerTest extends TestCase
         self::assertTrue($c->zustaendig(self::kontext('table')));
         self::assertFalse($c->zustaendig(self::kontext('cross')));
         self::assertFalse($c->zustaendig(self::kontext('results', [], [], ['Type=1'])), 'Pokal');
+    }
+
+    public function testZusatzDerAddonsJeSpiel(): void
+    {
+        $addon = new class implements MitZusatzJeSpiel {
+            public function name(): string
+            {
+                return 'probe';
+            }
+
+            public function zusatzJeSpiel(Spiel $spiel, \Lmo\Web\Kontext $kontext): string
+            {
+                return '<i>' . $kontext->action . ' ' . $spiel->spieltag . '/' . $spiel->partie . '</i>';
+            }
+        };
+
+        $mit = (new ErgebnisseController())->zeige(self::kontext('results', [], [], [], new Addons([$addon])))->html;
+        self::assertStringContainsString('&nbsp;<i>results 2/1</i></td>', $mit);
+        self::assertStringContainsString('&nbsp;<i>results 2/2</i></td>', $mit);
+
+        $ohne = self::seite('results');
+        self::assertStringNotContainsString('<i>', $ohne);
     }
 
     public function testDruckbarUndAbschaltbar(): void
