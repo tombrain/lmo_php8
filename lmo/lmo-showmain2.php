@@ -288,7 +288,7 @@ if ($file != '' && $lmo_main_e->mitNewsticker()) {
 $output_tippspiel = '';
 if ($eintippspiel == 1) {
     if ($tipp_immeralle == 1 || str_contains($tipp_ligenzutippen, substr(basename($file), 0, -4))) {
-        $output_tippspiel .= $action != 'tipp' ? '<a <a href="' . $addm . 'tipp" title="' . $text['tipp'][0] . '">' . $text['tipp'][0] : $text['tipp'][0];
+        $output_tippspiel .= $action != 'tipp' ? '<a href="' . $addm . 'tipp" title="' . $text['tipp'][0] . '">' . $text['tipp'][0] . '</a>' : $text['tipp'][0];
     }
 }
 
