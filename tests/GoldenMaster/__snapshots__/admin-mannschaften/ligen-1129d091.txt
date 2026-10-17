@@ -1063,6 +1063,628 @@ GEAENDERT ligen/golden/basic.l98
  TI4=
 -AT4=0
 +AT4=
+NEU output/basic.l98-sp.html (18526 Bytes)
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>basic</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <style type="text/css">
+    body {background:#fff; color:#000; font:10pt sans-serif;}
+    caption, p, h1 {margin:3pt auto; text-align:center;}
+    table {margin:auto; max-width:200mm;}
+    #tabelle{border:1pt solid #000; border-radius:6px; margin:2pt auto;}
+    table table {border:1pt solid #000; margin:20pt 0 2pt; border-radius:6px; auto; width:100%;}
+    td {padding:10; white-space:nowrap;}
+    th {border-bottom:1px solid #000;}
+    h1 {font:14pt bolder;}
+    caption {font-weight:bolder; white-space:nowrap;}
+  </style>
+</head>
+<body>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+  <h1>basic</h1>
+  <table>
+    <tr>
+      <td>
+        <table>
+        <caption>1.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>2.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">4</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>3.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>4.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>5.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>6.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>7.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>8.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">4</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>9.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>10.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>11.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">4</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>12.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>13.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>14.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+      </td>
+    </tr>
+  </table>
+  <table id="tabelle">
+  <caption>Tabelle</caption>
+    <tr>
+      <th colspan=3>&nbsp;</th>
+      <th>Sp.</th>
+      <th colspan=2>Pkt.&nbsp;</th>
+      <th>Tore&nbsp;</th>
+      <th align="right" >&nbsp;&nbsp;Diff.</th>
+    </tr>
+    <tr>
+      <td align="right">1&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 8&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">3      </td>
+      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;2</td>
+    </tr>
+    <tr>
+      <td align="right">2&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 5&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">3&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 2&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">4&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 7&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">5&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 4&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">6&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 1&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">7&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 6&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">0      </td>
+      <td align="left">&nbsp;</td>      <td align="right">1:3&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;-2</td>
+    </tr>
+  </table>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+</body>
+</html>
 NEU output/basic.l98.php (2273 Bytes)
 <?php
 $zutore[1]=4;
@@ -1807,6 +2429,309 @@ GEAENDERT ligen/golden/basic.l98
 +AT3=
  TA4=0
  TB4=0
+GEAENDERT output/basic.l98-sp.html
+--- vorher
++++ nachher
+@@ -47,32 +47,10 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 6&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">1</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>2.  Spieltag</caption>
+           <tr>
+             <td>&nbsp;</td>
+-            <td align="right">Mannschaft 4</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">2</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+             <td align="right">Mannschaft 6</td>
+             <td></td>
+@@ -96,5 +74,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>3.  Spieltag</caption>
+@@ -121,17 +99,6 @@
+             <td align="left">_</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 2&nbsp;</td>
+-            <td align="right">1</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>4.  Spieltag</caption>
+@@ -158,17 +125,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 7</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>5.  Spieltag</caption>
+@@ -195,17 +151,6 @@
+             <td align="left">3</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 5&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>6.  Spieltag</caption>
+@@ -244,5 +189,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
++      </small></p>
+         <table>
+         <caption>7.  Spieltag</caption>
+@@ -269,17 +214,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 1&nbsp;</td>
+-            <td align="right">4</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>8.  Spieltag</caption>
+@@ -306,32 +240,10 @@
+             <td align="left">4</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 6</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>9.  Spieltag</caption>
+           <tr>
+             <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 4&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+             <td align="right">Mannschaft 1</td>
+             <td></td>
+@@ -355,5 +267,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>10.  Spieltag</caption>
+@@ -380,17 +292,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 2</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">4</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>11.  Spieltag</caption>
+@@ -417,17 +318,6 @@
+             <td align="left">1</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 7&nbsp;</td>
+-            <td align="right">4</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>12.  Spieltag</caption>
+@@ -454,17 +344,6 @@
+             <td align="left">2</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 5</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>13.  Spieltag</caption>
+@@ -503,5 +382,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
++      </small></p>
+         <table>
+         <caption>14.  Spieltag</caption>
+@@ -528,17 +407,6 @@
+             <td align="left">_</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 1</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+       </td>
+     </tr>
+@@ -556,14 +424,14 @@
+       <td align="right">1&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 8&nbsp;</td>
++      <td>Mannschaft 5&nbsp;</td>
+       <td align="right">1&nbsp;</td>
+-      <td align="right">3      </td>
+-      <td align="left">&nbsp;</td>      <td align="right">3:1&nbsp;</td>
+-      <td align="right">&nbsp;&nbsp;2</td>
++      <td align="right">1      </td>
++      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;0</td>
+     </tr>
+     <tr>
+       <td align="right">2&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 5&nbsp;</td>
++      <td>Mannschaft 2&nbsp;</td>
+       <td align="right">1&nbsp;</td>
+       <td align="right">1      </td>
+@@ -574,7 +442,7 @@
+       <td align="right">3&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 2&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
+-      <td align="right">1      </td>
++      <td>Mannschaft 7&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0      </td>
+       <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+       <td align="right">&nbsp;&nbsp;0</td>
+@@ -583,5 +451,5 @@
+       <td align="right">4&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 7&nbsp;</td>
++      <td>Mannschaft 6&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0      </td>
+@@ -607,13 +475,4 @@
+       <td align="right">&nbsp;&nbsp;0</td>
+     </tr>
+-    <tr>
+-      <td align="right">7&nbsp;</td>
+-      <td>&nbsp;</td>
+-      <td>Mannschaft 6&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
+-      <td align="right">0      </td>
+-      <td align="left">&nbsp;</td>      <td align="right">1:3&nbsp;</td>
+-      <td align="right">&nbsp;&nbsp;-2</td>
+-    </tr>
+   </table>
+   <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
 GEAENDERT output/basic.l98.php
 --- vorher
 +++ nachher
@@ -2356,6 +3281,142 @@ GEAENDERT ligen/golden/basic.l98
 +TOR1=0
  TOR2=0
  STDA=0
+GEAENDERT output/basic.l98-sp.html
+--- vorher
++++ nachher
+@@ -48,5 +48,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>2.  Spieltag</caption>
+@@ -74,5 +74,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>3.  Spieltag</caption>
+@@ -100,5 +100,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>4.  Spieltag</caption>
+@@ -126,5 +126,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>5.  Spieltag</caption>
+@@ -152,5 +152,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>6.  Spieltag</caption>
+@@ -189,5 +189,5 @@
+           </tr>
+         </table>
+-      </small></p>
++      <p><small>Spielfrei: Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>7.  Spieltag</caption>
+@@ -215,5 +215,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>8.  Spieltag</caption>
+@@ -241,5 +241,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>9.  Spieltag</caption>
+@@ -267,5 +267,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>10.  Spieltag</caption>
+@@ -293,5 +293,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>11.  Spieltag</caption>
+@@ -319,5 +319,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>12.  Spieltag</caption>
+@@ -345,5 +345,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>13.  Spieltag</caption>
+@@ -382,5 +382,5 @@
+           </tr>
+         </table>
+-      </small></p>
++      <p><small>Spielfrei: Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>14.  Spieltag</caption>
+@@ -408,5 +408,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+       </td>
+     </tr>
+@@ -442,5 +442,5 @@
+       <td align="right">3&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 7&nbsp;</td>
++      <td>Neue Mannschaft&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0      </td>
+@@ -451,5 +451,5 @@
+       <td align="right">4&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 6&nbsp;</td>
++      <td>Mannschaft 7&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0      </td>
+@@ -460,5 +460,5 @@
+       <td align="right">5&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 4&nbsp;</td>
++      <td>Mannschaft 6&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0      </td>
+@@ -469,4 +469,13 @@
+       <td align="right">6&nbsp;</td>
+       <td>&nbsp;</td>
++      <td>Mannschaft 4&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0      </td>
++      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;0</td>
++    </tr>
++    <tr>
++      <td align="right">7&nbsp;</td>
++      <td>&nbsp;</td>
+       <td>Mannschaft 1&nbsp;</td>
+       <td align="right">0&nbsp;</td>
 
 === golden/basic.l98: Nummer, die es nicht gibt ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -3849,6 +4910,635 @@ GEAENDERT ligen/golden/penalties.l98
  TI4=
 -AT4=0
 +AT4=
+NEU output/penalties.l98-sp.html (18514 Bytes)
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>penalties</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <style type="text/css">
+    body {background:#fff; color:#000; font:10pt sans-serif;}
+    caption, p, h1 {margin:3pt auto; text-align:center;}
+    table {margin:auto; max-width:200mm;}
+    #tabelle{border:1pt solid #000; border-radius:6px; margin:2pt auto;}
+    table table {border:1pt solid #000; margin:20pt 0 2pt; border-radius:6px; auto; width:100%;}
+    td {padding:10; white-space:nowrap;}
+    th {border-bottom:1px solid #000;}
+    h1 {font:14pt bolder;}
+    caption {font-weight:bolder; white-space:nowrap;}
+  </style>
+</head>
+<body>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+  <h1>penalties</h1>
+  <table>
+    <tr>
+      <td>
+        <table>
+        <caption>1.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>2.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>3.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>4.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>5.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>6.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>7.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>8.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>9.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>10.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>11.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 8</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>12.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>13.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 7&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>14.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 7</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 8&nbsp;</td>
+            <td align="right">3</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+      </td>
+    </tr>
+  </table>
+  <table id="tabelle">
+  <caption>Tabelle</caption>
+    <tr>
+      <th colspan=3>&nbsp;</th>
+      <th>Sp.</th>
+      <th colspan=2>Pkt.&nbsp;</th>
+      <th>Tore&nbsp;</th>
+      <th align="right" >&nbsp;&nbsp;Diff.</th>
+    </tr>
+    <tr>
+      <td align="right">1&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 6&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">3:</td>
+      <td align="left">0&nbsp;</td>
+      <td align="right">2:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;2</td>
+    </tr>
+    <tr>
+      <td align="right">2&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 1&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">0&nbsp;</td>
+      <td align="right">3:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;3</td>
+    </tr>
+    <tr>
+      <td align="right">3&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 5&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">0&nbsp;</td>
+      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">4&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 4&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">0&nbsp;</td>
+      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">5&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 2&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">0&nbsp;</td>
+      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">6&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 8&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">3&nbsp;</td>
+      <td align="right">0:2&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;-2</td>
+    </tr>
+    <tr>
+      <td align="right">7&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 7&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">0:</td>
+      <td align="left">3&nbsp;</td>
+      <td align="right">0:3&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;-3</td>
+    </tr>
+  </table>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+</body>
+</html>
 NEU output/penalties.l98.php (2007 Bytes)
 <?php
 $zutore[1]=5;
@@ -4586,6 +6276,301 @@ GEAENDERT ligen/golden/penalties.l98
 +AT3=
  TA4=0
  TB4=0
+GEAENDERT output/penalties.l98-sp.html
+--- vorher
++++ nachher
+@@ -47,32 +47,10 @@
+             <td align="left">_</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 6&nbsp;</td>
+-            <td align="right">0</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>2.  Spieltag</caption>
+           <tr>
+             <td>&nbsp;</td>
+-            <td align="right">Mannschaft 4</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">2</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+             <td align="right">Mannschaft 6</td>
+             <td></td>
+@@ -96,5 +74,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>3.  Spieltag</caption>
+@@ -121,17 +99,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 2&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">0</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>4.  Spieltag</caption>
+@@ -158,17 +125,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 7</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">2</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>5.  Spieltag</caption>
+@@ -195,17 +151,6 @@
+             <td align="left">1</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 5&nbsp;</td>
+-            <td align="right">2</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>6.  Spieltag</caption>
+@@ -244,5 +189,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
++      </small></p>
+         <table>
+         <caption>7.  Spieltag</caption>
+@@ -269,17 +214,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 1&nbsp;</td>
+-            <td align="right">_</td>
+-            <td>:</td>
+-            <td align="left">_</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>8.  Spieltag</caption>
+@@ -306,32 +240,10 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 6</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">0</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>9.  Spieltag</caption>
+           <tr>
+             <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 4&nbsp;</td>
+-            <td align="right">1</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+             <td align="right">Mannschaft 1</td>
+             <td></td>
+@@ -355,5 +267,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>10.  Spieltag</caption>
+@@ -380,17 +292,6 @@
+             <td align="left">0</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 2</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">0</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>11.  Spieltag</caption>
+@@ -417,17 +318,6 @@
+             <td align="left">3</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 8</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 7&nbsp;</td>
+-            <td align="right">2</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>12.  Spieltag</caption>
+@@ -454,17 +344,6 @@
+             <td align="left">1</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 5</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">2</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>13.  Spieltag</caption>
+@@ -503,5 +382,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 8&nbsp;&nbsp;      </small></p>
++      </small></p>
+         <table>
+         <caption>14.  Spieltag</caption>
+@@ -528,17 +407,6 @@
+             <td align="left">2</td>
+           </tr>
+-          <tr>
+-            <td>&nbsp;</td>
+-            <td align="right">Mannschaft 1</td>
+-            <td></td>
+-            <td>-</td>
+-            <td></td>
+-            <td>Mannschaft 8&nbsp;</td>
+-            <td align="right">3</td>
+-            <td>:</td>
+-            <td align="left">3</td>
+-          </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
+       </td>
+     </tr>
+@@ -556,20 +424,20 @@
+       <td align="right">1&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 6&nbsp;</td>
++      <td>Mannschaft 1&nbsp;</td>
+       <td align="right">1&nbsp;</td>
+-      <td align="right">3:</td>
++      <td align="right">0:</td>
+       <td align="left">0&nbsp;</td>
+-      <td align="right">2:0&nbsp;</td>
+-      <td align="right">&nbsp;&nbsp;2</td>
++      <td align="right">3:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;3</td>
+     </tr>
+     <tr>
+       <td align="right">2&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 1&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
++      <td>Mannschaft 6&nbsp;</td>
++      <td align="right">0&nbsp;</td>
+       <td align="right">0:</td>
+       <td align="left">0&nbsp;</td>
+-      <td align="right">3:0&nbsp;</td>
+-      <td align="right">&nbsp;&nbsp;3</td>
++      <td align="right">0:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;0</td>
+     </tr>
+     <tr>
+@@ -606,14 +474,4 @@
+       <td align="right">6&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 8&nbsp;</td>
+-      <td align="right">1&nbsp;</td>
+-      <td align="right">0:</td>
+-      <td align="left">3&nbsp;</td>
+-      <td align="right">0:2&nbsp;</td>
+-      <td align="right">&nbsp;&nbsp;-2</td>
+-    </tr>
+-    <tr>
+-      <td align="right">7&nbsp;</td>
+-      <td>&nbsp;</td>
+       <td>Mannschaft 7&nbsp;</td>
+       <td align="right">1&nbsp;</td>
 GEAENDERT output/penalties.l98.php
 --- vorher
 +++ nachher
@@ -5140,6 +7125,150 @@ GEAENDERT ligen/golden/penalties.l98
 +SM=0
  TOR1=0
  TOR2=0
+GEAENDERT output/penalties.l98-sp.html
+--- vorher
++++ nachher
+@@ -48,5 +48,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>2.  Spieltag</caption>
+@@ -74,5 +74,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>3.  Spieltag</caption>
+@@ -100,5 +100,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>4.  Spieltag</caption>
+@@ -126,5 +126,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>5.  Spieltag</caption>
+@@ -152,5 +152,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>6.  Spieltag</caption>
+@@ -189,5 +189,5 @@
+           </tr>
+         </table>
+-      </small></p>
++      <p><small>Spielfrei: Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>7.  Spieltag</caption>
+@@ -215,5 +215,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>8.  Spieltag</caption>
+@@ -241,5 +241,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>9.  Spieltag</caption>
+@@ -267,5 +267,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>10.  Spieltag</caption>
+@@ -293,5 +293,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>11.  Spieltag</caption>
+@@ -319,5 +319,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>12.  Spieltag</caption>
+@@ -345,5 +345,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>13.  Spieltag</caption>
+@@ -382,5 +382,5 @@
+           </tr>
+         </table>
+-      </small></p>
++      <p><small>Spielfrei: Neue Mannschaft&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>14.  Spieltag</caption>
+@@ -408,5 +408,5 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;      </small></p>
++      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Neue Mannschaft&nbsp;&nbsp;      </small></p>
+       </td>
+     </tr>
+@@ -434,5 +434,5 @@
+       <td align="right">2&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 6&nbsp;</td>
++      <td>Neue Mannschaft&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0:</td>
+@@ -444,5 +444,5 @@
+       <td align="right">3&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 5&nbsp;</td>
++      <td>Mannschaft 6&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0:</td>
+@@ -454,5 +454,5 @@
+       <td align="right">4&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 4&nbsp;</td>
++      <td>Mannschaft 5&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0:</td>
+@@ -464,5 +464,5 @@
+       <td align="right">5&nbsp;</td>
+       <td>&nbsp;</td>
+-      <td>Mannschaft 2&nbsp;</td>
++      <td>Mannschaft 4&nbsp;</td>
+       <td align="right">0&nbsp;</td>
+       <td align="right">0:</td>
+@@ -474,4 +474,14 @@
+       <td align="right">6&nbsp;</td>
+       <td>&nbsp;</td>
++      <td>Mannschaft 2&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0:</td>
++      <td align="left">0&nbsp;</td>
++      <td align="right">0:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;0</td>
++    </tr>
++    <tr>
++      <td align="right">7&nbsp;</td>
++      <td>&nbsp;</td>
+       <td>Mannschaft 7&nbsp;</td>
+       <td align="right">1&nbsp;</td>
 
 === golden/penalties.l98: Nummer, die es nicht gibt ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6291,6 +8420,352 @@ GEAENDERT ligen/golden/special.l98
  TI3=
 -AT3=0
 +AT3=
+NEU output/special.l98-sp.html (10530 Bytes)
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>special</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <style type="text/css">
+    body {background:#fff; color:#000; font:10pt sans-serif;}
+    caption, p, h1 {margin:3pt auto; text-align:center;}
+    table {margin:auto; max-width:200mm;}
+    #tabelle{border:1pt solid #000; border-radius:6px; margin:2pt auto;}
+    table table {border:1pt solid #000; margin:20pt 0 2pt; border-radius:6px; auto; width:100%;}
+    td {padding:10; white-space:nowrap;}
+    th {border-bottom:1px solid #000;}
+    h1 {font:14pt bolder;}
+    caption {font-weight:bolder; white-space:nowrap;}
+  </style>
+</head>
+<body>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+  <h1>special</h1>
+  <table>
+    <tr>
+      <td>
+        <table>
+        <caption>1.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>2.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>3.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>4.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>5.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>6.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">0</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>7.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 6</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">2</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>8.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 4&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">3</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">1</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>9.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 2</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 1&nbsp;</td>
+            <td align="right">1</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 4</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 5&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+        <table>
+        <caption>10.  Spieltag</caption>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 5</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 2&nbsp;</td>
+            <td align="right">_</td>
+            <td>:</td>
+            <td align="left">_</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="right">Mannschaft 1</td>
+            <td></td>
+            <td>-</td>
+            <td></td>
+            <td>Mannschaft 6&nbsp;</td>
+            <td align="right">2</td>
+            <td>:</td>
+            <td align="left">0</td>
+          </tr>
+        </table>
+      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+      </td>
+    </tr>
+  </table>
+  <table id="tabelle">
+  <caption>Tabelle</caption>
+    <tr>
+      <th colspan=3>&nbsp;</th>
+      <th>Sp.</th>
+      <th colspan=2>Pkt.&nbsp;</th>
+      <th>Tore&nbsp;</th>
+      <th align="right" >&nbsp;&nbsp;Diff.</th>
+    </tr>
+    <tr>
+      <td align="right">1&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 5&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">2      </td>
+      <td align="left">&nbsp;</td>      <td align="right">1:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;1</td>
+    </tr>
+    <tr>
+      <td align="right">2&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 6&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">3&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 4&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">1:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+    <tr>
+      <td align="right">4&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 1&nbsp;</td>
+      <td align="right">1&nbsp;</td>
+      <td align="right">1      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:1&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;-1</td>
+    </tr>
+    <tr>
+      <td align="right">5&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Mannschaft 2&nbsp;</td>
+      <td align="right">0&nbsp;</td>
+      <td align="right">0      </td>
+      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
+      <td align="right">&nbsp;&nbsp;0</td>
+    </tr>
+  </table>
+  <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">zurück<\/a><\/small>');</script>
+</body>
+</html>
 NEU output/special.l98.php (1857 Bytes)
 <?php
 $zutore[1]=3;
@@ -7128,6 +9603,83 @@ GEAENDERT ligen/golden/special.l98
 -SP3=0
  NT3=
  BE3=
+GEAENDERT output/special.l98-sp.html
+--- vorher
++++ nachher
+@@ -48,5 +48,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>2.  Spieltag</caption>
+@@ -74,5 +73,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>3.  Spieltag</caption>
+@@ -100,5 +98,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>4.  Spieltag</caption>
+@@ -126,5 +123,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>5.  Spieltag</caption>
+@@ -152,5 +148,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>6.  Spieltag</caption>
+@@ -178,5 +173,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 2&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>7.  Spieltag</caption>
+@@ -204,5 +198,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 5&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>8.  Spieltag</caption>
+@@ -230,5 +223,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>9.  Spieltag</caption>
+@@ -256,5 +248,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 6&nbsp;&nbsp;      </small></p>
+         <table>
+         <caption>10.  Spieltag</caption>
+@@ -282,5 +273,4 @@
+           </tr>
+         </table>
+-      <p><small>Spielfrei: Mannschaft 4&nbsp;&nbsp;      </small></p>
+       </td>
+     </tr>
+@@ -334,4 +324,13 @@
+       <td align="right">5&nbsp;</td>
+       <td>&nbsp;</td>
++      <td>Neue Mannschaft&nbsp;</td>
++      <td align="right">0&nbsp;</td>
++      <td align="right">0      </td>
++      <td align="left">&nbsp;</td>      <td align="right">0:0&nbsp;</td>
++      <td align="right">&nbsp;&nbsp;0</td>
++    </tr>
++    <tr>
++      <td align="right">6&nbsp;</td>
++      <td>&nbsp;</td>
+       <td>Mannschaft 2&nbsp;</td>
+       <td align="right">0&nbsp;</td>
 
 === golden/special.l98: Nummer, die es nicht gibt ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

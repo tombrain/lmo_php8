@@ -47,6 +47,11 @@ final class Fixture
         }
         foreach ($ligen as $datei) {
             $this->runner->request('file=' . $datei . '&action=stats');
+            // Druckansicht: die Dateien entstehen beim Speichern; fuer die Links auf Ergebnis- und
+            // Tabellenseite genuegt, dass es sie gibt (ihr Inhalt: HtmlExportTest)
+            foreach (['-st.html', '-sp.html'] as $endung) {
+                touch($this->app->path() . '/output/' . basename($datei) . $endung);
+            }
         }
     }
 
