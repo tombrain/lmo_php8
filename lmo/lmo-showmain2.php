@@ -241,10 +241,7 @@ if ($file != '' && isset($stand)) {
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr>
 <?php
-        if (!$lmo_main_e->istPokal() && isset($druck) && $druck == 1) {
-            include(PATH_TO_LMO . '/lmo-savehtml.php');
-            include(PATH_TO_LMO . '/lmo-savehtml1.php');
-        }?>
+        // die Dateien schreibt das Speichern der Liga (lmo-saveliga.php); hier nur die Links darauf ?>
             <td align="center"><?php
         if (!$lmo_main_e->istPokal() && isset($druck) && $druck == 1 && file_exists(PATH_TO_LMO . '/' . $diroutput . basename($file) . '-st.html')) {echo '<a href="' . URL_TO_LMO . '/' . $diroutput . basename($file) . '-st.html" title="' . $text[477] . '">' . $text[478] . '</a>&nbsp;';}?>
             </td>

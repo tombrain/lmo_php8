@@ -39,6 +39,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var int|string $einzustats Einstellung aus cfg.txt
  * @var int|string $einzutore Einstellung aus cfg.txt
  * @var int|string $einzutoretab Einstellung aus cfg.txt
+ * @var int|string $einsavehtml Einstellung aus cfg.txt
  */
 
 require_once(PATH_TO_LMO."/lmo-admintest.php");
@@ -60,6 +61,14 @@ if (($_SESSION['lmouserok']==2)||($_SESSION['lmouserok']==1)) {
           unlink(PATH_TO_LMO.'/'.$diroutput.'/viewer_'.substr($file,0,-4).'_count.txt');
         }
         fclose($datei);
+        // Druckansicht: Spieltag mit Tabelle (<liga>-st.html) und Spielplan (<liga>-sp.html) fuer den
+        // gespeicherten Spieltag; in eigenem Bereich, damit ihre Variablen die Seite nicht stoeren
+        if ($einsavehtml == 1 && !$lmo_liga->istPokal()) {
+          (static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, array $text, $st, string $file, string $diroutput, string $defdateformat): void {
+            include(PATH_TO_LMO.'/lmo-savehtml.php');
+            include(PATH_TO_LMO.'/lmo-savehtml1.php');
+          })($lmo_liga, $text, $st ?? 0, $file, $diroutput, $defdateformat);
+        }
       }
       else {
         echo getMessage($text[283],true);
