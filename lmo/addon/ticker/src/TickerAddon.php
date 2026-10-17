@@ -32,7 +32,6 @@ final class TickerAddon implements MitRahmenteilen
         $ticker = new Ticker((int) $wert('tickerart', 'tickerart'), $wert('tickernotizen', 'notizanzeigen') == 1, $kontext->text, $kontext->texteVon('ticker'));
 
         return ['Newsticker' => $ticker->html(
-            $kontext->pfade->vorlagen,
             $kontext->pfade->adresse,
             $ticker->text([$liga->liga]),
             $wert('tickertitel', 'tickertitel') == 1,

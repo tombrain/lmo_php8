@@ -6,5 +6,6 @@ parameters:
         max: 80599
     paths:
         - src
+        - lmo/addon/ticker/src
         - bin/lmo-install
         - lmo/lmo-version.php

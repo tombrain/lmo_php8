@@ -96,18 +96,17 @@ final class Ticker
     }
 
     /**
-     * Der Ticker als HTML: Lauftext mit jQuery Marquee.
+     * Der Ticker als HTML: Lauftext mit jQuery Marquee (Vorlage im Ordner vorlagen/ des Addons).
      *
-     * @param string $vorlagen Ordner der Twig-Vorlagen
      * @param string $adresse Adresse des LMO (URL_TO_LMO), fuer die Skripte unter js/
      * @param string $lauftext text()
      * @param bool $titel Ueberschrift zeigen (tickertitel)
      * @param string $breite Breite in Buchstaben (breite)
      * @param string $geschwindigkeit Dauer eines Durchlaufs in Millisekunden (geschwindigkeit)
      */
-    public function html(string $vorlagen, string $adresse, string $lauftext, bool $titel, string $breite, string $geschwindigkeit): string
+    public function html(string $adresse, string $lauftext, bool $titel, string $breite, string $geschwindigkeit): string
     {
-        return Vorlagen::zeige($vorlagen, 'ticker.html.twig', [
+        return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'ticker.html.twig', [
             'adresse' => $adresse,
             'titel' => $titel ? $this->tickerText[0] : '',
             'lauftext' => $lauftext,
