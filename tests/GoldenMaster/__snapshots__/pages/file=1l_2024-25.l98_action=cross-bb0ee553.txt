@@ -76,7 +76,7 @@
 <a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=14" title="FC Augsburg: die Ergebnisse dieser Mannschaft hervorheben">FCA</a>
 </th>
 <th align='center'>
-<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="Borussia M'gladbach: die Ergebnisse dieser Mannschaft hervorheben">BMG</a>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="Borussia M&#039;gladbach: die Ergebnisse dieser Mannschaft hervorheben">BMG</a>
 </th>
 <th align='center'>
 <a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=16" title="SC Freiburg: die Ergebnisse dieser Mannschaft hervorheben">SCF</a>
@@ -135,7 +135,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Bayern München - FC Augsburg &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Bayern München - Borussia M'gladbach &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Bayern München - Borussia M&#039;gladbach &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="Bayern München - SC Freiburg &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
@@ -197,7 +197,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Bayer 04 Leverkusen - FC Augsburg &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Bayer 04 Leverkusen - Borussia M'gladbach &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Bayer 04 Leverkusen - Borussia M&#039;gladbach &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Bayer 04 Leverkusen - SC Freiburg &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
@@ -259,7 +259,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="FSV Mainz 05 - FC Augsburg &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="FSV Mainz 05 - Borussia M'gladbach &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="FSV Mainz 05 - Borussia M&#039;gladbach &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="FSV Mainz 05 - SC Freiburg &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
@@ -321,7 +321,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="VfB Stuttgart - FC Augsburg &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="VfB Stuttgart - Borussia M'gladbach &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="VfB Stuttgart - Borussia M&#039;gladbach &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="VfB Stuttgart - SC Freiburg &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
@@ -383,7 +383,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="VfL Bochum - FC Augsburg &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="VfL Bochum - Borussia M'gladbach &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="VfL Bochum - Borussia M&#039;gladbach &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="VfL Bochum - SC Freiburg &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
@@ -445,7 +445,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="RB Leipzig - FC Augsburg &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="RB Leipzig - Borussia M'gladbach &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="RB Leipzig - Borussia M&#039;gladbach &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=8" title="RB Leipzig - SC Freiburg &#10;(8. Spieltag, Sat. 26.10.2024 15:30)">26.10.</a>
@@ -507,7 +507,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=2" title="1.FC Heidenheim - FC Augsburg &#10;(2. Spieltag, Sat. 31.08.2024 15:30)">31.08.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="1.FC Heidenheim - Borussia M'gladbach &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="1.FC Heidenheim - Borussia M&#039;gladbach &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="1.FC Heidenheim - SC Freiburg &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
@@ -569,7 +569,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="1.FC Union Berlin - FC Augsburg &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="1.FC Union Berlin - Borussia M'gladbach &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="1.FC Union Berlin - Borussia M&#039;gladbach &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=10" title="1.FC Union Berlin - SC Freiburg &#10;(10. Spieltag, Sat. 09.11.2024 15:30)">09.11.</a>
@@ -631,7 +631,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="TSG Hoffenheim - FC Augsburg &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="TSG Hoffenheim - Borussia M'gladbach &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="TSG Hoffenheim - Borussia M&#039;gladbach &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="TSG Hoffenheim - SC Freiburg &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
@@ -693,7 +693,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="Werder Bremen - FC Augsburg &#10;(18. Spieltag, Sat. 18.01.2025 15:30)">18.01.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="Werder Bremen - Borussia M'gladbach &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="Werder Bremen - Borussia M&#039;gladbach &#10;(26. Spieltag, Sat. 15.03.2025 15:30)">15.03.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="Werder Bremen - SC Freiburg &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
@@ -755,7 +755,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=15" title="Holstein Kiel - FC Augsburg &#10;(15. Spieltag, Sat. 21.12.2024 15:30)">21.12.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Holstein Kiel - Borussia M'gladbach &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="Holstein Kiel - Borussia M&#039;gladbach &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="Holstein Kiel - SC Freiburg &#10;(33. Spieltag, Sat. 10.05.2025 15:30)">10.05.</a>
@@ -817,7 +817,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="FC St. Pauli - FC Augsburg &#10;(20. Spieltag, Sat. 01.02.2025 15:30)">01.02.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="FC St. Pauli - Borussia M'gladbach &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="FC St. Pauli - Borussia M&#039;gladbach &#10;(28. Spieltag, Sat. 05.04.2025 15:30)">05.04.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="FC St. Pauli - SC Freiburg &#10;(22. Spieltag, Sat. 15.02.2025 15:30)">15.02.</a>
@@ -879,7 +879,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Borussia Dortmund - FC Augsburg &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="Borussia Dortmund - Borussia M'gladbach &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="Borussia Dortmund - Borussia M&#039;gladbach &#10;(30. Spieltag, Sat. 19.04.2025 15:30)">19.04.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Borussia Dortmund - SC Freiburg &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
@@ -941,7 +941,7 @@
 </td>
 <td class='lmoLeer'>&nbsp;</td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="FC Augsburg - Borussia M'gladbach &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=6" title="FC Augsburg - Borussia M&#039;gladbach &#10;(6. Spieltag, Sat. 05.10.2024 15:30)">05.10.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="FC Augsburg - SC Freiburg &#10;(24. Spieltag, Sat. 01.03.2025 15:30)">01.03.</a>
@@ -960,64 +960,64 @@
 </tr>
 <tr>
 <th align='right'>
-<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="die Ergebnisse dieser Mannschaft hervorheben">Borussia M'gladbach</a>
+<a href="/lmo/lmo.php?action=cross&amp;file=1l_2024-25.l98&amp;croteam=15" title="die Ergebnisse dieser Mannschaft hervorheben">Borussia M&#039;gladbach</a>
 </th>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="Borussia M'gladbach - Bayern München &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="Borussia M&#039;gladbach - Bayern München &#10;(16. Spieltag, Sat. 11.01.2025 15:30)">11.01.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="Borussia M'gladbach - Bayer 04 Leverkusen &#10;(1. Spieltag, Fri. 23.08.2024 20:30)">23.08.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=1" title="Borussia M&#039;gladbach - Bayer 04 Leverkusen &#10;(1. Spieltag, Fri. 23.08.2024 20:30)">23.08.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Borussia M'gladbach - FSV Mainz 05 &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="Borussia M&#039;gladbach - FSV Mainz 05 &#10;(25. Spieltag, Sat. 08.03.2025 15:30)">08.03.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="Borussia M'gladbach - VfB Stuttgart &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=3" title="Borussia M&#039;gladbach - VfB Stuttgart &#10;(3. Spieltag, Sat. 14.09.2024 15:30)">14.09.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="Borussia M'gladbach - VfL Bochum &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="Borussia M&#039;gladbach - VfL Bochum &#10;(19. Spieltag, Sat. 25.01.2025 15:30)">25.01.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Borussia M'gladbach - RB Leipzig &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="Borussia M&#039;gladbach - RB Leipzig &#10;(27. Spieltag, Sat. 29.03.2025 15:30)">29.03.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Borussia M'gladbach - 1.FC Heidenheim &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="Borussia M&#039;gladbach - 1.FC Heidenheim &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Borussia M'gladbach - 1.FC Union Berlin &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=5" title="Borussia M&#039;gladbach - 1.FC Union Berlin &#10;(5. Spieltag, Sat. 28.09.2024 15:30)">28.09.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="Borussia M'gladbach - TSG Hoffenheim &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="Borussia M&#039;gladbach - TSG Hoffenheim &#10;(32. Spieltag, Sat. 03.05.2025 15:30)">03.05.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Borussia M'gladbach - Werder Bremen &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="Borussia M&#039;gladbach - Werder Bremen &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="Borussia M'gladbach - Holstein Kiel &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=14" title="Borussia M&#039;gladbach - Holstein Kiel &#10;(14. Spieltag, Sat. 14.12.2024 15:30)">14.12.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Borussia M'gladbach - FC St. Pauli &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=11" title="Borussia M&#039;gladbach - FC St. Pauli &#10;(11. Spieltag, Sat. 23.11.2024 15:30)">23.11.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Borussia M'gladbach - Borussia Dortmund &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Borussia M&#039;gladbach - Borussia Dortmund &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Borussia M'gladbach - FC Augsburg &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="Borussia M&#039;gladbach - FC Augsburg &#10;(23. Spieltag, Sat. 22.02.2025 15:30)">22.02.</a>
 </td>
 <td class='lmoLeer'>&nbsp;</td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Borussia M'gladbach - SC Freiburg &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="Borussia M&#039;gladbach - SC Freiburg &#10;(29. Spieltag, Sat. 12.04.2025 15:30)">12.04.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="Borussia M'gladbach - VfL Wolfsburg &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="Borussia M&#039;gladbach - VfL Wolfsburg &#10;(34. Spieltag, Sat. 17.05.2025 15:30)">17.05.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Borussia M'gladbach - Eintracht Frankfurt &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="Borussia M&#039;gladbach - Eintracht Frankfurt &#10;(21. Spieltag, Sat. 08.02.2025 15:30)">08.02.</a>
 </td>
 <th align='left'>
 <acronym title=''>
 </acronym>
-<acronym title='Borussia M´gladbach'>BMG</acronym>
+<acronym title='Borussia M&#039;gladbach'>BMG</acronym>
 </th>
 </tr>
 <tr>
@@ -1067,7 +1067,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=7" title="SC Freiburg - FC Augsburg &#10;(7. Spieltag, Sat. 19.10.2024 15:30)">19.10.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="SC Freiburg - Borussia M´gladbach &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=12" title="SC Freiburg - Borussia M&#039;gladbach &#10;(12. Spieltag, Sat. 30.11.2024 15:30)">30.11.</a>
 </td>
 <td class='lmoLeer'>&nbsp;</td>
 <td align='center'>
@@ -1129,7 +1129,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=9" title="VfL Wolfsburg - FC Augsburg &#10;(9. Spieltag, Sat. 02.11.2024 15:30)">02.11.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="VfL Wolfsburg - Borussia M´gladbach &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="VfL Wolfsburg - Borussia M&#039;gladbach &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="VfL Wolfsburg - SC Freiburg &#10;(31. Spieltag, Sat. 26.04.2025 15:30)">26.04.</a>
@@ -1191,7 +1191,7 @@
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=13" title="Eintracht Frankfurt - FC Augsburg &#10;(13. Spieltag, Sat. 07.12.2024 15:30)">07.12.</a>
 </td>
 <td align='center'>
-<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="Eintracht Frankfurt - Borussia M´gladbach &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
+<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=4" title="Eintracht Frankfurt - Borussia M&#039;gladbach &#10;(4. Spieltag, Sat. 21.09.2024 15:30)">21.09.</a>
 </td>
 <td align='center'>
 <a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="Eintracht Frankfurt - SC Freiburg &#10;(17. Spieltag, Wed. 15.01.2025 15:30)">15.01.</a>
@@ -1252,7 +1252,7 @@
 <acronym title='FC Augsburg'>FCA</acronym>
 </th>
 <th align='center'>
-<acronym title='Borussia M´gladbach'>BMG</acronym>
+<acronym title='Borussia M&#039;gladbach'>BMG</acronym>
 </th>
 <th align='center'>
 <acronym title='SC Freiburg'>SCF</acronym>

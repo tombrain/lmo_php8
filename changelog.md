@@ -12,6 +12,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Ergebnis- und die Tabellenseite (`action=results`, `action=table`) laufen über den Controller `Lmo\Web\Controller\ErgebnisseController`: Er liest Spieltag, Tabellenstand und Tabellenart selbst aus der Anfrage (`Lmo\Web\Anfrage`) und die Torstatistik aus der Statistikdatei (`Lmo\Web\Statistikdatei`) und setzt die Seite mit der Vorlage `lmo/vorlagen/ergebnisse_tabelle.html.twig` zusammen. Er läuft über den neuen Einstieg `Lmo\Web\Anwendung`: Sie liest gewählte Seite (`action`, ohne sie die Startseite der Liga) und Ligadatei aus der Anfrage, lädt die Liga und fragt die Controller (Schnittstelle `Lmo\Web\Controller\Controller`), welcher die Seite zeigt; jeder bekommt dafür einen `Lmo\Web\Kontext` statt globaler Variablen. Seiten ohne eigenen Controller zeigt vorerst weiter `lmo-showmain2.php`. `lmo-anwendung.php` legt die Anwendung aus der bisherigen Konfiguration an.  
 * Konfiguration, Sprachtexte und Liga lassen sich ohne globale Variablen laden: `Lmo\Web\Konfiguration` (config/cfg.txt und die der Addons, mit typisierten Gettern), `Lmo\Web\Sprachtexte` (Deutsch, darüber Standard- und Besuchersprache, Addon-Texte; eigene Bezeichnungen der Liga für Punkte und Tore) und `Lmo\Web\LigaLader` (nur .l98-Dateien im Ligenordner, mit Berechtigungsprüfung für Hilfsadmins). Der `ErgebnisseController` bekommt die Konfiguration als Objekt.  
 * Addons nach neuer Art: Eine Datei `addon/<name>/addon.php` gibt ein Objekt zurück, das `Lmo\Addon\Addon` implementiert, dazu die Erweiterungspunkte, die es braucht: `Lmo\Addon\MitSeiten` (eigene Seiten im öffentlichen Teil, nach denen des LMO gefragt) und `Lmo\Addon\MitZusatzJeSpiel` (HTML am Ende jeder Ergebniszeile). `Lmo\Addon\Addons` lädt sie, die Anwendung und jeder Controller kennen sie über den `Kontext`. Beschreibung in `lmo/addon/readme.txt`. Addons nach alter Art laufen unverändert weiter; das Einbinden von `addon/stats/lmo-showprogram.inc.php` in die Ergebniszeile geht über die Brücke `Lmo\Addon\AltesSpielInclude`.  
+* Die Kreuztabelle (`action=cross`) läuft über den `Lmo\Web\Controller\KreuztabelleController` mit der Vorlage `lmo/vorlagen/kreuztabelle.html.twig`.  
 
 
 ### Changed  
@@ -24,9 +25,11 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 ### Removed  
 * `lmo-showrestab.php`, `lmo-showresults.php` und `lmo-showtable.php` gibt es nicht mehr; Ergebnisse und Tabelle zeigt der `ErgebnisseController`.  
+* `lmo-showcross.php` gibt es nicht mehr; die Kreuztabelle zeigt der `KreuztabelleController`.  
 
 
 ### Fixed  
+* Kreuztabelle: Ein Apostroph im Mannschaftsnamen erscheint in allen Tooltips als Apostroph; bisher stand je nach Zeile mal `'`, mal `´` (der Name wurde während der Ausgabe ersetzt). Namen, Kurznamen und Notizen werden escaped.  
 
 
 ### Security  
@@ -353,6 +356,7 @@ _Here we write changelog notes for the next version._
 * The results and table pages (`action=results`, `action=table`) run through the controller `Lmo\Web\Controller\ErgebnisseController`: it reads round, table state and table type from the request itself (`Lmo\Web\Anfrage`) and the goal statistics from the statistics file (`Lmo\Web\Statistikdatei`) and assembles the page with the template `lmo/vorlagen/ergebnisse_tabelle.html.twig`. It runs through the new entry point `Lmo\Web\Anwendung`: it reads the chosen page (`action`, without it the league's start page) and league file from the request, loads the league and asks the controllers (interface `Lmo\Web\Controller\Controller`) which one shows the page; each receives a `Lmo\Web\Kontext` instead of global variables. Pages without their own controller are still shown by `lmo-showmain2.php` for now. `lmo-anwendung.php` creates the application from the existing configuration.  
 * Configuration, language texts and league can be loaded without global variables: `Lmo\Web\Konfiguration` (config/cfg.txt and those of the add-ons, with typed getters), `Lmo\Web\Sprachtexte` (German, overlaid by default and visitor language, add-on texts; the league's own names for points and goals) and `Lmo\Web\LigaLader` (only .l98 files inside the league folder, with the permission check for helper admins). The `ErgebnisseController` receives the configuration as an object.  
 * Add-ons in the new style: a file `addon/<name>/addon.php` returns an object implementing `Lmo\Addon\Addon`, plus the extension points it needs: `Lmo\Addon\MitSeiten` (own pages in the public part, asked after those of the LMO) and `Lmo\Addon\MitZusatzJeSpiel` (HTML at the end of every result line). `Lmo\Addon\Addons` loads them; the application and every controller know them through the `Kontext`. Described in `lmo/addon/readme.txt`. Old-style add-ons keep working; including `addon/stats/lmo-showprogram.inc.php` in the result line goes through the bridge `Lmo\Addon\AltesSpielInclude`.  
+* The cross table (`action=cross`) runs through the `Lmo\Web\Controller\KreuztabelleController` with the template `lmo/vorlagen/kreuztabelle.html.twig`.  
 
 
 ### Changed  
@@ -365,9 +369,11 @@ _Here we write changelog notes for the next version._
 
 ### Removed  
 * `lmo-showrestab.php`, `lmo-showresults.php` and `lmo-showtable.php` are gone; results and table are shown by the `ErgebnisseController`.  
+* `lmo-showcross.php` is gone; the cross table is shown by the `KreuztabelleController`.  
 
 
 ### Fixed  
+* Cross table: an apostrophe in a team name shows as an apostrophe in all tooltips; until now it was `'` or `´` depending on the row (the name was replaced during output). Names, short names and notes are escaped.  
 
 
 ### Security  
