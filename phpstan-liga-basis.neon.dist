@@ -43,7 +43,6 @@ parameters:
         - lmo/lmo-adminrounds.php
         - lmo/lmo-adminteams.php
         - lmo/lmo-adminuser.php
-        - lmo/lmo-calcgraph.php
         - lmo/lmo-openfile.php
         - lmo/lmo-showmain2.php
         - lmo/lmo-showstats.php

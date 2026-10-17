@@ -53,7 +53,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
     $text,
     // Hilfsadmins sehen nur ihre eigenen Ligen
     new \Lmo\Web\LigaLader(PATH_TO_LMO . '/' . $lmo_konfiguration->ligenordner(), $lmo_konfiguration->datumsformat(), static fn (string $datei): bool => check_hilfsadmin($datei)),
-    new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR),
+    new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR, URL_TO_LMO),
     new \Lmo\Web\Darstellung(static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute)),
     [
         new \Lmo\Web\Controller\ErgebnisseController(),
@@ -62,6 +62,8 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
         new \Lmo\Web\Controller\KalenderController(),
         new \Lmo\Web\Controller\PokalErgebnisseController(),
         new \Lmo\Web\Controller\PokalSpielplanController(),
+        new \Lmo\Web\Controller\FieberkurveController(),
+        new \Lmo\Web\Controller\InfoController(LMO_VERSION_NR),
     ],
     $lmo_addons
 );

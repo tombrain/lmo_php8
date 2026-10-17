@@ -19,31 +19,13 @@
 if (!defined('PATH_TO_LMO')) {
     exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
 }
-  
-  
-?>
-<table class="lmoMiddle" width="400" cellspacing="0" cellpadding="0" border="0">
-  <tr>
-    <td align="center"><h1><?php echo $text[54] . " - Vers. " . LMO_VERSION_NR;?></h1></td>
-  </tr>
-  <tr>
-    <td align="center">
-      <p><?php echo $text[55]; ?></p>
-      <p><?php echo $text[56]; ?></p>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
-        <tr>
-          <td class="lmotext">
-            <p><?php echo $text[47]; ?></p>
-            <p><?php echo $text[48]; ?></p>
-            <p><?php echo $text[49]; ?></p>
-            <?php echo $text[50]; ?>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+
+/**
+ * Die Info-Seite fuer Seiten, die noch nicht ueber Lmo\Web\Anwendung laufen (Tippspiel); im
+ * oeffentlichen Teil zeigt sie der InfoController. Vorlage vorlagen/info.html.twig.
+ *
+ * Diese Datei wird eingebunden und erwartet:
+ *
+ * @var array<int|string, mixed> $text Sprachtexte
+ */
+echo \Lmo\Web\Vorlagen::zeige(PATH_TO_LMO . '/vorlagen', 'info.html.twig', ['text' => $text, 'version' => LMO_VERSION_NR]);
