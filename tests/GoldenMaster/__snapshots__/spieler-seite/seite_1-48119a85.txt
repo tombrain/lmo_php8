@@ -216,7 +216,7 @@
 <tr>
 <td valign="bottom" align="left">
 <a href="/lmo/lmo.php?subdir=golden/" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
-<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;17.10.2026 21:11<br>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
 <a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
 <b>Adapted for PHP 8.</b>
 <br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>

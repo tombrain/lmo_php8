@@ -115,6 +115,7 @@ final class SpielerSeiteTest extends TestCase
                 $inhalt = preg_replace('/^\[Options\]\n/m', "[Options]\nmittore=1\n", (string) $inhalt, 1);
             }
             file_put_contents($pfad, $inhalt);
+            $app->freezeLeagueTimes();
             self::$instanz = [$app, $runner];
         }
 
