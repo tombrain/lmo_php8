@@ -58,7 +58,12 @@ final class Anwendung
      */
     public function bearbeite(Anfrage $anfrage, string $adresse, ?string $datei = null): ?Seite
     {
-        $kontext = $this->kontext($anfrage, $adresse, $datei);
+        return $this->zeige($this->kontext($anfrage, $adresse, $datei));
+    }
+
+    /** Die Seite zum Kontext; null, wenn kein Controller zustaendig ist. */
+    public function zeige(Kontext $kontext): ?Seite
+    {
         foreach ($this->controller as $controller) {
             if ($controller->zustaendig($kontext)) {
                 return $controller->zeige($kontext);
