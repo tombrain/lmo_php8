@@ -108,6 +108,8 @@ require(PATH_TO_LMO . '/lmo-langload.php');
 // Composer-Autoloader: pear/html_template_it und LMO_Template (classmap); nennt auch die installierte Version.
 // lmo-install legt vendor/autoload.php als Verweis an; im Repo selbst liegt vendor/ neben lmo/.
 require_once(is_file(PATH_TO_LMO . '/vendor/autoload.php') ? PATH_TO_LMO . '/vendor/autoload.php' : dirname(PATH_TO_LMO) . '/vendor/autoload.php');
+// Klassen der Addons aus addon/<addon>/src (Lmo\Addon\Autoloader)
+\Lmo\Addon\Autoloader::registriere(PATH_TO_ADDONDIR);
 // Functions
 require_once(PATH_TO_LMO . '/lmo-functions.php');
 // Übergang Classlib

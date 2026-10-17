@@ -79,7 +79,8 @@ Addons nach neuer Art:
     addon/[Addonname]/src/          Klassen (Namensraum Lmo\Addon\[Addonname]\, declare(strict_types=1))
     addon/[Addonname]/vorlagen/     Twig-Vorlagen (\Lmo\Web\Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', ...))
 
-  Die Klassen der mitgelieferten Addons laedt der Autoloader von Composer (composer.json); ein
-  eigenes Addon bindet seine Klassen in addon.php mit require_once ein.
+  Die Klassen laedt der LMO selbst (Lmo\Addon\Autoloader, in init.php registriert): eine Klasse
+  Lmo\Addon\Brain\Teil\Klasse liegt in addon/brain/src/Teil/Klasse.php. Ein Eintrag in
+  composer.json ist nicht noetig; das Addon funktioniert, sobald sein Ordner da ist.
 
 - Beispiel: das Ticker-Addon (addon/ticker/).

@@ -44,7 +44,6 @@
         ],
         "psr-4": {
             "Lmo\\Addon\\": "src/Addon/",
-            "Lmo\\Addon\\Ticker\\": "lmo/addon/ticker/src/",
             "Lmo\\Install\\": "src/Install/",
             "Lmo\\Liga\\": "src/Liga/",
             "Lmo\\Tipp\\": "src/Tipp/",
