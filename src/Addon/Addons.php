@@ -115,6 +115,25 @@ final class Addons
         return $html;
     }
 
+    /**
+     * Die Teile, die Addons zum Rahmen beitragen; liefern mehrere denselben, stehen sie hintereinander.
+     *
+     * @return array<string, string> Teil des Rahmens => fertiges HTML
+     */
+    public function rahmenteile(Kontext $kontext): array
+    {
+        $teile = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitRahmenteilen) {
+                foreach ($addon->rahmenteile($kontext) as $teil => $html) {
+                    $teile[$teil] = ($teile[$teil] ?? '') . $html;
+                }
+            }
+        }
+
+        return $teile;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

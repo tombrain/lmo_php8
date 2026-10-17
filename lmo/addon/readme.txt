@@ -66,9 +66,9 @@ Addons nach neuer Art:
                                    z.B. für action=brain); die Controller des LMO werden zuerst gefragt
     # Lmo\Addon\MitZusatzJeSpiel   zusatzJeSpiel(): HTML am Ende jeder Zeile in Ergebnissen und Spielplan
     # Lmo\Addon\MitZusatzUnterSeite zusatzUnterSeite(): HTML unter einer Seite ($kontext->action sagt, welche)
+    # Lmo\Addon\MitRahmenteilen   rahmenteile(): Teile des Rahmens, z.B. ['Tippspiel' => '<a ...>'] als Menuepunkt
 
-  Weitere Erweiterungspunkte (Bereiche im Seitenrahmen, Menüpunkte, Adminseiten, Ereignisse wie
-  "Liga gespeichert") folgen.
+  Weitere Erweiterungspunkte (Adminseiten, Ereignisse wie "Liga gespeichert") folgen.
 
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.
