@@ -12,7 +12,7 @@ use Lmo\Tests\GoldenMaster\Support\Runner;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Die oeffentliche Seite des Spieler-Addons (action=spieler) in ihren Einstellungen: Sortierung,
+ * Die oeffentliche Seite des Spieler-Addons (action=spieler) und ihre Druckansicht in ihren Einstellungen: Sortierung,
  * Seiten, Nullwerte, vereinsweise Anzeige, Sortierspalte, Spielerlinks und Formelspalte. Die
  * Statistik (addon/spieler/stats/<liga>.stat) und ihre Einstellungen (<liga>.cfg) legt der Test
  * direkt an; wie der Admin sie schreibt, prueft SpielerAddonTest.
@@ -55,20 +55,7 @@ final class SpielerSeiteTest extends TestCase
     public function testSeiteIstUnveraendert(string $statistik, array $einstellungen, string $query): void
     {
         [$app, $runner] = self::instanz();
-        $stats = $app->path() . '/addon/spieler/stats/basic';
-        if ($statistik === '') {
-            @unlink($stats . '.stat');
-        } else {
-            file_put_contents($stats . '.stat', str_replace("\n", "\r\n", $statistik) . "\r\n");
-        }
-        @unlink($stats . '.cfg');
-        if ($einstellungen !== []) {
-            $zeilen = [];
-            foreach ($einstellungen as $name => $wert) {
-                $zeilen[] = $name . '=' . $wert;
-            }
-            file_put_contents($stats . '.cfg', implode("\n", $zeilen));
-        }
+        self::dateien($app, $statistik, $einstellungen);
 
         $query = 'file=golden/basic.l98&action=spieler' . $query;
         $html = $runner->request($query);
@@ -100,6 +87,66 @@ final class SpielerSeiteTest extends TestCase
             'formelspalte' => [self::FORMEL, [], '&sort=3&direction=1'],
             'ohne_statistik' => ['', [], ''],
         ];
+    }
+
+    /**
+     * Die Druckansicht (addon/spieler/lmo-statprint.php, direkt aufgerufen): ohne begin alle Spieler.
+     *
+     * @dataProvider druckfaelle
+     * @param array<string, string> $einstellungen wie testSeiteIstUnveraendert()
+     */
+    public function testDruckansichtIstUnveraendert(string $statistik, array $einstellungen, string $query): void
+    {
+        [$app, $runner] = self::instanz();
+        self::dateien($app, $statistik, $einstellungen);
+
+        $html = $runner->http(['script' => 'addon/spieler/lmo-statprint.php', 'query' => $query])['body'];
+
+        self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        $this->assertMatchesSnapshot('spieler-druck', (string) $this->dataName(), Normalizer::html($html, $app->path(), $query));
+    }
+
+    /** @return array<string, array{0:string, 1:array<string, string>, 2:string}> */
+    public static function druckfaelle(): array
+    {
+        $seiten = ['Anzeige pro Seite' => '5'];
+
+        return [
+            'alle' => [self::STATISTIK, [], 'file=golden/basic.l98'],
+            'nach_toren' => [self::STATISTIK, [], 'file=golden/basic.l98&sort=2&direction=1'],
+            'nach_namen' => [self::STATISTIK, [], 'file=golden/basic.l98&sort=0&direction=0'],
+            'seite_2' => [self::STATISTIK, $seiten, 'file=golden/basic.l98&sort=2&direction=1&begin=5'],
+            'seite_ohne_einteilung' => [self::STATISTIK, ['Anzeige pro Seite' => '0'], 'file=golden/basic.l98&begin=5'],
+            'ohne_nullwerte' => [self::STATISTIK, ['Nullwerte einblenden' => '0', 'Vorsortierung User' => '2'], 'file=golden/basic.l98'],
+            'ein_verein' => [self::STATISTIK, ['Vereinsweise anzeigen' => '1'], 'file=golden/basic.l98&team=Mannschaft%201'],
+            'verein_ohne_vereinsweise' => [self::STATISTIK, [], 'file=golden/basic.l98&team=Mannschaft%201'],
+            'formelspalte' => [self::FORMEL, [], 'file=golden/basic.l98&sort=3&direction=1'],
+            'ohne_statistik' => ['', [], 'file=golden/basic.l98'],
+            'ohne_liga' => [self::STATISTIK, [], ''],
+        ];
+    }
+
+    /**
+     * Legt Statistik und Einstellungen der Liga an ('' bzw. []: ohne Datei).
+     *
+     * @param array<string, string> $einstellungen
+     */
+    private static function dateien(Instance $app, string $statistik, array $einstellungen): void
+    {
+        $stats = $app->path() . '/addon/spieler/stats/basic';
+        if ($statistik === '') {
+            @unlink($stats . '.stat');
+        } else {
+            file_put_contents($stats . '.stat', str_replace("\n", "\r\n", $statistik) . "\r\n");
+        }
+        @unlink($stats . '.cfg');
+        if ($einstellungen !== []) {
+            $zeilen = [];
+            foreach ($einstellungen as $name => $wert) {
+                $zeilen[] = $name . '=' . $wert;
+            }
+            file_put_contents($stats . '.cfg', implode("\n", $zeilen));
+        }
     }
 
     /** @return array{0:Instance,1:Runner} */
