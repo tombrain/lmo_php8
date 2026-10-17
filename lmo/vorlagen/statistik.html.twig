@@ -1,0 +1,176 @@
+{#- Statistik einer Liga (Lmo\Web\Controller\StatistikController): Vergleich zweier Mannschaften
+    mit Restprogramm, darunter die Statistik der Saison. Werte mit Sprachtexten oder <br> sind
+    fertiges HTML. -#}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top" align="center">
+{#- Auswahl der ersten Mannschaft #}
+      <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for m in mannschaften %}
+        <tr>
+          <td align="right">
+            <acronym title="{{ text[57]|raw }} {{ m.name }}">{% if m.nr != erste %}
+            <a href="{{ link|raw }}{{ m.nr }}&amp;stat2={{ zweite }}">{{ m.kurz }}</a>{% else %}{{ m.kurz }}{% endif %}</acronym>
+          </td>
+          <td>{{ m.wappen|raw }}&nbsp;</td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+    <td valign="top" align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if vergleich is null %}
+        <tr>
+          <td align="center">&nbsp;<br>{{ text[24]|raw }}<br>&nbsp;</td>
+        </tr>
+{% else %}
+        <tr>
+          <th class="text-right">{{ vergleich.name1 }}</th>
+          {#- wie bisher mit Leerraum vor dem Ende der Zelle #}
+          <th class="text-center">{{ vergleich.wappen1|raw }}&nbsp;{% if vergleich.wappen2 is not null %}&nbsp;{{ vergleich.wappen2|raw }}{% endif %}
+
+          </th>
+{% if vergleich.name2 is not null %}
+          <th class="text-left">{{ vergleich.name2 }}</th>
+{% endif %}
+        </tr>
+{% for z in vergleich.zeilen %}
+        <tr>
+          <td align="right">{{ z.links|raw }}</td>
+          {% if z.oben %}<th class="top" style="text-align:center">{% else %}<th class="text-center">{% endif %}{{ z.titel|raw }}</th>
+          {{ z.rechts|raw }}
+        </tr>
+{% endfor %}
+{#- ClassLib Statistik Erweiterung: Restprogramm #}
+{% if vergleich.restprogramm is not null %}
+{% set r = vergleich.restprogramm %}
+<!-- OUTPUT Restprogramm START--><tr><td align="right" valign="top">{{ r.links|raw }}</td><th class="top" style="text-align:center">{{ text[4020]|raw }}</th><td align="left" valign="top">{{ r.rechts|raw }}</td></tr>
+{% if r.vergleich is not null %}
+<tr><th style="text-align:center" colspan="3">{{ text[4021]|raw }}</th></tr><tr><td align="right">{{ r.vergleich.links }}</td><th class="top" style="text-align:center">{{ text[4022]|raw }}</th><td align="left">{{ r.vergleich.rechts }}</td></tr><tr><td align="right">{{ r.vergleich.text_links|raw }}</td><th class="top" style="text-align:center">{{ text[4023]|raw }}</th><td align="left">{{ r.vergleich.text_rechts|raw }}</td></tr>
+{% endif %}
+<!-- OUTPUT Restprogramm ENDE-->
+{% endif %}
+{% endif %}
+      </table>
+    </td>
+    <td valign="top" align="center">
+{#- Auswahl der zweiten Mannschaft #}
+      <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for m in mannschaften %}
+        <tr>
+          <td>{{ m.wappen|raw }}&nbsp;</td>
+          <td align="left">
+            <acronym title="{{ text[57]|raw }} {{ m.name }}">{% if m.nr != zweite %}<a href="{{ link|raw }}{{ erste }}&amp;stat2={{ m.nr }}">{{ m.kurz }}</a>{% else %}{{ m.kurz }}{% endif %}</acronym>
+          </td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+  </tr>
+</table>
+{%- if saison is not null %}
+{% set s = saison %}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center" colspan="5"><h1>{{ text[4009]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th colspan="4" align="center">{{ text[63]|raw }} </th>
+        </tr>
+        <tr>
+          <td align="right">{{ text[516]|raw }}</td>
+          <td align="right">{{ text[4006]|raw }}</td>
+          <td align="center">{{ text[200]|raw }}</td>
+          <td align="left">{{ text[4007]|raw }}</td>
+        </tr>
+        <tr>
+          <td align="right"> <strong>{{ s.gesamt }}</strong></td>
+          <td align="right"> <strong>{{ s.heimsiege }}</strong>{{ s.heimsiege_anteil }} </td>
+          <td align="center"> <strong>{{ s.unentschieden }}</strong>{{ s.unentschieden_anteil }} </td>
+          <td align="left"> <strong>{{ s.auswaertssiege }}</strong>{{ s.auswaertssiege_anteil }} </td>
+        </tr>
+{% if s.beide > 0 %}
+        <tr>
+          <td align="right" colspan="2">{{ text[4012]|raw }}</td>
+          <td colspan="2" align="center"><strong>{{ s.beide }}</strong>{{ s.beide_anteil }}</td>
+        </tr>
+{% endif %}
+        <tr>
+          <th colspan="4" align="center">{{ text[38]|raw }} </th>
+        </tr>
+        <tr>
+          <td align="right">{{ text[516]|raw }} </td>
+          <td align="right">{{ text[41]|raw }}-{{ text[38]|raw }} </td>
+          <td>&nbsp;</td>
+          <td align="left">{{ text[42]|raw }}-{{ text[38]|raw }} </td>
+        </tr>
+        <tr>
+          <td align="right"> <strong>{{ s.tore }}</strong> ({{ text[517]|raw }}{{ s.tore_je_spiel }}) </td>
+          <td align="right"> <strong>{{ s.heimtore }}</strong>{{ s.heimtore_anteil|raw }} </td>
+          <td>&nbsp;</td>
+          <td align="left"> <strong>{{ s.gasttore }}</strong>{{ s.gasttore_anteil|raw }} </td>
+        </tr>
+{% for rekord in [[s.heimsieg, 4013, 4016], [s.auswaertssieg, 4017, 4016], [s.torreich, 4018, 4019]] %}
+{% set r = rekord[0] %}
+{% if r is not null %}
+        <tr>
+          <th colspan="4" align="center">{{ text[rekord[1]]|raw }}{% if rekord[1] == 4018 %} {{ text[38]|raw }}{% endif %}</th>
+        </tr>
+{% for spiel in [r.erstes, r.zweites] %}
+{% if spiel is not null %}
+        <tr>
+          <td align="right">{{ spiel.heim }} - </td>
+          <td align="left">{{ spiel.gast }}</td>
+          <td colspan="2" align="left">{{ spiel.tore }} ({{ spiel.spieltag }}.{{ text[4014]|raw }})</td>
+        </tr>
+{% endif %}
+{% endfor %}
+{% if r.weitere is not null %}
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="3" align="right"><small>{{ text[4015]|raw }} {{ r.weitere }} {{ text[rekord[2]]|raw }}</small></td>
+        </tr>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% if s.serien is not null %}
+        <tr>
+          <th colspan="4" align="center">{{ text[4027]|raw }}</th>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <table width="100%" cellpadding="3" cellspacing="0">
+              <tr>
+                <th>&nbsp;</th>
+                <th style="text-align:center" colspan="2">{{ text[4033]|raw }}</th>
+                <th style="text-align:center" colspan="2">{{ text[4034]|raw }}</th>
+              </tr>
+{% for serie in s.serien %}
+{% set k = serie.klasse != '' ? ' class="' ~ serie.klasse ~ '"' : '' %}
+              <tr>
+                <th style="text-align:right">{{ serie.titel|raw }}&nbsp;&nbsp;</th>
+{% if serie.art == 'unentschieden' %}
+                <td align="right"><strong>{{ serie.akt }}&nbsp;</strong>&nbsp;</td>
+                <td>{{ serie.team_akt|raw }}</td>
+                <td align="right"><strong>{{ serie.max }}</strong>&nbsp;</td>
+                <td>{{ serie.team_max|raw }}</td>
+{% else %}
+                <td align="right"{{ k|raw }}><strong>{{ serie.akt }}</strong>&nbsp;</td>
+                <td{{ k|raw }}>{{ serie.team_akt|raw }}&nbsp;</td>
+                <td align="right"{{ k|raw }}><strong>{{ serie.max }}</strong>&nbsp;</td>
+                <td{{ k|raw }}>{% if serie.art in ['gewonnen', 'ungeschlagen'] %}&nbsp;{% endif %}{{ serie.team_max|raw }}</td>
+{% endif %}
+              </tr>
+{% endfor %}
+            </table>
+          </td>
+        </tr>
+{% endif %}
+      </table>
+    </td>
+  </tr>
+</table>
+{%- endif %}

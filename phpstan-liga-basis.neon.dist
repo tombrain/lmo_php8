@@ -45,5 +45,4 @@ parameters:
         - lmo/lmo-adminuser.php
         - lmo/lmo-openfile.php
         - lmo/lmo-showmain2.php
-        - lmo/lmo-showstats.php
         - lmo/lmo-zustat.php

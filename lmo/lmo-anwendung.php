@@ -48,6 +48,13 @@ if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php')) {
     $lmo_addons = $lmo_addons->mit(new \Lmo\Addon\AltesSeitenInclude('pdf', 'program', PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php'));
 }
 
+// schreibt die Statistikdatei einer Liga neu (lmo-zustat.php), fuer die Statistikseite
+$lmo_statistik_erzeugen = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $file, array $text) use ($lmo_konfiguration): void {
+    $diroutput = $lmo_konfiguration->ausgabeordner();
+    $generate_zustat = true;
+    include(PATH_TO_LMO . '/lmo-zustat.php');
+};
+
 $lmo_anwendung = new \Lmo\Web\Anwendung(
     $lmo_konfiguration,
     $text,
@@ -63,6 +70,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
         new \Lmo\Web\Controller\PokalErgebnisseController(),
         new \Lmo\Web\Controller\PokalSpielplanController(),
         new \Lmo\Web\Controller\FieberkurveController(),
+        new \Lmo\Web\Controller\StatistikController($lmo_statistik_erzeugen),
         new \Lmo\Web\Controller\InfoController(LMO_VERSION_NR),
     ],
     $lmo_addons

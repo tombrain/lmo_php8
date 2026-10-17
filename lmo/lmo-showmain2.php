@@ -287,7 +287,6 @@ if ($file != '') {
         if (!$lmo_main_e->istPokal()) {
             // Normale Liga
             switch($action) {
-                case 'stats': if ($lmo_main_e->mitLigastatistik()) {require(PATH_TO_LMO . '/lmo-showstats.php');}break;
                 case '': /*Auswahlseite*/break;
             }
         } else {
