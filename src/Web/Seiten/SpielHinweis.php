@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Web\Seiten;
 
 use Lmo\Liga\Spiel;

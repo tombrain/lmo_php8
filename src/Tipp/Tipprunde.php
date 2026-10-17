@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lmo\Tipp;
 
 use Lmo\Liga\Paarung;
