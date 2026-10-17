@@ -54,9 +54,9 @@
 <td class="nobr">23.03.2025 16:00</td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B & C</a>&nbsp;&nbsp;</td>
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B &amp; C</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
-<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O'Neill</a>
+<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O&#039;Neill</a>
 </td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">2</td>

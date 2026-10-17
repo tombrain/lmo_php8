@@ -87,4 +87,25 @@ final class SpielHinweis
         //Ausgabe als neutrales Element (kein Link)
         return '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars(nl2br($info)) . '" class="tooltip-trigger"><img src="' . $bilder . '/lmo-st2.svg" height="15" class="svg-no-style" alt=""></span>';
     }
+
+    /**
+     * Das Symbol fuer die Notiz zu einem Pokalspiel; '' ohne Notiz. Im Pokal steht unter der
+     * Paarung mit Ergebnis nur die Notiz (keine Wertung am gruenen Tisch).
+     *
+     * @param array<int|string, mixed> $text Sprachtexte
+     * @param string $paarung aus paarung()
+     */
+    public static function pokalNotiz(Spiel $spiel, array $text, string $paarung, string $toreHeim, string $toreGast, string $bilder): string
+    {
+        if ($spiel->notiz == '') {
+            return '';
+        }
+        //Zentrierte Kopfzeile für Notizen
+        $info = $paarung . '&nbsp;&nbsp;' . $toreHeim . ':' . $toreGast . '</strong>';
+        //Allgemeine Notiz
+        $info .= '<br><strong>' . $text[22] . ':</strong> ' . $spiel->notiz;
+
+        //Ausgabe als neutrales Element (kein Link)
+        return '<span onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()" data-info="' . htmlspecialchars(nl2br($info)) . '" class="tooltip-trigger"><img src="' . $bilder . '/lmo-st2.svg" height="15" class="svg-no-style" border="0" alt=""></span>';
+    }
 }

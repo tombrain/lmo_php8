@@ -15,6 +15,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Kreuztabelle (`action=cross`) läuft über den `Lmo\Web\Controller\KreuztabelleController` mit der Vorlage `lmo/vorlagen/kreuztabelle.html.twig`.  
 * Der Spielplan (`action=program`) läuft über den `Lmo\Web\Controller\SpielplanController` mit der Vorlage `lmo/vorlagen/spielplan.html.twig`; die Tooltips zu Spielbericht und Hinweis baut für Ergebnisse und Spielplan gemeinsam `Lmo\Web\Seiten\SpielHinweis`. Neuer Erweiterungspunkt für Addons: `Lmo\Addon\MitZusatzUnterSeite` (HTML unter einer Seite); ein vorhandenes `addon/pdf/lmo-showprogram.inc.php` (Teamplan) wird darüber unter dem Spielplan eingebunden (Brücke `Lmo\Addon\AltesSeitenInclude`).  
 * Der Kalender (`action=cal`) läuft für Liga und Pokal über den `Lmo\Web\Controller\KalenderController` mit der Vorlage `lmo/vorlagen/kalender.html.twig`. Die Seitentests decken jetzt auch einen vorgegebenen Monat und die Jahresansicht ab.  
+* Ergebnisse und Spielplan im Pokal laufen über den `Lmo\Web\Controller\PokalErgebnisseController` und den `Lmo\Web\Controller\PokalSpielplanController` mit den Vorlagen `lmo/vorlagen/pokal_ergebnisse.html.twig` und `lmo/vorlagen/pokal_spielplan.html.twig`. Neue Seitentests (`PokalSeitenTest`) mit erzeugten Pokalen sichern Ergebnisse, Spielplan und Kalender ab, auch Spiel um Platz 3 und die Playoff-Modi 2-2-1 und 2-3-2. Ein vorhandenes `addon/stats/lmo-showkoresults.inc.php` wird über die Brücke `Lmo\Addon\AltesSpielInclude` weiter je Spiel eingebunden.  
 
 
 ### Changed  
@@ -30,6 +31,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * `lmo-showcross.php` gibt es nicht mehr; die Kreuztabelle zeigt der `KreuztabelleController`.  
 * `lmo-showprogram.php` gibt es nicht mehr; den Spielplan zeigt der `SpielplanController`.  
 * `lmo-cal.php`, `lmo-kocal.php` und `lmo-showcal.php` gibt es nicht mehr; den Kalender zeigt der `KalenderController`.  
+* `lmo-showkoresults.php` und `lmo-showkoprogram.php` gibt es nicht mehr; Ergebnisse und Spielplan im Pokal zeigen der `PokalErgebnisseController` und der `PokalSpielplanController`.  
 
 
 ### Fixed  
@@ -363,6 +365,7 @@ _Here we write changelog notes for the next version._
 * The cross table (`action=cross`) runs through the `Lmo\Web\Controller\KreuztabelleController` with the template `lmo/vorlagen/kreuztabelle.html.twig`.  
 * The fixtures (`action=program`) run through the `Lmo\Web\Controller\SpielplanController` with the template `lmo/vorlagen/spielplan.html.twig`; the tooltips for match report and note are built for results and fixtures together by `Lmo\Web\Seiten\SpielHinweis`. New extension point for add-ons: `Lmo\Addon\MitZusatzUnterSeite` (HTML below a page); an existing `addon/pdf/lmo-showprogram.inc.php` (team schedule) is included below the fixtures through it (bridge `Lmo\Addon\AltesSeitenInclude`).  
 * The calendar (`action=cal`) runs for league and cup through the `Lmo\Web\Controller\KalenderController` with the template `lmo/vorlagen/kalender.html.twig`. The page tests now also cover a given month and the year view.  
+* Results and fixtures of a cup run through the `Lmo\Web\Controller\PokalErgebnisseController` and the `Lmo\Web\Controller\PokalSpielplanController` with the templates `lmo/vorlagen/pokal_ergebnisse.html.twig` and `lmo/vorlagen/pokal_spielplan.html.twig`. New page tests (`PokalSeitenTest`) with generated cups cover results, fixtures and calendar, including the third-place match and the play-off modes 2-2-1 and 2-3-2. An existing `addon/stats/lmo-showkoresults.inc.php` is still included per game through the bridge `Lmo\Addon\AltesSpielInclude`.  
 
 
 ### Changed  
@@ -378,6 +381,7 @@ _Here we write changelog notes for the next version._
 * `lmo-showcross.php` is gone; the cross table is shown by the `KreuztabelleController`.  
 * `lmo-showprogram.php` is gone; the fixtures are shown by the `SpielplanController`.  
 * `lmo-cal.php`, `lmo-kocal.php` and `lmo-showcal.php` are gone; the calendar is shown by the `KalenderController`.  
+* `lmo-showkoresults.php` and `lmo-showkoprogram.php` are gone; cup results and fixtures are shown by the `PokalErgebnisseController` and the `PokalSpielplanController`.  
 
 
 ### Fixed  

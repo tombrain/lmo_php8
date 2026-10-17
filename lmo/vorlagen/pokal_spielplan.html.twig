@@ -1,0 +1,65 @@
+{#- Spielplan einer Mannschaft im Pokal (Lmo\Web\Controller\PokalSpielplanController). Links,
+    Wappen, Tooltips und Sprachtexte sind fertiges HTML. -#}
+{%- macro vereinslink(url, text, bilder) -%}
+<a href="{{ url }}" target="_blank" title="{{ text[46]|raw }}"><img border="0" width="11" src="{{ bilder|raw }}/url.png" alt="{{ text[564]|raw }}" title="{{ text[46]|raw }}"></a>
+{%- endmacro -%}
+{%- import _self as e -%}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top" align="center">
+{#- Auswahl der ersten Haelfte der Mannschaften #}
+      <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for m in links %}
+        <tr>
+          <td align="right">
+            {#- die gewaehlte Mannschaft mit Leerraum davor und danach, wie bisher #}
+            <acronym title="{{ text[23]|raw }} {{ m.name }}">
+{% if m.gewaehlt %}{{ m.kurz }}{% else %}<a href="{{ link|raw }}{{ m.nr }}" >{{ m.kurz }}</a>{% endif %}
+
+            </acronym>
+          </td>
+          <td>&nbsp;{{ m.wappen|raw }}&nbsp;</td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+    <td valign="top" align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if gewaehlt == 0 %}
+        <tr>
+          <td align="center" class="lmost5">&nbsp;<br>{{ text[24]|raw }}<br>&nbsp;</td>
+        </tr>
+{% else %}
+{#- je Paarung der gewaehlten Mannschaft eine Zeile, die Spiele nebeneinander #}
+{% for z in zeilen %}
+        <tr>
+          <th align="right">&nbsp;<a href="{{ runden_link|raw }}{{ z.runde }}" title="{{ text[377]|raw }}">{{ z.name|raw }}</a>&nbsp;</th>
+          <td class="{% if z.sieger == 1 %}lmoTurnierSieger {% elseif z.sieger == 2 %}lmoTurnierVerlierer {% endif %}nobr" align="right">{% if z.heim.fett %}<strong>{% endif %}{{ z.heim.name }}{% if z.heim.fett %}</strong>{% endif %}&nbsp;{{ z.heim.wappen|raw }}{% if z.heim.url != '' %} {{ e.vereinslink(z.heim.url, text, bilder) }}{% endif %}</td>
+          <td class="lmost5" align="center" width="10">-</td>
+          {% if z.sieger == 2 %}<td class="lmoTurnierSieger nobr">{% elseif z.sieger == 1 %}<td align="left" class="lmoTurnierVerlierer nobr">{% else %}<td align="left" class="nobr">{% endif %}{{ z.gast.wappen|raw }}&nbsp;{% if z.gast.fett %}<strong>{% endif %}{{ z.gast.name }}{% if z.gast.fett %}</strong>{% endif %}{% if z.gast.url != '' %}{{ e.vereinslink(z.gast.url, text, bilder) }}{% endif %}</td>
+{% for s in z.spiele %}
+          {% if loop.first %}<td width="2">&nbsp;</td>{% else %}<td width="8">|&nbsp;&nbsp;</td>{% endif %}
+          <td class="nobr">{% if s.anstoss is not null %}<acronym title="{{ s.anstoss }}">{% endif %}{{ s.ergebnis|raw }}{% if s.anstoss is not null %}</acronym>{% endif %}{% if z.berichte %}{% if s.bericht != '' %}{{ s.bericht|raw }}{% endif %}&nbsp;{% endif %}{% if s.notiz != '' %}&nbsp;{{ s.notiz|raw }}{% else %}&nbsp;{% endif %}</td>
+{% endfor %}
+        </tr>
+{% endfor %}
+{% endif %}
+      </table>
+    </td>
+    <td valign="top" align="center">
+{#- Auswahl der zweiten Haelfte der Mannschaften #}
+      <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for m in rechts %}
+        <tr>
+          <td>&nbsp;{{ m.wappen|raw }}</td>
+          <td align="left">
+            {#- die gewaehlte Mannschaft mit Leerraum davor, wie bisher #}
+            <acronym title="{{ text[23]|raw }} {{ m.name }}">
+{% if m.gewaehlt %}{{ m.kurz }}{% else %}<a href="{{ link|raw }}{{ m.nr }}">{{ m.kurz }}</a>{% endif %}</acronym>
+          </td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+  </tr>
+</table>
