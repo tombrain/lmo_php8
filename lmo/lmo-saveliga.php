@@ -30,7 +30,7 @@ if (!defined('PATH_TO_LMO')) {
  *                                        vollstaendige Form, wie sie in der Datei steht (Lmo\Liga\Normalform)
  * @var array<int|string, mixed> $text Sprachtexte
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
- * @var int|string $st gewaehlter Spieltag
+ * @var int|string|null $st gewaehlter Spieltag (null oder ohne: keiner, z. B. beim Speichern der Einstellungen)
  * @var string $dirliga Ligenordner relativ zum LMO (Konfiguration)
  * @var string $diroutput Ordner fuer erzeugte Dateien (Konfiguration)
  * @var string $defdateformat Datumsformat in date()-Schreibweise (Konfiguration)
