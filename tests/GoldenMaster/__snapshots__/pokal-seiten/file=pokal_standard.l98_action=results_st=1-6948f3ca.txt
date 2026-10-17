@@ -93,7 +93,7 @@
 <td class="nobr">03.03.2025 18:00</td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="lmoTurnierSieger nobr" align="right">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B & C</a>&nbsp;&nbsp;</td>
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B &amp; C</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
 <td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=7" title="Hier gehts zum Spielplan der Mannschaft">Eta</a>
 </td>
@@ -113,7 +113,7 @@
 <td class="nobr" align="right">
 <a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=7" title="Hier gehts zum Spielplan der Mannschaft">Eta</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
-<td class="lmoTurnierSieger nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B & C</a>
+<td class="lmoTurnierSieger nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B &amp; C</a>
 </td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">0</td>
@@ -179,7 +179,7 @@
 <td class="nobr">04.03.2025 19:00</td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O'Neill</a>&nbsp;&nbsp;</td>
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O&#039;Neill</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
 <td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=5" title="Hier gehts zum Spielplan der Mannschaft">Epsilon</a>
 </td>
@@ -200,7 +200,7 @@
 <td class="nobr" align="right">
 <a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=5" title="Hier gehts zum Spielplan der Mannschaft">Epsilon</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
-<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O'Neill</a>
+<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4" title="Hier gehts zum Spielplan der Mannschaft">O&#039;Neill</a>
 </td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">_</td>

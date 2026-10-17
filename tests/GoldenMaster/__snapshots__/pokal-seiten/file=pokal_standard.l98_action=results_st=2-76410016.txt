@@ -53,7 +53,7 @@
 <td class="lmoTurnierSieger nobr" align="right">
 <a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=1" title="Hier gehts zum Spielplan der Mannschaft">Alpha</a>&nbsp;&nbsp;</td>
 <td class="nobr" align="center" width="10">-</td>
-<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B & C</a>
+<td class="nobr" align="left">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2" title="Hier gehts zum Spielplan der Mannschaft">B &amp; C</a>
 </td>
 <td class="nobr" width="2">&nbsp;</td>
 <td class="nobr" align="right">3</td>

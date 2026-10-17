@@ -294,8 +294,6 @@ if ($file != '') {
         } else {
             // Pokal Liga
             switch($action) {
-                case 'results': if ($lmo_main_e->mitErgebnissen()) {require(PATH_TO_LMO . '/lmo-showkoresults.php');}break;
-                case 'program': if ($lmo_main_e->mitSpielplan()) {require(PATH_TO_LMO . '/lmo-showkoprogram.php');}break;
             }
         }
         // Spieler-Addon

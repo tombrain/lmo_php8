@@ -45,8 +45,6 @@ parameters:
         - lmo/lmo-adminuser.php
         - lmo/lmo-calcgraph.php
         - lmo/lmo-openfile.php
-        - lmo/lmo-showkoprogram.php
-        - lmo/lmo-showkoresults.php
         - lmo/lmo-showmain2.php
         - lmo/lmo-showstats.php
         - lmo/lmo-zustat.php

@@ -41,8 +41,8 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von B & C">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2">B&C</a>
+<acronym title="Der Spielplan von B &amp; C">
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2">B&amp;C</a>
 </acronym>
 </td>
 <td>&nbsp;&nbsp;</td>
@@ -57,8 +57,8 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von O'Neill">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4">O'N</a>
+<acronym title="Der Spielplan von O&#039;Neill">
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4">O&#039;N</a>
 </acronym>
 </td>
 <td>&nbsp;&nbsp;</td>

@@ -41,8 +41,8 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von B & C">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2">B&C</a>
+<acronym title="Der Spielplan von B &amp; C">
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=2">B&amp;C</a>
 </acronym>
 </td>
 <td>&nbsp;&nbsp;</td>
@@ -55,8 +55,8 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von O'Neill">
-<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4">O'N</a>
+<acronym title="Der Spielplan von O&#039;Neill">
+<a href="/lmo/lmo.php?action=program&amp;file=pokal/standard.l98&amp;selteam=4">O&#039;N</a>
 </acronym>
 </td>
 <td>&nbsp;&nbsp;</td>
@@ -90,7 +90,7 @@
 </tr>
 <tr>
 <th align="right">&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=pokal/standard.l98&amp;st=3" title="Klicken Sie hier, um die gesamte Runde zu sehen.">F</a>&nbsp;</th>
-<td class="nobr" align="right">Alpha&nbsp; <a href="https://alpha.example/?a=1&b=2" target="_blank" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
+<td class="nobr" align="right">Alpha&nbsp; <a href="https://alpha.example/?a=1&amp;b=2" target="_blank" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
 <img border="0" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
 </a>
 </td>
