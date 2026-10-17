@@ -42,3 +42,32 @@ Addons:
 - Das Ändern der Konfigurationsvariablen geschieht im Adminbereich des LMO oder (besser) mittels
   einer eigenen Konfigurationsoberfläche - das Speichern der Konfigurationsvariablen übernimmt dabei
   immer die Datei lmo/savecfg.php (per include einzubinden)
+
+
+Addons nach neuer Art:
+
+- Eine Datei addon/[Addonname]/addon.php gibt ein Objekt zurück, das Lmo\Addon\Addon implementiert:
+
+    <?php
+    return new class implements \Lmo\Addon\MitZusatzJeSpiel {
+        public function name(): string { return 'brain'; }
+        public function zusatzJeSpiel(\Lmo\Liga\Spiel $spiel, \Lmo\Web\Kontext $kontext): string {
+            return '...';   // HTML am Ende der Ergebniszeile
+        }
+    };
+
+- name() ist der Name des Ordners; Konfiguration und Sprachtexte liegen wie oben beschrieben unter
+  config/[Addonname]/ und lang/[Addonname]/ ($kontext->konfiguration->addon('brain'),
+  $kontext->text['brain']).
+
+- Was ein Addon beiträgt, sagen die Erweiterungspunkte, die es implementiert:
+
+    # Lmo\Addon\MitSeiten          controller(): eigene Seiten im öffentlichen Teil (Lmo\Web\Controller\Controller,
+                                   z.B. für action=brain); die Controller des LMO werden zuerst gefragt
+    # Lmo\Addon\MitZusatzJeSpiel   zusatzJeSpiel(): HTML am Ende jeder Ergebniszeile
+
+  Weitere Erweiterungspunkte (Bereiche im Seitenrahmen, Menüpunkte, Adminseiten, Ereignisse wie
+  "Liga gespeichert") folgen.
+
+- Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
+  Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.

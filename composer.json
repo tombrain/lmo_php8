@@ -43,6 +43,7 @@
             "lmo/includes/LmoTemplate.php"
         ],
         "psr-4": {
+            "Lmo\\Addon\\": "src/Addon/",
             "Lmo\\Install\\": "src/Install/",
             "Lmo\\Liga\\": "src/Liga/",
             "Lmo\\Tipp\\": "src/Tipp/",

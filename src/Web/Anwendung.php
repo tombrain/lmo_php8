@@ -2,12 +2,14 @@
 
 namespace Lmo\Web;
 
+use Lmo\Addon\Addons;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Controller\Controller;
 
 /**
  * Der Einstieg fuer die Seiten des LMO: liest gewaehlte Seite (action) und Ligadatei aus der
- * Anfrage, laedt die Liga und laesst den zustaendigen Controller die Seite bauen.
+ * Anfrage, laedt die Liga und laesst den zustaendigen Controller die Seite bauen: erst die des
+ * Kerns, dann die der Addons (Lmo\Addon\MitSeiten).
  *
  * Seiten ohne eigenen Controller zeigt vorerst noch der alte Code (lmo-showmain2.php); fuer sie
  * liefert bearbeite() null.
@@ -25,19 +27,22 @@ final class Anwendung
     private Darstellung $darstellung;
     /** @var list<Controller> */
     private array $controller;
+    private Addons $addons;
 
     /**
      * @param array<int|string, mixed> $text Sprachtexte
-     * @param list<Controller> $controller in der Reihenfolge, in der sie gefragt werden
+     * @param list<Controller> $controller Controller des Kerns, in der Reihenfolge, in der sie gefragt werden
+     * @param Addons $addons Addons der Installation; ihre Controller kommen nach denen des Kerns
      */
-    public function __construct(Konfiguration $konfiguration, array $text, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller)
+    public function __construct(Konfiguration $konfiguration, array $text, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons())
     {
         $this->konfiguration = $konfiguration;
         $this->text = $text;
         $this->lader = $lader;
         $this->pfade = $pfade;
         $this->darstellung = $darstellung;
-        $this->controller = $controller;
+        $this->controller = array_merge($controller, $addons->controller());
+        $this->addons = $addons;
     }
 
     /**
@@ -64,7 +69,7 @@ final class Anwendung
         $liga = $this->lader->lade($datei ?? $anfrage->text('file'));
         $text = $liga !== null ? Sprachtexte::fuerLiga($this->text, $liga->liga) : $this->text;
 
-        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $text, $adresse, $this->pfade, $this->darstellung);
+        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $text, $adresse, $this->pfade, $this->darstellung, $this->addons);
     }
 
     /**

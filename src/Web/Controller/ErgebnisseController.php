@@ -2,7 +2,6 @@
 
 namespace Lmo\Web\Controller;
 
-use Closure;
 use Lmo\Liga\Spiel;
 use Lmo\Web\Darstellung;
 use Lmo\Web\Kontext;
@@ -24,19 +23,11 @@ use Lmo\Web\Vorlagen;
  *  - endtab  Spieltag, bis zu dem die Tabelle gerechnet wird (ohne: alle)
  *  - tabtype Tabellenart: 0 gesamt, 1 heim, 2 auswaerts, 3 Rueckrunde, 4 Hinrunde
  *  - tabonres, tabpkt Anzeige-Optionen (Konfiguration::ANZEIGEOPTIONEN)
+ *
+ * Addons mit Zusatz je Spiel (Lmo\Addon\MitZusatzJeSpiel) haengen ihr HTML an jede Ergebniszeile.
  */
 final class ErgebnisseController implements Controller
 {
-    /** @var (Closure(Spiel): string)|null */
-    private ?Closure $zusatz;
-
-    /**
-     * @param (Closure(Spiel): string)|null $zusatz weiteres HTML am Ende jeder Ergebniszeile (Addons)
-     */
-    public function __construct(?Closure $zusatz = null)
-    {
-        $this->zusatz = $zusatz;
-    }
 
     public function zustaendig(Kontext $kontext): bool
     {
@@ -88,10 +79,15 @@ final class ErgebnisseController implements Controller
 
         $menue = (new SpieltagsMenue($text, $vorlagen))->zeige($liga, $st, $spieltagLink);
 
+        // weiteres HTML der Addons am Ende jeder Ergebniszeile
+        $zusatz = $kontext->addons->mitZusatzJeSpiel()
+            ? static fn (Spiel $spiel): string => $kontext->addons->zusatzJeSpiel($spiel, $kontext)
+            : null;
+
         $ergebnisse = null;
         if ($k->tabonres() >= 1 || $action == 'results') {
             $ergebnisse = (new ErgebnisListe($liga, $text, $kontext->darstellung, $vorlagen, $bilder))
-                ->zeige($st, $datei, $spielplan, $k->datumsformat(), self::torstatistikSpieltag($kontext, $statistik, $st, $faktor), $k->spielfreiNennen(), $this->zusatz);
+                ->zeige($st, $datei, $spielplan, $k->datumsformat(), self::torstatistikSpieltag($kontext, $statistik, $st, $faktor), $k->spielfreiNennen(), $zusatz);
         }
 
         $tabelle = null;

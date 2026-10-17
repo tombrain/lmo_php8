@@ -21,7 +21,8 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 /**
- * Legt die Anwendung an (Lmo\Web\Anwendung), die die Seiten mit eigenem Controller zeigt, und
+ * Legt die Anwendung an (Lmo\Web\Anwendung), die die Seiten mit eigenem Controller zeigt, mit den
+ * Addons der Installation (Lmo\Addon\Addons), und
  * verbindet sie mit dem alten Code: Konfiguration, Sprachtexte, Vereinswappen und Rechte kommen
  * vorerst noch aus init.php und lmo-functions.php.
  *
@@ -33,17 +34,11 @@ if (!defined('PATH_TO_LMO')) {
 
 $lmo_konfiguration = new \Lmo\Web\Konfiguration($cfgarray);
 
-// bisherige Ergebnisse je Spiel (AddOn Team Vergleich, nicht Teil des LMO); $i wie bisher: Partie ab 0
-$lmo_addon_vergleich = null;
+// Addons mit addon.php (Lmo\Addon\Addon); dazu die Bruecke zum Addon nach alter Art, das am Ende
+// jeder Ergebniszeile die bisherigen Ergebnisse zeigt (AddOn Team Vergleich, nicht Teil des LMO)
+$lmo_addons = \Lmo\Addon\Addons::ausOrdner(PATH_TO_ADDONDIR);
 if (file_exists(PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php')) {
-    $lmo_addon_vergleich = static function (\Lmo\Liga\Spiel $lmo_spiel) use ($text): string {
-        $i = $lmo_spiel->partie - 1;
-        $st = $lmo_spiel->spieltag;
-        ob_start();
-        include(PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php');
-
-        return (string)ob_get_clean();
-    };
+    $lmo_addons = $lmo_addons->mit(new \Lmo\Addon\AltesSpielInclude('stats', PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php'));
 }
 
 $lmo_anwendung = new \Lmo\Web\Anwendung(
@@ -54,6 +49,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
     new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR),
     new \Lmo\Web\Darstellung(static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute)),
     [
-        new \Lmo\Web\Controller\ErgebnisseController($lmo_addon_vergleich),
-    ]
+        new \Lmo\Web\Controller\ErgebnisseController(),
+    ],
+    $lmo_addons
 );
