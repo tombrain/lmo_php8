@@ -240,7 +240,13 @@ if ($file != '') {
     }
     $p0 = 'p1';
     $$p0 = c(1).c(0);
-} elseif ($backlink == 1 && $action != 'tipp') {require(PATH_TO_LMO . '/lmo-showdir.php');}
+} elseif ($backlink == 1 && $action != 'tipp') {
+    // Ligenuebersicht (Lmo\Web\Controller\LigenuebersichtController)
+    $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
+    if ($lmo_seite !== null) {
+        echo $lmo_seite->html;
+    }
+}
 
 if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippstart.php');}
 $output_hauptteil .= ob_get_contents();

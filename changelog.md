@@ -18,6 +18,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Ergebnisse und Spielplan im Pokal laufen über den `Lmo\Web\Controller\PokalErgebnisseController` und den `Lmo\Web\Controller\PokalSpielplanController` mit den Vorlagen `lmo/vorlagen/pokal_ergebnisse.html.twig` und `lmo/vorlagen/pokal_spielplan.html.twig`. Neue Seitentests (`PokalSeitenTest`) mit erzeugten Pokalen sichern Ergebnisse, Spielplan und Kalender ab, auch Spiel um Platz 3 und die Playoff-Modi 2-2-1 und 2-3-2. Ein vorhandenes `addon/stats/lmo-showkoresults.inc.php` wird über die Brücke `Lmo\Addon\AltesSpielInclude` weiter je Spiel eingebunden.  
 * Fieberkurve (`action=graph`) und Info-Seite (`action=info`) laufen über den `Lmo\Web\Controller\FieberkurveController` und den `Lmo\Web\Controller\InfoController` mit den Vorlagen `lmo/vorlagen/fieberkurve.html.twig` und `lmo/vorlagen/info.html.twig`; die Plätze je Spieltag rechnet `FieberkurveController::plaetze()`. `lmo-showinfo.php` bleibt für das Tippspiel und zeigt dieselbe Vorlage.  
 * Die Statistik (`action=stats`) läuft über den `Lmo\Web\Controller\StatistikController` mit der Vorlage `lmo/vorlagen/statistik.html.twig`. Das Restprogramm rechnet er auf den Rohdaten der Liga statt über die Classlib (die die Ligadatei dafür ein zweites Mal geladen hat); die Werte der Saison liest er über `Lmo\Web\Statistikdatei` und lässt die Datei bei Bedarf wie bisher von `lmo-zustat.php` neu schreiben.  
+* Die Ligenübersicht läuft über den `Lmo\Web\Controller\LigenuebersichtController` mit der Vorlage `lmo/vorlagen/ligenuebersicht.html.twig`; die Liste der Ligen eines Ordners baut `Lmo\Web\Seiten\Ligenliste` (Vorlage `lmo/vorlagen/ligenliste.html.twig`), auch für „Liga öffnen“ im Adminbereich (`lmo-dirlist.php` ruft sie auf). Die Seitentests decken jetzt Unterordner und Sortierung der Übersicht ab.  
 
 
 ### Changed  
@@ -41,6 +42,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * `lmo-showkoresults.php` und `lmo-showkoprogram.php` gibt es nicht mehr; Ergebnisse und Spielplan im Pokal zeigen der `PokalErgebnisseController` und der `PokalSpielplanController`.  
 * `lmo-showgraph.php` und `lmo-calcgraph.php` gibt es nicht mehr; die Fieberkurve zeigt der `FieberkurveController`.  
 * `lmo-showstats.php` gibt es nicht mehr; die Statistik zeigt der `StatistikController`.  
+* `lmo-showdir.php` gibt es nicht mehr; die Ligenübersicht zeigt der `LigenuebersichtController`.  
 
 
 ### Fixed  
@@ -377,6 +379,7 @@ _Here we write changelog notes for the next version._
 * Results and fixtures of a cup run through the `Lmo\Web\Controller\PokalErgebnisseController` and the `Lmo\Web\Controller\PokalSpielplanController` with the templates `lmo/vorlagen/pokal_ergebnisse.html.twig` and `lmo/vorlagen/pokal_spielplan.html.twig`. New page tests (`PokalSeitenTest`) with generated cups cover results, fixtures and calendar, including the third-place match and the play-off modes 2-2-1 and 2-3-2. An existing `addon/stats/lmo-showkoresults.inc.php` is still included per game through the bridge `Lmo\Addon\AltesSpielInclude`.  
 * Fever curve (`action=graph`) and info page (`action=info`) run through the `Lmo\Web\Controller\FieberkurveController` and the `Lmo\Web\Controller\InfoController` with the templates `lmo/vorlagen/fieberkurve.html.twig` and `lmo/vorlagen/info.html.twig`; the places per round are computed by `FieberkurveController::plaetze()`. `lmo-showinfo.php` stays for the prediction game and shows the same template.  
 * The statistics (`action=stats`) run through the `Lmo\Web\Controller\StatistikController` with the template `lmo/vorlagen/statistik.html.twig`. It computes the remaining fixtures on the league's raw data instead of through the classlib (which loaded the league file a second time for it); the season values are read through `Lmo\Web\Statistikdatei`, and the file is rewritten by `lmo-zustat.php` when needed, as before.  
+* The league overview runs through the `Lmo\Web\Controller\LigenuebersichtController` with the template `lmo/vorlagen/ligenuebersicht.html.twig`; the list of leagues in a folder is built by `Lmo\Web\Seiten\Ligenliste` (template `lmo/vorlagen/ligenliste.html.twig`), also for \"open league\" in the admin area (`lmo-dirlist.php` calls it). The page tests now cover subfolders and sorting of the overview.  
 
 
 ### Changed  
@@ -400,6 +403,7 @@ _Here we write changelog notes for the next version._
 * `lmo-showkoresults.php` and `lmo-showkoprogram.php` are gone; cup results and fixtures are shown by the `PokalErgebnisseController` and the `PokalSpielplanController`.  
 * `lmo-showgraph.php` and `lmo-calcgraph.php` are gone; the fever curve is shown by the `FieberkurveController`.  
 * `lmo-showstats.php` is gone; the statistics are shown by the `StatistikController`.  
+* `lmo-showdir.php` is gone; the league overview is shown by the `LigenuebersichtController`.  
 
 
 ### Fixed  
