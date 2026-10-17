@@ -58,4 +58,4 @@ foreach (explode(",", $ticker_ligen) as $lmo_ticker_datei) {
 // der Lauftext (Lmo\Addon\Ticker\Ticker)
 $lmo_ticker_texte = \Lmo\Web\Sprachtexte::ausAltemText($text);
 $lmo_ticker = new \Lmo\Addon\Ticker\Ticker((int)$ticker_tickerart, $ticker_notizanzeigen == 1, $lmo_ticker_texte->kern, $lmo_ticker_texte->von('ticker'));
-echo $lmo_ticker->html(PATH_TO_LMO . '/vorlagen', URL_TO_LMO, $lmo_ticker->text($lmo_ticker_ligen), $ticker_tickertitel == 1, (string)$ticker_breite, (string)$ticker_geschwindigkeit);
+echo $lmo_ticker->html(URL_TO_LMO, $lmo_ticker->text($lmo_ticker_ligen), $ticker_tickertitel == 1, (string)$ticker_breite, (string)$ticker_geschwindigkeit);

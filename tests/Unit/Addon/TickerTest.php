@@ -68,15 +68,14 @@ class TickerTest extends TestCase
     public function testHtml(): void
     {
         $ticker = new Ticker(1, true, self::TEXT, self::TICKER);
-        $vorlagen = dirname(__DIR__, 3) . '/lmo/vorlagen';
 
-        $html = $ticker->html($vorlagen, '/lmo', 'A - B 1:0', true, '40', '5000');
+        $html = $ticker->html('/lmo', 'A - B 1:0', true, '40', '5000');
         self::assertStringContainsString('src="/lmo/js/jquery.marquee.min.js"', $html);
         self::assertStringContainsString('<p>Ergebnisse</p>', $html);
         self::assertStringContainsString('<div data-duration="5000" class="marquee" style="width: 40em;', $html);
         self::assertStringContainsString('>A - B 1:0</div>', $html);
 
-        $ohneTitel = $ticker->html($vorlagen, '/lmo', '', false, '"><b>', '5000');
+        $ohneTitel = $ticker->html('/lmo', '', false, '"><b>', '5000');
         self::assertStringNotContainsString('<p>', $ohneTitel);
         self::assertStringContainsString('width: &quot;&gt;&lt;b&gt;em', $ohneTitel, 'Einstellungen maskiert');
     }

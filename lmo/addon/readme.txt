@@ -73,4 +73,13 @@ Addons nach neuer Art:
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.
 
-- Beispiel: das Ticker-Addon (addon/ticker/addon.php, Klassen unter src/Addon/Ticker/).
+- Ein Addon liegt vollstaendig in seinem Ordner:
+
+    addon/[Addonname]/addon.php     gibt das Addon zurueck
+    addon/[Addonname]/src/          Klassen (Namensraum Lmo\Addon\[Addonname]\, declare(strict_types=1))
+    addon/[Addonname]/vorlagen/     Twig-Vorlagen (\Lmo\Web\Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', ...))
+
+  Die Klassen der mitgelieferten Addons laedt der Autoloader von Composer (composer.json); ein
+  eigenes Addon bindet seine Klassen in addon.php mit require_once ein.
+
+- Beispiel: das Ticker-Addon (addon/ticker/).
