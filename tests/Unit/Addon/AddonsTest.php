@@ -4,9 +4,11 @@ namespace Lmo\Tests\Unit\Addon;
 
 use Lmo\Addon\Addon;
 use Lmo\Addon\Addons;
+use Lmo\Addon\AltesSeitenInclude;
 use Lmo\Addon\AltesSpielInclude;
 use Lmo\Addon\MitSeiten;
 use Lmo\Addon\MitZusatzJeSpiel;
+use Lmo\Addon\MitZusatzUnterSeite;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Liga\Spiel;
@@ -166,12 +168,42 @@ class AddonsTest extends TestCase
         self::assertSame('', (new Addons())->zusatzJeSpiel(self::spiel(), self::kontext()));
     }
 
+    public function testZusatzUnterDerSeite(): void
+    {
+        $unter = new class implements MitZusatzUnterSeite {
+            public function name(): string
+            {
+                return 'unter';
+            }
+
+            public function zusatzUnterSeite(Kontext $kontext): string
+            {
+                return '<p>' . $kontext->action . '</p>';
+            }
+        };
+
+        self::assertSame('<p>results</p>', (new Addons([self::zusatz('a'), $unter]))->zusatzUnterSeite(self::kontext()));
+        self::assertSame('', (new Addons())->zusatzUnterSeite(self::kontext()));
+    }
+
+    public function testBrueckeZumAltenSeitenInclude(): void
+    {
+        $datei = $this->datei('pdf/lmo-showprogram.inc.php', '<?php echo "Plan $selteam aus $file, " . $text[1] . ", " . $lmo_liga->einstellungen()->spieltage();');
+        $bruecke = new AltesSeitenInclude('pdf', 'results', $datei);
+        $kontext = self::kontext();
+        $mitTeam = new Kontext(new Anfrage(['selteam' => '2', 'file' => 'fremd.l98']), $kontext->action, $kontext->liga, $kontext->konfiguration, $kontext->text, $kontext->adresse, $kontext->pfade, $kontext->darstellung);
+
+        self::assertSame('pdf', $bruecke->name());
+        self::assertSame('Plan 2 aus x.l98, Eins, 1', $bruecke->zusatzUnterSeite($mitTeam), 'Parameter als Variablen, $file aber die geladene Liga');
+        self::assertSame('', (new AltesSeitenInclude('pdf', 'program', $datei))->zusatzUnterSeite($mitTeam), 'nur unter seiner Seite');
+    }
+
     public function testBrueckeZumAltenInclude(): void
     {
-        $datei = $this->datei('stats/lmo-showprogram.inc.php', '<?php echo "Partie $i, Spieltag $st, " . $text[1] . ", Heim " . $lmo_spiel->heim;');
+        $datei = $this->datei('stats/lmo-showprogram.inc.php', '<?php echo "Partie $i, Spieltag $st ($j), " . $text[1] . ", Heim " . $lmo_spiel->heim;');
         $bruecke = new AltesSpielInclude('stats', $datei);
 
         self::assertSame('stats', $bruecke->name());
-        self::assertSame('Partie 0, Spieltag 1, Eins, Heim 1', $bruecke->zusatzJeSpiel(self::spiel(), self::kontext()));
+        self::assertSame('Partie 0, Spieltag 1 (0), Eins, Heim 1', $bruecke->zusatzJeSpiel(self::spiel(), self::kontext()));
     }
 }

@@ -34,11 +34,15 @@ if (!defined('PATH_TO_LMO')) {
 
 $lmo_konfiguration = new \Lmo\Web\Konfiguration($cfgarray);
 
-// Addons mit addon.php (Lmo\Addon\Addon); dazu die Bruecke zum Addon nach alter Art, das am Ende
-// jeder Ergebniszeile die bisherigen Ergebnisse zeigt (AddOn Team Vergleich, nicht Teil des LMO)
+// Addons mit addon.php (Lmo\Addon\Addon); dazu die Bruecken zu Addons nach alter Art (nicht Teil
+// des LMO): bisherige Ergebnisse am Ende jeder Ergebniszeile (AddOn Team Vergleich) und der
+// Teamplan unter dem Spielplan
 $lmo_addons = \Lmo\Addon\Addons::ausOrdner(PATH_TO_ADDONDIR);
 if (file_exists(PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php')) {
     $lmo_addons = $lmo_addons->mit(new \Lmo\Addon\AltesSpielInclude('stats', PATH_TO_ADDONDIR . '/stats/lmo-showprogram.inc.php'));
+}
+if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php')) {
+    $lmo_addons = $lmo_addons->mit(new \Lmo\Addon\AltesSeitenInclude('pdf', 'program', PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php'));
 }
 
 $lmo_anwendung = new \Lmo\Web\Anwendung(
@@ -51,6 +55,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
     [
         new \Lmo\Web\Controller\ErgebnisseController(),
         new \Lmo\Web\Controller\KreuztabelleController(),
+        new \Lmo\Web\Controller\SpielplanController(),
     ],
     $lmo_addons
 );
