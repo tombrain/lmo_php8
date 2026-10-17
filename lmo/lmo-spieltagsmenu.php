@@ -11,7 +11,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var int|string $st gewaehlter Spieltag
  *
  * @var string $tabdat Stand der Tabelle als Text; nicht leer: der gewaehlte Spieltag ist nicht verlinkt
- * @var string $todo "tabs" im Adminbereich: auch der gewaehlte Spieltag ist verlinkt (mit $addb)
+ * @var string|null $todo "tabs" im Adminbereich: auch der gewaehlte Spieltag ist verlinkt (mit $addb); fehlt ausserhalb
  * @var string $addb Link auf einen Spieltag im Adminbereich, es fehlt nur die Nummer
  * @var string $addr Link auf einen Spieltag, es fehlt nur die Nummer
  */
