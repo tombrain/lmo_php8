@@ -1,0 +1,88 @@
+{#- Spielerstatistik einer Liga (Lmo\Addon\Spieler\StatistikController). Links, Spaltenkoepfe und Zeilen sind fertiges HTML. -#}
+<table class="lmoMiddle">
+  <tr>
+{% if vereinsweise %}
+    <td valign="top" align="center">
+      <table class="lmoMenu">
+        <tr>
+          <td align="right" class="nobr">{% if alle %}<a href="{{ alle|raw }}">{% endif %}{{ t[51]|raw }}{% if alle %}</a>{% endif %}
+          </td>
+          <td align="right">333
+          </td>
+        </tr>
+{% for verein in vereine %}
+        <tr>
+          <td align="right" class="nobr">{% if verein.link %}<a href="{{ verein.link|raw }}">{% endif %}{{ verein.kurz|raw }}{% if verein.link %}</a>{% endif %}
+          </td>
+          <td align="right">{{ verein.wappen|raw }}</td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+{% endif %}
+    <td valign="top">
+      <table id="stats" class="lmoInner" cellpadding="0" cellspacing="1" border="0">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+{% for kopf in koepfe %}
+            <th class="nobr" align="center">
+{%- if pfeile %}<a href="{{ link.ab[kopf.nr]|raw }}" title="{{ t[36]|raw }} {{ kopf.name|raw }} {{ t[48]|raw }} {{ t[37]|raw }}"><img title="{{ t[48]|raw }}" border="0" src="{{ bilder|raw }}/downsimple.png" width="10" alt="&or;"></a>{% endif -%}
+{{ kopf.titel|raw }}
+{%- if pfeile %}<a href="{{ link.auf[kopf.nr]|raw }}" title="{{ t[36]|raw }} {{ kopf.name|raw }} {{ t[47]|raw }} {{ t[37]|raw }}"><img title="{{ t[47]|raw }}" border="0" src="{{ bilder|raw }}/upsimple.svg" width="10" alt="&and;"></a>{% endif %}</th>
+{% endfor %}
+          </tr>
+        </thead>
+{% if fuss %}
+        <tfoot>
+          <tr>
+            <th colspan="{{ spaltenzahl + 2 }}" align="center">
+{%- if fuss.zurueck %}<a href="{{ fuss.zurueck|raw }}">&lt;&lt;&nbsp;{{ t[16]|raw }}</a>{% endif -%}
+&nbsp;|&nbsp;<a href="{{ fuss.anfang|raw }}">{{ t[17]|raw }}&nbsp;{{ pro_seite }}</a>&nbsp;|&nbsp;
+{%- if fuss.weiter %}<a href="{{ fuss.weiter|raw }}">{{ t[15]|raw }}&nbsp;&gt;&gt;</a>{% endif %}</th>
+          </tr>
+        </tfoot>
+{% endif %}
+        <tbody>
+{% for zeile in zeilen %}
+          <tr>
+            {{ zeile|raw }}
+          </tr>
+{% endfor %}
+        </tbody>
+      </table>
+    </td>
+{% if sortierspalte %}
+    <td valign="top" align="center">
+      <table class="lmoMenu">
+        <tr>
+          <td class="lmost4">{{ t[13]|raw }}</td>
+        </tr>
+{% for nr, spalte in spalten %}
+        <tr>
+          <td class="nobr"><a href="{{ link.ab_hier[nr]|raw }}">
+              <img title="{{ t[48]|raw }}" border="0" src="{{ bilder|raw }}/downsimple.svg" alt="&or;" width="10"></a>
+                 {{ spalte|raw }}
+              <a href="{{ link.auf_hier[nr]|raw }}">
+              <img title="{{ t[47]|raw }}" border="0" src="{{ bilder|raw }}/upsimple.svg" alt="&and;" width="10"></a>
+          </td>
+        </tr>
+{% endfor %}
+      </table>
+    </td>
+{% endif %}
+  </tr>
+</table>
+<table width="99%">
+  <tr>
+    <td align="center">
+      <a href="{{ druck|raw }}">{{ t[56]|raw }}</a>
+    </td>
+{% if druck_alle %}
+    <td align="center">
+      <a href="{{ druck_alle|raw }}">{{ t[57]|raw }}</a>
+    </td>
+{% endif %}
+  </tr>
+</table>

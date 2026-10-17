@@ -19,7 +19,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Fieberkurve (`action=graph`) und Info-Seite (`action=info`) laufen über den `Lmo\Web\Controller\FieberkurveController` und den `Lmo\Web\Controller\InfoController` mit den Vorlagen `lmo/vorlagen/fieberkurve.html.twig` und `lmo/vorlagen/info.html.twig`; die Plätze je Spieltag rechnet `FieberkurveController::plaetze()`. `lmo-showinfo.php` bleibt für das Tippspiel und zeigt dieselbe Vorlage.  
 * Die Statistik (`action=stats`) läuft über den `Lmo\Web\Controller\StatistikController` mit der Vorlage `lmo/vorlagen/statistik.html.twig`. Das Restprogramm rechnet er auf den Rohdaten der Liga statt über die Classlib (die die Ligadatei dafür ein zweites Mal geladen hat); die Werte der Saison liest er über `Lmo\Web\Statistikdatei` und lässt die Datei bei Bedarf wie bisher von `lmo-zustat.php` neu schreiben.  
 * Die Ligenübersicht läuft über den `Lmo\Web\Controller\LigenuebersichtController` mit der Vorlage `lmo/vorlagen/ligenuebersicht.html.twig`; die Liste der Ligen eines Ordners baut `Lmo\Web\Seiten\Ligenliste` (Vorlage `lmo/vorlagen/ligenliste.html.twig`), auch für „Liga öffnen“ im Adminbereich (`lmo-dirlist.php` ruft sie auf). Die Seitentests decken jetzt Unterordner und Sortierung der Übersicht ab.  
-* Neuer Erweiterungspunkt für Addons: `Lmo\Addon\MitRahmenteilen` – Teile für den Rahmen der Seiten (z. B. ein Menüpunkt oder ein Bereich über dem Menü), unter denselben Namen wie die Platzhalter. Die Addons nach alter Art (Spieler, Tippspiel) bleiben vorerst im alten Code eingebunden, weil ihre Funktionen Variablen mit `global` lesen.  
+* Neuer Erweiterungspunkt für Addons: `Lmo\Addon\MitRahmenteilen` – Teile für den Rahmen der Seiten (z. B. ein Menüpunkt oder ein Bereich über dem Menü), unter denselben Namen wie die Platzhalter. Das Tippspiel nach alter Art bleibt vorerst im alten Code eingebunden, weil seine Funktionen Variablen mit `global` lesen.  
 * Addons nach neuer Art liegen vollständig in ihrem Ordner, auch ihre Klassen: `Lmo\Addon\Autoloader` (in `init.php` registriert) lädt `Lmo\Addon\<Addon>\<Klasse>` aus `addon/<addon>/src/<Klasse>.php`, ohne Eintrag in `composer.json`. Ein Addon funktioniert, sobald sein Ordner da ist.  
 
 
@@ -32,6 +32,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Fußzeile des Rahmens (Link zur Ligenübersicht, letzte Auswertung, Berechnungszeit) aus `Lmo\Web\Seiten\Fusszeile`; die Sprachauswahl baut `Lmo\Web\Seiten\Sprachauswahl`, auch im Adminbereich (`getLangSelector()` ruft sie auf). Die Sprachen stehen jetzt alphabetisch statt in der Reihenfolge des Dateisystems.  
 * Druckansicht (`einsavehtml`): Die Dateien `output/<liga>-st.html` (Spieltag mit Tabelle) und `output/<liga>-sp.html` (Spielplan) schreibt jetzt das Speichern der Liga im Adminbereich, für den gespeicherten Spieltag – nicht mehr jeder Aufruf der Ergebnis- oder Tabellenseite. Die Seiten verlinken die Dateien, sobald es sie gibt. Bestehende Installationen bekommen die Links nach dem nächsten Speichern einer Liga.  
 * Das Ticker-Addon ist ein Addon nach neuer Art (`addon/ticker/addon.php`): Den Newsticker über der Liga liefert `Lmo\Addon\Ticker\TickerAddon` als Teil des Rahmens, den Lauftext baut `Lmo\Addon\Ticker\Ticker`. Das Addon liegt vollständig in seinem Ordner: Klassen unter `addon/ticker/src/`, Vorlage unter `addon/ticker/vorlagen/`. Das Einbinden in eigene Seiten mit `include(".../addon/ticker/ticker.php")` und den Parametern `$tickerart`, `$tickerligen` usw. geht wie bisher.  
+* Das Spieler-Addon ist ein Addon nach neuer Art (`addon/spieler/addon.php`, Klassen unter `addon/spieler/src/`): Die Spielerstatistik (`action=spieler`) zeigt der `Lmo\Addon\Spieler\StatistikController` mit der Vorlage `addon/spieler/vorlagen/statistik.html.twig`, den Menüpunkt liefert `Lmo\Addon\Spieler\SpielerAddon`. Statistikdatei und Einstellungen lesen `Statistik` und `Einstellungen`; die Sortierung braucht keine globalen Variablen mehr. Die Ausgabe ist unverändert und durch einen eigenen Test (`SpielerSeiteTest`) festgehalten. Druckansicht (`lmo-statprint.php`) und Pflege im Adminbereich (`lmo-statadmin.php`) bleiben vorerst, wie sie sind.  
 
 
 ### Deprecated  
@@ -47,6 +48,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * `lmo-showgraph.php` und `lmo-calcgraph.php` gibt es nicht mehr; die Fieberkurve zeigt der `FieberkurveController`.  
 * `lmo-showstats.php` gibt es nicht mehr; die Statistik zeigt der `StatistikController`.  
 * `lmo-showdir.php` gibt es nicht mehr; die Ligenübersicht zeigt der `LigenuebersichtController`.  
+* `addon/spieler/lmo-statshow.php` gibt es nicht mehr; die Spielerstatistik zeigt der `StatistikController` des Spieler-Addons.  
 
 
 ### Fixed  
@@ -386,7 +388,7 @@ _Here we write changelog notes for the next version._
 * Fever curve (`action=graph`) and info page (`action=info`) run through the `Lmo\Web\Controller\FieberkurveController` and the `Lmo\Web\Controller\InfoController` with the templates `lmo/vorlagen/fieberkurve.html.twig` and `lmo/vorlagen/info.html.twig`; the places per round are computed by `FieberkurveController::plaetze()`. `lmo-showinfo.php` stays for the prediction game and shows the same template.  
 * The statistics (`action=stats`) run through the `Lmo\Web\Controller\StatistikController` with the template `lmo/vorlagen/statistik.html.twig`. It computes the remaining fixtures on the league's raw data instead of through the classlib (which loaded the league file a second time for it); the season values are read through `Lmo\Web\Statistikdatei`, and the file is rewritten by `lmo-zustat.php` when needed, as before.  
 * The league overview runs through the `Lmo\Web\Controller\LigenuebersichtController` with the template `lmo/vorlagen/ligenuebersicht.html.twig`; the list of leagues in a folder is built by `Lmo\Web\Seiten\Ligenliste` (template `lmo/vorlagen/ligenliste.html.twig`), also for \"open league\" in the admin area (`lmo-dirlist.php` calls it). The page tests now cover subfolders and sorting of the overview.  
-* New extension point for add-ons: `Lmo\Addon\MitRahmenteilen` – parts for the page frame (e.g. a menu item or an area above the menu), under the same names as the placeholders. The old-style add-ons (players, prediction game) stay included by the old code for now, because their functions read variables via `global`.  
+* New extension point for add-ons: `Lmo\Addon\MitRahmenteilen` – parts for the page frame (e.g. a menu item or an area above the menu), under the same names as the placeholders. The old-style prediction game stays included by the old code for now, because its functions read variables via `global`.  
 * New-style add-ons live entirely in their folder, including their classes: `Lmo\Addon\Autoloader` (registered in `init.php`) loads `Lmo\Addon\<Addon>\<Class>` from `addon/<addon>/src/<Class>.php`, without an entry in `composer.json`. An add-on works as soon as its folder is there.  
 
 
@@ -399,6 +401,7 @@ _Here we write changelog notes for the next version._
 * Footer of the frame (link to the league overview, last evaluation, calculation time) from `Lmo\Web\Seiten\Fusszeile`; the language selection is built by `Lmo\Web\Seiten\Sprachauswahl`, in the admin area as well (`getLangSelector()` calls it). The languages are now listed alphabetically instead of in file system order.  
 * Print view (`einsavehtml`): the files `output/<league>-st.html` (round with table) and `output/<league>-sp.html` (fixtures) are now written when the league is saved in the admin area, for the saved round – no longer on every call of the results or table page. The pages link the files as soon as they exist. Existing installations get the links after the next time a league is saved.  
 * The ticker add-on is a new-style add-on (`addon/ticker/addon.php`): `Lmo\Addon\Ticker\TickerAddon` provides the news ticker above the league as a part of the frame, `Lmo\Addon\Ticker\Ticker` builds the scrolling text. The add-on lives entirely in its folder: classes under `addon/ticker/src/`, template under `addon/ticker/vorlagen/`. Embedding it in own pages with `include(".../addon/ticker/ticker.php")` and the parameters `$tickerart`, `$tickerligen` etc. works as before.  
+* The players add-on is a new-style add-on (`addon/spieler/addon.php`, classes under `addon/spieler/src/`): the player statistics (`action=spieler`) are shown by `Lmo\Addon\Spieler\StatistikController` with the template `addon/spieler/vorlagen/statistik.html.twig`, the menu item comes from `Lmo\Addon\Spieler\SpielerAddon`. The statistics file and the settings are read by `Statistik` and `Einstellungen`; sorting no longer needs global variables. The output is unchanged and pinned by a test of its own (`SpielerSeiteTest`). The print view (`lmo-statprint.php`) and editing in the admin area (`lmo-statadmin.php`) stay as they are for now.  
 
 
 ### Deprecated  
@@ -414,6 +417,7 @@ _Here we write changelog notes for the next version._
 * `lmo-showgraph.php` and `lmo-calcgraph.php` are gone; the fever curve is shown by the `FieberkurveController`.  
 * `lmo-showstats.php` is gone; the statistics are shown by the `StatistikController`.  
 * `lmo-showdir.php` is gone; the league overview is shown by the `LigenuebersichtController`.  
+* `addon/spieler/lmo-statshow.php` is gone; the player statistics are shown by the `StatistikController` of the players add-on.  
 
 
 ### Fixed  
