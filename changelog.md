@@ -48,6 +48,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 ### Fixed  
 * Kreuztabelle: Ein Apostroph im Mannschaftsnamen erscheint in allen Tooltips als Apostroph; bisher stand je nach Zeile mal `'`, mal `´` (der Name wurde während der Ausgabe ersetzt). Namen, Kurznamen und Notizen werden escaped.  
+* Der Menüpunkt „Tippspiel“ war kaputtes HTML (`<a <a href=…>` ohne `</a>`); jetzt ein gewöhnlicher Link.  
 
 
 ### Security  
@@ -410,6 +411,7 @@ _Here we write changelog notes for the next version._
 
 ### Fixed  
 * Cross table: an apostrophe in a team name shows as an apostrophe in all tooltips; until now it was `'` or `´` depending on the row (the name was replaced during output). Names, short names and notes are escaped.  
+* The menu item \"Tippspiel\" (prediction game) was broken HTML (`<a <a href=…>` without `</a>`); now a regular link.  
 
 
 ### Security  
