@@ -15,8 +15,9 @@ final class Kontext
     /**
      * @param string $action gewaehlte Seite, z. B. "results"
      * @param GeladeneLiga|null $liga die geladene Liga, null ohne
-     * @param array<int|string, mixed> $text Sprachtexte (fuer die Liga angepasst, Sprachtexte::fuerLiga())
+     * @param array<int, string> $text Sprachtexte (fuer die Liga angepasst, Sprachtexte::fuerLiga())
      * @param string $adresse Adresse des LMO fuer Links ($_SERVER['PHP_SELF'])
+     * @param array<string, array<int, string>> $weitereTexte Texte der Unterordner von lang/ (texteVon())
      */
     public function __construct(
         public readonly Anfrage $anfrage,
@@ -28,6 +29,18 @@ final class Kontext
         public readonly Pfade $pfade,
         public readonly Darstellung $darstellung,
         public readonly Addons $addons = new Addons(),
+        public readonly array $weitereTexte = [],
     ) {
+    }
+
+    /**
+     * Die Texte eines Unterordners von lang/: "date" (Wochentage und Monate) oder die eines
+     * Addons ($kontext->texteVon($this->name())); [] ohne.
+     *
+     * @return array<int, string>
+     */
+    public function texteVon(string $name): array
+    {
+        return $this->weitereTexte[$name] ?? [];
     }
 }

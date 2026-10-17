@@ -18,7 +18,7 @@ if (!defined('PATH_TO_LMO')) {
 
 // die Auswahl der Spieltage (Lmo\Web\Seiten\SpieltagsMenue mit der Vorlage vorlagen/spieltagsmenu.html.twig)
 $lmo_menu_tabs = isset($todo) && $todo == 'tabs';
-echo (new \Lmo\Web\Seiten\SpieltagsMenue($text, PATH_TO_LMO . '/vorlagen'))->zeige(
+echo (new \Lmo\Web\Seiten\SpieltagsMenue(\Lmo\Web\Sprachtexte::ausAltemText($text)->kern, PATH_TO_LMO . '/vorlagen'))->zeige(
     $lmo_liga ?? null,
     (int)$st,
     $lmo_menu_tabs ? $addb : $addr,

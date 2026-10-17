@@ -27,12 +27,13 @@ use Lmo\Web\Vorlagen;
  */
 final class StatistikController implements Controller
 {
-    /** @var (Closure(Liga, string, array<int|string, mixed>): void)|null */
+    /** @var (Closure(Liga, string, array<int|string, string|array<int, string>>): void)|null */
     private ?Closure $statistikErzeugen;
 
     /**
-     * @param (Closure(Liga, string, array<int|string, mixed>): void)|null $statistikErzeugen schreibt die
-     *        Statistikdatei einer Liga neu (Liga, Ligadatei, Sprachtexte; lmo-zustat.php); null: nie
+     * @param (Closure(Liga, string, array<int|string, string|array<int, string>>): void)|null $statistikErzeugen
+     *        schreibt die Statistikdatei einer Liga neu (Liga, Ligadatei, Sprachtexte wie im alten Code;
+     *        lmo-zustat.php); null: nie
      */
     public function __construct(?Closure $statistikErzeugen = null)
     {
@@ -111,7 +112,7 @@ final class StatistikController implements Controller
 
         $pf = $e->punktfaktor();
         $tf = $e->torfaktor();
-        $f = static fn ($wert, int $faktor): string => (string) Darstellung::mitFaktor($wert, $faktor);
+        $f = static fn (int|float|string $wert, int $faktor): string => (string) Darstellung::mitFaktor($wert, $faktor);
         $prozent = static fn (int $anzahl, int $spiele): string => $spiele ? $anzahl . ' (' . number_format($anzahl * 100 / $spiele, 2, ',', '.') . '%)' : '';
         $jeSpiel = static fn (Tabellenzeile $z): string => $z->spiele ? $f(number_format($z->punkte / $z->spiele, 2), $pf) : '';
         $toreJeSpiel = static fn (Tabellenzeile $z): string => $z->spiele
@@ -188,7 +189,7 @@ final class StatistikController implements Controller
      * Die laufende Serie: Siege und ungeschlagen, Niederlagen und sieglos, sonst die laengere von
      * ungeschlagen und sieglos.
      *
-     * @param array<int|string, mixed> $text
+     * @param array<int, string> $text
      */
     private static function serie(Tabellenzeile $z, array $text): string
     {
@@ -210,7 +211,7 @@ final class StatistikController implements Controller
      * Gegners und die Punkte, die ihre Gegner bisher geholt und abgegeben haben (bisher ueber die
      * Classlib gerechnet: Gesamttabelle aller Spieltage, Minuspunkte wie bei 2-Punkte-Wertung).
      *
-     * @param array<int|string, mixed> $text
+     * @param array<int, string> $text
      * @return array<string, mixed>|null null ohne gueltige erste Mannschaft
      */
     private function restprogramm(Liga $liga, array $text, int $erste, int $zweite): ?array
@@ -236,11 +237,15 @@ final class StatistikController implements Controller
 
         $vergleich = null;
         if ($b !== null) {
-            $wert = static fn (array $r): string => $r['plus'] . ':' . $r['minus'] . ' (' . ($r['plus'] - $r['minus'] > 0 ? '+' . ($r['plus'] - $r['minus']) : ($r['plus'] - $r['minus'])) . ')';
             $da = $a['plus'] - $a['minus'];
             $db = $b['plus'] - $b['minus'];
             [$textA, $textB] = $da < $db ? [$text[4025], $text[4026]] : ($da > $db ? [$text[4026], $text[4025]] : [$text[4024], $text[4024]]);
-            $vergleich = ['links' => $wert($a), 'rechts' => $wert($b), 'text_links' => $textA, 'text_rechts' => $textB];
+            $vergleich = [
+                'links' => self::restWert($a['plus'], $a['minus']),
+                'rechts' => self::restWert($b['plus'], $b['minus']),
+                'text_links' => $textA,
+                'text_rechts' => $textB,
+            ];
         }
 
         return ['links' => $linksHtml, 'rechts' => $rechtsHtml, 'vergleich' => $vergleich];
@@ -320,6 +325,14 @@ final class StatistikController implements Controller
         return ['spiele' => $spiele, 'plus' => $plus, 'minus' => $minus];
     }
 
+    /** Punkte und Minuspunkte der Gegner im Restprogramm, mit der Differenz: "12:8 (+4)". */
+    private static function restWert(int $plus, int $minus): string
+    {
+        $differenz = $plus - $minus;
+
+        return $plus . ':' . $minus . ' (' . ($differenz > 0 ? '+' . $differenz : $differenz) . ')';
+    }
+
     /** Noch nicht gespielt und nicht am gruenen Tisch gewertet (Classlib: partie::valuateGame() == -1). */
     private static function offen(Spiel $spiel): bool
     {
@@ -339,32 +352,32 @@ final class StatistikController implements Controller
         $pfad = $kontext->pfade->ausgabe($kontext->konfiguration, str_replace('.l98', '.l98.php', basename($geladen->datei)));
         $ligadatei = $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner() . $geladen->datei;
         if ($this->statistikErzeugen !== null && (!is_file($pfad) || filemtime($pfad) < filemtime($ligadatei))) {
-            ($this->statistikErzeugen)($geladen->liga, $geladen->datei, $kontext->text);
+            ($this->statistikErzeugen)($geladen->liga, $geladen->datei, $kontext->text + $kontext->weitereTexte);
             clearstatcache();
         }
         $statistik = Statistikdatei::lies($pfad) ?? new Statistikdatei([]);
         $tf = $geladen->liga->einstellungen()->torfaktor();
-        $w = static fn (string $name) => $statistik->wert($name);
-        $f = static fn (string $name): string => (string) Darstellung::mitFaktor($statistik->wert($name) ?? '', $tf);
-        $html = static fn ($s): string => htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401);
+        // Tore mit dem Faktor der Liga; fehlt der Wert in der Datei: leer
+        $f = static fn (string $name): string => $statistik->hat($name) ? (string) Darstellung::mitFaktor($statistik->zahl($name), $tf) : '';
+        $html = static fn (string $s): string => htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401);
 
-        $gesamt = (int) $w('gzusieg1') + (int) $w('gzusieg2') + (int) $w('gzuunent') + (int) $w('gbeide');
-        $anteil = static fn (string $name): string => $gesamt > 0 ? ' (' . round((int) $w($name) / $gesamt * 100) . '%)' : '';
-        $gdstore = $w('gdstore');
-        $heimAnteil = $gdstore > 0 ? round($w('dsheimtore') / $gdstore * 100) : null;
+        $gesamt = (int) ($statistik->zahl('gzusieg1') + $statistik->zahl('gzusieg2') + $statistik->zahl('gzuunent') + $statistik->zahl('gbeide'));
+        $anteil = static fn (string $name): string => $gesamt > 0 ? ' (' . round($statistik->zahl($name) / $gesamt * 100) . '%)' : '';
+        $gdstore = $statistik->zahl('gdstore');
+        $heimAnteil = $gdstore > 0 ? round($statistik->zahl('dsheimtore') / $gdstore * 100) : null;
 
         // die Serien: Name je Zeile, wie bisher mit <br> (verloren: <br />)
         $serien = null;
-        if ($w('akt_gewonnen') !== null) {
-            $namen = static fn (string $name, bool $xhtml = false): string => nl2br($html($w($name) ?? ''), $xhtml);
+        if ($statistik->hat('akt_gewonnen')) {
+            $namen = static fn (string $name, bool $xhtml = false): string => nl2br($html($statistik->text($name)), $xhtml);
             $serien = [];
             foreach ([['gewonnen', 4028, 'lmoTabelleMeister'], ['ungeschlagen', 4029, 'lmoTabelleUefa'], ['unentschieden', 200, ''], ['sieglos', 4031, 'lmoTabelleRelegation'], ['verloren', 4032, 'lmoTabelleAbsteiger']] as [$art, $titel, $klasse]) {
                 $serien[] = [
                     'art' => $art,
                     'titel' => $kontext->text[$titel],
                     'klasse' => $klasse,
-                    'akt' => $w('akt_' . $art),
-                    'max' => $w('max_' . $art),
+                    'akt' => $statistik->text('akt_' . $art),
+                    'max' => $statistik->text('max_' . $art),
                     'team_akt' => $namen('team_akt_' . $art, $art === 'verloren'),
                     'team_max' => $namen('team_max_' . $art, $art === 'verloren'),
                 ];
@@ -373,13 +386,13 @@ final class StatistikController implements Controller
 
         return [
             'gesamt' => $gesamt,
-            'heimsiege' => (string) $w('gzusieg1'),
+            'heimsiege' => $statistik->text('gzusieg1'),
             'heimsiege_anteil' => $anteil('gzusieg1'),
-            'unentschieden' => (string) $w('gzuunent'),
+            'unentschieden' => $statistik->text('gzuunent'),
             'unentschieden_anteil' => $anteil('gzuunent'),
-            'auswaertssiege' => (string) $w('gzusieg2'),
+            'auswaertssiege' => $statistik->text('gzusieg2'),
             'auswaertssiege_anteil' => $anteil('gzusieg2'),
-            'beide' => (int) $w('gbeide'),
+            'beide' => (int) $statistik->zahl('gbeide'),
             'beide_anteil' => $anteil('gbeide'),
             'tore' => $f('gzutore'),
             'tore_je_spiel' => $f('gdstore'),
@@ -407,21 +420,33 @@ final class StatistikController implements Controller
      */
     private static function rekord(Statistikdatei $s, int $tf, string $bedingung, array $erstes, string $bedingung2, array $zweites, string $weitere): ?array
     {
-        if (!($s->wert($bedingung) > 0)) {
+        if (!($s->zahl($bedingung) > 0)) {
             return null;
         }
-        $spiel = static fn (array $namen): array => [
-            'heim' => (string) $s->wert($namen[0]),
-            'gast' => (string) $s->wert($namen[1]),
-            'tore' => Darstellung::mitFaktor($s->wert($namen[2]) ?? '', $tf) . ':' . Darstellung::mitFaktor($s->wert($namen[3]) ?? '', $tf),
-            'spieltag' => (string) $s->wert($namen[4]),
-        ];
-        $zweitesSpiel = $s->wert($bedingung2) > 0 ? $spiel($zweites) : null;
+        $zweitesSpiel = $s->zahl($bedingung2) > 0 ? self::rekordSpiel($s, $tf, $zweites) : null;
 
         return [
-            'erstes' => $spiel($erstes),
+            'erstes' => self::rekordSpiel($s, $tf, $erstes),
             'zweites' => $zweitesSpiel,
-            'weitere' => $zweitesSpiel !== null && $s->wert($weitere) > 2 ? $s->wert($weitere) - 2 : null,
+            'weitere' => $zweitesSpiel !== null && $s->zahl($weitere) > 2 ? $s->zahl($weitere) - 2 : null,
+        ];
+    }
+
+    /**
+     * Ein Rekordspiel aus der Statistikdatei; die Tore mit dem Faktor der Liga, fehlende leer.
+     *
+     * @param array{string, string, string, string, string} $namen Heim, Gast, Tore Heim, Tore Gast, Spieltag
+     * @return array{heim: string, gast: string, tore: string, spieltag: string}
+     */
+    private static function rekordSpiel(Statistikdatei $s, int $tf, array $namen): array
+    {
+        $tore = static fn (string $name): string => $s->hat($name) ? (string) Darstellung::mitFaktor($s->zahl($name), $tf) : '';
+
+        return [
+            'heim' => $s->text($namen[0]),
+            'gast' => $s->text($namen[1]),
+            'tore' => $tore($namen[2]) . ':' . $tore($namen[3]),
+            'spieltag' => $s->text($namen[4]),
         ];
     }
 }

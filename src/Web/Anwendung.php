@@ -22,8 +22,7 @@ final class Anwendung
     private const STARTSEITEN = ['results', 'table', 'program', 'cross', 'graph', 'stats', 'cal', 'spieler'];
 
     private Konfiguration $konfiguration;
-    /** @var array<int|string, mixed> */
-    private array $text;
+    private Sprachtexte $texte;
     private LigaLader $lader;
     private Pfade $pfade;
     private Darstellung $darstellung;
@@ -33,17 +32,17 @@ final class Anwendung
 
     /**
      * @param Konfiguration $konfiguration Konfiguration der Installation (config/cfg.txt)
-     * @param array<int|string, mixed> $text Sprachtexte; fuer die geladene Liga passt sie kontext() an
+     * @param Sprachtexte $texte Sprachtexte; fuer die geladene Liga passt sie kontext() an
      * @param LigaLader $lader laedt die Ligadatei aus der Anfrage
      * @param Pfade $pfade Ordner und Adressen der Installation
      * @param Darstellung $darstellung Vereinswappen und Faktoren fuer die Seiten
      * @param list<Controller> $controller Controller des Kerns, in der Reihenfolge, in der sie gefragt werden
      * @param Addons $addons Addons der Installation; ihre Controller (Lmo\Addon\MitSeiten) werden nach denen des Kerns gefragt
      */
-    public function __construct(Konfiguration $konfiguration, array $text, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons())
+    public function __construct(Konfiguration $konfiguration, Sprachtexte $texte, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons())
     {
         $this->konfiguration = $konfiguration;
-        $this->text = $text;
+        $this->texte = $texte;
         $this->lader = $lader;
         $this->pfade = $pfade;
         $this->darstellung = $darstellung;
@@ -73,9 +72,9 @@ final class Anwendung
     public function kontext(Anfrage $anfrage, string $adresse, ?string $datei = null): Kontext
     {
         $liga = $this->lader->lade($datei ?? $anfrage->text('file'));
-        $text = $liga !== null ? Sprachtexte::fuerLiga($this->text, $liga->liga) : $this->text;
+        $texte = $liga !== null ? $this->texte->fuerLiga($liga->liga) : $this->texte;
 
-        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $text, $adresse, $this->pfade, $this->darstellung, $this->addons);
+        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere);
     }
 
     /**

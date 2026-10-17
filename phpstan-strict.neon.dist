@@ -1,6 +1,6 @@
 # Neuer Code auf Stufe 8. Dateien, die typisiert und ohne globale Variablen geschrieben sind, hier eintragen.
 parameters:
-    level: 8
+    level: max
     phpVersion:
         min: 80100
         max: 80599

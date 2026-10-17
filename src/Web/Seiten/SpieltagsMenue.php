@@ -13,12 +13,12 @@ use Lmo\Web\Vorlagen;
  */
 final class SpieltagsMenue
 {
-    /** @var array<int|string, mixed> */
+    /** @var array<int, string> */
     private array $text;
     private string $vorlagen;
 
     /**
-     * @param array<int|string, mixed> $text Sprachtexte
+     * @param array<int, string> $text Sprachtexte
      * @param string $vorlagen Ordner der Twig-Vorlagen
      */
     public function __construct(array $text, string $vorlagen)

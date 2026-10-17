@@ -46,6 +46,6 @@ final class AltesSpielInclude implements MitZusatzJeSpiel
             include $lmo_addon_datei;
 
             return (string) ob_get_clean();
-        })($this->datei, $spiel, $kontext->text);
+        })($this->datei, $spiel, $kontext->text + $kontext->weitereTexte);
     }
 }

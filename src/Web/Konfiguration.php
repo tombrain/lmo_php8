@@ -37,9 +37,13 @@ final class Konfiguration
      */
     public static function lies(string $ordner): self
     {
-        $werte = is_file($ordner . '/cfg.txt') ? parse_ini_file($ordner . '/cfg.txt') : false;
-        if ($werte === false) {
+        $datei = is_file($ordner . '/cfg.txt') ? parse_ini_file($ordner . '/cfg.txt') : false;
+        if ($datei === false) {
             throw new RuntimeException('Konfiguration nicht lesbar: ' . $ordner . '/cfg.txt');
+        }
+        $werte = [];
+        foreach ($datei as $schluessel => $wert) {
+            $werte[(string) $schluessel] = $wert;
         }
         // Addons in fester (alphabetischer) Reihenfolge
         foreach (scandir($ordner) ?: [] as $addon) {
@@ -95,8 +99,14 @@ final class Konfiguration
     public function addon(string $name): array
     {
         $werte = $this->werte[$name] ?? [];
+        $addon = [];
+        foreach (is_array($werte) ? $werte : [] as $schluessel => $wert) {
+            if (is_scalar($wert)) {
+                $addon[(string) $schluessel] = (string) $wert;
+            }
+        }
 
-        return is_array($werte) ? $werte : [];
+        return $addon;
     }
 
     /** dirliga: Ordner der Ligadateien relativ zum LMO, mit "/" am Ende */

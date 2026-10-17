@@ -57,7 +57,8 @@ $lmo_statistik_erzeugen = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, st
 
 return new \Lmo\Web\Anwendung(
     $lmo_konfiguration,
-    $text,
+    // Sprachtexte des alten Codes, getrennt in Kerntexte und die der Unterordner (date, Addons)
+    \Lmo\Web\Sprachtexte::ausAltemText($text),
     // Hilfsadmins sehen nur ihre eigenen Ligen
     new \Lmo\Web\LigaLader(PATH_TO_LMO . '/' . $lmo_konfiguration->ligenordner(), $lmo_konfiguration->datumsformat(), static fn (string $datei): bool => check_hilfsadmin($datei)),
     new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR, URL_TO_LMO),
