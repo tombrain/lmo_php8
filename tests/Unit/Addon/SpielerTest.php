@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lmo\Tests\Unit\Addon;
 
+use Lmo\Addon\Spieler\Druckansicht;
 use Lmo\Addon\Spieler\Einstellungen;
 use Lmo\Addon\Spieler\SpielerAddon;
 use Lmo\Addon\Spieler\Statistik;
@@ -152,6 +153,33 @@ class SpielerTest extends TestCase
         self::assertStringContainsString('Eins&nbsp;<a href="https://eins.example/?a=1&amp;b=2" target="_blank" title="Homepage"><img border="0" width="11" src="IMG/url.png" alt="&#8599;" title="Homepage"></a></td>', $html, 'Link in der Zelle des Vereins');
         self::assertSame(1, substr_count($html, 'url.png'), 'Zwei hat keine Homepage');
         self::assertStringNotContainsString('url.png', $controller->zeige($this->kontext('spieler', true, [], ['[Options]', 'urlT=0', '[Team1]', 'URL=https://eins.example/']))->html, 'Liga ohne Links (urlT)');
+    }
+
+    public function testDruckansicht(): void
+    {
+        $this->statistik("Name#Verein#Tore#Spielerlink\nMüller#Eins#5#https://example.org\nAhrens#Zwei#7#___\nZander#Eins#1#___\n");
+        $einstellungen = Einstellungen::lies($this->ordner . '/x.cfg', ['anzeige_pro_seite' => '1', 'vereinsweise_anzeigen' => '1', 'standard_richtung' => '1', 'nullwerte_anzeigen' => '1'], self::TEXTE);
+        $darstellung = new Darstellung(static fn (string $datei, string $name, string $attribute): string => '', null, static fn (string $name, string $attribute): string => '[Bild ' . $name . ']');
+        $texte = self::TEXTE + [14 => 'Keine Daten'];
+        $druck = fn (array $parameter): string => Druckansicht::html($this->ordner, 'archiv/x.l98', new Anfrage($parameter), $einstellungen, [562 => 'zurueck', 798 => 'de'], $texte, 'IMG', $darstellung);
+
+        $alle = $druck(['sort' => '2']);
+        self::assertStringContainsString('<html lang="de">', $alle);
+        self::assertSame(3, substr_count($alle, '[Bild '), 'ohne begin alle Spieler, nicht nur eine Seite');
+        self::assertLessThan(strpos($alle, 'Müller'), (int) strpos($alle, 'Ahrens'), 'nach Toren absteigend');
+        self::assertStringContainsString('<strong>7&nbsp;&nbsp;</strong>', $alle, 'Sortierspalte hervorgehoben');
+        self::assertStringNotContainsString('example.org', $alle, 'ohne Spielerlinks');
+
+        $seite = $druck(['sort' => '2', 'begin' => '1']);
+        self::assertSame(1, substr_count($seite, '[Bild '), 'mit begin eine Seite');
+        self::assertStringContainsString('<strong>2. </strong>', $seite);
+
+        $verein = $druck(['team' => 'Eins & Co']);
+        self::assertStringContainsString('Spieler - Eins &amp; Co', $verein, 'Verein in der Ueberschrift maskiert');
+        self::assertStringNotContainsString('>Verein<', $verein, 'fuer einen Verein ohne Vereinsspalte');
+
+        unlink($this->ordner . '/x.stat');
+        self::assertStringContainsString('> Keine Daten</p>', $druck([]));
     }
 
     public function testMenuepunkt(): void
