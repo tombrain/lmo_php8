@@ -33,6 +33,12 @@ final class Statistikdatei
         })($pfad));
     }
 
+    /** Eine Variable der Datei; null, wenn sie sie nicht setzt. */
+    public function wert(string $name): mixed
+    {
+        return $this->werte[$name] ?? null;
+    }
+
     /** Tore der ganzen Saison ($gzutore). */
     public function toreSaison(): int|float|string
     {
