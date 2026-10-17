@@ -32,8 +32,6 @@ parameters:
         - lmo/lmo-adminnew.php
         - lmo/lmo-adminsubnavi.php
         - lmo/lmo-admintab.php
-        - lmo/lmo-cal.php
-        - lmo/lmo-kocal.php
         - lmo/lmo-openfiledat.php
         - lmo/lmo-openfilename.php
         - lmo/lmo-saveliga.php

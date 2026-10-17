@@ -287,7 +287,6 @@ if ($file != '') {
         if (!$lmo_main_e->istPokal()) {
             // Normale Liga
             switch($action) {
-                case 'cal': if ($lmo_main_e->mitKalender()) {require(PATH_TO_LMO . '/lmo-cal.php');}break;
                 case 'graph': if ($lmo_main_e->mitFieberkurve()) {require(PATH_TO_LMO . '/lmo-showgraph.php');}break;
                 case 'stats': if ($lmo_main_e->mitLigastatistik()) {require(PATH_TO_LMO . '/lmo-showstats.php');}break;
                 case '': /*Auswahlseite*/break;
@@ -295,7 +294,6 @@ if ($file != '') {
         } else {
             // Pokal Liga
             switch($action) {
-                case 'cal': if ($lmo_main_e->mitKalender()) {require(PATH_TO_LMO . '/lmo-kocal.php');}break;
                 case 'results': if ($lmo_main_e->mitErgebnissen()) {require(PATH_TO_LMO . '/lmo-showkoresults.php');}break;
                 case 'program': if ($lmo_main_e->mitSpielplan()) {require(PATH_TO_LMO . '/lmo-showkoprogram.php');}break;
             }

@@ -56,6 +56,7 @@ $lmo_anwendung = new \Lmo\Web\Anwendung(
         new \Lmo\Web\Controller\ErgebnisseController(),
         new \Lmo\Web\Controller\KreuztabelleController(),
         new \Lmo\Web\Controller\SpielplanController(),
+        new \Lmo\Web\Controller\KalenderController(),
     ],
     $lmo_addons
 );

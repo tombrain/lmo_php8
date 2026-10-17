@@ -54,7 +54,6 @@ final class AdminAuthProbeTest extends TestCase
             'lmo-adminrounds.php' => 'file=golden/basic.l98',
             'lmo-adminsubnavi.php' => 'file=golden/basic.l98',
             'lmo-savehtml.php' => 'file=golden/basic.l98',
-            'lmo-kocal.php' => '',
             'lmo-rueckrunde.php' => 'file=golden/basic.l98',
             'lmo-dirlist.php' => '',
             'lmo-openfile.php' => 'file=golden/basic.l98',
