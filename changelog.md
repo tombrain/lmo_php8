@@ -25,9 +25,11 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Tabelle auf der Tabellen- und der Ergebnisseite entsteht aus der Twig-Vorlage. Die Ausgabe ist gleich bis auf das Escaping: Sonderzeichen in Mannschaftsnamen (Tabelle und Ergebnisse) und Links werden jetzt durchgehend als HTML-Entitäten ausgegeben (`&` als `&amp;`, `'` als `&#039;`).  
 * Alle Klassen unter `src/` prüfen Typen streng (`declare(strict_types=1)`); ein Unit-Test achtet darauf, dass neue Dateien das auch tun. Für Aufrufe aus den alten Dateien unter `lmo/` ändert sich nichts.  
 * PHPStan prüft `src/` auf der höchsten Stufe (`level: max` in `phpstan-strict.neon.dist`). Dafür trennt `Lmo\Web\Sprachtexte` die Kerntexte (`array<int, string>`) von den Texten der Unterordner von `lang/` (Datumsnamen, Addons); ein Controller holt Letztere mit `$kontext->texteVon('date')`, ein Addon seine eigenen mit `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` liest Werte über `hat()`, `zahl()` und `text()`.  
+* Der Rahmen der öffentlichen Seiten (Titel, Menü, Fußzeile) entsteht aus den Twig-Vorlagen `lmo/vorlagen/rahmen.html.twig` (LMO eingebunden) und `lmo/vorlagen/rahmen_komplett.html.twig` (`lmo.php` direkt aufgerufen), mit `Lmo\Web\Rahmen`; das Menü baut `Lmo\Web\Seiten\Hauptmenue`. Sie ersetzen `template/lmo-standard.tpl.php` und `template/lmo-standard-komplett.tpl.php`: Änderungen an diesen beiden Dateien wirken nicht mehr. Wer sie angepasst hat, legt die Anpassung als eigene Vorlage an und setzt `LMO_TEMPLATE`.  
 
 
 ### Deprecated  
+* Eigene Vorlagen nach alter Art (`*.tpl.php` über `LMO_TEMPLATE` oder ligaeigen als `template/[liga].tpl.php`, gefüllt mit `pear/html_template_it`) funktionieren weiter, werden aber in einer späteren Version entfernt. Die Platzhalter heißen in den Twig-Vorlagen gleich (`{{ teile.Hauptteil|raw }}` statt `<!--Hauptteil-->`).  
 
 
 ### Removed  
@@ -381,9 +383,11 @@ _Here we write changelog notes for the next version._
 * The table on the table and results pages is rendered from the Twig template. The output is the same except for escaping: special characters in team names (table and results) and links are now consistently output as HTML entities (`&` as `&amp;`, `'` as `&#039;`).  
 * All classes under `src/` check types strictly (`declare(strict_types=1)`); a unit test makes sure new files do so as well. Calls from the old files under `lmo/` are not affected.  
 * PHPStan checks `src/` at the highest level (`level: max` in `phpstan-strict.neon.dist`). For this, `Lmo\Web\Sprachtexte` separates the core texts (`array<int, string>`) from the texts of the subfolders of `lang/` (date names, add-ons); a controller gets the latter with `$kontext->texteVon('date')`, an add-on its own with `$kontext->texteVon($this->name())`. `Lmo\Web\Statistikdatei` reads values through `hat()`, `zahl()` and `text()`.  
+* The frame of the public pages (title, menu, footer) is rendered from the Twig templates `lmo/vorlagen/rahmen.html.twig` (LMO embedded) and `lmo/vorlagen/rahmen_komplett.html.twig` (`lmo.php` called directly), with `Lmo\Web\Rahmen`; the menu is built by `Lmo\Web\Seiten\Hauptmenue`. They replace `template/lmo-standard.tpl.php` and `template/lmo-standard-komplett.tpl.php`: changes to these two files no longer take effect. Whoever customised them creates the customisation as an own template and sets `LMO_TEMPLATE`.  
 
 
 ### Deprecated  
+* Own old-style templates (`*.tpl.php` via `LMO_TEMPLATE` or per league as `template/[league].tpl.php`, filled with `pear/html_template_it`) keep working but will be removed in a later version. The placeholders have the same names in the Twig templates (`{{ teile.Hauptteil|raw }}` instead of `<!--Hauptteil-->`).  
 
 
 ### Removed  

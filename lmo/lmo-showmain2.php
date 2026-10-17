@@ -87,6 +87,11 @@ if ($file != '') {
     }
 }
 
+// die Anwendung (Lmo\Web\Anwendung) und der Kontext dieser Anfrage: fuer die Seiten mit eigenem
+// Controller und das Menue
+$lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
+$lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
+
 // Alle Teile für die Startansicht
 $output_titel = '';
 $output_html_lang = '';
@@ -112,13 +117,9 @@ $p1 = '';
 if (!defined('LMO_TEMPLATE')) define('LMO_TEMPLATE', 'lmo-standard.tpl.php');
 
 // Wenn ein Template der Form [liganame].tpl.php existiert, wird dieses benutzt. Das ermöglicht
-// die Nutzung verschiedener Templates für unterschiedliche Ligen
-$template = new LMO_Template(PATH_TO_TEMPLATEDIR);
-if (file_exists(PATH_TO_TEMPLATEDIR . '/' . basename($file) . '.tpl.php')) {
-    $template->loadTemplatefile(basename($file) . '.tpl.php');
-} else {
-    $template->loadTemplatefile(LMO_TEMPLATE);
-}
+// die Nutzung verschiedener Templates für unterschiedliche Ligen. Die mitgelieferten Vorlagen
+// ersetzt der Rahmen mit Twig (Lmo\Web\Rahmen); eigene nach alter Art gelten weiter (veraltet).
+$lmo_alte_vorlage = \Lmo\Web\Rahmen::alteVorlage(PATH_TO_TEMPLATEDIR, $file, LMO_TEMPLATE);
 
 // Titel
 if ($file != '') {
@@ -200,86 +201,21 @@ if ($einsprachwahl == 1) {
 
 ob_start();
 if ($file != '') {
-    if (!$lmo_main_e->istPokal()) { // Für normale Ligen
-
-        // Kalenderlink
-        if ($lmo_main_e->mitKalender()) {
-            $output_kalender .= $action != 'cal' ? '<a href="' . $addm . 'cal&amp;st=' . $st . '" title="' . $text[141] . '">' . $text[140] . '</a>' : $text[140];
-            $output_kalender .= '&nbsp;&nbsp;';
-        }
-        // Ergebnis/Tabelle
-        if ($tabonres == 0) {
-            if ($lmo_main_e->mitErgebnissen()) {
-                $output_ergebnisse .= $action != 'results' ? '<a href="' . $addm . 'results&amp;st=' . $ste . '" title="' . $text[11] . '">' . $text[10] . '</a>' : $text[10];
-                $output_ergebnisse .= '&nbsp;&nbsp;';
-            }
-            if ($lmo_main_e->mitTabelle()) {
-                $output_tabelle .= $action != 'table' ? '<a href="' . $addm . 'table" title="' . $text[17] . '">' . $text[16] . '</a>' : $text[16];
-                $output_tabelle .= '&nbsp;&nbsp;';
-            }
-            // Kombinierte Ansicht
-        } else {
-            if ($lmo_main_e->mitErgebnissen()) {
-                $output_ergebnisse .= $action != 'results' && $action != 'table' ? '<a href="' . $addm . 'results" title="' . $text[104] . '">' . $text[10] . '/' . $text[16] . '</a>' : $text[10] . '/' . $text[16];
-                $output_ergebnisse .= '&nbsp;&nbsp;';
-            }
-        }
-
-        // Kreuztabelle
-        if ($lmo_main_e->mitKreuztabelle()) {
-            $output_kreuztabelle .= $action != 'cross' ? '<a href="' . $addm . 'cross" title="' . $text[15] . '">' . $text[14] . '</a>' : $text[14];
-            $output_kreuztabelle .= '&nbsp;&nbsp;';
-        }
-        // Spielplan
-        if ($lmo_main_e->mitSpielplan()) {
-            $output_spielplan .= $action != 'program' ? '<a href="' . $addm . 'program" title="' . $text[13] . '">' . $text[12] . '</a>' : $text[12];
-            $output_spielplan .= '&nbsp;&nbsp;';
-        }
-        // Fieberkurve
-        if ($lmo_main_e->mitFieberkurve()) {
-            $output_fieberkurve .= $action != 'graph' ? '<a href="' . $addm . 'graph" title="' . $text[134] . '">' . $text[133] . '</a>' : $text[133];
-            $output_fieberkurve .= '&nbsp;&nbsp;';
-        }
-        // Ligastatistiken: die beiden Mannschaften aus dem Seitenaufruf, sonst die der Fieberkurve der Liga;
-        // zweimal dieselbe oder nur die zweite gewaehlt -> sie wird als erste gefuehrt
-        $lmo_main_stat1 = isset($stat1) ? $stat1 : ($lmo_liga->optionen['kurve1'] ?? 0);
-        $lmo_main_stat2 = isset($stat2) ? $stat2 : ($lmo_liga->optionen['kurve2'] ?? 0);
-        if ($lmo_main_stat1 > 0 && $lmo_main_stat1 == $lmo_main_stat2) {
-            $lmo_main_stat2 = 0;
-        }
-        if ($lmo_main_stat1 == 0 && $lmo_main_stat2 > 0) {
-            $lmo_main_stat1 = $lmo_main_stat2;
-            $lmo_main_stat2 = 0;
-        }
-        if ($lmo_main_e->mitLigastatistik()) {
-            $output_ligastatistik .= $action != 'stats' ? '<a href="' . $addm . 'stats&amp;stat1=' . $lmo_main_stat1 . '&amp;stat2=' . $lmo_main_stat2 . '" title="' . $text[19] . '">' . $text[18] . '</a>' : $text[18];
-            $output_ligastatistik .= '&nbsp;&nbsp;';
-        }
-    } else { // Für Pokalligen
-
-        // Kalenderlink
-        if ($lmo_main_e->mitKalender()) {
-            $output_kalender .= $action != 'cal' ? '<a href="' . $addm . 'cal&amp;st=' . $st . '" title="' . $text[141] . '">' . $text[140] . '</a>' : $text[140];
-            $output_kalender .= '&nbsp;&nbsp;';
-        }
-        // Ergebnisse
-        if ($lmo_main_e->mitErgebnissen()) {
-            $output_ergebnisse .= $action != 'results' ? '<a href="' . $addm . 'results&amp;st=' . $ste . '" title="' . $text[11] . '">' . $text[10] . '</a>' : $text[10];
-            $output_ergebnisse .= '&nbsp;&nbsp;';
-        }
-        // Spielplan
-        if ($lmo_main_e->mitSpielplan()) {
-            $output_spielplan .= $action != 'program' ? '<a href="' . $addm . 'program" title="' . $text[13] . '">' . $text[12] . '</a>' : $text[12];
-            $output_spielplan .= '&nbsp;&nbsp;';
-        }
-    }
-    $output_info .= $action != 'info' ? '<a href="' . $addm . 'info" title="' . $text[21] . '">' . $text[20] . '</a>' : $text[20];
+    // das Menue der Liga (Lmo\Web\Seiten\Hauptmenue)
+    $lmo_menue = \Lmo\Web\Seiten\Hauptmenue::teile($lmo_kontext);
+    $output_kalender .= $lmo_menue['Kalender'];
+    $output_ergebnisse .= $lmo_menue['Ergebnisse'];
+    $output_tabelle .= $lmo_menue['Tabelle'];
+    $output_spielplan .= $lmo_menue['Spielplan'];
+    $output_kreuztabelle .= $lmo_menue['Kreuztabelle'];
+    $output_fieberkurve .= $lmo_menue['Fieberkurve'];
+    $output_ligastatistik .= $lmo_menue['Ligastatistik'];
+    $output_info .= $lmo_menue['Info'];
 
     $druck = 0;
 
     // Seiten mit eigenem Controller zeigt die Anwendung (Lmo\Web\Anwendung), die anderen noch der alte Code
-    $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
-    $lmo_seite = $lmo_anwendung->bearbeite(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
+    $lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
     if ($lmo_seite !== null) {
         echo $lmo_seite->html;
         $druck = $lmo_seite->druckbar ? 1 : 0;
@@ -379,32 +315,43 @@ if ($eintippspiel == 1) {
         $output_tippspiel .= $action != 'tipp' ? '<a <a href="' . $addm . 'tipp" title="' . $text['tipp'][0] . '">' . $text['tipp'][0] : $text['tipp'][0];
     }
 }
-d($template->toString());
-// Tippspiel-Addon
 
-// Template ausgeben
-$template->setVariable('Ligenuebersicht', $output_ligenuebersicht);
-$template->setVariable('Berechnungszeit', $output_berechnungszeit);
-$template->setVariable('LetzteAuswertung', $output_letzteauswertung);
-$template->setVariable('Savehtml', $output_savehtml);
-$template->setVariable('Hauptteil', $output_hauptteil);
-$template->setVariable('Tabelle', $output_tabelle);
-$template->setVariable('Kreuztabelle', $output_kreuztabelle);
-$template->setVariable('Fieberkurve', $output_fieberkurve);
-$template->setVariable('Spielerstatistik', $output_spielerstatistik);
-$template->setVariable('Ligastatistik', $output_ligastatistik);
-$template->setVariable('Kalender', $output_kalender);
-$template->setVariable('Ergebnisse', $output_ergebnisse);
-$template->setVariable('Spielplan', $output_spielplan);
-$template->setVariable('Info', $output_info);
-$template->setVariable('HTML_LANG', $output_html_lang);
-$template->setVariable('Infolink', $p1);
-$template->setVariable('Sprachauswahl', $output_sprachauswahl);
-$template->setVariable('Titel', $output_titel);
-$template->setVariable('Stylesheet', $output_stylesheet);
-$template->setVariable('Javascript', $output_javascript);
-$template->setVariable('Newsticker', $output_newsticker);  // Ticker-Addon
-$template->setVariable('Tippspiel', $output_tippspiel);    // Tippspiel-Addon
-$template->show();
+// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen
+$lmo_teile = [
+    'Ligenuebersicht' => $output_ligenuebersicht,
+    'Berechnungszeit' => $output_berechnungszeit,
+    'LetzteAuswertung' => $output_letzteauswertung,
+    'Savehtml' => $output_savehtml,
+    'Hauptteil' => $output_hauptteil,
+    'Tabelle' => $output_tabelle,
+    'Kreuztabelle' => $output_kreuztabelle,
+    'Fieberkurve' => $output_fieberkurve,
+    'Spielerstatistik' => $output_spielerstatistik,
+    'Ligastatistik' => $output_ligastatistik,
+    'Kalender' => $output_kalender,
+    'Ergebnisse' => $output_ergebnisse,
+    'Spielplan' => $output_spielplan,
+    'Info' => $output_info,
+    'HTML_LANG' => $output_html_lang,
+    'Infolink' => $p1,
+    'Sprachauswahl' => $output_sprachauswahl,
+    'Titel' => $output_titel,
+    'Stylesheet' => $output_stylesheet,
+    'Javascript' => $output_javascript,
+    'Newsticker' => $output_newsticker,  // Ticker-Addon
+    'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
+];
+if (\Lmo\Web\Rahmen::ersetzt($lmo_alte_vorlage)) {
+    echo \Lmo\Web\Rahmen::zeige(PATH_TO_LMO . '/vorlagen', $lmo_alte_vorlage, $lmo_teile);
+} else {
+    // eigene Vorlage nach alter Art (veraltet): fehlt ihr der Platzhalter Infolink, gibt d() den Copyright-Hinweis aus
+    $template = new LMO_Template(PATH_TO_TEMPLATEDIR);
+    $template->loadTemplatefile($lmo_alte_vorlage);
+    d($template->toString());
+    foreach ($lmo_teile as $lmo_teil => $lmo_wert) {
+        $template->setVariable($lmo_teil, $lmo_wert);
+    }
+    $template->show();
+}
 
 ?>
