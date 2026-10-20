@@ -25,7 +25,8 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Tippspiel: Punkteberechnung und Tippschluss sind Klassen mit eigenen Tests (`Lmo\Addon\Tipp\Punkte`, `Lmo\Addon\Tipp\Tippzeit`). `tipppunkte()`, `tippaenderbar()` und `zeit()` rufen sie auf; `tippaenderbar()` bekommt Spieltag, Liga und Sicherheitsabstand jetzt als Parameter statt über `global`.  
 * Tippspiel als Addon (`Lmo\Addon\Tipp\TippAddon`): Es liefert die Seite `action=tipp` und den Menüpunkt „Tippspiel“; `lmo-showmain2.php` kennt das Tippspiel nicht mehr. Die Seiten zeigt noch der alte Code (`lmo-tippstart.php`); `addon/tipp/addon.php` bindet ihn mit den globalen Variablen ein, die er erwartet.  
 * Tippspiel, erste Seiten nach neuer Art: „Persönliche Daten“, „Kennwort ändern“, „Konto löschen“, „Ligen hinzufügen“ und „Ligen entfernen“ (`todo=daten`, `todo=pwchange`, `todo=delaccount`, `todo=newligen`, `todo=delligen`) zeigt der `Lmo\Addon\Tipp\KontoController` mit den Vorlagen `daten.html.twig`, `kennwort.html.twig`, `konto_loeschen.html.twig`, `ligen_hinzufuegen.html.twig` und `ligen_entfernen.html.twig` unter `addon/tipp/vorlagen/`, im Rahmen des Tippspiels (`Lmo\Addon\Tipp\Tipprahmen`, Menü und Überschrift; Vorlage `rahmen.html.twig`). Die Tipperdatei lesen und schreiben `Lmo\Addon\Tipp\Tipperdatei` und `Tipper`, die Anmeldung kommt aus der Sitzung im Kontext (`Lmo\Web\Sitzung`). Eingaben und gespeicherte Daten im Formular werden jetzt maskiert. `lmo-tippdaten.php`, `lmo-tipppwchange.php`, `lmo-tippdelaccount.php`, `lmo-tippnewligen.php` und `lmo-tippdelligen.php` gibt es nicht mehr.  
-* Tippspiel, Startseite des angemeldeten Tippers (seine Ligen, Auswertungen, Konto): `Lmo\Addon\Tipp\StartseiteController` mit der Vorlage `addon/tipp/vorlagen/startseite.html.twig`. Direkt nach dem Anmelden zeigt sie vorerst noch der alte Code (`lmo-tipppad.php`).  
+* Tippspiel, Startseite des angemeldeten Tippers (seine Ligen, Auswertungen, Konto): `Lmo\Addon\Tipp\StartseiteController` mit der Vorlage `addon/tipp/vorlagen/startseite.html.twig`.   
+* Tippspiel, Anmelden, Abmelden und „Kennwort vergessen“ (`action=tipp` ohne `todo`, `todo=logout`, `todo=getpass`) mit der Anmeldeseite: `Lmo\Addon\Tipp\AnmeldungController` mit der Vorlage `addon/tipp/vorlagen/anmeldung.html.twig`; nach dem Anmelden folgt die Startseite. Die Listen der Ligen und Auswertungen liefert `Lmo\Addon\Tipp\Tippligen`. Nicht angemeldete Besucher sehen Auswertungen, Einsicht und Tabelle vorerst noch über den alten Code (`lmo-tippauth.php`), ebenso die Registrierung.  
 
 
 ### Changed  
@@ -67,6 +68,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Tippspiel, persönliche Daten: Fragt das Tippspiel keinen Namen ab (`realname=0`), löschte das Speichern den gespeicherten Namen des Tippers; in neuen Auswertungen stand er dann ohne Namen. Jetzt bleibt der Name erhalten.  
 * Tippspiel, Registrierung: Die Prüfung auf eine schon vergebene E-Mail-Adresse las auch die Schutzzeile am Anfang von `lmo-tippauth.txt` (PHP-Warnung) und meldete bei leerem Feld „Es ist bereits ein Mitspieler mit dieser Email-Adresse angemeldet“ statt der fehlenden Angaben.  
 * Tippspiel, Kennwort ändern: Das Speichern entfernte die Schutzzeile am Anfang von `lmo-tippauth.txt`. Danach fanden die Seiten des Tippers den ersten Tipper der Datei nicht mehr (etwa ein zweites „Kennwort ändern“ brach mit leerer Seite ab).  
+* Tippspiel, Kennwort vergessen: Auch hier fehlte nach dem Speichern des neuen Kennworts die Schutzzeile am Anfang von `lmo-tippauth.txt`.  
 
 
 ### Security  
@@ -408,7 +410,8 @@ _Here we write changelog notes for the next version._
 * Prediction game: scoring and the prediction deadline are classes with tests of their own (`Lmo\Addon\Tipp\Punkte`, `Lmo\Addon\Tipp\Tippzeit`). `tipppunkte()`, `tippaenderbar()` and `zeit()` call them; `tippaenderbar()` now gets the round, the league and the safety margin as parameters instead of via `global`.  
 * Prediction game as an add-on (`Lmo\Addon\Tipp\TippAddon`): it provides the page `action=tipp` and the menu item "Tippspiel"; `lmo-showmain2.php` no longer knows the prediction game. The pages are still shown by the old code (`lmo-tippstart.php`); `addon/tipp/addon.php` includes it with the global variables it expects.  
 * Prediction game, first new-style pages: "personal data", "change password", "delete account", "add leagues" and "remove leagues" (`todo=daten`, `todo=pwchange`, `todo=delaccount`, `todo=newligen`, `todo=delligen`) are shown by `Lmo\Addon\Tipp\KontoController` with the templates `daten.html.twig`, `kennwort.html.twig`, `konto_loeschen.html.twig`, `ligen_hinzufuegen.html.twig` and `ligen_entfernen.html.twig` under `addon/tipp/vorlagen/`, inside the frame of the prediction game (`Lmo\Addon\Tipp\Tipprahmen`, menu and heading; template `rahmen.html.twig`). The tipper file is read and written by `Lmo\Addon\Tipp\Tipperdatei` and `Tipper`, the login comes from the session in the context (`Lmo\Web\Sitzung`). Inputs and stored data in the forms are escaped now. `lmo-tippdaten.php`, `lmo-tipppwchange.php`, `lmo-tippdelaccount.php`, `lmo-tippnewligen.php` and `lmo-tippdelligen.php` are gone.  
-* Prediction game, start page of the logged-in tipper (their leagues, evaluations, account): `Lmo\Addon\Tipp\StartseiteController` with the template `addon/tipp/vorlagen/startseite.html.twig`. Right after logging in, it is still shown by the old code (`lmo-tipppad.php`) for now.  
+* Prediction game, start page of the logged-in tipper (their leagues, evaluations, account): `Lmo\Addon\Tipp\StartseiteController` with the template `addon/tipp/vorlagen/startseite.html.twig`.   
+* Prediction game, logging in, logging out and "forgot password" (`action=tipp` without `todo`, `todo=logout`, `todo=getpass`) with the login page: `Lmo\Addon\Tipp\AnmeldungController` with the template `addon/tipp/vorlagen/anmeldung.html.twig`; after logging in, the start page follows. The lists of leagues and evaluations come from `Lmo\Addon\Tipp\Tippligen`. Visitors who are not logged in still see evaluations, insight and table through the old code (`lmo-tippauth.php`) for now, and the registration as well.  
 
 
 ### Changed  
@@ -450,6 +453,7 @@ _Here we write changelog notes for the next version._
 * Prediction game, personal data: when the prediction game does not ask for a name (`realname=0`), saving deleted the tipper's stored name, and new evaluations showed them without a name. The name is kept now.  
 * Prediction game, registration: the check for an e-mail address already in use also read the guard line at the start of `lmo-tippauth.txt` (PHP warning) and, with an empty field, reported that a player with this address already exists instead of the missing entries.  
 * Prediction game, change password: saving removed the guard line at the start of `lmo-tippauth.txt`. Afterwards the tipper pages no longer found the first tipper in the file (a second "change password", for instance, ended with an empty page).  
+* Prediction game, forgot password: here too, the guard line at the start of `lmo-tippauth.txt` was missing after the new password was saved.  
 
 
 ### Security  

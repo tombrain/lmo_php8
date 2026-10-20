@@ -22,6 +22,18 @@ final class Tipprahmen
     /** Die Seite mit Menue und Ueberschrift um ihren Inhalt. */
     public function html(Kontext $kontext, string $inhalt): string
     {
+        $liga = $kontext->liga;
+
+        return $this->menue($kontext) . Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'ueberschrift.html.twig', [
+            't' => $kontext->texteVon('tipp'),
+            'liganame' => $liga !== null ? $liga->liga->einstellungen()->name() : '',
+            'inhalt' => $inhalt,
+        ]);
+    }
+
+    /** Das Menue des Tippspiels allein (die Anmeldeseite baut ihre Ueberschrift selbst). */
+    public function menue(Kontext $kontext): string
+    {
         $anfrage = $kontext->anfrage;
         $cfg = $kontext->konfiguration->addon('tipp');
         $liga = $kontext->liga;
@@ -55,15 +67,13 @@ final class Tipprahmen
             $punkte[] = $punkt($todo == 'wert' && !$alle, $adda . 'wert&amp;file=' . $datei . '&amp;endtab=' . $endtab . '&amp;wertung=einzel', $t[54] ?? '', $t[54] ?? '');
         }
 
-        return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'rahmen.html.twig', [
+        return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'menue.html.twig', [
             'text' => $text,
             't' => $t,
             'uebersicht' => $todo != '' ? $kontext->adresse . '?action=tipp' : null,
             'punkte' => $punkte,
             'regeln' => ($cfg['regeln'] ?? '') == 1 ? ($this->regeln)($cfg['regelnlink'] ?? '') : null,
             'abmelden' => $adda . 'logout',
-            'liganame' => $liga !== null ? $liga->liga->einstellungen()->name() : '',
-            'inhalt' => $inhalt,
         ]);
     }
 

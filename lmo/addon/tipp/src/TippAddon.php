@@ -25,8 +25,9 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
      * @param string $ordner Ordner des Addons (addon/tipp)
      * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
      * @param Closure(string, string, string): string $freischaltmail schickt E-Mail-Adresse, Nick und Kennwort an den Tipper, gibt die Meldung zurueck
+     * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort ("Kennwort vergessen"); null oder der Fehler
      */
-    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null)
+    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null)
     {
     }
 
@@ -42,7 +43,14 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
 
-        return [new KontoController($this->ordner, $rahmen, $freischaltmail), new StartseiteController($this->ordner, $rahmen), new class ($alterCode) implements Controller {
+        $kennwortmail = $this->kennwortmail ?? static fn (string $email, string $nick, string $kennwort): ?string => null;
+        $startseite = new StartseiteController($this->ordner, $rahmen);
+
+        return [
+            new KontoController($this->ordner, $rahmen, $freischaltmail),
+            $startseite,
+            new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
+            new class ($alterCode) implements Controller {
             /** @param Closure(): void $alterCode */
             public function __construct(private Closure $alterCode)
             {
@@ -60,7 +68,8 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
 
                 return new Seite((string) ob_get_clean());
             }
-        }];
+        },
+        ];
     }
 
     /**

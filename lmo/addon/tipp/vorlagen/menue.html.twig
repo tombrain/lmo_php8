@@ -1,4 +1,4 @@
-{#- Rahmen der Seiten eines angemeldeten Tippers (Lmo\Addon\Tipp\Tipprahmen): Menue, Ueberschrift, Inhalt. Texte, Links und Inhalt sind fertiges HTML. -#}
+{#- Menue des Tippspiels (Lmo\Addon\Tipp\Tipprahmen::menue()). Texte und Links sind fertiges HTML. -#}
 <table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td class="nobr" align="left">
@@ -21,13 +21,5 @@
       </dialog>&nbsp;&nbsp;
 {%- endif %}<a href="{{ abmelden|raw }}">{{ text[88]|raw }}</a>&nbsp;
     </td>
-  </tr>
-</table>
-<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
-  <tr>
-    <td colspan="3" align="center"><h1>{{ t[0]|raw }} {{ liganame|raw }}</h1></td>
-  </tr>
-  <tr>
-    <td colspan="3" align="center">{{ inhalt|raw }}</td>
   </tr>
 </table>
