@@ -1,0 +1,10 @@
+{#- Ligen zum Ankreuzen (Ligen hinzufuegen oder entfernen); ohne Ligen der Hinweis darauf, wie bis 4.5 lmo-tippnewdir.php. -#}
+{% for liga in ligen %}
+<input type="checkbox" name="xtipperligen[]" value="{{ liga.datei }}">{{ liga.name }}<br>
+{% else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endfor %}

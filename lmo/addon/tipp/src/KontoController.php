@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lmo\Addon\Tipp;
 
 use Closure;
+use Lmo\Liga\LigaDatei;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
@@ -12,13 +13,14 @@ use Lmo\Web\Vorlagen;
 
 /**
  * Die Kontoseiten eines angemeldeten Tippers: persoenliche Daten (todo=daten), Kennwort aendern
- * (todo=pwchange) und Konto loeschen (todo=delaccount). Bis 4.5 lmo-tippdaten.php (mit
+ * (todo=pwchange), Konto loeschen (todo=delaccount), Ligen hinzufuegen (todo=newligen) und
+ * entfernen (todo=delligen). Bis 4.5 lmo-tippdaten.php (mit
  * lmo-tippcheckteam.php und lmo-tippnewteams.php), lmo-tipppwchange.php und lmo-tippdelaccount.php;
  * die uebrigen Seiten zeigt noch der alte Code.
  */
 final class KontoController implements Controller
 {
-    private const SEITEN = ['daten', 'pwchange', 'delaccount'];
+    private const SEITEN = ['daten', 'pwchange', 'delaccount', 'newligen', 'delligen'];
 
     /**
      * @param string $ordner Ordner des Addons (addon/tipp), dort liegen Tipperdatei und Tipps
@@ -48,6 +50,8 @@ final class KontoController implements Controller
         $inhalt = match ($kontext->anfrage->text('todo')) {
             'daten' => $this->persoenlicheDaten($kontext, $datei, $tipper),
             'delaccount' => $this->kontoLoeschen($kontext, $datei, $tipper),
+            'newligen' => $this->ligen($kontext, $tipper, true),
+            'delligen' => $this->ligen($kontext, $tipper, false),
             default => $this->kennwortAendern($kontext, $datei, $tipper),
         };
 
@@ -265,6 +269,83 @@ final class KontoController implements Controller
             'geloescht' => $geloescht,
             'kennwort' => $kennwort,
         ]);
+    }
+
+    /**
+     * Ligen hinzufuegen (todo=newligen) oder entfernen (todo=delligen): Liste der Ligen, die getippt
+     * werden duerfen und die der Tipper noch nicht bzw. schon tippt. Bis 4.5 lmo-tippnewligen.php,
+     * lmo-tippdelligen.php und lmo-tippnewdir.php.
+     */
+    private function ligen(Kontext $kontext, Tipper $tipper, bool $hinzufuegen): string
+    {
+        $t = $kontext->texteVon('tipp');
+        $tipps = $this->ordner . '/' . ($kontext->konfiguration->addon('tipp')['dirtipp'] ?? 'tipps/');
+        $tippdatei = static fn (string $liga): string => $tipps . $liga . '_' . $tipper->nick() . '.tip';
+        $ligen = $this->tippbareLigen($kontext, $tippdatei, $hinzufuegen);
+        $gespeichert = $kontext->anfrage->text('newpage') == 1;
+
+        if ($gespeichert) {
+            $gewaehlt = $kontext->anfrage->werte('xtipperligen');
+            foreach ($ligen as $liga) {
+                // nur Ligen aus der Liste: bis 4.5 ging jeder Name aus dem Formular in den Dateinamen
+                if (!in_array($liga['datei'], $gewaehlt, true)) {
+                    continue;
+                }
+                if (!$hinzufuegen) {
+                    @unlink($tippdatei($liga['datei'])); // Tipps löschen
+                    continue;
+                }
+                // Tipp-Datei erstellen und den Tipper in die Auswertung der Liga aufnehmen
+                file_put_contents($tippdatei($liga['datei']), "\n", LOCK_EX);
+                file_put_contents($tipps . 'auswert/' . $liga['datei'] . '.aus', "\n[" . $tipper->nick() . "]\nTeam=" . $tipper->verein() . "\nName=" . $tipper->name() . "\n", FILE_APPEND | LOCK_EX);
+            }
+        }
+
+        return $this->vorlage($kontext, $hinzufuegen ? 'ligen_hinzufuegen.html.twig' : 'ligen_entfernen.html.twig', [
+            'gespeichert' => $gespeichert,
+            'ligen' => $ligen,
+        ]);
+    }
+
+    /**
+     * Die Ligen im Ligenordner, die getippt werden duerfen (immeralle, sonst ligenzutippen) und
+     * fuer die der Tipper noch keine (hinzufuegen) bzw. schon eine Tippdatei hat (entfernen).
+     *
+     * @param Closure(string): string $tippdatei Liga (Dateiname ohne .l98) => Tippdatei des Tippers
+     * @return list<array{datei: string, name: string}>
+     */
+    private function tippbareLigen(Kontext $kontext, Closure $tippdatei, bool $ohneTippdatei): array
+    {
+        $cfg = $kontext->konfiguration->addon('tipp');
+        $ordner = $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner();
+        $zuTippen = explode(',', $cfg['ligenzutippen'] ?? '');
+        $alle = ($cfg['immeralle'] ?? '') == 1;
+        // ein angemeldeter Hilfsadmin sieht nur seine Ligen
+        $hilfsadmin = $kontext->sitzung->zahl('lmouserok') == 1 ? explode(',', $kontext->sitzung->text('lmouserfile')) : null;
+        $dateien = [];
+        foreach (is_dir($ordner) ? (scandir($ordner) ?: []) : [] as $datei) {
+            if (strtolower(substr($datei, -4)) == '.l98') {
+                $dateien[] = $datei;
+            }
+        }
+        sort($dateien);
+        $ligen = [];
+        $ohneNamen = 0;
+        foreach ($dateien as $datei) {
+            $liga = substr($datei, 0, -4);
+            if ($hilfsadmin !== null && !in_array($liga, $hilfsadmin, true)) {
+                continue;
+            }
+            $name = LigaDatei::liesAbschnitt($ordner . $datei, 'Options')['Name'] ?? '';
+            if ($name == '') {
+                $name = ($kontext->text[507] ?? '') . ++$ohneNamen;
+            }
+            if (($alle || in_array($liga, $zuTippen, true)) && file_exists($tippdatei($liga)) !== $ohneTippdatei) {
+                $ligen[] = ['datei' => $liga, 'name' => $name];
+            }
+        }
+
+        return $ligen;
     }
 
     /** Speichert die Tipperdatei und gibt die Meldung dazu zurueck (bis 4.5 lmo-tippsaveauth.php). */
