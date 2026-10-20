@@ -107,4 +107,4 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
     ob_start();
     include(__DIR__ . '/lmo-admintippbenachrichtigung.php');
     return (string)ob_get_clean();
-});
+}, (string)constant('LMO_VERSION_NR'));

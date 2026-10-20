@@ -139,7 +139,6 @@ if ($action == "tipp") {
       require(PATH_TO_ADDONDIR."/tipp/lmo-tippviewer.php");
     } else {
       switch ($todo) {
-        case "info":       require(PATH_TO_LMO."/lmo-showinfo.php");break;
         default:           require(PATH_TO_ADDONDIR."/tipp/lmo-tipppad.php");break;
       }
     }

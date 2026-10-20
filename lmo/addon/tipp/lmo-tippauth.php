@@ -139,9 +139,7 @@ if ($action == 'tipp') {
     <td colspan="3" align="center"><h1><?php echo $text['tipp'][0] . '&nbsp;'; if (isset($lmo_liga)) {echo $lmo_liga->einstellungen()->name();} ?></h1></td>
   </tr>
   <tr>
-    <td colspan="3" align="center"><?php
-        if ($todo == 'info') {require(PATH_TO_LMO . '/lmo-showinfo.php');}
-        else { ?>
+    <td colspan="3" align="center">
       <form name="lmotippedit" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <input type="hidden" name="action" value="tipp">
         <input type="hidden" name="file" value="<?php echo $file; ?>">
@@ -272,8 +270,6 @@ if ($action == 'tipp') {
       </form>
     </td>
   </tr>
-<?php
-        } ?>
 </table>
 <?php
     }
