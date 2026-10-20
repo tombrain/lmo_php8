@@ -8,7 +8,8 @@ use Lmo\Addon\Addons;
 
 /**
  * Alles, was ein Controller fuer seine Seite bekommt: die Anfrage, die gewaehlte Seite (action),
- * die geladene Liga, die Umgebung der Installation und ihre Addons. Ersetzt die globalen Variablen.
+ * die geladene Liga, die Umgebung der Installation, ihre Addons und die Sitzung. Ersetzt die globalen
+ * Variablen.
  */
 final class Kontext
 {
@@ -30,6 +31,7 @@ final class Kontext
         public readonly Darstellung $darstellung,
         public readonly Addons $addons = new Addons(),
         public readonly array $weitereTexte = [],
+        public readonly Sitzung $sitzung = new Sitzung(),
     ) {
     }
 
