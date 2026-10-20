@@ -31,6 +31,21 @@ final class Tipprahmen
         ]);
     }
 
+    /**
+     * Die Seite fuer nicht angemeldete Besucher (Einsicht, Tabelle, Auswertungen): Menue und
+     * Ueberschrift wie bis 4.5 in lmo-tippauth.php, dort ohne Abschluss der Zeile.
+     */
+    public function htmlFuerGaeste(Kontext $kontext, string $inhalt): string
+    {
+        $liga = $kontext->liga;
+
+        return $this->menue($kontext) . Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'ueberschrift_gaeste.html.twig', [
+            't' => $kontext->texteVon('tipp'),
+            'liganame' => $liga !== null ? $liga->liga->einstellungen()->name() : '',
+            'inhalt' => $inhalt,
+        ]);
+    }
+
     /** Das Menue des Tippspiels allein (die Anmeldeseite baut ihre Ueberschrift selbst). */
     public function menue(Kontext $kontext): string
     {

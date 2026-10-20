@@ -22,7 +22,6 @@ parameters:
     paths:
         - lmo/addon/spieler/lmo-statadmin.php
         - lmo/addon/tipp/lmo-tippauth.php
-        - lmo/addon/tipp/lmo-tippcalceinsicht.php
         - lmo/addon/tipp/lmo-tippcalctable.php
         - lmo/addon/tipp/lmo-tippemail.php
         - lmo/addon/tipp/lmo-tippemailviewer.php

@@ -156,6 +156,34 @@ final class TippSeitenTest extends TestCase
         self::assertCount(1, glob($path . '/.mails/*.eml') ?: [], 'keine weitere Mail');
     }
 
+    /**
+     * Die Einsicht ohne Anmeldung (lmo-tippeinsicht.php): ohne Einsichtsdatei, mit drei Tippern auf
+     * zwei Seiten (einer mit Joker), auf der zweiten Seite und im Tendenz-Modus.
+     */
+    public function testEinsichtOhneAnmeldung(): void
+    {
+        $c = self::client();
+        $path = $c->instance()->path();
+        $cfg = $path . '/config/tipp/cfg.txt';
+        $einstellungen = (string) file_get_contents($cfg);
+        foreach (['einsichterst' => '0', 'anzseite' => '2'] as $name => $wert) {
+            $einstellungen = (string) preg_replace('/^' . $name . '=.*$/m', $name . '=' . $wert, $einstellungen, 1);
+        }
+        file_put_contents($cfg, $einstellungen);
+        @mkdir($path . '/addon/tipp/tipps/einsicht', 0777, true);
+        file_put_contents($path . '/addon/tipp/tipps/einsicht/1l_2024-25_26.ein', "\n[zora]\nGA1=1\nGB1=1\nGA2=-1\nGB2=-1\n\n[anna]\n@2@\nGA1=2\nGB1=1\nGA2=0\nGB2=3\n\n[Bert]\nGA1=0\nGB1=2\nGA2=1\nGB2=1\n");
+        $c->resetChanges();
+        $t = new Transcript();
+
+        $t->add('Ohne Einsichtsdatei', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=1l_2024-25.l98&st=25'), $c->changes());
+        $t->add('Erste Seite', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=1l_2024-25.l98&st=26'), $c->changes());
+        $t->add('Zweite Seite', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=1l_2024-25.l98&st=26&start=2'), $c->changes());
+        file_put_contents($cfg, (string) preg_replace('/^tippmodus=.*$/m', 'tippmodus=0', $einstellungen, 1));
+        $t->add('Tendenz-Modus', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=1l_2024-25.l98&st=26'), $c->changes());
+
+        $this->assertMatchesSnapshot('tipp-seiten', 'einsicht-gaeste', $t->text());
+    }
+
     public function testTippregeln(): void
     {
         $c = self::client();

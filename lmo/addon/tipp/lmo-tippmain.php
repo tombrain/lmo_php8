@@ -48,7 +48,7 @@ if ($action == "tipp") {
     $addm = $_SERVER['PHP_SELF']."?file=".$file."&amp;action=";
   }
   if ($_SESSION["lmotipperok"] == 5) {
-    if (($todo == "edit" && $viewermode != 1) || $todo == "einsicht") {
+    if ($todo == "edit" && $viewermode != 1) {
       require(PATH_TO_LMO."/lmo-openfile.php");
     } elseif ($todo == "tabelle") {
       require_once(PATH_TO_LMO."/lmo-openfile.php");
@@ -144,7 +144,6 @@ if ($action == "tipp") {
       require(PATH_TO_ADDONDIR."/tipp/lmo-tippviewer.php");
     } else {
       switch ($todo) {
-        case "einsicht":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippeinsicht.php");break;
         case "tabelle":    require(PATH_TO_ADDONDIR."/tipp/lmo-tipptabelle.php");break;
         case "fieber":     require(PATH_TO_ADDONDIR."/tipp/lmo-tippfieber.php");break;
         case "wert":       require(PATH_TO_ADDONDIR."/tipp/lmo-tippwert.php");break;

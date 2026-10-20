@@ -36,6 +36,18 @@ class EinsichtstatistikTest extends TestCase
         self::assertNull(Einsichtstatistik::lies($this->pfad . '.fehlt', false));
     }
 
+    public function testTipper(): void
+    {
+        file_put_contents($this->pfad, "\n[anna]\n@2@\nGA1=2\nGB1=1\n\n[bert]\nGA2=0\nGB2=3\n");
+        $statistik = Einsichtstatistik::lies($this->pfad, false);
+
+        self::assertNotNull($statistik);
+        self::assertSame([
+            ['nick' => 'anna', 'joker' => '2', 'tipps' => ['0' => ['2', '1']]],
+            ['nick' => 'bert', 'joker' => '-1', 'tipps' => ['1' => ['0', '3']]],
+        ], $statistik->tipper(), 'der Joker gilt nur im eigenen Abschnitt');
+    }
+
     public function testPokal(): void
     {
         file_put_contents($this->pfad, "[anna]\nGA11=1\nGB11=0\nGA12=2\nGB12=2\n");
