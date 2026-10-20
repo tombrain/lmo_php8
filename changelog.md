@@ -60,6 +60,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Spielerstatistik, vereinsweise Anzeige: Im Kopf der Vereinsspalte stand eine feste „333“; die Zelle ist jetzt leer.  
 * Spielerstatistik: Der Link zur Homepage des Vereins erscheint jetzt hinter dem Vereinsnamen, wenn die Liga Links auf Vereinsseiten zeigt. Bisher fehlte er praktisch immer, weil der Name des Vereins unter den Adressen gesucht wurde, und stand außerhalb der Zelle.  
 * Tippspiel: „Konto löschen“ verglich das eingegebene Kennwort mit dem gespeicherten Hash wie mit Klartext und meldete deshalb immer „Passwort falsch“. Jetzt prüft es gegen den Hash wie „Kennwort ändern“.  
+* Tippspiel, persönliche Daten: Fragt das Tippspiel keinen Namen ab (`realname=0`), löschte das Speichern den gespeicherten Namen des Tippers; in neuen Auswertungen stand er dann ohne Namen. Jetzt bleibt der Name erhalten.  
 
 
 ### Security  
@@ -435,6 +436,7 @@ _Here we write changelog notes for the next version._
 * Player statistics, by club: the header of the club column showed a fixed "333"; the cell is empty now.  
 * Player statistics: the link to the club's homepage now appears after the club name when the league shows links to club pages. Until now it was practically always missing, because the club name was looked up among the addresses, and it was placed outside the cell.  
 * Prediction game: "delete account" compared the entered password with the stored hash as if it were plain text and therefore always reported a wrong password. It now checks against the hash like "change password".  
+* Prediction game, personal data: when the prediction game does not ask for a name (`realname=0`), saving deleted the tipper's stored name, and new evaluations showed them without a name. The name is kept now.  
 
 
 ### Security  

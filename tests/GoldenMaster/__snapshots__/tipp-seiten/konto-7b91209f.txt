@@ -311,13 +311,7 @@ xremind=1
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/lmo-tippauth.txt
---- vorher
-+++ nachher
-@@ -1,2 +1,2 @@
- <?php exit; ?>
--tester|{HASH}|5|Tina Test|tester@example.org|||||1|1|EOL
-+tester|{HASH}|5| |tester@example.org|||||1|1|EOL
+(keine)
 
 === Kennwort aendern: Formular ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -808,7 +802,7 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 +++ nachher
 @@ -1,2 +1 @@
 -<?php exit; ?>
- tester|{HASH}|5| |tester@example.org|||||1|1|EOL
+ tester|{HASH}|5|Tina Test|tester@example.org|||||1|1|EOL
 
 === Ligen hinzufuegen: Auswahl ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -1094,11 +1088,11 @@ xtipperligen[]=basic
 </body>
 </html>
 --- Dateiaenderungen ---
-NEU addon/tipp/tipps/auswert/basic.aus (23 Bytes)
+NEU addon/tipp/tipps/auswert/basic.aus (31 Bytes)
 
 [tester]
 Team=
-Name= 
+Name=Tina Test
 NEU addon/tipp/tipps/basic_tester.tip (1 Bytes)
 
 === Ligen entfernen: Auswahl ===
@@ -1683,6 +1677,6 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 --- vorher
 +++ nachher
 @@ -1 +0,0 @@
--tester|{HASH}|5| |tester@example.org|||||1|1|EOL
+-tester|{HASH}|5|Tina Test|tester@example.org|||||1|1|EOL
 GELOESCHT addon/tipp/tipps/1l_2024-25_tester.tip
 

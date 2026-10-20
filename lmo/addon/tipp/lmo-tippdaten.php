@@ -142,7 +142,10 @@ if (($action == "tipp") && ($todo == "daten")) {
       $_SESSION['lmotipperverein'] = "";
     }
     $users[$save] = $tipp_tipper_daten[0]."|".$tipp_tipper_daten[1]."|".$tipp_tipper_daten[2]."|";
-    if ($tipp_realname != -1) {
+    if ($tipp_realname == 0) {
+      // ohne Namensfelder im Formular bleibt der gespeicherte Name
+      $users[$save] = $users[$save].$tipp_tipper_daten[3];
+    } elseif ($tipp_realname != -1) {
       $users[$save] = $users[$save].$xtippervorname." ".$xtippernachname;
     }
     $users[$save] = $users[$save]."|".$xtipperemail."|".$_SESSION['lmotipperverein'];
