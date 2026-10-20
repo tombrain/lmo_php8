@@ -64,6 +64,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Tabelle nach den Tipps: Ohne Tipper (Gast ohne die Tabelle aller, `tipptabelle=0`, oder keine Tippdatei in der Liga) erscheint keine Tabelle voller Nullen mehr, sondern nur die Meldung, sofern es eine gibt (wie upstream 7c1228b).  
 * Tippspiel, Gesamtwertung aller Ligen (`todo=wert&all=1`, der Link auf der Startseite): Sie führte ohne geladene Liga zurück zur Startseite und ist jetzt wieder zu sehen.  
 * Kreuztabelle: Ein Apostroph im Mannschaftsnamen erscheint in allen Tooltips als Apostroph; bisher stand je nach Zeile mal `'`, mal `´` (der Name wurde während der Ausgabe ersetzt). Namen, Kurznamen und Notizen werden escaped.  
 * Der Menüpunkt „Tippspiel“ war kaputtes HTML (`<a <a href=…>` ohne `</a>`); jetzt ein gewöhnlicher Link.  
@@ -457,6 +458,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, table by predictions: without predictions (a guest when the table of all is off, `tipptabelle=0`, or no prediction file in the league) the page no longer shows a table full of zeros, only the message if there is one (as upstream 7c1228b).  
 * Prediction game, overall ranking of all leagues (`todo=wert&all=1`, the link on the start page): without a loaded league it led back to the start page; it is shown again.  
 * Cross table: an apostrophe in a team name shows as an apostrophe in all tooltips; until now it was `'` or `´` depending on the row (the name was replaced during output). Names, short names and notes are escaped.  
 * The menu item \"Tippspiel\" (prediction game) was broken HTML (`<a <a href=…>` without `</a>`); now a regular link.  
