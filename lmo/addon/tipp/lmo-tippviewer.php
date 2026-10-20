@@ -25,7 +25,7 @@ if (!defined('PATH_TO_LMO')) {
  * Diese Datei wird eingebunden und erwartet:
  *
  * @var array<int|string, mixed> $text Sprachtexte
- * @var int|string $st gewaehlter Spieltag
+ * @var int|string|null $st gewaehlter Spieltag (nur aus der Adresse; der Viewer laedt keine Liga)
  * @var string $dirliga Ligenordner relativ zum LMO (Konfiguration)
  * @var string $defdateformat Datumsformat in date()-Schreibweise (Konfiguration)
  * @var array<int|string, mixed> $array leeres Array als Vorlage fuer array_pad()
@@ -435,7 +435,7 @@ if ($tipp_viewertipp == 1 && $viewermode == 1) {
 <?php
         }
         $plus = 1;
-        $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+        $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag, $st ?? null, $lmo_liga ?? null, $plus);
         if ($btip == true) {
             $savebutton = 1;
         }

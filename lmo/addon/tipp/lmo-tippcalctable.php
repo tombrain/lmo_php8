@@ -95,7 +95,7 @@ if ($file != "") {
           // nur beim ersten Tipper berechnen, ob das Spiel in die Tipp-Tabelle einfließen darf
           if ($tipp_einsichterst == 1) {
             $plus = 0;
-            $btip[$j][$i] = tippaenderbar((int)$lmo_tipp_spiele[$j][$i]->anstoss, $lmo_tipp_tage[$j][0], $lmo_tipp_tage[$j][1], $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+            $btip[$j][$i] = tippaenderbar((int)$lmo_tipp_spiele[$j][$i]->anstoss, $lmo_tipp_tage[$j][0], $lmo_tipp_tage[$j][1], $st ?? null, $lmo_liga, $plus);
           }
           elseif ($tipp_einsichterst == 2) {
             if ($lmo_tipp_spiele[$j][$i]->istGespielt()) {

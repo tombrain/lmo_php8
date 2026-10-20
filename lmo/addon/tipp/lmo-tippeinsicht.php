@@ -201,9 +201,9 @@ if ($file != "" && $todo == "einsicht" && $tipp_tippeinsicht == 1) {
             if ($tipp_einsichterst == 1) {
               $plus = 0;
               if (!$lmo_tipp_pokal) {
-                $btip[$i] = tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss, $lmo_tipp_datum1, $lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+                $btip[$i] = tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss, $lmo_tipp_datum1, $lmo_tipp_datum2, $st, $lmo_liga, $plus);
               } else {
-                $btip[$i][$n] = tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss, $lmo_tipp_datum1, $lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+                $btip[$i][$n] = tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss, $lmo_tipp_datum1, $lmo_tipp_datum2, $st, $lmo_liga, $plus);
               }
             } elseif ($tipp_einsichterst == 2) {
               if ($lmo_tipp_pokal) {
