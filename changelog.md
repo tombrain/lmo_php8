@@ -69,6 +69,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Tippspiel, Registrierung: Die Prüfung auf eine schon vergebene E-Mail-Adresse las auch die Schutzzeile am Anfang von `lmo-tippauth.txt` (PHP-Warnung) und meldete bei leerem Feld „Es ist bereits ein Mitspieler mit dieser Email-Adresse angemeldet“ statt der fehlenden Angaben.  
 * Tippspiel, Kennwort ändern: Das Speichern entfernte die Schutzzeile am Anfang von `lmo-tippauth.txt`. Danach fanden die Seiten des Tippers den ersten Tipper der Datei nicht mehr (etwa ein zweites „Kennwort ändern“ brach mit leerer Seite ab).  
 * Tippspiel, Kennwort vergessen: Auch hier fehlte nach dem Speichern des neuen Kennworts die Schutzzeile am Anfang von `lmo-tippauth.txt`.  
+* Tippspiel, Anmeldung eines noch nicht freigeschalteten Tippers: Die Seite blieb leer, die Meldung „noch nicht freigeschaltet“ kam nie, und in derselben Sitzung ging keine Anmeldung mehr. Jetzt erscheint die Anmeldeseite mit der Meldung.  
 
 
 ### Security  
@@ -455,6 +456,7 @@ _Here we write changelog notes for the next version._
 * Prediction game, registration: the check for an e-mail address already in use also read the guard line at the start of `lmo-tippauth.txt` (PHP warning) and, with an empty field, reported that a player with this address already exists instead of the missing entries.  
 * Prediction game, change password: saving removed the guard line at the start of `lmo-tippauth.txt`. Afterwards the tipper pages no longer found the first tipper in the file (a second "change password", for instance, ended with an empty page).  
 * Prediction game, forgot password: here too, the guard line at the start of `lmo-tippauth.txt` was missing after the new password was saved.  
+* Prediction game, login of a tipper who is not activated yet: the page stayed empty, the "not activated yet" message never appeared, and no further login worked in the same session. Now the login page appears with the message.  
 
 
 ### Security  

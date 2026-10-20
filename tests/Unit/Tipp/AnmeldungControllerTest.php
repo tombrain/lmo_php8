@@ -105,8 +105,9 @@ class AnmeldungControllerTest extends TestCase
 
         [$gesperrt, $sitzung] = $this->seite(['xtippername' => 'neu', 'xtipperpass' => 'x', 'xtippersub' => 'x']);
         self::assertSame('', $sitzung->text('lmotipperok'), 'noch nicht freigeschaltet');
-        // wie bis 4.5: '' liegt nach PHP 8 nicht zwischen -4 und 1, die Seite bleibt leer (die Meldung T148 kommt nie)
-        self::assertSame('', $gesperrt);
+        self::assertStringContainsString('> T148</p>', $gesperrt, 'die Anmeldeseite mit dem Hinweis');
+        [, $sitzung] = $this->seite(['xtippername' => 'tester', 'xtipperpass' => 'geheim'], $sitzung);
+        self::assertSame(5, $sitzung->zahl('lmotipperok'), 'danach geht eine andere Anmeldung');
     }
 
     public function testKennwortImKlartextWirdUmgestellt(): void
