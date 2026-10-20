@@ -120,14 +120,14 @@ if ($action == 'tipp') {
         $addw = $_SERVER['PHP_SELF'] . '?action=tipp&amp;todo=wert&amp;file=';
         $adda = $_SERVER['PHP_SELF'] . '?action=tipp&amp;todo=';
 
-        if ($todo == 'fieber' || $todo == 'edit') {
+        if ($todo == 'edit') {
             require(PATH_TO_LMO . '/lmo-openfilename.php');
         }
         // Fehlgeschlagenes Laden (ungültige/nicht vorhandene Liga) fängt
         // lmo-openfile.php bereits ab, indem es $file auf '' zurück setzt.
         // $todo muss hier ebenfalls zurueckgesetzt werden, sonst würde der
         // nachgelagerte Block unten trotzdem die content-spezifische Datei
-        // (z.B. lmo-tippfieber.php) mit undefinierten Variablen aufrufen.
+        // (bis 4.5 z.B. lmo-tippfieber.php) mit undefinierten Variablen aufrufen.
         if (in_array($todo, array('edit', 'einsicht', 'tabelle', 'wert', 'fieber'), true) && empty($file)) {
             $todo = '';
         }
@@ -140,8 +140,7 @@ if ($action == 'tipp') {
   </tr>
   <tr>
     <td colspan="3" align="center"><?php
-        if ($todo == 'fieber') {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippfieber.php');}
-        elseif ($todo == 'info') {require(PATH_TO_LMO . '/lmo-showinfo.php');}
+        if ($todo == 'info') {require(PATH_TO_LMO . '/lmo-showinfo.php');}
         else { ?>
       <form name="lmotippedit" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <input type="hidden" name="action" value="tipp">

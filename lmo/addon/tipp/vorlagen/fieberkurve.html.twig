@@ -1,0 +1,46 @@
+{# Fieberkurve des Tippspiels (FieberkurveController), bis 4.5 lmo-tippfieber.php #}
+<form name="lmoedit" action="{{ adresse }}" method="post">
+  <input type="hidden" name="action" value="tipp">
+  <input type="hidden" name="todo" value="fieber">
+  <input type="hidden" name="file" value="{{ datei }}">
+  <input type="hidden" name="save" value="1">
+  <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <th align="left">{{ t[164]|raw }} 1</th>
+      <th align="left">{{ t[164]|raw }} 2</th>
+      <th align="left">{{ t[283]|raw }}</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+{%- for feld in [{name: 'xstat1', wert: erster}, {name: 'xstat2', wert: zweiter}] %}
+      <td>
+        <select name="{{ feld.name }}">
+          <option value="-1"{% if feld.wert == -1 %} selected{% endif %}>___</option>
+{%- for a in auswahl %}
+          <option value="{{ a.nr }}"{% if feld.wert == a.nr %} selected{% endif %}>{{ a.nick }}</option>
+{%- endfor %}
+        </select>
+      </td>
+{%- endfor %}
+      <td>
+        <select name="xkurvenmodus">
+          <option value="1"{% if modus == 1 %} selected{% endif %}>{{ t[235]|raw }}</option>
+          <option value="2"{% if modus == 2 %} selected{% endif %}>{{ t[232]|raw }}</option>
+        </select>
+      </td>
+      <td>
+         <input type="submit" name="best" value="{{ t[236]|raw }}">
+      </td>
+    </tr>
+{%- if mitKurve %}
+    <tr>
+      <td colspan="4" align="center">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{%- if bild is null %}<tr><th><h2>{{ t[284]|raw }}</h2></th></tr>{% else %}
+          <tr><td align="center" colspan="3"><img src="{{ bild|raw }}" border="0"></td></tr>{% endif %}
+        </table>
+      </td>
+    </tr>
+{%- endif %}
+  </table>
+</form>
