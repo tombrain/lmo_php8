@@ -56,6 +56,7 @@ final class TippSeitenTest extends TestCase
         $t = new Transcript();
 
         $t->add('Tippspiel ohne Anmeldung', $c->get('lmo.php', 'action=tipp'), $c->changes());
+        $t->add('Info ohne Anmeldung', $c->get('lmo.php', 'action=tipp&todo=info'), $c->changes());
         $t->add('Anmeldung mit falschem Kennwort', self::anmelden($c, 'falsch'), $c->changes());
         $t->add('Anmeldung', self::anmelden($c), self::ohneKennwort($c->changes()));
         $t->add('Startseite des Tippers', $c->get('lmo.php', 'action=tipp'), $c->changes());

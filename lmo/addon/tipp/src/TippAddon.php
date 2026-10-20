@@ -27,8 +27,9 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
      * @param Closure(string, string, string): string $freischaltmail schickt E-Mail-Adresse, Nick und Kennwort an den Tipper, gibt die Meldung zurueck
      * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort ("Kennwort vergessen"); null oder der Fehler
      * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
+     * @param string $version installierte Version des LMO (LMO_VERSION_NR) fuer die Info-Seite
      */
-    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null)
+    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '')
     {
     }
 
@@ -55,6 +56,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
             new TabelleController($this->ordner, $rahmen),
             new RanglisteController($this->ordner, $rahmen),
             new FieberkurveController($this->ordner, $rahmen),
+            new InfoController($rahmen, $this->version),
             $startseite,
             new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
             new class ($alterCode) implements Controller {
