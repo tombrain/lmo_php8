@@ -13,8 +13,8 @@ use Lmo\Web\Controller\Controller;
  * Anfrage, laedt die Liga und laesst den zustaendigen Controller die Seite bauen: erst die des
  * Kerns, dann die der Addons (Lmo\Addon\MitSeiten).
  *
- * Seiten ohne eigenen Controller zeigt vorerst noch der alte Code (lmo-showmain2.php); fuer sie
- * liefert bearbeite() null.
+ * Ist kein Controller zustaendig (etwa eine unbekannte Seite), liefert bearbeite() null; den Rahmen
+ * baut lmo-start.php darum (Lmo\Web\Rahmen).
  */
 final class Anwendung
 {
@@ -84,7 +84,7 @@ final class Anwendung
 
     /**
      * Die gewaehlte Seite: der Parameter action ("admin" heisst hier keine); ohne ihn die Startseite
-     * der Liga (wie lmo-start.php und lmo-showmain2.php).
+     * der Liga (Einstellung OnRun).
      */
     public static function action(Anfrage $anfrage, ?Liga $liga): string
     {

@@ -15,7 +15,7 @@ use Lmo\Web\Seite;
  * Addon "tipp": das Tippspiel (action=tipp) mit Menuepunkt, wenn es eingeschaltet ist (eintippspiel).
  *
  * Die Seiten zeigt vorerst noch der alte Code (lmo-tippstart.php und was er einbindet); addon.php
- * gibt ihn als Closure mit. Bis 4.5 band lmo-showmain2.php ihn direkt ein.
+ * gibt ihn als Closure mit, samt dem Laden der Liga, das bis 4.5 lmo-showmain2.php erledigte.
  */
 final class TippAddon implements MitSeiten, MitRahmenteilen
 {

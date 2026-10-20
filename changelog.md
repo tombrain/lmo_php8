@@ -52,6 +52,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * `lmo-showstats.php` gibt es nicht mehr; die Statistik zeigt der `StatistikController`.  
 * `lmo-showdir.php` gibt es nicht mehr; die Ligenübersicht zeigt der `LigenuebersichtController`.  
 * `addon/spieler/lmo-statshow.php` gibt es nicht mehr; die Spielerstatistik zeigt der `StatistikController` des Spieler-Addons.  
+* `lmo-showmain2.php` gibt es nicht mehr. Die öffentlichen Seiten laufen über `lmo-start.php`: Kontext und Seite aus der `Lmo\Web\Anwendung`, der Rahmen aus `Lmo\Web\Rahmen`, die Teile der Addons über `Lmo\Addon\MitRahmenteilen`. Das Laden der Liga mit `lmo-openfile.php` erledigt nur noch die Brücke des Tippspiels für dessen alten Code; ein externes PDF-Addon (`addon/pdf/lmo-showmain2.inc.php`) bekommt Liga, Stand und Druck-Links wie bisher.  
 
 
 ### Fixed  
@@ -430,6 +431,7 @@ _Here we write changelog notes for the next version._
 * `lmo-showstats.php` is gone; the statistics are shown by the `StatistikController`.  
 * `lmo-showdir.php` is gone; the league overview is shown by the `LigenuebersichtController`.  
 * `addon/spieler/lmo-statshow.php` is gone; the player statistics are shown by the `StatistikController` of the players add-on.  
+* `lmo-showmain2.php` is gone. The public pages run through `lmo-start.php`: context and page from `Lmo\Web\Anwendung`, the frame from `Lmo\Web\Rahmen`, the parts of add-ons through `Lmo\Addon\MitRahmenteilen`. Loading the league with `lmo-openfile.php` is only done by the bridge of the prediction game for its old code; an external PDF add-on (`addon/pdf/lmo-showmain2.inc.php`) gets league, timestamp and print links as before.  
 
 
 ### Fixed  

@@ -33,5 +33,24 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
         }
     }
     unset($lmo_tipp_name);
+    // wie bis 4.5 lmo-showmain2.php vor dem Tippspiel: die Liga aus der Adresse laden (lmo-openfile.php)
+    // und den Stand der Tabelle setzen
+    if ($file != '') {
+        require(PATH_TO_LMO . '/lmo-openfile.php');
+        if ($file != '' && isset($lmo_liga)) {
+            if (empty($_GET['endtab'])) {
+                $endtab = $lmo_liga->einstellungen()->spieltage();
+                $ste = $st;
+                $tabdat = '';
+            } else {
+                $endtab = $_GET['endtab'];
+                $tabdat = $endtab . '. ' . $text[2];
+                $ste = $endtab;
+            }
+            if (!empty($_GET['st'])) {
+                $tabdat = $st . '. ' . $text[2];
+            }
+        }
+    }
     require __DIR__ . '/lmo-tippstart.php';
 });
