@@ -10,12 +10,15 @@ use Lmo\Web\Seite;
 use Lmo\Web\Vorlagen;
 
 /**
- * Die Kontoseiten eines angemeldeten Tippers: Kennwort aendern (todo=pwchange). Bis 4.5
- * lmo-tipppwchange.php; die uebrigen Seiten zeigt noch der alte Code.
+ * Die Kontoseiten eines angemeldeten Tippers: Kennwort aendern (todo=pwchange) und Konto loeschen
+ * (todo=delaccount). Bis 4.5 lmo-tipppwchange.php und lmo-tippdelaccount.php; die uebrigen Seiten
+ * zeigt noch der alte Code.
  */
 final class KontoController implements Controller
 {
-    /** @param string $ordner Ordner des Addons (addon/tipp), dort liegt die Tipperdatei */
+    private const SEITEN = ['pwchange', 'delaccount'];
+
+    /** @param string $ordner Ordner des Addons (addon/tipp), dort liegen Tipperdatei und Tipps */
     public function __construct(private string $ordner, private Tipprahmen $rahmen)
     {
     }
@@ -24,7 +27,7 @@ final class KontoController implements Controller
     {
         return $kontext->action == 'tipp'
             && $kontext->konfiguration->schalter('eintippspiel')
-            && $kontext->anfrage->text('todo') == 'pwchange'
+            && in_array($kontext->anfrage->text('todo'), self::SEITEN, true)
             && !$kontext->anfrage->gesetzt('viewermode')
             && $kontext->sitzung->zahl('lmotipperok') == 5;
     }
@@ -37,6 +40,15 @@ final class KontoController implements Controller
             // angemeldet, aber nicht (mehr) in der Datei: bis 4.5 brach die Seite hier ab (exit)
             return new Seite($this->rahmen->html($kontext, ''));
         }
+        $inhalt = $kontext->anfrage->text('todo') == 'delaccount'
+            ? $this->kontoLoeschen($kontext, $datei, $tipper)
+            : $this->kennwortAendern($kontext, $datei, $tipper);
+
+        return new Seite($this->rahmen->html($kontext, $inhalt));
+    }
+
+    private function kennwortAendern(Kontext $kontext, Tipperdatei $datei, Tipper $tipper): string
+    {
         $t = $kontext->texteVon('tipp');
         $anfrage = $kontext->anfrage;
         $alt = $anfrage->text('xtipperpass');
@@ -68,24 +80,69 @@ final class KontoController implements Controller
             }
         }
         if ($gespeichert) {
-            $meldungen .= $datei->mit($tipper->mitKennwort($neu))->speichere()
-                ? Tipprahmen::meldung($kontext, $kontext->text[138] ?? '')
-                : Tipprahmen::meldung($kontext, $kontext->text[283] ?? '', true);
+            $meldungen .= $this->speichere($kontext, $datei->mit($tipper->mitKennwort($neu)));
         }
 
-        $verein = $kontext->sitzung->text('lmotipperverein');
-
-        return new Seite($this->rahmen->html($kontext, $meldungen . Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'kennwort.html.twig', [
-            'text' => $kontext->text,
-            't' => $t,
-            'adresse' => $kontext->adresse,
-            'bilder' => $kontext->pfade->bilder,
-            'tipper' => $kontext->sitzung->text('lmotippername') . ($verein != '' ? ' - ' . $verein : ''),
+        return $meldungen . $this->vorlage($kontext, 'kennwort.html.twig', [
             'gespeichert' => $gespeichert,
             'alt' => $alt,
             'neu' => $neu,
             'wiederholt' => $wiederholt,
-        ])));
+        ]);
+    }
+
+    private function kontoLoeschen(Kontext $kontext, Tipperdatei $datei, Tipper $tipper): string
+    {
+        $anfrage = $kontext->anfrage;
+        $kennwort = $anfrage->text('xtipperpass');
+        $meldungen = '';
+        $geloescht = $anfrage->text('newpage') == 1;
+
+        if ($geloescht) {
+            $kennwort = trim($kennwort);
+            if (!$tipper->pruefeKennwort($kennwort)) {
+                $geloescht = false;
+                $meldungen .= Tipprahmen::meldung($kontext, $kontext->texteVon('tipp')[42] ?? '', true);
+            }
+        }
+        if ($geloescht) {
+            // die Tipps des Tippers in allen Ligen
+            $tipps = $this->ordner . '/' . ($kontext->konfiguration->addon('tipp')['dirtipp'] ?? 'tipps/');
+            foreach (glob($tipps . '*_' . $tipper->nick() . '.tip') ?: [] as $tippdatei) {
+                @unlink($tippdatei);
+            }
+            $meldungen .= $this->speichere($kontext, $datei->ohne($tipper->nick()));
+            // abgemeldet
+            $kontext->sitzung->setze('lmotipperok', 0);
+            $kontext->sitzung->setze('lmotipperverein', '');
+        }
+
+        return $meldungen . $this->vorlage($kontext, 'konto_loeschen.html.twig', [
+            'geloescht' => $geloescht,
+            'kennwort' => $kennwort,
+        ]);
+    }
+
+    /** Speichert die Tipperdatei und gibt die Meldung dazu zurueck (bis 4.5 lmo-tippsaveauth.php). */
+    private function speichere(Kontext $kontext, Tipperdatei $datei): string
+    {
+        return $datei->speichere()
+            ? Tipprahmen::meldung($kontext, $kontext->text[138] ?? '')
+            : Tipprahmen::meldung($kontext, $kontext->text[283] ?? '', true);
+    }
+
+    /** @param array<string, mixed> $daten */
+    private function vorlage(Kontext $kontext, string $vorlage, array $daten): string
+    {
+        $verein = $kontext->sitzung->text('lmotipperverein');
+
+        return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', $vorlage, $daten + [
+            'text' => $kontext->text,
+            't' => $kontext->texteVon('tipp'),
+            'adresse' => $kontext->adresse,
+            'bilder' => $kontext->pfade->bilder,
+            'tipper' => $kontext->sitzung->text('lmotippername') . ($verein != '' ? ' - ' . $verein : ''),
+        ]);
     }
 
     private function datei(Kontext $kontext): Tipperdatei

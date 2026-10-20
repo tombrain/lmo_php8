@@ -26,20 +26,46 @@ class KontoControllerTest extends TestCase
     {
         $this->ordner = sys_get_temp_dir() . '/lmo-tipp-' . bin2hex(random_bytes(4));
         mkdir($this->ordner);
-        file_put_contents($this->ordner . '/auth.txt', "<?php exit; ?>\ntester|" . password_hash('geheim', PASSWORD_BCRYPT) . "|5|Tina Test|t@example.org|Eins||||1|1|EOL\n");
+        file_put_contents($this->ordner . '/auth.txt', "<?php exit; ?>\ntester|" . password_hash('geheim', PASSWORD_BCRYPT) . "|5|Tina Test|t@example.org|Eins||||1|1|EOL\nanna|x|5|Anna|a@example.org|||||1|1|EOL\n");
+        mkdir($this->ordner . '/tipps');
+        foreach (['bula_tester.tip', 'cup_tester.tip', 'bula_anna.tip', 'bula_xtester.tip'] as $tippdatei) {
+            touch($this->ordner . '/tipps/' . $tippdatei);
+        }
     }
 
     protected function tearDown(): void
     {
+        array_map('unlink', glob($this->ordner . '/tipps/*') ?: []);
+        rmdir($this->ordner . '/tipps');
         array_map('unlink', glob($this->ordner . '/*') ?: []);
         rmdir($this->ordner);
     }
 
+    public function testKontoLoeschen(): void
+    {
+        $sitzung = new Sitzung(['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']);
+        $formular = $this->controller()->zeige($this->kontext(['todo' => 'delaccount']))->html;
+        self::assertStringContainsString('name="xtipperpass"', $formular);
+
+        $falsch = $this->controller()->zeige($this->kontext(['todo' => 'delaccount', 'newpage' => '1', 'xtipperpass' => 'falsch'], $sitzung))->html;
+        self::assertStringContainsString('> T42</p>', $falsch);
+        self::assertNotNull(Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('tester'), 'nichts geloescht');
+
+        $html = $this->controller()->zeige($this->kontext(['todo' => 'delaccount', 'newpage' => '1', 'xtipperpass' => 'geheim'], $sitzung))->html;
+        self::assertStringContainsString('> T138</p>', $html);
+        self::assertStringContainsString('<caption>tester</caption>', $html, 'abgemeldet, ohne Verein');
+        self::assertSame(0, $sitzung->zahl('lmotipperok'));
+        $datei = Tipperdatei::lies($this->ordner . '/auth.txt');
+        self::assertNull($datei->tipper('tester'));
+        self::assertNotNull($datei->tipper('anna'), 'die anderen bleiben');
+        self::assertSame(['bula_anna.tip', 'bula_xtester.tip'], array_map('basename', glob($this->ordner . '/tipps/*') ?: []), 'nur die Tipps des Tippers geloescht');
+    }
+
     /**
      * @param array<string, string> $parameter
-     * @param array<string, mixed> $sitzung
+     * @param array<string, mixed>|Sitzung $sitzung
      */
-    private function kontext(array $parameter, array $sitzung = ['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']): Kontext
+    private function kontext(array $parameter, array|Sitzung $sitzung = ['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']): Kontext
     {
         $texte = [];
         for ($i = 0; $i <= 400; $i++) {
@@ -50,13 +76,13 @@ class KontoControllerTest extends TestCase
             new Anfrage($parameter + ['action' => 'tipp']),
             'tipp',
             null,
-            new Konfiguration(['eintippspiel' => '1', 'tipp' => ['tippauthtxt' => 'auth.txt', 'regeln' => '0']]),
+            new Konfiguration(['eintippspiel' => '1', 'tipp' => ['tippauthtxt' => 'auth.txt', 'dirtipp' => 'tipps/', 'regeln' => '0']]),
             $texte,
             '/lmo.php',
             new Pfade('/lmo', '', 'IMG'),
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             weitereTexte: ['tipp' => $texte],
-            sitzung: new Sitzung($sitzung)
+            sitzung: $sitzung instanceof Sitzung ? $sitzung : new Sitzung($sitzung)
         );
     }
 
