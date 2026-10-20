@@ -8,7 +8,7 @@
         "Liga Manager Online",
         "Sportligen verwalten"
     ],
-    "license": "GPL-2.0-only",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Rene Marth (joker)",
