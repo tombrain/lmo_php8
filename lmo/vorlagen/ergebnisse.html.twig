@@ -1,3 +1,13 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
 {#- Ergebnisse eines Spieltags (Lmo\Web\Seiten\ErgebnisListe). Sprachtexte, Links, Wappen und Hinweise sind fertiges HTML. -#}
 {%- macro mannschaft(m, spielplan, text) -%}
 {% if spielplan is not null %}<a href="{{ spielplan|raw }}{{ m.nr }}" title="{{ text[269]|raw }}">{% endif %}{% if m.fett %}<strong>{% endif %}{{ m.name }}{% if m.fett %}</strong>{% endif %}{% if spielplan is not null %}</a>{% endif %}
