@@ -287,7 +287,7 @@
 <acronym title="Geben Sie hier Ihr Passwort ein">&nbsp;Passwort</acronym>
 </td>
 <td align="left">
-<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="falsch">
+<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="">
 </td>
 </tr>
 <tr>
@@ -1030,7 +1030,7 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 <acronym title="Geben Sie hier Ihr Passwort ein">&nbsp;Passwort</acronym>
 </td>
 <td align="left">
-<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="geheim">
+<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="">
 </td>
 </tr>
 <tr>
@@ -1249,7 +1249,7 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 <acronym title="Geben Sie hier Ihr Passwort ein">&nbsp;Passwort</acronym>
 </td>
 <td align="left">
-<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="geheim">
+<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="">
 </td>
 </tr>
 <tr>

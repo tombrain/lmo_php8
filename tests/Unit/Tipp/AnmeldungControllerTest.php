@@ -121,8 +121,12 @@ class AnmeldungControllerTest extends TestCase
 
     public function testAbmelden(): void
     {
-        $sitzung = new Sitzung(['lmotipperok' => 5, 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']);
+        $sitzung = new Sitzung(['lmotipperok' => 5, 'lmotippername' => 'tester', 'lmotipperpass' => 'geheim', 'lmotipperverein' => 'Eins']);
         [$html] = $this->seite(['todo' => 'logout'], $sitzung);
+
+        self::assertFalse($sitzung->gesetzt('lmotipperpass'), 'kein Kennwort in der Sitzung');
+        self::assertStringContainsString('name="xtipperpass" size="16" maxlength="32" value=""', $html, 'kein Kennwort im Formular');
+        self::assertStringContainsString('name="xtippername" size="16" maxlength="32" value="tester"', $html);
 
         self::assertSame(0, $sitzung->zahl('lmotipperok'));
         self::assertSame('', $sitzung->text('lmotipperverein'));

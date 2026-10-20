@@ -75,6 +75,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Ergebnis- und Tabellenseite übernehmen aus der Adresse nur noch die Anzeige-Optionen `tabonres` und `tabpkt` (`Konfiguration::ANZEIGEOPTIONEN`); alle anderen Einstellungen kommen nur aus `config/cfg.txt`. Bisher konnte jeder Aufruf über die Adresse jede Einstellung überschreiben (Folge des `extract($_GET)` in `init.php`, das für die übrigen Seiten vorerst bleibt).  
 * Tippspiel: Wer seine E-Mail-Adresse ändert, bekommt ein neues Kennwort per Mail. Es stand bisher im Klartext in `lmo-tippauth.txt`; jetzt wird nur sein Hash gespeichert. Das Kennwort entsteht mit `random_bytes()` statt aus `md5(uniqid(rand()))`.  
 * Tippspiel, Ligen hinzufügen und entfernen: Die Namen der Ligen aus dem Formular gingen ungeprüft in Dateinamen ein; mit `../` ließen sich Dateien außerhalb des Tipp-Ordners anlegen oder löschen, die auf `_<nick>.tip` enden. Jetzt zählen nur Ligen, die die Seite auch anbietet.  
+* Tippspiel, Anmeldung: Das Kennwort blieb in der Sitzung und stand nach dem Abmelden (und nach falscher Eingabe) wieder im Anmeldeformular, also im Quelltext der Seite. Jetzt wird es nicht mehr gespeichert, das Feld bleibt leer.  
 
 ***
 ## [4.5.0] - 2026-10-12
@@ -460,6 +461,7 @@ _Here we write changelog notes for the next version._
 * The results and table pages take only the display options `tabonres` and `tabpkt` from the address (`Konfiguration::ANZEIGEOPTIONEN`); all other settings come from `config/cfg.txt` only. Until now any request could override any setting through the address (a consequence of the `extract($_GET)` in `init.php`, which stays for the other pages for now).  
 * Prediction game: whoever changes their e-mail address gets a new password by mail. It used to be stored in plain text in `lmo-tippauth.txt`; now only its hash is stored. The password is created with `random_bytes()` instead of `md5(uniqid(rand()))`.  
 * Prediction game, add and remove leagues: the league names from the form went unchecked into file names; with `../`, files outside the prediction folder ending in `_<nick>.tip` could be created or deleted. Now only leagues the page offers count.  
+* Prediction game, login: the password stayed in the session and appeared in the login form again after logging out (and after a wrong entry), i.e. in the page source. It is no longer stored; the field stays empty.  
 
 ***
 ## [4.5.0] - 2026-10-12

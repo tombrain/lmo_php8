@@ -23,6 +23,9 @@ class SitzungTest extends TestCase
 
         $sitzung->setze('lmotipperok', 0);
         self::assertSame(0, $sitzung->zahl('lmotipperok'));
+        self::assertTrue($sitzung->gesetzt('lmotipperok'));
+        $sitzung->entferne('lmotipperok');
+        self::assertFalse($sitzung->gesetzt('lmotipperok'));
     }
 
     public function testDieSitzungDesAufrufs(): void
