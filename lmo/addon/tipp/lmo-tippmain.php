@@ -50,14 +50,13 @@ if ($action == "tipp") {
   if ($_SESSION["lmotipperok"] == 5) {
     if ($todo == "edit" && $viewermode != 1) {
       require(PATH_TO_LMO."/lmo-openfile.php");
-    } elseif (($todo == "wert" && $all != 1) || $todo == "fieber") {
+    } elseif ($todo == "fieber") {
       require(PATH_TO_LMO."/lmo-openfilename.php");
-    } elseif ($todo == "wert" && $all == 1) {
     }
     // Wenn das Laden fehlgeschlagen ist (ungültige/nicht vorhandene Liga),
     // setzt lmo-openfile.php $file auf '' zurueck. Ohne diese Prüfung
     // wuerde der switch($todo)-Block unten trotzdem die content-spezifische
-    // Datei (z.B. lmo-tippwert.php) aufrufen, obwohl $anzst/$anzteams/
+    // Datei (z.B. lmo-tippfieber.php) aufrufen, obwohl $anzst/$anzteams/
     // $tab0/... nie gesetzt wurden.
     if (in_array($todo, array("edit", "einsicht", "tabelle", "wert", "fieber"), true) && empty($file)) {
       $todo = "";
@@ -143,7 +142,6 @@ if ($action == "tipp") {
     } else {
       switch ($todo) {
         case "fieber":     require(PATH_TO_ADDONDIR."/tipp/lmo-tippfieber.php");break;
-        case "wert":       require(PATH_TO_ADDONDIR."/tipp/lmo-tippwert.php");break;
         case "info":       require(PATH_TO_LMO."/lmo-showinfo.php");break;
         default:           require(PATH_TO_ADDONDIR."/tipp/lmo-tipppad.php");break;
       }
