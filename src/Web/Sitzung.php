@@ -30,6 +30,12 @@ final class Sitzung
         return $sitzung;
     }
 
+    /** Ist der Wert da (wie isset())? */
+    public function gesetzt(string $name): bool
+    {
+        return isset($this->werte[$name]);
+    }
+
     /** Der Wert als ganze Zahl; fehlt er oder ist er kein Text bzw. keine Zahl: die Vorgabe. */
     public function zahl(string $name, int $vorgabe = 0): int
     {

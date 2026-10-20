@@ -135,6 +135,27 @@ final class TippSeitenTest extends TestCase
         self::assertStringContainsString('todo=logout', self::anmelden($c, $treffer[1]), 'Anmeldung mit dem Kennwort aus der Mail');
     }
 
+    /** "Kennwort vergessen": ein neues Kennwort per Mail; mit ihm meldet sich der Tipper an. */
+    public function testKennwortVergessen(): void
+    {
+        $c = self::client();
+        $c->get('lmo.php', 'action=tipp&todo=getpass');
+        $antwort = $c->post('lmo.php', '', ['action' => 'tipp', 'todo' => 'getpass', 'xtippername2' => 'tester@example.org', 'xtippersub' => 'x']);
+
+        self::assertStringContainsString('class="message"', $antwort, 'Erfolgsmeldung');
+        $path = $c->instance()->path();
+        $mails = glob($path . '/.mails/*.eml') ?: [];
+        self::assertCount(1, $mails);
+        $teile = preg_split('/\R\R/', (string) file_get_contents($mails[0]), 2) ?: [];
+        self::assertSame(1, preg_match('/Passwort: (\S+)/', (string) base64_decode($teile[1] ?? ''), $treffer), 'Kennwort in der Mail');
+        self::assertStringStartsWith("<?php exit; ?>\n", (string) file_get_contents($path . '/addon/tipp/lmo-tippauth.txt'), 'die Schutzzeile bleibt');
+        self::assertStringContainsString('todo=logout', self::anmelden($c, $treffer[1]), 'Anmeldung mit dem neuen Kennwort');
+
+        $unbekannt = $c->post('lmo.php', '', ['action' => 'tipp', 'todo' => 'getpass', 'xtippername2' => 'niemand']);
+        self::assertStringContainsString('name="xtippername2"', $unbekannt);
+        self::assertCount(1, glob($path . '/.mails/*.eml') ?: [], 'keine weitere Mail');
+    }
+
     public function testTippregeln(): void
     {
         $c = self::client();

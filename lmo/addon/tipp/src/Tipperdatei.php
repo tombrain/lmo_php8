@@ -45,6 +45,19 @@ final class Tipperdatei
         return null;
     }
 
+    /** Der (erste) Tipper mit dieser E-Mail-Adresse; null, wenn es keinen gibt. */
+    public function tipperMitEmail(string $email): ?Tipper
+    {
+        foreach ($this->zeilen as $zeile) {
+            $tipper = $zeile != self::SCHUTZZEILE ? Tipper::ausZeile($zeile) : null;
+            if ($tipper !== null && str_contains($tipper->email(), '@') && $tipper->email() == $email) {
+                return $tipper;
+            }
+        }
+
+        return null;
+    }
+
     /** Dieselbe Datei mit geaendertem Tipper (gleicher Nick, an seiner Stelle). */
     public function mit(Tipper $tipper): self
     {

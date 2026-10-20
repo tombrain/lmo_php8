@@ -80,4 +80,17 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
     ob_start();
     include(__DIR__ . '/lmo-admintippfreischaltung.php');
     return (string)ob_get_clean();
+}, static function (string $lmo_an, string $lmo_nick, string $lmo_kennwort): ?string {
+    // "Kennwort vergessen": die Mail mit dem neuen Kennwort (bis 4.5 lmo-tippemailpass.php)
+    $text = $GLOBALS['text'];
+    $mail = lmo_mailer($GLOBALS['aadr'], $text['tipp'][92]);
+    $mail->Subject = $text['tipp'][79] . ' (' . $_SERVER['HTTP_HOST'] . ')';
+    $mail->addAddress($lmo_an);
+    $loginUrl = lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp';
+    $mail->Body = $text['tipp'][297] . ' ' . $lmo_nick . ",\n\n" .
+                  $text['tipp'][77] . "\n\n" .
+                  $text['tipp'][23] . ': ' . $lmo_nick . "\n" .
+                  $text[308] . ': ' . $lmo_kennwort . "\n\n" .
+                  $text['tipp'][255] . ': ' . $loginUrl;
+    return $mail->send() ? null : (string)$mail->ErrorInfo;
 });
