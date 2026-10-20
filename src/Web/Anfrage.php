@@ -60,6 +60,25 @@ final class Anfrage
         return is_scalar($wert) && $wert !== '' ? (int) $wert : $vorgabe;
     }
 
+    /**
+     * Der Parameter als Liste von Texten (Formularfeld mit name="...[]"); [] ohne. Werte, die kein
+     * Text bzw. keine Zahl sind, fehlen.
+     *
+     * @return list<string>
+     */
+    public function werte(string $name): array
+    {
+        $liste = [];
+        $werte = $this->werte[$name] ?? null;
+        foreach (is_array($werte) ? $werte : [] as $wert) {
+            if (is_scalar($wert)) {
+                $liste[] = (string) $wert;
+            }
+        }
+
+        return $liste;
+    }
+
     /** Der Parameter als Text; fehlt er oder ist er kein Text bzw. keine Zahl: die Vorgabe. */
     public function text(string $name, string $vorgabe = ''): string
     {

@@ -84,6 +84,53 @@ class KontoControllerTest extends TestCase
         self::assertTrue($tipper?->pruefeKennwort('geheim'));
     }
 
+    public function testLigenHinzufuegenUndEntfernen(): void
+    {
+        mkdir($this->ordner . '/ligen');
+        mkdir($this->ordner . '/tipps/auswert');
+        file_put_contents($this->ordner . '/ligen/bula.l98', "[Options]
+Name=Bundesliga
+");
+        file_put_contents($this->ordner . '/ligen/zweite.l98', "[Options]
+");
+        file_put_contents($this->ordner . '/ligen/andere.l98', "[Options]
+Name=Andere
+");
+        $tipp = ['ligenzutippen' => 'bula,zweite,cup'];
+        try {
+            $auswahl = $this->controller()->zeige($this->kontext(['todo' => 'newligen'], tipp: $tipp))->html;
+            self::assertStringContainsString('value="zweite">T5071<br>', $auswahl, 'ohne Namen: Liga und Nummer');
+            self::assertStringNotContainsString('value="bula"', $auswahl, 'schon getippt');
+            self::assertStringNotContainsString('value="andere"', $auswahl, 'nicht zu tippen');
+
+            $html = $this->controller()->zeige($this->kontext(['todo' => 'newligen', 'newpage' => '1', 'xtipperligen' => ['zweite', '../../boese']], tipp: $tipp))->html;
+            self::assertStringContainsString('> T20</p>', $html);
+            self::assertSame("
+", file_get_contents($this->ordner . '/tipps/zweite_tester.tip'));
+            self::assertSame("
+[tester]
+Team=Eins
+Name=Tina Test
+", file_get_contents($this->ordner . '/tipps/auswert/zweite.aus'));
+            self::assertFileDoesNotExist($this->ordner . '/boese_tester.tip', 'nur Ligen aus der Liste');
+
+            $entfernen = $this->controller()->zeige($this->kontext(['todo' => 'delligen'], tipp: $tipp))->html;
+            self::assertStringContainsString('value="bula">Bundesliga<br>', $entfernen);
+            self::assertStringContainsString('value="zweite">', $entfernen);
+            $this->controller()->zeige($this->kontext(['todo' => 'delligen', 'newpage' => '1', 'xtipperligen' => ['zweite']], tipp: $tipp));
+            self::assertFileDoesNotExist($this->ordner . '/tipps/zweite_tester.tip');
+            self::assertFileExists($this->ordner . '/tipps/bula_tester.tip');
+
+            $keine = $this->controller()->zeige($this->kontext(['todo' => 'newligen'], tipp: ['ligenzutippen' => 'bula']))->html;
+            self::assertStringContainsString('<li>[ T223 ]</li>', $keine, 'keine Liga mehr zu tippen');
+        } finally {
+            array_map('unlink', glob($this->ordner . '/ligen/*') ?: []);
+            rmdir($this->ordner . '/ligen');
+            array_map('unlink', glob($this->ordner . '/tipps/auswert/*') ?: []);
+            rmdir($this->ordner . '/tipps/auswert');
+        }
+    }
+
     public function testKontoLoeschen(): void
     {
         $sitzung = new Sitzung(['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']);
@@ -105,14 +152,14 @@ class KontoControllerTest extends TestCase
     }
 
     /**
-     * @param array<string, string> $parameter
+     * @param array<string, mixed> $parameter
      * @param array<string, mixed>|Sitzung $sitzung
      * @param array<string, string> $tipp abweichende Einstellungen des Tippspiels
      */
     private function kontext(array $parameter, array|Sitzung $sitzung = ['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins'], array $tipp = []): Kontext
     {
         $texte = [];
-        for ($i = 0; $i <= 400; $i++) {
+        for ($i = 0; $i <= 600; $i++) {
             $texte[$i] = 'T' . $i;
         }
 
@@ -123,7 +170,7 @@ class KontoControllerTest extends TestCase
             new Konfiguration(['eintippspiel' => '1', 'tipp' => $tipp + ['tippauthtxt' => 'auth.txt', 'dirtipp' => 'tipps/', 'regeln' => '0', 'realname' => '0', 'adresse' => '0', 'tipperimteam' => '-1', 'freischaltcode' => '0']]),
             $texte,
             '/lmo.php',
-            new Pfade('/lmo', '', 'IMG'),
+            new Pfade($this->ordner, '', 'IMG'),
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             weitereTexte: ['tipp' => $texte],
             sitzung: $sitzung instanceof Sitzung ? $sitzung : new Sitzung($sitzung)
@@ -144,7 +191,7 @@ class KontoControllerTest extends TestCase
         $c = $this->controller();
 
         self::assertTrue($c->zustaendig($this->kontext(['todo' => 'pwchange'])));
-        self::assertFalse($c->zustaendig($this->kontext(['todo' => 'newligen'])), 'andere Seite');
+        self::assertFalse($c->zustaendig($this->kontext(['todo' => 'edit'])), 'andere Seite');
         self::assertFalse($c->zustaendig($this->kontext(['todo' => 'pwchange'], ['lmotipperok' => '0'])), 'nicht angemeldet');
         self::assertFalse($c->zustaendig($this->kontext(['todo' => 'pwchange', 'viewermode' => '1'])));
     }
