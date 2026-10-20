@@ -86,7 +86,17 @@ class RanglisteControllerTest extends TestCase
     {
         self::assertFalse($this->controller()->zustaendig($this->kontext(['todo' => 'tabelle'])));
         self::assertFalse($this->controller()->zustaendig($this->kontext(['viewermode' => '1'])));
-        self::assertFalse($this->controller()->zustaendig($this->kontext(mitLiga: false)), 'die Gesamtwertung ohne Liga zeigt noch der alte Weg');
+        self::assertFalse($this->controller()->zustaendig($this->kontext(mitLiga: false)), 'ohne Liga die Startseite');
+    }
+
+    public function testGesamtwertungOhneLiga(): void
+    {
+        file_put_contents($this->ordner . '/tipps/auswert/gesamt.aus', "[Options]\nAnzLigen=2\n\n[anna]\nSG1=4\nTP1=7\n");
+        $html = $this->seite($this->kontext(['file' => '', 'all' => '1'], mitLiga: false));
+
+        self::assertStringContainsString('(anna)', $html);
+        self::assertStringContainsString('>7<', $html);
+        self::assertStringNotContainsString('T202', $html, 'ohne Auswahl Spieltags- oder Gesamtwertung');
     }
 
     public function testEinzelwertung(): void
