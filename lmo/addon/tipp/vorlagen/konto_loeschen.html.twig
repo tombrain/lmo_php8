@@ -1,0 +1,26 @@
+{#- Konto loeschen (Lmo\Addon\Tipp\KontoController). Texte und Name des Tippers sind fertiges HTML; die Eingabe wird maskiert. -#}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ tipper|raw }}</caption>
+  <tr>
+    <th colspan="2" align="center">{{ t[6]|raw }}</th>
+  </tr>
+  <tr>
+    <td width="20">&nbsp;</td>
+{% if not geloescht %}
+    <td class="nobr" align="center">
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post" onSubmit="return confirm('');">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="delaccount">
+        <input type="hidden" name="newpage" value="1">
+        <p> {{ t[69]|raw }}: &nbsp;<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="{{ kennwort }}"></p>
+        <input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ text[82]|raw }}">
+      </form>
+    </td>
+{% else %}
+    <td align="center"><p class="message"><img src="{{ bilder|raw }}/right.svg" border="0" width="20" alt=""> {{ t[121]|raw }}</p></td>
+  </tr>
+  <tr>
+    <td class="lmoFooter" colspan="2" align="right"><a href="{{ adresse|raw }}?action=tipp&amp">=> {{ t[141]|raw }}</a></td>
+  </tr>
+{% endif %}
+</table>

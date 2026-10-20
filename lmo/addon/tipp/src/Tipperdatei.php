@@ -58,6 +58,19 @@ final class Tipperdatei
         return new self($this->pfad, $zeilen);
     }
 
+    /** Dieselbe Datei ohne den Tipper mit diesem Nick. */
+    public function ohne(string $nick): self
+    {
+        $zeilen = [];
+        foreach ($this->zeilen as $zeile) {
+            if ($zeile == self::SCHUTZZEILE || explode('|', $zeile, 2)[0] != $nick) {
+                $zeilen[] = $zeile;
+            }
+        }
+
+        return new self($this->pfad, $zeilen);
+    }
+
     /** Schreibt die Datei; false, wenn das nicht ging. */
     public function speichere(): bool
     {
