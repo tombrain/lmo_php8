@@ -88,6 +88,25 @@ class AnmeldungControllerTest extends TestCase
         self::assertSame(0, $sitzung->zahl('lmotipperok'));
     }
 
+    public function testAlleUebrigenSeiten(): void
+    {
+        // Gaeste sehen auf Seiten fuer Angemeldete, ohne Liga und in der Tippuebersicht die Anmeldeseite
+        foreach ([['todo' => 'daten'], ['todo' => 'edit', 'file' => 'fehlt.l98'], ['todo' => 'edit', 'viewermode' => '1'], ['todo' => 'unbekannt']] as $parameter) {
+            [$html] = $this->seite($parameter);
+            self::assertStringContainsString('name="xtippername"', $html, implode(', ', $parameter));
+        }
+
+        // Angemeldete sehen ihre Startseite; "Uebersicht" ohne Link auf einer Ligenseite ohne Liga
+        $angemeldet = new Sitzung(['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => '']);
+        [$ohneLiga] = $this->seite(['todo' => 'einsicht', 'file' => 'fehlt.l98'], $angemeldet);
+        self::assertStringContainsString('todo=logout', $ohneLiga);
+        self::assertStringNotContainsString('name="xtippername"', $ohneLiga);
+        self::assertStringNotContainsString('title="T53">T52</a>', $ohneLiga);
+        self::assertStringNotContainsString('file=fehlt.l98', $ohneLiga, 'keine Menuepunkte der Liga');
+        [$unbekannt] = $this->seite(['todo' => 'unbekannt'], $angemeldet);
+        self::assertStringContainsString('title="T53">T52</a>', $unbekannt, 'bei unbekanntem todo mit Link');
+    }
+
     public function testAnmelden(): void
     {
         [$unbekannt, $sitzung] = $this->seite(['xtippername' => 'niemand', 'xtipperpass' => 'x']);

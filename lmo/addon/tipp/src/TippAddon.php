@@ -7,21 +7,18 @@ namespace Lmo\Addon\Tipp;
 use Closure;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSeiten;
-use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
-use Lmo\Web\Seite;
 
 /**
  * Addon "tipp": das Tippspiel (action=tipp) mit Menuepunkt, wenn es eingeschaltet ist (eintippspiel).
  *
- * Die Seiten, die schon umgebaut sind, zeigen die Controller des Addons (KontoController); die
- * uebrigen noch der alte Code (lmo-tippstart.php und was er einbindet). addon.php gibt ihn als
- * Closure mit, samt dem Laden der Liga, das bis 4.5 lmo-showmain2.php erledigte.
+ * Alle Seiten zeigen die Controller des Addons; zuletzt steht der AnmeldungController, der auch
+ * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
+ * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
 final class TippAddon implements MitSeiten, MitRahmenteilen
 {
     /**
-     * @param Closure(): void $alterCode gibt die Seite des Tippspiels aus (lmo-tippstart.php)
      * @param string $ordner Ordner des Addons (addon/tipp)
      * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
      * @param Closure(string, string, string): string $freischaltmail schickt E-Mail-Adresse, Nick und Kennwort an den Tipper, gibt die Meldung zurueck
@@ -29,7 +26,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
      * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
      * @param string $version installierte Version des LMO (LMO_VERSION_NR) fuer die Info-Seite
      */
-    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '')
+    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '')
     {
     }
 
@@ -40,7 +37,6 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
 
     public function controller(): array
     {
-        $alterCode = $this->alterCode;
         $rahmen = new Tipprahmen($this->regeln ?? static fn (string $datei): string => '');
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
@@ -60,25 +56,6 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
             new InfoController($rahmen, $this->version),
             $startseite,
             new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
-            new class ($alterCode) implements Controller {
-            /** @param Closure(): void $alterCode */
-            public function __construct(private Closure $alterCode)
-            {
-            }
-
-            public function zustaendig(Kontext $kontext): bool
-            {
-                return $kontext->action == 'tipp' && $kontext->konfiguration->schalter('eintippspiel');
-            }
-
-            public function zeige(Kontext $kontext): Seite
-            {
-                ob_start();
-                ($this->alterCode)();
-
-                return new Seite((string) ob_get_clean());
-            }
-        },
         ];
     }
 

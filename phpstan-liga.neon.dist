@@ -14,8 +14,6 @@ parameters:
         - lmo
         - src
     paths:
-        - lmo/addon/tipp/lmo-tippfusszeile.php
-        - lmo/addon/tipp/lmo-tippmenu.php
         - lmo/addon/tipp/lmo-tippsavefile.php
         - lmo/lmo-adminanz.php
         - lmo/lmo-adminbasic.php
@@ -23,7 +21,6 @@ parameters:
         - lmo/lmo-adminsubnavi.php
         - lmo/lmo-admintab.php
         - lmo/lmo-openfiledat.php
-        - lmo/lmo-openfilename.php
         - lmo/lmo-saveliga.php
         - lmo/lmo-savehtml.php
         - lmo/lmo-savehtml1.php

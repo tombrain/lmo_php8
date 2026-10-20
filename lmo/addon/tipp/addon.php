@@ -20,41 +20,10 @@ if (!defined('PATH_TO_LMO')) {
     exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
 }
 
-// Tippspiel mit Menuepunkt (Lmo\Addon\Tipp\TippAddon). Seine Seiten zeigt noch der alte Code: Er
-// erwartet den globalen Bereich (Einstellungen aus init.php, $text, Variablen, die seine Funktionen
-// mit global lesen). Die Closure bindet deshalb alle globalen Variablen per Referenz und bindet ihn
-// dann ein. Was er an diesen Variablen aendert, aendert wie bisher die globalen; neue Variablen
-// bleiben in der Closure (seine Funktionen lesen per global nur die Einstellungen und die Zaehler
-// der Auswertung, Lmo\Addon\Tipp\Punkte und Tippzeit).
-return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
-    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
-        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_') {
-            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
-        }
-    }
-    unset($lmo_tipp_name);
-    // wie bis 4.5 lmo-showmain2.php vor dem Tippspiel: die Liga aus der Adresse laden (lmo-openfile.php)
-    // und den Stand der Tabelle setzen
-    // $file ist oben gebunden; PHPStan sieht das nicht, deshalb hier der globale Wert
-    if (($GLOBALS['file'] ?? '') != '') {
-        require(PATH_TO_LMO . '/lmo-openfile.php');
-        if ($file != '' && isset($lmo_liga)) {
-            if (empty($_GET['endtab'])) {
-                $endtab = $lmo_liga->einstellungen()->spieltage();
-                $ste = $st;
-                $tabdat = '';
-            } else {
-                $endtab = $_GET['endtab'];
-                $tabdat = $endtab . '. ' . $text[2];
-                $ste = $endtab;
-            }
-            if (!empty($_GET['st'])) {
-                $tabdat = $st . '. ' . $text[2];
-            }
-        }
-    }
-    require __DIR__ . '/lmo-tippstart.php';
-}, __DIR__, static function (string $lmo_tipp_regeln): string {
+// Tippspiel mit Menuepunkt (Lmo\Addon\Tipp\TippAddon); seine Seiten zeigen die Controller des Addons.
+// Was noch aus dem alten Code kommt (Tippregeln, Mails), geben diese Closures mit: Sie binden die
+// globalen Variablen (Einstellungen aus init.php, $text) per Referenz und dann den alten Code ein.
+return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_regeln): string {
     // die Tippregeln im Menue: eine Seite nach alter Art, wie bisher im globalen Bereich eingebunden
     foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
         if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && $lmo_tipp_name !== 'lmo_tipp_regeln') {

@@ -15,6 +15,10 @@ use Lmo\Web\Vorlagen;
  * Anmeldeseite fuer nicht angemeldete Besucher. Wer sich anmeldet, sieht danach seine Startseite.
  * Bis 4.5 lmo-tippstart.php, lmo-tippauth.php und lmo-tippemailpass.php.
  *
+ * Er steht als letzter Controller des Tippspiels und zeigt auch alle Seiten, die kein anderer
+ * zeigt (unbekanntes todo, Seiten einer Liga ohne geladene Liga, Seiten fuer Angemeldete fuer
+ * Gaeste): wie bis 4.5 Gaesten die Anmeldeseite, Angemeldeten die Startseite.
+ *
  * Der Stand der Anmeldung steht in der Sitzung (lmotipperok): 5 angemeldet, 0 nicht angemeldet,
  * -1 Kennwort falsch, -2 Nick unbekannt, -3 Nick fuer "Kennwort vergessen" unbekannt, -5 Kennwort
  * vergessen ('' in der Datei: noch nicht freigeschaltet). Die Registrierung (bis 4.5 -4) zeigt der
@@ -22,8 +26,6 @@ use Lmo\Web\Vorlagen;
  */
 final class AnmeldungController implements Controller
 {
-    private const SEITEN = ['', 'logout', 'getpass'];
-
     /**
      * @param string $ordner Ordner des Addons (addon/tipp), dort liegen Tipperdatei und Tipps
      * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort an den Tipper; null oder der Fehler
@@ -38,12 +40,8 @@ final class AnmeldungController implements Controller
 
     public function zustaendig(Kontext $kontext): bool
     {
-        $todo = $kontext->anfrage->text('todo');
-
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
-            && in_array($todo, self::SEITEN, true)
-            && !$kontext->anfrage->gesetzt('viewermode');
+            && $kontext->konfiguration->schalter('eintippspiel');
     }
 
     public function zeige(Kontext $kontext): Seite
