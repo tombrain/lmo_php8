@@ -58,6 +58,24 @@ final class Tipperdatei
         return new self($this->pfad, $zeilen);
     }
 
+    /**
+     * Die Vereine (Teams) der Tipper in der Reihenfolge ihres ersten Tippers, mit der Zahl ihrer Tipper.
+     *
+     * @return array<int|string, int> Verein => Tipper (ein Verein aus Ziffern wird ein int-Schluessel)
+     */
+    public function vereine(): array
+    {
+        $vereine = [];
+        foreach ($this->zeilen as $zeile) {
+            $verein = $zeile != self::SCHUTZZEILE ? Tipper::ausZeile($zeile)->verein() : '';
+            if ($verein != '') {
+                $vereine[$verein] = ($vereine[$verein] ?? 0) + 1;
+            }
+        }
+
+        return $vereine;
+    }
+
     /** Dieselbe Datei ohne den Tipper mit diesem Nick. */
     public function ohne(string $nick): self
     {
