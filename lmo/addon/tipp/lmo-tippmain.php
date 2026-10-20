@@ -152,7 +152,6 @@ if ($action == "tipp") {
         case "daten":      require(PATH_TO_ADDONDIR."/tipp/lmo-tippdaten.php");break;
         case "newligen":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippnewligen.php");break;
         case "delligen":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippdelligen.php");break;
-        case "pwchange":   require(PATH_TO_ADDONDIR."/tipp/lmo-tipppwchange.php");break;
         case "delaccount": require(PATH_TO_ADDONDIR."/tipp/lmo-tippdelaccount.php");break;
         case "info":       require(PATH_TO_LMO."/lmo-showinfo.php");break;
         default:           require(PATH_TO_ADDONDIR."/tipp/lmo-tipppad.php");break;

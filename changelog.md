@@ -24,6 +24,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Klassen des Tippspiels liegen im Addon-Ordner (`addon/tipp/src/`): `Lmo\Tipp\Tipprunde` und `Lmo\Tipp\AnstehendesSpiel` heißen jetzt `Lmo\Addon\Tipp\Tipprunde` und `Lmo\Addon\Tipp\AnstehendesSpiel`.  
 * Tippspiel: Punkteberechnung und Tippschluss sind Klassen mit eigenen Tests (`Lmo\Addon\Tipp\Punkte`, `Lmo\Addon\Tipp\Tippzeit`). `tipppunkte()`, `tippaenderbar()` und `zeit()` rufen sie auf; `tippaenderbar()` bekommt Spieltag, Liga und Sicherheitsabstand jetzt als Parameter statt über `global`.  
 * Tippspiel als Addon (`Lmo\Addon\Tipp\TippAddon`): Es liefert die Seite `action=tipp` und den Menüpunkt „Tippspiel“; `lmo-showmain2.php` kennt das Tippspiel nicht mehr. Die Seiten zeigt noch der alte Code (`lmo-tippstart.php`); `addon/tipp/addon.php` bindet ihn mit den globalen Variablen ein, die er erwartet.  
+* Tippspiel, erste Seite nach neuer Art: „Kennwort ändern“ (`todo=pwchange`) zeigt der `Lmo\Addon\Tipp\KontoController` mit der Vorlage `addon/tipp/vorlagen/kennwort.html.twig`, im Rahmen des Tippspiels (`Lmo\Addon\Tipp\Tipprahmen`, Menü und Überschrift; Vorlage `rahmen.html.twig`). Die Tipperdatei lesen und schreiben `Lmo\Addon\Tipp\Tipperdatei` und `Tipper`, die Anmeldung kommt aus der Sitzung im Kontext (`Lmo\Web\Sitzung`). Die Eingaben im Formular werden jetzt maskiert. `lmo-tipppwchange.php` gibt es nicht mehr.  
 
 
 ### Changed  
@@ -404,6 +405,7 @@ _Here we write changelog notes for the next version._
 * The classes of the prediction game live in the add-on folder (`addon/tipp/src/`): `Lmo\Tipp\Tipprunde` and `Lmo\Tipp\AnstehendesSpiel` are now called `Lmo\Addon\Tipp\Tipprunde` and `Lmo\Addon\Tipp\AnstehendesSpiel`.  
 * Prediction game: scoring and the prediction deadline are classes with tests of their own (`Lmo\Addon\Tipp\Punkte`, `Lmo\Addon\Tipp\Tippzeit`). `tipppunkte()`, `tippaenderbar()` and `zeit()` call them; `tippaenderbar()` now gets the round, the league and the safety margin as parameters instead of via `global`.  
 * Prediction game as an add-on (`Lmo\Addon\Tipp\TippAddon`): it provides the page `action=tipp` and the menu item "Tippspiel"; `lmo-showmain2.php` no longer knows the prediction game. The pages are still shown by the old code (`lmo-tippstart.php`); `addon/tipp/addon.php` includes it with the global variables it expects.  
+* Prediction game, first new-style page: "change password" (`todo=pwchange`) is shown by `Lmo\Addon\Tipp\KontoController` with the template `addon/tipp/vorlagen/kennwort.html.twig`, inside the frame of the prediction game (`Lmo\Addon\Tipp\Tipprahmen`, menu and heading; template `rahmen.html.twig`). The tipper file is read and written by `Lmo\Addon\Tipp\Tipperdatei` and `Tipper`, the login comes from the session in the context (`Lmo\Web\Sitzung`). The form inputs are escaped now. `lmo-tipppwchange.php` is gone.  
 
 
 ### Changed  

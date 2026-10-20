@@ -14,13 +14,18 @@ use Lmo\Web\Seite;
 /**
  * Addon "tipp": das Tippspiel (action=tipp) mit Menuepunkt, wenn es eingeschaltet ist (eintippspiel).
  *
- * Die Seiten zeigt vorerst noch der alte Code (lmo-tippstart.php und was er einbindet); addon.php
- * gibt ihn als Closure mit, samt dem Laden der Liga, das bis 4.5 lmo-showmain2.php erledigte.
+ * Die Seiten, die schon umgebaut sind, zeigen die Controller des Addons (KontoController); die
+ * uebrigen noch der alte Code (lmo-tippstart.php und was er einbindet). addon.php gibt ihn als
+ * Closure mit, samt dem Laden der Liga, das bis 4.5 lmo-showmain2.php erledigte.
  */
 final class TippAddon implements MitSeiten, MitRahmenteilen
 {
-    /** @param Closure(): void $alterCode gibt die Seite des Tippspiels aus (lmo-tippstart.php) */
-    public function __construct(private Closure $alterCode)
+    /**
+     * @param Closure(): void $alterCode gibt die Seite des Tippspiels aus (lmo-tippstart.php)
+     * @param string $ordner Ordner des Addons (addon/tipp)
+     * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
+     */
+    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null)
     {
     }
 
@@ -32,8 +37,9 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
     public function controller(): array
     {
         $alterCode = $this->alterCode;
+        $rahmen = new Tipprahmen($this->regeln ?? static fn (string $datei): string => '');
 
-        return [new class ($alterCode) implements Controller {
+        return [new KontoController($this->ordner, $rahmen), new class ($alterCode) implements Controller {
             /** @param Closure(): void $alterCode */
             public function __construct(private Closure $alterCode)
             {

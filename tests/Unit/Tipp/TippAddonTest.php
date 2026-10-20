@@ -40,7 +40,9 @@ class TippAddonTest extends TestCase
         $addon = new TippAddon(static function (): void {
             echo '<p>alter Code</p>';
         });
-        $controller = $addon->controller()[0];
+        $alle = $addon->controller();
+        self::assertInstanceOf(\Lmo\Addon\Tipp\KontoController::class, $alle[0], 'erst die umgebauten Seiten');
+        $controller = $alle[count($alle) - 1];
         $an = ['eintippspiel' => '1'];
 
         self::assertSame('tipp', $addon->name());
