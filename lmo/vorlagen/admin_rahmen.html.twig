@@ -1,3 +1,13 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
 {# Rahmen der Administration: Menue, Inhalt, Sprachwahl, Ruecklink und Ladezeit; bis 4.5 lmo-adminmain.php #}
 {% macro punkt(adda, link, aktiv, titel, name) %}{% if aktiv %}      {{ name|raw }}{% else %}      <a href="{{ adda|raw }}{{ link|raw }}" onclick="return chklmolink();" title="{{ titel|raw }}">{{ name|raw }}</a>{% endif %}{% endmacro %}
 {% import _self as m %}
