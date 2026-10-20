@@ -35,7 +35,8 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
     unset($lmo_tipp_name);
     // wie bis 4.5 lmo-showmain2.php vor dem Tippspiel: die Liga aus der Adresse laden (lmo-openfile.php)
     // und den Stand der Tabelle setzen
-    if ($file != '') {
+    // $file ist oben gebunden; PHPStan sieht das nicht, deshalb hier der globale Wert
+    if (($GLOBALS['file'] ?? '') != '') {
         require(PATH_TO_LMO . '/lmo-openfile.php');
         if ($file != '' && isset($lmo_liga)) {
             if (empty($_GET['endtab'])) {
