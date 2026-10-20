@@ -74,12 +74,12 @@ final class Anwendung
     }
 
     /** Der Kontext zur Anfrage: Liga geladen, Seite bestimmt, Sprachtexte fuer die Liga. */
-    public function kontext(Anfrage $anfrage, string $adresse, ?string $datei = null): Kontext
+    public function kontext(Anfrage $anfrage, string $adresse, ?string $datei = null, Sitzung $sitzung = new Sitzung()): Kontext
     {
         $liga = $this->lader->lade($datei ?? $anfrage->text('file'));
         $texte = $liga !== null ? $this->texte->fuerLiga($liga->liga) : $this->texte;
 
-        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere);
+        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere, $sitzung);
     }
 
     /**

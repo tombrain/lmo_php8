@@ -65,7 +65,7 @@ if($_REQUEST['action'] == 'admin') {
 
 // die Anwendung (Lmo\Web\Anwendung) und der Kontext dieser Anfrage
 $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
-$lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file);
+$lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
 if ($file != '' && $lmo_kontext->liga === null) {
     // Datei existiert nicht, ist keine Liga oder darf nicht gelesen werden (Hilfsadmin): wie bisher
     // die Meldung vor der Seite und weiter ohne Liga
