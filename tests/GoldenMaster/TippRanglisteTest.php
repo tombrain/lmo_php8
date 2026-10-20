@@ -89,4 +89,30 @@ final class TippRanglisteTest extends TestCase
 
         $this->assertMatchesSnapshot('tipp', 'rangliste', $t->text());
     }
+
+    /**
+     * Die Fieberkurve (todo=fieber, lmo-tippfieber.php mit lmo-tippcalcgraph.php): ohne Auswahl,
+     * Punkte und Platzierung fuer einen und zwei Tipper, der zweite allein, mit Spieltagssiegen als
+     * Kriterium, ohne Auswertung und fuer Gaeste.
+     */
+    public function testFieberkurve(): void
+    {
+        $c = self::client();
+        $t = new Transcript();
+        $fieber = ['action' => 'tipp', 'todo' => 'fieber', 'file' => 'tippliga.l98', 'save' => '1'];
+
+        $t->add('Gast ohne Auswahl', $c->get('lmo.php', 'action=tipp&todo=fieber&file=tippliga.l98'), $c->changes());
+        $t->add('Gast, Punkte von anna', $c->post('lmo.php', '', $fieber + ['xstat1' => '0', 'xstat2' => '-1', 'xkurvenmodus' => '1']), $c->changes());
+        $c->post('lmo.php', '', ['action' => 'tipp', 'xtippername' => 'tester', 'xtipperpass' => 'geheim']);
+        $c->changes();
+        $t->add('Punkte von zwei Tippern', $c->post('lmo.php', '', $fieber + ['xstat1' => '1', 'xstat2' => '2', 'xkurvenmodus' => '1']), $c->changes());
+        $t->add('Platzierung von zwei Tippern', $c->post('lmo.php', '', $fieber + ['xstat1' => '0', 'xstat2' => '3', 'xkurvenmodus' => '2']), $c->changes());
+        $t->add('Nur der zweite gewaehlt', $c->post('lmo.php', '', $fieber + ['xstat1' => '-1', 'xstat2' => '2', 'xkurvenmodus' => '2']), $c->changes());
+        $t->add('Zweimal derselbe', $c->post('lmo.php', '', $fieber + ['xstat1' => '2', 'xstat2' => '2', 'xkurvenmodus' => '1']), $c->changes());
+        $t->add('Ohne Auswertung', $c->get('lmo.php', 'action=tipp&todo=fieber&file=ohneauswertung.l98'), $c->changes());
+        self::einstellungen($c, ['krit1' => '6', 'showzus' => '0']);
+        $t->add('Platzierung mit Spieltagssiegen', $c->post('lmo.php', '', $fieber + ['xstat1' => '1', 'xstat2' => '0', 'xkurvenmodus' => '2']), $c->changes());
+
+        $this->assertMatchesSnapshot('tipp', 'fieberkurve', $t->text());
+    }
 }
