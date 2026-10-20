@@ -12,11 +12,13 @@ namespace Lmo\Addon\Tipp;
  *
  * Gerechnet wird wie bis 4.5 ueber Sortierschluessel aus Text (je Wert 8 Stellen, 50000000 +
  * Wert); auch gleiche Plaetze erkennt die Seite an ihnen, deshalb gibt es sie nach aussen.
+ *
+ * @phpstan-type Eintrag array{nick: string, name: string, email: string, team: string, tipper: int, spiele: int|float, punkte: int|float, quote: int|float, p: array<int, int|float>, siege: int}
  */
 final class Rangliste
 {
     /**
-     * @param list<array{nick: string, name: string, email: string, team: string, tipper: int, spiele: int|float, punkte: int|float, quote: int|float, p: array<int, int|float>, siege: int}> $eintraege die Tipper bzw. Teams in der Reihenfolge der Datei; quote: Punkte je Spiel mal 100
+     * @param list<Eintrag> $eintraege die Tipper bzw. Teams in der Reihenfolge der Datei; quote: Punkte je Spiel mal 100
      * @param list<string> $schluessel die Sortierschluessel vom ersten zum letzten Platz
      * @param int $bis Spieltag, bis zu dem gerechnet wurde (in der Gesamtwertung die Zahl der Ligen)
      */
@@ -135,6 +137,8 @@ final class Rangliste
         }
         $anzahl = count($eintraege);
 
+        // alle Felder belegt (oben schon so angelegt; fuer PHPStan hier noch einmal)
+        $eintraege = array_values(array_map(static fn (array $e): array => $e + $leer, $eintraege));
         if ($siege && ($teams || $anzahl > 0)) {
             $eintraege = self::spieltagssieger($eintraege, $werte, $bis, $kriterien, $zusatz);
         }
@@ -170,7 +174,7 @@ final class Rangliste
         }
         rsort($tab0, SORT_STRING);
 
-        return new self(array_values($eintraege), $tab0, $bis);
+        return new self($eintraege, $tab0, $bis);
     }
 
     /** Der Eintrag (Index in eintraege) auf einem Platz (ab 0). */
@@ -208,10 +212,10 @@ final class Rangliste
      * Punkten, bei Gleichstand alle. Wie bis 4.5 endet die Zaehlung nach einem Spieltag, auf dem
      * alle Eintraege durchgegangen wurden.
      *
-     * @param list<array{nick: string, name: string, email: string, team: string, tipper: int, spiele: int|float, punkte: int|float, quote: int|float, p: array<int, int|float>, siege: int}> $eintraege
+     * @param list<Eintrag> $eintraege
      * @param array<int, array<string, array<int, int|float>>> $werte
      * @param array{0: mixed, 1: mixed, 2: mixed} $kriterien
-     * @return list<array{nick: string, name: string, email: string, team: string, tipper: int, spiele: int|float, punkte: int|float, quote: int|float, p: array<int, int|float>, siege: int}>
+     * @return list<Eintrag>
      */
     private static function spieltagssieger(array $eintraege, array $werte, int $bis, array $kriterien, bool $zusatz): array
     {
@@ -243,7 +247,11 @@ final class Rangliste
                 if (($werte[$x]['TP'][$i] ?? 0) <= 0) {
                     break;
                 }
-                $eintraege[$x]['siege']++;
+                if (isset($eintraege[$x])) {
+                    $eintrag = $eintraege[$x];
+                    $eintrag['siege']++;
+                    $eintraege[$x] = $eintrag;
+                }
                 if (!isset($tab[$a + 1]) || !self::gleich($tab[$a], $tab[$a + 1], $laenge)) {
                     break;
                 }

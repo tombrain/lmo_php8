@@ -63,20 +63,23 @@ final class Tipptabelle
         $alle = null;
         foreach ($tipper as $m => $tipps) {
             for ($a = 1; $a <= $anzahl; $a++) {
-                $werte[$a] = $rechner->zaehle($werte[$a], $liga, $tipps, $zaehlt, $a, $art, $alle);
+                $w = $rechner->zaehle($werte[$a] ?? $leer, $liga, $tipps, $zaehlt, $a, $art, $alle);
                 if (in_array($art, [0, 3, 4], true) && $m == 0) {
-                    $werte[$a]['punkte'] -= (int) ($liga->mannschaften[$a]->werte['SP'] ?? 0);
+                    $w['punkte'] -= (int) ($liga->mannschaften[$a]->werte['SP'] ?? 0);
                     if ($e->mitMinuspunkten()) {
-                        $werte[$a]['negativ'] -= (int) ($liga->mannschaften[$a]->werte['SM'] ?? 0);
+                        $w['negativ'] -= (int) ($liga->mannschaften[$a]->werte['SM'] ?? 0);
                     }
                 }
+                $werte[$a] = $w;
             }
         }
         $tab0 = [];
         for ($a = 1; $a <= $anzahl; $a++) {
-            $werte[$a]['dtore'] = $werte[$a]['etore'] - $werte[$a]['atore'];
-            $werte[$a]['quote'] = self::quote($werte[$a]['punkte'], $werte[$a]['spiele']);
-            $tab0[] = self::schluessel($werte[$a], $e->istKegelliga(), [$a]);
+            $w = $werte[$a] ?? $leer;
+            $w['dtore'] = $w['etore'] - $w['atore'];
+            $w['quote'] = self::quote($w['punkte'], $w['spiele']);
+            $werte[$a] = $w;
+            $tab0[] = self::schluessel($w, $e->istKegelliga(), [$a]);
         }
         rsort($tab0, SORT_STRING);
         if ($e->mitDirektemVergleich() && $tipper !== []) {
@@ -206,7 +209,7 @@ final class Tipptabelle
                     }
                 }
                 sort($tab1, SORT_STRING);
-                $gezaehlt = array_sum(array_map('array_sum', $nur['gezaehlt']));
+                $gezaehlt = $nur !== null ? array_sum(array_map('array_sum', $nur['gezaehlt'])) : 0;
                 if ($gezaehlt > 0) {
                     foreach ($tab1 as $nr => $zeile1) {
                         $b = (string) ($nr + 1);
