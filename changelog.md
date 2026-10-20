@@ -64,6 +64,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Gesamtwertung aller Ligen (`todo=wert&all=1`, der Link auf der Startseite): Sie führte ohne geladene Liga zurück zur Startseite und ist jetzt wieder zu sehen.  
 * Kreuztabelle: Ein Apostroph im Mannschaftsnamen erscheint in allen Tooltips als Apostroph; bisher stand je nach Zeile mal `'`, mal `´` (der Name wurde während der Ausgabe ersetzt). Namen, Kurznamen und Notizen werden escaped.  
 * Der Menüpunkt „Tippspiel“ war kaputtes HTML (`<a <a href=…>` ohne `</a>`); jetzt ein gewöhnlicher Link.  
 * Newsticker mit den News der Liga (`tickerart=2`): Jede Meldung steht nur noch einmal im Lauftext, hinter dem Namen der Liga; bisher kamen alle Meldungen doppelt.  
@@ -456,6 +457,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, overall ranking of all leagues (`todo=wert&all=1`, the link on the start page): without a loaded league it led back to the start page; it is shown again.  
 * Cross table: an apostrophe in a team name shows as an apostrophe in all tooltips; until now it was `'` or `´` depending on the row (the name was replaced during output). Names, short names and notes are escaped.  
 * The menu item \"Tippspiel\" (prediction game) was broken HTML (`<a <a href=…>` without `</a>`); now a regular link.  
 * News ticker with the league's news (`tickerart=2`): each message now appears only once in the scrolling text, after the league name; until now all messages appeared twice.  

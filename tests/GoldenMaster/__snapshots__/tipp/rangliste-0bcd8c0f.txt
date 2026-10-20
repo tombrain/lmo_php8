@@ -2868,7 +2868,8 @@
 <td colspan="2" align="center">
 <table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<td class="nobr" align="left">Übersicht&nbsp;&nbsp; </td>
+<td class="nobr" align="left">
+<a href="/lmo/lmo.php?action=tipp" title="zur Übersicht">Übersicht</a>&nbsp;&nbsp; </td>
 <td width="8">&nbsp;</td>
 <td class="nobr" align="right">
 <a href="/lmo/lmo.php?action=tipp&amp;todo=logout">Logout</a>&nbsp; </td>
@@ -2883,51 +2884,112 @@
 <tr>
 <td colspan="3" align="center">
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
-<caption>tester<br>Was möchtest Du jetzt tun?</caption>
+<caption>tester</caption>
 <tr>
-<th align="left">Liga tippen:</th>
+<td align="center">
+<table class="lmoMenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="nobr">Einzelwertung </th>
+<th class="nobr">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;gewicht=absolut&amp;wertung=team" title="die Teamwertung anzeigen">Teamwertung</a>
+</th>
 </tr>
-<tr>
-<td align="left">
-<ul>
-<li>[keine Ligen ausgewählt]</li>
-</ul>
+</table>
 </td>
 </tr>
 <tr>
-<th align="left">Punktestände anschauen:</th>
-</tr>
+<td align="center">
+<table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
 <tr>
-<td class="nobr" align="left">
-<ul>
-</ul>
+</tr>
+</table>
 </td>
 </tr>
 <tr>
-<th align="left">Sonstiges:</th>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th class="nobr" colspan="3">
+</th>
+<th class="nobr"> Team </th>
+<th class="nobr" align="right">&nbsp;<acronym title="Anzahl Spiele getippt">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;wertung=einzel&amp;teamintern=&amp;gewicht=spiele">Sp</a>
+</acronym>&nbsp; </th>
+<th class="nobr" align="right">&nbsp;<acronym title="Ergebnis richtig: 4 Punkte">RE</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="Tendenz und Tordifferenz richtig: 3 Punkte">RTD</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="Tendenz richtig: 2 Punkte">RT</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="eine Toranzahl richtig: 1 Punkte">RG</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="Bonus für richtigen Unentschieden-Tipp: 1 Punkte">UB</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="durch Joker dazugewonnene Punkte">JP</acronym>&nbsp;</th>
+<th class="nobr" align="right">&nbsp;<acronym title="Punkte pro getipptes Spiel">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;wertung=einzel&amp;teamintern=&amp;gewicht=relativ">SpØ</a>
+</acronym>&nbsp; </th>
+<th class="nobr" align="right">&nbsp;<acronym title="Punkte">Pkt.</acronym>&nbsp;</th>
 </tr>
 <tr>
-<td class="nobr" align="left">
-<ul>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=newligen'>Ligen in den Tippschein aufnehmen</a>
-</li>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=delligen'>Ligen abbestellen</a>
-</li>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=daten'>Daten ändern / Team wechseln</a>
-</li>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=pwchange'>Passwort ändern</a>
-</li>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=delaccount'>Tipp-Account löschen</a>
-</li>
-<li class="lmoadminli">
-<a href='/lmo/lmo.php?action=tipp&amp;todo=logout'>Aus dem Tippspiel ausloggen</a>
-</li>
-</ul>
+<td class="lmoTabelleMeister nobr" align="right">1 &nbsp;</td>
+<td class="lmoTabelleMeister nobr">&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="left">&nbsp; (bert) &nbsp;</td>
+<td class="lmoTabelleMeister nobr">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;gewicht=absolut&amp;wertung=intern&amp;teamintern=Blau" title="Team-intern-Wertung">Blau</a>
+</td>
+<td class="lmoTabelleMeister nobr" align="right">5&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">1.80&nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="right">
+<strong>9</strong>&nbsp;</td>
+<tr>
+<td class="lmoTabelleCleague nobr" align="right">2 &nbsp;</td>
+<td class="lmoTabelleCleague nobr">&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="left">&nbsp; (anna) &nbsp;</td>
+<td class="lmoTabelleCleague nobr">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;gewicht=absolut&amp;wertung=intern&amp;teamintern=Rot" title="Team-intern-Wertung">Rot</a>
+</td>
+<td class="lmoTabelleCleague nobr" align="right">8&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">0&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">1.00&nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="right">
+<strong>8</strong>&nbsp;</td>
+<tr>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>3</strong> &nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr">&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="left">&nbsp;<strong> (tester)</strong> &nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr">
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;all=1&amp;file=&amp;gewicht=absolut&amp;wertung=intern&amp;teamintern=Rot" title="Team-intern-Wertung">
+<strong>Rot</strong>
+</a>
+</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>5</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>0</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>1.40</strong>&nbsp;</td>
+<td class="lmoTabelleCleaguequali nobr" align="right">
+<strong>7</strong>&nbsp;</td>
+</tr>
+</table>
 </td>
 </tr>
 </table>

@@ -30,7 +30,8 @@ final class RanglisteController implements Controller
             && $kontext->konfiguration->schalter('eintippspiel')
             && $kontext->anfrage->text('todo') == 'wert'
             && !$kontext->anfrage->gesetzt('viewermode')
-            && $kontext->liga !== null;
+            // die Gesamtwertung (all=1) braucht keine Liga; bis 4.5 fuehrte sie ohne Liga zur Startseite
+            && ($kontext->liga !== null || $kontext->anfrage->text('all') == 1);
     }
 
     public function zeige(Kontext $kontext): Seite
