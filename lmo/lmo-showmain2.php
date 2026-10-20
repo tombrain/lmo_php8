@@ -31,9 +31,6 @@ if (!defined('PATH_TO_LMO')) {
  * Einstellungen:
  * @var int|string $calctime Einstellung aus cfg.txt
  * @var int|string $einsprachwahl Einstellung aus cfg.txt
- * @var int|string $eintippspiel Einstellung aus cfg.txt
- * @var int|string $tipp_immeralle Einstellung aus tipp/cfg.txt
- * @var int|string $tipp_ligenzutippen Einstellung aus tipp/cfg.txt
  *
  * Weitere Variablen des einbindenden Codes:
  * @var mixed $startzeit
@@ -44,6 +41,7 @@ if (!defined('PATH_TO_LMO')) {
 
 
 
+// Adresse fuer Links der Liga; der LMO selbst braucht sie nicht mehr, Addons nach alter Art (pdf) vielleicht
 $addm = $_SERVER['PHP_SELF'] . '?file=' . $file . '&amp;action=';
 // Einstellungen der geladenen Liga mit Vorgabewerten (Lmo\Liga\Einstellungen). Ohne geladene Liga die einer
 // leeren Liga; eingebundene Seiten und das Tippspiel fuehren ihre eigenen, deshalb ein eigener Name.
@@ -108,8 +106,6 @@ if ($lmo_seite !== null) {
     echo $lmo_seite->html;
     $lmo_druckbar = $lmo_seite->druckbar;
 }
-// Tippspiel-Addon (nach alter Art, wie das Spieler-Addon)
-if ($action == 'tipp' && $eintippspiel == 1) {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippstart.php');}
 $lmo_hauptteil = (string) ob_get_contents();
 ob_end_clean();
 
@@ -131,19 +127,10 @@ if ($file != '' && isset($stand)) {
     // PDF-Addon
 }
 
-// Tippspiel-Addon
-$output_tippspiel = '';
-if ($eintippspiel == 1) {
-    if ($tipp_immeralle == 1 || str_contains($tipp_ligenzutippen, substr(basename($file), 0, -4))) {
-        $output_tippspiel .= $action != 'tipp' ? '<a href="' . $addm . 'tipp" title="' . $text['tipp'][0] . '">' . $text['tipp'][0] . '</a>' : $text['tipp'][0];
-    }
-}
-
-// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu die der
-// Addons nach alter Art und der Copyright-Hinweis
+// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu der
+// Copyright-Hinweis
 $lmo_teile += [
     'Infolink' => $p1,
-    'Tippspiel' => $output_tippspiel,    // Tippspiel-Addon
 ];
 // Teile, die Addons nach neuer Art zum Rahmen beitragen (Lmo\Addon\MitRahmenteilen), stehen dahinter
 foreach ($lmo_kontext->addons->rahmenteile($lmo_kontext) as $lmo_teil => $lmo_wert) {
