@@ -61,7 +61,7 @@ if (!empty($file) && file_exists(PATH_TO_LMO.'/'.$dirliga.$file) && check_hilfsa
   }
 } else {
   // Datei existiert nicht, ist kein gültiges Ligaformat oder keine Berechtigung (check_hilfsadmin): $file zurücksetzen, damit die
-  // aufrufenden Skripte (z.B. lmo-showmain2.php) korrekt in den "kein File gewählt"-Zustand fallen, statt mit undefinierten
+  // aufrufenden Skripte (z.B. die Bruecke des Tippspiels) korrekt in den "kein File gewählt"-Zustand fallen, statt mit undefinierten
   // Variablen ($st, $anzst, $ligastats, $spez, $msieg, ...) fortzufahren.
   if (!empty($file)) {
     echo getMessage($text[224],true);

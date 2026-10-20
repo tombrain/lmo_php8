@@ -43,5 +43,4 @@ parameters:
         - lmo/lmo-adminteams.php
         - lmo/lmo-adminuser.php
         - lmo/lmo-openfile.php
-        - lmo/lmo-showmain2.php
         - lmo/lmo-zustat.php

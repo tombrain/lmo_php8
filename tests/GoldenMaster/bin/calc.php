@@ -1,6 +1,6 @@
 <?php
 /**
- * Kindprozess: laedt eine Liga wie lmo-start.php/lmo-showmain2.php und fuehrt
+ * Kindprozess: laedt eine Liga wie lmo-openfile.php und fuehrt
  * calctable.php (in diesem Ordner) fuer alle Ansichten aus. Ausgabe: JSON auf stdout.
  * Aufruf: php calc.php <Instanzpfad> <Ligadatei relativ zu ligen/> [alle]
  * Mit "alle" wird jeder Spieltag gerechnet, sonst eine feste Auswahl (Golden Master).

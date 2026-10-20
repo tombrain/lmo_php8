@@ -13,7 +13,7 @@ use Lmo\Web\Seiten\Hauptmenue;
  * rahmen.html.twig (der LMO in eine andere Seite eingebunden) und rahmen_komplett.html.twig
  * (lmo.php direkt aufgerufen: ganze HTML-Seite). Sie ersetzen die mitgelieferten Vorlagen
  * template/lmo-standard.tpl.php und template/lmo-standard-komplett.tpl.php; eigene Vorlagen
- * nach alter Art zeigt vorerst weiter lmo-showmain2.php.
+ * nach alter Art fuellt lmo-start.php weiter (veraltet).
  */
 final class Rahmen
 {
@@ -29,8 +29,8 @@ final class Rahmen
 
     /**
      * Die Teile des Kerns als fertiges HTML: Kopf der Seite, Menue der Liga, Hauptteil, Links zur
-     * Druckansicht und Fusszeile. Die der Addons nach alter Art (Spielerstatistik, Newsticker,
-     * Tippspiel) und den Copyright-Hinweis (Infolink) ergaenzt lmo-showmain2.php.
+     * Druckansicht und Fusszeile. Die Teile der Addons (Lmo\Addon\MitRahmenteilen) und den
+     * Copyright-Hinweis (Infolink) ergaenzt lmo-start.php.
      *
      * @param string $hauptteil die Seite (Lmo\Web\Seite::$html oder vom alten Code)
      * @param bool $druckbar die Seite hat eine Druckansicht (Lmo\Web\Seite::$druckbar)
