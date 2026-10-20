@@ -110,6 +110,31 @@ final class TippSeitenTest extends TestCase
         $this->assertMatchesSnapshot('tipp-seiten', 'konto', $t->text());
     }
 
+    /**
+     * Eine neue E-Mail-Adresse bekommt ein neues Kennwort per Mail; gespeichert wird nur sein Hash,
+     * und mit dem Kennwort aus der Mail kann sich der Tipper anmelden.
+     */
+    public function testNeueEmailAdresseBekommtEinNeuesKennwort(): void
+    {
+        $c = self::client();
+        self::anmelden($c);
+        $c->get('lmo.php', 'action=tipp&todo=daten');
+        $c->submitFromLast('xtipperemail', ['xtipperemail' => 'tina@example.org']);
+
+        $path = $c->instance()->path();
+        $zeilen = file($path . '/addon/tipp/lmo-tippauth.txt', FILE_IGNORE_NEW_LINES) ?: [];
+        $hash = explode('|', $zeilen[1] ?? '')[1] ?? '';
+        $mails = glob($path . '/.mails/*.eml') ?: [];
+        self::assertCount(1, $mails, 'Mail mit dem neuen Kennwort');
+        $teile = preg_split('/\R\R/', (string) file_get_contents($mails[0]), 2) ?: [];
+        self::assertSame(1, preg_match('/Passwort: (\S+)/', (string) base64_decode($teile[1] ?? ''), $treffer), 'Kennwort in der Mail');
+
+        self::assertStringStartsWith('$', $hash, 'gespeichert ist ein Hash');
+        self::assertTrue(password_verify($treffer[1], $hash), 'der Hash passt zum Kennwort aus der Mail');
+        $c->get('lmo.php', 'action=tipp&todo=logout');
+        self::assertStringContainsString('todo=logout', self::anmelden($c, $treffer[1]), 'Anmeldung mit dem Kennwort aus der Mail');
+    }
+
     public function testTippregeln(): void
     {
         $c = self::client();
