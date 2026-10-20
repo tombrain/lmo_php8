@@ -27,7 +27,8 @@ $newpage = isset($_REQUEST['newpage']) ? 1 : 0;
 
 require_once(PATH_TO_ADDONDIR . '/tipp/lmo-tipptest.php');
 if (($action == 'tipp') && ($todo == 'pwchange')) {
-    $users = array();
+    // Platz 0 bleibt leer: lmo-tippsaveauth.php schreibt ab 1, die Schutzzeile der Datei steht auf 1
+    $users = array('');
     $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
     $datei = fopen($pswfile, 'rb');
     while ($datei && !feof($datei)) {

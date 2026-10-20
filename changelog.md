@@ -64,6 +64,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Tippspiel: „Konto löschen“ verglich das eingegebene Kennwort mit dem gespeicherten Hash wie mit Klartext und meldete deshalb immer „Passwort falsch“. Jetzt prüft es gegen den Hash wie „Kennwort ändern“.  
 * Tippspiel, persönliche Daten: Fragt das Tippspiel keinen Namen ab (`realname=0`), löschte das Speichern den gespeicherten Namen des Tippers; in neuen Auswertungen stand er dann ohne Namen. Jetzt bleibt der Name erhalten.  
 * Tippspiel, Registrierung: Die Prüfung auf eine schon vergebene E-Mail-Adresse las auch die Schutzzeile am Anfang von `lmo-tippauth.txt` (PHP-Warnung) und meldete bei leerem Feld „Es ist bereits ein Mitspieler mit dieser Email-Adresse angemeldet“ statt der fehlenden Angaben.  
+* Tippspiel, Kennwort ändern: Das Speichern entfernte die Schutzzeile am Anfang von `lmo-tippauth.txt`. Danach fanden die Seiten des Tippers den ersten Tipper der Datei nicht mehr (etwa ein zweites „Kennwort ändern“ brach mit leerer Seite ab).  
 
 
 ### Security  
@@ -443,6 +444,7 @@ _Here we write changelog notes for the next version._
 * Prediction game: "delete account" compared the entered password with the stored hash as if it were plain text and therefore always reported a wrong password. It now checks against the hash like "change password".  
 * Prediction game, personal data: when the prediction game does not ask for a name (`realname=0`), saving deleted the tipper's stored name, and new evaluations showed them without a name. The name is kept now.  
 * Prediction game, registration: the check for an e-mail address already in use also read the guard line at the start of `lmo-tippauth.txt` (PHP warning) and, with an empty field, reported that a player with this address already exists instead of the missing entries.  
+* Prediction game, change password: saving removed the guard line at the start of `lmo-tippauth.txt`. Afterwards the tipper pages no longer found the first tipper in the file (a second "change password", for instance, ended with an empty page).  
 
 
 ### Security  
