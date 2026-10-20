@@ -61,7 +61,8 @@ if ($newpage == 1) {
                 // Nick schon vorhanden
                 echo getMessage($text['tipp'][24], true);
             }
-            if (strtolower($dummb1[4]) == strtolower($xtipperemail)) {
+            // die Schutzzeile am Anfang der Datei (mit exit) hat keine E-Mail-Adresse
+            if (isset($dummb1[4]) && strtolower($dummb1[4]) == strtolower($xtipperemail)) {
                 $newpage = 0;
                 // Email schon vorhanden
                 echo getMessage($text['tipp'][201], true);
