@@ -201,7 +201,11 @@ xtipperligen[]=basic
 <tr>
 <td colspan="2" align="center">
 <p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Es ist bereits ein Mitspieler mit dieser Email-Adresse angemeldet</p>
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Bitte Nickname angeben</p>
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Bitte E-Mail-Adresse eingeben</p>
+<p class="error">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Bitte Passwort eingeben</p>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
 <tr>
 <td colspan="3" align="center">
@@ -335,7 +339,6 @@ xtipperligen[]=basic
 <script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
 </body>
 </html>
-<!-- STDERR Warning: Undefined array key 4 in {LMO_PATH}/addon/tipp/lmo-tippernew.php on line 64 Deprecated: strtolower(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/addon/tipp/lmo-tippernew.php on line 64 -->
 --- Dateiaenderungen ---
 (keine)
 
@@ -474,7 +477,6 @@ xtippervereinradio=0
 <script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
 </body>
 </html>
-<!-- STDERR Warning: Undefined array key 4 in {LMO_PATH}/addon/tipp/lmo-tippernew.php on line 64 Deprecated: strtolower(): Passing null to parameter #1 ($string) of type string is deprecated in {LMO_PATH}/addon/tipp/lmo-tippernew.php on line 64 -->
 --- Dateiaenderungen ---
 GEAENDERT addon/tipp/lmo-tippauth.txt
 --- vorher
