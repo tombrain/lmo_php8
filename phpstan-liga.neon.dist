@@ -15,8 +15,6 @@ parameters:
         - src
     paths:
         - lmo/addon/tipp/lmo-tippcalcgraph.php
-        - lmo/addon/tipp/lmo-tippcalcwert.php
-        - lmo/addon/tipp/lmo-tippcalcwertteam.php
         - lmo/addon/tipp/lmo-tippfieber.php
         - lmo/addon/tipp/lmo-tippfusszeile.php
         - lmo/addon/tipp/lmo-tippmenu.php

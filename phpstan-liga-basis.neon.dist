@@ -31,7 +31,6 @@ parameters:
         - lmo/addon/tipp/lmo-tippopenfileviewer.php
         - lmo/addon/tipp/lmo-tippsavewert.php
         - lmo/addon/tipp/lmo-tippviewer.php
-        - lmo/addon/tipp/lmo-tippwert.php
         - lmo/lmo-adminedit.php
         - lmo/lmo-adminrndprogram.php
         - lmo/lmo-adminrounds.php
