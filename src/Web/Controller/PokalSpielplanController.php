@@ -52,10 +52,10 @@ final class PokalSpielplanController implements Controller
                 'wappen' => $kontext->darstellung->wappen($datei, $mannschaft->anzeigename(), ' alt=""'),
             ];
         }
-        // die Auswahl links und rechts: erste und zweite Haelfte der Mannschaften (wie bisher;
-        // bei ungerader Anzahl fehlt die mittlere)
+        // die Auswahl links und rechts: erste und zweite Haelfte der Mannschaften; bei ungerader
+        // Anzahl steht die mittlere links (bis 4.5 fehlte sie)
         $links = $rechts = [];
-        for ($i = 1; $i <= floor($anzahl / 2); $i++) {
+        for ($i = 1; $i <= ceil($anzahl / 2); $i++) {
             $links[] = $mannschaften[$i];
         }
         for ($i = (int) ceil($anzahl / 2) + 1; $i <= $anzahl; $i++) {
