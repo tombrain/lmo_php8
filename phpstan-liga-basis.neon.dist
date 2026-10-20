@@ -27,7 +27,6 @@ parameters:
         - lmo/addon/tipp/lmo-tippedit.php
         - lmo/addon/tipp/lmo-tippemail.php
         - lmo/addon/tipp/lmo-tippemailviewer.php
-        - lmo/addon/tipp/lmo-tippjokeranticheat.php
         - lmo/addon/tipp/lmo-tippmain.php
         - lmo/addon/tipp/lmo-tippnewdir.php
         - lmo/addon/tipp/lmo-tippopenfile.php
