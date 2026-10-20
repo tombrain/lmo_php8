@@ -41,7 +41,11 @@ class TippAddonTest extends TestCase
             echo '<p>alter Code</p>';
         });
         $alle = $addon->controller();
-        self::assertInstanceOf(\Lmo\Addon\Tipp\KontoController::class, $alle[0], 'erst die umgebauten Seiten');
+        self::assertSame(
+            [\Lmo\Addon\Tipp\RegistrierungController::class, \Lmo\Addon\Tipp\KontoController::class, \Lmo\Addon\Tipp\StartseiteController::class, \Lmo\Addon\Tipp\AnmeldungController::class],
+            array_map('get_class', array_slice($alle, 0, -1)),
+            'erst die umgebauten Seiten, zuletzt der alte Code'
+        );
         $controller = $alle[count($alle) - 1];
         $an = ['eintippspiel' => '1'];
 
