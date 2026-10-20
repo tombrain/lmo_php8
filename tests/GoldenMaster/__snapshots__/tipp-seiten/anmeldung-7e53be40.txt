@@ -627,8 +627,8 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 +++ nachher
 @@ -1,2 +1,2 @@
  <?php exit; ?>
--tester|geheim|5|Tina Test|tester@example.org||||1|1|EOL
-+tester|{HASH}|5|Tina Test|tester@example.org||||1|1|EOL
+-tester|geheim|5|Tina Test|tester@example.org|||||1|1|EOL
++tester|{HASH}|5|Tina Test|tester@example.org|||||1|1|EOL
 
 === Startseite des Tippers ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

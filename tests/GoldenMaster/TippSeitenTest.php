@@ -29,7 +29,8 @@ final class TippSeitenTest extends TestCase
     {
         $client = Fixture::anonymousClient();
         $path = $client->instance()->path();
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org||||1|1|EOL\n");
+        // nick|kennwort|status|name|email|verein|strasse|plz|ort|newsletter|erinnerung|EOL
+        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org|||||1|1|EOL\n");
         // alle Ligen tippbar: sonst bietet "Ligen hinzufuegen" keine an
         $cfg = $path . '/config/tipp/cfg.txt';
         file_put_contents($cfg, (string) preg_replace('/^immeralle=.*$/m', 'immeralle=1', (string) file_get_contents($cfg), 1, $count));
