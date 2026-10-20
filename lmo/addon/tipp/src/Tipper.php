@@ -64,7 +64,7 @@ final class Tipper
         $felder = $this->felder;
         $felder[1] = password_hash($kennwort, defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT);
 
-        return new self($felder);
+        return new self(array_values($felder));
     }
 
     private function feld(int $nr): string
