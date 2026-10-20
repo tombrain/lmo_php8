@@ -102,6 +102,11 @@ final class TabelleController implements Controller
                     $meldung = Tipprahmen::meldung($kontext, $t[17] ?? '', true);
                 }
             }
+            if ($tipper === []) {
+                // weder ein Tipper noch die Tipps aller: keine Tabelle (bis 4.5 eine Tabelle voller Nullen
+                // mit Warnungen; wie upstream 7c1228b)
+                return $meldung;
+            }
         }
         $tabelle = Tipptabelle::rechne($liga, $tipper, $verborgen, $art, $bis);
         $bis = $tabelle->bis;

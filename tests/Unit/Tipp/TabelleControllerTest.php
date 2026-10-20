@@ -135,4 +135,16 @@ class TabelleControllerTest extends TestCase
         self::assertStringContainsString('T17', $fremd, 'und keine Auswertung');
         self::assertStringNotContainsString('lmoInner', $this->seite($this->kontext(tipp: ['tipptabelle1' => '0'])));
     }
+
+    public function testOhneTipperKeineTabelle(): void
+    {
+        $gast = $this->seite($this->kontext(tipp: ['tipptabelle' => '0'], sitzung: ['lmotipperok' => '0']));
+        self::assertStringNotContainsString('lmoInner', $gast, 'Gast ohne die Tipps aller');
+        self::assertStringNotContainsString('T261', $gast, 'auch keine Wertung nach Vereinen');
+
+        array_map('unlink', glob($this->ordner . '/tipps/x_*.tip') ?: []);
+        $keine = $this->seite($this->kontext(['nick' => '']));
+        self::assertStringContainsString('T17', $keine, 'Meldung: keine Tipper');
+        self::assertStringNotContainsString('lmoInner', $keine);
+    }
 }
