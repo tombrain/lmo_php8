@@ -47,7 +47,7 @@ if (($action == "tipp") && ($todo == "delaccount")) {
    
   if ($newpage == 1) {
     $xtipperpass = trim($xtipperpass);
-    // Prüfung gegen den Hash, wie beim Ändern des Kennworts (lmo-tipppwchange.php)
+    // Prüfung gegen den Hash, wie beim Ändern des Kennworts (LmoAddonTippTipper::pruefeKennwort())
     if (!password_verify($xtipperpass, $dummb[1])) {
       $newpage = 0;
       echo getMessage($text['tipp'][42],true);

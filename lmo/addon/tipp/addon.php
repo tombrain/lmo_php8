@@ -54,4 +54,15 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
         }
     }
     require __DIR__ . '/lmo-tippstart.php';
+}, __DIR__, static function (string $lmo_tipp_regeln): string {
+    // die Tippregeln im Menue: eine Seite nach alter Art, wie bisher im globalen Bereich eingebunden
+    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
+        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && $lmo_tipp_name !== 'lmo_tipp_regeln') {
+            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
+        }
+    }
+    unset($lmo_tipp_name);
+    ob_start();
+    include(__DIR__ . '/' . $lmo_tipp_regeln);
+    return (string)ob_get_clean();
 });
