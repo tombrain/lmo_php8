@@ -146,7 +146,7 @@ final class TabellenSeite
      * @param int $ab erster Platz nach dem Meister (2, wenn es einen Meister gibt, sonst 1)
      * @return array{string, int} Klasse und der Platz, ab dem die Europapokalplaetze zaehlen
      */
-    private function farbe(int $x, int $art, int $ab): array
+    public function farbe(int $x, int $art, int $ab): array
     {
         $e = $this->einstellungen;
         $klasse = 'nobr';
@@ -240,7 +240,7 @@ final class TabellenSeite
      * Das Symbol mit dem Hinweis zu Strafen, Torkorrektur und Notiz einer Mannschaft als HTML,
      * "&nbsp;" ohne Hinweis. Strafen stehen mit umgekehrtem Vorzeichen in der Datei (Bonus negativ).
      */
-    private function notiz(Mannschaft $mannschaft, string $datei): string
+    public function notiz(Mannschaft $mannschaft, string $datei): string
     {
         $e = $this->einstellungen;
         $text = $this->text;

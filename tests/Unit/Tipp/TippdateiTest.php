@@ -35,6 +35,16 @@ class TippdateiTest extends TestCase
         self::assertSame(['tipps' => [], 'joker' => ''], Tippdatei::lies($this->pfad . '.fehlt')->runde(1, 0, null));
     }
 
+    public function testAlleRunden(): void
+    {
+        file_put_contents($this->pfad, "\n[Round1]\n@2@\nGA1=2\nGB1=1\nGA2=-2\nGB2=-1\n\n[Round3]\nGA1=\nGB1=3\n[Options]\nGA1=9\n");
+
+        self::assertSame([
+            0 => [0 => ['2', '1'], 1 => ['-2', '_']],
+            2 => [0 => ['_', '3']],
+        ], Tippdatei::lies($this->pfad)->alleRunden(), '-2 bleibt wie bis 4.5 stehen');
+    }
+
     public function testPokalLesen(): void
     {
         file_put_contents($this->pfad, "[Round1]\n@12@\nGA11=3\nGB11=1\nGA12=-2\nGB22=0\n");
