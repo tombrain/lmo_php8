@@ -39,6 +39,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Lizenz in `composer.json` und `lmo/version.json` jetzt `GPL-2.0-or-later` statt `GPL-2.0-only`, wie in den Köpfen der Dateien des LMO („version 2 of the License, or (at your option) any later version“).  
 * Mindestversion ist PHP 8.1 (Twig 3 läuft nicht unter PHP 8.0).  
 * Die Tabelle auf der Tabellen- und der Ergebnisseite entsteht aus der Twig-Vorlage. Die Ausgabe ist gleich bis auf das Escaping: Sonderzeichen in Mannschaftsnamen (Tabelle und Ergebnisse) und Links werden jetzt durchgehend als HTML-Entitäten ausgegeben (`&` als `&amp;`, `'` als `&#039;`).  
 * Alle Klassen unter `src/` prüfen Typen streng (`declare(strict_types=1)`); ein Unit-Test achtet darauf, dass neue Dateien das auch tun. Für Aufrufe aus den alten Dateien unter `lmo/` ändert sich nichts.  
@@ -439,6 +440,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* License in `composer.json` and `lmo/version.json` is now `GPL-2.0-or-later` instead of `GPL-2.0-only`, as stated in the headers of the LMO files ("version 2 of the License, or (at your option) any later version").  
 * Minimum version is PHP 8.1 (Twig 3 does not run on PHP 8.0).  
 * The table on the table and results pages is rendered from the Twig template. The output is the same except for escaping: special characters in team names (table and results) and links are now consistently output as HTML entities (`&` as `&amp;`, `'` as `&#039;`).  
 * All classes under `src/` check types strictly (`declare(strict_types=1)`); a unit test makes sure new files do so as well. Calls from the old files under `lmo/` are not affected.  
