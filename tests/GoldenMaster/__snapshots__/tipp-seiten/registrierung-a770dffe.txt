@@ -481,7 +481,7 @@ GEAENDERT addon/tipp/lmo-tippauth.txt
 +++ nachher
 @@ -1,2 +1,3 @@
  <?php exit; ?>
- tester|geheim|5|Tina Test|tester@example.org||||1|1|EOL
+ tester|geheim|5|Tina Test|tester@example.org|||||1|1|EOL
 +neuling|{HASH}|5|Nora&nbsp;Neu|nora@example.org|||||1|1|EOL
 NEU addon/tipp/tipps/1l_2024-25_neuling.tip (1 Bytes)
 
