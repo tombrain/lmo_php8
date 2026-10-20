@@ -59,6 +59,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Newsticker mit den News der Liga (`tickerart=2`): Jede Meldung steht nur noch einmal im Lauftext, hinter dem Namen der Liga; bisher kamen alle Meldungen doppelt.  
 * Spielerstatistik, vereinsweise Anzeige: Im Kopf der Vereinsspalte stand eine feste „333“; die Zelle ist jetzt leer.  
 * Spielerstatistik: Der Link zur Homepage des Vereins erscheint jetzt hinter dem Vereinsnamen, wenn die Liga Links auf Vereinsseiten zeigt. Bisher fehlte er praktisch immer, weil der Name des Vereins unter den Adressen gesucht wurde, und stand außerhalb der Zelle.  
+* Tippspiel: „Konto löschen“ verglich das eingegebene Kennwort mit dem gespeicherten Hash wie mit Klartext und meldete deshalb immer „Passwort falsch“. Jetzt prüft es gegen den Hash wie „Kennwort ändern“.  
 
 
 ### Security  
@@ -433,6 +434,7 @@ _Here we write changelog notes for the next version._
 * News ticker with the league's news (`tickerart=2`): each message now appears only once in the scrolling text, after the league name; until now all messages appeared twice.  
 * Player statistics, by club: the header of the club column showed a fixed "333"; the cell is empty now.  
 * Player statistics: the link to the club's homepage now appears after the club name when the league shows links to club pages. Until now it was practically always missing, because the club name was looked up among the addresses, and it was placed outside the cell.  
+* Prediction game: "delete account" compared the entered password with the stored hash as if it were plain text and therefore always reported a wrong password. It now checks against the hash like "change password".  
 
 
 ### Security  

@@ -1584,8 +1584,8 @@ xtipperpass=anders
 </tr>
 <tr>
 <td colspan="3" align="center">
-<p class="error">
-<img src="http://lmo.test/lmo/img/wrong.svg" border="0" width="20" alt=""> Passwort falsch</p>
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
 <caption>tester</caption>
 <tr>
@@ -1593,16 +1593,16 @@ xtipperpass=anders
 </tr>
 <tr>
 <td width="20">&nbsp;</td>
-<td class="nobr" align="center">
-<form name="lmotippedit" action="/lmo/lmo.php" method="post" onSubmit="return confirm('');">
-<input type="hidden" name="action" value="tipp">
-<input type="hidden" name="todo" value="delaccount">
-<input type="hidden" name="newpage" value="1">
-<p> Bitte Passwort eingeben: &nbsp;<input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="anders">
-</p>
-<input class="lmo-formular-button" type="submit" name="xtippersub" value="Löschen">
-</form>
+<td align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich geändert</p>
 </td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="right">
+<a href="/lmo/lmo.php?action=tipp&amp">=> zurück zum Login</a>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -1679,5 +1679,10 @@ xtipperpass=anders
 </body>
 </html>
 --- Dateiaenderungen ---
-(keine)
+GEAENDERT addon/tipp/lmo-tippauth.txt
+--- vorher
++++ nachher
+@@ -1 +0,0 @@
+-tester|{HASH}|5| |tester@example.org|||||1|1|EOL
+GELOESCHT addon/tipp/tipps/1l_2024-25_tester.tip
 
