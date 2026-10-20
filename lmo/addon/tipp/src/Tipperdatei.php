@@ -33,6 +33,23 @@ final class Tipperdatei
         return new self($pfad, $zeilen);
     }
 
+    /**
+     * Alle Tipper in der Reihenfolge der Datei.
+     *
+     * @return list<Tipper>
+     */
+    public function alle(): array
+    {
+        $tipper = [];
+        foreach ($this->zeilen as $zeile) {
+            if ($zeile != self::SCHUTZZEILE) {
+                $tipper[] = Tipper::ausZeile($zeile);
+            }
+        }
+
+        return $tipper;
+    }
+
     /** Der Tipper mit diesem Nick; null, wenn es ihn nicht gibt. */
     public function tipper(string $nick): ?Tipper
     {
@@ -87,6 +104,15 @@ final class Tipperdatei
         }
 
         return $vereine;
+    }
+
+    /** Dieselbe Datei mit einem neuen Tipper am Ende. */
+    public function plus(Tipper $tipper): self
+    {
+        $zeilen = $this->zeilen;
+        $zeilen[] = $tipper->zeile();
+
+        return new self($this->pfad, $zeilen);
     }
 
     /** Dieselbe Datei ohne den Tipper mit diesem Nick. */

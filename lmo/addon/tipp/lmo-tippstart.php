@@ -53,9 +53,6 @@ if ($todo == "logout") {
   $lmotipperpass = "";
   $_SESSION['lmotipperverein'] = "";
 }
-if ($todo == "newtipper") {
-  $_SESSION["lmotipperok"] = -4;
-}
 if ($todo == "getpass") {
   $_SESSION["lmotipperok"] = -5;
 }
@@ -63,9 +60,6 @@ $action = "tipp";
 require(PATH_TO_ADDONDIR."/tipp/lmo-tippauth.php");
 if ($_SESSION["lmotipperok"] > 0) {
   require(PATH_TO_ADDONDIR."/tipp/lmo-tippmain.php");
-}
-if ($_SESSION["lmotipperok"] == -4) {
-  require(PATH_TO_ADDONDIR."/tipp/lmo-tippernew.php");
 }
 
 ?>

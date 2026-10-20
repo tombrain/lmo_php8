@@ -16,8 +16,9 @@ use Lmo\Web\Vorlagen;
  * Bis 4.5 lmo-tippstart.php, lmo-tippauth.php und lmo-tippemailpass.php.
  *
  * Der Stand der Anmeldung steht in der Sitzung (lmotipperok): 5 angemeldet, 0 nicht angemeldet,
- * -1 Kennwort falsch, -2 Nick unbekannt, -3 Nick fuer "Kennwort vergessen" unbekannt, -4
- * Registrierung (lmo-tippernew.php), -5 Kennwort vergessen.
+ * -1 Kennwort falsch, -2 Nick unbekannt, -3 Nick fuer "Kennwort vergessen" unbekannt, -5 Kennwort
+ * vergessen ('' in der Datei: noch nicht freigeschaltet). Die Registrierung (bis 4.5 -4) zeigt der
+ * RegistrierungController.
  */
 final class AnmeldungController implements Controller
 {
@@ -42,9 +43,7 @@ final class AnmeldungController implements Controller
         return $kontext->action == 'tipp'
             && $kontext->konfiguration->schalter('eintippspiel')
             && in_array($todo, self::SEITEN, true)
-            && !$kontext->anfrage->gesetzt('viewermode')
-            // mitten in der Registrierung bleibt es bei ihr
-            && !($todo == '' && $kontext->sitzung->text('lmotipperok') == -4);
+            && !$kontext->anfrage->gesetzt('viewermode');
     }
 
     public function zeige(Kontext $kontext): Seite

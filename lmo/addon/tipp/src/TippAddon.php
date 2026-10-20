@@ -26,8 +26,9 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
      * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
      * @param Closure(string, string, string): string $freischaltmail schickt E-Mail-Adresse, Nick und Kennwort an den Tipper, gibt die Meldung zurueck
      * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort ("Kennwort vergessen"); null oder der Fehler
+     * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
      */
-    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null)
+    public function __construct(private Closure $alterCode, private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null)
     {
     }
 
@@ -47,6 +48,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
         $startseite = new StartseiteController($this->ordner, $rahmen);
 
         return [
+            new RegistrierungController($this->ordner, $freischaltmail, $this->adminmail ?? static fn (string $nick): string => ''),
             new KontoController($this->ordner, $rahmen, $freischaltmail),
             $startseite,
             new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),

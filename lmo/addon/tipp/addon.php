@@ -93,4 +93,18 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
                   $text[308] . ': ' . $lmo_kennwort . "\n\n" .
                   $text['tipp'][255] . ': ' . $loginUrl;
     return $mail->send() ? null : (string)$mail->ErrorInfo;
+}, static function (string $xtippernick): string {
+    // die Mail an den Admin ueber einen neuen Tipper (mailbeianmeldung): noch der alte Code
+    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
+        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && $lmo_tipp_name !== 'xtippernick') {
+            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
+        }
+    }
+    unset($lmo_tipp_name);
+    if (!defined('LMO_TIPPAUTH')) {
+        define('LMO_TIPPAUTH', 1);
+    }
+    ob_start();
+    include(__DIR__ . '/lmo-admintippbenachrichtigung.php');
+    return (string)ob_get_clean();
 });
