@@ -51,9 +51,8 @@ if ($action == 'tipp') {
     if (!isset($_SESSION['lmotippername'])) {
         $_SESSION['lmotippername'] = '';
     }
-    if (!isset($_SESSION['lmotipperpass'])) {
-        $_SESSION['lmotipperpass'] = '';
-    }
+    // das Kennwort bleibt nicht in der Sitzung (es stand sonst nach dem Abmelden im Formular)
+    unset($_SESSION['lmotipperpass']);
     if (!isset($_SESSION['lmotipperverein'])) {
         $_SESSION['lmotipperverein'] = '';
     }
@@ -63,7 +62,6 @@ if ($action == 'tipp') {
         $xtippername2 = '';
         if (!empty($xtippername) && !empty($xtipperpass)) {
             $_SESSION['lmotippername'] = $xtippername;
-            $_SESSION['lmotipperpass'] = $xtipperpass;
             $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
             if (($tippers = file($pswfile)) === false)
                 $tippers = array();
@@ -76,7 +74,7 @@ if ($action == 'tipp') {
                         // Nick gefunden
                         $_SESSION['lmotipperok'] = -1;
                         $storedPass = $fileinfo[1];
-                        $inputPass  = $_SESSION['lmotipperpass'];
+                        $inputPass  = $xtipperpass;
                         $loginOk = false;
                         // Prüfen ob Hash vorhanden
                         if (password_get_info($storedPass)['algo'] !== null) {
@@ -188,7 +186,7 @@ if ($action == 'tipp') {
             } ?>
           <tr>
             <td align="right"><acronym title="<?php echo $text[309]; ?>"><?php echo '&nbsp;' . $text[308]; ?></acronym></td>
-            <td align="left"><input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="<?php echo $_SESSION['lmotipperpass']; ?>"></td>
+            <td align="left"><input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value=""></td>
           </tr>
           <tr>
             <td>&nbsp;</td>

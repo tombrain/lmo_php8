@@ -52,11 +52,13 @@ final class AnmeldungController implements Controller
         $sitzung = $kontext->sitzung;
         $anfrage = $kontext->anfrage;
         $t = $kontext->texteVon('tipp');
-        foreach (['lmotipperok' => 0, 'lmotippername' => '', 'lmotipperpass' => '', 'lmotipperverein' => ''] as $name => $vorgabe) {
+        foreach (['lmotipperok' => 0, 'lmotippername' => '', 'lmotipperverein' => ''] as $name => $vorgabe) {
             if (!$sitzung->gesetzt($name)) {
                 $sitzung->setze($name, $vorgabe);
             }
         }
+        // das Kennwort bleibt nicht in der Sitzung (bis 4.5 stand es nach dem Abmelden im Formular)
+        $sitzung->entferne('lmotipperpass');
         $todo = $anfrage->text('todo');
         if ($todo == 'logout') {
             $sitzung->setze('lmotipperok', 0);
@@ -75,7 +77,6 @@ final class AnmeldungController implements Controller
             $nick = $anfrage->text('xtippername');
             $kennwort = $anfrage->text('xtipperpass');
             $sitzung->setze('lmotippername', $nick);
-            $sitzung->setze('lmotipperpass', $kennwort);
             $sitzung->setze('lmotipperok', -2);
             $tipper = $datei->tipper($nick);
             if ($tipper !== null) {
@@ -147,7 +148,6 @@ final class AnmeldungController implements Controller
             'stand' => $ok,
             'nichtFreigeschaltet' => $anfrage->gesetzt('xtippersub') && $ok === '' && !$mailVerschickt,
             'nick' => $sitzung->text('lmotippername'),
-            'kennwort' => $sitzung->text('lmotipperpass'),
             'nickVergessen' => $kennwortVergessen ?? '',
             'ligen' => $ligen,
             'wertungen' => Tippligen::wertungen($kontext, $ligen, $this->ordner . '/' . ($kontext->konfiguration->addon('tipp')['dirtipp'] ?? 'tipps/')),

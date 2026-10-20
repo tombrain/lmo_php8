@@ -56,4 +56,9 @@ final class Sitzung
     {
         $this->werte[$name] = $wert;
     }
+
+    public function entferne(string $name): void
+    {
+        unset($this->werte[$name]);
+    }
 }
