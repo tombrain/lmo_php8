@@ -1,0 +1,109 @@
+### tippregeln
+<style type="text/css"> :root { --primary: #3182ce; --bg-soft: #f7fafc; --text-main: #2d3748; --text-muted: #718096; --border: #e2e8f0; } /* Basis-Korrektur für Zeilenumbrüche und Ausrichtung */ .regeln-wrapper { font-family: 'Inter', -apple-system, sans-serif; color: var(--text-main); line-height: 1.6; padding: 20px; background: #fff; text-align: left !important; /* Erzwingt Zeilenumbruch bei langem Text */ word-wrap: break-word !important; overflow-wrap: break-word !important; white-space: normal !important; } h1 { font-size: 1.75rem; font-weight: 800; text-align: center; margin-bottom: 30px; } /* Accordion Design */ details { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; } summary { padding: 16px 20px; font-weight: 800; cursor: pointer; color: var(--primary); display: flex; justify-content: space-between; align-items: center; list-style: none; } summary::after { content: "+"; font-size: 2.0rem; } details[open] summary::after { content: "−"; } /* Info-Blöcke (dd) und Definitionslisten (dt) */ dl { margin: 0; width: 100%; } dt { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-top: 20px; font-weight: 700; display: block; } dd { margin: 4px 0 16px 0 !important; padding: 15px !important; background: var(--bg-soft); border-radius: 10px; border-left: 4px solid var(--primary); display: block !important; float: none !important; /* Verhindert das Nebeneinander-Stehen */ width: 100% !important; } /* FIX FÜR DIE AUFZÄHLUNG (ul/li) INNERHALB VON DD */ .regeln-wrapper ul { margin: 10px 0 0 0 !important; padding-left: 20px !important; /* Platz für Bullets */ list-style-type: disc !important; /* Standard-Punkte */ text-align: left !important; } .regeln-wrapper li { margin-bottom: 8px !important; text-align: left !important; display: list-item !important; /* Erzwingt klassisches Listenverhalten */ float: none !important; color: var(--text-main) !important; } .points-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 20px 0; } .point-card { background: #fff; border: 1px solid var(--border); padding: 16px; border-radius: 12px; text-align: center; } .point-card .value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary); } .point-card { background: #fff; border: 1px solid var(--border); padding: 16px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: white; display: flex; flex-direction: column; /* Stapelt Elemente untereinander */ justify-content: flex-start; min-height: 120px; /* Optionale Mindesthöhe für Gleichmäßigkeit */ text-align: center !important; } .point-card .value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary); } .point-card .label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; line-height: 1.2; } /* AUSRICHTUNG NACH UNTEN */ .point-card .unit { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 10px; } </style>
+<div class="regeln-container">
+<h1>Anleitung für das Tippspiel</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">Nach der Anmeldung zum Tippspiel hat der Tipper die Möglichkeit, eine <strong>oder</strong> mehrere Tippspiele zu abonnieren.</p>
+<details open>
+<summary>Verfahren zum Abonnieren und Spielen einzelner Ligen</summary>
+<div class="accordion-content">
+<strong>Anmelden und Verwalten</strong>
+<p>Im Login-Bereich auf '<strong>anmelden</strong>' klicken .</p>
+<p>Alle Anmeldedaten eintragen und auswählen, welche Liga Sie abonnieren möchten.<br>
+<strong>Hinweis</strong>: Weitere Ligen können Sie jederzeit nach der Erstanmeldung unter Ihrem Usernamen nachträglich abonnieren!</p>
+<p>Nach der Anmeldung sind Sie eingeloggt bzw. Sie können sich jetzt jederzeit mit Ihrem Nickname einloggen.</p>
+<p>Im User-Bereich des Tippspiels können Sie:</p>
+<ul>
+<li>Eine abonnierte <strong>Liga tippen</strong>
+</li>
+<li>
+<strong>Punktstände anschauen</strong>
+</li>
+<li>
+<strong>Ihre Daten ändern</strong>
+</li>
+<li>
+<strong>andere bzw. neue Ligen in Ihren Tippschein aufnehmen</strong>
+</li>
+<li>
+<strong>Passwort ändern</strong>
+</li>
+<li>
+<strong>Tipp-Account löschen</strong> (<strong>Achtung</strong>: Alle abonnierten Tippspiele Ihres Nicknames werden gelöscht!)</li>
+<li>
+<strong>Aus dem Tippspiel ausloggen</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Liga tippen</strong>
+<p>Nach dem Einloggen im Tippspielbereich eine abonnierte Liga zum Tippen auswählen.</p>
+<p>Im Ansetzungsbereich können Sie nun Ihre Tipps für die einzelnen Spieltage abgeben.</p>
+<p>Nach Eingabe der Tipps <strong>eines Spieltages</strong> klicken Sie auf <strong>Tipps speichern</strong>
+</p>
+<p>Sie können jetzt auf einen anderen Spieltag wechseln und weitere Tipps abgeben.</p>
+<p>Es besteht auch die Möglichkeit pro Spieltag einen <strong>Joker</strong> zu setzen. Die für diesen Spieltag gewonnen Punkte werden dann mit einem bestimmten Faktor multipliziert.</p>
+<strong>Hinweise zur Tippabgabe</strong>
+<p>Die Tippzeit läuft für jedes Spiel einzeln ab.</p>
+<p>Ablauf der Tippzeit ist jeweils 15 Minuten vor Anpfiff.</p>
+<p>Sollten <strong>ohne</strong> unsere Kenntnis einzelne Spiele vorgezogen werden, bitten wir das zu entschuldigen. Wir versuchen jedoch immer <strong>vor</strong> einem Spieltag alle veränderten Anstoßzeiten zu aktualisieren.</p>
+</div>
+</details>
+<details>
+<summary>Spielwertung und Ligawertung</summary>
+<div class="accordion-content">
+<p>Die Spielwertung (Punktverteilung)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">4</span>
+<span class="label">Ergebnis richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">3</span>
+<span class="label">nur Tendenz und Tordifferenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">nur Tendenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">nur eine Toranzahl richtig</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">Bonus für richtigen Unentschieden-Tipp</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Faktor</span>
+<span class="value">x&nbsp;2</span>
+<span class="label">Jokermultiplikator</span>
+</div>
+</div>
+<strong>Die Liga- und Spieltagswertung</strong>
+<p>Die Gesamtligawertung erhalten Sie, wenn Sie in der Tippspiel-Übersicht eine abonnierte Liga unter dem Punkt: <strong>Punktestände anschauen</strong> auswählen.</p>
+<p>Sie erreichen die Gesamtligawertung auch, wenn Sie im Tippbereich auf - <strong>Ligawertung</strong> wechseln</p>
+<p>Die erzielten Punkte Ihrer <strong>einzelnen</strong> Spiele können Sie einsehen, wenn Sie im Tippbereich einer Liga einen <strong>absolvierten Spieltag</strong> aufrufen.</p>
+<p>
+<strong>Gesamtsieger</strong> ist, wer nach einer Spielsaison die meisten Punkte auf seinem Spielkonto verbuchen kann.</p>
+<p>Zusätzlich können unter <strong>Tippeinsicht</strong> die Tipps der Mitspieler eingesehen werden</p>
+<p>Die <strong>Tipp-Tabelle</strong> ist eine Zusatzanzeige, also eine Tabelle erzeugt nach Ihren abgegebenen Tipps</p>
+<strong>Hinweise zum Zeitpunkt der Tippauswertung</strong>
+<p>Die technische Auswertung der Spieltipps erfolgt in der Regel nach jedem absolvierten Spieltag.</p>
+<p>Bitte beachten Sie, dass sich aus organisatorischen Gründen die Tippauswertung auch einmal um <strong>1 bis 2 Tage</strong> verzögern kann.</p>
+</div>
+</details>
+<details>
+<summary>Haftungsausschluß</summary>
+<div class="accordion-content">
+<p>Für etwaige Übertragungsfehler und sonstige technische Schwierigkeiten ist der Veranstalter in keiner Weise verantwortlich zu machen.</p>
+<p>Mit der Anmeldung zum Spiel akzeptieren Sie die Bedingungen. Dieses Spiel dient dem reinen Unterhaltungszweck. Wer hackt, verfälscht, oder sich mehrmals unter verschiedenen Namen anmeldet, wird mit Spielsperre bestraft.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>Der Rechtsweg ist ausgeschlossen.</strong>
+</p>
+</div>
+</details>
+</div>
