@@ -321,15 +321,15 @@ final class RanglisteController implements Controller
     /**
      * Name einer Pokalrunde: Finale, Halbfinale, Viertelfinale, Achtelfinale, sonst "N. Runde".
      *
-     * @param array<int|string, mixed> $text
+     * @param array<int, string> $text
      */
     private static function runde(array $text, int $st, int $runden): string
     {
         return match ($st) {
-            $runden => (string) ($text[374] ?? ''),
-            $runden - 1 => (string) ($text[373] ?? ''),
-            $runden - 2 => (string) ($text[372] ?? ''),
-            $runden - 3 => (string) ($text[371] ?? ''),
+            $runden => $text[374] ?? '',
+            $runden - 1 => $text[373] ?? '',
+            $runden - 2 => $text[372] ?? '',
+            $runden - 3 => $text[371] ?? '',
             default => $st . '. ' . ($text[370] ?? ''),
         };
     }
