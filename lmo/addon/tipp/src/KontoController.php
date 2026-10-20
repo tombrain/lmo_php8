@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lmo\Addon\Tipp;
 
 use Closure;
-use Lmo\Liga\LigaDatei;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
@@ -308,44 +307,15 @@ final class KontoController implements Controller
     }
 
     /**
-     * Die Ligen im Ligenordner, die getippt werden duerfen (immeralle, sonst ligenzutippen) und
-     * fuer die der Tipper noch keine (hinzufuegen) bzw. schon eine Tippdatei hat (entfernen).
+     * Die Ligen, die getippt werden duerfen (Tippligen::tippbar()) und fuer die der Tipper noch
+     * keine (hinzufuegen) bzw. schon eine Tippdatei hat (entfernen).
      *
      * @param Closure(string): string $tippdatei Liga (Dateiname ohne .l98) => Tippdatei des Tippers
      * @return list<array{datei: string, name: string}>
      */
     private function tippbareLigen(Kontext $kontext, Closure $tippdatei, bool $ohneTippdatei): array
     {
-        $cfg = $kontext->konfiguration->addon('tipp');
-        $ordner = $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner();
-        $zuTippen = explode(',', $cfg['ligenzutippen'] ?? '');
-        $alle = ($cfg['immeralle'] ?? '') == 1;
-        // ein angemeldeter Hilfsadmin sieht nur seine Ligen
-        $hilfsadmin = $kontext->sitzung->zahl('lmouserok') == 1 ? explode(',', $kontext->sitzung->text('lmouserfile')) : null;
-        $dateien = [];
-        foreach (is_dir($ordner) ? (scandir($ordner) ?: []) : [] as $datei) {
-            if (strtolower(substr($datei, -4)) == '.l98') {
-                $dateien[] = $datei;
-            }
-        }
-        sort($dateien);
-        $ligen = [];
-        $ohneNamen = 0;
-        foreach ($dateien as $datei) {
-            $liga = substr($datei, 0, -4);
-            if ($hilfsadmin !== null && !in_array($liga, $hilfsadmin, true)) {
-                continue;
-            }
-            $name = LigaDatei::liesAbschnitt($ordner . $datei, 'Options')['Name'] ?? '';
-            if ($name == '') {
-                $name = ($kontext->text[507] ?? '') . ++$ohneNamen;
-            }
-            if (($alle || in_array($liga, $zuTippen, true)) && file_exists($tippdatei($liga)) !== $ohneTippdatei) {
-                $ligen[] = ['datei' => $liga, 'name' => $name];
-            }
-        }
-
-        return $ligen;
+        return array_values(array_filter(Tippligen::tippbar($kontext), static fn (array $liga): bool => file_exists($tippdatei($liga['datei'])) !== $ohneTippdatei));
     }
 
     /** Speichert die Tipperdatei und gibt die Meldung dazu zurueck (bis 4.5 lmo-tippsaveauth.php). */

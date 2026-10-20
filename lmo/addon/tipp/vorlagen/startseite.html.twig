@@ -16,11 +16,7 @@
   <tr>
     <td class="nobr" align="left">
       <ul>
-{% for wertung in wertungen %}
-        <li>
-          <a href="{{ adda|raw }}wert&amp;file={{ wertung.link|raw }}">{% if wertung.gesamt %}<strong>{{ wertung.name|raw }}</strong>{% else %}{{ wertung.name|raw }}{% endif %}</a>{% if wertung.stand is not null %}<br><small>{{ t[83]|raw }}: {{ wertung.stand }}</small>{% endif %}
-        </li>
-{% endfor %}
+{% include 'wertungen.html.twig' with {klasse: ''} %}
       </ul>
     </td>
   </tr>

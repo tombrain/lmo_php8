@@ -70,21 +70,7 @@ final class StartseiteController implements Controller
         }
 
         // die Auswertungen der Ligen und, bei mehreren Ligen, die Gesamtwertung
-        $auswertung = static function (string $name) use ($tipps): ?string {
-            $datei = $tipps . 'auswert/' . $name . '.aus';
-
-            return file_exists($datei) ? date('d.m.Y H:i', (int) filemtime($datei)) : null;
-        };
-        $nurGesamt = ($cfg['nurgesamt'] ?? '') == 1;
-        $wertungen = [];
-        if (!$nurGesamt) {
-            foreach ($ligen as $liga) {
-                $wertungen[] = ['link' => substr($liga['datei'], 0, -4) . '.l98', 'name' => $liga['name'], 'stand' => $auswertung(substr($liga['datei'], 0, -4)), 'gesamt' => false];
-            }
-        }
-        if (($cfg['gesamt'] ?? '') == 1 && (count($ligen) > 1 || $nurGesamt && count($ligen) == 1)) {
-            $wertungen[] = ['link' => '&amp;all=1', 'name' => $kontext->texteVon('tipp')[25] ?? '', 'stand' => $auswertung('gesamt'), 'gesamt' => true];
-        }
+        $wertungen = Tippligen::wertungen($kontext, array_map(static fn (array $liga): array => ['datei' => substr($liga['datei'], 0, -4), 'name' => $liga['name']], $ligen), $tipps);
         $verein = $kontext->sitzung->text('lmotipperverein');
 
         return new Seite($this->rahmen->html($kontext, Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'startseite.html.twig', [
