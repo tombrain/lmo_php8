@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lmo\Tipp;
+namespace Lmo\Addon\Tipp;
 
 use Lmo\Liga\Paarung;
 use Lmo\Liga\Rohdaten\Liga;

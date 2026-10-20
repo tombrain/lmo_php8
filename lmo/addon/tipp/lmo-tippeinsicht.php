@@ -71,10 +71,10 @@ if ($file != "" && $todo == "einsicht" && $tipp_tippeinsicht == 1) {
   if (!isset($st) || $st == "" || $st == 0) {
     $st = $lmo_liga->einstellungen()->aktuellerSpieltag();
   }
-  // Einstellungen der Liga und der Spieltag aus Sicht des Tippspiels (Lmo\Tipp\Tipprunde):
+  // Einstellungen der Liga und der Spieltag aus Sicht des Tippspiels (Lmo\Addon\Tipp\Tipprunde):
   // die Paarungen zum Anzeigen (Lmo\Liga\Paarung) unter demselben Index $i wie die Tipps
   $lmo_einstellungen = $lmo_liga->einstellungen();
-  $lmo_tipprunde = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
+  $lmo_tipprunde = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
   $lmo_tipp_pokal = $lmo_tipprunde->pokal;
   $lmo_tipp_runden = $lmo_tipprunde->runden;
   $lmo_tipp_datum1 = $lmo_tipprunde->ersterTag;

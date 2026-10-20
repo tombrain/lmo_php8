@@ -132,7 +132,7 @@ if ($message != '') {
 
             $anzligen = count($dateien);
 
-            // anstehende Spiele aller Ligen (Lmo\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel, $zeit
+            // anstehende Spiele aller Ligen (Lmo\Addon\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel, $zeit
             $lmo_spiele = array();
             $liga = array();
             $spieltag = array();
@@ -237,7 +237,7 @@ if ($message != '') {
                             require(PATH_TO_ADDONDIR . '/tipp/lmo-tippopenfile.php');
                             $st0 = $st - 1;
                             $anzst1 = $st - 1; // nur der gewaehlte Spieltag
-                            $lmo_mail_anzsp = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, (int)$st)->plaetze;
+                            $lmo_mail_anzsp = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, (int)$st)->plaetze;
                         } elseif ($st == 0) {
                             require(PATH_TO_ADDONDIR . '/tipp/lmo-tippopenfileall.php');
                             $st0 = 0;
@@ -246,7 +246,7 @@ if ($message != '') {
                         for (; $st0 <= $anzst1; $st0 ++) {
                             if ($tipp_imvorraus < 0 || $st0 <= ($lmo_einstellungen->aktuellerSpieltag() + $tipp_imvorraus)) {
                                 // der Spieltag $st0+1: Paarung $dd+1 hat den Index $dd, ihr Spiel $ddd+1 den Index $ddd
-                                $lmo_mail_runde = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, $st0 + 1);
+                                $lmo_mail_runde = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, $st0 + 1);
                                 for ($dd = 0; $dd < $lmo_mail_anzsp; $dd ++) {
                                     $lmo_mail_paarung = $lmo_mail_runde->paarungen[$dd] ?? null;
                                     if ($lmo_mail_paarung === null) {

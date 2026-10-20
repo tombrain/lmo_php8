@@ -34,7 +34,7 @@ $then = PHP_INT_MAX;
 $liga = $spieltag = $spiel = $zeit = $tippa = $tippb = $jksp = $tipp_jokertippaktiv = [];
 $anzspiele = 0;
 
-// die anstehenden Spiele (Lmo\Tipp\AnstehendesSpiel), gleicher Index wie $liga, $spieltag, $spiel
+// die anstehenden Spiele (Lmo\Addon\Tipp\AnstehendesSpiel), gleicher Index wie $liga, $spieltag, $spiel
 $lmo_spiele = [];
 
 // Ligenordner relativ zum LMO, wie in der Konfiguration

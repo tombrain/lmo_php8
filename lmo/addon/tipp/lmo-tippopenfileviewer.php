@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 /**
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var list<\Lmo\Tipp\AnstehendesSpiel> $lmo_spiele anstehende Spiele aller Ligen (wird hier ergaenzt)
+ * @var list<\Lmo\Addon\Tipp\AnstehendesSpiel> $lmo_spiele anstehende Spiele aller Ligen (wird hier ergaenzt)
  * @var array<int|string, mixed> $text Sprachtexte
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var string $dirliga Ligenordner relativ zum LMO (Konfiguration)
@@ -215,7 +215,7 @@ if ($file != "") {
               $mspez0 = $text[1];
             }
 
-            $lmo_spiel = new \Lmo\Tipp\AnstehendesSpiel();
+            $lmo_spiel = new \Lmo\Addon\Tipp\AnstehendesSpiel();
             $lmo_spiel->titel = $titel0;
             $lmo_spiel->typ = $lmtype0;
             $lmo_spiel->runden = $anzst0;

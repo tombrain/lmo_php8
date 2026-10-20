@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lmo\Tipp;
+namespace Lmo\Addon\Tipp;
 
 /**
  * Ein Spiel, das in den naechsten Tagen ansteht, fertig zum Anzeigen: fuer die Tippuebersicht ueber

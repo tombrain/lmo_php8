@@ -6,7 +6,7 @@ if (!defined('PATH_TO_LMO')) {
 /**
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var \Lmo\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php)
+ * @var \Lmo\Addon\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php)
  * @var int|string $st gewaehlter Spieltag
  * @var string $tippfile Tippdatei des Tippspiels
  *

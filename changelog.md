@@ -21,6 +21,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 * Die Ligenübersicht läuft über den `Lmo\Web\Controller\LigenuebersichtController` mit der Vorlage `lmo/vorlagen/ligenuebersicht.html.twig`; die Liste der Ligen eines Ordners baut `Lmo\Web\Seiten\Ligenliste` (Vorlage `lmo/vorlagen/ligenliste.html.twig`), auch für „Liga öffnen“ im Adminbereich (`lmo-dirlist.php` ruft sie auf). Die Seitentests decken jetzt Unterordner und Sortierung der Übersicht ab.  
 * Neuer Erweiterungspunkt für Addons: `Lmo\Addon\MitRahmenteilen` – Teile für den Rahmen der Seiten (z. B. ein Menüpunkt oder ein Bereich über dem Menü), unter denselben Namen wie die Platzhalter. Das Tippspiel nach alter Art bleibt vorerst im alten Code eingebunden, weil seine Funktionen Variablen mit `global` lesen.  
 * Addons nach neuer Art liegen vollständig in ihrem Ordner, auch ihre Klassen: `Lmo\Addon\Autoloader` (in `init.php` registriert) lädt `Lmo\Addon\<Addon>\<Klasse>` aus `addon/<addon>/src/<Klasse>.php`, ohne Eintrag in `composer.json`. Ein Addon funktioniert, sobald sein Ordner da ist.  
+* Die Klassen des Tippspiels liegen im Addon-Ordner (`addon/tipp/src/`): `Lmo\Tipp\Tipprunde` und `Lmo\Tipp\AnstehendesSpiel` heißen jetzt `Lmo\Addon\Tipp\Tipprunde` und `Lmo\Addon\Tipp\AnstehendesSpiel`.  
 
 
 ### Changed  
@@ -392,6 +393,7 @@ _Here we write changelog notes for the next version._
 * The league overview runs through the `Lmo\Web\Controller\LigenuebersichtController` with the template `lmo/vorlagen/ligenuebersicht.html.twig`; the list of leagues in a folder is built by `Lmo\Web\Seiten\Ligenliste` (template `lmo/vorlagen/ligenliste.html.twig`), also for \"open league\" in the admin area (`lmo-dirlist.php` calls it). The page tests now cover subfolders and sorting of the overview.  
 * New extension point for add-ons: `Lmo\Addon\MitRahmenteilen` – parts for the page frame (e.g. a menu item or an area above the menu), under the same names as the placeholders. The old-style prediction game stays included by the old code for now, because its functions read variables via `global`.  
 * New-style add-ons live entirely in their folder, including their classes: `Lmo\Addon\Autoloader` (registered in `init.php`) loads `Lmo\Addon\<Addon>\<Class>` from `addon/<addon>/src/<Class>.php`, without an entry in `composer.json`. An add-on works as soon as its folder is there.  
+* The classes of the prediction game live in the add-on folder (`addon/tipp/src/`): `Lmo\Tipp\Tipprunde` and `Lmo\Tipp\AnstehendesSpiel` are now called `Lmo\Addon\Tipp\Tipprunde` and `Lmo\Addon\Tipp\AnstehendesSpiel`.  
 
 
 ### Changed  

@@ -2,13 +2,13 @@
 
 namespace Lmo\Tests\Unit\Tipp;
 
-use Lmo\Tipp\AnstehendesSpiel;
+use Lmo\Addon\Tipp\AnstehendesSpiel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Das Tippspiel sammelt fuer die Tippuebersicht und die Erinnerungsmail die anstehenden Spiele
  * mehrerer Ligen. Die Ligadateien liest es komplett als Lmo\Liga\Rohdaten\Liga und greift je Spiel
- * auf dessen eigene Werte zu. Heraus kommt je Spiel ein Lmo\Tipp\AnstehendesSpiel.
+ * auf dessen eigene Werte zu. Heraus kommt je Spiel ein Lmo\Addon\Tipp\AnstehendesSpiel.
  */
 class TippLigaLaderTest extends TestCase
 {

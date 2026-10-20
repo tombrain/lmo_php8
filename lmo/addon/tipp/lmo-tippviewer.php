@@ -90,7 +90,7 @@ if ($tipp_viewertipp == 1 && $viewermode == 1) {
 
     sort($dateien);
     $anzligen = count($dateien);
-    // anstehende Spiele aller Ligen des Tippers (Lmo\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel
+    // anstehende Spiele aller Ligen des Tippers (Lmo\Addon\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel
     $lmo_spiele = array();
     $liga = array();
     $spieltag = array();

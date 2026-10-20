@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 /**
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var \Lmo\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php, lmo-tippeinsicht.php)
+ * @var \Lmo\Addon\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php, lmo-tippeinsicht.php)
  * @var array<int|string, mixed> $text Sprachtexte
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var int|string $st gewaehlter Spieltag

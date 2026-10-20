@@ -110,7 +110,7 @@ if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
   // auch die Tipp-Lader (lmo-tippopenfile.php, lmo-tippopenfileall.php) arbeiten auf $lmo_liga
   $lmo_liga = $lmo_liga ?? new \Lmo\Liga\Rohdaten\Liga();
   $lmo_wert_liga = $lmo_liga;
-  // Einstellungen der Liga; die Spieltage aus Sicht des Tippspiels (Lmo\Tipp\Tipprunde) je Nummer
+  // Einstellungen der Liga; die Spieltage aus Sicht des Tippspiels (Lmo\Addon\Tipp\Tipprunde) je Nummer
   $lmo_wert_einstellungen = $lmo_wert_liga->einstellungen();
   $lmo_wert_pokal = $lmo_wert_einstellungen->istPokal();
   $lmo_wert_spieltage = $lmo_wert_einstellungen->spieltage();
@@ -185,7 +185,7 @@ if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
               $st1 = $st0+1;
             }
             // der ausgewertete Spieltag $st1: Paarung $i+1 hat den Index $i, ihr Spiel $n+1 den Index $n
-            $lmo_wert_runden[$st1] ??= \Lmo\Tipp\Tipprunde::fuer($lmo_wert_liga, (int)$st1);
+            $lmo_wert_runden[$st1] ??= \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_wert_liga, (int)$st1);
             $lmo_wert_runde = $lmo_wert_runden[$st1];
             // im Pokal zaehlt nur die Auswertung einer einzelnen Runde ($st > 0)
             $lmo_wert_modus = $st == 0 ? 0 : $lmo_wert_runde->spieleJePaarung;
