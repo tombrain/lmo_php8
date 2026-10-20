@@ -1,0 +1,175 @@
+{# Tippuebersicht ueber alle Ligen (UebersichtController), bis 4.5 lmo-tippviewer.php #}
+{% macro pfeil(t, bilder, i, seite, auf, ab, text) %}
+          <td class="nobr" align="center">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'{{ seite }}\',\'{{ i }}\',1);return false;" title="{{ text|raw }}" onMouseOver="lmoimg(\'{{ i }}{{ auf }}\',img1)" onMouseOut="lmoimg(\'{{ i }}{{ auf }}\',img0)"><img src="{{ bilder|raw }}/lmo-admin0.gif" name="ximg{{ i }}{{ auf }}" width="7" height="7" border="0"><\/a>')</script>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'{{ seite }}\',\'{{ i }}\',-1);return false;" title="{{ text|raw }}" onMouseOver="lmoimg(\'{{ i }}{{ ab }}\',img3)" onMouseOut="lmoimg(\'{{ i }}{{ ab }}\',img2)"><img src="{{ bilder|raw }}/lmo-admin2.gif" name="ximg{{ i }}{{ ab }}" width="7" height="7" border="0"><\/a>')</script>
+                </td>
+              </tr>
+            </table>
+          </td>
+{%- endmacro %}
+{% import _self as m %}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ titel }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">{% if tippBis > 0 %}{{ t[87]|raw }} {{ tippBis }} {{ t[88]|raw }}{% endif %}</td>
+  </tr>
+  <tr>
+    <td align="center">{{ t[258]|raw }} {{ vonText }} {{ text[4]|raw }} {{ bisText }}</td>
+  </tr>
+  <tr>
+    <td align="center">
+    <form name="lmoedit" action="{{ adresse }}" method="post">
+      <input type="hidden" name="action" value="tipp">
+      <input type="hidden" name="todo" value="edit">
+      <input type="hidden" name="save" value="1">
+      <input type="hidden" name="viewermode" value="1">
+      <input type="hidden" name="xstart" value="{{ start }}">
+      <input type="hidden" name="xnow" value="{{ von }}">
+      <input type="hidden" name="xthen" value="{{ bis }}">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{%- if zeilen is empty %}
+        <tr>
+          <td align="center" colspan="{{ breite }}">{{ keineSpiele|raw }}</td>
+        </tr>
+{%- endif %}
+{%- for z in zeilen %}
+{%- if z.liga %}
+        <tr>
+          <th align="left" colspan="{{ breite }}">{{ z.titel|raw }}</th>
+        </tr>
+{%- endif %}
+{%- if z.kopf is not null %}
+        <tr>
+          <th align="left" class="nobr" colspan="6">{% if z.kopf.link is not null %}<a href="{{ z.kopf.link|raw }}">{% endif %}{{ z.kopf.name|raw }}{% if z.kopf.link is not null %}</a>{% endif %}{{ z.kopf.datum|raw }}</th>
+{%- if tendenzAbsolut or tendenzProzent %}
+          <th class="nobr" colspan="{% if tendenzAbsolut and tendenzProzent %}4{% else %}2{% endif %}">{{ t[188]|raw }}</th>
+{%- endif %}
+{%- if ergebnismodus %}
+{%- if schnitt %}
+          <th class="nobr" colspan="2">Ø-{{ t[30]|raw }}<br>{{ z.kopf.faktor|raw }}</th>
+{%- endif %}
+          <th class="nobr" align="center" colspan="{% if pfeile %}5{% else %}3{% endif %}">
+            <acronym title="{{ t[241]|raw }}:{{ t[242]|raw }}">{{ t[209]|raw }}</acronym><br>{{ z.kopf.faktor|raw }}</th>
+{%- else %}
+          <th class="nobr" align="center"><acronym title="{{ t[95]|raw }}">1</acronym></th>
+{%- if not z.kopf.ohneUnentschieden %}
+          <th class="nobr" align="center"><acronym title="{{ t[96]|raw }}">0</acronym></th>
+{%- else %}
+          <th>&nbsp;</th>
+{%- endif %}
+          <th class="nobr" align="center"><acronym title="{{ t[97]|raw }}">2</acronym></th>
+{%- endif %}
+{%- if jokertipp %}
+          <th class="nobr" align="center">
+            <acronym title="{{ t[290]|raw }}">{{ t[289]|raw }}</acronym>
+          </th>
+{%- endif %}
+          <th class="nobr" colspan="5" align="center">{{ t[31]|raw }}</th>
+          <th class="nobr" colspan="2" align="right">{{ text[37]|raw }}</th>
+          <th>&nbsp;</th>
+        </tr>
+{%- endif %}
+        <tr>
+          <td class="nobr" align="left">{{ z.anstoss|raw }}</td>
+          <td>&nbsp;</td>
+          <td class="nobr" align="right">{{ z.heim|raw }}</td>
+          <td class="nobr" align="center" width="10">-</td>
+          <td class="nobr" align="left">{{ z.gast|raw }}</td>
+          <td class="nobr">&nbsp;</td>
+{%- if tendenzAbsolut %}
+          <td align="center" class="nobr">{{ z.tendenzAbsolut|raw }}</td>
+          <td class="nobr">&nbsp;</td>
+{%- endif %}
+{%- if tendenzProzent %}
+          <td align="center" class="nobr">{{ z.tendenzProzent|raw }}</td>
+          <td>&nbsp;</td>
+{%- endif %}
+{%- if ergebnismodus %}
+{%- if schnitt %}
+          <td align="center" class="nobr">{{ z.schnitt|raw }}</td>
+          <td>&nbsp;</td>
+{%- endif %}
+{%- if z.aenderbar %}
+          <td class="nobr" align="right">
+              <input class="lmo-formular-input" type="text" name="xtippa{{ z.i }}" size="4" maxlength="4" value="{{ z.tippa }}" onKeyDown="lmotorclk('a','{{ z.i }}',event.keyCode)">
+          </td>
+{%- if pfeile %}{{ m.pfeil(t, bilder, z.i, 'a', 'a', 'b', t[243]) }}{% endif %}
+{%- else %}
+{%- if pfeile %}
+          <td class="nobr">&nbsp;</td>
+{%- endif %}
+          <td class="nobr" align="right">{{ z.tippa }}</td>
+{%- endif %}
+          <td class="nobr" width="2">:</td>
+{%- if z.aenderbar %}
+          <td class="nobr" align="right">
+              <input class="lmo-formular-input" type="text" name="xtippb{{ z.i }}" size="4" maxlength="4" value="{{ z.tippb }}" onKeyDown="lmotorclk('b','{{ z.i }}',event.keyCode)">
+          </td>
+{%- if pfeile %}{{ m.pfeil(t, bilder, z.i, 'b', 'f', 'd', t[244]) }}{% endif %}
+{%- else %}
+          <td class="nobr">{{ z.tippb }}</td>
+{%- if pfeile %}
+          <td class="nobr">&nbsp;</td>
+{%- endif %}
+{%- endif %}
+{%- else %}
+          <td class="nobr" align="center">
+              <input type="radio" name="xtipp{{ z.i }}" value="1"{% if z.tendenz == 1 %} checked{% endif %}{% if not z.aenderbar %} disabled{% endif %}>
+          </td>
+{%- if not z.ohneUnentschieden %}
+          <td class="nobr" align="center">
+              <input type="radio" name="xtipp{{ z.i }}" value="3"{% if z.tendenz == 0 %} checked{% endif %}{% if not z.aenderbar %} disabled{% endif %}>
+          </td>
+{%- else %}
+          <td class="nobr">&nbsp;</td>
+{%- endif %}
+          <td class="nobr" align="center">
+              <input type="radio" name="xtipp{{ z.i }}" value="2"{% if z.tendenz == 2 %} checked{% endif %}{% if not z.aenderbar %} disabled{% endif %}>
+          </td>
+{%- endif %}
+{%- if jokertipp %}
+          <td class="nobr" align="center">
+              <input type="radio" name="{{ z.jokerName }}" value="{{ z.nr }}" {% if z.joker %} checked{% endif %}{% if not z.jokerOffen %} disabled{% endif %}>
+          </td>
+{%- endif %}
+          <td class="lmoBackMarkierung" align="right">{{ z.toreHeim }}</td>
+          <td class="lmoBackMarkierung">:</td>
+          <td class="lmoBackMarkierung" align="left">{{ z.toreGast }}</td>
+          <td class="lmoBackMarkierung"></td>
+          <td class="lmoBackMarkierung">{{ z.zusatz|raw }}</td>
+          <td>&nbsp;</td>
+          <td class="nobr" align="right"><strong>{{ z.punkte|raw }}</strong></td>
+          <td class="nobr" align="left">{{ z.hinweis|raw }}</td>
+        </tr>
+{%- endfor %}
+        <tr>
+          <td colspan="{{ breite }}" align="right">
+{%- if speicherbar %}
+              <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ t[8]|raw }}">
+{%- endif %}</td>
+        </tr>
+      </table>
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="left"><a href="{{ zurueck|raw }}" title="{{ tage }} {{ t[257]|raw }}">{{ text[5]|raw }}</a></td>
+          <td align="right"><a href="{{ weiter|raw }}" title="{{ tage }} {{ t[256]|raw }}">{{ text[7]|raw }}</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

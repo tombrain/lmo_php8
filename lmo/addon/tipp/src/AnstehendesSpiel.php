@@ -9,7 +9,7 @@ namespace Lmo\Addon\Tipp;
  * alle Ligen eines Tippers und fuer die Erinnerungsmail. Jedes Spiel traegt, was die Anzeige von
  * seiner Liga wissen muss, weil in einer Liste Spiele aus mehreren Ligen stehen.
  *
- * Gefuellt wird es von lmo-tippopenfileviewer.php bzw. lmo-tippemailviewer.php aus den Rohdaten
+ * Gefuellt wird es von Tippuebersicht::sammle() bzw. lmo-tippemailviewer.php aus den Rohdaten
  * der Liga (Lmo\Liga\Rohdaten\Liga); die Erinnerungsmail braucht nur einen Teil der Werte.
  */
 final class AnstehendesSpiel
