@@ -29,12 +29,11 @@ if (!defined('PATH_TO_LMO')) {
  * @var int|string $st gewaehlter Spieltag
  * @var string $todo gewaehlte Aktion (Aufrufparameter)
  *
- * Einstellungen:
- * @var int|string $einspieler Einstellung aus cfg.txt
- *
  * Weitere Variablen des einbindenden Codes:
  * @var mixed $addb
  * @var mixed $addr
+ * @var \Lmo\Addon\Addons $lmo_admin_addons Addons der Installation (lmo-adminmain.php)
+ * @var \Lmo\Web\Kontext $lmo_admin_kontext Kontext der Anfrage (lmo-adminmain.php)
  */
 
 ?>
@@ -49,13 +48,14 @@ else {?>
           <td align="center"><?php echo $text[10]; ?></td>
 <?php
 }
-if ($einspieler == 1) {
-    if ($st != -4) {?>
-          <td align="center"><a href='<?php echo $addr; ?>-4' onClick="return chklmolink();" title="<?php echo $text['spieler'][1]; ?>"><?php echo $text['spieler'][18]; ?></a></td>
+// die Punkte der Addons (Lmo\Addon\MitAdminMenue, z. B. "Spielerstatistik" mit st=-4)
+foreach ($lmo_admin_addons->ligaMenue($lmo_admin_kontext) as $lmo_admin_punkt) {
+    if (!$lmo_admin_punkt->aktiv) {?>
+          <td align="center"><a href='<?php echo $addr . $lmo_admin_punkt->ziel; ?>' onClick="return chklmolink();" title="<?php echo $lmo_admin_punkt->titel; ?>"><?php echo $lmo_admin_punkt->name; ?></a></td>
 <?php
     }
     else {?>
-          <td align="center"><?php echo $text['spieler'][18]; ?></td>
+          <td align="center"><?php echo $lmo_admin_punkt->name; ?></td>
 <?php
     }
 }

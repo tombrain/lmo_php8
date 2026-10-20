@@ -2,6 +2,11 @@
 if (!defined('PATH_TO_LMO')) {
     exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
 }
+// die Seiten der Administration des Tippspiels (bis 4.5 setzte die Adressen lmo-adminmain.php)
+$tipp_addr_auswertung = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tipp';
+$tipp_addr_email = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippemail';
+$tipp_addr_user = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippuser';
+$tipp_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippoptions';
 ?><table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td align="center"><?php 

@@ -9,5 +9,6 @@ parameters:
         - lmo/addon/spieler/src
         - lmo/addon/ticker/src
         - lmo/addon/tipp/src
+        - lmo/addon/viewer/src
         - bin/lmo-install
         - lmo/lmo-version.php
