@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 /**
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var list<\Lmo\Tipp\AnstehendesSpiel> $lmo_spiele anstehende Spiele aller Ligen (wird hier ergaenzt)
+ * @var list<\Lmo\Addon\Tipp\AnstehendesSpiel> $lmo_spiele anstehende Spiele aller Ligen (wird hier ergaenzt)
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  *
  * Weitere Variablen des einbindenden Codes:
@@ -82,7 +82,7 @@ if ($file != "") {
             // Nummer des Spiels wie im Schluessel der Datei: Partie, im Pokal gefolgt vom Spiel der Paarung
             $spiel0 = $lmo_pokal ? $lmo_partie_nr.$lmo_spiel_nr : (string)$lmo_partie_nr;
 
-            $lmo_spiel = new \Lmo\Tipp\AnstehendesSpiel();
+            $lmo_spiel = new \Lmo\Addon\Tipp\AnstehendesSpiel();
             $lmo_spiel->titel = $titel0;
             $lmo_spiel->typ = $lmtype0;
             $lmo_spiel->runden = $anzst0;

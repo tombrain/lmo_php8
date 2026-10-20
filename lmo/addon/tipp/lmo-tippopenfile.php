@@ -62,7 +62,7 @@ while (!feof($datei)) {
 fclose($datei);
 
 // der Spieltag aus Sicht des Tippspiels: so viele Paarungen und Spiele je Paarung fassen die Tipps
-$lmo_tipp_lader_runde = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
+$lmo_tipp_lader_runde = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
 if (!$lmo_tipp_lader_runde->pokal) {
   $goaltippa = array_pad(array("_"), $lmo_tipp_lader_runde->plaetze+1, "_");
   $goaltippb = array_pad(array("_"), $lmo_tipp_lader_runde->plaetze+1, "_");
