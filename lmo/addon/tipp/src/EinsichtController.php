@@ -35,20 +35,10 @@ final class EinsichtController implements Controller
 
     public function zeige(Kontext $kontext): Seite
     {
-        $ok = $kontext->sitzung->text('lmotipperok');
-        if ($ok == -5) {
-            // "Kennwort vergessen" ohne Nick (die Mail ging nicht raus): wieder nicht angemeldet
-            $kontext->sitzung->setze('lmotipperok', 0);
-            $ok = '0';
-        }
-        $angemeldet = $ok > 0;
-        if ($angemeldet && $ok != 5) {
-            // angemeldet, aber nicht freigeschaltet: Menue und Ueberschrift ohne Inhalt
-            return new Seite($this->rahmen->html($kontext, ''));
-        }
-        $inhalt = ($kontext->konfiguration->addon('tipp')['tippeinsicht'] ?? '') == 1 ? $this->einsicht($kontext, $angemeldet) : '';
-
-        return new Seite($angemeldet ? $this->rahmen->html($kontext, $inhalt) : $this->rahmen->htmlFuerGaeste($kontext, $inhalt));
+        return new Seite($this->rahmen->auchFuerGaeste(
+            $kontext,
+            fn (bool $angemeldet): string => ($kontext->konfiguration->addon('tipp')['tippeinsicht'] ?? '') == 1 ? $this->einsicht($kontext, $angemeldet) : ''
+        ));
     }
 
     private function einsicht(Kontext $kontext, bool $angemeldet): string

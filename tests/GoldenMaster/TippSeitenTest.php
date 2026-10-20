@@ -184,6 +184,29 @@ final class TippSeitenTest extends TestCase
         $this->assertMatchesSnapshot('tipp-seiten', 'einsicht-gaeste', $t->text());
     }
 
+    /**
+     * Die Tabelle nach den Tipps ohne Anmeldung (lmo-tipptabelle.php): mit den Tipps aller und
+     * eines Tippers ohne Auswertung nach Vereinen, im Tendenz-Modus mit den Punkten in der Mitte.
+     */
+    public function testTabelleOhneAnmeldung(): void
+    {
+        $c = self::client();
+        $path = $c->instance()->path();
+        $cfg = $path . '/config/tipp/cfg.txt';
+        $einstellungen = (string) file_get_contents($cfg);
+        $c->resetChanges();
+        $t = new Transcript();
+
+        $t->add('Alle Tipper', $c->get('lmo.php', 'action=tipp&todo=tabelle&file=1l_2024-25.l98'), $c->changes());
+        $t->add('Ein Tipper ohne Auswertung', $c->get('lmo.php', 'action=tipp&todo=tabelle&file=1l_2024-25.l98&nick=tester&st=26'), $c->changes());
+        file_put_contents($cfg, (string) preg_replace('/^tippmodus=.*$/m', 'tippmodus=0', $einstellungen, 1));
+        $haupt = $path . '/config/cfg.txt';
+        file_put_contents($haupt, (string) preg_replace('/^tabpkt=.*$/m', 'tabpkt=0', (string) file_get_contents($haupt), 1));
+        $t->add('Tendenz-Modus, Punkte in der Mitte', $c->get('lmo.php', 'action=tipp&todo=tabelle&file=1l_2024-25.l98&nick=tester&st=26&tabtype=1'), $c->changes());
+
+        $this->assertMatchesSnapshot('tipp-seiten', 'tabelle-gaeste', $t->text());
+    }
+
     public function testTippregeln(): void
     {
         $c = self::client();

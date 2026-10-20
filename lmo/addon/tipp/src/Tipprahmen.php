@@ -46,6 +46,30 @@ final class Tipprahmen
         ]);
     }
 
+    /**
+     * Eine Seite, die auch Gaeste sehen (Einsicht, Tabelle, Auswertungen): fuer einen angemeldeten
+     * Tipper im Rahmen html(), fuer Gaeste in htmlFuerGaeste(). Ist der Tipper angemeldet, aber
+     * nicht freigeschaltet, bleibt der Rahmen leer (wie bis 4.5 lmo-tippmain.php).
+     *
+     * @param Closure(bool): string $inhalt der Inhalt; bekommt, ob der Tipper angemeldet ist
+     */
+    public function auchFuerGaeste(Kontext $kontext, Closure $inhalt): string
+    {
+        $ok = $kontext->sitzung->text('lmotipperok');
+        if ($ok == -5) {
+            // "Kennwort vergessen" ohne Nick (die Mail ging nicht raus): wieder nicht angemeldet
+            $kontext->sitzung->setze('lmotipperok', 0);
+            $ok = '0';
+        }
+        $angemeldet = $ok > 0;
+        if ($angemeldet && $ok != 5) {
+            // angemeldet, aber nicht freigeschaltet: Menue und Ueberschrift ohne Inhalt
+            return $this->html($kontext, '');
+        }
+
+        return $angemeldet ? $this->html($kontext, $inhalt(true)) : $this->htmlFuerGaeste($kontext, $inhalt(false));
+    }
+
     /** Das Menue des Tippspiels allein (die Anmeldeseite baut ihre Ueberschrift selbst). */
     public function menue(Kontext $kontext): string
     {

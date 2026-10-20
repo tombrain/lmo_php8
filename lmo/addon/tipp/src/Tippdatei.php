@@ -94,6 +94,40 @@ final class Tippdatei
     }
 
     /**
+     * Die Tipps aller Spieltage einer Liga (bis 4.5 lmo-tippopenfileall.php): Spieltag (ab 0) =>
+     * Paarung (ab 0) => Tore Heim und Gast. Ein leerer Tipp oder -1 ist KEIN_TIPP, andere Werte
+     * bleiben, wie sie in der Datei stehen; fehlende Tipps fehlen auch hier.
+     *
+     * @return array<int, array<int, array{0: string, 1: string}>>
+     */
+    public function alleRunden(): array
+    {
+        $tipps = [];
+        $abschnitt = '';
+        foreach ($this->zeilen as $zeile) {
+            if (str_starts_with($zeile, '@') && str_ends_with($zeile, '@')) {
+                continue;
+            }
+            if (str_starts_with($zeile, '[') && str_ends_with($zeile, ']')) {
+                $abschnitt = trim(substr($zeile, 1, -1));
+            } elseif (str_contains($zeile, '=') && !str_starts_with($zeile, ';') && substr($abschnitt, 0, 5) == 'Round') {
+                $schluessel = trim(substr($zeile, 0, (int) strpos($zeile, '=')));
+                $seite = substr($schluessel, 0, 2) == 'GA' ? 0 : (substr($schluessel, 0, 2) == 'GB' ? 1 : null);
+                if ($seite === null) {
+                    continue;
+                }
+                $wert = trim(substr($zeile, (int) strpos($zeile, '=') + 1));
+                $runde = (int) substr($abschnitt, 5) - 1;
+                $paarung = (int) substr($schluessel, 2) - 1;
+                $tipps[$runde][$paarung] ??= [self::KEIN_TIPP, self::KEIN_TIPP];
+                $tipps[$runde][$paarung][$seite] = $wert == '' || $wert == '-1' ? self::KEIN_TIPP : $wert;
+            }
+        }
+
+        return $tipps;
+    }
+
+    /**
      * Dieselbe Datei mit neuen Tipps fuer einen Spieltag: Sein Abschnitt kommt ans Ende, die
      * anderen bleiben, wie sie sind.
      *
