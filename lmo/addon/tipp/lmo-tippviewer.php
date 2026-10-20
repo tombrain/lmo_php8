@@ -133,7 +133,7 @@ if ($tipp_viewertipp == 1 && $viewermode == 1) {
         $start1 = 0;
         $start2 = 0;
         for ($i = 0; $i < $anzspiele; $i++) {
-            $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag);
+            $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
             if ($btip == true) {
                 if ($tipp_jokertipp == 1 && isset($_POST['xjokerspiel_' . $liga[$i] . '_' . $spieltag[$i]])) {
                     $jksp[$i] = trim($_POST['xjokerspiel_' . $liga[$i] . '_' . $spieltag[$i]]);
@@ -435,7 +435,7 @@ if ($tipp_viewertipp == 1 && $viewermode == 1) {
 <?php
         }
         $plus = 1;
-        $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag);
+        $btip = tippaenderbar($lmo_spiele[$i]->anstoss, $lmo_spiele[$i]->ersterTag, $lmo_spiele[$i]->letzterTag, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
         if ($btip == true) {
             $savebutton = 1;
         }
