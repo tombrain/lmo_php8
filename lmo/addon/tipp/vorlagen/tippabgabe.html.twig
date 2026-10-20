@@ -1,0 +1,79 @@
+{#- Tippabgabe eines Spieltags (Lmo\Addon\Tipp\TippabgabeController). Texte, Namen, Zahlen und Notizen sind fertiges HTML; die Tipps werden maskiert. -#}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ tipper|raw }}</caption>
+  <tr>
+    <td align="center">{{ spieltagsmenue|raw }}</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form name="lmoedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="edit">
+        <input type="hidden" name="save" value="1">
+        <input type="hidden" name="file" value="{{ datei }}">
+        <input type="hidden" name="st" value="{{ st }}">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <th class="nobr" align="left" colspan="{{ zeit + 5 }}">{{ rundenname|raw }}{% if ersterTag != '' %} {{ text[3]|raw }} {{ ersterTag }}{% endif %}{% if letzterTag != '' %} {{ text[4]|raw }} {{ letzterTag }}{% endif %}
+            </th>
+{% if cfg.showtendenzabs == 1 or cfg.showtendenzpro == 1 %}
+            <th class="nobr" align="center" colspan="{{ cfg.showtendenzabs == 1 and cfg.showtendenzpro == 1 ? 4 : 2 }}">
+{{ t[188]|raw }}
+            </th>
+{% endif %}
+{% if cfg.tippmodus == 1 %}
+{% if cfg.showdurchschntipp == 1 %}
+            <th class="nobr" align="center" colspan="2">
+            Ø-{{ t[30]|raw }}
+            </th>
+{% endif %}
+            <th class="nobr" align="center" colspan="{{ cfg.pfeiltipp == 1 ? 5 : 3 }}">
+              <acronym title="{{ t[241]|raw }}:{{ t[242]|raw }}">{{ t[209]|raw }}</acronym><br>{{ faktortext|raw }}
+            </th>
+{% endif %}
+{% if cfg.tippmodus == 0 %}
+            <th class="nobr" align="center"><acronym title="{{ t[95]|raw }}">1</acronym></th>
+{% if not ohneRemis %}
+            <th class="nobr" align="center"><acronym title="{{ t[96]|raw }}">0</acronym></th>
+{% endif %}
+            <th class="nobr" align="center"><acronym title="{{ t[97]|raw }}">2</acronym></th>
+{% endif %}
+{% if cfg.jokertipp == 1 %}
+            <th class="nobr" align="center"><acronym title="{{ t[290]|raw }}">{{ t[289]|raw }}</acronym></th>
+{% endif %}
+            <th class="nobr" colspan="3" align="center">{{ t[31]|raw }}</th>
+{% if mitVerlaengerung %}
+            <th colspan="2">&nbsp;</th>
+{% endif %}
+            <th class="nobr" colspan="2" align="right">{{ text[37]|raw }}</th>
+            <th>&nbsp;</th>
+          </tr>
+{% for z in zeilen %}
+{% if pokal %}{% include 'tippabgabe_pokal.html.twig' %}{% else %}{% include 'tippabgabe_liga.html.twig' %}{% endif %}
+{% endfor %}
+          <tr>
+            <td colspan="{{ zeit * 2 + 10 - ohneRemis }}" align="right">{% if gesperrt %}{{ t[177]|raw }}{% endif %}
+{%- if speichern %}
+              <input class="lmo-formular-button" type="submit" title="{{ text[114]|raw }}" name="best" value="{{ t[8]|raw }}"{% if gesperrt %} disabled{% endif %}>{% else %}&nbsp;{% endif %}
+            </td>
+            <td class="lmoFrontMarkierung" colspan="{{ breite - zeit - 9 }}" align="right">{{ text[37]|raw }} {{ (pokal ? rundenname : text[2])|raw }}: {{ punkteSpieltag }}
+            </td>
+          </tr>
+          <tr>
+            <td class="lmoFooter" colspan="{{ breite }}" align="center">{% if cfg.tippBis > 0 %}{{ t[87]|raw }} {{ cfg.tippBis }} {{ t[88]|raw }}{% endif %}</td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+{%- if zurueck %}
+    <td align='left'>&nbsp;<a href="{{ zurueck|raw }}" title="{{ text[6]|raw }}">{{ text[5]|raw }} {{ text[6]|raw }}</a>&nbsp;</td>
+{%- endif %}
+{%- if weiter %}
+    <td align="right">&nbsp;<a href="{{ weiter|raw }}" title="{{ text[8]|raw }}">{{ text[8]|raw }} {{ text[7]|raw }}</a>&nbsp;</td>
+{%- endif %}
+  </tr>
+</table>
