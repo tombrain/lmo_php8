@@ -80,7 +80,7 @@ if ($file!="") {
         for ($i=0; $i<$lmo_tipp_anzsp; $i++) {
             if (!$lmo_tipp_pokal) {
                 $plus=0;
-                $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+                $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
                 if ($btip==true) {
                     if ($tipp_tippmodus==1) {
                         $goaltippa[$i]=trim($_POST["xtippa".$i]);
@@ -127,7 +127,7 @@ if ($file!="") {
             } else {
                 for ($n=0; $n<$lmo_tipp_modus; $n++) {
                     $plus=0;
-                    $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+                    $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
                     if ($btip==true) {
                         if ($tipp_tippmodus==1) {
                             $goaltippa[$i][$n]=trim($_POST["xtippa".$i.$n]);
@@ -314,7 +314,7 @@ if ($file!="") {
     if (!$lmo_tipp_pokal) {
         $btip = array_pad($array,$lmo_tipp_anzsp+1,"false");
         for ($i=0; $i<$lmo_tipp_anzsp; $i++) {
-            $btip[$i]=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+            $btip[$i]=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
             if ($tipp_jokertipp==1 && $jksp==($i+1) && $btip[$i]==false) {
                 $tipp_jokertippaktiv=false;
             }
@@ -324,7 +324,7 @@ if ($file!="") {
         for ($i=0; $i<$lmo_tipp_anzsp; $i++) {
             $btip[$i] = array_pad(array("false"),$lmo_tipp_modus+1,"false");
             for ($n=0; $n<$lmo_tipp_modus; $n++) {
-                $btip[$i][$n]=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
+                $btip[$i][$n]=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
                 if ($tipp_jokertipp==1 && $jksp==($i+1).($n+1) && $btip[$i][$n]==false) {
                     $tipp_jokertippaktiv=false;
                 }
