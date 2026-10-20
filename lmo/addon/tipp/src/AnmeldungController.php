@@ -73,7 +73,7 @@ final class AnmeldungController implements Controller
 
         // anmelden
         $ok = $sitzung->text('lmotipperok');
-        if ($ok < 1 && $ok > -4 && $anfrage->hat('xtippername') && $anfrage->hat('xtipperpass')) {
+        if (self::nichtAngemeldet($ok) && $anfrage->hat('xtippername') && $anfrage->hat('xtipperpass')) {
             $nick = $anfrage->text('xtippername');
             $kennwort = $anfrage->text('xtipperpass');
             $sitzung->setze('lmotippername', $nick);
@@ -126,7 +126,7 @@ final class AnmeldungController implements Controller
             // angemeldet, aber nicht freigeschaltet: Menue und Ueberschrift ohne Inhalt
             return new Seite($this->rahmen->html($kontext, ''));
         }
-        if (!($ok < 1 && $ok > -4)) {
+        if (!self::nichtAngemeldet($ok)) {
             // die Mail mit dem neuen Kennwort ging nicht raus: nur die Meldung
             return new Seite($meldungen);
         }
@@ -152,6 +152,15 @@ final class AnmeldungController implements Controller
             'ligen' => $ligen,
             'wertungen' => Tippligen::wertungen($kontext, $ligen, $this->ordner . '/' . ($kontext->konfiguration->addon('tipp')['dirtipp'] ?? 'tipps/')),
         ]));
+    }
+
+    /**
+     * Zeigt der Stand die Anmeldeseite (und darf man sich anmelden)? 0 bis -3 und '' (in der Datei
+     * noch nicht freigeschaltet; bis 4.5 lag '' nach PHP 8 ausserhalb und die Seite blieb leer).
+     */
+    private static function nichtAngemeldet(string $ok): bool
+    {
+        return $ok === '' || ($ok < 1 && $ok > -4);
     }
 
     private function datei(Kontext $kontext): Tipperdatei
