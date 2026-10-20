@@ -28,6 +28,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var string $file Ligadatei relativ zum Ligenordner, leer wenn keine geladen ist
  * @var int|string $st gewaehlter Spieltag
  * @var array<int|string, mixed> $array leeres Array als Vorlage fuer array_pad()
+ * @var string $tippfile Tippdatei des Tippers fuer diese Liga (lmo-tippmain.php)
  *
  * Einstellungen:
  * @var int|string $tipp_akteinsicht Einstellung aus tipp/cfg.txt
@@ -68,113 +69,35 @@ if ($file!="") {
     $lmo_tipp_anzsp = $lmo_tipprunde->plaetze;
     $lmo_tipp_paarungen = $lmo_tipprunde->paarungen;
 
-    if (!isset($_POST['save'])) {
-        $save=0;
-    } else {
-        $save=1;
-    }
-    if ($save==1) {
-        if ($tipp_jokertipp==1) {
-        $jksp=isset($_POST["xjokerspiel"])?trim($_POST["xjokerspiel"]):"";
-        }
-        for ($i=0; $i<$lmo_tipp_anzsp; $i++) {
+    if (isset($_POST['save'])) {
+        // die Tipps aus dem Formular (Lmo\Addon\Tipp\Tippabgabe): nur Spiele, die noch getippt werden
+        // koennen, uebernehmen die Eingabe; der Joker bleibt auf einem Spiel, das nicht mehr geht
+        $lmo_bisher = \Lmo\Addon\Tipp\Tippdatei::lies($tippfile)->runde((int)$st, $lmo_tipp_anzsp, $lmo_tipp_pokal ? $lmo_tipp_modus : null);
+        $lmo_abgabe = \Lmo\Addon\Tipp\Tippabgabe::aus(
+            \Lmo\Web\Anfrage::ausGlobalen(),
+            $lmo_tipprunde,
+            $lmo_bisher['tipps'],
+            $lmo_bisher['joker'],
+            (int)$tipp_tippmodus,
+            $tipp_jokertipp == 1,
+            function (int $anstoss) use ($lmo_tipp_datum1, $lmo_tipp_datum2, $st, $lmo_liga): bool {
+                return tippaenderbar($anstoss, $lmo_tipp_datum1, $lmo_tipp_datum2, $st, $lmo_liga, 0);
+            }
+        );
+        foreach ($lmo_abgabe->tipps as $i => $lmo_tipp) {
             if (!$lmo_tipp_pokal) {
-                $plus=0;
-                $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[0]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
-                if ($btip==true) {
-                    if ($tipp_tippmodus==1) {
-                        $goaltippa[$i]=trim($_POST["xtippa".$i]);
-                        $goaltippb[$i]=trim($_POST["xtippb".$i]);
-
-                        if ($goaltippa[$i]=="" || $goaltippa[$i]<0 || $goaltippa[$i]=="_") {
-                            $goaltippa[$i]=-1;
-                            $goaltippb[$i]=-1;
-                        } else {
-                            $goaltippa[$i]=intval(trim($goaltippa[$i]));
-                            if ($goaltippa[$i]=="") {
-                                $goaltippa[$i]="0";
-                            }
-                        }
-
-                        if ($goaltippb[$i]=="" || $goaltippb[$i]<0 || $goaltippb[$i]=="_") {
-                            $goaltippa[$i]=-1;
-                            $goaltippb[$i]=-1;
-                        } else {
-                            $goaltippb[$i]=intval(trim($goaltippb[$i]));
-                            if ($goaltippb[$i]=="") {
-                                $goaltippb[$i]="0";
-                            }
-                        }
-                    } elseif ($tipp_tippmodus==0) {
-                        if (!isset($_POST["xtipp".$i])) {
-                            $_POST["xtipp".$i]=0;
-                        }
-                        if ($_POST["xtipp".$i]==1) {
-                            $goaltippa[$i]="1";
-                            $goaltippb[$i]="0";
-                        } elseif ($_POST["xtipp".$i]==2) {
-                            $goaltippa[$i]="0";
-                            $goaltippb[$i]="1";
-                        } elseif ($_POST["xtipp".$i]==3) {
-                            $goaltippa[$i]="0";
-                            $goaltippb[$i]="0";
-                        } else {
-                            $goaltippa[$i]="-1";
-                            $goaltippb[$i]="-1";
-                        }
-                    }
-                }
+                $goaltippa[$i] = $lmo_tipp[0];
+                $goaltippb[$i] = $lmo_tipp[1];
             } else {
-                for ($n=0; $n<$lmo_tipp_modus; $n++) {
-                    $plus=0;
-                    $btip=tippaenderbar((int)$lmo_tipp_paarungen[$i]->spiele[$n]->anstoss,$lmo_tipp_datum1,$lmo_tipp_datum2, $st, $lmo_liga, $plus);
-                    if ($btip==true) {
-                        if ($tipp_tippmodus==1) {
-                            $goaltippa[$i][$n]=trim($_POST["xtippa".$i.$n]);
-                            $goaltippb[$i][$n]=trim($_POST["xtippb".$i.$n]);
-
-                            if ($goaltippa[$i][$n]=="" || $goaltippa[$i][$n]<0 || $goaltippa[$i][$n]=="_") {
-                                $goaltippa[$i][$n]=-1;
-                                $goaltippb[$i][$n]=-1;
-                            } else {
-                                $goaltippa[$i][$n]=intval(trim($goaltippa[$i][$n]));
-                                if ($goaltippa[$i][$n]=="") {
-                                    $goaltippa[$i][$n]="0";
-                                }
-                            }
-                            if ($goaltippb[$i][$n]=="" || $goaltippb[$i][$n]<0 || $goaltippb[$i][$n]=="_") {
-                                $goaltippa[$i][$n]=-1;
-                                $goaltippb[$i][$n]=-1;
-                            } else {
-                                $goaltippb[$i][$n]=intval(trim($goaltippb[$i][$n]));
-                                if ($goaltippb[$i][$n]=="") {
-                                    $goaltippb[$i][$n]="0";
-                                }
-                            }
-                        } elseif ($tipp_tippmodus==0) {
-                            if (!isset($_POST["xtipp".$i.$n])) {
-                                $_POST["xtipp".$i.$n]=0;
-                            }
-                            if ($_POST["xtipp".$i.$n]==1) {
-                                $goaltippa[$i][$n]="1";
-                                $goaltippb[$i][$n]="0";
-                            } elseif ($_POST["xtipp".$i.$n]==2) {
-                                $goaltippa[$i][$n]="0";
-                                $goaltippb[$i][$n]="1";
-                            } elseif ($_POST["xtipp".$i.$n]==3) {
-                                $goaltippa[$i][$n]="0";
-                                $goaltippb[$i][$n]="0";
-                            } else {
-                                $goaltippa[$i][$n]="-1";
-                                $goaltippb[$i][$n]="-1";
-                            }
-                        }
-                    }
+                foreach ($lmo_tipp as $n => $lmo_spiel) {
+                    $goaltippa[$i][$n] = $lmo_spiel[0];
+                    $goaltippb[$i][$n] = $lmo_spiel[1];
                 }
             }
         }
-        if ($tipp_jokertipp==1) {
-            require(PATH_TO_ADDONDIR."/tipp/lmo-tippjokeranticheat.php");
+        if ($tipp_jokertipp == 1) {
+            $jksp = $lmo_abgabe->joker;
+            $jkspanticheat = $lmo_abgabe->jokerGesperrt;
         }
         require(PATH_TO_ADDONDIR."/tipp/lmo-tippsavefile.php");
         if ($tipp_akteinsicht==1) {

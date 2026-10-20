@@ -44,80 +44,23 @@ if ($file != "" && $st > 0 && $_SESSION['lmotippername'] != "") {
   $einsichtfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."einsicht/".substr($file, 0, -4)."_".$st.".ein";
   //if (decoct(fileperms($einsichtfile))!=100777){chmod ($einsichtfile, 0777);}
   if (substr($einsichtfile, -4) == ".ein") {
-    $daten = array("");
-    if (file_exists($einsichtfile)) {
-      $datei = fopen($einsichtfile, "rb");
-      while (!feof($datei)) {
-        $zeile = fgets($datei, 1000);
-        $zeile = trim(chop($zeile));
-        if ($zeile != "") {
-          array_push($daten, $zeile);
+    // die Einsicht hat das Format der Tippdatei, mit einem Abschnitt je Tipper (Lmo\Addon\Tipp\Tippdatei);
+    // nur die unveraenderten Tipps werden zurueckgeschrieben, die getippten am Ende dazu
+    $lmo_tipps = array();
+    for ($j = 0; $j < $lmo_tipprunde->plaetze; $j++) {
+      if (!$lmo_tipprunde->pokal) {
+        $lmo_tipps[$j] = array($goaltippa[$j], $goaltippb[$j]);
+      } else {
+        for ($n = 0; $n < $lmo_tipprunde->spieleJePaarung; $n++) {
+          $lmo_tipps[$j][$n] = array($goaltippa[$j][$n], $goaltippb[$j][$n]);
         }
       }
-      fclose($datei);
     }
-     
-    $datei = fopen($einsichtfile, "wb");
-    if (!$datei) {
+    $lmo_einsicht = \Lmo\Addon\Tipp\Tippdatei::lies($einsichtfile)->mitAbschnitt($_SESSION['lmotippername'], $lmo_tipps, $tipp_jokertipp == 1 ? (string)$jksp : null, $lmo_tipprunde->pokal);
+    if (!$lmo_einsicht->speichere($einsichtfile)) {
       echo getMessage($text[283],true);
       exit;
-    } else {
-      //echo getMessage($text['tipp'][41]);
     }
-    flock($datei, 2);
-     
-    $nick = "";
-    for ($i = 0; $i < count($daten); $i++) {
-      if ((substr($daten[$i], 0, 1) == "[") && (substr($daten[$i], -1) == "]")) {
-        $nick = substr($daten[$i], 1, -1);
-      }
-      if ($nick != $_SESSION['lmotippername']) {
-        //////////// nur die unveränderten Tipps werden zurückgeschrieben
-        fputs($datei, $daten[$i]."\n");
-      }
-    }
-     
-    fputs($datei, "\n[".$_SESSION['lmotippername']."]\n"); // am Ende getippte dazu schreiben
-    if ($tipp_jokertipp == 1) {
-      fputs($datei, "@".$jksp."@\n");
-    }
-    for ($j = 1; $j <= $lmo_tipprunde->plaetze; $j++) {
-      if (!$lmo_tipprunde->pokal) {
-        if ($goaltippa[$j-1] == "_") {
-          fputs($datei, "GA".$j."=-1\n");
-        } elseif ($goaltippa[$j-1] == "") {
-          fputs($datei, "GA".$j."=-1\n");
-        } else {
-          fputs($datei, "GA".$j."=".$goaltippa[$j-1]."\n");
-        }
-        if ($goaltippb[$j-1] == "_") {
-          fputs($datei, "GB".$j."=-1\n");
-        } elseif ($goaltippb[$j-1] == "") {
-          fputs($datei, "GB".$j."=-1\n");
-        } else {
-          fputs($datei, "GB".$j."=".$goaltippb[$j-1]."\n");
-        }
-      } else {
-        for ($n = 1; $n <= $lmo_tipprunde->spieleJePaarung; $n++) {
-          if ($goaltippa[$j-1][$n-1] == "_") {
-            fputs($datei, "GA".$j.$n."=-1\n");
-          } elseif ($goaltippa[$j-1][$n-1] == "") {
-            fputs($datei, "GA".$j.$n."=-1\n");
-          } else {
-            fputs($datei, "GA".$j.$n."=".$goaltippa[$j-1][$n-1]."\n");
-          }
-          if ($goaltippb[$j-1][$n-1] == "_") {
-            fputs($datei, "GB".$j.$n."=-1\n");
-          } elseif ($goaltippb[$j-1][$n-1] == "") {
-            fputs($datei, "GB".$j.$n."=-1\n");
-          } else {
-            fputs($datei, "GB".$j.$n."=".$goaltippb[$j-1][$n-1]."\n");
-          }
-        }
-      }
-    }
-    flock($datei, 3);
-    fclose($datei);
   }
    
   clearstatcache();

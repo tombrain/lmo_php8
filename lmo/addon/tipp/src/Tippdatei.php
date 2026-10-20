@@ -8,6 +8,9 @@ namespace Lmo\Addon\Tipp;
  * Die Tipps eines Tippers fuer eine Liga (addon/tipp/tipps/<liga>_<nick>.tip): je Spieltag ein
  * Abschnitt [RoundN] mit dem Joker (@Spiel@) und den Tipps GA<Paarung>/GB<Paarung>, im Pokal
  * GA<Paarung><Spiel>. Bis 4.5 lmo-tippopenfile.php (lesen) und lmo-tippsavefile.php (schreiben).
+ *
+ * Dasselbe Format hat die Einsicht eines Spieltags (tipps/einsicht/<liga>_<st>.ein), dort mit
+ * einem Abschnitt [<nick>] je Tipper (bis 4.5 lmo-tippsaveeinsicht1.php).
  */
 final class Tippdatei
 {
@@ -99,17 +102,28 @@ final class Tippdatei
      */
     public function mitRunde(int $runde, array $tipps, ?string $joker, bool $pokal): self
     {
+        return $this->mitAbschnitt('Round' . $runde, $tipps, $joker, $pokal);
+    }
+
+    /**
+     * Dieselbe Datei mit neuem Abschnitt (Spieltag "RoundN" oder in der Einsicht der Nick des Tippers)
+     * am Ende; die anderen Abschnitte bleiben, wie sie sind.
+     *
+     * @param array<int, mixed> $tipps wie mitRunde()
+     */
+    public function mitAbschnitt(string $name, array $tipps, ?string $joker, bool $pokal): self
+    {
         $zeilen = [];
-        $abschnitt = 0;
+        $abschnitt = '';
         foreach ($this->zeilen as $zeile) {
             if (str_starts_with($zeile, '[') && str_ends_with($zeile, ']')) {
-                $abschnitt = (int) substr($zeile, 6, -1);
+                $abschnitt = substr($zeile, 1, -1);
             }
-            if ($abschnitt != $runde) {
+            if ($abschnitt != $name) {
                 $zeilen[] = $zeile;
             }
         }
-        $zeilen[] = '[Round' . $runde . ']';
+        $zeilen[] = '[' . $name . ']';
         if ($joker !== null) {
             $zeilen[] = '@' . $joker . '@';
         }
