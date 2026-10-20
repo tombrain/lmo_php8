@@ -12,8 +12,11 @@ namespace Lmo\Addon\Tipp;
  */
 final class Einsichtstatistik
 {
-    /** @param array<int|string, array{t1: int, t0: int, t2: int, a: int|float, b: int|float, anz: int}> $spiele Spiel (i bzw. im Pokal "i-n", ab 0) => Zahlen */
-    private function __construct(private array $spiele)
+    /**
+     * @param array<int|string, array{t1: int, t0: int, t2: int, a: int|float, b: int|float, anz: int}> $spiele Spiel (i bzw. im Pokal "i-n", ab 0) => Zahlen
+     * @param list<array{nick: string, joker: string, tipps: array<int|string, array{0: string, 1: string}>}> $tipper die Tipper in der Reihenfolge der Datei
+     */
+    private function __construct(private array $spiele, private array $tipper)
     {
     }
 
@@ -26,17 +29,23 @@ final class Einsichtstatistik
         $spiele = [];
         $tipper = null;
         $heim = [];
+        $alle = [];
+        // der Joker gilt im Abschnitt des Tippers ab seiner @-Zeile, sonst -1
+        $joker = '-1';
         foreach (file($pfad) ?: [] as $zeile) {
             $zeile = trim($zeile);
             if (str_starts_with($zeile, '@') && str_ends_with($zeile, '@')) {
+                $joker = trim(substr($zeile, 1, -1));
                 continue;
             }
             if (str_starts_with($zeile, '[') && str_ends_with($zeile, ']')) {
                 $abschnitt = trim(substr($zeile, 1, -1));
+                $joker = '-1';
                 if ($abschnitt !== $tipper) {
                     // ein neuer Tipper: seine Heimtore sind noch nicht getippt
                     $tipper = $abschnitt;
                     $heim = [];
+                    $alle[] = ['nick' => $abschnitt, 'joker' => '', 'tipps' => []];
                 }
                 continue;
             }
@@ -49,6 +58,12 @@ final class Einsichtstatistik
                 ? ((int) substr($schluessel, 2, -1) - 1) . '-' . ((int) substr($schluessel, -1) - 1)
                 : (string) ((int) substr($schluessel, 2) - 1);
             $zahlen = $spiele[$spiel] ?? ['t1' => 0, 't0' => 0, 't2' => 0, 'a' => 0, 'b' => 0, 'anz' => 0];
+            $letzter = array_key_last($alle);
+            if ($letzter !== null && in_array(substr($schluessel, 0, 2), ['GA', 'GB'], true)) {
+                $alle[$letzter]['joker'] = $joker;
+                $alle[$letzter]['tipps'][$spiel] ??= [Tippdatei::KEIN_TIPP, Tippdatei::KEIN_TIPP];
+                $alle[$letzter]['tipps'][$spiel][substr($schluessel, 0, 2) == 'GA' ? 0 : 1] = $wert;
+            }
             if (substr($schluessel, 0, 2) == 'GA') {
                 $heim[$spiel] = $wert;
                 if (is_numeric($wert) && $wert > 0) {
@@ -74,7 +89,18 @@ final class Einsichtstatistik
             $spiele[$spiel] = $zahlen;
         }
 
-        return new self($spiele);
+        return new self($spiele, $alle);
+    }
+
+    /**
+     * Die Tipper mit ihren Tipps (Spiel wie in spiel(): "i" bzw. "i-n" => [Heim, Gast] wie in der
+     * Datei, KEIN_TIPP fehlt er) und ihrem Joker (-1 ohne), in der Reihenfolge der Datei.
+     *
+     * @return list<array{nick: string, joker: string, tipps: array<int|string, array{0: string, 1: string}>}>
+     */
+    public function tipper(): array
+    {
+        return $this->tipper;
     }
 
     /**

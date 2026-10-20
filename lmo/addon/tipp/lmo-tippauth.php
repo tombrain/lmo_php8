@@ -122,8 +122,6 @@ if ($action == 'tipp') {
 
         if (($todo == 'wert' && $all != 1) || $todo == 'fieber' || $todo == 'edit') {
             require(PATH_TO_LMO . '/lmo-openfilename.php');
-        } elseif ($todo == 'einsicht') {
-            require(PATH_TO_LMO . '/lmo-openfile.php');
         } elseif ($todo == 'tabelle') {
             require_once(PATH_TO_LMO . '/lmo-openfile.php');
         }
@@ -146,7 +144,6 @@ if ($action == 'tipp') {
     <td colspan="3" align="center"><?php
         if ($todo == 'wert') {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippwert.php');}
         elseif ($todo == 'fieber') {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippfieber.php');}
-        elseif ($todo == 'einsicht') {require(PATH_TO_ADDONDIR . '/tipp/lmo-tippeinsicht.php');}
         elseif ($todo == 'tabelle') {require(PATH_TO_ADDONDIR . '/tipp/lmo-tipptabelle.php');}
         elseif ($todo == 'info') {require(PATH_TO_LMO . '/lmo-showinfo.php');}
         else { ?>

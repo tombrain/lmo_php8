@@ -1,0 +1,45 @@
+{# Einsicht eines Spieltags (EinsichtController), bis 4.5 lmo-tippeinsicht.php #}
+{% macro seitenauswahl(t, auswahl, zeilen, start, link, oben) %}
+  <tr>
+    <td align="center">
+      <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+        <tr><td align="right" valign="top" rowspan="{{ zeilen }}">{{ t[164]|raw }}&nbsp;</td>
+{%- for seite in auswahl -%}
+  {%- if seite.von != start -%}
+    {%- if oben %}<td class='nobr' align='center'>{% else %}<td class='nobr'>{% endif %}<a href="{{ link|raw }}{{ seite.von }}">
+  {%- else -%}
+    {%- if oben %}<td align='center' class="nobr">{% else %}<td class="nobr">{% endif -%}
+  {%- endif -%}
+  {{ seite.name }}{% if seite.von != start %}</a>{% endif %}&nbsp;</td>{% if seite.umbruch %}</tr><tr>{% endif %}
+{%- endfor %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+{%- endmacro %}
+{% import _self as m %}
+
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ titel|raw }}</caption>{% if einsichterst >= 1 %}
+  <tr>
+    <td class="lmoFrontMarkierung">{{ hinweis|raw }}</td>
+  </tr>{% endif %}
+  <tr>
+    <td align="center">{{ spieltagsmenue|raw }}
+    </td>
+  </tr>{% if seiten > 1 %}{{ m.seitenauswahl(t, auswahl, zeilenAuswahl, start, seitenlink, true) }}{% endif %}
+  <tr>
+    <td class="lmoKreuz" align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{%- for zeile in zeilen %}
+        <tr>
+          <th align="right" class="nobr">{{ zeile.th|raw }}
+          </th>{% for zelle in zeile.zellen %}
+          {{ zelle|raw }}{% endfor %}
+          {{ zeile.ende|raw }}
+        </tr>
+{%- endfor %}
+      </table>
+    </td>
+  </tr>{% if seiten > 1 and seiten < 11 %}{{ m.seitenauswahl(t, auswahl, zeilenAuswahl, start, seitenlink, false) }}{% endif %}
+</table>
