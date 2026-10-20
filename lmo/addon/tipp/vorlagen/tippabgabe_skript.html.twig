@@ -1,0 +1,43 @@
+{#- Skript der Tippabgabe (Pfeile und Pfeiltasten fuer die Tore), bis 4.5 in lmo-tippmain.php vor dem Menue. -#}
+<script type="text/javascript">{% if pfeile %}
+    img0 = new Image();
+    img0.src = "{{ bilder|raw }}/lmo-admin0.gif";
+    img1 = new Image();
+    img1.src = "{{ bilder|raw }}/lmo-admin1.gif";
+    img2 = new Image();
+    img2.src = "{{ bilder|raw }}/lmo-admin2.gif";
+    img3 = new Image();
+    img3.src = "{{ bilder|raw }}/lmo-admin3.gif";
+    function lmoimg(x,y){
+      document.getElementsByName("ximg"+x)[0].src = y.src;
+    }{% endif %}
+  function lmotorclk(x,y,z){
+    if (document.all && !window.opera){
+      if (z==38){lmotorauf(x,y,1);}
+      if (z==40){lmotorauf(x,y,-1);}
+    }
+  }
+
+  function lmotorauf(x,y,z){
+    if (x=="a"){xx="b";}
+    if (x=="b"){xx="a";}
+    var a=document.getElementsByName("xtipp"+x+y)[0].value;
+    if (a==""){a="-1";}
+    if (a=="_"){a="-1";}
+    var aa=document.getElementsByName("xtipp"+xx+y)[0].value;
+    if (aa==""){aa="-1";}
+    if (aa=="_"){aa="-1";}
+    var ab=aa;
+    if (isNaN(a)==true){a=0;} else {a=parseInt(a);}
+    if ((z==1) && (a<9999)){a++;}
+    if ((z==-1) && (a>-1)){a--;}
+    if ((a>-1) && (aa<0)){aa=0;}
+    if ((a<0) && (aa>-1)){aa=-1;}
+    if (a==-1){a="";}
+    document.getElementsByName("xtipp"+x+y)[0].value=a;
+    if (ab!=aa){
+      if (aa==-1){aa="";}
+      document.getElementsByName("xtipp"+xx+y)[0].value=aa;
+    } 
+  }
+</script>

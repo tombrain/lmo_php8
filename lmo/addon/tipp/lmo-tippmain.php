@@ -144,7 +144,6 @@ if ($action == "tipp") {
       require(PATH_TO_ADDONDIR."/tipp/lmo-tippviewer.php");
     } else {
       switch ($todo) {
-        case "edit":       require(PATH_TO_ADDONDIR."/tipp/lmo-tippedit.php");break;
         case "einsicht":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippeinsicht.php");break;
         case "tabelle":    require(PATH_TO_ADDONDIR."/tipp/lmo-tipptabelle.php");break;
         case "fieber":     require(PATH_TO_ADDONDIR."/tipp/lmo-tippfieber.php");break;

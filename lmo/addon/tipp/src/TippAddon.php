@@ -50,6 +50,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
         return [
             new RegistrierungController($this->ordner, $freischaltmail, $this->adminmail ?? static fn (string $nick): string => ''),
             new KontoController($this->ordner, $rahmen, $freischaltmail),
+            new TippabgabeController($this->ordner, $rahmen),
             $startseite,
             new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
             new class ($alterCode) implements Controller {

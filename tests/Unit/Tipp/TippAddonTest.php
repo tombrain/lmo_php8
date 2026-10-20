@@ -42,7 +42,7 @@ class TippAddonTest extends TestCase
         });
         $alle = $addon->controller();
         self::assertSame(
-            [\Lmo\Addon\Tipp\RegistrierungController::class, \Lmo\Addon\Tipp\KontoController::class, \Lmo\Addon\Tipp\StartseiteController::class, \Lmo\Addon\Tipp\AnmeldungController::class],
+            [\Lmo\Addon\Tipp\RegistrierungController::class, \Lmo\Addon\Tipp\KontoController::class, \Lmo\Addon\Tipp\TippabgabeController::class, \Lmo\Addon\Tipp\StartseiteController::class, \Lmo\Addon\Tipp\AnmeldungController::class],
             array_map('get_class', array_slice($alle, 0, -1)),
             'erst die umgebauten Seiten, zuletzt der alte Code'
         );
