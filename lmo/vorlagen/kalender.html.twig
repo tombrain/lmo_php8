@@ -43,7 +43,7 @@
       <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
 {#- je Halbjahr eine Zeile mit den Monaten und eine mit ihren Spieltagen #}
 {%- for halbjahr in monate %}
-<tr>{% for m in halbjahr %}<th width="70" ><a href="{{ link|raw }}{{ m.nr }}{{ titel }}" title="{{ text[172]|raw }}">{{ text[159 + m.index]|raw }}</a></th></td>{% endfor %}</tr><tr><td valign='top' height="150">{% for m in halbjahr %}{% if not loop.first %}</td><td valign='top' >{% endif %}{{ m.links|raw }}<br>{% endfor %}</tr>
+<tr>{% for m in halbjahr %}<th width="70" ><a href="{{ link|raw }}{{ m.nr }}{{ titel }}" title="{{ text[172]|raw }}">{{ text[159 + m.index]|raw }}</a></th>{% endfor %}</tr><tr><td valign='top' height="150">{% for m in halbjahr %}{% if not loop.first %}</td><td valign='top' >{% endif %}{{ m.links|raw }}<br>{% endfor %}</td></tr>
 {%- endfor %}
 {% endif %}
       </table>

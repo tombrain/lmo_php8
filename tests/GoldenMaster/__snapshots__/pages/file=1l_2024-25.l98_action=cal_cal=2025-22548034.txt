@@ -49,27 +49,21 @@
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=012025" title="zur Ansicht dieses Monats wechseln">Januar</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=022025" title="zur Ansicht dieses Monats wechseln">Februar</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=032025" title="zur Ansicht dieses Monats wechseln">März</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=042025" title="zur Ansicht dieses Monats wechseln">April</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=052025" title="zur Ansicht dieses Monats wechseln">Mai</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=062025" title="zur Ansicht dieses Monats wechseln">Juni</a>
 </th>
-</td>
 </tr>
 <tr>
 <td valign='top' height="150">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="16. Spieltag: &#10;RB Leipzig - Werder Bremen, &#10;Borussia Dortmund - Bayer 04 Leverkusen, &#10;TSG Hoffenheim - VfL Wolfsburg, &#10;1.FC Heidenheim - 1.FC Union Berlin, &#10;SC Freiburg - Holstein Kiel, &#10;FC Augsburg - VfB Stuttgart, &#10;FSV Mainz 05 - VfL Bochum, &#10;Borussia M&#039;gladbach - Bayern München, &#10;FC St. Pauli - Eintracht Frankfurt">16. ST</a>
@@ -108,32 +102,27 @@
 </td>
 <td valign='top'>
 <br>
+</td>
 </tr>
 <tr>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=072025" title="zur Ansicht dieses Monats wechseln">Juli</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=082025" title="zur Ansicht dieses Monats wechseln">August</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=092025" title="zur Ansicht dieses Monats wechseln">September</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=102025" title="zur Ansicht dieses Monats wechseln">Oktober</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=112025" title="zur Ansicht dieses Monats wechseln">November</a>
 </th>
-</td>
 <th width="70">
 <a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=122025" title="zur Ansicht dieses Monats wechseln">Dezember</a>
 </th>
-</td>
 </tr>
 <tr>
 <td valign='top' height="150">
@@ -153,6 +142,7 @@
 </td>
 <td valign='top'>
 <br>
+</td>
 </tr>
 </table>
 </td>
