@@ -1,0 +1,42 @@
+{#- Startseite eines angemeldeten Tippers (Lmo\Addon\Tipp\StartseiteController). Texte, Namen und Links sind fertiges HTML. -#}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ tipper|raw }}<br>{{ t[237]|raw }}</caption>
+  <tr>
+    <th align="left">{{ t[3]|raw }}:</th>
+  </tr>
+  <tr>
+    <td align="left"><ul>
+{%- if tippen %}{% for liga in ligen %}<li><a href="{{ adda|raw }}edit&amp;file={{ liga.datei|raw }}">{{ liga.name|raw }}</a>{% if liga.getippt is not null %}<br><small>{{ t[138]|raw }} {{ liga.getippt|raw }}</small>{% endif %}</li>{% endfor %}{% endif %}
+{%- if ligen is empty %}<li>[{{ t[22]|raw }}]</li>{% elseif viewer is not null %}<li><a href="{{ adda|raw }}edit&amp;file=&amp;viewermode=1"><strong>{{ t[252]|raw }} {{ viewer|raw }} {{ t[171]|raw }}</strong></a></li>{% endif -%}
+    </ul></td>
+  </tr>
+  <tr>
+    <th align="left">{{ t[4]|raw }}</th>
+  </tr>
+  <tr>
+    <td class="nobr" align="left">
+      <ul>
+{% for wertung in wertungen %}
+        <li>
+          <a href="{{ adda|raw }}wert&amp;file={{ wertung.link|raw }}">{% if wertung.gesamt %}<strong>{{ wertung.name|raw }}</strong>{% else %}{{ wertung.name|raw }}{% endif %}</a>{% if wertung.stand is not null %}<br><small>{{ t[83]|raw }}: {{ wertung.stand }}</small>{% endif %}
+        </li>
+{% endfor %}
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th align="left">{{ t[145]|raw }}:</th>
+  </tr>
+  <tr>
+    <td class="nobr" align="left">
+      <ul>
+        <li class="lmoadminli"><a href='{{ adda|raw }}newligen'>{{ t[5]|raw }}</a></li>
+        <li class="lmoadminli"><a href='{{ adda|raw }}delligen'>{{ t[266]|raw }}</a></li>
+        <li class="lmoadminli"><a href='{{ adda|raw }}daten'>{{ t[106]|raw }}{% if team %} / {{ t[2]|raw }}{% endif %}</a></li>
+        <li class="lmoadminli"><a href='{{ adda|raw }}pwchange'>{{ t[107]|raw }}</a></li>
+        <li class="lmoadminli"><a href='{{ adda|raw }}delaccount'>{{ t[6]|raw }}</a></li>
+        <li class="lmoadminli"><a href='{{ adda|raw }}logout'>{{ t[7]|raw }}</a></li>
+      </ul>
+    </td>
+  </tr>
+</table>

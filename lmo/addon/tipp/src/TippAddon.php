@@ -42,7 +42,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
 
-        return [new KontoController($this->ordner, $rahmen, $freischaltmail), new class ($alterCode) implements Controller {
+        return [new KontoController($this->ordner, $rahmen, $freischaltmail), new StartseiteController($this->ordner, $rahmen), new class ($alterCode) implements Controller {
             /** @param Closure(): void $alterCode */
             public function __construct(private Closure $alterCode)
             {
