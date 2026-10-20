@@ -127,8 +127,9 @@ if (($action == "tipp") && ($todo == "daten")) {
     }
     $xtipperpass=$tipp_tipper_daten[1];
     if ($tipp_freischaltcode!=1 && $xtipperemail!=$tipp_tipper_daten[4]) {
-      $tipp_tipper_daten[1]=substr(md5(uniqid(rand())),0,rand(8,16));
-      $xtipperpass=$tipp_tipper_daten[1];
+      // neue E-Mail-Adresse: neues Kennwort, das die Freischaltmail nennt; gespeichert wird nur sein Hash
+      $xtipperpass=bin2hex(random_bytes(6));
+      $tipp_tipper_daten[1]=password_hash($xtipperpass, defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT);
     }
   }
    
