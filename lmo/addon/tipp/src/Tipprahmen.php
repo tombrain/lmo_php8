@@ -109,7 +109,9 @@ final class Tipprahmen
         return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'menue.html.twig', [
             'text' => $text,
             't' => $t,
-            'uebersicht' => $todo != '' ? $kontext->adresse . '?action=tipp' : null,
+            // in der Tippuebersicht (viewermode, ohne Datei) wie bis 4.5 ohne Link: lmo-tippmain.php
+            // setzte todo ohne Datei zurueck
+            'uebersicht' => $todo != '' && !($anfrage->gesetzt('viewermode') && $datei == '') ? $kontext->adresse . '?action=tipp' : null,
             'punkte' => $punkte,
             'regeln' => ($cfg['regeln'] ?? '') == 1 ? ($this->regeln)($cfg['regelnlink'] ?? '') : null,
             'abmelden' => $adda . 'logout',

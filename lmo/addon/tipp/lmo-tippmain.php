@@ -135,13 +135,7 @@ if ($action == "tipp") {
     if ($file != "" && $viewermode != 1) {
       $tippfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.substr($file, 0, -4)."_".$_SESSION['lmotippername'].".tip";
     }
-    if ($viewermode == 1) {
-      require(PATH_TO_ADDONDIR."/tipp/lmo-tippviewer.php");
-    } else {
-      switch ($todo) {
-        default:           require(PATH_TO_ADDONDIR."/tipp/lmo-tipppad.php");break;
-      }
-    }
+    require(PATH_TO_ADDONDIR."/tipp/lmo-tipppad.php");
   }
   ?>
     </td>

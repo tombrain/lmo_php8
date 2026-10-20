@@ -128,6 +128,47 @@ L98;
         $this->assertMatchesSnapshot('tipp', 'viewer_logged_in', self::ohneUhrzeit($t->text()));
     }
 
+    /**
+     * Die Tippuebersicht im Detail: Tendenzen aus der Einsicht anderer Tipper, Joker und Tipps
+     * speichern samt Einsichtsdateien, der Tendenz-Tippmodus ohne Pfeile, Joker und Statistik, und
+     * ein Zeitraum ohne Spiele.
+     */
+    public function testUebersichtImDetail(): void
+    {
+        $c = self::client();
+        $path = $c->instance()->path();
+        $tipps = $path . '/addon/tipp/tipps/';
+        @mkdir($tipps . 'einsicht', 0777, true);
+        file_put_contents($tipps . 'einsicht/1l_2024-25_26.ein', "[anna]\nGA1=1\nGB1=1\nGA2=3\nGB2=0\n\n[bert]\n@2@\nGA1=2\nGB1=0\nGA2=1\nGB2=2\n");
+        file_put_contents($tipps . 'einsicht/tipppokal_1.ein', "[tester]\nGA11=1\nGB11=1\n\n[anna]\nGA11=0\nGB11=2\n");
+        $c->post('lmo.php', '', ['action' => 'tipp', 'xtippername' => 'tester', 'xtipperpass' => 'geheim']);
+        $c->resetChanges();
+        $t = new Transcript();
+        $uebersicht = 'action=tipp&todo=edit&file=&viewermode=1';
+
+        $t->add('Mit Tendenzen anderer Tipper', $c->get('lmo.php', $uebersicht), $c->changes());
+        $t->add('Joker, Tipps und ein geloeschter Tipp speichern', $c->submitFromLast('xtippa0', [
+            'xtippa0' => '', 'xtippb0' => '', 'xtippa1' => '2', 'xtippb1' => '2', 'xjokerspiel_1l_2024-25_26' => '2', 'xtippa10' => '1', 'xtippb10' => '0',
+        ]), $c->changes());
+        foreach (['1l_2024-25_26', 'tipppokal_1'] as $einsicht) {
+            $datei = $tipps . 'einsicht/' . $einsicht . '.ein';
+            $t->add('Einsicht ' . $einsicht, is_file($datei) ? str_replace("\r\n", "\n", (string) file_get_contents($datei)) : '(keine)', '');
+        }
+
+        $cfg = $path . '/config/tipp/cfg.txt';
+        $einstellungen = (string) file_get_contents($cfg);
+        foreach (['tippmodus' => '0', 'pfeiltipp' => '0', 'jokertipp' => '0', 'showtendenzabs' => '0', 'showtendenzpro' => '0', 'showdurchschntipp' => '0', 'tippeinsicht' => '0'] as $name => $wert) {
+            $einstellungen = (string) preg_replace('/^' . $name . '=.*$/m', $name . '=' . $wert, $einstellungen, 1);
+        }
+        file_put_contents($cfg, $einstellungen);
+        $c->resetChanges();
+        $t->add('Tendenz-Modus', $c->get('lmo.php', $uebersicht), $c->changes());
+        $t->add('Tendenzen speichern', $c->submitFromLast('xtipp0', ['xtipp0' => '2', 'xtipp1' => '3', 'xtipp9' => '1']), $c->changes());
+        $t->add('Ohne Spiele im Zeitraum', $c->get('lmo.php', $uebersicht . '&start=100'), $c->changes());
+
+        $this->assertMatchesSnapshot('tipp', 'viewer_detail', self::ohneUhrzeit($t->text()));
+    }
+
     public function testTippingASingleRoundOfLeagueAndCup(): void
     {
         $c = self::client();

@@ -1,7 +1,7 @@
 <?php
 
-// Bindet einen der beiden Lader ein, mit denen das Tippspiel die Spiele mehrerer Ligen sammelt
-// (lmo-tippopenfileviewer.php, lmo-tippemailviewer.php), ohne den Rest des LMO zu starten.
+// Bindet den Lader ein, mit dem das Tippspiel fuer die Erinnerungsmail die Spiele mehrerer Ligen
+// sammelt (lmo-tippemailviewer.php), ohne den Rest des LMO zu starten.
 // Der einbindende Test setzt $testLader; zurueck kommt, was der Lader gesammelt hat.
 
 /**
@@ -40,12 +40,7 @@ $lmo_spiele = [];
 // Ligenordner relativ zum LMO, wie in der Konfiguration
 $dirliga = '../tests/Unit/Tipp/fixtures/';
 chdir(PATH_TO_LMO);
-if ($testLader === 'lmo-tippopenfileviewer.php') {
-    $file = 'tippliga.l98';
-    $tippfile = __DIR__ . '/tippliga_tester.tip';
-} else {
-    $file = $dirliga . 'tippliga.l98';
-}
+$file = $dirliga . 'tippliga.l98';
 
 require PATH_TO_ADDONDIR . '/tipp/' . $testLader;
 

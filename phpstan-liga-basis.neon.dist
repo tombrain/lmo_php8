@@ -28,9 +28,7 @@ parameters:
         - lmo/addon/tipp/lmo-tippnewdir.php
         - lmo/addon/tipp/lmo-tippopenfile.php
         - lmo/addon/tipp/lmo-tippopenfileall.php
-        - lmo/addon/tipp/lmo-tippopenfileviewer.php
         - lmo/addon/tipp/lmo-tippsavewert.php
-        - lmo/addon/tipp/lmo-tippviewer.php
         - lmo/lmo-adminedit.php
         - lmo/lmo-adminrndprogram.php
         - lmo/lmo-adminrounds.php
