@@ -80,6 +80,12 @@ final class Tipprahmen
         $t = $kontext->texteVon('tipp');
         $todo = $anfrage->text('todo');
         $datei = $anfrage->text('file');
+        // die Seiten einer Liga ohne geladene Liga (auch die Tippuebersicht, todo=edit ohne Datei)
+        // zeigen die Startseite; wie bis 4.5 lmo-tippmain.php ohne todo und ohne Datei
+        if ($liga === null && in_array($todo, ['edit', 'einsicht', 'tabelle', 'wert', 'fieber'], true) && !($todo == 'wert' && $anfrage->text('all') == 1)) {
+            $todo = '';
+            $datei = '';
+        }
         $adda = $kontext->adresse . '?action=tipp&amp;todo=';
         $st = $anfrage->gesetzt('st') ? $anfrage->text('st') : ($liga !== null ? (string) $liga->liga->einstellungen()->aktuellerSpieltag() : '');
         $endtab = $anfrage->gesetzt('endtab') ? $anfrage->text('endtab') : '0';
@@ -109,9 +115,7 @@ final class Tipprahmen
         return Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', 'menue.html.twig', [
             'text' => $text,
             't' => $t,
-            // in der Tippuebersicht (viewermode, ohne Datei) wie bis 4.5 ohne Link: lmo-tippmain.php
-            // setzte todo ohne Datei zurueck
-            'uebersicht' => $todo != '' && !($anfrage->gesetzt('viewermode') && $datei == '') ? $kontext->adresse . '?action=tipp' : null,
+            'uebersicht' => $todo != '' ? $kontext->adresse . '?action=tipp' : null,
             'punkte' => $punkte,
             'regeln' => ($cfg['regeln'] ?? '') == 1 ? ($this->regeln)($cfg['regelnlink'] ?? '') : null,
             'abmelden' => $adda . 'logout',

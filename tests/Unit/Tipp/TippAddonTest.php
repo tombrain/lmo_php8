@@ -15,7 +15,7 @@ use Lmo\Web\Pfade;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Das Tippspiel als Addon: die Seite ueber den alten Code und der Menuepunkt.
+ * Das Tippspiel als Addon: seine Controller und der Menuepunkt.
  */
 class TippAddonTest extends TestCase
 {
@@ -35,31 +35,27 @@ class TippAddonTest extends TestCase
         );
     }
 
-    public function testSeiteUeberDenAltenCode(): void
+    public function testControllerReihenfolge(): void
     {
-        $addon = new TippAddon(static function (): void {
-            echo '<p>alter Code</p>';
-        });
+        $addon = new TippAddon();
         $alle = $addon->controller();
         self::assertSame(
             [\Lmo\Addon\Tipp\RegistrierungController::class, \Lmo\Addon\Tipp\KontoController::class, \Lmo\Addon\Tipp\UebersichtController::class, \Lmo\Addon\Tipp\TippabgabeController::class, \Lmo\Addon\Tipp\EinsichtController::class, \Lmo\Addon\Tipp\TabelleController::class, \Lmo\Addon\Tipp\RanglisteController::class, \Lmo\Addon\Tipp\FieberkurveController::class, \Lmo\Addon\Tipp\InfoController::class, \Lmo\Addon\Tipp\StartseiteController::class, \Lmo\Addon\Tipp\AnmeldungController::class],
-            array_map('get_class', array_slice($alle, 0, -1)),
-            'erst die umgebauten Seiten, zuletzt der alte Code'
+            array_map('get_class', $alle),
+            'zuletzt die Anmeldung, die auch alle uebrigen Seiten zeigt'
         );
-        $controller = $alle[count($alle) - 1];
+        $letzter = $alle[count($alle) - 1];
         $an = ['eintippspiel' => '1'];
 
         self::assertSame('tipp', $addon->name());
-        self::assertTrue($controller->zustaendig(self::kontext('tipp', null, $an)));
-        self::assertFalse($controller->zustaendig(self::kontext('tipp', null, ['eintippspiel' => '0'])), 'Tippspiel abgeschaltet');
-        self::assertFalse($controller->zustaendig(self::kontext('table', 'x.l98', $an)));
-        self::assertSame('<p>alter Code</p>', $controller->zeige(self::kontext('tipp', null, $an))->html, 'Ausgabe des alten Codes als Seite');
+        self::assertTrue($letzter->zustaendig(self::kontext('tipp', null, $an)));
+        self::assertFalse($letzter->zustaendig(self::kontext('tipp', null, ['eintippspiel' => '0'])), 'Tippspiel abgeschaltet');
+        self::assertFalse($letzter->zustaendig(self::kontext('table', 'x.l98', $an)));
     }
 
     public function testMenuepunkt(): void
     {
-        $addon = new TippAddon(static function (): void {
-        });
+        $addon = new TippAddon();
         $immer = ['eintippspiel' => '1', 'tipp' => ['immeralle' => '1', 'ligenzutippen' => '']];
         $auswahl = ['eintippspiel' => '1', 'tipp' => ['immeralle' => '0', 'ligenzutippen' => 'bula,cup']];
 
