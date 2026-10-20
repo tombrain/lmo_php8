@@ -81,11 +81,11 @@ for ($ia = 1; $ia <= count($tippdaten); $ia++) {
       $jkspanticheat = false;
     } elseif ($jkspanti > 0) {
       if (!$lmo_tipprunde->pokal) {
-        $btip = tippaenderbar((int)($lmo_tipprunde->paarungen[$jkspanti-1]->spiele[0]->anstoss ?? 0), $lmo_tipprunde->ersterTag, $lmo_tipprunde->letzterTag);
+        $btip = tippaenderbar((int)($lmo_tipprunde->paarungen[$jkspanti-1]->spiele[0]->anstoss ?? 0), $lmo_tipprunde->ersterTag, $lmo_tipprunde->letzterTag, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
       } else {
         $jkspanti1 = substr($jkspanti, 0, -1);
         $n1 = substr($jkspanti, -1);
-        $btip = tippaenderbar((int)($lmo_tipprunde->paarungen[(int)$jkspanti1-1]->spiele[(int)$n1-1]->anstoss ?? 0), $lmo_tipprunde->ersterTag, $lmo_tipprunde->letzterTag);
+        $btip = tippaenderbar((int)($lmo_tipprunde->paarungen[(int)$jkspanti1-1]->spiele[(int)$n1-1]->anstoss ?? 0), $lmo_tipprunde->ersterTag, $lmo_tipprunde->letzterTag, $st ?? null, $lmo_liga ?? null, $plus ?? 0);
       }
       if ($btip == false) {
         $jksp = $jkspanti;
