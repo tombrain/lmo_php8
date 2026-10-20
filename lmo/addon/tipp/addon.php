@@ -65,4 +65,19 @@ return new \Lmo\Addon\Tipp\TippAddon(static function (): void {
     ob_start();
     include(__DIR__ . '/' . $lmo_tipp_regeln);
     return (string)ob_get_clean();
+}, static function (string $xtipperemail, string $xtippernick, string $xtipperpass): string {
+    // die Freischaltmail (Nick und Kennwort): noch der alte Code, mit den Einstellungen aus dem globalen Bereich
+    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
+        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && !in_array($lmo_tipp_name, array('xtipperemail', 'xtippernick', 'xtipperpass'), true)) {
+            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
+        }
+    }
+    unset($lmo_tipp_name);
+    // lmo-tipptest.php bricht ohne diese Konstante ab; bisher definierte sie lmo-tippstart.php
+    if (!defined('LMO_TIPPAUTH')) {
+        define('LMO_TIPPAUTH', 1);
+    }
+    ob_start();
+    include(__DIR__ . '/lmo-admintippfreischaltung.php');
+    return (string)ob_get_clean();
 });

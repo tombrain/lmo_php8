@@ -22,6 +22,9 @@ class KontoControllerTest extends TestCase
 {
     private string $ordner;
 
+    /** @var list<array{string, string, string}> verschickte Freischaltmails: E-Mail-Adresse, Nick, Kennwort */
+    private array $mails = [];
+
     protected function setUp(): void
     {
         $this->ordner = sys_get_temp_dir() . '/lmo-tipp-' . bin2hex(random_bytes(4));
@@ -39,6 +42,46 @@ class KontoControllerTest extends TestCase
         rmdir($this->ordner . '/tipps');
         array_map('unlink', glob($this->ordner . '/*') ?: []);
         rmdir($this->ordner);
+    }
+
+    public function testPersoenlicheDaten(): void
+    {
+        $mit = ['realname' => '1', 'adresse' => '1', 'tipperimteam' => '2'];
+        $formular = $this->controller()->zeige($this->kontext(['todo' => 'daten'], tipp: $mit))->html;
+        self::assertStringContainsString('name="xtippervorname" size="25" maxlength="32" value="Tina"', $formular);
+        self::assertStringContainsString('name="xtippernachname" size="25" maxlength="32" value="Test"', $formular);
+        self::assertStringContainsString('<option value="Eins" selected>Eins [1]</option>', $formular, 'Verein mit Zahl seiner Tipper');
+        self::assertStringContainsString('name="xtippervereinradio" value="1" checked>', $formular);
+        self::assertStringContainsString('name="xnews" value="1" checked>', $formular);
+
+        $daten = ['todo' => 'daten', 'newpage' => '1', 'xtippervorname' => 'Tina', 'xtippernachname' => 'Test', 'xtipperstrasse' => 'Weg 1',
+            'xtipperplz' => '12345', 'xtipperort' => 'Ort', 'xtipperemail' => 't@example.org', 'xtippervereinradio' => '1', 'xtippervereinalt' => 'Eins', 'xremind' => '1'];
+        $fehler = $this->controller()->zeige($this->kontext(['xtippervorname' => 'Ti na', 'xtipperemail' => 'kaputt', 'xtippervereinradio' => '2', 'xtippervereinneu' => 'Eins'] + $daten, tipp: $mit))->html;
+        self::assertStringContainsString('> T109</p>', $fehler, 'Leerzeichen im Namen');
+        self::assertStringContainsString('> T68</p>', $fehler, 'E-Mail-Adresse');
+        self::assertStringContainsString('> T143</p>', $fehler, 'den Verein gibt es schon');
+        self::assertStringContainsString('> T142</p>', $this->controller()->zeige($this->kontext($daten, tipp: ['tipperimteam' => '1'] + $mit))->html, 'Verein voll');
+
+        $sitzung = new Sitzung(['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']);
+        $html = $this->controller()->zeige($this->kontext(['xtipperemail' => 'neu@example.org', 'xtippervereinradio' => '2', 'xtippervereinneu' => 'Zwei'] + $daten, $sitzung, $mit))->html;
+        self::assertStringContainsString('> T138</p>[Mail an neu@example.org]', $html, 'gespeichert, dann die Freischaltmail');
+        self::assertSame('Zwei', $sitzung->text('lmotipperverein'));
+        $tipper = Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('tester');
+        self::assertNotNull($tipper);
+        self::assertStringEndsWith('|5|Tina Test|neu@example.org|Zwei|Weg 1|12345|Ort|-1|1|EOL', $tipper->zeile());
+        self::assertSame([['neu@example.org', 'tester', $this->mails[0][2]]], $this->mails);
+        self::assertTrue($tipper->pruefeKennwort($this->mails[0][2]), 'neues Kennwort aus der Mail, gespeichert als Hash');
+    }
+
+    public function testDatenOhneNamensfelder(): void
+    {
+        $html = $this->controller()->zeige($this->kontext(['todo' => 'daten', 'newpage' => '1', 'xtipperemail' => 't@example.org']))->html;
+
+        self::assertStringContainsString('> T138</p>', $html);
+        self::assertSame([], $this->mails, 'gleiche E-Mail-Adresse: keine Mail');
+        $tipper = Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('tester');
+        self::assertStringEndsWith('|5|Tina Test|t@example.org|||||-1|-1|EOL', (string) $tipper?->zeile(), 'Name bleibt; ohne Vereinswahl kein Verein');
+        self::assertTrue($tipper?->pruefeKennwort('geheim'));
     }
 
     public function testKontoLoeschen(): void
@@ -64,8 +107,9 @@ class KontoControllerTest extends TestCase
     /**
      * @param array<string, string> $parameter
      * @param array<string, mixed>|Sitzung $sitzung
+     * @param array<string, string> $tipp abweichende Einstellungen des Tippspiels
      */
-    private function kontext(array $parameter, array|Sitzung $sitzung = ['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins']): Kontext
+    private function kontext(array $parameter, array|Sitzung $sitzung = ['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => 'Eins'], array $tipp = []): Kontext
     {
         $texte = [];
         for ($i = 0; $i <= 400; $i++) {
@@ -76,7 +120,7 @@ class KontoControllerTest extends TestCase
             new Anfrage($parameter + ['action' => 'tipp']),
             'tipp',
             null,
-            new Konfiguration(['eintippspiel' => '1', 'tipp' => ['tippauthtxt' => 'auth.txt', 'dirtipp' => 'tipps/', 'regeln' => '0']]),
+            new Konfiguration(['eintippspiel' => '1', 'tipp' => $tipp + ['tippauthtxt' => 'auth.txt', 'dirtipp' => 'tipps/', 'regeln' => '0', 'realname' => '0', 'adresse' => '0', 'tipperimteam' => '-1', 'freischaltcode' => '0']]),
             $texte,
             '/lmo.php',
             new Pfade('/lmo', '', 'IMG'),
@@ -88,7 +132,11 @@ class KontoControllerTest extends TestCase
 
     private function controller(): KontoController
     {
-        return new KontoController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        return new KontoController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''), function (string $email, string $nick, string $kennwort): string {
+            $this->mails[] = [$email, $nick, $kennwort];
+
+            return '[Mail an ' . $email . ']';
+        });
     }
 
     public function testZustaendig(): void
@@ -96,7 +144,7 @@ class KontoControllerTest extends TestCase
         $c = $this->controller();
 
         self::assertTrue($c->zustaendig($this->kontext(['todo' => 'pwchange'])));
-        self::assertFalse($c->zustaendig($this->kontext(['todo' => 'daten'])), 'andere Seite');
+        self::assertFalse($c->zustaendig($this->kontext(['todo' => 'newligen'])), 'andere Seite');
         self::assertFalse($c->zustaendig($this->kontext(['todo' => 'pwchange'], ['lmotipperok' => '0'])), 'nicht angemeldet');
         self::assertFalse($c->zustaendig($this->kontext(['todo' => 'pwchange', 'viewermode' => '1'])));
     }

@@ -67,7 +67,8 @@ final class Tipper
         return new self(array_values($felder));
     }
 
-    private function feld(int $nr): string
+    /** Ein Feld der Zeile nach seiner Nummer (0 = Nick); '' fehlt es. */
+    public function feld(int $nr): string
     {
         return $this->felder[$nr] ?? '';
     }

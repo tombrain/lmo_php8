@@ -149,7 +149,6 @@ if ($action == "tipp") {
         case "tabelle":    require(PATH_TO_ADDONDIR."/tipp/lmo-tipptabelle.php");break;
         case "fieber":     require(PATH_TO_ADDONDIR."/tipp/lmo-tippfieber.php");break;
         case "wert":       require(PATH_TO_ADDONDIR."/tipp/lmo-tippwert.php");break;
-        case "daten":      require(PATH_TO_ADDONDIR."/tipp/lmo-tippdaten.php");break;
         case "newligen":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippnewligen.php");break;
         case "delligen":   require(PATH_TO_ADDONDIR."/tipp/lmo-tippdelligen.php");break;
         case "info":       require(PATH_TO_LMO."/lmo-showinfo.php");break;
