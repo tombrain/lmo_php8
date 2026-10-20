@@ -58,142 +58,55 @@ if ($action == 'admin') {
 
     $warning = (int)0;
     if (version_compare(PHP_VERSION, $min_php_version, '<')) echo getMessage('This LMO requires a web server with PHP ' . $min_php_version . ' or higher installed.<br>Your web server does not currently support this because your PHP version is:: <mark>' . PHP_VERSION . '</mark>', $warning = $warning + 1, true);
-?>
-<script type="text/javascript" src="<?php echo URL_TO_LMO;?>/js/admin.js.php"></script>
-<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
-  <tr>
-    <td colspan="2" align="center"><h1><?php echo $text[77] . ' ' . $text[54];?></h1></td>
-  </tr>
-  <tr>
-    <td class="lmoMenu" align="left">
-<?php
-    require_once(PATH_TO_LMO . '/lmo-openfile.php');
-    if ($_SESSION['lmouserok'] == 2) {
-        if ($todo != 'new') {
-            echo '      <a href="' . $adda . 'new&amp;newpage=' . $newpage . '" onclick="return chklmolink();" title="' . $text[79] . '">' . $text[78] . '</a>';
-        } else {
-            echo '      ' . $text[78];
-        }
-        echo '&nbsp;' . "\n";
-        if ($todo != 'open') {
-            echo '      <a href="' . $adda . 'open&amp;subdir=' . $subdir . '" onclick="return chklmolink();" title="' . $text[81] . '">' . $text[80] . '</a>';
-        } else {
-            echo '      ' . $text[80];
-        }
-        echo '&nbsp;' . "\n";
-        if ($todo != 'delete') {
-            echo '      <a href="' . $adda . 'delete" onclick="return chklmolink();" title="' . $text[83] . '">' . $text[82] . '</a>';
-        } else {
-            echo '      ' . $text[82];
-        }
-        echo '&nbsp;' . "\n";
-        if ($file != '') {
-            if (($todo != 'edit') && ($todo != 'tabs')) {
-                echo '      <a href="' . $adda . 'edit&amp;file=' . $file . '" onclick="return chklmolink();" title="' . $text[91] . '">' . $text[90] . '</a>';
-            } else {
-                echo '      ' . $text[90];
-            }
-            echo '&nbsp;' . "\n";
-        }
-        if ($todo != 'upload') {
-            echo '      <a href="' . $adda . 'upload" onclick="return chklmolink();" title="' . $text[85] . '">' . $text[84] . '</a>';
-        } else {
-            echo '      ' . $text[84];
-        }
-        echo '&nbsp;' . "\n";
-        if ($todo != 'download') {
-            echo '      <a href="' . $adda . 'download" onclick="return chklmolink();" title="' . $text[315] . '">' . $text[314] . '</a>';
-        } else {
-            echo '      ' . $text[314];
-        }
-        echo '&nbsp;' . "\n";
-        if (($todo != 'options') && ($todo != 'addons') && ($todo != 'user') && ($todo != 'design')) {
-            echo '      <a href="' . $adda . 'options" onclick="return chklmolink();" title="' . $text[87] . '">' . $text[86] . '</a>';
-        } else {
-            echo '      ' . $text[86];
-        }
-        echo '&nbsp;' . "\n";
-        /*Tippspiel-Addon*/
-        if ($eintippspiel == 1) {
-            if (($todo != 'tipp') && ($todo != 'tippemail') && ($todo != 'tippuser') && ($todo != 'tippuseredit') && ($todo != 'tippoptions')) {
-                echo '      <a href="' . $adda . 'tipp" onclick="return chklmolink();" title="' . $text['tipp'][57] . '">' . $text['tipp'][0] . '</a>';
-            } else {
-                echo '      ' . $text['tipp'][0];
-            }
-        }
-        /*Tippspiel-Addon*/
-        /*Viewer-Addon*/
-        echo '&nbsp;' . "\n";
-        if (($todo != 'vieweroptions')) {
-            echo '      <a href="' . $adda . 'vieweroptions" onclick="return chklmolink();" title="' . $text['viewer'][21] . '">' . $text['viewer'][20] . '</a>';
-        } else {
-            echo '      ' . $text['viewer'][20];
-        }
-        /*Viewer-Addon*/
-        /*PDF-Addon*/
-        if (file_exists(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php')) {
-            echo '&nbsp;' . "\n";
-            if (($todo != 'pdfoptions')) {
-                echo '      <a href="' . $adda . 'pdfoptions" onclick="return chklmolink();" title="' . $text['pdf'][201] . '">' . $text['pdf'][200] . '</a>';
-            } else {
-                echo '      ' . $text['pdf'][200];
-            }
-        }
-        /*PDF-Addon*/
-    } elseif ($_SESSION['lmouserok'] == 1) {
-        if ($todo != 'open') {
-            echo '      <a href="' . $adda . 'open" onclick="return chklmolink();" title="' . $text[81] . '">' . $text[80] . '</a>';
-        } else {
-            echo '      ' . $text[80];
-        }
-        echo '&nbsp;' . "\n";
-        if ($file != '') {
-            if (($todo != 'edit') && ($todo != 'tabs')) {
-                echo '      <a href="' . $adda . 'edit&amp;file=' . $file . '" onclick="return chklmolink();" title="' . $text[91] . '">' . $text[90] . '</a>';
-            } else {
-                echo '      ' . $text[90];
-            }
-            echo '&nbsp;' . "\n";
-        }
-        if ($todo != 'download') {
-            echo '      <a href="' . $adda . 'download" onclick="return chklmolink();" title="' . $text[315] . '">' . $text[314] . '</a>';
-        } else {
-            echo '      ' . $text[314];
-        }
-    }?>
 
-    </td>
-    <td class="lmoMenu" align="right">
-<?php
-    if ($_SESSION['lmouserok'] == 2 && lmo_is_newer($new_lmo_version, $lmo_version)) {
-        echo '      <a href="' . $adda . 'update" onclick="return chklmolink();" class="lmopUpdate" title="' . $text[590] . '">' . $text[593] . '</a>' . "\n";
-        echo '&nbsp;' . "\n";
+    // die Liga laden; was dabei ausgegeben wird, stand bis 4.5 vorn in der Menuezeile
+    ob_start();
+    require_once(PATH_TO_LMO . '/lmo-openfile.php');
+    $lmo_admin_lademeldung = (string)ob_get_clean();
+    // das Menue zeigt die Datei, wie sie nach dem Laden ist; der Ruecklink unten die nach dem Inhalt
+    $lmo_admin_datei = $file;
+
+    // Kontext der Anfrage (Lmo\Web\Kontext) mit den Addons der Installation; dazu die Bruecke zum
+    // PDF-Addon nach alter Art (nicht Teil des LMO). Die Addons tragen ihre Menuepunkte und Seiten bei.
+    $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
+    $lmo_admin_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
+    $lmo_admin_addons = $lmo_admin_kontext->addons;
+    if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php')) {
+        $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
-    echo '      <a href="' . URL_TO_LMO . '/help/Deutsch/index.html" target="_blank" title="' . $text[313] . '">' . $text[312] . '</a>' . "\n";
-    echo '      <a href="' . $adda . 'logout" onclick="return chklmolink();" title="' . $text[89] . '">' . $text[88] . '</a>&nbsp;' . "\n";
-?>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-<?php
-    if ($_SESSION['lmouserok'] == 2) {
+
+    // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, sonst noch nach alter Art im globalen Bereich
+    $lmo_admin_seite = null;
+    foreach ($lmo_admin_addons->adminController() as $lmo_admin_controller) {
+        if ($lmo_admin_controller->zustaendig($lmo_admin_kontext)) {
+            $lmo_admin_seite = $lmo_admin_controller;
+            break;
+        }
+    }
+    // was das Menue zeigt, steht vor dem Inhalt fest (der alte Code aendert etwa $adda)
+    $lmo_admin_menue = array(
+        'adda' => $adda,
+        'rolle' => (int)$_SESSION['lmouserok'],
+        'todo' => (string)$todo,
+        'datei' => (string)$lmo_admin_datei,
+        'subdir' => (string)$subdir,
+        'newpage' => $newpage,
+        'addons' => $lmo_admin_addons->adminMenue($lmo_admin_kontext),
+        'update' => $_SESSION['lmouserok'] == 2 && lmo_is_newer($new_lmo_version ?? null, $lmo_version),
+    );
+    ob_start();
+    if ($lmo_admin_seite instanceof \Lmo\Addon\AlteAdminSeite) {
+        // eine Seite nach alter Art wie bisher im globalen Bereich
+        require($lmo_admin_seite->datei());
+    } elseif ($lmo_admin_seite !== null) {
+        echo $lmo_admin_seite->zeige($lmo_admin_kontext)->html;
+    } elseif ($_SESSION['lmouserok'] == 2) {
         $addr_options = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=options';
         $addr_addons = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=addons';
         $addr_design = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=design';
         $addr_user = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=user';
-        /*Tippspiel-Addon*/
-        $tipp_addr_auswertung = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tipp';
-        $tipp_addr_email = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippemail';
-        $tipp_addr_user = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippuser';
-        $tipp_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=tippoptions';
-        /*Tippspiel-Addon*/
-        /*Viewer-Addon*/
-        $viewer_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=vieweroptions';
-        /*Viewer-Addon*/
-        /*PDF-Addon*/
+        // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
-        /*PDF-Addon*/
         if ($todo == 'new') {
             require(PATH_TO_LMO . '/lmo-adminnew.php');
         } elseif ($todo == 'open') {
@@ -209,9 +122,6 @@ if ($action == 'admin') {
                 require(PATH_TO_LMO . '/lmo-adminanz.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
-            } elseif ($sty == -4 && $einspieler == 1) {
-                /*Spielerstatistik-Addon*/
-                require(PATH_TO_ADDONDIR.'/spieler/lmo-statadmin.php');
             } else {
                 require(PATH_TO_LMO . '/lmo-adminedit.php');
             }
@@ -229,24 +139,6 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-adminaddon.php');
         } elseif ($todo == 'design') {
             require(PATH_TO_LMO . '/lmo-admindesign.php');
-        } elseif ($todo == 'tipp') {
-            /*Tippspiel-Addon*/
-            require(PATH_TO_ADDONDIR.'/tipp/lmo-admintipp.php');
-        } elseif ($todo == 'tippemail') {
-            require(PATH_TO_ADDONDIR.'/tipp/lmo-admintippemail.php');
-        } elseif ($todo == 'tippuser') {
-            require(PATH_TO_ADDONDIR.'/tipp/lmo-admintippuser.php');
-        } elseif ($todo == 'tippuseredit') {
-            require(PATH_TO_ADDONDIR.'/tipp/lmo-admintippuseredit.php');
-        } elseif ($todo == 'tippoptions') {
-            require(PATH_TO_ADDONDIR.'/tipp/lmo-admintippoptions.php');
-            /*Tippspiel-Addon*/
-        } elseif ($todo == 'vieweroptions') {
-            /*Viewer-Addon*/
-            require(PATH_TO_ADDONDIR.'/viewer/lmo-adminvieweroptions.php');
-        } elseif ($todo == 'pdfoptions' && file_exists(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php')) {
-            /*PDF-Addon (separat erhaeltlich): nur wenn es installiert ist*/
-            require(PATH_TO_ADDONDIR.'/pdf/lmo-adminpdfoptions.inc.php');
         } elseif ($todo == '') {
             require(PATH_TO_LMO . '/lmo-adminpad.php');
         } elseif ($todo == 'update') {
@@ -264,9 +156,6 @@ if ($action == 'admin') {
                 require(PATH_TO_LMO . '/lmo-adminanz.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
-            } elseif ($sty == -4 && $einspieler == 1) {
-                /*Spielerstatistik-Addon*/
-                require(PATH_TO_ADDONDIR.'/spieler/lmo-statadmin.php');
             } else {
                 require(PATH_TO_LMO . '/lmo-adminedit.php');
             }
@@ -278,26 +167,17 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-adminpad.php');
         }
     }
-?>
+    $lmo_admin_inhalt = (string)ob_get_clean();
 
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" class="lmoFooter" align="left">
-<?php
-    if ($einsprachwahl == 1) {
-        echo getLangSelector();
-    }?>
-
-    </td>
-  </tr>
-  <tr>
-    <td align="left">
-      <a href="<?php echo URL_TO_LMO . '/lmo.php?file=' . $file;?>" target="_blank" title="<?php echo $text[116]; ?>"><?php echo $text[5]; ?> <?php echo $text[115]; ?></a>
-    </td>
-    <td class="lmoFooter" align="right"><?php echo $text[471] . ': ' . number_format((getmicrotime() - $startzeit), 4, '.', ',') . ' ' . $text[799] . '.';?></td>
-  </tr>
-</table>
-<?php
+    // der Rahmen: Menue, Inhalt, Sprachwahl, Ruecklink und Ladezeit (Vorlage admin_rahmen.html.twig)
+    echo \Lmo\Web\Vorlagen::zeige(PATH_TO_LMO . '/vorlagen', 'admin_rahmen.html.twig', $lmo_admin_menue + array(
+        'text' => $text,
+        'lmo' => URL_TO_LMO,
+        'lademeldung' => $lmo_admin_lademeldung,
+        'inhalt' => $lmo_admin_inhalt,
+        'sprachwahl' => $einsprachwahl == 1 ? getLangSelector() : '',
+        'ruecklink' => (string)$file,
+        'ladezeit' => number_format((getmicrotime() - $startzeit), 4, '.', ','),
+    ));
 }
 ?>

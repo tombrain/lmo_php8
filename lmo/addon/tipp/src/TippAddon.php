@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Lmo\Addon\Tipp;
 
 use Closure;
+use Lmo\Addon\AlteAdminSeite;
+use Lmo\Addon\Menuepunkt;
+use Lmo\Addon\MitAdminMenue;
+use Lmo\Addon\MitAdminSeiten;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSeiten;
 use Lmo\Web\Kontext;
@@ -16,7 +20,7 @@ use Lmo\Web\Kontext;
  * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
  * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
-final class TippAddon implements MitSeiten, MitRahmenteilen
+final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten
 {
     /**
      * @param string $ordner Ordner des Addons (addon/tipp)
@@ -57,6 +61,36 @@ final class TippAddon implements MitSeiten, MitRahmenteilen
             $startseite,
             new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
         ];
+    }
+
+    /** Die Seiten der Administration des Tippspiels (noch nach alter Art), nur fuer den Hauptadmin. */
+    public function adminController(): array
+    {
+        $seiten = [];
+        foreach (['tipp' => 'lmo-admintipp.php', 'tippemail' => 'lmo-admintippemail.php', 'tippuser' => 'lmo-admintippuser.php', 'tippuseredit' => 'lmo-admintippuseredit.php', 'tippoptions' => 'lmo-admintippoptions.php'] as $todo => $datei) {
+            $seiten[] = new AlteAdminSeite(
+                static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == $todo && $kontext->sitzung->zahl('lmouserok') == 2,
+                $this->ordner . '/' . $datei
+            );
+        }
+
+        return $seiten;
+    }
+
+    /** Der Punkt "Tippspiel" im Hauptmenue der Administration, wenn das Tippspiel eingeschaltet ist. */
+    public function adminMenue(Kontext $kontext): array
+    {
+        if (!$kontext->konfiguration->schalter('eintippspiel')) {
+            return [];
+        }
+        $t = $kontext->texteVon('tipp');
+
+        return [new Menuepunkt('tipp', $t[0] ?? '', $t[57] ?? '', in_array($kontext->anfrage->text('todo'), ['tipp', 'tippemail', 'tippuser', 'tippuseredit', 'tippoptions'], true))];
+    }
+
+    public function ligaMenue(Kontext $kontext): array
+    {
+        return [];
     }
 
     /**

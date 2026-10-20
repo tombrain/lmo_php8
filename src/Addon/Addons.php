@@ -134,6 +134,57 @@ final class Addons
         return $teile;
     }
 
+    /**
+     * Die Controller aller Addons mit eigenen Seiten in der Administration.
+     *
+     * @return list<Controller>
+     */
+    public function adminController(): array
+    {
+        $controller = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitAdminSeiten) {
+                array_push($controller, ...$addon->adminController());
+            }
+        }
+
+        return $controller;
+    }
+
+    /**
+     * Die Punkte aller Addons fuer das Hauptmenue der Administration, in der Reihenfolge der Addons.
+     *
+     * @return list<Menuepunkt>
+     */
+    public function adminMenue(Kontext $kontext): array
+    {
+        $punkte = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitAdminMenue) {
+                array_push($punkte, ...$addon->adminMenue($kontext));
+            }
+        }
+
+        return $punkte;
+    }
+
+    /**
+     * Die Punkte aller Addons fuer die Navigation beim Bearbeiten einer Liga.
+     *
+     * @return list<Menuepunkt>
+     */
+    public function ligaMenue(Kontext $kontext): array
+    {
+        $punkte = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitAdminMenue) {
+                array_push($punkte, ...$addon->ligaMenue($kontext));
+            }
+        }
+
+        return $punkte;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

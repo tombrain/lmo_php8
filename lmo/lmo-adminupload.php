@@ -29,7 +29,8 @@ if (($action=="admin") && ($todo=="upload") && ($_SESSION['lmouserok']==2)) {
     $namefilename = $_FILES['userfile']['name'];
     if (substr($namefilename,-4) != '.l98') {
       echo getMessage($text[304],true);
-      exit;
+      // nur die Seite endet hier, der Rahmen der Administration folgt (bis 4.5 exit)
+      return;
     }
     $i=0;
     $ufile=$dirliga.$namefilename;
