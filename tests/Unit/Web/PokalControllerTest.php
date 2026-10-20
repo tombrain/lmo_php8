@@ -132,4 +132,14 @@ class PokalControllerTest extends TestCase
         self::assertStringContainsString('>A</a>', $html, 'linke Auswahl: 1 und 2');
         self::assertStringContainsString('>D</a>', $html, 'rechte Auswahl: 3 und 4');
     }
+
+    public function testSpielplanUngeradeAnzahlMitDerMittlerenMannschaft(): void
+    {
+        $html = (new PokalSpielplanController())->zeige(self::kontext('program', [], ['Teams=3']))->html;
+
+        self::assertStringContainsString('>B &amp; C</a>', $html, 'die mittlere steht links (bis 4.5 fehlte sie)');
+        self::assertStringContainsString('>A</a>', $html);
+        self::assertStringContainsString('>C</a>', $html);
+        self::assertSame(3, substr_count($html, 'selteam='));
+    }
 }
