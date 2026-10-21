@@ -57,4 +57,9 @@ final class ViewerAddon implements MitAdminMenue, MitAdminSeiten
     {
         return [];
     }
+
+    public function startseite(Kontext $kontext): array
+    {
+        return [];
+    }
 }

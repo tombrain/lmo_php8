@@ -103,6 +103,16 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         return [];
     }
 
+    /** Der Link zur Auswertung des Tippspiels auf der Startseite der Administration, wenn es eingeschaltet ist. */
+    public function startseite(Kontext $kontext): array
+    {
+        if (!$kontext->konfiguration->schalter('eintippspiel')) {
+            return [];
+        }
+
+        return [new Menuepunkt('tipp', $kontext->texteVon('tipp')[115] ?? '', '', false)];
+    }
+
     /**
      * Der Menuepunkt "Tippspiel", wenn die Liga getippt werden kann (alle Ligen: immeralle, sonst
      * die in ligenzutippen) oder keine Liga geladen ist.

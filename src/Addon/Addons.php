@@ -195,6 +195,23 @@ final class Addons
         return $punkte;
     }
 
+    /**
+     * Die Punkte aller Addons fuer die Startseite der Administration.
+     *
+     * @return list<Menuepunkt>
+     */
+    public function startseite(Kontext $kontext): array
+    {
+        $punkte = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitAdminMenue) {
+                array_push($punkte, ...$addon->startseite($kontext));
+            }
+        }
+
+        return $punkte;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

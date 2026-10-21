@@ -82,6 +82,12 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame(['vieweroptions', 'pdfoptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '0']))), 'Tippspiel abgeschaltet');
     }
 
+    public function testStartseite(): void
+    {
+        self::assertSame([['tipp', 'T115', '', false]], self::punkte(self::addons()->startseite(self::kontext())), 'nur das Tippspiel');
+        self::assertSame([], self::addons()->startseite(self::kontext([], ['eintippspiel' => '0'])));
+    }
+
     public function testNavigationEinerLiga(): void
     {
         self::assertSame([['-4', 'S18', 'S1', false]], self::punkte(self::addons()->ligaMenue(self::kontext(['todo' => 'edit', 'st' => '3']))));
