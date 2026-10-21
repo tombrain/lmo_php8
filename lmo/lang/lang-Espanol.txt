@@ -484,9 +484,7 @@
 483=Vista de impresión
 484=¿Quieres crear una vista preparada para la impresion?
 485=Estadísticas jugadores
-486=¿Quieres mostrar las entradas en las estadísticas de jugadores? (¡Debe ser activado para cada liga por separado!)
 487=Pronósticos
-488=¿Quieres mostrar los pronósticos?
 489=Estadísticas de goles
 490=¿Quieres mostrar las estadísticas de goles?
 491=bajo la clasificación

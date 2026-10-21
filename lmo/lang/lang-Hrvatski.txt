@@ -484,9 +484,7 @@
 483=Pogledaj/prikaži ispis
 484=Dodati tiskani ispis?
 485=Statistika igrača
-486=Treba li prikazati statistiku tipkanja podataka igrača ? (Potrebno je uključiti za relativni šampionat)
 487=Igra prognoza
-488=Treba li biti prikazana igra prognoza ?
 489=Statistika zgoditaka
 490=Treba li prikazati dodatnu statistiku (golova) zgoditaka (Ukuni golovi i prosječni golovi)?
 491=U ljesticama
