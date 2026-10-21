@@ -2,8 +2,9 @@
 /** Liga Manager Online 4
   *
   * Ersteinrichtung ohne Installer: Pfad und URL werden zur Laufzeit ermittelt,
-  * die Standardkonfiguration wird aus config-default/ uebernommen (auch neue Optionen
-  * nach einem Update) und das Admin-Passwort beim ersten Aufruf von lmoadmin.php festgelegt.
+  * die Standardkonfiguration wird aus config-default/ (und addon/<name>/config-default/ der Addons)
+  * uebernommen (auch neue Optionen nach einem Update) und das Admin-Passwort beim ersten Aufruf
+  * von lmoadmin.php festgelegt.
   * Einen Installer (frueher install/, inkl. FTP) gibt es nicht mehr.
   * config/init-parameters.php ist nur noch noetig, um Pfad oder URL fest vorzugeben.
   *
@@ -62,11 +63,12 @@ function lmo_normalize_path(string $path): string
 }
 
 /**
- * Ersteinrichtung und Updates der Konfiguration aus config-default/:
+ * Ersteinrichtung und Updates der Konfiguration aus config-default/ (nach config/) und den
+ * Vorlagen der Addons in addon/<name>/config-default/ (nach config/<name>/):
  * - fehlende Dateien werden kopiert (Erstaufruf)
  * - fehlende Schluessel werden an vorhandene cfg.txt angehaengt (Update mit neuen Optionen);
  *   vorhandene Werte bleiben unveraendert
- * Laeuft nur, wenn sich config-default/ seit dem letzten Abgleich geaendert hat
+ * Laeuft nur, wenn sich eine Vorlage seit dem letzten Abgleich geaendert hat
  * (Marker config/.defaults-stamp). Das Admin-Konto entsteht beim ersten Aufruf von lmoadmin.php.
  *
  * @return string Fehlermeldung oder '' wenn alles bereit ist
@@ -81,7 +83,8 @@ function lmo_setup_files(string $lmoDir): string
         return $installed ? '' : 'config/cfg.txt fehlt und config-default/ ist nicht vorhanden. / '
             . 'config/cfg.txt is missing and config-default/ does not exist.';
     }
-    $stamp = lmo_defaults_stamp($source);
+    $sources = lmo_default_sources($lmoDir);
+    $stamp = lmo_defaults_stamp($sources);
     if ($installed && @file_get_contents($config . '/.defaults-stamp') === $stamp) {
         return '';
     }
@@ -92,7 +95,9 @@ function lmo_setup_files(string $lmoDir): string
             . 'The folder config/ is not writable. Please set write permissions (e.g. 775 or 777 with your FTP program).';
     }
 
-    lmo_sync_defaults($source, $config);
+    foreach ($sources as $target => $from) {
+        lmo_sync_defaults($from, $target === '' ? $config : $config . '/' . $target);
+    }
     foreach (['ligen/archiv', 'output'] as $dir) {
         if (!is_dir($lmoDir . '/' . $dir)) {
             @mkdir($lmoDir . '/' . $dir, 0777, true);
@@ -108,13 +113,36 @@ function lmo_setup_files(string $lmoDir): string
     return '';
 }
 
-/** Kennung des Stands von config-default/ (Dateien, Groesse, Aenderungszeit). */
-function lmo_defaults_stamp(string $source): string
+/**
+ * Die Vorlagen der Konfiguration: config-default/ des Kerns (Ziel '' = config/) und die der
+ * Addons in addon/<name>/config-default/ (Ziel <name> = config/<name>/).
+ *
+ * @return array<string, string> Ziel => Ordner der Vorlage
+ */
+function lmo_default_sources(string $lmoDir): array
+{
+    $sources = ['' => $lmoDir . '/config-default'];
+    foreach (@scandir($lmoDir . '/addon') ?: [] as $name) {
+        if ($name !== '.' && $name !== '..' && is_dir($lmoDir . '/addon/' . $name . '/config-default')) {
+            $sources[$name] = $lmoDir . '/addon/' . $name . '/config-default';
+        }
+    }
+    return $sources;
+}
+
+/**
+ * Kennung des Stands der Vorlagen (Dateien, Groesse, Aenderungszeit).
+ *
+ * @param array<string, string> $sources Ziel => Ordner der Vorlage (lmo_default_sources())
+ */
+function lmo_defaults_stamp(array $sources): string
 {
     $parts = [];
-    $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS));
-    foreach ($files as $file) {
-        $parts[] = substr($file->getPathname(), strlen($source)) . ':' . $file->getSize() . ':' . $file->getMTime();
+    foreach ($sources as $target => $source) {
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS));
+        foreach ($files as $file) {
+            $parts[] = $target . substr($file->getPathname(), strlen($source)) . ':' . $file->getSize() . ':' . $file->getMTime();
+        }
     }
     sort($parts);
     return md5(implode('|', $parts));
