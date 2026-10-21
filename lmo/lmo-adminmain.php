@@ -80,6 +80,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
         new \Lmo\Web\Admin\OeffnenController(static fn (string $datei): bool => check_hilfsadmin($datei)),
         new \Lmo\Web\Admin\LoeschenController(),
+        new \Lmo\Web\Admin\HerunterladenController(),
         new \Lmo\Web\Admin\HochladenController(
             static fn (): ?array => isset($_POST['upl'], $_FILES['userfile']) ? array('tmp' => (string)$_FILES['userfile']['tmp_name'], 'name' => (string)$_FILES['userfile']['name']) : null,
             static fn (string $von, string $nach): bool => move_uploaded_file($von, $nach)
@@ -134,8 +135,6 @@ if ($action == 'admin') {
             }
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
-        } elseif ($todo == 'download') {
-            require(PATH_TO_LMO . '/lmo-admindown.php');
         } elseif ($todo == 'options') {
             require(PATH_TO_LMO . '/lmo-adminoptions.php');
         } elseif ($todo == 'user') {
@@ -162,8 +161,6 @@ if ($action == 'admin') {
             }
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
-        } elseif ($todo == 'download') {
-            require(PATH_TO_LMO . '/lmo-admindown.php');
         }
     }
     $lmo_admin_inhalt = (string)ob_get_clean();
