@@ -40,7 +40,7 @@ final class UebersichtController implements Controller
     {
         // wie bis 4.5 zeigt viewermode die Uebersicht, gleich welches todo
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->gesetzt('viewermode')
             && $kontext->sitzung->text('lmotipperok') == 5;
     }

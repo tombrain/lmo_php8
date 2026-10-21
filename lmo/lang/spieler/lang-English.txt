@@ -58,3 +58,4 @@
 057=Print All
 058=Save configuration
 059=Update Player Statistics
+060=Should the entries from Spieler Statistic be shown? (Must be for each League separately ativated)

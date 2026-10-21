@@ -303,3 +303,4 @@
 302=Mostra solo i punti totali
 303=Un nuovo scommettitore si è registrato al gioco delle scommesse: \n\nNickname: [nick]
 304=Lascia il campo vuoto per non modificare la password
+306=Deve essere visualizzato il gioco pronostici?

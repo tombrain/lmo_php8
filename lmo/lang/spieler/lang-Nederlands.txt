@@ -58,3 +58,4 @@
 057=Print Alle
 058=Configuratie opslaan
 059=Spelerstatistieken bijwerken
+060=Moet de invoer van spelersstatistieken worden weergegeven? (Moet ook voor elke competitie afzonderlijk worden geactiveerd!)

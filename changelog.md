@@ -50,6 +50,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Die Schalter für Spielerstatistik (`einspieler`) und Tippspiel (`eintippspiel`) gehören jetzt den Addons: Sie stehen in den Optionen (Seite „Schalter“) in einem eigenen Block „Addons“ und werden in `config/spieler/cfg.txt` bzw. `config/tipp/cfg.txt` gespeichert. Ein bisheriger Wert in `config/cfg.txt` gilt weiter, bis die Seite gespeichert wird; dann zieht er ins Addon um. Ohne Wert sind beide wie bisher eingeschaltet. `config-default/cfg.txt` nennt sie nicht mehr.  
 * Lizenz in `composer.json` und `lmo/version.json` jetzt `GPL-2.0-or-later` statt `GPL-2.0-only`, wie in den Köpfen der Dateien des LMO („version 2 of the License, or (at your option) any later version“).  
 * Mindestversion ist PHP 8.1 (Twig 3 läuft nicht unter PHP 8.0).  
 * Die Tabelle auf der Tabellen- und der Ergebnisseite entsteht aus der Twig-Vorlage. Die Ausgabe ist gleich bis auf das Escaping: Sonderzeichen in Mannschaftsnamen (Tabelle und Ergebnisse) und Links werden jetzt durchgehend als HTML-Entitäten ausgegeben (`&` als `&amp;`, `'` als `&#039;`).  
@@ -466,6 +467,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* The switches for player statistics (`einspieler`) and prediction game (`eintippspiel`) now belong to the add-ons: they appear in the options (page "switches") in a separate block "Add-ons" and are stored in `config/spieler/cfg.txt` and `config/tipp/cfg.txt`. A previous value in `config/cfg.txt` still applies until the page is saved; then it moves into the add-on. Without a value both are switched on as before. `config-default/cfg.txt` no longer lists them.  
 * License in `composer.json` and `lmo/version.json` is now `GPL-2.0-or-later` instead of `GPL-2.0-only`, as stated in the headers of the LMO files ("version 2 of the License, or (at your option) any later version").  
 * Minimum version is PHP 8.1 (Twig 3 does not run on PHP 8.0).  
 * The table on the table and results pages is rendered from the Twig template. The output is the same except for escaping: special characters in team names (table and results) and links are now consistently output as HTML entities (`&` as `&amp;`, `'` as `&#039;`).  

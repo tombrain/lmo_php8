@@ -37,7 +37,7 @@ final class EinsichtController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->text('todo') == 'einsicht'
             && !$kontext->anfrage->gesetzt('viewermode')
             && $kontext->liga !== null;

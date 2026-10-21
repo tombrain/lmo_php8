@@ -34,7 +34,7 @@ final class InfoController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->text('todo') == 'info'
             && !$kontext->anfrage->gesetzt('viewermode');
     }

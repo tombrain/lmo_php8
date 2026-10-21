@@ -19,7 +19,10 @@ use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
 use Lmo\Addon\MitRahmenteilen;
+use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
+use Lmo\Addon\Schalter;
+use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
 
 /**
@@ -28,8 +31,11 @@ use Lmo\Web\Kontext;
  * nur, wenn das Addon eingeschaltet ist (einspieler); gepflegt wird die Statistik im
  * Adminbereich beim Bearbeiten der Liga (st=-4, noch lmo-statadmin.php).
  */
-final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten
+final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern
 {
+    /** Der Schalter in den Optionen: Spielerstatistik an (config/spieler/cfg.txt, bis 4.5 config/cfg.txt) */
+    public const SCHALTER = 'einspieler';
+
     /** @param string $ordner Ordner der Statistiken (addon/spieler/stats) */
     public function __construct(private string $ordner)
     {
@@ -38,6 +44,20 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     public function name(): string
     {
         return 'spieler';
+    }
+
+    /** Ist das Addon eingeschaltet (SCHALTER, ohne Konfiguration an)? */
+    public static function an(Konfiguration $konfiguration): bool
+    {
+        return $konfiguration->addonSchalter('spieler', self::SCHALTER, true);
+    }
+
+    /** Der Schalter "Spielerstatistik" in den Optionen */
+    public function schalter(Kontext $kontext): array
+    {
+        $t = $kontext->texteVon('spieler');
+
+        return [new Schalter(self::SCHALTER, $t[18] ?? '', $t[60] ?? '', true)];
     }
 
     public function controller(): array
@@ -49,7 +69,7 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     public function adminController(): array
     {
         return [new AlteAdminSeite(
-            static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'edit' && $kontext->anfrage->text('st') == -4 && $kontext->konfiguration->schalter('einspieler'),
+            static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'edit' && $kontext->anfrage->text('st') == -4 && self::an($kontext->konfiguration),
             dirname($this->ordner) . '/lmo-statadmin.php'
         )];
     }
@@ -62,7 +82,7 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     /** Der Punkt "Spielerstatistik" in der Navigation beim Bearbeiten einer Liga, wenn das Addon eingeschaltet ist. */
     public function ligaMenue(Kontext $kontext): array
     {
-        if (!$kontext->konfiguration->schalter('einspieler')) {
+        if (!self::an($kontext->konfiguration)) {
             return [];
         }
         $t = $kontext->texteVon('spieler');
@@ -78,7 +98,7 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     public function rahmenteile(Kontext $kontext): array
     {
         $liga = $kontext->liga;
-        if ($liga === null || !$kontext->konfiguration->schalter('einspieler') || !$liga->liga->einstellungen()->mitToren()) {
+        if ($liga === null || !self::an($kontext->konfiguration) || !$liga->liga->einstellungen()->mitToren()) {
             return [];
         }
         $t = $kontext->texteVon('spieler');

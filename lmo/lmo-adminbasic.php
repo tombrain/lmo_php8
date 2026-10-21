@@ -31,7 +31,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var string $defdateformat Datumsformat in date()-Schreibweise (Konfiguration)
  *
  * Einstellungen:
- * @var int|string $einspieler Einstellung aus cfg.txt
+ * @var \Lmo\Web\Kontext $lmo_admin_kontext Kontext der Administration (lmo-adminmain.php)
  * @var int|string $tabonres Einstellung aus cfg.txt
  *
  * Weitere Variablen des einbindenden Codes:
@@ -41,6 +41,8 @@ if (!defined('PATH_TO_LMO')) {
  */
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
+// Spielerstatistik eingeschaltet (Addon spieler, config/spieler/cfg.txt; bis 4.5 einspieler in cfg.txt)
+$einspieler = $lmo_admin_kontext->konfiguration->addonSchalter('spieler', 'einspieler', true) ? 1 : 0;
 if ($file != '') {
     require_once(PATH_TO_LMO . '/lmo-openfile.php');
     // $lmo_opt: die Einstellungen der Liga mit ihren Vorgabewerten, Schluessel wie in [Options]. Die

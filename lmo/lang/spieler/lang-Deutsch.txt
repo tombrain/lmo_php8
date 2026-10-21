@@ -58,3 +58,4 @@
 057=Gesamtansicht ausdrucken
 058=Konfiguration speichern
 59=Spielerstatistik updaten
+060=Soll die Eingabe von Spielerstatistiken angezeigt werden? (Muss zusätzlich für jede Liga einzeln aktiviert werden!)

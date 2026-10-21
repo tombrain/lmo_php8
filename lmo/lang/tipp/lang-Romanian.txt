@@ -303,3 +303,4 @@
 302=Afișați numai punctele totale
 303=Un nou parior s-a înregistrat pentru jocul de pariuri: \n\nNume: [nick]
 304=Lăsați câmpul necompletat pentru a evita schimbarea parolei
+306=Doriti sa aratati pronosticurile?

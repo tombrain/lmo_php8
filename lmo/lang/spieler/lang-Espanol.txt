@@ -58,3 +58,4 @@
 057=Imprimir Todo
 058=Guardar configuración
 059=Actualizaciones de estadísticas de juego
+060=¿Quieres mostrar las entradas en las estadísticas de jugadores? (¡Debe ser activado para cada liga por separado!)

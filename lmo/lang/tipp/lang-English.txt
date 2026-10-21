@@ -303,3 +303,4 @@
 302=Show Only Total Point Standings
 303=A New player has Registered for the Prediction Game: \n\nNickname: [nick]
 304=Leave the field blank to avoid changing the password
+306=Should the Predictions Game be shown?

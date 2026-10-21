@@ -34,7 +34,7 @@ final class StartseiteController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->text('todo') == ''
             && !$kontext->anfrage->gesetzt('viewermode')
             && $kontext->sitzung->zahl('lmotipperok') == 5;

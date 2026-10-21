@@ -58,3 +58,4 @@
 057=Vytiskněte si celkový pohled
 058=Uložit konfiguraci
 059=Aktualizujte statistiky hráčů
+060=Měl by se zobrazit záznam statistik hráčů? (Musí být také aktivován individuálně pro každou ligu!)

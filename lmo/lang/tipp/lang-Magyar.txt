@@ -303,3 +303,4 @@
 302=Csak az összes pont megjelenítése
 303=Új fogadó regisztrált a fogadási játékra: \n\nBecenév: [nick]
 304=Hagyja üresen a mezot, ha nem akar jelszót változtatni
+306=Kívánja megjeleníteni a tippjátékot?

@@ -58,3 +58,4 @@
 057=Tipărește imaginea de ansamblu
 058=Salvați configurația
 059=Actualizează statisticile jucătorului
+060=Ar trebui să fie afișată intrarea statisticilor jucătorilor? (Trebuie să fie activat și individual pentru fiecare ligă!)

@@ -304,3 +304,4 @@
 303=Ein neuer Tipper hat sich für das Tippspiel angemeldet: \n\nNickname: [nick]
 304=Lasse das Feld leer um keine Änderung des Passworts duchzuführen
 305
+306=Soll das Tippspiel angezeigt werden?

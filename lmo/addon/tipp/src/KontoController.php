@@ -42,7 +42,7 @@ final class KontoController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && in_array($kontext->anfrage->text('todo'), self::SEITEN, true)
             && !$kontext->anfrage->gesetzt('viewermode')
             && $kontext->sitzung->zahl('lmotipperok') == 5;

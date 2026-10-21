@@ -51,7 +51,7 @@ final class AnmeldungController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel');
+            && TippAddon::an($kontext->konfiguration);
     }
 
     public function zeige(Kontext $kontext): Seite
