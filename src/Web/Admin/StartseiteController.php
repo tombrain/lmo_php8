@@ -52,13 +52,14 @@ final class StartseiteController implements Controller
     }
 
     /**
-     * Die Ligen des gewaehlten Ordners zum Oeffnen (bis 4.5 lmo-dirlist.php); die Sortierung aus der
-     * Adresse merkt sich die Sitzung, sonst gilt die gemerkte oder die aus der Konfiguration.
+     * Die Ligen des gewaehlten Ordners zum Oeffnen (bis 4.5 lmo-dirlist.php); die Sortierung kommt
+     * aus der Adresse, sonst aus der Konfiguration, und steht danach wie bisher in der Sitzung.
      *
      * @param Closure(string): bool $darfLesen
      * @param string $todo Wert fuer todo in den Links auf die Ligen
+     * @param string|null $unterordner Unterordner des Ligenordners; null: aus subdir, sonst der Ordner der gewaehlten Datei
      */
-    public static function ligenliste(Kontext $kontext, Closure $darfLesen, string $todo): string
+    public static function ligenliste(Kontext $kontext, Closure $darfLesen, string $todo, ?string $unterordner = null): string
     {
         $anfrage = $kontext->anfrage;
         $sitzung = $kontext->sitzung;
@@ -66,7 +67,7 @@ final class StartseiteController implements Controller
             $sitzung->setze($name, $anfrage->gesetzt($name) ? $anfrage->text($name) : $kontext->konfiguration->wert($name));
         }
         // Unterordner wie bisher aus der Adresse, sonst der Ordner der gewaehlten Datei
-        $unterordner = $anfrage->gesetzt('subdir') ? $anfrage->text('subdir') : dirname($anfrage->text('file')) . '/';
+        $unterordner ??= $anfrage->gesetzt('subdir') ? $anfrage->text('subdir') : dirname($anfrage->text('file')) . '/';
         $unterordner = str_replace(['../', './'], '', $unterordner == '/' ? '' : $unterordner);
         $liste = new Ligenliste($kontext->text, $kontext->darstellung, $kontext->pfade->vorlagen, $kontext->pfade->bilder, $kontext->pfade->adresse, $darfLesen);
 

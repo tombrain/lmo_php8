@@ -222,11 +222,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-dirlist.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-openfile.php ===
 
 --- Dateiaenderungen ---
