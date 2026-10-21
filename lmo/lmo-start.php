@@ -27,10 +27,6 @@ if (!function_exists('getmicrotime')) {
 $startzeit = getmicrotime();
 require(__DIR__ . '/init.php');
 
-if((isset($_REQUEST['action']) && $_REQUEST['action'] == 'tipp') && session_id() == '') {
-    session_start();
-}
-
 $array = array();
 $ftype = '.l98';
 if (isset($_REQUEST['st'])) {$st = $_REQUEST['st'];}

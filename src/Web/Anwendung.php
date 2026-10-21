@@ -36,7 +36,7 @@ final class Anwendung
     private LigaLader $lader;
     private Pfade $pfade;
     private Darstellung $darstellung;
-    /** @var list<Controller> alle Controller in der Reihenfolge, in der sie gefragt werden: erst die des Kerns, dann die der Addons */
+    /** @var list<Controller> alle Controller in der Reihenfolge, in der sie gefragt werden: erst die des Kerns, dann die der Addons, dann die Auffangseiten des Kerns */
     private array $controller;
     private Addons $addons;
 
@@ -48,15 +48,16 @@ final class Anwendung
      * @param Darstellung $darstellung Vereinswappen und Faktoren fuer die Seiten
      * @param list<Controller> $controller Controller des Kerns, in der Reihenfolge, in der sie gefragt werden
      * @param Addons $addons Addons der Installation; ihre Controller (Lmo\Addon\MitSeiten) werden nach denen des Kerns gefragt
+     * @param list<Controller> $zuletzt Controller des Kerns, die erst nach denen der Addons gefragt werden (z. B. die Ligenuebersicht ohne Liga)
      */
-    public function __construct(Konfiguration $konfiguration, Sprachtexte $texte, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons())
+    public function __construct(Konfiguration $konfiguration, Sprachtexte $texte, LigaLader $lader, Pfade $pfade, Darstellung $darstellung, array $controller, Addons $addons = new Addons(), array $zuletzt = [])
     {
         $this->konfiguration = $konfiguration;
         $this->texte = $texte;
         $this->lader = $lader;
         $this->pfade = $pfade;
         $this->darstellung = $darstellung;
-        $this->controller = array_merge($controller, $addons->controller());
+        $this->controller = array_merge($controller, $addons->controller(), $zuletzt);
         $this->addons = $addons;
     }
 
