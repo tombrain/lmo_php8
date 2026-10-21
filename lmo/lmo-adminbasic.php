@@ -41,8 +41,8 @@ if (!defined('PATH_TO_LMO')) {
  */
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
-// Spielerstatistik eingeschaltet (Addon spieler, config/spieler/cfg.txt; bis 4.5 einspieler in cfg.txt)
-$einspieler = $lmo_admin_kontext->konfiguration->addonSchalter('spieler', 'einspieler', true) ? 1 : 0;
+// Spielerstatistik geladen und eingeschaltet (Addon spieler, config/spieler/cfg.txt; bis 4.5 einspieler in cfg.txt)
+$einspieler = $lmo_admin_kontext->addons->hat('spieler') && $lmo_admin_kontext->konfiguration->addonSchalter('spieler', 'einspieler', true) ? 1 : 0;
 if ($file != '') {
     require_once(PATH_TO_LMO . '/lmo-openfile.php');
     // $lmo_opt: die Einstellungen der Liga mit ihren Vorgabewerten, Schluessel wie in [Options]. Die

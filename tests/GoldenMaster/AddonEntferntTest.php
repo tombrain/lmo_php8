@@ -33,4 +33,18 @@ final class AddonEntferntTest extends TestCase
         self::assertStringContainsString('lmoMiddle', $gespeichert, 'die Seite kommt vollstaendig');
     }
 
+    public function testGrundeinstellungenOhneSpielerstatistik(): void
+    {
+        $c = Fixture::loggedInClient();
+        $pfad = $c->instance()->path();
+        $grund = 'action=admin&todo=edit&file=golden/basic.l98&st=-1&show=2';  // Reiter Anzeige
+        self::assertStringContainsString('name="xmittore"', $c->get('lmoadmin.php', $grund), 'mit dem Addon');
+
+        exec('rm -rf ' . escapeshellarg($pfad . '/addon/spieler'));
+        $seite = $c->get('lmoadmin.php', $grund);
+
+        self::assertStringNotContainsString('STDERR', $seite);
+        self::assertStringNotContainsString('name="xmittore"', $seite, 'ohne das Addon keine Spieler-Option');
+        self::assertFileExists($pfad . '/config/spieler/cfg.txt', 'die Einstellungen bleiben');
+    }
 }
