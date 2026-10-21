@@ -57,7 +57,7 @@ final class NeuController implements Controller
         $anfrage = $kontext->anfrage;
         $text = $kontext->text;
         $ordner = $kontext->konfiguration->ligenordner();
-        $xfile = $anfrage->text('xfile');
+        $xfile = self::dateiname($anfrage->text('xfile'));
         $xtitel = $anfrage->text('xtitel');
         $xtype = $anfrage->text('xtype');
         $xprogram = $anfrage->text('xprogram', '0');
@@ -222,6 +222,17 @@ final class NeuController implements Controller
         }
 
         return $vorlagen;
+    }
+
+    /**
+     * Der Dateiname der neuen Liga wie lmofilename() im Browser (js/admin.js.php): ohne Ordner und
+     * ohne .l98. So bleibt die Datei im Ligenordner, auch wenn die Anfrage nicht aus dem Formular kommt.
+     */
+    private static function dateiname(string $eingabe): string
+    {
+        $name = basename(str_replace('\\', '/', $eingabe));
+
+        return strtolower(substr($name, -4)) == '.l98' ? substr($name, 0, -4) : $name;
     }
 
     /**

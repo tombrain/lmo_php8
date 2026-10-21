@@ -145,6 +145,15 @@ class NeuControllerTest extends TestCase
         self::assertSame(['3', '2'], [$liga->spieltage[1]->partien[1]->heim, $liga->spieltage[1]->partien[1]->gast], 'der ausgeloste Spielplan');
     }
 
+    public function testDateinameBleibtImLigenordner(): void
+    {
+        foreach (['../../config/boese', 'ordner\\liga.L98', '/tmp/x.l98'] as $eingabe) {
+            $this->seite(['newpage' => '3', 'xfile' => $eingabe, 'xtitel' => 'X', 'xtype' => '1', 'xteams' => '2']);
+        }
+        self::assertSame(['boese.l98', 'liga.l98', 'x.l98'], array_column($this->gespeichert, 1));
+        self::assertStringContainsString('value="liga"', $this->seite(['newpage' => '1', 'xfile' => 'a/liga.l98', 'xtitel' => 'X', 'xtype' => '0']), 'auch im Formular');
+    }
+
     public function testAnlegenMitVorlage(): void
     {
         $this->seite(['newpage' => '3', 'xfile' => 'neu', 'xtitel' => 'Neu', 'xtype' => '0', 'xteams' => '4', 'xanzst' => '6', 'xanzsp' => '2', 'xprogram' => $this->ordner . '/ligen/vier.l98']);
