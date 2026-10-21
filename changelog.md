@@ -116,6 +116,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Administration, neue Liga: Der Dateiname wird auch auf dem Server wie im Browser auf den reinen Namen gekürzt (ohne Ordner und `.l98`). Bisher ließ sich mit einer selbst gebauten Anfrage über `../` eine Datei mit Endung `.l98` außerhalb des Ligenordners anlegen (nur als Hauptadmin).  
 * Administration, Benutzer: Der Hauptadmin (das erste Konto) lässt sich nicht mehr über `del=0` in der Adresse löschen. Die Seite bot das nie an, verhinderte es aber nicht.  
 * Administration, Liga löschen: Gelöscht wird nur noch eine Liga (`.l98`) im Ligenordner oder einem seiner Unterordner. Bisher löschte `dfile` jede Datei, die PHP schreiben durfte, auch außerhalb des Ligenordners über `../` (nur für den Hauptadmin).  
 * Ergebnis- und Tabellenseite übernehmen aus der Adresse nur noch die Anzeige-Optionen `tabonres` und `tabpkt` (`Konfiguration::ANZEIGEOPTIONEN`); alle anderen Einstellungen kommen nur aus `config/cfg.txt`. Bisher konnte jeder Aufruf über die Adresse jede Einstellung überschreiben (Folge des `extract($_GET)` in `init.php`, das für die übrigen Seiten vorerst bleibt).  
@@ -548,6 +549,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Administration, new league: the file name is now cut down to the bare name on the server too, as the browser already did (no folders, no `.l98`). Until now a crafted request could create a file ending in `.l98` outside the league folder via `../` (main admin only).  
 * Administration, users: the main admin (the first account) can no longer be deleted via `del=0` in the address. The page never offered that, but did not prevent it.  
 * Administration, delete a league: only a league (`.l98`) in the league folder or one of its subfolders is deleted. Until now `dfile` deleted any file PHP could write, also outside the league folder via `../` (main admin only).  
 * The results and table pages take only the display options `tabonres` and `tabpkt` from the address (`Konfiguration::ANZEIGEOPTIONEN`); all other settings come from `config/cfg.txt` only. Until now any request could override any setting through the address (a consequence of the `extract($_GET)` in `init.php`, which stays for the other pages for now).  
