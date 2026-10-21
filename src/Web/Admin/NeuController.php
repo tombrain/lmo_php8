@@ -88,7 +88,14 @@ final class NeuController implements Controller
         }
         if ($newpage == 3) {
             $datei = $xfile . '.l98';
-            $meldung = ($this->speichere)($this->neueLiga($anfrage, $text, $xtitel, $xtype, $xteams, $xanzst, $xanzsp, $xprogram, $kontext->konfiguration->datumsformat()), $datei);
+            // eine Vorlage nur, wenn das Formular sie anbietet (gleich grosse Liga im Ligenordner)
+            $vorlage = null;
+            foreach ($xtype == 0 ? $this->vorlagen($kontext, $xtype, $xteams, $xanzst, $xanzsp) : [] as $angeboten) {
+                if ($angeboten['wert'] === $xprogram) {
+                    $vorlage = $kontext->pfade->lmo . '/' . $ordner . $angeboten['wert'];
+                }
+            }
+            $meldung = ($this->speichere)($this->neueLiga($anfrage, $text, $xtitel, $xtype, $xteams, $xanzst, $xanzsp, $xprogram, $vorlage, $kontext->konfiguration->datumsformat()), $datei);
         }
 
         return new Seite($meldung . Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_neu.html.twig', [
@@ -121,16 +128,17 @@ final class NeuController implements Controller
      * ergaenzt das Speichern (lmo-saveliga.php).
      *
      * @param array<int|string, string> $text
+     * @param string|null $vorlage Datei der Liga, deren Spielplan uebernommen wird
      */
-    private function neueLiga(Anfrage $anfrage, array $text, string $xtitel, string $xtype, string $xteams, string $xanzst, string $xanzsp, string $xprogram, string $datumsformat): Liga
+    private function neueLiga(Anfrage $anfrage, array $text, string $xtitel, string $xtype, string $xteams, string $xanzst, string $xanzsp, string $xprogram, ?string $vorlage, string $datumsformat): Liga
     {
         $paarungen = [];
         if ($xtype == 0 && $xprogram != 'none') {
             if ($xprogram == 'random') {
                 $paarungen = Zufallsspielplan::paarungen((int) $xteams, $this->zufall);
-            } elseif ($xprogram != '' && substr($xprogram, -4) == '.l98') {
+            } elseif ($vorlage !== null) {
                 // Paarungen der Vorlage aus den Rohdaten der Ligadatei
-                foreach (Liga::lies($xprogram)->spieltage as $nr => $spieltag) {
+                foreach (Liga::lies($vorlage)->spieltage as $nr => $spieltag) {
                     foreach ($spieltag->partien as $partieNr => $partie) {
                         $paarungen[$nr - 1][$partieNr - 1] = [$partie->heim, $partie->gast];
                     }
@@ -194,7 +202,7 @@ final class NeuController implements Controller
 
     /**
      * Die Ligen im Ligenordner gleicher Groesse, deren Spielplan die neue Liga uebernehmen kann
-     * (Wert: Pfad der Datei, Name; ohne Namen Text 507 mit Nummer).
+     * (Wert: Name der Datei im Ligenordner, Name der Liga; ohne Namen Text 507 mit Nummer).
      *
      * @return list<array{wert: string, name: string}>
      */
@@ -217,7 +225,7 @@ final class NeuController implements Controller
                 if ($name == '') {
                     $name = ($kontext->text[507] ?? '') . ++$ohneNamen;
                 }
-                $vorlagen[] = ['wert' => $kontext->pfade->lmo . '/' . $ordner . $datei, 'name' => $name];
+                $vorlagen[] = ['wert' => $datei, 'name' => $name];
             }
         }
 

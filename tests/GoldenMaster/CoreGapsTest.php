@@ -11,10 +11,9 @@ use PHPUnit\Framework\TestCase;
  * Schliesst gezielt Luecken, die die Coverage-Messung im Kern (oeffentlich + Admin) aufgedeckt hat.
  *
  * - index.php: reiner Redirect auf lmo.php mit der Original-Querystring.
- * - lmo-adminopenprogram.php (heute Lmo\Web\Admin\NeuController): Spielplan "aus Datei uebernehmen". $xprogram wird dafuer OHNE
- *   Pruefung direkt an fopen() uebergeben (nur der Suffix ".l98" wird verlangt) - das ist ein
- *   eigener, vom extract()-Fund unabhaengiger Befund (Pfad-Handling ohne Whitelist), hier als
- *   Nebenprodukt der Abdeckung dokumentiert statt separat ausgewertet.
+ * - lmo-adminopenprogram.php (heute Lmo\Web\Admin\NeuController): Spielplan "aus Datei uebernehmen".
+ *   Bis 4.5 ging $xprogram dafuer OHNE Pruefung an fopen() (nur der Suffix ".l98" wurde verlangt),
+ *   und das Formular trug den vollen Serverpfad; heute gilt nur eine angebotene Liga des Ligenordners.
  *
  * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-admindir.php ist
  * toter Code (keine einzige Referenz irgendwo im Repository); lmo-adminuserpass.php und
@@ -40,17 +39,17 @@ final class CoreGapsTest extends TestCase
         $c = Fixture::loggedInClient();
         $t = new Transcript();
 
+        // eine Liga gleicher Groesse im Ligenordner, die das Formular als Vorlage anbietet
+        copy($c->instance()->ligenDir() . '/golden/basic.l98', $c->instance()->ligenDir() . '/vorlage.l98');
         $t->add('Schritt 1: Formular', $c->get('lmoadmin.php', 'action=admin&todo=new'), $c->changes());
         $t->add('Schritt 1: Name, Titel, Typ', $c->submitFromLast('xfile', [
             'xfile' => 'ausvorlage', 'xtitel' => 'Aus Vorlage', 'xtype' => '0',
         ]), $c->changes());
         $t->add('Schritt 2: Teams, Spieltage, Spiele (wie golden/basic)', $c->submitFromLast('xteams', [
-            'xteams' => '6', 'xanzst' => '10', 'xanzsp' => '3',
+            'xteams' => '8', 'xanzst' => '14', 'xanzsp' => '4',
         ]), $c->changes());
-        // $xprogram wird roh an fopen() uebergeben (siehe Klassenkommentar); der Pfad ist relativ
-        // zu PATH_TO_LMO, da dort hin gechdir() wurde.
-        $t->add('Schritt 3: Spielplan aus golden/basic.l98 uebernehmen', $c->submitFromLast('xprogram', [
-            'xprogram' => 'ligen/golden/basic.l98',
+        $t->add('Schritt 3: Spielplan aus vorlage.l98 (Kopie von golden/basic.l98) uebernehmen', $c->submitFromLast('xprogram', [
+            'xprogram' => 'vorlage.l98',
         ]), $c->changes());
         $t->add('neue Liga bearbeiten (Spielplan sollte aus der Vorlage stammen)', $c->get('lmoadmin.php', 'action=admin&todo=edit&file=ausvorlage.l98&st=1'), $c->changes());
         $t->add('oeffentlicher Spielplan der neuen Liga', $c->get('lmo.php', 'file=ausvorlage.l98&action=program'), $c->changes());
