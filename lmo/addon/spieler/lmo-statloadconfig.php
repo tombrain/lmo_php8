@@ -27,8 +27,8 @@ if (!defined('PATH_TO_LMO')) {
 
 //Datei auslesen
 $filename = basename($file);
-$configfile = PATH_TO_ADDONDIR . '/spieler/stats/' . substr($filename, 0, strlen($filename) -4) . '.cfg';
-$filename = PATH_TO_ADDONDIR . '/spieler/stats/' . substr($filename, 0, strlen($filename) -4) . '.stat';
+$configfile = \Lmo\Addon\Spieler\SpielerAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR) . '/' . substr($filename, 0, strlen($filename) -4) . '.cfg';
+$filename = \Lmo\Addon\Spieler\SpielerAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR) . '/' . substr($filename, 0, strlen($filename) -4) . '.stat';
 $spieler_ligalink = $text['spieler'][18];
 if (is_readable($configfile) && $config = file($configfile)) {
     for ($i = 0; $i < count($config); $i++) {

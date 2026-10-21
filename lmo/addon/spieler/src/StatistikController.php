@@ -26,7 +26,7 @@ use Lmo\Web\Vorlagen;
  */
 final class StatistikController implements Controller
 {
-    /** @param string $ordner Ordner der Statistiken (addon/spieler/stats) */
+    /** @param string $ordner Ordner der Statistiken (daten/spieler) */
     public function __construct(private string $ordner)
     {
     }

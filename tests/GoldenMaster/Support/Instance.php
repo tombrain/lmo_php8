@@ -73,8 +73,10 @@ final class Instance
 
         // Was frueher der Installer anlegte bzw. als schreibbar pruefte (install/install.php, Liste 777/666):
         // ohne addon/tipp/lmo-tippauth.txt bricht z. B. die Tippspiel-Benutzerverwaltung mit einem Fatal Error ab.
+        // Daten der Addons: neuer Stand im Datenordner daten/<addon>/, der Originalstand im Addon-Ordner
+        $daten = is_dir($path . '/daten');
         foreach (['addon/tipp/tipps', 'addon/tipp/tipps/auswert', 'addon/tipp/tipps/einsicht',
-            'addon/tipp/tipps/auswert/vereine', 'addon/spieler/stats', 'config/viewer'] as $dir) {
+            'addon/tipp/tipps/auswert/vereine', $daten ? 'daten/spieler' : 'addon/spieler/stats', 'config/viewer'] as $dir) {
             if (!is_dir($path . '/' . $dir)) {
                 mkdir($path . '/' . $dir, 0777, true);
             }

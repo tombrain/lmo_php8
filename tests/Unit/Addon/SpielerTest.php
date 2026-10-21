@@ -184,7 +184,7 @@ class SpielerTest extends TestCase
 
     public function testMenuepunkt(): void
     {
-        $addon = new SpielerAddon($this->ordner);
+        $addon = new SpielerAddon($this->ordner, dirname($this->ordner));
 
         self::assertSame('spieler', $addon->name());
         self::assertCount(1, $addon->controller());

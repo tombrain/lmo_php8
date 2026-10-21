@@ -330,5 +330,5 @@
 </html>
 
 ### DATEIAENDERUNGEN
-NEU addon/spieler/stats/basic.stat (5 Bytes)
+NEU daten/spieler/basic.stat (5 Bytes)
 Name

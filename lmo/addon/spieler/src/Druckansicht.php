@@ -26,7 +26,7 @@ use Lmo\Web\Vorlagen;
 final class Druckansicht
 {
     /**
-     * @param string $ordner Ordner der Statistiken (addon/spieler/stats)
+     * @param string $ordner Ordner der Statistiken (daten/spieler)
      * @param string $datei Ligadatei (Parameter file)
      * @param array<int, string> $text Sprachtexte des LMO
      * @param array<int, string> $t Sprachtexte des Addons

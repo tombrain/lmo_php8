@@ -20,5 +20,6 @@ if (!defined('PATH_TO_LMO')) {
     exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
 }
 
-// Spielerstatistik einer Liga mit Menuepunkt (Lmo\Addon\Spieler\SpielerAddon); die Statistiken liegen in stats/
-return new \Lmo\Addon\Spieler\SpielerAddon(__DIR__ . '/stats');
+// Spielerstatistik einer Liga mit Menuepunkt (Lmo\Addon\Spieler\SpielerAddon); die Statistiken liegen im
+// Datenordner daten/spieler (bis 4.5 in stats/, von dort ziehen sie einmal um)
+return new \Lmo\Addon\Spieler\SpielerAddon(\Lmo\Addon\Spieler\SpielerAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR), __DIR__);
