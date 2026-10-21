@@ -88,6 +88,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\AddonsController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\BenutzerController(PATH_TO_CONFIGDIR . '/lmo-auth.php'),
         new \Lmo\Web\Admin\OptionenController(PATH_TO_CONFIGDIR),
+        new \Lmo\Web\Admin\DesignController(PATH_TO_CONFIGDIR),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -116,10 +117,6 @@ if ($action == 'admin') {
     } elseif ($lmo_admin_seite !== null) {
         echo $lmo_admin_seite->zeige($lmo_admin_kontext)->html;
     } elseif ($_SESSION['lmouserok'] == 2) {
-        $addr_options = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=options';
-        $addr_addons = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=addons';
-        $addr_design = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=design';
-        $addr_user = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=user';
         // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'new') {
@@ -138,8 +135,6 @@ if ($action == 'admin') {
             }
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
-        } elseif ($todo == 'design') {
-            require(PATH_TO_LMO . '/lmo-admindesign.php');
         } elseif ($todo == 'update') {
             require(PATH_TO_LMO . '/lmo-adminupdate.php');
         }
