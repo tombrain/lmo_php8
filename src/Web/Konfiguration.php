@@ -93,6 +93,29 @@ final class Konfiguration
         return new self($werte);
     }
 
+    /** Dieselbe Konfiguration ohne die genannten Werte der Hauptkonfiguration. */
+    public function ohne(string ...$schluessel): self
+    {
+        return new self(array_diff_key($this->werte, array_flip($schluessel)));
+    }
+
+    /**
+     * Ein Schalter eines Addons (Lmo\Addon\Schalter): an, wenn der Wert in config/<addon>/cfg.txt
+     * 1 ist. Fehlt er dort, gilt der in config/cfg.txt (dort stand er bis 4.5), sonst die Vorgabe.
+     */
+    public function addonSchalter(string $addon, string $schluessel, bool $vorgabe): bool
+    {
+        $werte = $this->werte[$addon] ?? null;
+        if (is_array($werte) && array_key_exists($schluessel, $werte)) {
+            return $werte[$schluessel] == 1;
+        }
+        if (array_key_exists($schluessel, $this->werte) && !is_array($this->werte[$schluessel])) {
+            return $this->schalter($schluessel);
+        }
+
+        return $vorgabe;
+    }
+
     /**
      * Schreibt die Konfiguration wie bis 4.5 lmo-savecfg.php: die Hauptkonfiguration nach
      * <ordner>/cfg.txt, die eines Addons nach <ordner>/<addon>/cfg.txt, je Zeile "Schluessel=Wert"
