@@ -66,6 +66,62 @@ final class Konfiguration
         return new self($werte);
     }
 
+    /**
+     * Alle Werte, wie sie gespeichert werden: die Hauptkonfiguration, die der Addons als Array unter
+     * ihrem Ordnernamen.
+     *
+     * @return array<string, mixed>
+     */
+    public function alle(): array
+    {
+        return $this->werte;
+    }
+
+    /**
+     * Dieselbe Konfiguration mit geaenderten Werten; die eines Addons stehen als Array unter seinem
+     * Namen und ersetzen nur die genannten Schluessel.
+     *
+     * @param array<string, mixed> $aenderungen
+     */
+    public function mit(array $aenderungen): self
+    {
+        $werte = $this->werte;
+        foreach ($aenderungen as $schluessel => $wert) {
+            $werte[$schluessel] = is_array($wert) && is_array($werte[$schluessel] ?? null) ? array_replace($werte[$schluessel], $wert) : $wert;
+        }
+
+        return new self($werte);
+    }
+
+    /**
+     * Schreibt die Konfiguration wie bis 4.5 lmo-savecfg.php: die Hauptkonfiguration nach
+     * <ordner>/cfg.txt, die eines Addons nach <ordner>/<addon>/cfg.txt, je Zeile "Schluessel=Wert"
+     * in der Reihenfolge der Werte. Ist timezone leer, kommt wie bisher die eingestellte Zeitzone
+     * hinein (lmo-cfgload.php setzt sie). false, wenn eine Datei nicht geschrieben werden konnte.
+     */
+    public function speichere(string $ordner): bool
+    {
+        $werte = $this->werte;
+        if (array_key_exists('timezone', $werte) && empty($werte['timezone'])) {
+            $werte['timezone'] = date_default_timezone_get();
+        }
+        $haupt = '';
+        $ok = true;
+        foreach ($werte as $schluessel => $wert) {
+            if (is_array($wert)) {
+                $addon = '';
+                foreach ($wert as $name => $addonWert) {
+                    $addon .= $name . '=' . (is_scalar($addonWert) ? (string) $addonWert : '') . "\n";
+                }
+                $ok = @file_put_contents($ordner . '/' . $schluessel . '/cfg.txt', $addon, LOCK_EX) !== false && $ok;
+            } else {
+                $haupt .= $schluessel . '=' . (is_scalar($wert) ? (string) $wert : '') . "\n";
+            }
+        }
+
+        return @file_put_contents($ordner . '/cfg.txt', $haupt, LOCK_EX) !== false && $ok;
+    }
+
     /** Die Konfiguration mit den Anzeige-Optionen (ANZEIGEOPTIONEN), die die Anfrage mitbringt. */
     public function mitAnzeigeoptionen(Anfrage $anfrage): self
     {
