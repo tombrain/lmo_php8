@@ -41,6 +41,10 @@ final class Instance
         if (is_dir($defaults)) {
             self::mergeTree($defaults, $path . '/config');
         }
+        // die Vorlagen der Addons (addon/<name>/config-default/ nach config/<name>/)
+        foreach (glob($path . '/addon/*/config-default', GLOB_ONLYDIR) ?: [] as $addonDefaults) {
+            self::mergeTree($addonDefaults, $path . '/config/' . basename(dirname($addonDefaults)));
+        }
         if (!is_file($path . '/config/lmo-auth.php')) {
             // gleicher Inhalt wie install/config/lmo-auth.php im Original
             file_put_contents($path . '/config/lmo-auth.php', "<?php exit(); ?>\nadmin|lmo|2|||");
@@ -55,7 +59,7 @@ final class Instance
             if (!function_exists('lmo_defaults_stamp')) {
                 require_once $path . '/lmo-setup.php';
             }
-            file_put_contents($path . '/config/.defaults-stamp', lmo_defaults_stamp($path . '/config-default'));
+            file_put_contents($path . '/config/.defaults-stamp', lmo_defaults_stamp(lmo_default_sources($path)));
         }
         $text = file_get_contents($cfg);
         // Berechnungszeit ("Seite in 0.0123 Sek.") wuerde jede Ausgabe veraendern.

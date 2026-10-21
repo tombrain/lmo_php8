@@ -58,6 +58,8 @@ final class FirstRunTest extends TestCase
             self::assertFileExists($this->path($c, $file));
         }
         self::assertFileEquals($this->path($c, 'config-default/cfg.txt'), $this->path($c, 'config/cfg.txt'));
+        self::assertFileEquals($this->path($c, 'addon/tipp/config-default/cfg.txt'), $this->path($c, 'config/tipp/cfg.txt'), 'Vorlage aus dem Ordner des Addons');
+        self::assertDirectoryDoesNotExist($this->path($c, 'config-default/tipp'));
         self::assertDirectoryExists($this->path($c, 'ligen/archiv'));
         self::assertDirectoryExists($this->path($c, 'output'));
         // kein Standardkonto admin/lmo und keine festen Pfade mehr
@@ -69,7 +71,7 @@ final class FirstRunTest extends TestCase
     {
         $c = $this->client();
         self::assertDirectoryExists($this->path($c, 'config/tipp'));
-        $custom = file_get_contents($this->path($c, 'config-default/tipp/cfg.txt')) . "\n; eigene Aenderung\n";
+        $custom = file_get_contents($this->path($c, 'addon/tipp/config-default/cfg.txt')) . "\n; eigene Aenderung\n";
         file_put_contents($this->path($c, 'config/tipp/cfg.txt'), $custom);
 
         self::assertNoPhpMessages($c->get('lmo.php'));
@@ -141,7 +143,7 @@ final class FirstRunTest extends TestCase
         $tippBefore = file_get_contents($tipp);
         // ... dann kommt ein Update mit neuen Optionen (Hauptkonfiguration und Addon)
         file_put_contents($this->path($c, 'config-default/cfg.txt'), "neueoption=42\r\n", FILE_APPEND);
-        file_put_contents($this->path($c, 'config-default/tipp/cfg.txt'), "tippneu=ja\r\n", FILE_APPEND);
+        file_put_contents($this->path($c, 'addon/tipp/config-default/cfg.txt'), "tippneu=ja\r\n", FILE_APPEND);
 
         self::assertNoPhpMessages($c->get('lmo.php'));
 
