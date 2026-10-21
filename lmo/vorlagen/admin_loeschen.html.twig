@@ -20,7 +20,7 @@
                 <td class="nobr" align="left">
                   <ul>
 {% for l in ligen %}
-                    <li><a href="{{ link|raw }}{{ l.pfad|raw }}" onclick="return dellmolink(this.href, {{ l.name|raw }}">{{ l.name|raw }}</a></li>
+                    <li><a href="{{ link|raw }}{{ l.pfad|raw }}" onclick="return dellmolink(this.href, {{ l.name|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES')) }});">{{ l.name|raw }}</a></li>
 {% else %}
                     <li>[{{ text[223]|raw }}]</li>
 {% endfor %}

@@ -67,6 +67,7 @@ class LoeschenControllerTest extends TestCase
 
         self::assertStringContainsString('<a href="/lmoadmin.php?action=admin&amp;todo=delete&amp;del=1&amp;dfile=ligen/bula.l98"', $html);
         self::assertStringContainsString('>T507 1</a>', $html, 'ohne Namen');
+        self::assertStringContainsString('onclick="return dellmolink(this.href, &quot;Bundesliga&quot;);"', $html, 'Rueckfrage mit dem Namen der Liga');
         self::assertStringNotContainsString('alt.l98', $html, 'nur der Ligenordner');
     }
 
