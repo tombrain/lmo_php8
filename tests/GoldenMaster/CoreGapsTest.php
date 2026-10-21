@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Schliesst gezielt Luecken, die die Coverage-Messung im Kern (oeffentlich + Admin) aufgedeckt hat.
  *
  * - index.php: reiner Redirect auf lmo.php mit der Original-Querystring.
- * - lmo-adminopenprogram.php: Spielplan "aus Datei uebernehmen". $xprogram wird dafuer OHNE
+ * - lmo-adminopenprogram.php (heute Lmo\Web\Admin\NeuController): Spielplan "aus Datei uebernehmen". $xprogram wird dafuer OHNE
  *   Pruefung direkt an fopen() uebergeben (nur der Suffix ".l98" wird verlangt) - das ist ein
  *   eigener, vom extract()-Fund unabhaengiger Befund (Pfad-Handling ohne Whitelist), hier als
  *   Nebenprodukt der Abdeckung dokumentiert statt separat ausgewertet.

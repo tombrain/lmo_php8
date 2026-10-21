@@ -28,7 +28,6 @@ parameters:
         - lmo/addon/tipp/lmo-tippopenfileall.php
         - lmo/addon/tipp/lmo-tippsavewert.php
         - lmo/lmo-adminedit.php
-        - lmo/lmo-adminrndprogram.php
         - lmo/lmo-adminrounds.php
         - lmo/lmo-adminteams.php
         - lmo/lmo-openfile.php
