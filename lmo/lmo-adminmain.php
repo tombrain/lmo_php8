@@ -80,6 +80,10 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
         new \Lmo\Web\Admin\OeffnenController(static fn (string $datei): bool => check_hilfsadmin($datei)),
         new \Lmo\Web\Admin\LoeschenController(),
+        new \Lmo\Web\Admin\HochladenController(
+            static fn (): ?array => isset($_POST['upl'], $_FILES['userfile']) ? array('tmp' => (string)$_FILES['userfile']['tmp_name'], 'name' => (string)$_FILES['userfile']['name']) : null,
+            static fn (string $von, string $nach): bool => move_uploaded_file($von, $nach)
+        ),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -130,8 +134,6 @@ if ($action == 'admin') {
             }
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
-        } elseif ($todo == 'upload') {
-            require(PATH_TO_LMO . '/lmo-adminupload.php');
         } elseif ($todo == 'download') {
             require(PATH_TO_LMO . '/lmo-admindown.php');
         } elseif ($todo == 'options') {
