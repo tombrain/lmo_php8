@@ -43,7 +43,7 @@ final class LigenuebersichtController implements Controller
 
     public function zustaendig(Kontext $kontext): bool
     {
-        return $kontext->liga === null && $kontext->action != 'tipp';
+        return $kontext->liga === null;
     }
 
     public function zeige(Kontext $kontext): Seite

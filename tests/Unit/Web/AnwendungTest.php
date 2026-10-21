@@ -63,8 +63,11 @@ class AnwendungTest extends TestCase
         };
     }
 
-    /** @param list<Controller> $controller */
-    private function anwendung(array $controller, ?Addons $addons = null): Anwendung
+    /**
+     * @param list<Controller> $controller
+     * @param list<Controller> $zuletzt
+     */
+    private function anwendung(array $controller, ?Addons $addons = null, array $zuletzt = []): Anwendung
     {
         return new Anwendung(
             new Konfiguration([]),
@@ -73,7 +76,8 @@ class AnwendungTest extends TestCase
             new Pfade($this->ordner, $this->ordner, 'IMG'),
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
             $controller,
-            $addons ?? new Addons()
+            $addons ?? new Addons(),
+            $zuletzt
         );
     }
 
@@ -120,6 +124,41 @@ class AnwendungTest extends TestCase
 
         $anwendung->bearbeite(new Anfrage(['file' => 'a.l98', 'action' => 'table']), '/lmo.php');
         self::assertNotNull($kern, 'der Kern geht vor');
+    }
+
+    public function testAuffangseitenNachDenenDerAddons(): void
+    {
+        $auffang = new class () implements Controller {
+            public function zustaendig(Kontext $kontext): bool
+            {
+                return $kontext->liga === null;
+            }
+
+            public function zeige(Kontext $kontext): Seite
+            {
+                return new Seite('Ligenuebersicht', true);
+            }
+        };
+        $addon = new class (self::controller('demo')) implements MitSeiten {
+            public function __construct(private Controller $demo)
+            {
+            }
+
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function controller(): array
+            {
+                return [$this->demo];
+            }
+        };
+        $anwendung = $this->anwendung([self::controller('table')], new Addons([$addon]), [$auffang]);
+
+        self::assertSame('Seite demo', $anwendung->bearbeite(new Anfrage(['action' => 'demo']), '/lmo.php')?->html, 'die Seite des Addons ohne Liga geht vor');
+        self::assertSame('Ligenuebersicht', $anwendung->bearbeite(new Anfrage(['action' => 'program']), '/lmo.php')?->html, 'sonst die Auffangseite');
+        self::assertSame('Seite table', $anwendung->bearbeite(new Anfrage(['file' => 'a.l98', 'action' => 'table']), '/lmo.php')?->html);
     }
 
     public function testOhneZustaendigenControllerNull(): void

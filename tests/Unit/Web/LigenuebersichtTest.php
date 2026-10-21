@@ -83,7 +83,7 @@ class LigenuebersichtTest extends TestCase
         $c = new LigenuebersichtController(false, static fn (string $datei): bool => true);
 
         self::assertTrue($c->zustaendig($kontext('')));
-        self::assertFalse($c->zustaendig($kontext('tipp')), 'das Tippspiel hat eine eigene Startseite');
+        self::assertTrue($c->zustaendig($kontext('tipp')), 'auch fuer Seiten der Addons; die fragt die Anwendung vorher (Anwendung, $zuletzt)');
     }
 
     public function testListeNachNameUndUnbenannte(): void
