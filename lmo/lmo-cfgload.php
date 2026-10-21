@@ -27,8 +27,8 @@ if (file_exists($cfgfile)) {
   $cfgarray+=$main_cfgarray;
   extract ($cfgarray);                        // Variablen erstellen
 } else {
-  die($text['viewer'][55].": ". $cfgfile . " " . $text['viewer'][56]);
-  //Fehlerhandling hier rein
+  // zweisprachig ohne Sprachtexte: die werden erst nach der Konfiguration geladen (wie lmo-setup.php)
+  die('LMO: config/cfg.txt nicht gefunden. / config/cfg.txt not found.');
 }
 
 //timezone settings (PHP 5.1)
