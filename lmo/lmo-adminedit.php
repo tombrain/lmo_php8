@@ -36,6 +36,7 @@ if (!defined('PATH_TO_LMO')) {
  * @var int|string $tipp_aktauswertges Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_immeralle Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_ligenzutippen Einstellung aus tipp/cfg.txt
+ * @var \Lmo\Web\Kontext $lmo_admin_kontext Kontext der Administration (lmo-adminmain.php)
  *
  * Werden auch in dieser Datei gesetzt, aber nicht auf jedem Weg (koennen von aussen kommen):
  * @var array<int|string, mixed> $me
@@ -46,10 +47,11 @@ require_once(PATH_TO_LMO . '/lmo-admintest.php');
 if ($file != '') {
     $save = isset($_POST['save']) ? $_POST['save'] : 0;
     $tabdat = '_';
-    $ftest0 = 1;
+    // Tippspiel-Addon: nur, wenn es geladen ist; ohne den Ordner addon/tipp fehlen seine Dateien und Texte
+    $ftest0 = $lmo_admin_kontext->addons->hat('tipp') ? 1 : 0;
     $liga = basename(substr($file, 0, -4));
 
-    if ($tipp_immeralle == 0) {
+    if ($ftest0 == 1 && $tipp_immeralle == 0) {
         $ftest0 = 0;
         $ftest1 = '';
         $ftest1 = explode(',', $tipp_ligenzutippen);

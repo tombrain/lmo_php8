@@ -90,6 +90,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Ergebnisse: Ohne den Ordner `addon/tipp` (Tippspiel entfernt, seine Konfiguration noch vorhanden) brach das Speichern von Ergebnissen mit einem Fatal Error ab, weil `lmo-adminedit.php` die Auswertung des Addons einband. Spalte und Auswertung des Tippspiels gelten jetzt nur, wenn das Addon geladen ist.  
 * Fehlende `config/cfg.txt`: `lmo-cfgload.php` zeigt jetzt eine klare zweisprachige Meldung. Bisher nahm es die Texte des Viewer-Addons, die zu dem Zeitpunkt noch nicht geladen sind (PHP-Warnungen, Meldung ohne Text, dafür mit dem vollen Serverpfad).  
 * Administration, Optionen: Nach dem Speichern zeigt die Seite die gespeicherten Werte. Bisher standen bis zum nächsten Aufruf noch die alten im Formular, weil `lmo-cfgload.php` beim erneuten Laden vorhandene Werte nicht überschrieb.  
 * Administration, Liga löschen: Die Rückfrage vor dem Löschen erscheint wieder. Der Aufruf von `dellmolink()` war unvollständig (Name ohne Anführungszeichen, Klammer fehlte), der Browser brach ihn ab und löschte ohne Rückfrage.  
@@ -517,6 +518,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, results: without the folder `addon/tipp` (prediction game removed, its configuration still present) saving results stopped with a fatal error, because `lmo-adminedit.php` included the evaluation of the add-on. The prediction game column and evaluation now only apply when the add-on is loaded.  
 * Missing `config/cfg.txt`: `lmo-cfgload.php` now shows a clear bilingual message. Until now it used the texts of the viewer add-on, which are not loaded at that point (PHP warnings, message without text, but with the full server path).  
 * Administration, options: after saving, the page shows the saved values. Until now the form still showed the old ones until the next call, because `lmo-cfgload.php` did not overwrite existing values when reloading.  
 * Administration, delete a league: the confirmation before deleting appears again. The call of `dellmolink()` was incomplete (name without quotes, missing parenthesis), the browser aborted it and deleted without asking.  
