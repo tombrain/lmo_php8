@@ -1,8 +1,15 @@
+Ausführlich mit Ordnerstruktur und allen Erweiterungspunkten: doku/ordnerstruktur.md im Paket
+(https://github.com/henshingly/lmo_php8/blob/master/doku/ordnerstruktur.md).
+
 Addons:
 
 - Ein Verzeichnis = Ein Addon
-- Wenn benötigt eine Konfigurationsdatei /config/[Addonname]/cfg.txt (Format wie cfg.txt im in /config)
-- Wenn benötigt eine Datei /lang/[Addonname]/lang-[LMO-Sprache].txt erstellen
+- Wenn benötigt eine Vorlage der Konfiguration addon/[Addonname]/config-default/cfg.txt; der LMO legt
+  daraus config/[Addonname]/cfg.txt an (Format wie config/cfg.txt)
+- Wenn benötigt Sprachtexte addon/[Addonname]/lang/lang-[LMO-Sprache].txt
+  (Addons nach alter Art: weiterhin lang/[Addonname]/lang-[LMO-Sprache].txt)
+- Daten, die beim Betrieb entstehen, nach daten/[Addonname]/ (PATH_TO_DATADIR), nicht in den
+  Ordner des Addons: der wird bei Updates ersetzt
 - An den Anfang der Startdatei(en) des Addons diese Zeile einfügen
 
   require(dirname(__FILE__).'/../../init.php');
@@ -16,6 +23,7 @@ Addons:
     PATH_TO_IMGDIR,
     PATH_TO_LANGDIR,
     PATH_TO_CONFIGDIR,
+    PATH_TO_DATADIR,
     PATH_TO_JSDIR
 
     URL_TO_LMO
@@ -56,9 +64,8 @@ Addons nach neuer Art:
         }
     };
 
-- name() ist der Name des Ordners; Konfiguration und Sprachtexte liegen wie oben beschrieben unter
-  config/[Addonname]/ und lang/[Addonname]/ ($kontext->konfiguration->addon('brain'),
-  $kontext->texteVon('brain')).
+- name() ist der Name des Ordners; Konfiguration und Sprachtexte wie oben beschrieben
+  ($kontext->konfiguration->addon('brain'), $kontext->texteVon('brain')), Daten in daten/brain/.
 
 - Was ein Addon beiträgt, sagen die Erweiterungspunkte, die es implementiert:
 
@@ -67,8 +74,11 @@ Addons nach neuer Art:
     # Lmo\Addon\MitZusatzJeSpiel   zusatzJeSpiel(): HTML am Ende jeder Zeile in Ergebnissen und Spielplan
     # Lmo\Addon\MitZusatzUnterSeite zusatzUnterSeite(): HTML unter einer Seite ($kontext->action sagt, welche)
     # Lmo\Addon\MitRahmenteilen   rahmenteile(): Teile des Rahmens, z.B. ['Tippspiel' => '<a ...>'] als Menuepunkt
+    # Lmo\Addon\MitAdminMenue    adminMenue(), ligaMenue(), startseite(): Punkte in den Menues der Administration
+    # Lmo\Addon\MitAdminSeiten   adminController(): eigene Seiten in der Administration
+    # Lmo\Addon\MitSchaltern     schalter(): Schalter in den Optionen, z.B. das Addon ein- und ausschalten
 
-  Weitere Erweiterungspunkte (Adminseiten, Ereignisse wie "Liga gespeichert") folgen.
+  Weitere Erweiterungspunkte (Ereignisse wie "Liga gespeichert") folgen.
 
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.
@@ -78,6 +88,8 @@ Addons nach neuer Art:
     addon/[Addonname]/addon.php     gibt das Addon zurueck
     addon/[Addonname]/src/          Klassen (Namensraum Lmo\Addon\[Addonname]\, declare(strict_types=1))
     addon/[Addonname]/vorlagen/     Twig-Vorlagen (\Lmo\Web\Vorlagen::zeige(dirname(__DIR__) . '/vorlagen', ...))
+    addon/[Addonname]/lang/         Sprachtexte
+    addon/[Addonname]/config-default/cfg.txt  Vorlage der Konfiguration
 
   Die Klassen laedt der LMO selbst (Lmo\Addon\Autoloader, in init.php registriert): eine Klasse
   Lmo\Addon\Brain\Teil\Klasse liegt in addon/brain/src/Teil/Klasse.php. Ein Eintrag in

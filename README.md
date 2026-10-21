@@ -46,7 +46,9 @@ Update: run `composer update`. The LMO in the folder `lmo` is brought up to date
 
 Existing installation (uploaded by FTP): name its folder as the target of `lmo-install`. The program files are replaced, your data is kept. Make a backup first.
 
-If the web server delivers your whole project folder, the folder `vendor` next to `lmo` must not be reachable from a browser; `lmo-install` puts an `.htaccess` there. On nginx or other servers without `.htaccess`, block `vendor` and the folders `config`, `includes`, `ligen` and `vendor` inside `lmo` yourself.
+If the web server delivers your whole project folder, the folder `vendor` next to `lmo` must not be reachable from a browser; `lmo-install` puts an `.htaccess` there. On nginx or other servers without `.htaccess`, block `vendor` and the folders `config`, `daten`, `includes`, `ligen` and `vendor` inside `lmo` yourself.
+
+Layout of the package and the installation, what is kept on updates and how add-ons are loaded (in German): [doku/ordnerstruktur.md](doku/ordnerstruktur.md).
 
 > [!NOTE]
 This LMO version is still a beta version. Please note this. Before copying over an existing LMO, make a backup first!
@@ -94,7 +96,9 @@ Update: `composer update` ausführen. Der LMO im Ordner `lmo` wird dabei automat
 
 Bestehende Installation (per FTP hochgeladen): deren Ordner als Ziel von `lmo-install` angeben. Die Programmdateien werden ersetzt, die Daten bleiben erhalten. Vorher eine Sicherung machen.
 
-Liefert der Webserver den ganzen Projektordner aus, darf der Ordner `vendor` neben `lmo` nicht per Browser erreichbar sein; `lmo-install` legt dort eine `.htaccess` ab. Bei nginx oder anderen Servern ohne `.htaccess` diesen Ordner und in `lmo` die Ordner `config`, `includes`, `ligen` und `vendor` selbst sperren.
+Liefert der Webserver den ganzen Projektordner aus, darf der Ordner `vendor` neben `lmo` nicht per Browser erreichbar sein; `lmo-install` legt dort eine `.htaccess` ab. Bei nginx oder anderen Servern ohne `.htaccess` diesen Ordner und in `lmo` die Ordner `config`, `daten`, `includes`, `ligen` und `vendor` selbst sperren.
+
+Aufbau von Paket und Installation, was bei Updates bleibt und wie Addons eingebunden werden: [doku/ordnerstruktur.md](doku/ordnerstruktur.md).
 
 > [!NOTE]
 Bei dieser LMO Version handelt es sich immer noch um eine Beta Version. Beachtet das bitte. Vor dem drüberkopieren über einen vorhandenen LMO macht zuerst eine Sicherung!

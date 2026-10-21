@@ -244,7 +244,8 @@ Steht dort `KEIN FORMULAR GEFUNDEN` oder `LEERES FORMULAR`, hat der Test das For
 (falsche Annahme, nicht Verhalten der Anwendung).
 
 Fixture-Aenderung gegenueber v9: `Instance` legt jetzt auch an, was der Installer anlegen laesst
-(`addon/tipp/lmo-tippauth.txt`, Tipp- und Spieler-Verzeichnisse). Ohne diese Datei bricht
+(Tipperdatei `lmo-tippauth.txt`, Tipp- und Spieler-Verzeichnisse; heute im Datenordner `daten/tipp/`
+und `daten/spieler/`, beim Originalstand noch im Addon-Ordner). Ohne die Tipperdatei bricht
 `todo=tippuser` mit einem Fatal Error ab. Dadurch aendern sich einige Snapshots unter
 `admin-views` (`*todo=tipp*`); sie muessen neu aufgezeichnet werden.
 
