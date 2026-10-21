@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
 $dumma = array();
-$pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
+$pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
 
 $dumma = [];
 

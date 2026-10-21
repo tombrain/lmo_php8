@@ -30,7 +30,7 @@ final class TippSeitenTest extends TestCase
         $client = Fixture::anonymousClient();
         $path = $client->instance()->path();
         // nick|kennwort|status|name|email|verein|strasse|plz|ort|newsletter|erinnerung|EOL
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org|||||1|1|EOL\n");
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org|||||1|1|EOL\n");
         // alle Ligen tippbar: sonst bietet "Ligen hinzufuegen" keine an
         $cfg = $path . '/config/tipp/cfg.txt';
         file_put_contents($cfg, (string) preg_replace('/^immeralle=.*$/m', 'immeralle=1', (string) file_get_contents($cfg), 1, $count));
@@ -38,8 +38,8 @@ final class TippSeitenTest extends TestCase
         // eine zweite Liga im obersten Ligenordner: nur dort sucht "Ligen hinzufuegen"
         copy($client->instance()->ligenDir() . '/golden/basic.l98', $client->instance()->ligenDir() . '/basic.l98');
         $client->instance()->freezeLeagueTimes();
-        file_put_contents($path . '/addon/tipp/tipps/1l_2024-25_tester.tip', "[Round26]\nGA1=2\nGB1=1\n");
-        touch($path . '/addon/tipp/tipps/1l_2024-25_tester.tip', mktime(12, 0, 0, 3, 10, 2025));
+        file_put_contents($path . '/daten/tipp/tipps/1l_2024-25_tester.tip', "[Round26]\nGA1=2\nGB1=1\n");
+        touch($path . '/daten/tipp/tipps/1l_2024-25_tester.tip', mktime(12, 0, 0, 3, 10, 2025));
         $client->resetChanges();
 
         return $client;
@@ -123,7 +123,7 @@ final class TippSeitenTest extends TestCase
         $c->submitFromLast('xtipperemail', ['xtipperemail' => 'tina@example.org']);
 
         $path = $c->instance()->path();
-        $zeilen = file($path . '/addon/tipp/lmo-tippauth.txt', FILE_IGNORE_NEW_LINES) ?: [];
+        $zeilen = file($path . '/daten/tipp/lmo-tippauth.txt', FILE_IGNORE_NEW_LINES) ?: [];
         $hash = explode('|', $zeilen[1] ?? '')[1] ?? '';
         $mails = glob($path . '/.mails/*.eml') ?: [];
         self::assertCount(1, $mails, 'Mail mit dem neuen Kennwort');
@@ -149,7 +149,7 @@ final class TippSeitenTest extends TestCase
         self::assertCount(1, $mails);
         $teile = preg_split('/\R\R/', (string) file_get_contents($mails[0]), 2) ?: [];
         self::assertSame(1, preg_match('/Passwort: (\S+)/', (string) base64_decode($teile[1] ?? ''), $treffer), 'Kennwort in der Mail');
-        self::assertStringStartsWith("<?php exit; ?>\n", (string) file_get_contents($path . '/addon/tipp/lmo-tippauth.txt'), 'die Schutzzeile bleibt');
+        self::assertStringStartsWith("<?php exit; ?>\n", (string) file_get_contents($path . '/daten/tipp/lmo-tippauth.txt'), 'die Schutzzeile bleibt');
         self::assertStringContainsString('todo=logout', self::anmelden($c, $treffer[1]), 'Anmeldung mit dem neuen Kennwort');
 
         $unbekannt = $c->post('lmo.php', '', ['action' => 'tipp', 'todo' => 'getpass', 'xtippername2' => 'niemand']);
@@ -171,8 +171,8 @@ final class TippSeitenTest extends TestCase
             $einstellungen = (string) preg_replace('/^' . $name . '=.*$/m', $name . '=' . $wert, $einstellungen, 1);
         }
         file_put_contents($cfg, $einstellungen);
-        @mkdir($path . '/addon/tipp/tipps/einsicht', 0777, true);
-        file_put_contents($path . '/addon/tipp/tipps/einsicht/1l_2024-25_26.ein', "\n[zora]\nGA1=1\nGB1=1\nGA2=-1\nGB2=-1\n\n[anna]\n@2@\nGA1=2\nGB1=1\nGA2=0\nGB2=3\n\n[Bert]\nGA1=0\nGB1=2\nGA2=1\nGB2=1\n");
+        @mkdir($path . '/daten/tipp/tipps/einsicht', 0777, true);
+        file_put_contents($path . '/daten/tipp/tipps/einsicht/1l_2024-25_26.ein', "\n[zora]\nGA1=1\nGB1=1\nGA2=-1\nGB2=-1\n\n[anna]\n@2@\nGA1=2\nGB1=1\nGA2=0\nGB2=3\n\n[Bert]\nGA1=0\nGB1=2\nGA2=1\nGB2=1\n");
         $c->resetChanges();
         $t = new Transcript();
 

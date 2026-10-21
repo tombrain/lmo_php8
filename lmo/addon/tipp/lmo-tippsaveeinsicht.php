@@ -25,7 +25,7 @@ require_once(PATH_TO_LMO."/lmo-admintest.php");
 if ($_POST["liga"] != "" && $_POST["st"] != "") {
   $start=isset($_POST['start'])?$_POST['start']:0;
   $ende=isset($_POST['ende'])?$_POST['ende']:$anztipper;
-  $verz = opendir(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp);
+  $verz = opendir(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp);
   $dummy = array();
   while ($files = readdir($verz)) {
     if (strtolower(substr($files, -4)) == ".tip" && strtolower(substr($files, 0, strlen($liga))) == strtolower($liga)) {
@@ -34,7 +34,7 @@ if ($_POST["liga"] != "" && $_POST["st"] != "") {
   }
    
   $anztipper = count($dummy);
-  $einsichtfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."einsicht/".$liga."_".$st.".ein";
+  $einsichtfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."einsicht/".$liga."_".$st.".ein";
   $datenalt = array("");
   $nick = "";
    
@@ -46,7 +46,7 @@ if ($_POST["liga"] != "" && $_POST["st"] != "") {
       if ($zeile != "") {
         if ((substr($zeile, 0, 1) == "[") && (substr($zeile, -1) == "]")) {
           $nick = substr($zeile, 1, -1);
-          if (!file_exists(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.$liga."_".$nick.".tip")) {
+          if (!file_exists(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$liga."_".$nick.".tip")) {
             $nick = "";
           }
         }
@@ -73,7 +73,7 @@ if ($_POST["liga"] != "" && $_POST["st"] != "") {
       // durchlaufe alle Tipper
       $tippernick = substr($dummy[$k], strrpos($dummy[$k], "_")+1, -4);
       if ($k >= $start-1 && $k <= $ende-1) {
-        $tippfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.$dummy[$k];
+        $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$dummy[$k];
         fputs($einsichtdatei, "\n[".$tippernick."]\n");
          
         if (!file_exists($tippfile))

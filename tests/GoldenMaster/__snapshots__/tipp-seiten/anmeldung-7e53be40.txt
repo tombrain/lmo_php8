@@ -772,7 +772,7 @@
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/lmo-tippauth.txt
+GEAENDERT daten/tipp/lmo-tippauth.txt
 --- vorher
 +++ nachher
 @@ -1,2 +1,2 @@

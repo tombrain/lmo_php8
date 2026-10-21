@@ -87,7 +87,7 @@ L98;
     {
         $client = Fixture::loggedInClient();
         $path = $client->instance()->path();
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
             . "tester|geheim|5|Tina Test|tester@example.org||||1|1|EOL\n"
             . "zweiter|geheim|5|Zoe Zweite|zweite@example.org||||1|1|EOL\n");
         $cfg = $path . '/config/tipp/cfg.txt';
@@ -98,7 +98,7 @@ L98;
         // eine Liga mit Ergebnissen direkt im Ligenordner (die mitgelieferte Liga hat keine)
         copy($client->instance()->ligenDir() . '/golden/basic.l98', $client->instance()->ligenDir() . '/tippliga.l98');
         $client->instance()->freezeLeagueTimes();
-        $tipps = $path . '/addon/tipp/tipps/';
+        $tipps = $path . '/daten/tipp/tipps/';
         // Liga: Spieltag 1 und 2 mit je drei Partien, mit Joker; der zweite Tipper tippt weniger und anders
         file_put_contents($tipps . 'tippliga_tester.tip', "[Round1]\n@2@\nGA1=2\nGB1=1\nGA2=1\nGB2=1\nGA3=0\nGB3=2\n"
             . "[Round2]\n@0@\nGA1=1\nGB1=1\nGA2=2\nGB2=0\nGA3=0\nGB3=1\n");
@@ -116,7 +116,7 @@ L98;
 
     private static function auswertung(AdminClient $client, string $liga): string
     {
-        $datei = $client->instance()->path() . '/addon/tipp/tipps/auswert/' . $liga . '.aus';
+        $datei = $client->instance()->path() . '/daten/tipp/tipps/auswert/' . $liga . '.aus';
 
         return is_file($datei) ? str_replace("\r\n", "\n", (string) file_get_contents($datei)) : '(nicht geschrieben)';
     }
@@ -170,7 +170,7 @@ L98;
         copy($c->instance()->ligenDir() . '/golden/penalties.l98', $c->instance()->ligenDir() . '/tippstrafe.l98');
         $c->instance()->freezeLeagueTimes();
         // viele gleiche Tipps: Mannschaften liegen gleichauf, der direkte Vergleich entscheidet
-        $tipp = $path . '/addon/tipp/tipps/tippstrafe_tester.tip';
+        $tipp = $path . '/daten/tipp/tipps/tippstrafe_tester.tip';
         file_put_contents($tipp, "[Round1]\n@0@\nGA1=1\nGB1=1\nGA2=1\nGB2=1\nGA3=2\nGB3=0\nGA4=0\nGB4=2\n"
             . "[Round2]\n@0@\nGA1=1\nGB1=0\nGA2=0\nGB2=1\nGA3=1\nGB3=1\nGA4=2\nGB4=2\n"
             . "[Round3]\n@0@\nGA1=0\nGB1=0\nGA2=3\nGB2=1\nGA3=1\nGB3=3\n");

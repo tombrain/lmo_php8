@@ -2319,7 +2319,7 @@ xtippb10=0
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
+GEAENDERT daten/tipp/tipps/1l_2024-25_tester.tip
 --- vorher
 +++ nachher
 @@ -1,6 +1,20 @@
@@ -2346,7 +2346,7 @@ GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
 +GB8=-1
 +GA9=-1
 +GB9=-1
-GEAENDERT addon/tipp/tipps/einsicht/1l_2024-25_26.ein
+GEAENDERT daten/tipp/tipps/einsicht/1l_2024-25_26.ein
 --- vorher
 +++ nachher
 @@ -1,2 +1,3 @@
@@ -2382,7 +2382,7 @@ GEAENDERT addon/tipp/tipps/einsicht/1l_2024-25_26.ein
 +GB8=-1
 +GA9=-1
 +GB9=-1
-GEAENDERT addon/tipp/tipps/einsicht/tipppokal_1.ein
+GEAENDERT daten/tipp/tipps/einsicht/tipppokal_1.ein
 --- vorher
 +++ nachher
 @@ -1,7 +1,13 @@
@@ -2402,7 +2402,7 @@ GEAENDERT addon/tipp/tipps/einsicht/tipppokal_1.ein
 +GB21=-1
 +GA22=-1
 +GB22=-1
-GEAENDERT addon/tipp/tipps/tipppokal_tester.tip
+GEAENDERT daten/tipp/tipps/tipppokal_tester.tip
 --- vorher
 +++ nachher
 @@ -2,2 +2,8 @@
@@ -3640,7 +3640,7 @@ xtipp9=1
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
+GEAENDERT daten/tipp/tipps/1l_2024-25_tester.tip
 --- vorher
 +++ nachher
 @@ -1,8 +1,8 @@
@@ -3656,7 +3656,7 @@ GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
 +GB2=0
  GA3=0
  GB3=0
-GEAENDERT addon/tipp/tipps/einsicht/1l_2024-25_26.ein
+GEAENDERT daten/tipp/tipps/einsicht/1l_2024-25_26.ein
 --- vorher
 +++ nachher
 @@ -13,8 +13,8 @@
@@ -3672,7 +3672,7 @@ GEAENDERT addon/tipp/tipps/einsicht/1l_2024-25_26.ein
 +GB2=0
  GA3=0
  GB3=0
-GEAENDERT addon/tipp/tipps/einsicht/tipppokal_1.ein
+GEAENDERT daten/tipp/tipps/einsicht/tipppokal_1.ein
 --- vorher
 +++ nachher
 @@ -4,6 +4,6 @@
@@ -3684,7 +3684,7 @@ GEAENDERT addon/tipp/tipps/einsicht/tipppokal_1.ein
 +GB11=0
  GA12=1
  GB12=0
-GEAENDERT addon/tipp/tipps/tipppokal_tester.tip
+GEAENDERT daten/tipp/tipps/tipppokal_tester.tip
 --- vorher
 +++ nachher
 @@ -1,5 +1,5 @@

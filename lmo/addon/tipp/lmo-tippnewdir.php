@@ -124,8 +124,8 @@ if ($ftype != "") {
       }
 
       if (($action != "tipp" && $todo != "tipp") || $ftest == 1 || $tipp_immeralle == 1) {
-        if ($todo != "delligen" || (($ftest == 1 || $tipp_immeralle == 1) && file_exists(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.substr($files, 0, -4)."_".$_SESSION['lmotippername'].".tip") == true)) {
-          if ($todo != "newligen" || (($ftest == 1 || $tipp_immeralle == 1) && file_exists(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.substr($files, 0, -4)."_".$_SESSION['lmotippername'].".tip") == false)) {
+        if ($todo != "delligen" || (($ftest == 1 || $tipp_immeralle == 1) && file_exists(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.substr($files, 0, -4)."_".$_SESSION['lmotippername'].".tip") == true)) {
+          if ($todo != "newligen" || (($ftest == 1 || $tipp_immeralle == 1) && file_exists(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.substr($files, 0, -4)."_".$_SESSION['lmotippername'].".tip") == false)) {
             if ($todo != "newtipper" || $ftest == 1 || $tipp_immeralle == 1) {
               if ($todo != "tippemail" || $ftest == 1 || $tipp_immeralle == 1) {
                 if ($todo != "tippuseredit" || $ftest == 1 || $tipp_immeralle == 1) {
@@ -265,7 +265,7 @@ if ($ftype != "") {
               <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="<?php echo $start1; ?>">
                 <?php echo $text[4]."\n"; //bis
                       $dummy1=array();
-                      $verz1 = opendir(substr(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp, 0, -1));
+                      $verz1 = opendir(substr(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp, 0, -1));
                        while ($tipfiles = readdir($verz1)) {
                         if (strtolower(substr($tipfiles, 0, strlen(substr($files, 0, -4)))) == strtolower(substr($files, 0, -4)) && strtolower(substr($tipfiles, -4)) == ".tip") {
                           array_push($dummy1, $tipfiles);
@@ -299,7 +299,7 @@ if ($ftype != "") {
 <input type="checkbox" name="xtipperligen[]" value="<?php echo substr($files,0,-4) ?>"<?php
                       if (($todo == "newtipper" || $todo == "tippuseredit") && $checked == 1) {
                         echo "checked";
-                      } elseif ($todo == "tippuseredit" && file_exists(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.substr($files, 0, -4)."_".$nick.".tip") == true) {
+                      } elseif ($todo == "tippuseredit" && file_exists(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.substr($files, 0, -4)."_".$nick.".tip") == true) {
                         echo "checked";
                       }
 

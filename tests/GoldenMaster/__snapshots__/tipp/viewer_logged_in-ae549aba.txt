@@ -185,7 +185,7 @@
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/lmo-tippauth.txt
+GEAENDERT daten/tipp/lmo-tippauth.txt
 --- vorher
 +++ nachher
 @@ -1,2 +1,2 @@
@@ -2513,7 +2513,7 @@ xtippb0=0
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
+GEAENDERT daten/tipp/tipps/1l_2024-25_tester.tip
 --- vorher
 +++ nachher
 @@ -1,6 +1,20 @@
@@ -2539,7 +2539,7 @@ GEAENDERT addon/tipp/tipps/1l_2024-25_tester.tip
 +GB8=-1
 +GA9=-1
 +GB9=-1
-GEAENDERT addon/tipp/tipps/tipppokal_tester.tip
+GEAENDERT daten/tipp/tipps/tipppokal_tester.tip
 --- vorher
 +++ nachher
 @@ -2,2 +2,8 @@
@@ -2551,7 +2551,7 @@ GEAENDERT addon/tipp/tipps/tipppokal_tester.tip
 +GB21=-1
 +GA22=-1
 +GB22=-1
-NEU addon/tipp/tipps/einsicht/1l_2024-25_26.ein (136 Bytes)
+NEU daten/tipp/tipps/einsicht/1l_2024-25_26.ein (136 Bytes)
 
 [tester]
 @3@
@@ -2573,7 +2573,7 @@ GA8=-1
 GB8=-1
 GA9=-1
 GB9=-1
-NEU addon/tipp/tipps/einsicht/tipppokal_1.ein (72 Bytes)
+NEU daten/tipp/tipps/einsicht/tipppokal_1.ein (72 Bytes)
 
 [tester]
 GA11=3

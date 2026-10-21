@@ -329,7 +329,7 @@
 </body>
 </html>
 --- Dateiaenderungen ---
-NEU addon/tipp/tipps/auswert/tippliga.aus (51 Bytes)
+NEU daten/tipp/tipps/auswert/tippliga.aus (51 Bytes)
 
 [tester]
 Team=
@@ -339,7 +339,7 @@ TP1=1
 
 [zweiter]
 Team=
-NEU addon/tipp/tipps/auswert/vereine/tippliga_tester.ver (56 Bytes)
+NEU daten/tipp/tipps/auswert/vereine/tippliga_tester.ver (56 Bytes)
 [1]
 [2]
 TP1=1
@@ -352,7 +352,7 @@ SG1=1
 [6]
 [7]
 [8]
-NEU addon/tipp/tipps/auswert/vereine/tippliga_zweiter.ver (32 Bytes)
+NEU daten/tipp/tipps/auswert/vereine/tippliga_zweiter.ver (32 Bytes)
 [1]
 [2]
 [3]
@@ -705,7 +705,7 @@ Team=
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/tipps/auswert/tippliga.aus
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
 --- vorher
 +++ nachher
 @@ -5,5 +5,10 @@
@@ -719,7 +719,7 @@ GEAENDERT addon/tipp/tipps/auswert/tippliga.aus
  [zweiter]
  Team=
 +SG2=2
-GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_tester.ver
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_tester.ver
 --- vorher
 +++ nachher
 @@ -1,12 +1,22 @@
@@ -745,7 +745,7 @@ GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_tester.ver
  [8]
 +TP2=1
 +SG2=1
-GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_zweiter.ver
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_zweiter.ver
 --- vorher
 +++ nachher
 @@ -1,8 +1,12 @@
@@ -1110,7 +1110,7 @@ SG2=2
 </body>
 </html>
 --- Dateiaenderungen ---
-NEU addon/tipp/tipps/auswert/tipppokal.aus (81 Bytes)
+NEU daten/tipp/tipps/auswert/tipppokal.aus (81 Bytes)
 
 [tester]
 Team=
@@ -3322,7 +3322,7 @@ xgoalb0=1
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT addon/tipp/tipps/auswert/tippliga.aus
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
 --- vorher
 +++ nachher
 @@ -2,7 +2,8 @@
@@ -3341,7 +3341,7 @@ GEAENDERT addon/tipp/tipps/auswert/tippliga.aus
  Team=
 +SG1=1
  SG2=2
-GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_tester.ver
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_tester.ver
 --- vorher
 +++ nachher
 @@ -2,8 +2,10 @@
@@ -3363,7 +3363,7 @@ GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_tester.ver
 +SG1=1
  [8]
  TP2=1
-GEAENDERT addon/tipp/tipps/auswert/vereine/tippliga_zweiter.ver
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_zweiter.ver
 --- vorher
 +++ nachher
 @@ -1,4 +1,5 @@
@@ -3444,7 +3444,7 @@ GEAENDERT ligen/tippliga.l98
 +AT4=
  
  [Round2]
-NEU addon/tipp/tipps/auswert/gesamt.aus (179 Bytes)
+NEU daten/tipp/tipps/auswert/gesamt.aus (179 Bytes)
 [Options]
 AnzLigen=2
 TT1=tippliga.aus
