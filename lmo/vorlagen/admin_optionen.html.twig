@@ -1,0 +1,202 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Optionen der Installation (Lmo\Web\Admin\OptionenController), bis 4.5 lmo-adminoptions.php #}
+{% macro schalter(name, wert) %}<input type="checkbox" class="lmo-formular-input" name="x{{ name }}" onChange="dolmoedit()"{% if wert == 1 %} checked{% endif %}>{% endmacro %}
+{% import _self as f %}
+      <table width="100%" class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center">{{ text[319]|raw }}</td>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=addons" onclick="return chklmolink();" title="{{ text[498]|raw }}">{{ text[497]|raw }}</a></td>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=design" onclick="return chklmolink();" title="{{ text[422]|raw }}">{{ text[421]|raw }}</a></td>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=user" onclick="return chklmolink();" title="{{ text[318]|raw }}">{{ text[317]|raw }}</a></td>
+        </tr>
+      </table>
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" >
+        <tr>
+          <td align="center" colspan="2"><h1>{{ text[225]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for nr, titel in {0: text[99], 1: text[226], 2: text[250]} %}
+              <tr><td align="right">{% if show == nr %}{{ titel|raw }}{% else %} <a href="{{ adresse }}?action=admin&amp;todo=options&amp;show={{ nr }}">{{ titel|raw }}</a>{% endif %}</td></tr>
+{% endfor %}
+            </table>
+          </td>
+          <td align="left" valign="top">
+            <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="options">
+              <input type="hidden" name="save" value="1">
+              <input type="hidden" name="file" value="{{ datei }}">
+              <input type="hidden" name="show" value="{{ show }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if show == 0 %}
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[506]|raw }}">{{ text[505]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4">
+                    <select class="lmo-formular-input" name="xdeflang" onchange="dolmoedit()">
+{% for sprache in sprachen %}
+        <option{% if sprache == k.deflang %} selected{% endif %}>{{ sprache }}</option>
+{% endfor %}
+                    </select>&nbsp;<img src="{{ bilder }}/{{ k.deflang }}.svg" height="16"></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[575]|raw }}">{{ text[574]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4">
+                    <select class="lmo-formular-input" name="xtimezone" onchange="dolmoedit()">
+{% for kontinent, zonen in zeitzonen %}
+                      <optgroup label="{{ kontinent }}">
+{% for zone, name in zonen %}
+                        <option value="{{ zone }}"{% if zone == k.timezone %} selected{% endif %}>{{ name }}</option>
+{% endfor %}
+                      </optgroup>
+{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[222]|raw }}">{{ text[221]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4"><input class="lmo-formular-input" type="text" name="xdirliga" size="20" maxlength="80" value="{{ k.dirliga }}" onChange="dolmoedit()"></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[240]|raw }}">{{ text[239]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4"><input class="lmo-formular-input" type="text" name="xdeftime" size="5" maxlength="5" value="{{ k.deftime }}" onChange="dolmoedit()"></td>
+                </tr>
+                <tr>
+                  <td class="nobr" rowspan="2" align="right"><acronym title="{{ text[256]|raw }}">{{ text[257]|raw }}</acronym>&nbsp;</td>
+                  <td class="nobr" align="left">
+                    <input type="radio" name="xdefdateselect" value="1" checked>
+                    <select class="lmo-formular-input" name="xdefdateformat" onChange="dolmoedit();document.getElementsByName('xdefdateselect')[0].checked=true;">
+                      <option value="">__</option>
+{% for format, beispiel in datumsformate %}
+                      <option value="{{ format }}"{% if k.defdateformat == format %} selected{% endif %}>{{ beispiel }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="left">
+                    <input type="radio" name="xdefdateselect" value=""{% if eigenesFormat %} checked{% endif %}>
+                    <input type="text" class="lmo-formular-input" name="xdefdateformat2" onChange="dolmoedit();document.getElementsByName('xdefdateselect')[1].checked=true;" value="{{ k.defdateformat }}">
+                    <a href="https://www.php.net/manual/de/datetime.format.php">
+                      <span class="popup">
+                        <strong>{{ text[545]|raw }}</strong><br>
+                        D = {{ beispiele.D }}<br>
+                        l = {{ beispiele.l }}<br>
+                        <strong>{{ text[546]|raw }}</strong><br>
+                        d = {{ beispiele.d }}<br>
+                        j = {{ beispiele.j }}<br>
+                        <strong>{{ text[547]|raw }}</strong><br>
+                        m = {{ beispiele.n }}<br>
+                        M = {{ beispiele.M }}<br>
+                        F = {{ beispiele.F }}<br>
+                        <strong>{{ text[548]|raw }}</strong><br>
+                        y = {{ beispiele.y }}<br>
+                        Y = {{ beispiele.Y }}<br>
+                        <strong>{{ text[549]|raw }}</strong><br>
+                        H = {{ beispiele.H }}<br>
+                        i = {{ beispiele.i }}<br>
+                        A = {{ beispiele.A }}<br>
+                      </span>
+                    ?</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[344]|raw }}">{{ text[343]|raw }}</acronym></td>
+                 <td class="nobr" colspan="4"><input class="lmo-formular-input" type="text" name="xadr" size="40" maxlength="128" value="{{ k.aadr }}" onChange="dolmoedit()"></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right" rowspan="2"><acronym title="{{ text[532]|raw }}">{{ text[533]|raw }}</acronym></td>
+                  <td class="nobr" colspan="2" rowspan="2">
+                    <select class="lmo-formular-input" name="xliga_sort" onChange="dolmoedit()">
+                      <option value="liga_name"{% if k.liga_sort == 'liga_name' %} selected{% endif %}>{{ text[529]|raw }}</option>
+                      <option value="file_date"{% if k.liga_sort == 'file_date' %} selected{% endif %}>{{ text[530]|raw }}</option>
+                      <option value="file_name"{% if k.liga_sort == 'file_name' %} selected{% endif %}>{{ text[531]|raw }}</option>
+                    </select>
+                  </td>
+                  <td class="nobr" colspan="2"><input type="radio" name="xliga_sort_direction" onClick="dolmoedit()" value="asc"{% if k.liga_sort_direction == 'asc' %} checked{% endif %}> {{ text[527]|raw }}</td>
+                </tr>
+                <tr>
+                  <td class="nobr" colspan="2"><input type="radio" name="xliga_sort_direction" onClick="dolmoedit()" value="desc"{% if k.liga_sort_direction == 'desc' %} checked{% endif %}>{{ text[528]|raw }}</td>
+                </tr>
+{% elseif show == 1 %}
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[228]|raw }}">{{ text[227]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4">
+                    <select class="lmo-formular-input" name="xtabpkt" onChange="dolmoedit()">
+                      <option value="0"{% if k.tabpkt == 0 %} selected{% endif %}>{{ text[229]|raw }}</option>
+                      <option value="1"{% if k.tabpkt == 1 %} selected{% endif %}>{{ text[230]|raw }}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[232]|raw }}">{{ text[231]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4">
+                    <select class="lmo-formular-input" name="xtabonres" onChange="dolmoedit()">
+                      <option value="0"{% if k.tabonres == 0 %} selected{% endif %}>{{ text[233]|raw }}</option>
+                      <option value="1"{% if k.tabonres == 1 %} selected{% endif %}>{{ text[234]|raw }}</option>
+                      <option value="2"{% if k.tabonres == 2 %} selected{% endif %}>{{ text[235]|raw }}</option>
+                    </select>
+                  </td>
+                </tr>
+{% elseif show == 2 %}
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[390]|raw }}">{{ text[389]|raw }}</acronym></td>
+                  <td class="nobr">{{ f.schalter('backlink', k.backlink) }}</td>
+                  <td class="nobr" width="15%">&nbsp;</td>
+                  <td class="nobr" align="right">{{ f.schalter('archivlink', k.archivlink) }}</td>
+                  <td class="nobr"><acronym title="{{ text[510]|raw }}">{{ text[509]|raw }}</acronym></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[473]|raw }}">{{ text[472]|raw }}</acronym></td>
+                  <td class="nobr">{{ f.schalter('calctime', k.calctime) }}</td>
+                  <td>&nbsp;</td>
+                  <td class="nobr" align="right">{{ f.schalter('einsavehtml', k.einsavehtml) }}</td>
+                  <td class="nobr"><acronym title="{{ text[484]|raw }}">{{ text[483]|raw }}</acronym></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[486]|raw }}">{{ text[485]|raw }}</acronym></td>
+                  <td class="nobr">{{ f.schalter('einspieler', k.einspieler) }}</td>
+                  <td>&nbsp;</td>
+                  <td class="nobr" align="right">{{ f.schalter('einzustats', k.einzustats) }}</td>
+                  <td class="nobr"><acronym title="{{ text[496]|raw }}">{{ text[495]|raw }}</acronym></td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ text[535]|raw }}">{{ text[534]|raw }}</acronym></td>
+                  <td class="nobr">{{ f.schalter('einspielfrei', k.einspielfrei) }}</td>
+                  <td>&nbsp;</td>
+                  <td class="nobr" align="right">{{ f.schalter('eintippspiel', k.eintippspiel) }}</td>
+                  <td class="nobr"><acronym title="{{ text[488]|raw }}">{{ text[487]|raw }}</acronym></td>
+                </tr>
+                <tr>
+                  <td colspan="3">&nbsp;</td>
+                  <td class="nobr" align="right">{{ f.schalter('einsprachwahl', k.einsprachwahl) }}</td>
+                  <td class="nobr"><acronym title="{{ text[520]|raw }}">{{ text[519]|raw }}</acronym></td>
+                </tr>
+                <tr>
+                  <td class="nobr" rowspan="2" align="right"><acronym title="{{ text[490]|raw }}">{{ text[489]|raw }}</acronym></td>
+                  <td class="nobr" colspan="4">{{ f.schalter('einzutoretab', k.einzutoretab) }}&nbsp;{{ text[491]|raw }}</td>
+                </tr>
+                <tr>
+                  <td class="nobr" colspan="4">{{ f.schalter('einzutore', k.einzutore) }}&nbsp;{{ text[492]|raw }}</td>
+                </tr>
+{% endif %}
+                <tr>
+                  <td class="nobr" colspan="6" align="center">
+                    <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[188]|raw }}">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>

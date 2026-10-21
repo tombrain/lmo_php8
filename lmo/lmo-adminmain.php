@@ -87,6 +87,7 @@ if ($action == 'admin') {
         ),
         new \Lmo\Web\Admin\AddonsController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\BenutzerController(PATH_TO_CONFIGDIR . '/lmo-auth.php'),
+        new \Lmo\Web\Admin\OptionenController(PATH_TO_CONFIGDIR),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -137,8 +138,6 @@ if ($action == 'admin') {
             }
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
-        } elseif ($todo == 'options') {
-            require(PATH_TO_LMO . '/lmo-adminoptions.php');
         } elseif ($todo == 'design') {
             require(PATH_TO_LMO . '/lmo-admindesign.php');
         } elseif ($todo == 'update') {
