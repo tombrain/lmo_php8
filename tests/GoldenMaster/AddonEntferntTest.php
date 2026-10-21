@@ -47,4 +47,25 @@ final class AddonEntferntTest extends TestCase
         self::assertStringNotContainsString('name="xmittore"', $seite, 'ohne das Addon keine Spieler-Option');
         self::assertFileExists($pfad . '/config/spieler/cfg.txt', 'die Einstellungen bleiben');
     }
+
+    public function testStartseiteSpielerstatistikOhneAddon(): void
+    {
+        $c = Fixture::loggedInClient();
+        $pfad = $c->instance()->path();
+        // Startseite der Liga: Spielerstatistik (OnRun=7)
+        $liga = $c->instance()->ligenDir() . '/golden/basic.l98';
+        $inhalt = str_replace("\r\n", "\n", (string) file_get_contents($liga));
+        $inhalt = preg_match('/^OnRun=/m', $inhalt)
+            ? preg_replace('/^OnRun=.*$/m', 'OnRun=7', $inhalt)
+            : preg_replace('/^\[Options\]\n/m', "[Options]\nOnRun=7\n", $inhalt, 1);
+        file_put_contents($liga, $inhalt);
+
+        exec('rm -rf ' . escapeshellarg($pfad . '/addon/spieler'));
+        $start = $c->get('lmo.php', 'file=golden/basic.l98');
+
+        self::assertStringNotContainsString('STDERR', $start);
+        // gleich der Tabelle; nur die Links der Sprachwahl tragen die Adresse des Aufrufs mit
+        $tabelle = str_replace('&amp;action=table', '', $c->get('lmo.php', 'file=golden/basic.l98&action=table'));
+        self::assertSame($tabelle, $start, 'statt einer leeren Seite die Tabelle');
+    }
 }
