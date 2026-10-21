@@ -103,17 +103,20 @@ Ohne diese Datei bricht jede Seite ab.
 
 ## 5. Bekannte Einschränkungen
 
-Einige Stellen im alten Code des Kerns sprechen Addons noch direkt an. Sie verschwinden mit dem
-Umbau der jeweiligen Seite. Bis dahin gilt:
+Einige Stellen im alten Code des Kerns sprechen Addons noch direkt an. Damit ein entferntes Addon
+keine Fehler verursacht, prüfen sie, ob es geladen ist (`$kontext->addons->hat('<name>')`):
+
+- **Ergebnisse** (`lmo-adminedit.php`): Spalte und Auswertung des Tippspiels nur mit
+  `addon/tipp/`
+- **Grundeinstellungen einer Liga** (`lmo-adminbasic.php`): die Option „Spielerstatistik“ nur mit
+  `addon/spieler/`
+
+Offen ist noch:
 
 | Gelöscht | Folge |
 |---|---|
-| `addon/tipp/`, aber `config/tipp/cfg.txt` noch vorhanden | `lmo-adminedit.php` bindet beim Speichern von Ergebnissen `addon/tipp/lmo-tippsavewert.php` ein, wenn die Auswertung eingestellt ist. Die Datei fehlt, das Speichern bricht mit einem Fatal Error ab. |
-| `addon/spieler/` | `lmo-adminbasic.php` (Grundeinstellungen einer Liga) zeigt die Spieler-Option weiter an, ohne Texte, mit PHP-Warnungen. |
 | `addon/spieler/` bei einer Liga mit Startseite „Spielerstatistik“ (`OnRun=7`) | Für diese Seite ist niemand zuständig, die Startseite der Liga bleibt leer. |
 
-Geplant ist:
-
-- ein Erweiterungspunkt „Liga gespeichert“, über den sich das Tippspiel selbst einhängt;
-- die Spieler-Option in den Grundeinstellungen nur bei geladenem Addon;
-- die Tabelle als Startseite, wenn die eingestellte Startseite fehlt.
+Geplant sind außerdem ein Erweiterungspunkt „Liga gespeichert“, über den sich das Tippspiel
+selbst einhängt (dann nennt `lmo-adminedit.php` es nicht mehr), und die Tabelle als Startseite,
+wenn die eingestellte Startseite fehlt.
