@@ -31,6 +31,5 @@ parameters:
         - lmo/lmo-adminrndprogram.php
         - lmo/lmo-adminrounds.php
         - lmo/lmo-adminteams.php
-        - lmo/lmo-adminuser.php
         - lmo/lmo-openfile.php
         - lmo/lmo-zustat.php
