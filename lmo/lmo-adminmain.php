@@ -79,6 +79,7 @@ if ($action == 'admin') {
     $lmo_admin_kern = array(
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
         new \Lmo\Web\Admin\OeffnenController(static fn (string $datei): bool => check_hilfsadmin($datei)),
+        new \Lmo\Web\Admin\LoeschenController(),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -115,8 +116,6 @@ if ($action == 'admin') {
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'new') {
             require(PATH_TO_LMO . '/lmo-adminnew.php');
-        } elseif ($todo == 'delete') {
-            require(PATH_TO_LMO . '/lmo-admindelete.php');
         } elseif ($todo == 'edit') {
             if ($sty == -1) {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
