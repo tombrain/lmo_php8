@@ -23,8 +23,9 @@ use Lmo\Web\Vorlagen;
 
 /**
  * Eine Liga loeschen (todo=delete, nur der Hauptadmin): die Ligen des Ligenordners zur Auswahl;
- * mit del=1 wird die Datei dfile (relativ zum LMO) geloescht. Bis 4.5 lmo-admindelete.php mit
- * lmo-admindeldir.php.
+ * mit del=1 wird die Datei dfile (relativ zum LMO) geloescht, aber nur eine Liga (.l98) im
+ * Ligenordner oder einem seiner Unterordner (bis 4.5 jede Datei, auch ueber "../"). Bis 4.5
+ * lmo-admindelete.php mit lmo-admindeldir.php.
  */
 final class LoeschenController implements Controller
 {
@@ -40,7 +41,7 @@ final class LoeschenController implements Controller
         $meldung = '';
         if ($anfrage->text('del') == 1) {
             $datei = $anfrage->text('dfile');
-            $meldung = @unlink($kontext->pfade->lmo . '/' . $datei)
+            $meldung = self::loeschbar($kontext, $datei) && @unlink($kontext->pfade->lmo . '/' . $datei)
                 ? Meldung::html($kontext->pfade->bilder, $datei . ' ' . ($text[297] ?? ''))
                 : Meldung::html($kontext->pfade->bilder, $datei . ' ' . ($text[298] ?? ''), true);
         }
@@ -69,5 +70,14 @@ final class LoeschenController implements Controller
             'link' => $kontext->adresse . '?action=admin&amp;todo=delete&amp;del=1&amp;dfile=',
             'ligen' => $ligen,
         ]));
+    }
+
+    /** Ist die Datei (relativ zum LMO) eine Liga im Ligenordner oder einem seiner Unterordner? */
+    private static function loeschbar(Kontext $kontext, string $datei): bool
+    {
+        $pfad = realpath($kontext->pfade->lmo . '/' . $datei);
+        $ordner = realpath($kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner());
+
+        return $pfad !== false && $ordner !== false && is_file($pfad) && str_starts_with($pfad, $ordner . DIRECTORY_SEPARATOR) && strtolower(substr($pfad, -4)) == '.l98';
     }
 }
