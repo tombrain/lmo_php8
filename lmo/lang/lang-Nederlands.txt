@@ -484,9 +484,7 @@
 483=Afdruk voorbeeld
 484=Wilt u een printvriendelijke weergave creëren?
 485=Spelerstatistiek
-486=Moet de invoer van spelersstatistieken worden weergegeven? (Moet ook voor elke competitie afzonderlijk worden geactiveerd!)
 487=Bingoal
-488=Moet het Bingoal Game aangezet worden?
 489=Doelpunt statistiek
 490=Moeten er aanvullende doelpuntenstatistieken (totaal aantal doelpunten en gemiddelde doelpunten) worden weergegeven?
 491=onder Tabel

@@ -484,9 +484,7 @@
 483=Utkiftsvennlig oversikt
 484=Skal det lages en utskriftsvennlig side av oversikten?
 485=Spillerstatistikk
-486=Skal spillerstatistikken vises? (Må ekstra aktiveres for hver liga!)
 487=Tippespill
-488=Skal tippespillet vises?
 489=Målstatistikk
 490=Skal ekstra målstatistikk vises? (totalt antall og gjennomsnittsantall)
 491=under tabellen

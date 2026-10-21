@@ -484,9 +484,7 @@
 483=Version imprimée
 484=Voulez-vous créer une version à imprimer ?
 485=Statistiques des joueurs
-486=Voulez-vous entrer les statistiques des joueurs? (doit être activé pour chaque ligue séparément!)
 487=Concours de pronostiques
-488=Voulez-vous montrer le concours de pronostiques?
 489=Statistiques des buts
 490=Voulez-vous montrer les statistiques des buts (Total des buts / Moyenne des buts)?
 491=sous le classement
