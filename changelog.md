@@ -90,6 +90,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Startseite einer Liga: War für die eingestellte Startseite niemand zuständig (etwa „Spielerstatistik“ ohne das Addon oder bei einer Liga ohne Spielerstatistik), blieb die Seite leer. Jetzt erscheint die Tabelle, im Pokal die Ergebnisse.  
 * Administration, Grundeinstellungen einer Liga: Ohne den Ordner `addon/spieler` erschien die Option „Spielerstatistik“ weiter, ohne Texte und mit PHP-Warnungen. Sie erscheint jetzt nur, wenn das Addon geladen ist. `doku/installation-und-addons.md` entsprechend angepasst.  
 * Administration, Ergebnisse: Ohne den Ordner `addon/tipp` (Tippspiel entfernt, seine Konfiguration noch vorhanden) brach das Speichern von Ergebnissen mit einem Fatal Error ab, weil `lmo-adminedit.php` die Auswertung des Addons einband. Spalte und Auswertung des Tippspiels gelten jetzt nur, wenn das Addon geladen ist.  
 * Fehlende `config/cfg.txt`: `lmo-cfgload.php` zeigt jetzt eine klare zweisprachige Meldung. Bisher nahm es die Texte des Viewer-Addons, die zu dem Zeitpunkt noch nicht geladen sind (PHP-Warnungen, Meldung ohne Text, dafür mit dem vollen Serverpfad).  
@@ -519,6 +520,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* League start page: if nobody is responsible for the configured start page (e.g. "player statistics" without the add-on, or a league without player statistics), the page stayed empty. The table is shown instead, the results for a cup.  
 * Administration, basic settings of a league: without the folder `addon/spieler` the option "player statistics" was still shown, without its texts and with PHP warnings. It now only appears when the add-on is loaded. `doku/installation-und-addons.md` updated accordingly.  
 * Administration, results: without the folder `addon/tipp` (prediction game removed, its configuration still present) saving results stopped with a fatal error, because `lmo-adminedit.php` included the evaluation of the add-on. The prediction game column and evaluation now only apply when the add-on is loaded.  
 * Missing `config/cfg.txt`: `lmo-cfgload.php` now shows a clear bilingual message. Until now it used the texts of the viewer add-on, which are not loaded at that point (PHP warnings, message without text, but with the full server path).  

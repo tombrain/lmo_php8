@@ -208,4 +208,23 @@ class AnwendungTest extends TestCase
 
         self::assertSame('Seite table', $anwendung->bearbeite(new Anfrage(['file' => 'a.l98']), '/lmo.php')?->html, 'OnRun=1: Tabelle');
     }
+
+    public function testFehlendeStartseiteWirdZurTabelle(): void
+    {
+        file_put_contents($this->ordner . '/s.l98', "[Options]
+Name=Liga S
+OnRun=7
+");
+        $gesehen = null;
+        $anwendung = $this->anwendung([self::controller('table', $gesehen)]);
+
+        // OnRun=7 ist die Spielerstatistik; ohne deren Addon ist niemand zustaendig
+        self::assertSame('Seite table', $anwendung->bearbeite(new Anfrage(['file' => 's.l98']), '/lmo.php')?->html);
+        self::assertSame('table', $gesehen?->action, 'Menue und Rahmen sehen die Tabelle');
+        self::assertNull($anwendung->bearbeite(new Anfrage(['file' => 's.l98', 'action' => 'spieler']), '/lmo.php'), 'eine gewaehlte Seite bleibt, wie sie ist');
+
+        $mitAddon = $this->anwendung([self::controller('table'), self::controller('spieler')]);
+        self::assertSame('Seite spieler', $mitAddon->bearbeite(new Anfrage(['file' => 's.l98']), '/lmo.php')?->html, 'mit Addon die eingestellte Startseite');
+        unlink($this->ordner . '/s.l98');
+    }
 }

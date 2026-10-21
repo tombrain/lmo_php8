@@ -111,12 +111,8 @@ keine Fehler verursacht, prüfen sie, ob es geladen ist (`$kontext->addons->hat(
 - **Grundeinstellungen einer Liga** (`lmo-adminbasic.php`): die Option „Spielerstatistik“ nur mit
   `addon/spieler/`
 
-Offen ist noch:
+Ist für die eingestellte Startseite einer Liga niemand zuständig (etwa „Spielerstatistik“,
+`OnRun=7`, ohne `addon/spieler/`), zeigt der LMO die Tabelle, im Pokal die Ergebnisse.
 
-| Gelöscht | Folge |
-|---|---|
-| `addon/spieler/` bei einer Liga mit Startseite „Spielerstatistik“ (`OnRun=7`) | Für diese Seite ist niemand zuständig, die Startseite der Liga bleibt leer. |
-
-Geplant sind außerdem ein Erweiterungspunkt „Liga gespeichert“, über den sich das Tippspiel
-selbst einhängt (dann nennt `lmo-adminedit.php` es nicht mehr), und die Tabelle als Startseite,
-wenn die eingestellte Startseite fehlt.
+Geplant ist außerdem ein Erweiterungspunkt „Liga gespeichert“, über den sich das Tippspiel
+selbst einhängt; dann nennt `lmo-adminedit.php` es nicht mehr.

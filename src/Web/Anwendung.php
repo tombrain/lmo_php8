@@ -84,13 +84,35 @@ final class Anwendung
         return null;
     }
 
-    /** Der Kontext zur Anfrage: Liga geladen, Seite bestimmt, Sprachtexte fuer die Liga. */
+    /**
+     * Der Kontext zur Anfrage: Liga geladen, Seite bestimmt, Sprachtexte fuer die Liga. Ist fuer die
+     * eingestellte Startseite der Liga niemand zustaendig (etwa die Seite eines entfernten Addons),
+     * gilt die Tabelle, im Pokal die Ergebnisse.
+     */
     public function kontext(Anfrage $anfrage, string $adresse, ?string $datei = null, Sitzung $sitzung = new Sitzung()): Kontext
     {
         $liga = $this->lader->lade($datei ?? $anfrage->text('file'));
         $texte = $liga !== null ? $this->texte->fuerLiga($liga->liga) : $this->texte;
+        $neu = fn (string $action): Kontext => new Kontext($anfrage, $action, $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere, $sitzung);
 
-        return new Kontext($anfrage, self::action($anfrage, $liga?->liga), $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere, $sitzung);
+        $kontext = $neu(self::action($anfrage, $liga?->liga));
+        if ($liga !== null && $anfrage->text('action') === '' && !$this->hatSeite($kontext)) {
+            $kontext = $neu($liga->liga->istPokal() ? 'results' : 'table');
+        }
+
+        return $kontext;
+    }
+
+    /** Ist ein Controller fuer den Kontext zustaendig? */
+    private function hatSeite(Kontext $kontext): bool
+    {
+        foreach ($this->controller as $controller) {
+            if ($controller->zustaendig($kontext)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
