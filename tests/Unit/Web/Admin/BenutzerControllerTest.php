@@ -133,6 +133,9 @@ class BenutzerControllerTest extends TestCase
 
         $this->seite(['del' => '1']);
         self::assertSame(['chef', 'anna', 'neu'], array_column((array) AdminKonten::lies($this->konten), 0));
+
+        $this->seite(['del' => '0']);
+        self::assertSame(['chef', 'anna', 'neu'], array_column((array) AdminKonten::lies($this->konten), 0), 'der Hauptadmin bleibt');
     }
 
     public function testDateiFehlt(): void
