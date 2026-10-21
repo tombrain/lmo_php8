@@ -9,7 +9,8 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
 /**
- * Jede Klasse unter src/ und unter src/ der Addons (lmo/addon/<addon>/src) prueft Typen streng: Die Datei beginnt mit declare(strict_types=1).
+ * Jede Klasse unter src/ und unter src/ der Addons (lmo/addon/<addon>/src) prueft Typen streng: Die Datei beginnt mit declare(strict_types=1),
+ * hoechstens der Lizenzkopf (ein Doc-Kommentar direkt nach dem oeffnenden PHP-Tag) steht davor.
  * Aufrufer aus dem alten Code (lmo/) sind davon nicht betroffen; strict gilt fuer die Aufrufe
  * aus der Datei heraus.
  */
@@ -36,8 +37,8 @@ class StrictTypesTest extends TestCase
     /** @dataProvider dateien */
     public function testDateiBeginntMitStrictTypes(string $pfad): void
     {
-        $anfang = (string) file_get_contents($pfad, false, null, 0, 64);
+        $anfang = (string) file_get_contents($pfad, false, null, 0, 2048);
 
-        self::assertMatchesRegularExpression('/^<\?php\R\Rdeclare\(strict_types=1\);\R/', $anfang);
+        self::assertMatchesRegularExpression('/^<\?php\R(\/\*\*.*?\*\/\R)?\Rdeclare\(strict_types=1\);\R/s', $anfang);
     }
 }
