@@ -212,6 +212,23 @@ final class Addons
         return $punkte;
     }
 
+    /**
+     * Die Schalter aller Addons fuer die Optionen, je Addon unter seinem Namen, in der Reihenfolge der Addons.
+     *
+     * @return array<string, list<Schalter>>
+     */
+    public function schalter(Kontext $kontext): array
+    {
+        $schalter = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitSchaltern && ($eigene = $addon->schalter($kontext)) !== []) {
+                $schalter[$addon->name()] = $eigene;
+            }
+        }
+
+        return $schalter;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

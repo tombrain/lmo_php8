@@ -8,6 +8,8 @@ use Lmo\Addon\Addons;
 use Lmo\Addon\AlteAdminSeite;
 use Lmo\Addon\AltesAdminAddon;
 use Lmo\Addon\Menuepunkt;
+use Lmo\Addon\MitSchaltern;
+use Lmo\Addon\Schalter;
 use Lmo\Addon\Spieler\SpielerAddon;
 use Lmo\Addon\Tipp\TippAddon;
 use Lmo\Addon\Viewer\ViewerAddon;
@@ -127,5 +129,36 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame('Seite mit globalen Werten', $seite->zeige(self::kontext())->html);
         unset($GLOBALS['lmo_test_wert']);
         unlink($datei);
+    }
+
+    public function testSchalterJeAddon(): void
+    {
+        $mitSchalter = new class () implements MitSchaltern {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function schalter(Kontext $kontext): array
+            {
+                return [new Schalter('eindemo', 'Demo', 'Demo zeigen?', true)];
+            }
+        };
+        $ohneSchalter = new class () implements MitSchaltern {
+            public function name(): string
+            {
+                return 'leer';
+            }
+
+            public function schalter(Kontext $kontext): array
+            {
+                return [];
+            }
+        };
+
+        $schalter = (new Addons([$ohneSchalter, $mitSchalter, new ViewerAddon('/x/viewer')]))->schalter(self::kontext());
+
+        self::assertSame(['demo'], array_keys($schalter), 'nur Addons mit Schaltern');
+        self::assertSame('eindemo', $schalter['demo'][0]->schluessel);
     }
 }

@@ -39,6 +39,25 @@ class KonfigurationTest extends TestCase
         self::assertSame('Deutsch', $konfiguration->wert('deflang'), 'das Original bleibt');
     }
 
+    public function testOhne(): void
+    {
+        $konfiguration = new Konfiguration(['a' => '1', 'b' => '2', 'tipp' => ['a' => '3']]);
+
+        self::assertSame(['b' => '2', 'tipp' => ['a' => '3']], $konfiguration->ohne('a', 'fehlt')->alle());
+    }
+
+    public function testAddonSchalter(): void
+    {
+        $alt = new Konfiguration(['eintippspiel' => '0', 'tipp' => ['rangliste' => '1']]);
+        self::assertFalse($alt->addonSchalter('tipp', 'eintippspiel', true), 'bis 4.5 in der Hauptkonfiguration');
+
+        $neu = $alt->mit(['tipp' => ['eintippspiel' => '1']]);
+        self::assertTrue($neu->addonSchalter('tipp', 'eintippspiel', false), 'die des Addons gilt zuerst');
+
+        self::assertTrue((new Konfiguration([]))->addonSchalter('tipp', 'eintippspiel', true), 'sonst die Vorgabe');
+        self::assertFalse((new Konfiguration(['tipp' => []]))->addonSchalter('tipp', 'eintippspiel', false));
+    }
+
     public function testSpeichereUnveraendert(): void
     {
         $vorher = [file_get_contents($this->ordner . '/cfg.txt'), file_get_contents($this->ordner . '/tipp/cfg.txt')];
