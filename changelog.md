@@ -51,6 +51,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Spielerstatistik: Die Statistiken und ihre Einstellungen je Liga (`<liga>.stat`, `<liga>.cfg`) liegen jetzt in `daten/spieler/` (bisher `addon/spieler/stats/`). Vorhandene Dateien ziehen beim ersten Aufruf dorthin um.  
 * Die Ligenübersicht ohne gewählte Liga wird erst nach den Seiten der Addons gefragt (`Anwendung`, neuer Parameter `$zuletzt`) und braucht keine Ausnahme mehr für `action=tipp`. Bei abgeschaltetem Tippspiel zeigt `action=tipp` ohne Liga jetzt die Ligenübersicht. Das überflüssige `session_start()` für `action=tipp` in `lmo-start.php` entfällt (`init.php` startet die Sitzung immer).  
 * Die Vorlagen der Konfiguration der Addons liegen jetzt im Ordner des Addons: `addon/<name>/config-default/cfg.txt` (bisher `config-default/<name>/cfg.txt`), für classlib, mini, spieler, ticker und tipp. `lmo-setup.php` gleicht sie wie bisher mit `config/<name>/` ab (fehlende Dateien werden kopiert, fehlende Schlüssel angehängt); die Konfiguration der Installation bleibt in `config/<name>/cfg.txt`.  
 * Die Sprachdateien der Addons liegen jetzt im Ordner des Addons: `addon/<name>/lang/lang-<Sprache>.txt` (bisher `lang/<name>/`), für mini, spieler, ticker, tipp und viewer. `lmo-langload.php`, `Sprachtexte::lies()` und das Übersetzungswerkzeug (`lang/lmo-admintranslate.php`) lesen sie dort; Unterordner von `lang/` (`date`, Addons nach alter Art) werden weiter gelesen.  
@@ -473,6 +474,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Player statistics: the statistics and their per-league settings (`<league>.stat`, `<league>.cfg`) are now stored in `daten/spieler/` (previously `addon/spieler/stats/`). Existing files move there on the first call.  
 * The league overview without a selected league is asked only after the add-ons' pages (`Anwendung`, new parameter `$zuletzt`); it no longer needs an exception for `action=tipp`. With the prediction game switched off, `action=tipp` without a league now shows the league overview. The redundant `session_start()` for `action=tipp` in `lmo-start.php` is gone (`init.php` always starts the session).  
 * The configuration templates of the add-ons are now in the add-on's own folder: `addon/<name>/config-default/cfg.txt` (previously `config-default/<name>/cfg.txt`), for classlib, mini, spieler, ticker and tipp. `lmo-setup.php` syncs them into `config/<name>/` as before (missing files are copied, missing keys appended); the installation's configuration stays in `config/<name>/cfg.txt`.  
 * The language files of the add-ons are now in the add-on's own folder: `addon/<name>/lang/lang-<language>.txt` (previously `lang/<name>/`), for mini, spieler, ticker, tipp and viewer. `lmo-langload.php`, `Sprachtexte::lies()` and the translation tool (`lang/lmo-admintranslate.php`) read them there; subfolders of `lang/` (`date`, add-ons of the old kind) are still read.  

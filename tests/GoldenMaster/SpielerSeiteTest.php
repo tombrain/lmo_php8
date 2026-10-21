@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Die oeffentliche Seite des Spieler-Addons (action=spieler) und ihre Druckansicht in ihren Einstellungen: Sortierung,
  * Seiten, Nullwerte, vereinsweise Anzeige, Sortierspalte, Spielerlinks und Formelspalte. Die
- * Statistik (addon/spieler/stats/<liga>.stat) und ihre Einstellungen (<liga>.cfg) legt der Test
+ * Statistik (daten/spieler/<liga>.stat) und ihre Einstellungen (<liga>.cfg) legt der Test
  * direkt an; wie der Admin sie schreibt, prueft SpielerAddonTest.
  */
 final class SpielerSeiteTest extends TestCase
@@ -133,7 +133,7 @@ final class SpielerSeiteTest extends TestCase
      */
     private static function dateien(Instance $app, string $statistik, array $einstellungen): void
     {
-        $stats = $app->path() . '/addon/spieler/stats/basic';
+        $stats = $app->path() . '/daten/spieler/basic';
         if ($statistik === '') {
             @unlink($stats . '.stat');
         } else {

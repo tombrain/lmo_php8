@@ -32,10 +32,10 @@ $file = isset($_GET['file']) ? $_GET['file'] : exit;
 $lmo_texte = \Lmo\Web\Sprachtexte::ausAltemText($text);
 $lmo_konfiguration = new \Lmo\Web\Konfiguration($cfgarray);
 echo \Lmo\Addon\Spieler\Druckansicht::html(
-    __DIR__ . '/stats',
+    \Lmo\Addon\Spieler\SpielerAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR),
     (string)$file,
     \Lmo\Web\Anfrage::ausGlobalen(),
-    \Lmo\Addon\Spieler\Einstellungen::lies(\Lmo\Addon\Spieler\Einstellungen::datei(__DIR__ . '/stats', (string)$file), $lmo_konfiguration->addon('spieler'), $lmo_texte->von('spieler')),
+    \Lmo\Addon\Spieler\Einstellungen::lies(\Lmo\Addon\Spieler\Einstellungen::datei(\Lmo\Addon\Spieler\SpielerAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR), (string)$file), $lmo_konfiguration->addon('spieler'), $lmo_texte->von('spieler')),
     $lmo_texte->kern,
     $lmo_texte->von('spieler'),
     URL_TO_IMGDIR,

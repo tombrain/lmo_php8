@@ -330,5 +330,5 @@
 </html>
 
 ### DATEIAENDERUNGEN
-NEU addon/spieler/stats/1l_2024-25.stat (5 Bytes)
+NEU daten/spieler/1l_2024-25.stat (5 Bytes)
 Name

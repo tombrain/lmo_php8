@@ -67,7 +67,7 @@ class AdminErweiterungenTest extends TestCase
 
     private static function addons(): Addons
     {
-        return (new Addons([new SpielerAddon('/x/spieler/stats'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]))
+        return (new Addons([new SpielerAddon('/x/daten/spieler', '/x/spieler'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]))
             ->mit(new AltesAdminAddon('pdf', 'pdfoptions', '/x/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
@@ -144,7 +144,7 @@ class AdminErweiterungenTest extends TestCase
         self::assertFalse(TippAddon::an(new Konfiguration(['eintippspiel' => '0'])));
         self::assertTrue(TippAddon::an(new Konfiguration(['eintippspiel' => '0', 'tipp' => ['eintippspiel' => '1']])));
         self::assertTrue(SpielerAddon::an(new Konfiguration([])));
-        self::assertSame([], (new SpielerAddon('/x/spieler/stats'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
+        self::assertSame([], (new SpielerAddon('/x/daten/spieler', '/x/spieler'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
     }
 
     public function testSchalterJeAddon(): void

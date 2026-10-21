@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Addon\Spieler;
 
 use Lmo\Addon\AlteAdminSeite;
+use Lmo\Addon\Datenordner;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
@@ -36,9 +37,24 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     /** Der Schalter in den Optionen: Spielerstatistik an (config/spieler/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'einspieler';
 
-    /** @param string $ordner Ordner der Statistiken (addon/spieler/stats) */
-    public function __construct(private string $ordner)
+    /**
+     * @param string $ordner Ordner der Statistiken (daten/spieler, datenordner())
+     * @param string $addonordner Ordner des Addons (addon/spieler) mit dem alten Code
+     */
+    public function __construct(private string $ordner, private string $addonordner)
     {
+    }
+
+    /**
+     * Der Ordner der Statistiken und ihrer Einstellungen (<liga>.stat, <liga>.cfg): daten/spieler.
+     * Bis 4.5 lagen sie in addon/spieler/stats; von dort ziehen sie beim ersten Aufruf um.
+     *
+     * @param string $daten Datenordner des LMO (PATH_TO_DATADIR)
+     * @param string $addons Ordner der Addons (PATH_TO_ADDONDIR)
+     */
+    public static function datenordner(string $daten, string $addons): string
+    {
+        return Datenordner::umziehen($daten . '/spieler', $addons . '/spieler/stats');
     }
 
     public function name(): string
@@ -70,7 +86,7 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     {
         return [new AlteAdminSeite(
             static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'edit' && $kontext->anfrage->text('st') == -4 && self::an($kontext->konfiguration),
-            dirname($this->ordner) . '/lmo-statadmin.php'
+            $this->addonordner . '/lmo-statadmin.php'
         )];
     }
 
