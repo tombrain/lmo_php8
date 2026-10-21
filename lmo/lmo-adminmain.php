@@ -85,6 +85,7 @@ if ($action == 'admin') {
             static fn (): ?array => isset($_POST['upl'], $_FILES['userfile']) ? array('tmp' => (string)$_FILES['userfile']['tmp_name'], 'name' => (string)$_FILES['userfile']['name']) : null,
             static fn (string $von, string $nach): bool => move_uploaded_file($von, $nach)
         ),
+        new \Lmo\Web\Admin\AddonsController(PATH_TO_CONFIGDIR),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -139,8 +140,6 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-adminoptions.php');
         } elseif ($todo == 'user') {
             require(PATH_TO_LMO . '/lmo-adminuser.php');
-        } elseif ($todo == 'addons') {
-            require(PATH_TO_LMO . '/lmo-adminaddon.php');
         } elseif ($todo == 'design') {
             require(PATH_TO_LMO . '/lmo-admindesign.php');
         } elseif ($todo == 'update') {
