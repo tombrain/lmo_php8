@@ -82,6 +82,27 @@ class LoeschenControllerTest extends TestCase
         self::assertStringStartsWith(Meldung::html('IMG', 'ligen/gibtsnicht.l98 T298', true), $fehlt);
     }
 
+    public function testNurLigenImLigenordner(): void
+    {
+        file_put_contents($this->ordner . '/geheim.txt', 'bleibt');
+        file_put_contents($this->ordner . '/ligen/notiz.txt', 'bleibt');
+        file_put_contents($this->ordner . '/fremd.l98', "[Options]
+");
+        foreach (['ligen/../geheim.txt', '../' . basename($this->ordner) . '/geheim.txt', 'ligen/../fremd.l98', 'ligen/notiz.txt'] as $datei) {
+            $html = (new LoeschenController())->zeige($this->kontext(['del' => '1', 'dfile' => $datei]))->html;
+            self::assertStringStartsWith(Meldung::html('IMG', $datei . ' T298', true), $html, $datei);
+        }
+
+        self::assertFileExists($this->ordner . '/geheim.txt', 'ausserhalb des Ligenordners');
+        self::assertFileExists($this->ordner . '/fremd.l98', 'auch eine Liga ausserhalb');
+        self::assertFileExists($this->ordner . '/ligen/notiz.txt', 'keine Liga');
+        unlink($this->ordner . '/geheim.txt');
+        unlink($this->ordner . '/fremd.l98');
+
+        (new LoeschenController())->zeige($this->kontext(['del' => '1', 'dfile' => 'ligen/archiv/alt.l98']));
+        self::assertFileDoesNotExist($this->ordner . '/ligen/archiv/alt.l98', 'eine Liga im Unterordner schon');
+    }
+
     public function testMeldung(): void
     {
         self::assertSame('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> gut</p>', Meldung::html('IMG', 'gut'));

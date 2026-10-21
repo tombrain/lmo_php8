@@ -91,6 +91,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Administration, Liga löschen: Gelöscht wird nur noch eine Liga (`.l98`) im Ligenordner oder einem seiner Unterordner. Bisher löschte `dfile` jede Datei, die PHP schreiben durfte, auch außerhalb des Ligenordners über `../` (nur für den Hauptadmin).  
 * Ergebnis- und Tabellenseite übernehmen aus der Adresse nur noch die Anzeige-Optionen `tabonres` und `tabpkt` (`Konfiguration::ANZEIGEOPTIONEN`); alle anderen Einstellungen kommen nur aus `config/cfg.txt`. Bisher konnte jeder Aufruf über die Adresse jede Einstellung überschreiben (Folge des `extract($_GET)` in `init.php`, das für die übrigen Seiten vorerst bleibt).  
 * Tippspiel: Wer seine E-Mail-Adresse ändert, bekommt ein neues Kennwort per Mail. Es stand bisher im Klartext in `lmo-tippauth.txt`; jetzt wird nur sein Hash gespeichert. Das Kennwort entsteht mit `random_bytes()` statt aus `md5(uniqid(rand()))`.  
 * Tippspiel, Registrierung sowie Ligen hinzufügen und entfernen: Die Namen der Ligen aus dem Formular gingen ungeprüft in Dateinamen ein; mit `../` ließen sich Dateien außerhalb des Tipp-Ordners anlegen oder löschen, die auf `_<nick>.tip` enden. Jetzt zählen nur Ligen, die die Seite auch anbietet.  
@@ -496,6 +497,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Administration, delete a league: only a league (`.l98`) in the league folder or one of its subfolders is deleted. Until now `dfile` deleted any file PHP could write, also outside the league folder via `../` (main admin only).  
 * The results and table pages take only the display options `tabonres` and `tabpkt` from the address (`Konfiguration::ANZEIGEOPTIONEN`); all other settings come from `config/cfg.txt` only. Until now any request could override any setting through the address (a consequence of the `extract($_GET)` in `init.php`, which stays for the other pages for now).  
 * Prediction game: whoever changes their e-mail address gets a new password by mail. It used to be stored in plain text in `lmo-tippauth.txt`; now only its hash is stored. The password is created with `random_bytes()` instead of `md5(uniqid(rand()))`.  
 * Prediction game, registration as well as adding and removing leagues: the league names from the form went unchecked into file names; with `../`, files outside the prediction folder ending in `_<nick>.tip` could be created or deleted. Now only leagues the page offers count.  
