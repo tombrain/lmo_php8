@@ -20,6 +20,7 @@ use Lmo\Addon\Datenordner;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
+use Lmo\Addon\MitErgebnisAuswertung;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
@@ -34,7 +35,7 @@ use Lmo\Web\Kontext;
  * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
  * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
-final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern
+final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung
 {
     /** Der Schalter in den Optionen: Tippspiel an (config/tipp/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'eintippspiel';
@@ -128,6 +129,42 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
             $startseite,
             new AnmeldungController($daten, $rahmen, $startseite, $kennwortmail),
         ];
+    }
+
+    /**
+     * Beim Speichern der Ergebnisse einer getippten Liga die Auswertung der Tipps (tipp/cfg.txt
+     * aktauswert: die Liga, aktauswertges: alle Ligen zusammen), noch nach alter Art. Bis 4.5 band
+     * lmo-adminedit.php die Dateien selbst ein.
+     */
+    public function auswertungBeimSpeichern(Kontext $kontext): array
+    {
+        $cfg = $kontext->konfiguration->addon('tipp');
+        if ($kontext->liga === null || !self::wirdGetippt($cfg, $kontext->liga->datei)) {
+            return [];
+        }
+        $dateien = [];
+        if (($cfg['aktauswert'] ?? '') == 1) {
+            $dateien[] = $this->ordner . '/lmo-tippsavewert.php';
+        }
+        if (($cfg['aktauswertges'] ?? '') == 1) {
+            $dateien[] = $this->ordner . '/lmo-tippsavewertgesamt.php';
+        }
+
+        return $dateien;
+    }
+
+    /**
+     * Wird die Liga getippt? Alle (immeralle) oder die in ligenzutippen (Dateinamen ohne .l98, mit
+     * Komma getrennt).
+     *
+     * @param array<string, string> $cfg Konfiguration des Tippspiels (tipp/cfg.txt)
+     */
+    public static function wirdGetippt(array $cfg, string $datei): bool
+    {
+        // lose wie bisher ($tipp_immeralle == 0): fehlt der Wert, zaehlt die Liste
+        $alle = $cfg['immeralle'] ?? null;
+
+        return !($alle == 0) || in_array(basename(substr($datei, 0, -4)), explode(',', $cfg['ligenzutippen'] ?? ''));
     }
 
     /** Die Seiten der Administration des Tippspiels (noch nach alter Art), nur fuer den Hauptadmin. */

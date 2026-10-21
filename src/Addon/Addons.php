@@ -229,6 +229,23 @@ final class Addons
         return $schalter;
     }
 
+    /**
+     * Die Dateien aller Addons, die beim Speichern der Ergebnisse eingebunden werden (MitErgebnisAuswertung).
+     *
+     * @return list<string>
+     */
+    public function auswertungBeimSpeichern(Kontext $kontext): array
+    {
+        $dateien = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitErgebnisAuswertung) {
+                array_push($dateien, ...$addon->auswertungBeimSpeichern($kontext));
+            }
+        }
+
+        return $dateien;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

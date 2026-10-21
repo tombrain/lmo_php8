@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Addons: Erweiterungspunkt `Lmo\Addon\MitErgebnisAuswertung` für Auswertungen beim Speichern der Ergebnisse eines Spieltags (vorerst als Dateien nach alter Art, eingebunden in `lmo-adminedit.php`). Das Tippspiel liefert so seine Auswertung (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` bindet dessen Dateien nicht mehr beim Namen ein.  
 * Dokumentation `doku/installation-und-addons.md`: was bei Installation, Update und beim Hinzufügen oder Entfernen eines Addons mit den Dateien geschieht, samt den bekannten Einschränkungen im alten Code.  
 * Dokumentation `doku/ordnerstruktur.md`: Aufbau von Paket und Installation, was ein Update ersetzt und was bleibt, und wie Addons eingebunden werden (Ordner, `addon.php`, Erweiterungspunkte, Konfiguration, Sprachtexte, Datenordner). `lmo/addon/readme.txt` und die README verweisen darauf; die README nennt `daten` jetzt auch bei den Ordnern, die unter nginx zu sperren sind.  
 * Datenordner für Addons: `daten/<addon>/` im LMO-Ordner (`PATH_TO_DATADIR`, per `.htaccess` gesperrt, bleibt bei Updates wie `config/` und `ligen/`). `Lmo\Addon\Datenordner::umziehen()` verschiebt die Daten eines Addons einmal vom alten Ort; scheitert das, gilt weiter der alte Ort.  
@@ -436,6 +437,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Add-ons: extension point `Lmo\Addon\MitErgebnisAuswertung` for evaluations when the results of a round are saved (for now as files of the old kind, included in `lmo-adminedit.php`). The prediction game provides its evaluation this way (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` no longer includes its files by name.  
 * Documentation `doku/installation-und-addons.md` (German): what happens to the files on installation, update and when an add-on is added or removed, including the known limitations of the old code.  
 * Documentation `doku/ordnerstruktur.md` (German): layout of the package and of an installation, what an update replaces and what it keeps, and how add-ons are loaded (folder, `addon.php`, extension points, configuration, language texts, data folder). `lmo/addon/readme.txt` and the README point to it; the README now also names `daten` among the folders to block on nginx.  
 * Data folder for add-ons: `daten/<addon>/` in the LMO folder (`PATH_TO_DATADIR`, protected by `.htaccess`, kept on updates like `config/` and `ligen/`). `Lmo\Addon\Datenordner::umziehen()` moves an add-on's data from its old place once; if that fails, the old place stays in use.  
