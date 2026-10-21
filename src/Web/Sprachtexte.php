@@ -21,9 +21,10 @@ use Lmo\Liga\Rohdaten\Liga;
  * sie liest: erst Deutsch, darueber die Standardsprache, darueber die Sprache des Besuchers; so
  * bleiben bei unvollstaendigen Uebersetzungen die deutschen Texte stehen.
  *
- * Getrennt davon die Texte der Unterordner von lang/ (lang/<name>/lang-<Sprache>.txt): die Namen
- * von Wochentagen und Monaten (date) und die Texte der Addons. Im alten Code stehen sie im selben
- * Array unter ihrem Namen ($text['tipp'][1]).
+ * Getrennt davon die Texte der Unterordner von lang/ (lang/<name>/lang-<Sprache>.txt, etwa die
+ * Namen von Wochentagen und Monaten in date) und die der Addons in ihrem eigenen Ordner
+ * (addon/<name>/lang/lang-<Sprache>.txt). Im alten Code stehen sie im selben Array unter ihrem
+ * Namen ($text['tipp'][1]).
  */
 final class Sprachtexte
 {
@@ -43,8 +44,9 @@ final class Sprachtexte
      * @param string $ordner Ordner der Sprachdateien (PATH_TO_LANGDIR)
      * @param string $standard Standardsprache der Installation (deflang)
      * @param string|null $besucher vom Besucher gewaehlte Sprache, null ohne Wahl
+     * @param string|null $addonordner Ordner der Addons (PATH_TO_ADDONDIR); ihre Texte liegen in addon/<name>/lang
      */
-    public static function lies(string $ordner, string $standard, ?string $besucher = null): self
+    public static function lies(string $ordner, string $standard, ?string $besucher = null, ?string $addonordner = null): self
     {
         $kern = [];
         self::leseDatei($kern, $ordner . '/lang-Deutsch.txt');
@@ -52,16 +54,25 @@ final class Sprachtexte
         if ($besucher !== null && $besucher != $standard) {
             self::leseDatei($kern, $ordner . '/lang-' . $besucher . '.txt');
         }
-        // Unterordner in fester (alphabetischer) Reihenfolge
-        $weitere = [];
+        // Unterordner von lang/ (date; bis 4.5 auch die Addons), dann die Sprachordner der Addons,
+        // jeweils in fester (alphabetischer) Reihenfolge
+        $unterordner = [];
         foreach (scandir($ordner) ?: [] as $name) {
-            if ($name == '.' || $name == '..' || !is_dir($ordner . '/' . $name)) {
-                continue;
+            if ($name != '.' && $name != '..' && is_dir($ordner . '/' . $name)) {
+                $unterordner[] = [$name, $ordner . '/' . $name];
             }
-            $texte = [];
-            self::leseDatei($texte, $ordner . '/' . $name . '/lang-' . $standard . '.txt');
+        }
+        foreach ($addonordner !== null ? scandir($addonordner) ?: [] : [] as $name) {
+            if ($name != '.' && $name != '..' && is_dir($addonordner . '/' . $name . '/lang')) {
+                $unterordner[] = [$name, $addonordner . '/' . $name . '/lang'];
+            }
+        }
+        $weitere = [];
+        foreach ($unterordner as [$name, $pfad]) {
+            $texte = $weitere[$name] ?? [];
+            self::leseDatei($texte, $pfad . '/lang-' . $standard . '.txt');
             if ($besucher !== null) {
-                self::leseDatei($texte, $ordner . '/' . $name . '/lang-' . $besucher . '.txt');
+                self::leseDatei($texte, $pfad . '/lang-' . $besucher . '.txt');
             }
             if ($texte !== []) {
                 $weitere[$name] = $texte;
@@ -99,7 +110,7 @@ final class Sprachtexte
     }
 
     /**
-     * Die Texte eines Unterordners von lang/ (z. B. "date" oder der Name eines Addons); [] ohne.
+     * Die Texte eines Unterordners von lang/ (z. B. "date") oder eines Addons (addon/<name>/lang); [] ohne.
      *
      * @return array<int, string>
      */

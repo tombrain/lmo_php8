@@ -50,6 +50,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Die Sprachdateien der Addons liegen jetzt im Ordner des Addons: `addon/<name>/lang/lang-<Sprache>.txt` (bisher `lang/<name>/`), für mini, spieler, ticker, tipp und viewer. `lmo-langload.php`, `Sprachtexte::lies()` und das Übersetzungswerkzeug (`lang/lmo-admintranslate.php`) lesen sie dort; Unterordner von `lang/` (`date`, Addons nach alter Art) werden weiter gelesen.  
 * Die Schalter für Spielerstatistik (`einspieler`) und Tippspiel (`eintippspiel`) gehören jetzt den Addons: Sie stehen in den Optionen (Seite „Schalter“) in einem eigenen Block „Addons“ und werden in `config/spieler/cfg.txt` bzw. `config/tipp/cfg.txt` gespeichert. Ein bisheriger Wert in `config/cfg.txt` gilt weiter, bis die Seite gespeichert wird; dann zieht er ins Addon um. Ohne Wert sind beide wie bisher eingeschaltet. `config-default/cfg.txt` nennt sie nicht mehr; die Kerntexte 486 und 488 (Tooltips der beiden Schalter) entfallen.  
 * Lizenz in `composer.json` und `lmo/version.json` jetzt `GPL-2.0-or-later` statt `GPL-2.0-only`, wie in den Köpfen der Dateien des LMO („version 2 of the License, or (at your option) any later version“).  
 * Mindestversion ist PHP 8.1 (Twig 3 läuft nicht unter PHP 8.0).  
@@ -467,6 +468,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* The language files of the add-ons are now in the add-on's own folder: `addon/<name>/lang/lang-<language>.txt` (previously `lang/<name>/`), for mini, spieler, ticker, tipp and viewer. `lmo-langload.php`, `Sprachtexte::lies()` and the translation tool (`lang/lmo-admintranslate.php`) read them there; subfolders of `lang/` (`date`, add-ons of the old kind) are still read.  
 * The switches for player statistics (`einspieler`) and prediction game (`eintippspiel`) now belong to the add-ons: they appear in the options (page "switches") in a separate block "Add-ons" and are stored in `config/spieler/cfg.txt` and `config/tipp/cfg.txt`. A previous value in `config/cfg.txt` still applies until the page is saved; then it moves into the add-on. Without a value both are switched on as before. `config-default/cfg.txt` no longer lists them; the core texts 486 and 488 (tooltips of both switches) are gone.  
 * License in `composer.json` and `lmo/version.json` is now `GPL-2.0-or-later` instead of `GPL-2.0-only`, as stated in the headers of the LMO files ("version 2 of the License, or (at your option) any later version").  
 * Minimum version is PHP 8.1 (Twig 3 does not run on PHP 8.0).  

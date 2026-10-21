@@ -30,7 +30,7 @@ final class Ticker
      * @param int $art 1 = alle Ergebnisse, 2 = News der Liga, 3 = nur die Spiele der Lieblingsmannschaft (tickerart)
      * @param bool $notizen Notizen der Spiele zeigen (notizanzeigen)
      * @param array<int, string> $text Sprachtexte des LMO
-     * @param array<int, string> $tickerText Sprachtexte des Addons (lang/ticker)
+     * @param array<int, string> $tickerText Sprachtexte des Addons (addon/ticker/lang)
      */
     public function __construct(
         private int $art,
