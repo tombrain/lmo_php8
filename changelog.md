@@ -73,6 +73,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Liga löschen: Die Rückfrage vor dem Löschen erscheint wieder. Der Aufruf von `dellmolink()` war unvollständig (Name ohne Anführungszeichen, Klammer fehlte), der Browser brach ihn ab und löschte ohne Rückfrage.  
 * Kalender, Jahresansicht: kein verwaistes `</td>` mehr hinter den Monatsköpfen, und die letzte Zelle wird geschlossen.  
 * Pokal, Spielplan (`action=program`): Bei ungerader Mannschaftszahl fehlte in der Auswahl die mittlere Mannschaft; sie steht jetzt links.  
 * Tippspiel, Tabelle nach den Tipps: Ohne Tipper (Gast ohne die Tabelle aller, `tipptabelle=0`, oder keine Tippdatei in der Liga) erscheint keine Tabelle voller Nullen mehr, sondern nur die Meldung, sofern es eine gibt (wie upstream 7c1228b).  
@@ -479,6 +480,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, delete a league: the confirmation before deleting appears again. The call of `dellmolink()` was incomplete (name without quotes, missing parenthesis), the browser aborted it and deleted without asking.  
 * Calendar, year view: no stray `</td>` after the month headers any more, and the last cell is closed.  
 * Cup, fixtures (`action=program`): with an odd number of teams the middle team was missing from the selection; it is now on the left.  
 * Prediction game, table by predictions: without predictions (a guest when the table of all is off, `tipptabelle=0`, or no prediction file in the league) the page no longer shows a table full of zeros, only the message if there is one (as upstream 7c1228b).  
