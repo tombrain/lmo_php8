@@ -61,8 +61,8 @@ final class OptionenController implements Controller
         $meldung = '';
         if ($anfrage->zahl('save') == 1) {
             // gespeichert werden nur Werte, die die Konfiguration schon hat (wie lmo-savecfg.php)
-            // wie bis 4.5 zeigt die Seite danach noch die alten Werte (lmo-cfgload.php ueberschrieb sie nicht)
-            $meldung = $konfiguration->mit(array_intersect_key(self::geaendert($anfrage, $show, $kontext), $konfiguration->alle()))->speichere($this->konfigurationsordner)
+            $konfiguration = $konfiguration->mit(array_intersect_key(self::geaendert($anfrage, $show, $kontext), $konfiguration->alle()));
+            $meldung = $konfiguration->speichere($this->konfigurationsordner)
                 ? Meldung::html($kontext->pfade->bilder, $text[138] ?? '')
                 : Meldung::html($kontext->pfade->bilder, $text[283] ?? '', true);
         }

@@ -78,6 +78,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Optionen: Nach dem Speichern zeigt die Seite die gespeicherten Werte. Bisher standen bis zum nächsten Aufruf noch die alten im Formular, weil `lmo-cfgload.php` beim erneuten Laden vorhandene Werte nicht überschrieb.  
 * Administration, Liga löschen: Die Rückfrage vor dem Löschen erscheint wieder. Der Aufruf von `dellmolink()` war unvollständig (Name ohne Anführungszeichen, Klammer fehlte), der Browser brach ihn ab und löschte ohne Rückfrage.  
 * Kalender, Jahresansicht: kein verwaistes `</td>` mehr hinter den Monatsköpfen, und die letzte Zelle wird geschlossen.  
 * Pokal, Spielplan (`action=program`): Bei ungerader Mannschaftszahl fehlte in der Auswahl die mittlere Mannschaft; sie steht jetzt links.  
@@ -491,6 +492,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, options: after saving, the page shows the saved values. Until now the form still showed the old ones until the next call, because `lmo-cfgload.php` did not overwrite existing values when reloading.  
 * Administration, delete a league: the confirmation before deleting appears again. The call of `dellmolink()` was incomplete (name without quotes, missing parenthesis), the browser aborted it and deleted without asking.  
 * Calendar, year view: no stray `</td>` after the month headers any more, and the last cell is closed.  
 * Cup, fixtures (`action=program`): with an odd number of teams the middle team was missing from the selection; it is now on the left.  

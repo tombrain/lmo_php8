@@ -125,7 +125,7 @@ class OptionenControllerTest extends TestCase
             'xdefdateselect' => '', 'xdefdateformat' => 'd.m. H:i', 'xdefdateformat2' => 'Y-m-d', 'xtimezone' => 'Europe/Vienna', 'xadr' => 'x@y.de']);
 
         self::assertStringStartsWith(Meldung::html('IMG', 'T138'), $html);
-        self::assertStringContainsString('value="a@b.de"', $html, 'wie bis 4.5 noch die alten Werte');
+        self::assertStringContainsString('value="x@y.de"', $html, 'danach mit den neuen Werten');
         $cfg = $this->gespeichert();
         self::assertSame(array_keys(array_diff_key(self::WERTE, ['tipp' => 0])), array_keys($cfg), 'alle Schluessel in ihrer Reihenfolge');
         self::assertSame(['daten/ligen/', 'English', '09:05', 'Y-m-d', 'Europe/Vienna', 'x@y.de', 'liga_name', 'asc'],

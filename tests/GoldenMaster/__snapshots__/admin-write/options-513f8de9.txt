@@ -558,7 +558,7 @@ xbacklink=0
 <acronym title="Wenn Sie bei den Spielen nur ein Anstoßdatum und keine -zeit eingeben, wird diese Zeit automatisch übernommen, das spart Ihnen dann gewaltig Eingabearbeit (Format HH:MM - ggf. mit führenden Nullen).">Standard-Anstoßzeit</acronym>
 </td>
 <td class="nobr" colspan="4">
-<input class="lmo-formular-input" type="text" name="xdeftime" size="5" maxlength="5" value="15:00" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xdeftime" size="5" maxlength="5" value="18:00" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>
@@ -601,7 +601,7 @@ xbacklink=0
 <acronym title="Geben Sie hier die E-Mail-Adresse des Webmasters bzw. Haupt-Admins ein. Die wird für den E-Mail-Versand von Ligen benötigt.">E-Mail des Webmasters</acronym>
 </td>
 <td class="nobr" colspan="4">
-<input class="lmo-formular-input" type="text" name="xadr" size="40" maxlength="128" value="local@domain.invalid" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xadr" size="40" maxlength="128" value="admin@example.test" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>
