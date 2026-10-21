@@ -86,6 +86,7 @@ if ($action == 'admin') {
             static fn (string $von, string $nach): bool => move_uploaded_file($von, $nach)
         ),
         new \Lmo\Web\Admin\AddonsController(PATH_TO_CONFIGDIR),
+        new \Lmo\Web\Admin\BenutzerController(PATH_TO_CONFIGDIR . '/lmo-auth.php'),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -138,8 +139,6 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
         } elseif ($todo == 'options') {
             require(PATH_TO_LMO . '/lmo-adminoptions.php');
-        } elseif ($todo == 'user') {
-            require(PATH_TO_LMO . '/lmo-adminuser.php');
         } elseif ($todo == 'design') {
             require(PATH_TO_LMO . '/lmo-admindesign.php');
         } elseif ($todo == 'update') {
