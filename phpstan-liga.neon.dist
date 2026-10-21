@@ -17,7 +17,6 @@ parameters:
         - lmo/addon/tipp/lmo-tippsavefile.php
         - lmo/lmo-adminanz.php
         - lmo/lmo-adminbasic.php
-        - lmo/lmo-adminnew.php
         - lmo/lmo-adminsubnavi.php
         - lmo/lmo-admintab.php
         - lmo/lmo-openfiledat.php

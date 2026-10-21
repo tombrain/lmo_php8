@@ -75,6 +75,23 @@ if ($action == 'admin') {
         $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
+    // Bruecke zum Speichern einer Liga nach alter Art (lmo-saveliga.php): mit den globalen Variablen
+    // per Referenz wie bisher im globalen Bereich; $file und $lmo_liga zeigen danach auf die Liga
+    $lmo_admin_speichere = static function (\Lmo\Liga\Rohdaten\Liga $lmo_speichern_liga, string $lmo_speichern_datei): string {
+        foreach (array_keys($GLOBALS) as $lmo_speichern_name) {
+            if ($lmo_speichern_name !== 'GLOBALS' && $lmo_speichern_name[0] !== '_' && strpos($lmo_speichern_name, 'lmo_speichern_') !== 0) {
+                ${$lmo_speichern_name} = &$GLOBALS[$lmo_speichern_name];
+            }
+        }
+        unset($lmo_speichern_name);
+        $lmo_liga = $lmo_speichern_liga;
+        $file = $lmo_speichern_datei;
+        $st = '1';
+        ob_start();
+        require(PATH_TO_LMO . '/lmo-saveliga.php');
+        return (string)ob_get_clean();
+    };
+
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
@@ -89,6 +106,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\BenutzerController(PATH_TO_CONFIGDIR . '/lmo-auth.php'),
         new \Lmo\Web\Admin\OptionenController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\DesignController(PATH_TO_CONFIGDIR),
+        new \Lmo\Web\Admin\NeuController($lmo_admin_speichere),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -119,9 +137,7 @@ if ($action == 'admin') {
     } elseif ($_SESSION['lmouserok'] == 2) {
         // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
-        if ($todo == 'new') {
-            require(PATH_TO_LMO . '/lmo-adminnew.php');
-        } elseif ($todo == 'edit') {
+        if ($todo == 'edit') {
             if ($sty == -1) {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
             } elseif ($sty == -2) {
