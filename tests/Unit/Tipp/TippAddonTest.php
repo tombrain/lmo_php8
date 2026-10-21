@@ -98,4 +98,18 @@ tippauthtxt=tipper.txt
 
         exec('rm -rf ' . escapeshellarg($lmo) . ' ' . escapeshellarg($neu));
     }
+
+    public function testAuswertungBeimSpeichern(): void
+    {
+        $addon = new TippAddon('/lmo/addon/tipp');
+        $beide = ['aktauswert' => '1', 'aktauswertges' => '1'];
+        $dateien = static fn (array $cfg, ?string $datei = 'golden/bula.l98'): array => $addon->auswertungBeimSpeichern(self::kontext('', $datei, ['tipp' => $cfg]));
+
+        self::assertSame(['/lmo/addon/tipp/lmo-tippsavewert.php', '/lmo/addon/tipp/lmo-tippsavewertgesamt.php'], $dateien(['immeralle' => '1'] + $beide));
+        self::assertSame(['/lmo/addon/tipp/lmo-tippsavewert.php'], $dateien(['immeralle' => '0', 'ligenzutippen' => 'x,bula', 'aktauswert' => '1']), 'die Liga steht in der Liste');
+        self::assertSame([], $dateien(['immeralle' => '0', 'ligenzutippen' => 'bundesliga'] + $beide), 'nur ganze Namen');
+        self::assertSame([], $dateien(['immeralle' => '1', 'aktauswert' => '0', 'aktauswertges' => '0']), 'keine Auswertung eingestellt');
+        self::assertSame([], $dateien(['immeralle' => '1'] + $beide, null), 'ohne Liga');
+        self::assertSame([], $dateien($beide), 'ohne immeralle zaehlt die (leere) Liste');
+    }
 }

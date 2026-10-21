@@ -77,8 +77,10 @@ Addons nach neuer Art:
     # Lmo\Addon\MitAdminMenue    adminMenue(), ligaMenue(), startseite(): Punkte in den Menues der Administration
     # Lmo\Addon\MitAdminSeiten   adminController(): eigene Seiten in der Administration
     # Lmo\Addon\MitSchaltern     schalter(): Schalter in den Optionen, z.B. das Addon ein- und ausschalten
+    # Lmo\Addon\MitErgebnisAuswertung auswertungBeimSpeichern(): Dateien (alte Art), die beim Speichern der
+                                   Ergebnisse eines Spieltags eingebunden werden, z.B. die Auswertung der Tipps
 
-  Weitere Erweiterungspunkte (Ereignisse wie "Liga gespeichert") folgen.
+  Weitere Erweiterungspunkte folgen.
 
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.

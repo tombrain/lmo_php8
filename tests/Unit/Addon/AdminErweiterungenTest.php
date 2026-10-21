@@ -147,6 +147,24 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame([], (new SpielerAddon('/x/daten/spieler', '/x/spieler'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
     }
 
+    public function testAuswertungBeimSpeichernAllerAddons(): void
+    {
+        $auswertung = new class () implements \Lmo\Addon\MitErgebnisAuswertung {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function auswertungBeimSpeichern(Kontext $kontext): array
+            {
+                return ['/x/demo/auswertung.php'];
+            }
+        };
+
+        self::assertSame(['/x/demo/auswertung.php'], (new Addons([new ViewerAddon('/x/viewer'), $auswertung]))->auswertungBeimSpeichern(self::kontext()));
+        self::assertSame([], self::addons()->auswertungBeimSpeichern(self::kontext()), 'ohne Liga wertet das Tippspiel nichts aus');
+    }
+
     public function testSchalterJeAddon(): void
     {
         $mitSchalter = new class () implements MitSchaltern {

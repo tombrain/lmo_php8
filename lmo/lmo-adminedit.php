@@ -32,8 +32,6 @@ if (!defined('PATH_TO_LMO')) {
  *
  * Einstellungen:
  * @var int|string $deftime Einstellung aus cfg.txt
- * @var int|string $tipp_aktauswert Einstellung aus tipp/cfg.txt
- * @var int|string $tipp_aktauswertges Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_immeralle Einstellung aus tipp/cfg.txt
  * @var int|string $tipp_ligenzutippen Einstellung aus tipp/cfg.txt
  * @var \Lmo\Web\Kontext $lmo_admin_kontext Kontext der Administration (lmo-adminmain.php)
@@ -47,7 +45,8 @@ require_once(PATH_TO_LMO . '/lmo-admintest.php');
 if ($file != '') {
     $save = isset($_POST['save']) ? $_POST['save'] : 0;
     $tabdat = '_';
-    // Tippspiel-Addon: nur, wenn es geladen ist; ohne den Ordner addon/tipp fehlen seine Dateien und Texte
+    // Spalte "ohne Tippwertung" je Spiel (Tippspiel-Addon), bis zum Umbau dieser Seite noch hier: nur, wenn
+    // das Addon geladen ist und die Liga getippt wird; ohne den Ordner addon/tipp fehlen seine Texte
     $ftest0 = $lmo_admin_kontext->addons->hat('tipp') ? 1 : 0;
     $liga = basename(substr($file, 0, -4));
 
@@ -205,17 +204,10 @@ if ($file != '') {
             }
         }
 
-        // Tippspiel-Addon
-        if ($ftest0 == 1) {
-            // Liga darf getippt werden
-            if ($tipp_aktauswert == 1) {
-                require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsavewert.php');
-            }
-            if ($tipp_aktauswertges == 1) {
-                require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsavewertgesamt.php');
-            }
+        // Auswertungen der Addons beim Speichern (Lmo\Addon\MitErgebnisAuswertung), wie bisher im globalen Bereich
+        foreach ($lmo_admin_kontext->addons->auswertungBeimSpeichern($lmo_admin_kontext) as $lmo_auswertung) {
+            require($lmo_auswertung);
         }
-        // Tippspiel-Addon
         // aktueller Spieltag: der im Formular gewaehlte, sonst der bearbeitete
         $stz = trim($_POST['xstx']);
         $lmo_liga->setzeEinstellung('Actual', $stz != 0 ? $stz : (string)$st);
