@@ -303,3 +303,4 @@
 302=Mostrar apenas total de pontos
 303=Um novo apostador registou-se no jogo de apostas: \n\nAlcunha: [nick]
 304=Deixe o campo em branco para não alterar a palavra-passe
+306=Deseja mostrar as apostas?

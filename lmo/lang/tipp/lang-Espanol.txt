@@ -303,3 +303,4 @@
 302=Muestre Solamente Las Estadísticas Totales De Puntos
 303=Un Nuevo Jugador se ha Registrado para el Juego de Predicción: \n\nNombre de Usuario: [nick]
 304=Deje el campo en blanco para evitar cambiar la contraseña
+306=¿Quieres mostrar los pronósticos?

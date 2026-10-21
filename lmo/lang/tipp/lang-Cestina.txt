@@ -303,3 +303,4 @@
 302=Jen celkovou tabulku ukázat
 303=Nové tipovací konto funkční: \n\nNick: [nick]
 304=Nechte pole prázdné, aby nedošlo ke změně hesla
+306=Má být zobrazena sázková hra?

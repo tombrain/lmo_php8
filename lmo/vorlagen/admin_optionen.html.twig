@@ -164,18 +164,11 @@
                   <td class="nobr"><acronym title="{{ text[484]|raw }}">{{ text[483]|raw }}</acronym></td>
                 </tr>
                 <tr>
-                  <td class="nobr" align="right"><acronym title="{{ text[486]|raw }}">{{ text[485]|raw }}</acronym></td>
-                  <td class="nobr">{{ f.schalter('einspieler', k.einspieler) }}</td>
-                  <td>&nbsp;</td>
-                  <td class="nobr" align="right">{{ f.schalter('einzustats', k.einzustats) }}</td>
-                  <td class="nobr"><acronym title="{{ text[496]|raw }}">{{ text[495]|raw }}</acronym></td>
-                </tr>
-                <tr>
                   <td class="nobr" align="right"><acronym title="{{ text[535]|raw }}">{{ text[534]|raw }}</acronym></td>
                   <td class="nobr">{{ f.schalter('einspielfrei', k.einspielfrei) }}</td>
                   <td>&nbsp;</td>
-                  <td class="nobr" align="right">{{ f.schalter('eintippspiel', k.eintippspiel) }}</td>
-                  <td class="nobr"><acronym title="{{ text[488]|raw }}">{{ text[487]|raw }}</acronym></td>
+                  <td class="nobr" align="right">{{ f.schalter('einzustats', k.einzustats) }}</td>
+                  <td class="nobr"><acronym title="{{ text[496]|raw }}">{{ text[495]|raw }}</acronym></td>
                 </tr>
                 <tr>
                   <td colspan="3">&nbsp;</td>
@@ -189,6 +182,19 @@
                 <tr>
                   <td class="nobr" colspan="4">{{ f.schalter('einzutore', k.einzutore) }}&nbsp;{{ text[492]|raw }}</td>
                 </tr>
+{# die Schalter der Addons (Lmo\Addon\MitSchaltern) #}
+{% if addonschalter is not empty %}
+                <tr>
+                  <th class="nobr" colspan="5">{{ text[497]|raw }}</th>
+                </tr>
+{% for s in addonschalter %}
+                <tr>
+                  <td class="nobr" align="right"><acronym title="{{ s.titel|raw }}">{{ s.name|raw }}</acronym></td>
+                  <td class="nobr"><input type="checkbox" class="lmo-formular-input" name="{{ s.feld }}" onChange="dolmoedit()"{% if s.an %} checked{% endif %}></td>
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+{% endfor %}
+{% endif %}
 {% endif %}
                 <tr>
                   <td class="nobr" colspan="6" align="center">

@@ -8,13 +8,13 @@ show=2
 xbacklink=on
 xarchivlink=on
 xeinsavehtml=on
-xeinspieler=on
-xeinzustats=on
 xeinspielfrei=on
-xeintippspiel=on
+xeinzustats=on
 xeinsprachwahl=on
 xeinzutoretab=on
 xeinzutore=on
+xspieler_einspieler=on
+xtipp_eintippspiel=on
 ### ANTWORT
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="de">
@@ -124,21 +124,6 @@ xeinzutore=on
 </tr>
 <tr>
 <td class="nobr" align="right">
-<acronym title="Soll die Eingabe von Spielerstatistiken angezeigt werden? (Muss zusätzlich für jede Liga einzeln aktiviert werden!)">Spielerstatistik</acronym>
-</td>
-<td class="nobr">
-<input type="checkbox" class="lmo-formular-input" name="xeinspieler" onChange="dolmoedit()" checked>
-</td>
-<td>&nbsp;</td>
-<td class="nobr" align="right">
-<input type="checkbox" class="lmo-formular-input" name="xeinzustats" onChange="dolmoedit()" checked>
-</td>
-<td class="nobr">
-<acronym title="Sollen zusätzliche Statistiken angezeigt werden?">Zusatzstatistiken</acronym>
-</td>
-</tr>
-<tr>
-<td class="nobr" align="right">
 <acronym title="Sollen spielfreie Teams angezeigt werden?">Spielfreie Teams</acronym>
 </td>
 <td class="nobr">
@@ -146,10 +131,10 @@ xeinzutore=on
 </td>
 <td>&nbsp;</td>
 <td class="nobr" align="right">
-<input type="checkbox" class="lmo-formular-input" name="xeintippspiel" onChange="dolmoedit()" checked>
+<input type="checkbox" class="lmo-formular-input" name="xeinzustats" onChange="dolmoedit()" checked>
 </td>
 <td class="nobr">
-<acronym title="Soll das Tippspiel angezeigt werden?">Tippspiel</acronym>
+<acronym title="Sollen zusätzliche Statistiken angezeigt werden?">Zusatzstatistiken</acronym>
 </td>
 </tr>
 <tr>
@@ -171,6 +156,27 @@ xeinzutore=on
 <tr>
 <td class="nobr" colspan="4">
 <input type="checkbox" class="lmo-formular-input" name="xeinzutore" onChange="dolmoedit()" checked>&nbsp;unter Ergebnissen</td>
+</tr>
+<tr>
+<th class="nobr" colspan="5">Addons</th>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<acronym title="Soll die Eingabe von Spielerstatistiken angezeigt werden? (Muss zusätzlich für jede Liga einzeln aktiviert werden!)">Spielerstatistik</acronym>
+</td>
+<td class="nobr">
+<input type="checkbox" class="lmo-formular-input" name="xspieler_einspieler" onChange="dolmoedit()" checked>
+</td>
+<td colspan="3">&nbsp;</td>
+</tr>
+<tr>
+<td class="nobr" align="right">
+<acronym title="Soll das Tippspiel angezeigt werden?">Tippspiel</acronym>
+</td>
+<td class="nobr">
+<input type="checkbox" class="lmo-formular-input" name="xtipp_eintippspiel" onChange="dolmoedit()" checked>
+</td>
+<td colspan="3">&nbsp;</td>
 </tr>
 <tr>
 <td class="nobr" colspan="6" align="center">
@@ -243,4 +249,17 @@ xeinzutore=on
 </html>
 
 ### DATEIAENDERUNGEN
-(keine)
+GEAENDERT config/spieler/cfg.txt
+--- vorher
++++ nachher
+@@ -8,2 +8,3 @@
+ adminbereich_hilfsadmin_zulassen=1
+ adminbereich_hilfsadmin_fuer_spalten=1
++einspieler=1
+GEAENDERT config/tipp/cfg.txt
+--- vorher
++++ nachher
+@@ -57,2 +57,3 @@
+ jokertipp=1
+ jokertippmulti=2
++eintippspiel=1

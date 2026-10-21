@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lmo\Tests\Unit\Web\Admin;
 
 use Lmo\Addon\Addons;
+use Lmo\Addon\MitSchaltern;
+use Lmo\Addon\Schalter;
 use Lmo\Web\Admin\OptionenController;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Darstellung;
@@ -56,7 +58,7 @@ class OptionenControllerTest extends TestCase
     }
 
     /** @param array<string, mixed> $anfrage */
-    private function seite(array $anfrage): string
+    private function seite(array $anfrage, Addons $addons = new Addons()): string
     {
         $texte = [];
         for ($i = 0; $i <= 600; $i++) {
@@ -71,7 +73,7 @@ class OptionenControllerTest extends TestCase
             '/lmoadmin.php',
             new Pfade($this->ordner, dirname(__DIR__, 4) . '/lmo/vorlagen', 'IMG', '/lmo'),
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
-            new Addons(),
+            $addons,
             ['date' => [5 => 'Samstag', 12 => 'Sa']],
             new Sitzung(['lmouserok' => 2])
         );
@@ -143,8 +145,41 @@ class OptionenControllerTest extends TestCase
         $this->seite(['save' => '1', 'show' => '2', 'xarchivlink' => 'on', 'xeinspieler' => 'on']);
         $cfg = $this->gespeichert();
 
-        self::assertSame(['0', '1', '1', '0'], [$cfg['backlink'], $cfg['archivlink'], $cfg['einspieler'], $cfg['eintippspiel']], 'ohne Haken aus');
+        self::assertSame(['0', '1'], [$cfg['backlink'], $cfg['archivlink']], 'ohne Haken aus');
+        self::assertSame(['0', '1'], [$cfg['einspieler'], $cfg['eintippspiel']], 'ohne Addon bleiben bisherige Addon-Werte unberuehrt');
         self::assertSame('2', $cfg['tabonres'], 'andere Seiten bleiben');
+    }
+
+    private static function addonMitSchalter(): Addons
+    {
+        return new Addons([new class () implements MitSchaltern {
+            public function name(): string
+            {
+                return 'tipp';
+            }
+
+            public function schalter(Kontext $kontext): array
+            {
+                return [new Schalter('eintippspiel', 'Tipp<b>!</b>', 'Tippspiel zeigen?', true)];
+            }
+        }]);
+    }
+
+    public function testAddonSchalter(): void
+    {
+        $html = $this->seite(['show' => '2'], self::addonMitSchalter());
+        self::assertStringContainsString('<th class="nobr" colspan="5">T497</th>', $html);
+        self::assertStringContainsString('<acronym title="Tippspiel zeigen?">Tipp<b>!</b></acronym>', $html);
+        self::assertStringContainsString('name="xtipp_eintippspiel" onChange="dolmoedit()" checked>', $html, 'bis 4.5 in config/cfg.txt eingeschaltet');
+        self::assertStringNotContainsString('xeintippspiel', $html, 'der Kern nennt den Schalter nicht');
+        self::assertStringNotContainsString('colspan="5">T497', $this->seite(['show' => '2']), 'ohne Addon-Schalter kein Block');
+
+        $html = $this->seite(['save' => '1', 'show' => '2'], self::addonMitSchalter());
+        self::assertStringContainsString('name="xtipp_eintippspiel" onChange="dolmoedit()">', $html, 'danach aus');
+        self::assertArrayNotHasKey('eintippspiel', $this->gespeichert(), 'zieht aus config/cfg.txt aus');
+        self::assertStringEqualsFile($this->ordner . '/tipp/cfg.txt', "a=1
+eintippspiel=0
+");
     }
 
     public function testZeitzonen(): void

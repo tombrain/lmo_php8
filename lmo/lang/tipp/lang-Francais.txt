@@ -303,3 +303,4 @@
 302=Montrer seulement le classement total des points
 303=Un nouveau joueur s'est inscrit pour le jeu des pronostiques: \n\nIdentifiant: [nick]
 304=Laissez le champ vide pour éviter de changer le mot de passe
+306=Voulez-vous montrer le concours de pronostiques?

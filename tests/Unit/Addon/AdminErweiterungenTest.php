@@ -35,7 +35,7 @@ class AdminErweiterungenTest extends TestCase
     {
         $texte = static function (string $praefix): array {
             $t = [];
-            for ($i = 0; $i <= 300; $i++) {
+            for ($i = 0; $i <= 310; $i++) {
                 $t[$i] = $praefix . $i;
             }
 
@@ -129,6 +129,22 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame('Seite mit globalen Werten', $seite->zeige(self::kontext())->html);
         unset($GLOBALS['lmo_test_wert']);
         unlink($datei);
+    }
+
+    public function testSchalterVonSpielerUndTipp(): void
+    {
+        $schalter = self::addons()->schalter(self::kontext());
+
+        self::assertSame(['spieler', 'tipp'], array_keys($schalter));
+        self::assertSame(['einspieler', 'S18', 'S60', true], [$schalter['spieler'][0]->schluessel, $schalter['spieler'][0]->name, $schalter['spieler'][0]->titel, $schalter['spieler'][0]->vorgabe]);
+        self::assertSame(['eintippspiel', 'T0', 'T306', true], [$schalter['tipp'][0]->schluessel, $schalter['tipp'][0]->name, $schalter['tipp'][0]->titel, $schalter['tipp'][0]->vorgabe]);
+
+        // aus: im Addon, bis 4.5 in config/cfg.txt; ohne beides an
+        self::assertSame(['vieweroptions', 'pdfoptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '1', 'tipp' => ['eintippspiel' => '0']]))), 'im Addon aus, das gilt vor config/cfg.txt');
+        self::assertFalse(TippAddon::an(new Konfiguration(['eintippspiel' => '0'])));
+        self::assertTrue(TippAddon::an(new Konfiguration(['eintippspiel' => '0', 'tipp' => ['eintippspiel' => '1']])));
+        self::assertTrue(SpielerAddon::an(new Konfiguration([])));
+        self::assertSame([], (new SpielerAddon('/x/spieler/stats'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
     }
 
     public function testSchalterJeAddon(): void

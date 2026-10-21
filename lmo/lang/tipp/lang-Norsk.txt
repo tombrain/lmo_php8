@@ -303,3 +303,4 @@
 302=Vise ny total poengstilling
 303=En ny tpper har registrert seg for tippespillet: \n\nNick: [nick]
 304=La feltet stå tomt for å unngå å endre passordet
+306=Skal tippespillet vises?

@@ -20,7 +20,10 @@ use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
 use Lmo\Addon\MitRahmenteilen;
+use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
+use Lmo\Addon\Schalter;
+use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
 
 /**
@@ -30,8 +33,11 @@ use Lmo\Web\Kontext;
  * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
  * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
-final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten
+final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern
 {
+    /** Der Schalter in den Optionen: Tippspiel an (config/tipp/cfg.txt, bis 4.5 config/cfg.txt) */
+    public const SCHALTER = 'eintippspiel';
+
     /**
      * @param string $ordner Ordner des Addons (addon/tipp)
      * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
@@ -47,6 +53,20 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     public function name(): string
     {
         return 'tipp';
+    }
+
+    /** Ist das Tippspiel eingeschaltet (SCHALTER, ohne Konfiguration an)? */
+    public static function an(Konfiguration $konfiguration): bool
+    {
+        return $konfiguration->addonSchalter('tipp', self::SCHALTER, true);
+    }
+
+    /** Der Schalter "Tippspiel" in den Optionen */
+    public function schalter(Kontext $kontext): array
+    {
+        $t = $kontext->texteVon('tipp');
+
+        return [new Schalter(self::SCHALTER, $t[0] ?? '', $t[306] ?? '', true)];
     }
 
     public function controller(): array
@@ -90,7 +110,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     /** Der Punkt "Tippspiel" im Hauptmenue der Administration, wenn das Tippspiel eingeschaltet ist. */
     public function adminMenue(Kontext $kontext): array
     {
-        if (!$kontext->konfiguration->schalter('eintippspiel')) {
+        if (!self::an($kontext->konfiguration)) {
             return [];
         }
         $t = $kontext->texteVon('tipp');
@@ -106,7 +126,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     /** Der Link zur Auswertung des Tippspiels auf der Startseite der Administration, wenn es eingeschaltet ist. */
     public function startseite(Kontext $kontext): array
     {
-        if (!$kontext->konfiguration->schalter('eintippspiel')) {
+        if (!self::an($kontext->konfiguration)) {
             return [];
         }
 
@@ -119,7 +139,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
      */
     public function rahmenteile(Kontext $kontext): array
     {
-        if (!$kontext->konfiguration->schalter('eintippspiel')) {
+        if (!self::an($kontext->konfiguration)) {
             return [];
         }
         $cfg = $kontext->konfiguration->addon('tipp');

@@ -17,6 +17,7 @@ namespace Lmo\Web\Admin;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Controller\KalenderController;
+use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
 use Lmo\Web\Meldung;
 use Lmo\Web\Seite;
@@ -25,7 +26,8 @@ use Lmo\Web\Vorlagen;
 /**
  * Die Optionen der Installation (todo=options, nur der Hauptadmin) auf drei Seiten (show): 0
  * Allgemein (Sprache, Zeitzone, Ligenordner, Zeit- und Datumsformat, E-Mail, Sortierung der
- * Ligen), 1 Tabelle, 2 Schalter. Mit save=1 werden die Werte der gezeigten Seite gespeichert.
+ * Ligen), 1 Tabelle, 2 Schalter (dazu die der Addons, Lmo\Addon\MitSchaltern, Feld
+ * x<Addon>_<Schluessel>). Mit save=1 werden die Werte der gezeigten Seite gespeichert.
  * Bis 4.5 lmo-adminoptions.php.
  */
 final class OptionenController implements Controller
@@ -34,7 +36,7 @@ final class OptionenController implements Controller
     private const DATUMSFORMATE = ['d.m. H:i', 'd.m.Y H:i', 'D., d.m. H:i', 'l, d.m. H:i', 'D., d.m.Y H:i', 'l, d.m.Y H:i'];
 
     /** Die Schalter auf Seite 2 (Feld x<Name>) */
-    private const SCHALTER = ['backlink', 'archivlink', 'calctime', 'einsavehtml', 'einsprachwahl', 'einspieler', 'eintippspiel', 'einspielfrei', 'einzutore', 'einzutoretab', 'einzustats'];
+    private const SCHALTER = ['backlink', 'archivlink', 'calctime', 'einsavehtml', 'einsprachwahl', 'einspielfrei', 'einzutore', 'einzutoretab', 'einzustats'];
 
     private int $jetzt;
 
@@ -62,6 +64,14 @@ final class OptionenController implements Controller
         if ($anfrage->zahl('save') == 1) {
             // gespeichert werden nur Werte, die die Konfiguration schon hat (wie lmo-savecfg.php)
             $konfiguration = $konfiguration->mit(array_intersect_key(self::geaendert($anfrage, $show, $kontext), $konfiguration->alle()));
+            if ($show == 2) {
+                // die Schalter der Addons in deren Konfiguration; bis 4.5 standen sie in config/cfg.txt
+                foreach ($kontext->addons->schalter($kontext) as $addon => $schalter) {
+                    foreach ($schalter as $s) {
+                        $konfiguration = $konfiguration->mit([$addon => [$s->schluessel => $anfrage->gesetzt('x' . $addon . '_' . $s->schluessel) ? 1 : 0]])->ohne($s->schluessel);
+                    }
+                }
+            }
             $meldung = $konfiguration->speichere($this->konfigurationsordner)
                 ? Meldung::html($kontext->pfade->bilder, $text[138] ?? '')
                 : Meldung::html($kontext->pfade->bilder, $text[283] ?? '', true);
@@ -94,12 +104,30 @@ final class OptionenController implements Controller
             'show' => $show,
             'datei' => $kontext->liga->datei ?? '',
             'k' => $werte,
+            'addonschalter' => $show == 2 ? self::addonSchalter($kontext, $konfiguration) : [],
             'sprachen' => $sprachen,
             'zeitzonen' => self::zeitzonen(),
             'datumsformate' => $datumsformate,
             'eigenesFormat' => !in_array($konfiguration->wert('defdateformat'), self::DATUMSFORMATE),
             'beispiele' => $beispiele,
         ]));
+    }
+
+    /**
+     * Die Schalter der Addons mit ihrem Wert.
+     *
+     * @return list<array{feld: string, name: string, titel: string, an: bool}>
+     */
+    private static function addonSchalter(Kontext $kontext, Konfiguration $konfiguration): array
+    {
+        $zeilen = [];
+        foreach ($kontext->addons->schalter($kontext) as $addon => $schalter) {
+            foreach ($schalter as $s) {
+                $zeilen[] = ['feld' => 'x' . $addon . '_' . $s->schluessel, 'name' => $s->name, 'titel' => $s->titel, 'an' => $konfiguration->addonSchalter($addon, $s->schluessel, $s->vorgabe)];
+            }
+        }
+
+        return $zeilen;
     }
 
     /**

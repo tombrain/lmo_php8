@@ -39,7 +39,7 @@ final class RegistrierungController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->text('todo') == 'newtipper'
             && !$kontext->anfrage->gesetzt('viewermode');
     }

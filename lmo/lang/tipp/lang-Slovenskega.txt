@@ -303,3 +303,4 @@
 302=Prikaži samo skupno število tock
 303=Nov igralec stav se je registriral za stavno igro: \n\nVzdevek: [nick]
 304=Pustite polje prazno, ce ne želite spremeniti gesla
+306=Ali naj se prikaže stavna igra?

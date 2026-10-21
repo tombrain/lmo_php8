@@ -303,3 +303,4 @@
 302=Prikaži samo ukupne bodove
 303=Novi kladilac se registrirao za igru ​​klađenja: \n\nNadimak: [nick]
 304=Ostavite polje prazno da ne biste mijenjali lozinku
+306=Treba li biti prikazana igra prognoza ?

@@ -58,3 +58,4 @@
 057=Nyomtatási általános nézet
 058=Konfiguráció mentése
 059=Játékos statisztikák frissítése
+060=Kívánja megjeleníteni a játékos-statisztika bejegyzéseit? (Minden bajnokságra külön kell engedélyezni!)

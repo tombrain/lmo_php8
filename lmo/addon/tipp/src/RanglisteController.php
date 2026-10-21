@@ -37,7 +37,7 @@ final class RanglisteController implements Controller
     public function zustaendig(Kontext $kontext): bool
     {
         return $kontext->action == 'tipp'
-            && $kontext->konfiguration->schalter('eintippspiel')
+            && TippAddon::an($kontext->konfiguration)
             && $kontext->anfrage->text('todo') == 'wert'
             && !$kontext->anfrage->gesetzt('viewermode')
             // die Gesamtwertung (all=1) braucht keine Liga; bis 4.5 fuehrte sie ohne Liga zur Startseite
