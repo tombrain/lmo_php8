@@ -105,6 +105,30 @@ class LadenTest extends TestCase
         self::assertSame('Two', Sprachtexte::lies($this->ordner, 'English')->kern[2], 'ohne Wahl des Besuchers');
     }
 
+    public function testSprachtexteDerAddonsInIhremOrdner(): void
+    {
+        $this->datei('lang/lang-Deutsch.txt', "1=Eins
+");
+        $this->datei('lang/date/lang-English.txt', "1=Monday
+");
+        $this->datei('lang/pdf/lang-English.txt', "1=PDF
+");
+        $this->datei('addon/tipp/lang/lang-English.txt', "1=Tip
+2=Two
+");
+        $this->datei('addon/tipp/lang/lang-Francais.txt', "2=Pari
+");
+        $this->datei('addon/mini/readme.txt', 'ohne Sprachordner');
+
+        $texte = Sprachtexte::lies($this->ordner . '/lang', 'English', 'Francais', $this->ordner . '/addon');
+
+        self::assertSame([1 => 'Tip', 2 => 'Pari'], $texte->von('tipp'), 'addon/<name>/lang');
+        self::assertSame([1 => 'Monday'], $texte->von('date'), 'Unterordner von lang/ wie bisher');
+        self::assertSame([1 => 'PDF'], $texte->von('pdf'), 'Addons nach alter Art unter lang/');
+        self::assertSame([], $texte->von('mini'));
+        self::assertSame([], Sprachtexte::lies($this->ordner . '/lang', 'English')->von('tipp'), 'ohne Addon-Ordner');
+    }
+
     public function testEigeneBezeichnungenDerLiga(): void
     {
         $texte = new Sprachtexte([37 => 'Punkte', 38 => 'Tore'], ['date' => [1 => 'Montag']]);

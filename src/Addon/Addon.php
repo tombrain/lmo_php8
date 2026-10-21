@@ -19,8 +19,10 @@ namespace Lmo\Addon;
  * Schnittstelle zurueckgibt. Was das Addon beitraegt, sagen die Erweiterungspunkte, die es
  * zusaetzlich implementiert (MitSeiten, MitZusatzJeSpiel, ...).
  *
- * Konfiguration und Sprachtexte liegen wie bisher unter config/<name>/cfg.txt und
- * lang/<name>/lang-<Sprache>.txt (Konfiguration::addon(), Sprachtexte unter dem Namen).
+ * Alles Weitere liegt ebenfalls im Ordner des Addons: die Sprachtexte in
+ * addon/<name>/lang/lang-<Sprache>.txt (Sprachtexte unter dem Namen), die Vorgabe der
+ * Konfiguration in addon/<name>/config-default/cfg.txt. Die Konfiguration der Installation steht
+ * in config/<name>/cfg.txt (Konfiguration::addon()), damit ein Update des Addons sie nicht ersetzt.
  */
 interface Addon
 {
