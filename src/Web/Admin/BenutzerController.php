@@ -65,7 +65,7 @@ final class BenutzerController implements Controller
             usort($andere, static fn (array $a, array $b): int => strnatcasecmp($a[0], $b[0]));
             $konten = array_merge($hauptadmin, $andere);
             $speichern = true;
-        } elseif ($del >= 0) {  // User löschen
+        } elseif ($del >= 1) {  // User löschen, nie den Hauptadmin
             unset($konten[$del]);
             $konten = array_values($konten);
             $speichern = true;
