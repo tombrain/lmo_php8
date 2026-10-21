@@ -25,7 +25,7 @@ class InstallerTest extends TestCase
             'lmo.php' => '<?php // v1',
             '.htaccess' => 'paket',
             'addon/tipp/lmo-tipp.php' => '<?php // v1',
-            'addon/tipp/tipps/.dummy' => '',
+            'daten/.htaccess' => 'Deny from all',
             'config/.htaccess' => 'Deny from all',
             'ligen/beispiel.l98' => 'paket',
             'vendor/pear/pear.php' => '<?php',
@@ -92,8 +92,24 @@ class InstallerTest extends TestCase
         self::assertFileDoesNotExist($this->target . '/addon/tipp/lmo-tipp.php');
         self::assertFileExists($this->target . '/eigene-seite.php', 'nur selbst kopierte Dateien entfernen');
         self::assertFileExists($this->target . '/ligen/beispiel.l98', 'Daten nie entfernen');
-        self::assertFileExists($this->target . '/addon/tipp/tipps/.dummy');
+        self::assertFileExists($this->target . '/daten/.htaccess');
         self::assertSame(1, $stats['removed']);
+    }
+
+    public function testDatenImAddonOrdnerBleiben(): void
+    {
+        // Daten, die ein Addon (bis 4.5) in seinem Ordner abgelegt hat, sind nie Teil des Pakets:
+        // ein Update laesst sie liegen, bis das Addon sie in den Datenordner verschiebt
+        $this->installer()->install($this->target);
+        $this->write($this->target . '/addon/tipp/lmo-tippauth.txt', 'tipper');
+        $this->write($this->target . '/addon/tipp/tipps/liga_nick.tip', 'tipps');
+        $this->write($this->source . '/addon/tipp/lmo-tipp.php', '<?php // v2');
+
+        $this->installer()->install($this->target);
+
+        self::assertSame('<?php // v2', file_get_contents($this->target . '/addon/tipp/lmo-tipp.php'));
+        self::assertSame('tipper', file_get_contents($this->target . '/addon/tipp/lmo-tippauth.txt'));
+        self::assertSame('tipps', file_get_contents($this->target . '/addon/tipp/tipps/liga_nick.tip'));
     }
 
     public function testRefusesForeignNonEmptyTarget(): void
