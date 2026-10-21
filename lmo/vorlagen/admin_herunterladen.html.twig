@@ -1,0 +1,55 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Ligen herunterladen oder per E-Mail schicken (Lmo\Web\Admin\HerunterladenController), bis 4.5 lmo-admindown.php #}
+      <table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th align="center"><h1>{{ text[316]|raw }}</h1></th>
+          <th align="center"><h1>{{ text[345]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td align="center" valign="top">
+            <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="nobr" align="left">
+                  <ul>
+{% for l in ligenDownload %}
+                    <li><a href="{{ download|raw }}{{ l.nr }}">{{ l.name|raw }}</a></li>
+{% else %}
+                    <li>[{{ text[223]|raw }}]</li>
+{% endfor %}
+{% if alle %}
+                    <li><a href="{{ download|raw }}-1"><strong>{{ text[402]|raw }}</strong></a></li>
+{% endif %}
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td align="center" valign="top">
+            <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="nobr" align="left">
+                  <ul>
+{% for l in ligenMail %}
+                    <li><a target="lmoelm" href="{{ mail|raw }}{{ l.nr }}" onclick="emllmolink(this.href,'{{ adminmail|raw }}');return false;">{{ l.name|raw }}</a></li>
+{% else %}
+                    <li>[{{ text[223]|raw }}]</li>
+{% endfor %}
+{% if alle %}
+                    <li><a target="lmoelm" href="{{ mail|raw }}-1" onclick="emllmolink(this.href,'{{ adminmail|raw }}');return false;"><strong>{{ text[401]|raw }}</strong></a></li>
+{% endif %}
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
