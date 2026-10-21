@@ -7,6 +7,9 @@ eingebunden werden und was ein Addon mitbringen muss.
 Die Grundregel: **Programm und Daten sind getrennt.** Programm kommt aus dem Paket und wird bei
 jedem Update ersetzt. Daten entstehen beim Betrieb und werden nie angefasst.
 
+Was dabei Schritt für Schritt mit den Dateien geschieht (Installation, Update, Addon hinzufügen
+oder entfernen), steht in [installation-und-addons.md](installation-und-addons.md).
+
 ## 1. Das Paket
 
 So liefert Composer `lmo/lmo_php8` aus (gleich dem Repository):
