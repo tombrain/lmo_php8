@@ -75,14 +75,15 @@ final class Instance
         // ohne addon/tipp/lmo-tippauth.txt bricht z. B. die Tippspiel-Benutzerverwaltung mit einem Fatal Error ab.
         // Daten der Addons: neuer Stand im Datenordner daten/<addon>/, der Originalstand im Addon-Ordner
         $daten = is_dir($path . '/daten');
-        foreach (['addon/tipp/tipps', 'addon/tipp/tipps/auswert', 'addon/tipp/tipps/einsicht',
-            'addon/tipp/tipps/auswert/vereine', $daten ? 'daten/spieler' : 'addon/spieler/stats', 'config/viewer'] as $dir) {
+        $tipp = $daten ? 'daten/tipp' : 'addon/tipp';
+        foreach ([$tipp . '/tipps', $tipp . '/tipps/auswert', $tipp . '/tipps/einsicht',
+            $tipp . '/tipps/auswert/vereine', $daten ? 'daten/spieler' : 'addon/spieler/stats', 'config/viewer'] as $dir) {
             if (!is_dir($path . '/' . $dir)) {
                 mkdir($path . '/' . $dir, 0777, true);
             }
         }
-        if (!is_file($path . '/addon/tipp/lmo-tippauth.txt')) {
-            file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', '');
+        if (!is_file($path . '/' . $tipp . '/lmo-tippauth.txt')) {
+            file_put_contents($path . '/' . $tipp . '/lmo-tippauth.txt', '');
         }
 
         foreach (['output', 'ligen/archiv', '.sessions'] as $dir) {

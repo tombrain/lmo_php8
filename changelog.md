@@ -51,6 +51,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Tippspiel: Die Tipperdatei (`lmo-tippauth.txt`) und die Tipps (`tipps/` mit `auswert/` und `einsicht/`) liegen jetzt in `daten/tipp/` (bisher in `addon/tipp/`). Vorhandene Daten ziehen beim ersten Aufruf dorthin um; fehlende Ordner und eine leere Tipperdatei legt das Addon selbst an (`TippAddon::datenordner()`), nicht mehr `lmo-setup.php`. Die `.dummy`-Dateien in `addon/tipp/tipps/` entfallen.  
 * Spielerstatistik: Die Statistiken und ihre Einstellungen je Liga (`<liga>.stat`, `<liga>.cfg`) liegen jetzt in `daten/spieler/` (bisher `addon/spieler/stats/`). Vorhandene Dateien ziehen beim ersten Aufruf dorthin um.  
 * Die Ligenübersicht ohne gewählte Liga wird erst nach den Seiten der Addons gefragt (`Anwendung`, neuer Parameter `$zuletzt`) und braucht keine Ausnahme mehr für `action=tipp`. Bei abgeschaltetem Tippspiel zeigt `action=tipp` ohne Liga jetzt die Ligenübersicht. Das überflüssige `session_start()` für `action=tipp` in `lmo-start.php` entfällt (`init.php` startet die Sitzung immer).  
 * Die Vorlagen der Konfiguration der Addons liegen jetzt im Ordner des Addons: `addon/<name>/config-default/cfg.txt` (bisher `config-default/<name>/cfg.txt`), für classlib, mini, spieler, ticker und tipp. `lmo-setup.php` gleicht sie wie bisher mit `config/<name>/` ab (fehlende Dateien werden kopiert, fehlende Schlüssel angehängt); die Konfiguration der Installation bleibt in `config/<name>/cfg.txt`.  
@@ -474,6 +475,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Prediction game: the players file (`lmo-tippauth.txt`) and the predictions (`tipps/` with `auswert/` and `einsicht/`) are now stored in `daten/tipp/` (previously in `addon/tipp/`). Existing data moves there on the first call; missing folders and an empty players file are created by the add-on itself (`TippAddon::datenordner()`), `lmo-setup.php` no longer does it. The `.dummy` files in `addon/tipp/tipps/` are gone.  
 * Player statistics: the statistics and their per-league settings (`<league>.stat`, `<league>.cfg`) are now stored in `daten/spieler/` (previously `addon/spieler/stats/`). Existing files move there on the first call.  
 * The league overview without a selected league is asked only after the add-ons' pages (`Anwendung`, new parameter `$zuletzt`); it no longer needs an exception for `action=tipp`. With the prediction game switched off, `action=tipp` without a league now shows the league overview. The redundant `session_start()` for `action=tipp` in `lmo-start.php` is gone (`init.php` always starts the session).  
 * The configuration templates of the add-ons are now in the add-on's own folder: `addon/<name>/config-default/cfg.txt` (previously `config-default/<name>/cfg.txt`), for classlib, mini, spieler, ticker and tipp. `lmo-setup.php` syncs them into `config/<name>/` as before (missing files are copied, missing keys appended); the installation's configuration stays in `config/<name>/cfg.txt`.  

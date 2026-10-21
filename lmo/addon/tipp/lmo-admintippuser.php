@@ -25,7 +25,7 @@ $del = isset($_REQUEST['del']) ? $_REQUEST['del'] : '';
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
 if ($_SESSION['lmouserok'] == 2) {
-    $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
+    $pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
 
     $users = file($pswfile);
     array_unshift($users, '');
@@ -42,7 +42,7 @@ if ($_SESSION['lmouserok'] == 2) {
         }
         if ($gef == 1) {
             $userf3 = explode('|', $users[$del]);
-            $verz = opendir(substr(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp, 0, -1));
+            $verz = opendir(substr(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp, 0, -1));
             $dummy = array();
             while ($files = readdir($verz)) {
                 if (substr($files, -4 - strlen($userf3[0])) == $userf3[0] . '.tip') {
@@ -52,7 +52,7 @@ if ($_SESSION['lmouserok'] == 2) {
             closedir($verz);
             $anztippfiles = count($dummy);
             for ($k = 0; $k < $anztippfiles; $k++) {
-                @unlink(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp.$dummy[$k]); // Tipps löschen
+                @unlink(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$dummy[$k]); // Tipps löschen
             }
 
             for ($i = $del + 1; $i < count($users); $i++) {
@@ -151,12 +151,12 @@ if ($_SESSION['lmouserok'] == 2) {
             $team[$i] = $userd[5];
             $ltipp[$i] = 0;
             $freig[$i] = $userd[2];
-            $verz = opendir(substr(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp, 0, -1));
+            $verz = opendir(substr(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp, 0, -1));
             if ($verz) {
                 while ($files = readdir($verz)) {
                     if (substr($files, -5 - strlen($userd[0])) == '_' . $userd[0] . '.tip') {
-                        if (filemtime(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . $files) > $ltipp[$i]) {
-                            $ltipp[$i] = filemtime(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp.$files);
+                        if (filemtime(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . $files) > $ltipp[$i]) {
+                            $ltipp[$i] = filemtime(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$files);
                         }
                     }
                 }

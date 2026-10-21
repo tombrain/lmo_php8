@@ -54,7 +54,7 @@ final class FirstRunTest extends TestCase
         self::assertStringContainsString('href="http://lmo.test/lmo/lmo-style-nc.php"', $html);
 
         foreach (['config/cfg.txt', 'config/tipp/cfg.txt', 'config/spieler/cfg.txt', 'config/ticker/cfg.txt',
-            'config/mini/cfg.txt', 'config/classlib/cfg.txt', 'addon/tipp/lmo-tippauth.txt'] as $file) {
+            'config/mini/cfg.txt', 'config/classlib/cfg.txt', 'daten/tipp/lmo-tippauth.txt'] as $file) {
             self::assertFileExists($this->path($c, $file));
         }
         self::assertFileEquals($this->path($c, 'config-default/cfg.txt'), $this->path($c, 'config/cfg.txt'));

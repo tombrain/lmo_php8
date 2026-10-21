@@ -34,14 +34,14 @@ final class TippRanglisteTest extends TestCase
     {
         $client = Fixture::anonymousClient();
         $path = $client->instance()->path();
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org|Rot||||1|1|EOL\n");
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org|Rot||||1|1|EOL\n");
         copy($client->instance()->ligenDir() . '/golden/basic.l98', $client->instance()->ligenDir() . '/tippliga.l98');
         copy($client->instance()->ligenDir() . '/golden/basic.l98', $client->instance()->ligenDir() . '/ohneauswertung.l98');
         $client->instance()->freezeLeagueTimes();
         self::einstellungen($client, ['tipperimteam' => '0', 'anzseite1' => '30', 'showname' => '1', 'showemail' => '1']);
-        @mkdir($path . '/addon/tipp/tipps/auswert', 0777, true);
-        file_put_contents($path . '/addon/tipp/tipps/auswert/tippliga.aus', self::AUSWERTUNG);
-        file_put_contents($path . '/addon/tipp/tipps/auswert/gesamt.aus', self::GESAMT);
+        @mkdir($path . '/daten/tipp/tipps/auswert', 0777, true);
+        file_put_contents($path . '/daten/tipp/tipps/auswert/tippliga.aus', self::AUSWERTUNG);
+        file_put_contents($path . '/daten/tipp/tipps/auswert/gesamt.aus', self::GESAMT);
         $client->resetChanges();
 
         return $client;

@@ -66,4 +66,36 @@ class TippAddonTest extends TestCase
         self::assertArrayHasKey('Tippspiel', $addon->rahmenteile(self::kontext('', null, $auswahl)), 'ohne Liga');
         self::assertSame([], $addon->rahmenteile(self::kontext('table', 'bula.l98', ['eintippspiel' => '0'] + $immer)), 'abgeschaltet');
     }
+
+    public function testDatenordnerZiehtUmUndLegtAn(): void
+    {
+        $lmo = sys_get_temp_dir() . '/lmo-tippdaten-' . bin2hex(random_bytes(4));
+        mkdir($lmo . '/addon/tipp/meine', 0777, true);
+        mkdir($lmo . '/config/tipp', 0777, true);
+        file_put_contents($lmo . '/config/tipp/cfg.txt', "dirtipp=meine/
+tippauthtxt=tipper.txt
+");
+        file_put_contents($lmo . '/addon/tipp/tipper.txt', 'T');
+        file_put_contents($lmo . '/addon/tipp/meine/liga_nick.tip', 'X');
+        file_put_contents($lmo . '/addon/tipp/addon.php', '<?php');
+
+        $ordner = TippAddon::datenordner($lmo . '/daten', $lmo . '/addon', $lmo . '/config');
+
+        self::assertSame($lmo . '/daten/tipp', $ordner);
+        self::assertStringEqualsFile($ordner . '/tipper.txt', 'T', 'Tipperdatei nach tippauthtxt');
+        self::assertStringEqualsFile($ordner . '/meine/liga_nick.tip', 'X', 'Tipps nach dirtipp');
+        foreach (['auswert', 'auswert/vereine', 'einsicht'] as $unterordner) {
+            self::assertDirectoryExists($ordner . '/meine/' . $unterordner);
+        }
+        self::assertFileExists($lmo . '/addon/tipp/addon.php', 'der Code bleibt');
+        self::assertFileDoesNotExist($lmo . '/addon/tipp/tipper.txt');
+
+        // ohne alte Daten: der Datenordner mit leerer Tipperdatei und den Vorgaben tipps/, lmo-tippauth.txt
+        $neu = sys_get_temp_dir() . '/lmo-tippdaten-' . bin2hex(random_bytes(4));
+        $leer = TippAddon::datenordner($neu . '/daten', $neu . '/addon', $neu . '/config');
+        self::assertStringEqualsFile($leer . '/lmo-tippauth.txt', '');
+        self::assertDirectoryExists($leer . '/tipps/auswert/vereine');
+
+        exec('rm -rf ' . escapeshellarg($lmo) . ' ' . escapeshellarg($neu));
+    }
 }

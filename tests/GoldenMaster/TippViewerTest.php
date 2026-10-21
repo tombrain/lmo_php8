@@ -88,7 +88,7 @@ L98;
         $client = Fixture::anonymousClient();
         $path = $client->instance()->path();
         // ein freigeschalteter Tipper; er darf alle Ligen tippen, fuer die er eine Tippdatei hat
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org||||1|1|EOL\n");
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\ntester|geheim|5|Tina Test|tester@example.org||||1|1|EOL\n");
         $cfg = $path . '/config/tipp/cfg.txt';
         file_put_contents($cfg, (string) preg_replace('/^immeralle=.*$/m', 'immeralle=1', (string) file_get_contents($cfg), 1, $count));
         self::assertSame(1, $count, 'immeralle steht in der Konfiguration des Tippspiels');
@@ -96,11 +96,11 @@ L98;
         file_put_contents($client->instance()->ligenDir() . '/tipppokal.l98', self::POKAL);
         $client->instance()->freezeLeagueTimes();
         // Bundesliga: zwei Spiele getippt, Joker auf Spiel 3; Pokal: das Hinspiel der ersten Paarung
-        file_put_contents($path . '/addon/tipp/tipps/1l_2024-25_tester.tip', "[Round26]\n@3@\nGA1=2\nGB1=1\nGA3=0\nGB3=0\n");
-        file_put_contents($path . '/addon/tipp/tipps/tipppokal_tester.tip', "[Round1]\nGA11=3\nGB11=1\n");
+        file_put_contents($path . '/daten/tipp/tipps/1l_2024-25_tester.tip', "[Round26]\n@3@\nGA1=2\nGB1=1\nGA3=0\nGB3=0\n");
+        file_put_contents($path . '/daten/tipp/tipps/tipppokal_tester.tip', "[Round1]\nGA11=3\nGB11=1\n");
         // "Dein letzter Tipp" zeigt die Dateizeit
         foreach (['1l_2024-25_tester.tip', 'tipppokal_tester.tip'] as $tippdatei) {
-            touch($path . '/addon/tipp/tipps/' . $tippdatei, mktime(12, 0, 0, 3, 10, 2025));
+            touch($path . '/daten/tipp/tipps/' . $tippdatei, mktime(12, 0, 0, 3, 10, 2025));
         }
         $client->resetChanges();
 
@@ -121,7 +121,7 @@ L98;
         ]), $c->changes());
         $t->add('Tippuebersicht ab uebermorgen', $c->get('lmo.php', 'action=tipp&todo=edit&file=&viewermode=1&start=2'), $c->changes());
 
-        $path = $c->instance()->path() . '/addon/tipp/tipps/';
+        $path = $c->instance()->path() . '/daten/tipp/tipps/';
         $t->add('Tippdatei Bundesliga', (string) file_get_contents($path . '1l_2024-25_tester.tip'), '');
         $t->add('Tippdatei Pokal', (string) file_get_contents($path . 'tipppokal_tester.tip'), '');
 
@@ -137,7 +137,7 @@ L98;
     {
         $c = self::client();
         $path = $c->instance()->path();
-        $tipps = $path . '/addon/tipp/tipps/';
+        $tipps = $path . '/daten/tipp/tipps/';
         @mkdir($tipps . 'einsicht', 0777, true);
         file_put_contents($tipps . 'einsicht/1l_2024-25_26.ein', "[anna]\nGA1=1\nGB1=1\nGA2=3\nGB2=0\n\n[bert]\n@2@\nGA1=2\nGB1=0\nGA2=1\nGB2=2\n");
         file_put_contents($tipps . 'einsicht/tipppokal_1.ein', "[tester]\nGA11=1\nGB11=1\n\n[anna]\nGA11=0\nGB11=2\n");
@@ -202,7 +202,7 @@ L98;
         $t->add('Einsicht Bundesliga, Spieltag 26', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=1l_2024-25.l98&st=26'), $c->changes());
         $t->add('Einsicht Pokal, Runde 1', $c->get('lmo.php', 'action=tipp&todo=einsicht&file=tipppokal.l98&st=1'), $c->changes());
 
-        $path = $c->instance()->path() . '/addon/tipp/tipps/';
+        $path = $c->instance()->path() . '/daten/tipp/tipps/';
         $t->add('Tippdatei Bundesliga', (string) file_get_contents($path . '1l_2024-25_tester.tip'), '');
         $t->add('Tippdatei Pokal', (string) file_get_contents($path . 'tipppokal_tester.tip'), '');
 

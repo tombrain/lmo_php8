@@ -16,6 +16,7 @@ namespace Lmo\Addon\Tipp;
 
 use Closure;
 use Lmo\Addon\AlteAdminSeite;
+use Lmo\Addon\Datenordner;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
@@ -45,9 +46,44 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
      * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort ("Kennwort vergessen"); null oder der Fehler
      * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
      * @param string $version installierte Version des LMO (LMO_VERSION_NR) fuer die Info-Seite
+     * @param string $daten Datenordner des Tippspiels (daten/tipp, datenordner()) mit Tipperdatei und Tipps; '' wie $ordner
      */
-    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '')
+    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '')
     {
+    }
+
+    /** @var array<string, string> bereits ermittelte Datenordner (der alte Code fragt oft) */
+    private static array $datenordner = [];
+
+    /**
+     * Der Datenordner des Tippspiels: daten/tipp mit der Tipperdatei (tipp/cfg.txt tippauthtxt) und
+     * den Tipps (dirtipp, mit auswert/, auswert/vereine/ und einsicht/); fehlt etwas davon, wird es
+     * angelegt. Bis 4.5 lag beides in addon/tipp; von dort zieht es beim ersten Aufruf um.
+     *
+     * @param string $daten Datenordner des LMO (PATH_TO_DATADIR)
+     * @param string $addons Ordner der Addons (PATH_TO_ADDONDIR)
+     * @param string $konfiguration Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt
+     */
+    public static function datenordner(string $daten, string $addons, string $konfiguration): string
+    {
+        $schluessel = $daten . '|' . $addons . '|' . $konfiguration;
+        if (isset(self::$datenordner[$schluessel])) {
+            return self::$datenordner[$schluessel];
+        }
+        $cfg = is_file($konfiguration . '/tipp/cfg.txt') ? parse_ini_file($konfiguration . '/tipp/cfg.txt', false, INI_SCANNER_RAW) ?: [] : [];
+        $tipps = trim(is_string($cfg['dirtipp'] ?? null) ? $cfg['dirtipp'] : 'tipps/', '/');
+        $tipper = is_string($cfg['tippauthtxt'] ?? null) ? $cfg['tippauthtxt'] : 'lmo-tippauth.txt';
+        $ordner = Datenordner::umziehen($daten . '/tipp', $addons . '/tipp', [$tipps, $tipper]);
+        foreach (['', '/auswert', '/auswert/vereine', '/einsicht'] as $unterordner) {
+            if (!is_dir($ordner . '/' . $tipps . $unterordner)) {
+                @mkdir($ordner . '/' . $tipps . $unterordner, 0777, true);
+            }
+        }
+        if (!is_file($ordner . '/' . $tipper)) {
+            @file_put_contents($ordner . '/' . $tipper, '');
+        }
+
+        return self::$datenordner[$schluessel] = $ordner;
     }
 
     public function name(): string
@@ -71,25 +107,26 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
 
     public function controller(): array
     {
+        $daten = $this->daten !== '' ? $this->daten : $this->ordner;
         $rahmen = new Tipprahmen($this->regeln ?? static fn (string $datei): string => '');
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
 
         $kennwortmail = $this->kennwortmail ?? static fn (string $email, string $nick, string $kennwort): ?string => null;
-        $startseite = new StartseiteController($this->ordner, $rahmen);
+        $startseite = new StartseiteController($daten, $rahmen);
 
         return [
-            new RegistrierungController($this->ordner, $freischaltmail, $this->adminmail ?? static fn (string $nick): string => ''),
-            new KontoController($this->ordner, $rahmen, $freischaltmail),
-            new UebersichtController($this->ordner, $rahmen),
-            new TippabgabeController($this->ordner, $rahmen),
-            new EinsichtController($this->ordner, $rahmen),
-            new TabelleController($this->ordner, $rahmen),
-            new RanglisteController($this->ordner, $rahmen),
-            new FieberkurveController($this->ordner, $rahmen),
+            new RegistrierungController($daten, $freischaltmail, $this->adminmail ?? static fn (string $nick): string => ''),
+            new KontoController($daten, $rahmen, $freischaltmail),
+            new UebersichtController($daten, $rahmen),
+            new TippabgabeController($daten, $rahmen),
+            new EinsichtController($daten, $rahmen),
+            new TabelleController($daten, $rahmen),
+            new RanglisteController($daten, $rahmen),
+            new FieberkurveController($daten, $rahmen),
             new InfoController($rahmen, $this->version),
             $startseite,
-            new AnmeldungController($this->ordner, $rahmen, $startseite, $kennwortmail),
+            new AnmeldungController($daten, $rahmen, $startseite, $kennwortmail),
         ];
     }
 

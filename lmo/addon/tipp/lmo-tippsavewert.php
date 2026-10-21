@@ -66,11 +66,11 @@ if (isset($todo) && $todo != "edit") {
 require_once(PATH_TO_ADDONDIR."/tipp/lmo-tippcalcpkt.php");
 $dummd = array();
 $dumme = array("");
-$pswfile = PATH_TO_ADDONDIR."/tipp/".$tipp_tippauthtxt;
+$pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
  
 $dummd = file($pswfile);
  
-$auswertfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."auswert/".$liga.".aus";
+$auswertfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."auswert/".$liga.".aus";
 $datenalt = array("");
 $nick = "";
  
@@ -82,7 +82,7 @@ if ($st >= 0 && file_exists($auswertfile)) {
     if ($zeile != "") {
       if ((substr($zeile, 0, 1) == "[") && (substr($zeile, -1) == "]")) {
         $nick = substr($zeile, 1, -1);
-        if (!file_exists(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.$liga."_".$nick.".tip")) {
+        if (!file_exists(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$liga."_".$nick.".tip")) {
           $nick = "";
         }
       }
@@ -116,7 +116,7 @@ if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
   $lmo_wert_spieltage = $lmo_wert_einstellungen->spieltage();
   $lmo_wert_mannschaften = $lmo_wert_einstellungen->mannschaften();
   $lmo_wert_runden = array();
-  $verz = opendir(PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp);
+  $verz = opendir(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp);
   $dummy = array();
   while ($verz && $files = readdir($verz)) {
     if (strtolower(substr($files, 0, strrpos($files, "_"))) == strtolower($liga) && strtolower(substr($files, -4)) == ".tip") {
@@ -152,7 +152,7 @@ if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
     // durchlaufe alle Tipper
     $tippernick1 = substr($dummy[$l], strrpos($dummy[$l], "_")+1, -4);
     if ($l >= $start-1 && $l <= $ende-1) {
-      $tippfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp.$dummy[$l];
+      $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp.$dummy[$l];
       if (file_exists($tippfile)) {
         $gef = 0;
         for ($g = 0; $g < count($dummd) && $gef == 0; $g++) {
@@ -315,7 +315,7 @@ if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
             }
           } // ende if ($st>0)
           if ($tipp_wertverein == 1) {
-            $tipp_wertvereinfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."auswert/vereine/".$liga."_".$tippernick1.".ver";
+            $tipp_wertvereinfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."auswert/vereine/".$liga."_".$tippernick1.".ver";
             $datenalt1 = array("");
             $verein = "";
              

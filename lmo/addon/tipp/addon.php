@@ -21,6 +21,7 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 // Tippspiel mit Menuepunkt (Lmo\Addon\Tipp\TippAddon); seine Seiten zeigen die Controller des Addons.
+// Tipper und Tipps liegen im Datenordner daten/tipp (bis 4.5 hier im Addon-Ordner, von dort ziehen sie einmal um).
 // Was noch aus dem alten Code kommt (Tippregeln, Mails), geben diese Closures mit: Sie binden die
 // globalen Variablen (Einstellungen aus init.php, $text) per Referenz und dann den alten Code ein.
 return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_regeln): string {
@@ -76,4 +77,4 @@ return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_
     ob_start();
     include(__DIR__ . '/lmo-admintippbenachrichtigung.php');
     return (string)ob_get_clean();
-}, (string)constant('LMO_VERSION_NR'));
+}, (string)constant('LMO_VERSION_NR'), \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR));

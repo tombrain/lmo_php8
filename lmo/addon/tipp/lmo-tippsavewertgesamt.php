@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 require_once(PATH_TO_LMO . "/lmo-admintest.php");
 $dummb = array("");
 $dummd = array();
-$pswfile = PATH_TO_ADDONDIR."/tipp/".$tipp_tippauthtxt;
+$pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
 
 $dummd = file($pswfile);
 // Die PHP-Schutzzeile am Dateianfang ist kein Tipper-Datensatz
@@ -33,7 +33,7 @@ $dummd = array_values(array_filter($dummd, function ($line) {
 
 $anztipper = count($dummd);
 
-$auswertfile = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."auswert/gesamt.aus";
+$auswertfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."auswert/gesamt.aus";
 $auswertdatei = fopen($auswertfile, "wb");
 if (!$auswertdatei) {
   echo getMessage($text['tipp'][0].': '.$text['tipp'][29]." ".$auswertdatei.$text[283],true);
@@ -61,7 +61,7 @@ for ($i = 0; $i < $anztipper; $i++) {
   }
   $tipperteam[$i] = $dummb[5];
 }
-$verz = opendir(PATH_TO_ADDONDIR . "/tipp/".$tipp_dirtipp."auswert");
+$verz = opendir(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."auswert");
 $dummy = array();
 while ($files = readdir($verz)) {
   if (strtolower(substr($files, -4)) == ".aus" && strtolower(substr($files, -10)) != "gesamt.aus") {
@@ -103,7 +103,7 @@ for ($k = 0; $k < $anzligen; $k++) {
       }
     }
   }
-  $auswertfile1 = PATH_TO_ADDONDIR."/tipp/".$tipp_dirtipp."auswert/".$dummy[$k];
+  $auswertfile1 = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp."auswert/".$dummy[$k];
   if ($ftest == 0 && $tipp_immeralle == 0) {
     // Liga darf nicht in Gesamtwertung einfliessen
   } elseif (!file_exists($auswertfile1))

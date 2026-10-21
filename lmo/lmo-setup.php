@@ -103,9 +103,6 @@ function lmo_setup_files(string $lmoDir): string
             @mkdir($lmoDir . '/' . $dir, 0777, true);
         }
     }
-    if (!is_file($lmoDir . '/addon/tipp/lmo-tippauth.txt')) {
-        @file_put_contents($lmoDir . '/addon/tipp/lmo-tippauth.txt', '');
-    }
     if (!is_file($config . '/cfg.txt')) {
         return 'config/cfg.txt konnte nicht angelegt werden. / config/cfg.txt could not be created.';
     }

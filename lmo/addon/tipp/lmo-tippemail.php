@@ -66,7 +66,7 @@ $tippResetBaseUrl = lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp&
 
 if ($message != '') {
     $dumma = array();
-    $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
+    $pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
     $dumma = file($pswfile);
     // Die PHP-Schutzzeile am Dateianfang ist kein Tipper-Datensatz
     $dumma = array_values(array_filter($dumma, function ($line) {
@@ -160,7 +160,7 @@ if ($message != '') {
                     $spiele = '';
                     for ($i = 0; $i < $anzspiele; $i ++) {
                         if ($i == 0 || $liga[$i] != $liga[$i - 1]) {
-                            $tippfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . $liga[$i] . '_' . $dummb[0] . '.tip';
+                            $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . $liga[$i] . '_' . $dummb[0] . '.tip';
                             if (file_exists($tippfile)) {
                                 require(PATH_TO_ADDONDIR . '/tipp/lmo-tippemailviewer1.php');
                                 $ktipp = 1;
@@ -226,7 +226,7 @@ if ($message != '') {
                 $dummb = explode('|', $dumma[$tippernr]);
                 if (isset($dummb[10], $dummb[4]) && $dummb[10] != -1 && $dummb[4] != '') {
                     $textmessage = $message;
-                    $tippfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . substr($file, 0, -4) . '_' . $dummb[0] . '.tip';
+                    $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . substr($file, 0, -4) . '_' . $dummb[0] . '.tip';
                     $spiele = '';
                     if (file_exists($tippfile)) {
                         // Einstellungen der Liga; so viele Paarungen je Spieltag werden durchsucht:
