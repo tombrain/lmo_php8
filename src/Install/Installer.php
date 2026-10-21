@@ -24,7 +24,7 @@ namespace Lmo\Install;
 class Installer
 {
     /** Datenordner und vom Nutzer anpassbare Dateien, relativ zum LMO-Ordner */
-    public const KEEP = ['.htaccess', 'config', 'ligen', 'output', 'addon/tipp/tipps', 'addon/spieler/stats'];
+    public const KEEP = ['.htaccess', 'config', 'daten', 'ligen', 'output', 'addon/tipp/tipps', 'addon/spieler/stats'];
 
     /** Liste der zuletzt kopierten Programmdateien: damit verschwinden Dateien, die es im Paket nicht mehr gibt */
     public const MANIFEST = 'config/.install-manifest';

@@ -50,6 +50,8 @@ if (!defined('PATH_TO_TEMPLATEDIR'))define('PATH_TO_TEMPLATEDIR', PATH_TO_LMO . 
 if (!defined('PATH_TO_IMGDIR')) define('PATH_TO_IMGDIR', PATH_TO_LMO . '/img');
 if (!defined('PATH_TO_LANGDIR')) define('PATH_TO_LANGDIR', PATH_TO_LMO . '/lang');
 if (!defined('PATH_TO_CONFIGDIR')) define('PATH_TO_CONFIGDIR', PATH_TO_LMO . '/config');
+// Daten der Addons (daten/<addon>/, Lmo\Addon\Datenordner); bleiben bei Updates wie config/ und ligen/
+if (!defined('PATH_TO_DATADIR')) define('PATH_TO_DATADIR', PATH_TO_LMO . '/daten');
 if (!defined('PATH_TO_JSDIR')) define('PATH_TO_JSDIR', PATH_TO_LMO . '/js');
 
 if (!defined('URL_TO_LMO')) define('URL_TO_LMO', $lmo_url);

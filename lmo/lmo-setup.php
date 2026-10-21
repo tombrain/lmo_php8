@@ -98,7 +98,7 @@ function lmo_setup_files(string $lmoDir): string
     foreach ($sources as $target => $from) {
         lmo_sync_defaults($from, $target === '' ? $config : $config . '/' . $target);
     }
-    foreach (['ligen/archiv', 'output'] as $dir) {
+    foreach (['ligen/archiv', 'output', 'daten'] as $dir) {
         if (!is_dir($lmoDir . '/' . $dir)) {
             @mkdir($lmoDir . '/' . $dir, 0777, true);
         }
