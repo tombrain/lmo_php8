@@ -110,8 +110,9 @@ class NeuControllerTest extends TestCase
 
         self::assertStringContainsString('name="xprogram" value="none" onChange', $html, 'wie bisher ohne Vorauswahl (0 ist nicht leer)');
         self::assertStringContainsString('name="xprogram" value="none" checked', $this->seite(['newpage' => '2', 'xtype' => '0', 'xteams' => '4', 'xanzst' => '6', 'xanzsp' => '2', 'xprogram' => '']), 'leer gesendet: kein Spielplan');
-        self::assertStringContainsString("<input type='radio' name='xprogram' value=\"" . $this->ordner . '/ligen/b.l98" onChange="dolmoedit()">T5071<br>', $html, 'ohne Namen');
-        self::assertStringContainsString('/ligen/vier.l98" onChange="dolmoedit()">Vierer<br>', $html);
+        self::assertStringContainsString("<input type='radio' name='xprogram' value=\"b.l98\" onChange=\"dolmoedit()\">T5071<br>", $html, 'ohne Namen');
+        self::assertStringContainsString('value="vier.l98" onChange="dolmoedit()">Vierer<br>', $html);
+        self::assertStringNotContainsString($this->ordner, $html, 'kein Pfad des Servers');
         self::assertStringNotContainsString('Gross', $html, 'nur gleich grosse Ligen');
         self::assertStringContainsString('value="random"', $html, 'jeder gegen jeden passt');
 
@@ -156,9 +157,16 @@ class NeuControllerTest extends TestCase
 
     public function testAnlegenMitVorlage(): void
     {
+        $this->seite(['newpage' => '3', 'xfile' => 'neu', 'xtitel' => 'Neu', 'xtype' => '0', 'xteams' => '4', 'xanzst' => '6', 'xanzsp' => '2', 'xprogram' => 'vier.l98']);
+        // nur angebotene Vorlagen: kein beliebiger Pfad, keine Liga anderer Groesse
         $this->seite(['newpage' => '3', 'xfile' => 'neu', 'xtitel' => 'Neu', 'xtype' => '0', 'xteams' => '4', 'xanzst' => '6', 'xanzsp' => '2', 'xprogram' => $this->ordner . '/ligen/vier.l98']);
+        $this->seite(['newpage' => '3', 'xfile' => 'neu', 'xtitel' => 'Neu', 'xtype' => '0', 'xteams' => '4', 'xanzst' => '6', 'xanzsp' => '2', 'xprogram' => 'gross.l98']);
 
         $liga = $this->gespeichert[0][0];
+        foreach ([1, 2] as $abgelehnt) {
+            $partie = $this->gespeichert[$abgelehnt][0]->spieltage[1]->partien[1];
+            self::assertSame(['0', '0'], [$partie->heim, $partie->gast], 'ohne Spielplan');
+        }
         self::assertSame(['2', '1'], [$liga->spieltage[1]->partien[1]->heim, $liga->spieltage[1]->partien[1]->gast]);
         self::assertSame(['0', '0'], [$liga->spieltage[2]->partien[1]->heim, $liga->spieltage[2]->partien[1]->gast], 'ohne Paarung in der Vorlage 0');
     }

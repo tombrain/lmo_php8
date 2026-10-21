@@ -116,6 +116,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Administration, neue Liga, Spielplan aus einer anderen Liga übernehmen: Das Formular trug den vollen Pfad der Datei auf dem Server, und übernommen wurde jede Datei mit Endung `.l98`, deren Pfad die Anfrage nannte. Jetzt steht dort der Dateiname, und übernommen wird nur eine Liga gleicher Größe aus dem Ligenordner, die das Formular auch anbietet (nur als Hauptadmin).  
 * Administration, neue Liga: Der Dateiname wird auch auf dem Server wie im Browser auf den reinen Namen gekürzt (ohne Ordner und `.l98`). Bisher ließ sich mit einer selbst gebauten Anfrage über `../` eine Datei mit Endung `.l98` außerhalb des Ligenordners anlegen (nur als Hauptadmin).  
 * Administration, Benutzer: Der Hauptadmin (das erste Konto) lässt sich nicht mehr über `del=0` in der Adresse löschen. Die Seite bot das nie an, verhinderte es aber nicht.  
 * Administration, Liga löschen: Gelöscht wird nur noch eine Liga (`.l98`) im Ligenordner oder einem seiner Unterordner. Bisher löschte `dfile` jede Datei, die PHP schreiben durfte, auch außerhalb des Ligenordners über `../` (nur für den Hauptadmin).  
@@ -549,6 +550,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Administration, new league, schedule from another league: the form carried the full path of the file on the server, and any file ending in `.l98` named by the request was read. Now it carries the file name, and only a league of the same size from the league folder that the form offers is used (main admin only).  
 * Administration, new league: the file name is now cut down to the bare name on the server too, as the browser already did (no folders, no `.l98`). Until now a crafted request could create a file ending in `.l98` outside the league folder via `../` (main admin only).  
 * Administration, users: the main admin (the first account) can no longer be deleted via `del=0` in the address. The page never offered that, but did not prevent it.  
 * Administration, delete a league: only a league (`.l98`) in the league folder or one of its subfolders is deleted. Until now `dfile` deleted any file PHP could write, also outside the league folder via `../` (main admin only).  
