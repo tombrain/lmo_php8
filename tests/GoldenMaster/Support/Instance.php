@@ -176,6 +176,10 @@ final class Instance
                 unlink($file);
             }
         }
+        // Daten der Addons einer lokalen Installation (daten/<addon>/), nur der Schutz bleibt
+        foreach (glob($path . '/daten/*', GLOB_ONLYDIR) ?: [] as $dir) {
+            self::removeTree($dir);
+        }
     }
 
     /**
