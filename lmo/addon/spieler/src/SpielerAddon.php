@@ -70,6 +70,11 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
         return [new Menuepunkt('-4', $t[18] ?? '', $t[1] ?? '', $kontext->anfrage->text('st') == -4)];
     }
 
+    public function startseite(Kontext $kontext): array
+    {
+        return [];
+    }
+
     public function rahmenteile(Kontext $kontext): array
     {
         $liga = $kontext->liga;

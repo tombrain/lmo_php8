@@ -75,9 +75,14 @@ if ($action == 'admin') {
         $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
-    // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, sonst noch nach alter Art im globalen Bereich
+    // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
+    $lmo_admin_kern = array(
+        new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
+    );
+
+    // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
     $lmo_admin_seite = null;
-    foreach ($lmo_admin_addons->adminController() as $lmo_admin_controller) {
+    foreach (array_merge($lmo_admin_addons->adminController(), $lmo_admin_kern) as $lmo_admin_controller) {
         if ($lmo_admin_controller->zustaendig($lmo_admin_kontext)) {
             $lmo_admin_seite = $lmo_admin_controller;
             break;
@@ -139,8 +144,6 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-adminaddon.php');
         } elseif ($todo == 'design') {
             require(PATH_TO_LMO . '/lmo-admindesign.php');
-        } elseif ($todo == '') {
-            require(PATH_TO_LMO . '/lmo-adminpad.php');
         } elseif ($todo == 'update') {
             require(PATH_TO_LMO . '/lmo-adminupdate.php');
         }
@@ -163,8 +166,6 @@ if ($action == 'admin') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
         } elseif ($todo == 'download') {
             require(PATH_TO_LMO . '/lmo-admindown.php');
-        } elseif ($todo == '') {
-            require(PATH_TO_LMO . '/lmo-adminpad.php');
         }
     }
     $lmo_admin_inhalt = (string)ob_get_clean();

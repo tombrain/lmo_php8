@@ -55,6 +55,11 @@ final class AltesAdminAddon implements MitAdminMenue, MitAdminSeiten
         return [];
     }
 
+    public function startseite(Kontext $kontext): array
+    {
+        return [];
+    }
+
     public function adminController(): array
     {
         $todo = $this->todo;
