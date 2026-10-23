@@ -165,6 +165,29 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame([], self::addons()->auswertungBeimSpeichern(self::kontext()), 'ohne Liga wertet das Tippspiel nichts aus');
     }
 
+    public function testErgebnisSpaltenAllerAddons(): void
+    {
+        $spalte = new \Lmo\Addon\ErgebnisSpalte('xdemo', 'Demo', ['0' => '_', '1' => 'X'], static fn (\Lmo\Liga\Spiel $s): string => '0', static fn (\Lmo\Liga\Rohdaten\Partie $p, string $w, int $n) => null);
+        $demo = new class ($spalte) implements \Lmo\Addon\MitErgebnisSpalten {
+            public function __construct(private \Lmo\Addon\ErgebnisSpalte $spalte)
+            {
+            }
+
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function ergebnisSpalten(Kontext $kontext): array
+            {
+                return [$this->spalte, $this->spalte];
+            }
+        };
+
+        self::assertSame([$spalte, $spalte], (new Addons([new ViewerAddon('/x/viewer'), $demo]))->ergebnisSpalten(self::kontext()));
+        self::assertSame([], self::addons()->ergebnisSpalten(self::kontext()), 'ohne Liga keine Spalte des Tippspiels');
+    }
+
     public function testLigaEinstellungen(): void
     {
         $schalter = self::addons()->ligaEinstellungen(self::kontext());

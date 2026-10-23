@@ -17,14 +17,18 @@ namespace Lmo\Addon\Tipp;
 use Closure;
 use Lmo\Addon\AlteAdminSeite;
 use Lmo\Addon\Datenordner;
+use Lmo\Addon\ErgebnisSpalte;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
 use Lmo\Addon\MitErgebnisAuswertung;
+use Lmo\Addon\MitErgebnisSpalten;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
 use Lmo\Addon\Schalter;
+use Lmo\Liga\Rohdaten\Partie;
+use Lmo\Liga\Spiel;
 use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
 
@@ -35,7 +39,7 @@ use Lmo\Web\Kontext;
  * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
  * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
-final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung
+final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung, MitErgebnisSpalten
 {
     /** Der Schalter in den Optionen: Tippspiel an (config/tipp/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'eintippspiel';
@@ -151,6 +155,26 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         }
 
         return $dateien;
+    }
+
+    /**
+     * Die Spalte "ohne Tippwertung" je Spiel in den Ergebnissen eines Spieltags, nur fuer den
+     * Hauptadmin und eine getippte Liga. Bis 4.5 stand sie in lmo-adminedit.php.
+     */
+    public function ergebnisSpalten(Kontext $kontext): array
+    {
+        if ($kontext->sitzung->zahl('lmouserok') != 2 || $kontext->liga === null || !self::wirdGetippt($kontext->konfiguration->addon('tipp'), $kontext->liga->datei)) {
+            return [];
+        }
+        $t = $kontext->texteVon('tipp');
+
+        return [new ErgebnisSpalte(
+            'xmtipp',
+            $t[57] ?? '',
+            ['0' => '_', '1' => $t[199] ?? ''],
+            static fn (Spiel $spiel): string => $spiel->ohneTippwertung ? '1' : '0',
+            static fn (Partie $partie, string $wert, int $spiel) => $partie->setzeOhneTippwertung(trim($wert) == 1, $spiel)
+        )];
     }
 
     /**

@@ -142,6 +142,7 @@ Ein Addon implementiert die Schnittstellen, an denen es etwas beiträgt:
 | `MitSchaltern` | `schalter()` | Schalter in den Optionen (z. B. Addon ein/aus) |
 | `MitLigaEinstellungen` | `ligaEinstellungen()` | Schalter in den Grundeinstellungen einer Liga (Schlüssel aus `[Options]`, z. B. `mittore`) |
 | `MitErgebnisAuswertung` | `auswertungBeimSpeichern()` | Auswertung beim Speichern der Ergebnisse eines Spieltags, noch als Dateien nach alter Art (z. B. Tipps) |
+| `MitErgebnisSpalten` | `ergebnisSpalten()` | eigene Spalten je Spiel in den Ergebnissen eines Spieltags (`ErgebnisSpalte`, z. B. „ohne Tippwertung“) |
 
 Bei Seiten gilt diese Reihenfolge: erst die Controller des Kerns, dann die der Addons, zuletzt
 die Auffangseiten des Kerns (die Ligenübersicht ohne gewählte Liga). Ein Controller entscheidet

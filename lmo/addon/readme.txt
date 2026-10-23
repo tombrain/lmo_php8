@@ -81,6 +81,8 @@ Addons nach neuer Art:
                                    (Schluessel aus [Options] der Ligadatei, z.B. mittore)
     # Lmo\Addon\MitErgebnisAuswertung auswertungBeimSpeichern(): Dateien (alte Art), die beim Speichern der
                                    Ergebnisse eines Spieltags eingebunden werden, z.B. die Auswertung der Tipps
+    # Lmo\Addon\MitErgebnisSpalten ergebnisSpalten(): eigene Spalten je Spiel in den Ergebnissen eines
+                                   Spieltags (Lmo\Addon\ErgebnisSpalte), z.B. "ohne Tippwertung"
 
   Weitere Erweiterungspunkte folgen.
 
