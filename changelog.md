@@ -105,6 +105,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Spieltage zuordnen: Leere Plätze eines Spieltags (0-0) erscheinen nicht mehr als Zeile ohne Mannschaften und zählen nicht mehr bei den Partien mit; ihre Auswahl hätte den leeren Platz verschoben.  
 * Administration, Spieltage zuordnen: nur noch für den Hauptadmin in einer Liga. Im Pokal riss die Seite ein einzelnes Spiel aus seiner Paarung; Hilfsadmins sahen den Link, bekamen aber eine leere Seite.  
 * Administration, Spieltage zuordnen: Werden mehrere Partien auf einmal verschoben, nennt die Meldung jetzt jede. Bisher stand nur die letzte da.  
 * Administration, Tabellenkorrektur: Das kleine Wappen in der Notiz einer Mannschaft kommt jetzt wie in der Tabelle aus `Darstellung::wappen()`. Bisher fand `getSmallImage()` nur `.gif`-Dateien und schrieb `{$imgdata[3]}` wörtlich ins HTML.  
@@ -559,6 +560,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, assigning rounds: empty slots of a round (0-0) no longer appear as a row without teams and no longer count as games; their selection would have moved the empty slot.  
 * Administration, assigning rounds: only for the main admin in a league now. In a cup the page tore a single game out of its pairing; helper admins saw the link but got an empty page.  
 * Administration, assigning rounds: when several games are moved at once, the message now names each of them. So far only the last one was shown.  
 * Administration, table correction: the small logo in the note of a team now comes from `Darstellung::wappen()` as in the table. So far `getSmallImage()` only found `.gif` files and wrote `{$imgdata[3]}` literally into the HTML.  

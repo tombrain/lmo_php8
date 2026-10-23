@@ -123,6 +123,14 @@ class SpieltageZuordnenControllerTest extends TestCase
         self::assertStringContainsString('T5007 Alpha - Beta T5004 1. T5005 2 . T5010 T5006.<BR>T5007 Beta - Gamma T5004 2. T5005 1 . T5010 T5006.<BR>', $html);
     }
 
+    public function testLeerePlaetzeOhneZeile(): void
+    {
+        $html = $this->seite([], 2, str_replace("[Round2]\n", "[Round2]\nTA2=0\nTB2=0\n", str_replace('Matches=1', 'Matches=2', self::LIGA)));
+
+        self::assertStringNotContainsString('name="sp_2__"', $html);
+        self::assertStringContainsString('<strong>2. T2&nbsp;&nbsp;</strong> / 1 T5003', $html, 'zaehlen nicht mit');
+    }
+
     public function testImPokalLeer(): void
     {
         self::assertSame('', $this->seite(['sp_1_1_2' => '2'], 2, self::POKAL), 'ein Spiel wuerde aus seiner Paarung gerissen');
