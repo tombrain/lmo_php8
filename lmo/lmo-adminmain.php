@@ -148,7 +148,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
         // zuletzt: alle uebrigen Seiten mit todo=edit
         new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten, $lmo_admin_rueckrunde),
-        new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere, static fn (string $name): string => (string)getSmallImage($name)),
+        new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere),
         // die neueste Version laut Packagist (oben frisch gefragt)
         new \Lmo\Web\Admin\UpdateController($lmo_update ?? null, lmo_is_newer($new_lmo_version ?? null, $lmo_version), $lmo_version, (string)$lmo_license),
     );

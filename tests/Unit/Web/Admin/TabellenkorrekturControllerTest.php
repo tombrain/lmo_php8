@@ -48,7 +48,7 @@ class TabellenkorrekturControllerTest extends TestCase
             $texte,
             '/lmoadmin.php',
             new Pfade('/lmo', dirname(__DIR__, 4) . '/lmo/vorlagen', 'IMG'),
-            new Darstellung(static fn (string $d, string $n, string $a): string => ''),
+            new Darstellung(static fn (string $d, string $n, string $a): string => $n == 'Beta' ? '<img ' . $d . $a . '>' : ''),
             new Addons(),
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
@@ -57,8 +57,7 @@ class TabellenkorrekturControllerTest extends TestCase
                 $this->gespeichert[] = [$liga, $datei, $st];
 
                 return ['GESPEICHERT ', $liga];
-            },
-            static fn (string $name): string => $name == 'Beta' ? '<img B>' : ''
+            }
         );
         self::assertTrue($controller->zustaendig($kontext));
 
@@ -78,7 +77,7 @@ class TabellenkorrekturControllerTest extends TestCase
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
-        $controller = new TabellenkorrekturController(static fn (Liga $l): array => ['', $l], static fn (): string => '');
+        $controller = new TabellenkorrekturController(static fn (Liga $l): array => ['', $l]);
 
         self::assertTrue($controller->zustaendig($kontext('tabs', 1)), 'auch Hilfsadmins');
         self::assertFalse($controller->zustaendig($kontext('tabs', 0)));
@@ -93,7 +92,7 @@ class TabellenkorrekturControllerTest extends TestCase
         self::assertStringContainsString('<input type="hidden" name="st" value="1">', $html, 'ohne Spieltag der aktuelle');
         self::assertStringContainsString('<td class="nobr"><strong>Gamma</strong></td>', $html, 'Lieblingsmannschaft fett, vorn als Sieger');
         self::assertMatchesRegularExpression('~name="xplatz1".*?<option value="3"  selected>3</option>~s', $html, 'gespeicherte Korrektur: Platz 1 auf 3');
-        self::assertStringContainsString("<span class='popup'><img B> <strong>Beta</strong><br />\n<br />\n<strong>T128:</strong> -3 (T524 T145 2)<br />\n<strong>T522:</strong> +2:0 (T524 T145 2)<br />\n<br />\n<strong>T22:</strong><br />\nLizenz</span>", $html, 'Strafe negativ, Bonus mit +');
+        self::assertStringContainsString("<span class='popup'><img a.l98 alt=\"\"> <strong>Beta</strong><br />\n<br />\n<strong>T128:</strong> -3 (T524 T145 2)<br />\n<strong>T522:</strong> +2:0 (T524 T145 2)<br />\n<br />\n<strong>T22:</strong><br />\nLizenz</span>", $html, 'Strafe negativ, Bonus mit +');
         self::assertSame(1, substr_count($html, "class='popup'"), 'nur mit Notiz, Strafe oder Bonus');
         self::assertStringContainsString('onclick="alert(&quot;Beta\\n\\nT128: -3 (T524 T145 2)\\nT522: +2:0 (T524 T145 2)\\n\\nT22:\\nLizenz&quot;);', $html, 'der Text auch im Alarm');
         self::assertMatchesRegularExpression('~T36</acronym></th>\s*<th>&nbsp;</th>\s*<th style="text-align:right">T37</th>~', $html, 'Punkte vor den Toren (tabpkt=0)');
