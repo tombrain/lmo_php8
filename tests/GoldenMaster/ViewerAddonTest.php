@@ -175,5 +175,21 @@ final class ViewerAddonTest extends TestCase
 
         self::assertStringContainsString('gibtesnicht.view', $html);
         self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        self::assertFileDoesNotExist(self::$client->instance()->path() . '/output/viewer_gibtesnicht_count.txt', 'kein Zaehler fuer eine unbekannte Ansicht');
+    }
+
+    public function testNameMitPfadOderSkript(): void
+    {
+        // Tags und Ereignis-Attribute entschaerft der LMO schon beim Einlesen der Anfrage; die Meldung
+        // maskiert den Namen zusaetzlich
+        $html = self::$client->get('addon/viewer/viewer.php', 'multi=' . rawurlencode('../gespeichert" onmouseover="x&'));
+
+        self::assertStringNotContainsString('onmouseover="', $html);
+        self::assertStringContainsString('x&amp;.view', $html, 'maskiert');
+        self::assertStringNotContainsString('Bayern München', $html, 'keine Ansicht ausserhalb von config/viewer');
+
+        self::saveView('umweg');
+        self::assertStringContainsString('Bayern München', self::view('umweg'));
+        self::assertStringNotContainsString('Bayern München', self::$client->get('addon/viewer/viewer.php', 'multi=' . rawurlencode('../viewer/umweg')), 'auch nicht ueber einen Umweg');
     }
 }
