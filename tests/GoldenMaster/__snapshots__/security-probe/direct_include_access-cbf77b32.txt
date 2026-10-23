@@ -197,11 +197,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-adminrounds.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-adminsubnavi.php ===
 
 --- Dateiaenderungen ---

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Die beiden Admin-Funktionen, die ueber die classlib speichern (liga::writeFile()):
  * "Rueckrundenspielplan erstellen" (lmo-rueckrunde.php) und Partien in einen anderen Spieltag
- * verschieben (lmo-adminrounds.php). Geprueft wird die gespeicherte Ligadatei, nicht das HTML.
+ * verschieben (SpieltageZuordnenController, bis 4.5 lmo-adminrounds.php). Geprueft wird die gespeicherte Ligadatei, nicht das HTML.
  */
 final class AdminScheduleToolsTest extends TestCase
 {
