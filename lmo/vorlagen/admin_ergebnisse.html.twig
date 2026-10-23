@@ -57,7 +57,7 @@
         <tr>
           <td align="center">
 {{ spieltagsmenue|raw }}
-{# Rueckrundenspielplan erstellen (lmo-rueckrunde.php), nur Liga #}
+{# Rueckrundenspielplan erstellen (Lmo\Liga\Spielplan), nur Liga #}
 {% if not pokal %}
             <form  name="lmoedit_second_half" action="{{ adresse }}" method="post">
               <input type="hidden" name="action" value="admin">
