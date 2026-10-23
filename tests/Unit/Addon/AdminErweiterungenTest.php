@@ -112,7 +112,8 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame('/x/tipp/lmo-admintippoptions.php', $seite(self::kontext(['todo' => 'tippoptions'])));
         self::assertSame('/x/tipp/lmo-admintipp.php', $seite(self::kontext(['todo' => 'tipp'])));
         self::assertNull($seite(self::kontext(['todo' => 'tipp'], rolle: 1)), 'nur fuer den Hauptadmin');
-        self::assertSame('/x/viewer/lmo-adminvieweroptions.php', $seite(self::kontext(['todo' => 'vieweroptions'])));
+        $viewer = array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig(self::kontext(['todo' => 'vieweroptions']))));
+        self::assertInstanceOf(\Lmo\Addon\Viewer\OptionenController::class, $viewer[0] ?? null, 'der Viewer nach neuer Art');
         self::assertSame('/x/pdf/lmo-adminpdfoptions.inc.php', $seite(self::kontext(['todo' => 'pdfoptions'])));
         self::assertSame('/x/spieler/lmo-statadmin.php', $seite(self::kontext(['todo' => 'edit', 'st' => '-4'], rolle: 1)), 'auch fuer Hilfsadmins');
         self::assertNull($seite(self::kontext(['todo' => 'edit', 'st' => '-4'], ['einspieler' => '0'])), 'abgeschaltet: die Ergebnisse');

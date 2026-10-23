@@ -1,0 +1,291 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Eine Ansicht des Viewers anlegen (Lmo\Addon\Viewer\OptionenController), bis 4.5 lmo-adminvieweroptions.php.
+   schritt 1: Einstellungen, 2: Ligen, 3: Mannschaften, 4: gespeichert mit PHP-Code zum Einbinden #}
+<script src="{{ skripte }}/viewer.js" type="text/javascript"></script>
+{{ ausgabe|raw }}
+{% if schritt == 4 %}
+{# gespeichert: der PHP-Code zum Einbinden #}
+{{ gespeichert|raw }}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
+        <tr>
+          <th align="center"><h1>{{ t[42]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td class="nobr">
+            <form action="#" onSubmit="return false;">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th colspan="2" align="center">{{ t[43]|raw }}</h1></th>
+                </tr>
+                <tr>
+                  <td class="nobr">
+                    <textarea rows="6" id="viewer_code" cols="80">{{ code|raw }}</textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr"><h1>{{ t[36]|raw }}</h1></td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="lmoFooter">{{ t[100]|raw }}</td>
+        </tr>
+      </table>
+{% elseif schritt == 1 %}
+{# Hauptauswahl: Name und Einstellungen der Ansicht #}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
+        <tr>
+          <th align="center"><h1>{{ t[21]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td class="nobr">
+            <form method="POST" action="{{ adresse|raw }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th colspan="2" align="center">{{ t[0]|raw }}</th>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right">
+<!--snipp ---------------------------------->
+                    <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td class="nobr"  colspan="4">{{ t[1]|raw }} <input class="lmo-formular-input" type="text" name="dateiname" size="20" value="unbenannt"> &nbsp;{{ t[2]|raw }} </td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right" height="22"><input class="lmo-formular-input" type="radio" value="1" name="modus" checked  onClick="byDate(this);"></td>
+                        <td class="nobr" align="left"> {{ t[3]|raw }}</td>
+                        <td class="nobr" align="right"><input type="radio" value="2" name="modus" onClick="byDay(this);"></td>
+                        <td class="nobr" align="left">{{ t[6]|raw }}</td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right" height="22"><input class="lmo-formular-input"  type="text" name="anzahl_tage_plus" size="3" value="7"></td>
+                        <td class="nobr" align="left">{{ t[4]|raw }}</td>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="anzahl_spieltage_vor" size="3" value="3" disabled> </td>
+                        <td class="nobr" align="left">{{ t[7]|raw }}</td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right" height="22"><input class="lmo-formular-input" type="text" name="anzahl_tage_minus" size="3" value="7"> </td>
+                        <td class="nobr" align="left"> {{ t[5]|raw }}</td>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="anzahl_spieltage_zurueck" size="3" value="3" disabled></td>
+                        <td class="nobr" align="left"> {{ t[8]|raw }}</td>
+                      </tr>
+                    </table><br>
+                    <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td class="nobr"  colspan="4"></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="datumsformat" size="6" value="d.m.Y"></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[10]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[19]|raw }}</td>
+                        <td class="nobr" align="left">
+                          <select class="lmo-formular-input"  name="template" size="1">
+{% for v in vorlagen %}                            <option>{{ v|raw }}</option>{{ "\r" }}
+{% endfor %}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="uhrzeitformat" size="6" value="H:i"></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[28]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[27]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="titelzeile" size="20" value=""></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="checkbox" name="favteam_highlight" checked></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[54]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[16]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;
+                          <select class="lmo-formular-input"  name="mannschaftsnamen"  onChange="dolmoedit();">
+                            <option value="0">{{ t[46]|raw }}</option>
+                            <option value="1">{{ t[47]|raw }}</option>
+                            <option value="2">{{ t[48]|raw }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="checkbox" name="heute_highlight" checked></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[40]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[23]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spielberichtesymbol" size="20" value="bericht.gif" onChange="document.getElementById('spielberichtesymbol').src='{{ bilder }}/viewer/'+this.value;">&nbsp;<img id="spielberichtesymbol" src="{{ bilder }}/viewer/bericht.gif" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="checkbox" name="spielberichte_neues_fenster"></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[14]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[24]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tabellensymbol" size="20" value="tabelle.gif" onChange="document.getElementById('tabellensymbol').src='{{ bilder }}/viewer/'+this.value;">&nbsp;<img id="tabellensymbol" src="{{ bilder }}/viewer/tabelle.gif" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="checkbox" name="tabelle_verlinken"></td>
+                        <td class="nobr" align="left">&nbsp;{{ t[13]|raw }}</td>
+                        <td class="nobr" align="right">{{ t[25]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="notizsymbol" size="20" value="notiz.gif" onChange="document.getElementById('notizsymbol').src='{{ bilder }}/viewer/'+this.value;">&nbsp;<img id="notizsymbol" src="{{ bilder }}/viewer/notiz.gif" alt=""></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"> <input class="lmo-formular-input" type="checkbox" name="mannschaftshomepages_verlinken"> </td>
+                        <td class="nobr" align="left">&nbsp; {{ t[15]|raw }} </td>
+                        <td class="nobr" align="right">{{ t[26]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spieltagtext" size="10" value="{{ text[145]|raw }}"></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="cache_refresh" size="3" value="0"></td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ t[53]|raw }}">{{ t[52]|raw }}</acronym></td>
+                        <td class="nobr" align="right">{{ t[12]|raw }}</td>
+                        <td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tordummy" size="1" value="_"></td>
+                      </tr>
+                    </table>
+<!--snipp ---------------------------------->
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right">
+                    <input type="submit" class="lmo-formular-button" value="{{ t[22]|raw }} >>" name="B1">
+                    <input type="hidden" name="action" value="admin">
+                    <input type="hidden" name="formular1" value="1">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="lmoFooter">{{ t[100]|raw }}</td>
+        </tr>
+      </table>
+{% elseif schritt == 2 %}
+{# die Ligen zum Ankreuzen #}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
+        <tr>
+          <th align="center"><h1>{{ t[21]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td class="nobr">
+            <form name="B2" method="POST" action="{{ adresse|raw }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th colspan="2" align="center">{{ t[30]|raw }}</th>
+                </tr>
+                <tr>
+                  <td class="nobr">
+                    <table class="lmoInner" width="99%">
+                      <tr>
+                        <td class="nobr"  align="left">
+{% for liga in ligen %}
+                          <input type="checkbox" name="c{{ loop.index }}" value="c{{ loop.index }}"> {{ liga.name|raw }}<br>
+{{ "\r" }}
+{% endfor %}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="left">
+                          <script type="text/javascript">
+                            document.writeln ('<input type=button value="{{ t[43]|raw }}" onClick="checkAll(this)"\>');
+                            document.writeln ('<input type=button value="{{ t[44]|raw }}" onClick="uncheckAll(this)"\>');
+                            document.writeln ('<input type=button value="{{ t[45]|raw }}" onClick="switchAll(this)"\>');</script>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>{{ hinweis|raw }}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nobr" align="right">
+                    <input type="hidden" name="action" value="admin">
+                    <input type="hidden" name="formular2" value="1">
+                    <input type="hidden" name="dateinameok" value="1">
+                    <input type="hidden" name="dateiname" value="{{ dateiname|raw }}">
+                    <input type="hidden" name="config_array" value="{{ einstellungen|raw }}">
+                    <input type="hidden" name="zaehler" value="{{ ligen|length + 1 }}">
+                    <input type="submit" class="lmo-formular-button" value="{{ t[22]|raw }} >>" name="B2">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="lmoFooter">{{ t[100]|raw }}</td>
+        </tr>
+      </table>
+{% elseif schritt == 3 %}
+{# die Mannschaften der Ligen zum Ankreuzen, je Zeile drei #}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
+        <tr>
+          <th align="center"><h1>{{ t[21]|raw }} </h1></th>
+        </tr>
+        <tr>
+          <td class="nobr">
+            <form method="POST" action="{{ adresse|raw }}" name="B3">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                  <th colspan="2" align="center">{{ t[31]|raw }}</h1></th>
+                </tr>
+                <tr>
+                  <td class="nobr">
+{% for liga in mannschaften %}
+{% if liga.fehler != '' %}
+{{ liga.fehler|raw }}<br>
+{% else %}
+                    <table class=lmoInner cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td class="nobr"  colspan="3" align="center"><h1>{{ liga.name|raw }}</h1></td>
+                      </tr>
+{% for zeile in liga.zeilen %}
+<tr>
+{% for m in zeile %}
+<td class="nobr"  align="left"><input type="checkbox" name="{{ m.feld }}" value="{{ m.wert|raw }}">{{ m.name|raw }}</td>
+{% endfor %}
+{# wie bisher: eine volle letzte Zeile bekommt ein </tr> zu viel, eine mit zwei Mannschaften keines #}
+{% if zeile|length == 3 %}</tr>
+{% endif %}
+{% if loop.last and zeile|length != 2 %}</tr>{% endif %}
+{% endfor %}
+{% if liga.zeilen is empty %}</tr>{% endif %}
+                    </table>
+{% endif %}
+{% endfor %}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left">
+                    <script type="text/javascript">
+                      document.writeln ('<input type=button value="{{ t[43]|raw }}" onClick="checkAll(this)"\>');
+                      document.writeln ('<input type=button value="{{ t[44]|raw }}" onClick="uncheckAll(this)"\>');
+                      document.writeln ('<input type=button value="{{ t[45]|raw }}" onClick="switchAll(this)"\>');
+                    </script>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right">
+                    <input type="hidden" name="action" value="admin">
+                    <input type="hidden" name="formular3" value="1">
+                    <input type="hidden" name="ausgewaehlte_ligen" value="{{ anzahlLigen }}">
+                    <input type="hidden" name="zaehler" value="{{ anzahlMannschaften }}">
+                    <input type="hidden" name="dateiname" value="{{ dateiname|raw }}">
+                    <input type="hidden" name="config_array" value="{{ einstellungen|raw }}">
+                    <input type="hidden" name="zaehler" value="{{ anzahlMannschaften }}">
+                    <input type="submit" class="lmo-formular-button" value="{{ t[32]|raw }} >>" name="B3"></p>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td class="lmoFooter">{{ t[100]|raw }}</td>
+        </tr>
+      </table>
+{% endif %}
