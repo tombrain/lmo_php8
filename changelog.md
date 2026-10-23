@@ -101,6 +101,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Tabellenkorrektur: Das kleine Wappen in der Notiz einer Mannschaft kommt jetzt wie in der Tabelle aus `Darstellung::wappen()`. Bisher fand `getSmallImage()` nur `.gif`-Dateien und schrieb `{$imgdata[3]}` wörtlich ins HTML.  
 * Administration, Tabellenkorrektur: gültiges HTML in der Kopfzeile (`style="text-align:"left"`) und am Ende der Tabelle (`</th>` statt `</td>`).  
 * Administration, Tabellenkorrektur: Ein Klick auf das Symbol einer Mannschaft mit Notiz, Strafe oder Bonus zeigt diese jetzt auch im Hinweisfenster. Bisher blieb es leer, weil die Argumente von `addcslashes()` vertauscht waren.  
 * Administration, Ergebnisse eines Spieltags: Die Newszeilen werden an den Zeilenumbrüchen getrennt. Bisher trennte der LMO nur an der Zeichenfolge `\n`, die kein Browser schickt; mehrere Zeilen kamen so als eine Zeile mit Umbrüchen in die Ligadatei, und nach dem nächsten Laden war alles ab der zweiten Zeile verloren.  
@@ -548,6 +549,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, table correction: the small logo in the note of a team now comes from `Darstellung::wappen()` as in the table. So far `getSmallImage()` only found `.gif` files and wrote `{$imgdata[3]}` literally into the HTML.  
 * Administration, table correction: valid HTML in the header row (`style="text-align:"left"`) and at the end of the table (`</th>` instead of `</td>`).  
 * Administration, table correction: clicking the symbol of a team with a note, penalty or bonus now also shows it in the alert box. So far it stayed empty because the arguments of `addcslashes()` were swapped.  
 * Administration, results of a round: the news lines are split at the line breaks. So far LMO only split at the character sequence `\n`, which no browser sends; several lines went into the league file as one line with breaks, and after the next load everything from the second line on was lost.  

@@ -34,9 +34,8 @@ final class TabellenkorrekturController implements Controller
 {
     /**
      * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, gewaehlter Spieltag)
-     * @param Closure(string): string $kleinesBild das kleine Bild einer Mannschaft zum Namen wie getSmallImage(), '' ohne
      */
-    public function __construct(private Closure $speichere, private Closure $kleinesBild)
+    public function __construct(private Closure $speichere)
     {
     }
 
@@ -90,7 +89,7 @@ final class TabellenkorrekturController implements Controller
             $i = $tabelle->reihenfolge[$x - 1];
             $zeile = $tabelle->zeilen[$i];
             $mannschaft = $liga->mannschaften[$i] ?? new Mannschaft();
-            $notiz = $this->notiz($mannschaft, $text, $e->mitMinuspunkten(), $punktfaktor, $torfaktor);
+            $notiz = $this->notiz($kontext->darstellung->wappen($geladen->datei, $mannschaft->anzeigename(), ' alt=""'), $mannschaft, $text, $e->mitMinuspunkten(), $punktfaktor, $torfaktor);
             $zeilen[] = [
                 'x' => $x,
                 'platz' => $plaetze[$x],
@@ -138,7 +137,7 @@ final class TabellenkorrekturController implements Controller
      *
      * @param array<int, string> $text
      */
-    private function notiz(Mannschaft $mannschaft, array $text, bool $mitMinuspunkten, int $punktfaktor, int $torfaktor): ?string
+    private function notiz(string $wappen, Mannschaft $mannschaft, array $text, bool $mitMinuspunkten, int $punktfaktor, int $torfaktor): ?string
     {
         $name = $mannschaft->anzeigename();
         $strafp = $mannschaft->werte['SP'] ?? '0';
@@ -157,7 +156,8 @@ final class TabellenkorrekturController implements Controller
          * muss mit -1 multipliziert werden, um die Punkte/Tore richtig anzuzeigen
          */
         $ab = $strafdat != 0 ? ' (' . ($text[524] ?? '') . ' ' . ($text[145] ?? '') . ' ' . $strafdat . ')' : '';
-        $html = ($this->kleinesBild)($name) . ' <strong>' . $name . '</strong>';
+        // das kleine Wappen wie in der Tabelle (bis 4.5 getSmallImage(): nur .gif, mit kaputtem Attribut)
+        $html = $wappen . ' <strong>' . $name . '</strong>';
         // Straf-/Bonuspunkte
         if ($strafp != 0 || $strafm != 0) {
             $html .= "\n\n<strong>" . ($text[128] ?? '') . ':</strong> ' . self::strafe($strafp, $punktfaktor);
