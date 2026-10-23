@@ -93,6 +93,40 @@ if ($action == 'admin') {
         return array((string)ob_get_clean(), $lmo_liga);
     };
 
+    // Bruecke zu den Auswertungen der Addons beim Speichern der Ergebnisse (Lmo\Addon\MitErgebnisAuswertung):
+    // die Dateien wie bisher im globalen Bereich, mit $lmo_liga, $file, $st und $liga (Dateiname ohne .l98)
+    // wie bis 4.5 in lmo-adminedit.php. Zurueck kommen ihre Ausgabe und die Liga.
+    $lmo_admin_auswerten = static function (\Lmo\Liga\Rohdaten\Liga $lmo_auswerten_liga, string $lmo_auswerten_datei, string $lmo_auswerten_st, array $lmo_auswerten_dateien): array {
+        foreach (array_keys($GLOBALS) as $lmo_auswerten_name) {
+            if ($lmo_auswerten_name !== 'GLOBALS' && $lmo_auswerten_name[0] !== '_' && strpos($lmo_auswerten_name, 'lmo_auswerten_') !== 0) {
+                ${$lmo_auswerten_name} = &$GLOBALS[$lmo_auswerten_name];
+            }
+        }
+        unset($lmo_auswerten_name);
+        $lmo_liga = $lmo_auswerten_liga;
+        $file = $lmo_auswerten_datei;
+        $st = $lmo_auswerten_st;
+        $liga = basename(substr($file, 0, -4));
+        ob_start();
+        foreach ($lmo_auswerten_dateien as $lmo_auswerten_einzeln) {
+            require($lmo_auswerten_einzeln);
+        }
+        return array((string)ob_get_clean(), $lmo_liga);
+    };
+    // Bruecke zum Rueckrundenspielplan nach alter Art (lmo-rueckrunde.php, classlib): schreibt die Liga selbst
+    $lmo_admin_rueckrunde = static function (string $lmo_rueckrunde_datei): string {
+        foreach (array_keys($GLOBALS) as $lmo_rueckrunde_name) {
+            if ($lmo_rueckrunde_name !== 'GLOBALS' && $lmo_rueckrunde_name[0] !== '_' && strpos($lmo_rueckrunde_name, 'lmo_rueckrunde_') !== 0) {
+                ${$lmo_rueckrunde_name} = &$GLOBALS[$lmo_rueckrunde_name];
+            }
+        }
+        unset($lmo_rueckrunde_name);
+        $file = $lmo_rueckrunde_datei;
+        ob_start();
+        require_once(PATH_TO_LMO . '/lmo-rueckrunde.php');
+        return (string)ob_get_clean();
+    };
+
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
@@ -112,6 +146,8 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\MannschaftenController($lmo_admin_speichere),
         // die Bezeichnungen fuer Punkte und Tore vor denen der Liga (lmo-langload.php)
         new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
+        // zuletzt: alle uebrigen Seiten mit todo=edit
+        new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten, $lmo_admin_rueckrunde),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -143,11 +179,7 @@ if ($action == 'admin') {
         // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'edit') {
-            if ($sty == -10) {
-                require(PATH_TO_LMO . '/lmo-adminrounds.php');
-            } else {
-                require(PATH_TO_LMO . '/lmo-adminedit.php');
-            }
+            require(PATH_TO_LMO . '/lmo-adminrounds.php');
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
         } elseif ($todo == 'update') {
@@ -155,11 +187,7 @@ if ($action == 'admin') {
         }
     } elseif ($_SESSION['lmouserok'] == 1) {
         if ($todo == 'edit') {
-            if ($sty == -10) {
-                require(PATH_TO_LMO . '/lmo-adminrounds.php');
-            } else {
-                require(PATH_TO_LMO . '/lmo-adminedit.php');
-            }
+            require(PATH_TO_LMO . '/lmo-adminrounds.php');
         } elseif ($todo == 'tabs') {
             require(PATH_TO_LMO . '/lmo-admintab.php');
         }

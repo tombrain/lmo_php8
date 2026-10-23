@@ -4,11 +4,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-adminedit.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-saveliga.php ===
 
 --- Dateiaenderungen ---

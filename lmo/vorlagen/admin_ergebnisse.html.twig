@@ -1,0 +1,294 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Ergebnisse eines Spieltags bearbeiten (Lmo\Web\Admin\ErgebnisseBearbeitenController), bis 4.5
+   lmo-adminedit.php. Eine Zeile je Partie (Liga) bzw. je Spiel einer Partie (Pokal). #}
+
+{# Eingabe der Tore einer Seite: a = Heim, b = Gast; tab ist der Teil des tabindex hinter der Nummer #}
+{% macro tor(seite, nr, wert, tab, groesse, text) %}
+                  <td class="lmoBackMarkierung" align="right"><input title="{{ seite == 'a' ? text[109]|raw : text[110]|raw }}" class="lmo-formular-input" type="text" name="xgoal{{ seite }}{{ nr }}" tabindex="{{ nr }}{{ tab }}" size="{{ groesse }}" maxlength="4" value="{{ wert|raw }}" onChange="lmotorgte('{{ seite }}','{{ nr }}')" onKeyDown="lmotorclk('{{ seite }}','{{ nr }}',event.keyCode)"></td>
+{% endmacro %}
+{# die Pfeile zum Hoch- und Runterzaehlen der Tore einer Seite (Bilder a/b fuer Heim, f/d fuer Gast) #}
+{% macro pfeile(seite, nr, klasse, valign, text, bilder) %}
+{% set hoch = seite == 'a' ? 'a' : 'f' %}{% set runter = seite == 'a' ? 'b' : 'd' %}{% set titel = seite == 'a' ? text[120] : text[121] %}
+                  <td class="{{ klasse }}" align="center">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td{% if valign %} valign="bottom"{% endif %}><script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'{{ seite }}\',\'{{ nr }}\',1);return false;" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ nr }}{{ hoch }}\',img1)" onMouseOut="lmoimg(\'{{ nr }}{{ hoch }}\',img0)"><img src="{{ bilder }}/lmo-admin0.gif" name="ximg{{ nr }}{{ hoch }}" width="7" height="7" border="0"><\/a>')</script></td>
+                      </tr>
+                      <tr>
+                        <td{% if valign %} valign="top"{% endif %}><script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'{{ seite }}\',\'{{ nr }}\',-1);return false;" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ nr }}{{ runter }}\',img3)" onMouseOut="lmoimg(\'{{ nr }}{{ runter }}\',img2)"><img src="{{ bilder }}/lmo-admin2.gif" name="ximg{{ nr }}{{ runter }}" width="7" height="7" border="0"><\/a>')</script></td>
+                      </tr>
+                    </table>
+                  </td>
+{% endmacro %}
+{# die Spalten der Addons (Lmo\Addon\MitErgebnisSpalten) fuer ein Spiel #}
+{% macro spalten(spalten, werte, nr, tab, mitTitel) %}
+{% for spalte in spalten %}
+{% set wert_des_spiels = werte[loop.index0] %}
+                  <td>
+                    <select class="lmo-formular-input" name="{{ spalte.feld }}{{ nr }}" onChange="dolmoedit()"{% if mitTitel %} title="{{ spalte.titel|raw }}"{% endif %} tabindex="{{ nr }}{{ tab }}">
+{% for wert, name in spalte.optionen %}
+                      <option value="{{ wert }}"{% if wert_des_spiels == wert %} selected{% endif %}>{{ name|raw }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+{% endfor %}
+{% endmacro %}
+{# Zusatz zum Ergebnis (n.V., i.E.) #}
+{% macro zusatz(zusatz, text) %}
+                      <option{% if zusatz == '&nbsp;' %} selected{% endif %}>_</option>
+                      <option{% if zusatz == text[0] %} selected{% endif %}>{{ text[0]|raw }}</option>
+                      <option{% if zusatz == text[1] %} selected{% endif %}>{{ text[1]|raw }}</option>
+{% endmacro %}
+{% import _self as f %}
+{{ navigation|raw }}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><h1>{{ name|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td align="center">
+{{ spieltagsmenue|raw }}
+{# Rueckrundenspielplan erstellen (lmo-rueckrunde.php), nur Liga #}
+{% if not pokal %}
+            <form  name="lmoedit_second_half" action="{{ adresse }}" method="post">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="edit">
+              <input type="hidden" name="save" value="990">
+              <input type="hidden" name="file" value="{{ datei }}">
+              <input type="hidden" name="st" value="{{ st }}">
+              <input type="submit" name="rueckrundeButton" class="lmo-formular-button" value="{{ text[3000]|raw }}">
+            </form>
+{% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="edit">
+              <input type="hidden" name="save" value="1">
+              <input type="hidden" name="file" value="{{ datei }}">
+              <input type="hidden" name="st" value="{{ st }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{# Kopf: Spieltag mit Datum von/bis, Faktor der Tore, Spaltenkoepfe #}
+                <tr>
+                  <th class="nobr" style="text-align:left" colspan="{{ breite - 10 }}">
+                    {{ st }}. {{ text[2]|raw }}
+{% if paarungRechte %}
+
+                    <acronym title="{{ text[105]|raw }}"> {{ text[3]|raw }}</acronym> <input class="lmo-formular-input" type="text" name="xdatum1" tabindex="01" size="10" maxlength="10" value="{{ datum1|raw }}" onChange="dolmoedit()"> <script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xdatum1\',\'{{ kalender1|raw }}\')" title="{{ text[139]|raw }}" onMouseOver="lmoimg(\'d1\',img5)" onMouseOut="lmoimg(\'d1\',img4)"><img src="{{ bilder }}/lmo-admin4.gif" name="ximgd1" width="12" height="11" border="0"></a>');</script>
+                    <acronym title="{{ text[106]|raw }}"> {{ text[4]|raw }}</acronym> <input class="lmo-formular-input" type="text" name="xdatum2" tabindex="02" size="10" maxlength="10" value="{{ datum2|raw }}" onChange="dolmoedit()"> <script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xdatum2\',\'{{ kalender2|raw }}\')" title="{{ text[139]|raw }}" onMouseOver="lmoimg(\'d2\',img5)" onMouseOut="lmoimg(\'d2\',img4)"><img src="{{ bilder }}/lmo-admin4.gif" name="ximgd2" width="12" height="11" border="0"></a>');</script>
+{% endif %}
+                  </th>
+{% if faktortext is not null %}
+                  <th style="text-align:center" class="nobr" colspan="{{ breite - 13 }}">{{ faktortext|raw }}</th>
+{% else %}
+                  <th colspan="{{ breite - 13 }}">&nbsp;</th>
+{% endif %}
+{% if not pokal %}
+                  <th style="text-align:center" class="nobr"><acronym title="{{ text[213]|raw }}"><img src="{{ bilder }}/paragraph.svg" height="20" alt="{{ text[217]|raw }}"></acronym></th>
+{% endif %}
+                  <th style="text-align:center" class="nobr"><acronym title="{{ text[112]|raw }}"><img src="{{ bilder }}/notiz.svg" height="20" alt="{{ text[218]|raw }}"></acronym></th>
+                  <th style="text-align:center" class="nobr"><acronym title="{{ text[263]|raw }}"><img src="{{ bilder }}/spielbericht.svg" height="20" alt="{{ text[262]|raw }}"></acronym></th>
+{% for spalte in spalten %}
+                  <th style="text-align:center" class="nobr"><acronym title="{{ spalte.titel|raw }}">{{ spalte.titel|raw }}</acronym></th>
+{% endfor %}
+                </tr>
+{% if not pokal %}
+{# Liga: eine Zeile je Partie #}
+{% for z in zeilen %}
+                <tr>
+                  <td class="nobr"><input title="{{ text[122]|raw }}" class="lmo-formular-input" type="text" name="xatdat{{ z.nr }}" tabindex="{{ z.nr }}03" size="10" maxlength="10" value="{{ z.tag }}" onChange="dolmoedit()" ondblclick="fillAll(this);"><script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xatdat{{ z.nr }}\',\'{{ z.kalender }}\')" title="{{ text[139]|raw }}" onMouseOver="lmoimg(\'{{ z.nr }}c\',img5)" onMouseOut="lmoimg(\'{{ z.nr }}c\',img4)"><img src="{{ bilder }}/lmo-admin4.gif" name="ximg{{ z.nr }}c" width="12" height="11" border="0"><\/a>');</script></td>
+                  <td><input title="{{ text[123]|raw }}" class="lmo-formular-input" type="text" name="xattim{{ z.nr }}" tabindex="{{ z.nr }}04" size="5" maxlength="5" value="{{ z.uhrzeit }}" onChange="dolmoedit()" ondblclick="fillAll(this);"></td>
+                  <td width="2">&nbsp;</td>
+                 <td class="nobr" align="right">
+{% if paarungRechte %}
+                    <select class="lmo-formular-input" name="xteama{{ z.nr }}" onChange="dolmoedit()" tabindex="{{ z.nr }}05">
+{% for o in z.heimOptionen %}
+                      <option value="{{ o.wert }}"{% if o.gewaehlt %} selected{% endif %}>{{ o.name|raw }}</option>
+{% endfor %}
+                    </select>
+{% else %}
+{{ z.heimName|raw }}
+{% endif %}
+                  </td>
+                  <td align="center" width="10">-</td>
+                  <td class="nobr">
+{% if paarungRechte %}
+                    <select class="lmo-formular-input" name="xteamb{{ z.nr }}" onChange="dolmoedit()" title="{{ text[108]|raw }}" tabindex="{{ z.nr }}06">
+{% for o in z.gastOptionen %}
+                      <option value="{{ o.wert }}"{% if o.gewaehlt %} selected{% endif %}>{{ o.name|raw }}</option>
+{% endfor %}
+                    </select>
+{% else %}
+{{ z.gastName|raw }}
+{% endif %}
+                  </td>
+                  <td width="2">&nbsp;</td>
+{{ f.tor('a', z.nr, z.toreHeim, '07', 2, text) }}
+{{ f.pfeile('a', z.nr, 'lmoBackMarkierung nobr', false, text, bilder) }}
+                  <td class="lmoBackMarkierung" align="center" width="8">:</td>
+{{ f.tor('b', z.nr, z.toreGast, '08', 2, text) }}
+{{ f.pfeile('b', z.nr, 'lmoBackMarkierung', true, text, bilder) }}
+{% if verlaengerung %}
+                  <td width="2">&nbsp;</td>
+                  <td>
+                    <select class="lmo-formular-input" name="xmspez{{ z.nr }}" onChange="dolmoedit()" tabindex="{{ z.nr }}09" >
+{{ f.zusatz(z.zusatz, text) }}
+                    </select>
+                  </td>
+{% endif %}
+{# Wertung am gruenen Tisch; ohne Wertung nur als "+" #}
+                  <td width="2">&nbsp;</td>
+                  <td align="center">
+                    <select id="gT{{ z.nr }}" class="lmo-formular-input" name="xmsieg{{ z.nr }}" onChange="dolmoedit()" tabindex="{{ z.nr }}10" >
+                      <option value="0"{% if z.wertung == 0 %} selected{% endif %}>_</option>
+                      <option value="1"{% if z.wertung == 1 %} selected{% endif %}>{{ text[214]|raw }}</option>
+                      <option value="2"{% if z.wertung == 2 %} selected{% endif %}>{{ text[215]|raw }}</option>
+                      <option value="3"{% if z.wertung == 3 %} selected{% endif %}>{{ text[216]|raw }}</option>
+                    </select>
+{% if z.wertung == 0 %}
+                    <script type="text/javascript">document.getElementById('gT{{ z.nr }}').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'gT{{ z.nr }}\').style.display=\'inline\';return false;">+</a>');</script>
+{% endif %}
+                  </td>
+{# Notiz und Bericht; leer nur als "+" #}
+                  <td align="center">
+                    <input id="n{{ z.nr }}" class="lmo-formular-input" type="text" name="xmnote{{ z.nr }}" tabindex="{{ z.nr }}11" size="16" maxlength="255" value="{{ z.notiz|raw }}" onChange="dolmoedit()">
+{% if z.notizLeer %}
+                    <script type="text/javascript">document.getElementById('n{{ z.nr }}').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n{{ z.nr }}\').style.display=\'inline\';return false;">+</a>');</script>
+{% endif %}
+                  </td>
+                  <td align="center"><input id="s{{ z.nr }}" class="lmo-formular-input" type="text" name="xmberi{{ z.nr }}" tabindex="{{ z.nr }}12" size="16" maxlength="255" value="{{ z.bericht|raw }}" onChange="dolmoedit()">
+{% if z.berichtLeer %}
+                    <script type="text/javascript">document.getElementById('s{{ z.nr }}').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'s{{ z.nr }}\').style.display=\'inline\';return false;">+</a>');</script>
+{% endif %}
+                  </td>
+{{ f.spalten(spalten, z.spaltenWerte, z.nr, '13', false) }}
+                </tr>
+{% endfor %}
+{% else %}
+{# Pokal: je Partie ihre Spiele #}
+{% for z in zeilen %}
+{% for s in z.spiele %}
+{% if platz3 %}
+                <tr>
+                  <td class="nobr" colspan={{ breite }}>{% if z.i == 1 %}&nbsp;<br>{% endif %}{{ text[419 + z.i]|raw }}</td>
+                </tr>
+{% endif %}
+                <tr>
+                  <td class="nobr"><input title="{{ text[122]|raw }}" class="lmo-formular-input" type="text" name="xatdat{{ s.nr }}" tabindex="{{ s.nr }}03" size="10" maxlength="10" value="{{ s.tag }}" onChange="dolmoedit()"><script type="text/javascript">document.write('<a href="#" onclick="opencal(\'xatdat{{ s.nr }}\',\'{{ s.kalender }}\')" title="{{ text[139]|raw }}" onMouseOver="lmoimg(\'{{ s.nr }}c\',img5)" onMouseOut="lmoimg(\'{{ s.nr }}c\',img4)"><img src="{{ bilder }}/lmo-admin4.gif" name="ximg{{ s.nr }}c" width="12" height="11" border="0"><\/a>');</script></td>
+                  <td><input title="{{ text[123]|raw }}" class="lmo-formular-input" type="text" name="xattim{{ s.nr }}" tabindex="{{ s.nr }}04" size="5" maxlength="5" value="{{ s.uhrzeit }}" onChange="dolmoedit()"></td>
+                  <td width="2">&nbsp;</td>
+{# im ersten Spiel die Auswahl der Mannschaften, danach nur die Namen #}
+{% if s.n == 0 %}
+                  <td class="nobr" align="right">
+{% if paarungRechte %}
+                    <select class="lmo-formular-input" name="xteama{{ z.i }}" onChange="dolmoedit()" title="{{ text[107]|raw }}" tabindex="{{ s.nr }}05">
+{% for o in z.heimOptionen %}<option value="{{ o.wert }}"{% if o.gewaehlt %} selected{% endif %}>{{ o.name|raw }}</option>{% endfor %}
+
+                    </select>
+{% else %}
+{{ z.heimName|raw }}
+{% endif %}
+                  </td>
+                  <td align="center" width="10">-</td>
+                  <td class="nobr">
+{% if paarungRechte %}
+                    <select class="lmo-formular-input" name="xteamb{{ z.i }}" onChange="dolmoedit()" title="{{ text[108]|raw }}" tabindex="{{ s.nr }}06">
+{% for o in z.gastOptionen %}<option value="{{ o.wert }}"{% if o.gewaehlt %} selected{% endif %}>{{ o.name|raw }}</option>{% endfor %}
+
+                    </select>
+{% else %}
+{{ z.gastName|raw }}
+{% endif %}
+                  </td>
+{% elseif s.heimZuerst is same as(true) %}
+                  <td class="nobr" align="right">{{ z.heimName|raw }}</td>
+                  <td align="center" width="10">-</td>
+                  <td class="nobr">{{ z.gastName|raw }}</td>
+{% elseif s.heimZuerst is same as(false) %}
+                  <td class="nobr" align="right">{{ z.gastName|raw }}</td>
+                  <td align="center" width="10">-</td>
+                  <td class="nobr">{{ z.heimName|raw }}</td>
+{% endif %}
+{# Tore, je nach Playoff-Modus mit getauschtem Heimrecht #}
+{% if s.toreReihe == 'ab' %}
+                  <td width="2">&nbsp;</td>
+{{ f.tor('a', s.nr, s.toreHeim, '07', 4, text) }}
+{{ f.pfeile('a', s.nr, 'lmoBackMarkierung', false, text, bilder) }}
+                  <td class="lmoBackMarkierung" align="center" width="8">:</td>
+{{ f.tor('b', s.nr, s.toreGast, '08', 4, text) }}
+{{ f.pfeile('b', s.nr, 'lmoBackMarkierung', false, text, bilder) }}
+{% elseif s.toreReihe == 'ba' %}
+                  <td width="2">&nbsp;</td>
+{{ f.tor('b', s.nr, s.toreGast, '07', 4, text) }}
+{{ f.pfeile('b', s.nr, 'lmoBackMarkierung', false, text, bilder) }}
+                  <td class="lmoBackMarkierung" align="center" width="8">:</td>
+{{ f.tor('a', s.nr, s.toreHeim, '08', 4, text) }}
+{{ f.pfeile('a', s.nr, 'lmoBackMarkierung', false, text, bilder) }}
+{% endif %}
+                  <td class="lmoBackMarkierung" width="2">&nbsp;</td>
+                  <td class="lmoBackMarkierung">
+                    <select class="lmo-formular-input" name="xmspez{{ s.nr }}" onChange="dolmoedit()" title="{{ text[111]|raw }}" tabindex="{{ s.nr }}09">
+{{ f.zusatz(s.zusatz, text) }}
+                    </select>
+                  </td>
+                  <td width="2">&nbsp;</td>
+                  <td><input class="lmo-formular-input" type="text" name="xmnote{{ s.nr }}" tabindex="{{ s.nr }}10" size="16" value="{{ s.notiz|raw }}" onChange="dolmoedit()"></td>
+                  <td><input class="lmo-formular-input" type="text" name="xmberi{{ s.nr }}" tabindex="{{ s.nr }}11" size="16" value="{{ s.bericht|raw }}" onChange="dolmoedit()"></td>
+{{ f.spalten(spalten, s.spaltenWerte, s.nr, '12', true) }}
+                </tr>
+{% endfor %}
+{% if abstand and z.i < partien - 1 %}
+                <tr>
+                  <td colspan="{{ breite }}">&nbsp;</td>
+                </tr>
+{% endif %}
+{% endfor %}
+{% endif %}
+{# darunter: aktueller Spieltag, Ticker, Newszeilen #}
+                <tr>
+                  <th class="nobr" colspan="{{ breite }}" align="center">{{ text[206]|raw }}</th>
+                </tr>
+                <tr>
+                  <td class="nobr" colspan="{{ breite }}" align="center">
+                    <acronym title="{{ text[192]|raw }}">{{ text[191]|raw }}</acronym>
+                    <select class="lmo-formular-input" name="xstx" onChange="dolmoedit()" tabindex="{{ partien }}013">
+{% for y in 0..spieltage %}{% if save %}{% if y == 0 %}<option value="0">{{ text[403]|raw }}</option>{% else %}<option value="{{ y }}"{% if y == aktuell %} selected{% endif %}>{{ y }}. {{ text[2]|raw }}</option>{% endif %}{% else %}{% if y == 0 %}<option value="0" selected>{{ text[403]|raw }}</option>{% else %}<option value="{{ y }}">{{ y }}. {{ text[2]|raw }}</option>{% endif %}{% endif %}{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="{{ breite }}" align="center">
+                    <acronym title="{{ text[208]|raw }}">{{ text[207]|raw }}</acronym>
+                    <select tabindex="{{ partien }}014" class="lmo-formular-input" name="xnticker" onChange="dolmoedit()">
+                      <option value="1"{% if ticker == 1 %} selected{% endif %}>{{ text[181]|raw }}</option>
+                      <option value="0"{% if ticker == 0 %} selected{% endif %}>{{ text[182]|raw }}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="{{ breite }}" align="center">
+                    <acronym title="{{ text[210]|raw }}">{{ text[999]|raw }}: </acronym><textarea tabindex="{{ partien }}015" class="lmo-formular-input" name="xnlines" cols="50" rows="4" onChange="dolmoedit()">{% for y in news %}{{ y|raw }}
+{% endfor %}</textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th style="text-align:center" colspan="{{ breite }}" align="center">
+                    <input title="{{ text[114]|raw }}" tabindex="{{ partien }}016" class="lmo-formular-button" type="submit" name="best" value="{{ text[103]|raw }}">
+                  </th>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>

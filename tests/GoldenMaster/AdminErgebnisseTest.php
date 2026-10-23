@@ -9,7 +9,7 @@ use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Ergebnisse eines Spieltags im Adminbereich (lmo-adminedit.php): die Sonderfaelle der Eingabe,
+ * Ergebnisse eines Spieltags im Adminbereich (ErgebnisseBearbeitenController, bis 4.5 lmo-adminedit.php): die Sonderfaelle der Eingabe,
  * die AdminWriteTest nicht speichert. Festgehalten wird je Schritt nur, was sich in den Dateien
  * aendert (die Seite selbst pruefen AdminWriteTest, AdminRoundtripTest und KoLeagueTest).
  */

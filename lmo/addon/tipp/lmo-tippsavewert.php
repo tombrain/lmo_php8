@@ -64,6 +64,9 @@ if (isset($todo) && $todo != "edit") {
   $file = $liga.".l98";
 }
 require_once(PATH_TO_ADDONDIR."/tipp/lmo-tippcalcpkt.php");
+// tipppunkte() zaehlt in diese Variablen (global); die Datei laeuft beim Speichern der Ergebnisse
+// innerhalb der Bruecke in lmo-adminmain.php, wo neue Variablen sonst nur lokal waeren
+global $punkte1, $punkte2, $punkte3, $punkte4, $punkte5, $punkte6;
 $dummd = array();
 $dumme = array("");
 $pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
