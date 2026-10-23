@@ -1,0 +1,439 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Grundeinstellungen einer Liga (Lmo\Web\Admin\GrundeinstellungenController), bis 4.5 lmo-adminbasic.php.
+   Reiter (show): 0 Allgemein, 2 Anzeige, 3 Punkte (Liga), 4 Tabelle (Liga) #}
+{{ navigation|raw }}
+            <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center" colspan="2"><h1>{{ o.Name|raw }}</h1></td>
+              </tr>
+              <tr>
+                <td valign="top">
+                  <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+                    <tr><td align="right">{% if show == 0 %}{{ text[183]|raw }}{% else %}<a onclick="return chklmolink();" href="{{ (adresse ~ '?action=admin&amp;todo=edit&amp;show=0&amp;file=' ~ datei ~ '&amp;st=-1')|raw }}">{{ text[183]|raw }}</a>{% endif %}</td></tr>{% if voll %}
+                    <tr><td align="right">{% if show == 2 %}{{ text[250]|raw }}{% else %}<a onclick="return chklmolink();" href="{{ (adresse ~ '?action=admin&amp;todo=edit&amp;show=2&amp;file=' ~ datei ~ '&amp;st=-1')|raw }}">{{ text[250]|raw }}</a>{% endif %}</td></tr>{% if o.Type == 0 %}
+                    <tr><td align="right">{% if show == 3 %}{{ text[178]|raw }}{% else %}<a onclick="return chklmolink();" href="{{ (adresse ~ '?action=admin&amp;todo=edit&amp;show=3&amp;file=' ~ datei ~ '&amp;st=-1')|raw }}">{{ text[178]|raw }}</a>{% endif %}</td></tr>
+                    <tr><td align="right">{% if show == 4 %}{{ text[16]|raw }}{% else %}<a onclick="return chklmolink();" href="{{ (adresse ~ '?action=admin&amp;todo=edit&amp;show=4&amp;file=' ~ datei ~ '&amp;st=-1')|raw }}">{{ text[16]|raw }}</a>{% endif %}</td></tr>
+                    <tr><td align="right"><a href='{{ (addr ~ '-3')|raw }}' onclick="return chklmolink();" title="{{ text[339]|raw }}">{{ text[338]|raw }}</a></td></tr>{% endif %}{% endif %}
+                  </table>
+                </td>
+                <td align="center" valign="top">
+                  <form name="lmoedit" action="{{ adresse|raw }}" method="post" onSubmit="return chklmopass()">
+                    <input type="hidden" name="action" value="admin">
+                    <input type="hidden" name="todo" value="edit">
+                    <input type="hidden" name="save" value="1">
+                    <input type="hidden" name="show" value="{{ show|raw }}">
+                    <input type="hidden" name="file" value="{{ datei|raw }}">
+                    <input type="hidden" name="st" value="{{ st|raw }}">
+                    <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if show == 0 %}{% if voll %}
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="xtitel" size="40" maxlength="60" value="{{ o.Name|raw }}" onChange="dolmoedit()"></td>
+                        <td class="nobr" align="left"><acronym title="{{ text[118]|raw }}">{{ text[113]|raw }}</acronym></td>
+                      </tr>
+{% if o.Type == 0 %}
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="xnamepkt" size="7" maxlength="60" value="{% if o.namePkt == '' %}{{ text[37]|raw }}{% else %}{{ o.namePkt|raw }}{% endif %}" onChange="dolmoedit()"></td>
+                        <td class="nobr" align="left"><acronym title="{{ text[66]|raw }}">{{ (text[65] ~ ' ' ~ text[37])|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input class="lmo-formular-input" type="text" name="xnametor" size="7" maxlength="60" value="{% if o.nameTor == '' %}{{ text[38]|raw }}{% else %}{{ o.nameTor|raw }}{% endif %}" onChange="dolmoedit()"></td>
+                        <td class="nobr" align="left"><acronym title="{{ text[66]|raw }}">{{ (text[65] ~ ' ' ~ text[38])|raw }}</acronym></td>
+                      </tr>
+{% endif %}
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xpointsfaktor" size="1" onChange="dolmoedit()">
+                            <option value="1"{% if o.pointsfaktor == 1 %}{{ ' selected'|raw }}{% endif %}>{{ text[553]|raw }}</option>
+                            <option value="10"{% if o.pointsfaktor == 10 %}{{ ' selected'|raw }}{% endif %}>{{ text[554]|raw }}</option>
+                            <option value="100"{% if o.pointsfaktor == 100 %}{{ ' selected'|raw }}{% endif %}>{{ text[555]|raw }}</option>
+                            <option value="1000"{% if o.pointsfaktor == 1000 %}{{ ' selected'|raw }}{% endif %}>{{ text[556]|raw }}</option>
+                          </select>
+                        </td>
+                        <td class="nobr" align="left"><acronym title="{{ text[558]|raw }}">{{ text[557]|raw }} {{ text[37]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xgoalfaktor" size="1" onChange="dolmoedit()">
+                            <option value="1"{% if o.goalfaktor == 1 %}{{ ' selected'|raw }}{% endif %}>{{ text[553]|raw }}</option>
+                            <option value="10"{% if o.goalfaktor == 10 %}{{ ' selected'|raw }}{% endif %}>{{ text[554]|raw }}</option>
+                            <option value="100"{% if o.goalfaktor == 100 %}{{ ' selected'|raw }}{% endif %}>{{ text[555]|raw }}</option>
+                            <option value="1000"{% if o.goalfaktor == 1000 %}{{ ' selected'|raw }}{% endif %}>{{ text[556]|raw }}</option>
+                          </select>
+                        </td>
+                        <td class="nobr" align="left"><acronym title="{{ text[558]|raw }}">{{ text[557]|raw }} {{ text[38]|raw }}</acronym></td>
+                      </tr>
+{% endif %}
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xfavteam" onChange="dolmoedit()">
+{% for y in 0..mannschaften %}
+                            <option value="{{ y|raw }}"{% if y == o.favTeam %}{{ ' selected'|raw }}{% endif %}>{{ namen[y]|raw }}</option>
+{% endfor %}
+                          </select>
+                        </td>
+                        <td class="nobr" align="left"><acronym title="{{ text[190]|raw }}">{{ text[189]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xselteam" onChange="dolmoedit()">
+{% for y in 0..mannschaften %}
+                            <option value="{{ y|raw }}"{% if y == o.selTeam %}{{ ' selected'|raw }}{% endif %}>{{ namen[y]|raw }}</option>
+{% endfor %}
+                          </select>
+                        </td>
+                        <td class="nobr" align="left"><acronym title="{{ text[195]|raw }}">{{ text[194]|raw }}</acronym></td>
+                      </tr>
+{% if o.Type == 0 %}
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xstat1" onChange="dolmoedit()">
+{% for y in 0..mannschaften %}
+                            <option value="{{ y|raw }}"{% if y == o.kurve1 %}{{ ' selected'|raw }}{% endif %}>{{ namen[y]|raw }}</option>
+{% endfor %}
+                          </select>
+                        </td>
+                        <td class="nobr" align="left" rowspan="2"><acronym title="{{ text[197]|raw }}">{{ text[196]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><select class="lmo-formular-input" name="xstat2" onChange="dolmoedit()">
+{% for y in 0..mannschaften %}
+                            <option value="{{ y|raw }}"{% if y == o.kurve2 %}{{ ' selected'|raw }}{% endif %}>{{ namen[y]|raw }}</option>
+{% endfor %}
+                          </select>
+                        </td>
+                      </tr>
+{% endif %}{% elseif show == 2 %}{% if voll %}
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[570]|raw }}">{{ text[569]|raw }}</acronym></td>
+                        <td class="nobr" align="left"><input type="checkbox" class="lmo-formular-input" name="xenablegamesort" onChange="dolmoedit()"{% if o.enableGameSort == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                      </tr>
+{% if o.Type == 1 %}
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[418]|raw }}">{{ text[417]|raw }}</acronym></td>
+                        <td class="nobr" align="left"><input type="checkbox" class="lmo-formular-input" name="xklfin" onChange="dolmoedit()"{% if o.KlFin == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[552]|raw }}">{{ text[551]|raw }}</acronym></td>
+                        <td class="nobr" align="left"><input type="checkbox" class="lmo-formular-input" name="xplaydown" onChange="dolmoedit()"{% if o.playdown == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                      </tr>
+{% endif %}{% if o.Type == 0 %}
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[400]|raw }}">{{ text[399]|raw }}</acronym>&nbsp;</td>
+                        <td class="nobr" align="left">
+                          <select class="lmo-formular-input" name="xonrun" onChange="dolmoedit()">
+                            <option value="0"{% if o.Ergebnis == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 0 %}{{ ' selected'|raw }}{% endif %}>{{ text[10]|raw }}</option>
+                            <option value="1"{% if o.Tabelle == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 1 %}{{ ' selected'|raw }}{% endif %}>{{ text[16]|raw }}</option>
+                            <option value="2"{% if o.Plan == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 2 %}{{ ' selected'|raw }}{% endif %}>{{ text[12]|raw }}</option>
+                            <option value="3"{% if o.Kreuz == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 3 %}{{ ' selected'|raw }}{% endif %}>{{ text[14]|raw }}</option>
+                            <option value="4"{% if o.Graph == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 4 %}{{ ' selected'|raw }}{% endif %}>{{ text[133]|raw }}</option>
+                            <option value="5"{% if o.Ligastats == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 5 %}{{ ' selected'|raw }}{% endif %}>{{ text[18]|raw }}</option>
+                            <option value="6"{% if o.DatS == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 6 %}{{ ' selected'|raw }}{% endif %}>{{ text[140]|raw }}</option>
+                            <option value="7"{% if o.mittore == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 7 %}{{ ' selected'|raw }}{% endif %}>{{ text[485]|raw }}</option>
+                          </select>
+                        </td>
+                      </tr>
+{% endif %}
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[254]|raw }}">{{ text[253]|raw }}</acronym>&nbsp;</td>
+                        <td class="nobr" align="left"><input type="checkbox" class="lmo-formular-input" name="xdatm" onChange="dolmoedit()"{% if o.DatM == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" rowspan="2" align="right"><acronym title="{{ text[256]|raw }}">{{ text[257]|raw }}</acronym>&nbsp;</td>
+                        <td class="nobr" align="left">
+                          <input type="radio" name="xdatfselect" value="1" checked>
+                          <select class="lmo-formular-input" name="xdatf" onChange="dolmoedit();document.getElementsByName('xdatfselect')[0].checked=true;">
+
+                            <option value="">__</option>{% for y in 0..5 %}
+                            <option value="{{ datumsformate[y]|raw }}"{% if o.DatF == datumsformate[y] %}{{ ' selected'|raw }}{% endif %}>{{ datumsbeispiele[y]|raw }}</option>
+{% endfor %}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">
+                          <input type="radio" name="xdatfselect" value=""{% if o.DatF not in datumsformate %}{{ ' checked'|raw }}{% endif %}>
+                          <input type="text" class="lmo-formular-input" name="xdatf2" onChange="dolmoedit();document.getElementsByName('xdatf')[1].checked=true;" value="{{ o.DatF|raw }}">
+                          <a href="https://www.php.net/manual/de/datetime.format.php">
+                            <span class="popup">
+                              <strong>&nbsp;{{ text[545]|raw }}</strong><br>
+                              &nbsp;&nbsp;D = {{ beispiele.D|raw }}<br>
+                              &nbsp;&nbsp;l = {{ beispiele.l|raw }}<br>
+                              <strong>&nbsp;{{ text[546]|raw }}</strong><br>
+                              &nbsp;&nbsp;d = {{ beispiele.d|raw }}<br>
+                              &nbsp;&nbsp;j = {{ beispiele.j|raw }}<br>
+                              <strong>&nbsp;{{ text[547]|raw }}</strong><br>
+                              &nbsp;&nbsp;m = {{ beispiele.m|raw }}<br>
+                              &nbsp;&nbsp;M = {{ beispiele.M|raw }}<br>
+                              &nbsp;&nbsp;F = {{ beispiele.F|raw }}<br>
+                              <strong>&nbsp;{{ text[548]|raw }}</strong><br>
+                              &nbsp;&nbsp;y = {{ beispiele.y|raw }}<br>
+                              &nbsp;&nbsp;Y = {{ beispiele.Y|raw }}<br>
+                              <strong>&nbsp;{{ text[549]|raw }}</strong><br>
+                              &nbsp;&nbsp;H = {{ beispiele.H|raw }}<br>
+                              &nbsp;&nbsp;i = {{ beispiele.i|raw }}<br>
+                              &nbsp;&nbsp;A = {{ beispiele.A|raw }}<br>
+                            </span>
+                          ?</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[252]|raw }}">{{ text[251]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xdats" onChange="dolmoedit()"{% if o.DatS == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+{% if o.Type == 0 and tabonres == 0 %}
+                        <td class="nobr" align="right"><acronym title="{{ text[512]|raw }}">{{ text[10]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xergebnis" onChange="dolmoedit()"{% if o.Ergebnis == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xtabelle" onChange="dolmoedit()"{% if o.Tabelle == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[513]|raw }}">{{ text[16]|raw }}</acronym></td>{% endif %}{% if o.Type == 1 %}
+                        <td class="nobr" align="right"><acronym title="{{ text[512]|raw }}">{{ text[10]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xergebnis" onChange="dolmoedit()"{% if o.Ergebnis == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td></td>
+{% endif %}{% if o.Type == 0 and tabonres >= 1 %}
+                        <td class="nobr" align="right"><acronym title="{{ text[512]|raw }}">{{ (text[10] ~ '/' ~ text[16])|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xergebnis" onChange="dolmoedit()"{% if o.Ergebnis == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td></td>
+{% endif %}
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[256]|raw }}">{{ text[255]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xdatc" onChange="dolmoedit()"{% if o.DatC == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xplan" onChange="dolmoedit()"{% if o.Plan == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[511]|raw }}">{{ text[12]|raw }}</acronym></td>
+                      </tr>
+{% if o.Type == 0 %}
+                      <tr>
+                        <td class="nobr" align="right"><acronym title="{{ text[468]|raw }}">{{ text[467]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xkreuz" onChange="dolmoedit()"{% if o.Kreuz == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xkurve" onChange="dolmoedit()"{% if o.Graph == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[238]|raw }}">{{ text[237]|raw }}</acronym></td>
+                      </tr>
+{% endif %}
+                      <tr>
+{% if einspieler == 1 %}
+                        <td class="nobr" align="right"><acronym title="{{ spieler[19]|raw }}">{{ spieler[18]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xmittore" onChange="dolmoedit()"{% if o.mittore == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>{% else %}
+                        <td></td>
+{% endif %}{% if o.Type == 0 %}
+                        <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xligastats" onChange="dolmoedit()"{% if o.Ligastats == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[514]|raw }}">{{ text[18]|raw }}</acronym></td>{% else %}
+                        <td></td>
+{% endif %}
+                      </tr>
+                      <tr>
+                        <th align="left" colspan="2">{{ text[264]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xurlt" onChange="dolmoedit()"{% if o.urlT == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                        <td class="nobr" align="left"><acronym title="{{ text[268]|raw }}">{{ text[267]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xurlb" onChange="dolmoedit()"{% if o.urlB == 1 %}{{ ' checked'|raw }}{% endif %}></td>
+                        <td class="nobr" align="left"><acronym title="{{ text[266]|raw }}">{{ text[265]|raw }}</acronym></td>
+                      </tr>
+{% endif %}{% if o.Type == 1 %}
+                      <tr>
+                        <th align="left" colspan="2">{{ text[800]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="center" colspan="2"></td>
+                      </tr>
+                      <tr>
+                        <th align="center">{{ text[355]|raw }}</th>
+                        <td class="nobr" align="center" rowspan="3"></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[802]|raw }}">{{ text[801]|raw }}</acronym><hr></td>
+                      </tr>
+                      <tr>
+                        <th align="center">{{ text[356]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[802]|raw }}">{{ text[801]|raw }}</acronym></td>
+                        <th align="center">{{ text[809]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[804]|raw }}">{{ text[803]|raw }}</acronym><hr></td>
+                        <td class="nobr" valign="top" align="center" rowspan="5">
+                          <select class="form-select" name="xplayoffmode" onChange="dolmoedit()">
+                            <option value="0"{% if o.playoffmode == 0 %}{{ ' selected'|raw }}{% endif %}>{{ text[801]|raw }}</option>
+                            <option value="1"{% if o.playoffmode == 1 %}{{ ' selected'|raw }}{% endif %}>{{ text[803]|raw }}</option>
+                            <option value="2"{% if o.playoffmode == 2 %}{{ ' selected'|raw }}{% endif %}>{{ text[805]|raw }}</option>
+                            <option value="3"{% if o.playoffmode == 3 %}{{ ' selected'|raw }}{% endif %}>{{ text[807]|raw }}</option>
+                          </select></td>
+                      </tr>
+                      <tr>
+                        <th align="center">{{ text[357]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[802]|raw }}">{{ text[801]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[806]|raw }}">{{ text[805]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<acronym title="{{ text[808]|raw }}">{{ text[807]|raw }}</acronym></td>
+                      </tr>
+{% endif %}{% elseif show == 3 %}{% if voll and o.Type == 0 %}
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xminus" onChange="dolmoedit()"{% if o.MinusPoints == 2 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[180]|raw }}">{{ text[179]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xspez" onChange="dolmoedit()"{% if o.Spez == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[185]|raw }}">{{ text[184]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xhidr" onChange="dolmoedit()"{% if o.HideDraw == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[242]|raw }}">{{ text[241]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirekt" onChange="dolmoedit()" onClick="lmoDirektAbhaengige()"{% if o.Direct != 0 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[187]|raw }}">{{ text[186]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirektnach" onChange="dolmoedit()"{% if o.Direct == 2 %}{{ ' checked'|raw }}{% endif %}{% if o.Direct == 0 %}{{ ' disabled'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[5031]|raw }}">{{ text[5030]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xdirektauswaerts" onChange="dolmoedit()"{% if o.DirectAway == 1 and o.Direct != 0 %}{{ ' checked'|raw }}{% endif %}{% if o.Direct == 0 %}{{ ' disabled'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[5035]|raw }}">{{ text[5034]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xsortgames" onChange="dolmoedit()"{% if o.SortGames == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[5033]|raw }}">{{ text[5032]|raw }}</acronym></td>
+                      </tr>
+                      <script type="text/javascript">
+                        // die beiden Kaestchen zum direkten Vergleich gelten nur, wenn er eingeschaltet ist
+                        function lmoDirektAbhaengige() {
+                          var an = document.getElementsByName('xdirekt')[0].checked;
+                          var namen = ['xdirektnach', 'xdirektauswaerts'];
+                          for (var i = 0; i < namen.length; i++) {
+                            var feld = document.getElementsByName(namen[i])[0];
+                            feld.disabled = !an;
+                            if (!an) {
+                              feld.checked = false;
+                            }
+                          }
+                        }
+                      </script>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xkegel" onChange="dolmoedit()"{% if o.Kegel == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[396]|raw }}">{{ text[395]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right"><input type="checkbox" class="lmo-formular-input" name="xhands" onChange="dolmoedit()"{% if o.HandS == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="nobr" align="left">&nbsp;<acronym title="{{ text[408]|raw }}">{{ text[407]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <th align="left" colspan="2">{{ text[198]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" colspan="2" align="left">
+                          <table cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                              <td class="nobr" align="left">&nbsp;</td>
+                              <th class="nobr" align="center">&nbsp;<acronym title="{{ text[199]|raw }}">{{ text[34]|raw }}</acronym>&nbsp;</th>
+                              <th class="nobr" align="center">&nbsp;<acronym title="{{ text[200]|raw }}">{{ text[35]|raw }}</acronym>&nbsp;</th>
+                              <th class="nobr" align="center">&nbsp;<acronym title="{{ text[201]|raw }}">{{ text[36]|raw }}</acronym>&nbsp;</th>
+                            </tr>
+                            <tr>
+                              <td class="nobr" align="right">{{ text[202]|raw }}&nbsp;</td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpns" size="2" onChange="dolmoedit()" value={{ o.PointsForWin|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpnu" size="2" onChange="dolmoedit()" value={{ o.PointsForDraw|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpnn" size="2" onChange="dolmoedit()" value={{ o.PointsForLost|raw }}></td>
+                            </tr>
+                            <tr>
+                              <td class="nobr" align="right">{{ text[203]|raw }}&nbsp;</td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpxs" size="2" onChange="dolmoedit()" value={{ o.XtraS|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpxu" size="2" onChange="dolmoedit()" value={{ o.XtraU|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpxn" size="2" onChange="dolmoedit()" value={{ o.XtraV|raw }}></td>
+                            </tr>
+                            <tr>
+                              <td class="nobr" align="right">{{ text[204]|raw }}&nbsp;</td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xpps" size="2" onChange="dolmoedit()" value={{ o.SpezS|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xppu" size="2" onChange="dolmoedit()" value={{ o.SpezU|raw }}></td>
+                              <td class="nobr" align="center"><input class="lmo-formular-input" name="xppn" size="2" onChange="dolmoedit()" value={{ o.SpezV|raw }}></td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+{% endif %}{% elseif show == 4 %}{% if voll %}
+                      <tr>
+                        <th align="left" colspan="2">{{ text[264]|raw }}</th>
+                      </tr>
+                       <tr>
+                        <td class="nobr" align="right">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xeinhinrueck" onChange="dolmoedit()"{% if o.tableHinRueck == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td align="left">&nbsp;<acronym title="{{ text[494]|raw }}">{{ text[493]|raw }}</acronym></td>
+                      </tr>
+                       <tr>
+                        <td class="nobr" align="right">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xeinheimausw" onChange="dolmoedit()"{% if o.tableHeimAusw == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td align="left">&nbsp;<acronym title="{{ text[566]|raw }}">{{ text[565]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <th align="left" colspan="2">{{ text[378]|raw }}</th>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xchamp" onChange="dolmoedit()"{% if o.Champ == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>
+                        <td class="lmoTabelleMeister" align="left">&nbsp;<acronym title="{{ text[380]|raw }}">{{ text[379]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xanzcl" onChange="dolmoedit()">
+{% for i in 0..8 %}
+                            <option value="{{ i|raw }}"{% if o.CL == i %}{{ ' selected'|raw }}{% endif %}>{{ i|raw }}</option>
+{% endfor %}
+                          </select>&nbsp;
+                        </td>
+                        <td class="lmoTabelleCleague" align="left"><acronym title="{{ text[382]|raw }}">{{ text[381]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xanzck" onChange="dolmoedit()">
+{% for i in 0..4 %}
+                            <option value="{{ i|raw }}"{% if o.CK == i %}{{ ' selected'|raw }}{% endif %}>{{ i|raw }}</option>
+{% endfor %}
+                          </select>&nbsp;
+                        </td>
+                        <td class="lmoTabelleCleaguequali" align="left">&nbsp;<acronym title="{{ text[384]|raw }}">{{ text[383]|raw }}</acronym>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xanzuc" onChange="dolmoedit()">
+{% for i in 0..mannschaften %}
+                            <option value="{{ i|raw }}"{% if o.UC == i %}{{ ' selected'|raw }}{% endif %}>{{ i|raw }}</option>
+{% endfor %}
+                          </select>&nbsp;
+                        </td>
+                        <td class="lmoTabelleUefa" align="left">&nbsp;<acronym title="{{ text[386]|raw }}">{{ text[385]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xanzar" onChange="dolmoedit()">
+{% for i in 0..mannschaften %}
+                            <option value="{{ i|raw }}"{% if o.AR == i %}{{ ' selected'|raw }}{% endif %}>{{ i|raw }}</option>
+{% endfor %}
+                          </select>&nbsp;
+                        </td>
+                        <td class="lmoTabelleRelegation" align="left">&nbsp;<acronym title="{{ text[394]|raw }}">{{ text[393]|raw }}</acronym></td>
+                      </tr>
+                      <tr>
+                        <td class="nobr" align="right">
+                          <select class="lmo-formular-input" name="xanzab" onChange="dolmoedit()">
+{% for i in 0..mannschaften %}
+                            <option value="{{ i|raw }}"{% if o.AB == i %}{{ ' selected'|raw }}{% endif %}>{{ i|raw }}</option>
+{% endfor %}
+                          </select>&nbsp;
+                        </td>
+                        <td class="lmoTabelleAbsteiger" align="left">&nbsp;<acronym title="{{ text[388]|raw }}">{{ text[387]|raw }}</acronym></td>
+                      </tr>
+{% endif %}{% endif %}
+                      <tr>
+                        <td class="nobr" align="center" colspan="2" width="100%">
+                          <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[188]|raw }}">
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </table>

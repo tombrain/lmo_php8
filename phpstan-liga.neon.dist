@@ -15,7 +15,6 @@ parameters:
         - src
     paths:
         - lmo/addon/tipp/lmo-tippsavefile.php
-        - lmo/lmo-adminbasic.php
         - lmo/lmo-adminsubnavi.php
         - lmo/lmo-admintab.php
         - lmo/lmo-openfiledat.php
