@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 class FusszeileTest extends TestCase
 {
-    private static function kontext(?string $datei, string $action = 'table'): Kontext
+    private static function kontext(?string $datei, string $action = 'table', ?\Lmo\Addon\Addons $addons = null): Kontext
     {
         return new Kontext(
             new Anfrage([]),
@@ -30,7 +30,8 @@ class FusszeileTest extends TestCase
             [391 => 'Ligen', 392 => 'zur Uebersicht', 406 => 'Stand', 471 => 'Zeit', 799 => 'Sek'],
             '/lmo.php',
             new Pfade('/lmo', '/lmo/vorlagen', 'IMG'),
-            new Darstellung(static fn (string $d, string $n, string $a): string => '')
+            new Darstellung(static fn (string $d, string $n, string $a): string => ''),
+            $addons ?? new \Lmo\Addon\Addons()
         );
     }
 
@@ -53,7 +54,9 @@ class FusszeileTest extends TestCase
         $teile = Fusszeile::teile(self::kontext(null), true, null);
 
         self::assertSame(['Ligenuebersicht' => '', 'LetzteAuswertung' => '', 'Berechnungszeit' => ''], $teile);
-        self::assertStringContainsString('href="/lmo.php"', Fusszeile::teile(self::kontext(null, 'tipp'), true, null)['Ligenuebersicht'], 'im Tippspiel auch ohne Liga');
+        $tipp = new \Lmo\Addon\Addons([new \Lmo\Addon\Tipp\TippAddon()]);
+        self::assertStringContainsString('href="/lmo.php"', Fusszeile::teile(self::kontext(null, 'tipp', $tipp), true, null)['Ligenuebersicht'], 'im Tippspiel (Lmo\Addon\MitBereich) auch ohne Liga');
+        self::assertSame('', Fusszeile::teile(self::kontext(null, 'tipp'), true, null)['Ligenuebersicht'], 'ohne das Addon kein Bereich');
         self::assertSame('', Fusszeile::teile(self::kontext('x.l98'), false, null)['Ligenuebersicht'], 'abgeschaltet (backlink)');
     }
 

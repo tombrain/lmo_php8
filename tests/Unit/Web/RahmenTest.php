@@ -147,7 +147,7 @@ class RahmenTest extends TestCase
 
     public function testTeileOhneLiga(): void
     {
-        $kontext = static fn (string $action): Kontext => new Kontext(
+        $kontext = static fn (string $action, ?\Lmo\Addon\Addons $addons = null): Kontext => new Kontext(
             new Anfrage([]),
             $action,
             null,
@@ -156,6 +156,7 @@ class RahmenTest extends TestCase
             '/lmo.php',
             new Pfade('/lmo', dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => ''),
+            $addons ?? new \Lmo\Addon\Addons(),
             weitereTexte: ['tipp' => [0 => 'Tippspiel']]
         );
 
@@ -164,7 +165,9 @@ class RahmenTest extends TestCase
         self::assertSame('Ligen', $teile['Titel']);
         self::assertSame('', $teile['Kalender'] . $teile['Ergebnisse'] . $teile['Info'], 'Menue leer, aber vorhanden');
         self::assertSame('', $teile['LetzteAuswertung']);
-        self::assertSame('Tippspiel', Rahmen::teile($kontext('tipp'), '', false, '', null)['Titel']);
+        $tipp = new \Lmo\Addon\Addons([new \Lmo\Addon\Tipp\TippAddon()]);
+        self::assertSame('Tippspiel', Rahmen::teile($kontext('tipp', $tipp), '', false, '', null)['Titel'], 'der Bereich des Tippspiels (Lmo\Addon\MitBereich)');
+        self::assertSame('Ligen', Rahmen::teile($kontext('tipp'), '', false, '', null)['Titel'], 'ohne das Addon kennt der Kern ihn nicht');
     }
 
     public function testSeite(): void

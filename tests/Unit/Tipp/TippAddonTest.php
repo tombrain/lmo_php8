@@ -116,6 +116,14 @@ tippauthtxt=tipper.txt
         self::assertSame([], $dateien($beide), 'ohne immeralle zaehlt die (leere) Liste');
     }
 
+    public function testBereich(): void
+    {
+        $addon = new TippAddon();
+
+        self::assertSame('Tippspiel', $addon->bereichstitel(self::kontext('tipp', null, [])));
+        self::assertNull($addon->bereichstitel(self::kontext('table', null, [])));
+    }
+
     public function testErgebnisSpalten(): void
     {
         $addon = new TippAddon('/lmo/addon/tipp');

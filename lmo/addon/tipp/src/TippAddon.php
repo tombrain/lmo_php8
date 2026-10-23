@@ -21,6 +21,7 @@ use Lmo\Addon\ErgebnisSpalte;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
+use Lmo\Addon\MitBereich;
 use Lmo\Addon\MitErgebnisAuswertung;
 use Lmo\Addon\MitErgebnisSpalten;
 use Lmo\Addon\MitRahmenteilen;
@@ -39,7 +40,7 @@ use Lmo\Web\Kontext;
  * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
  * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
  */
-final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung, MitErgebnisSpalten
+final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung, MitErgebnisSpalten, MitBereich
 {
     /** Der Schalter in den Optionen: Tippspiel an (config/tipp/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'eintippspiel';
@@ -155,6 +156,12 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         }
 
         return $dateien;
+    }
+
+    /** Das Tippspiel (action=tipp) als eigener Bereich mit seinem Titel. Bis 4.5 kannte der Kern es dafuer selbst. */
+    public function bereichstitel(Kontext $kontext): ?string
+    {
+        return $kontext->action == 'tipp' ? ($kontext->texteVon('tipp')[0] ?? '') : null;
     }
 
     /**

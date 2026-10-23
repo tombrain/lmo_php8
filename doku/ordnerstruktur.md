@@ -144,6 +144,7 @@ Ein Addon implementiert die Schnittstellen, an denen es etwas beiträgt:
 | `MitErgebnisAuswertung` | `auswertungBeimSpeichern()` | Auswertung beim Speichern der Ergebnisse eines Spieltags, noch als Dateien nach alter Art (z. B. Tipps) |
 | `MitErgebnisSpalten` | `ergebnisSpalten()` | eigene Spalten je Spiel in den Ergebnissen eines Spieltags (`ErgebnisSpalte`, z. B. „ohne Tippwertung“) |
 | `MitLigaStartseiten` | `ligaStartseiten()` | eigene Seiten als Startseite einer Liga (`LigaStartseite`, Wert in `OnRun` ab 7, z. B. die Spielerstatistik) |
+| `MitBereich` | `bereichstitel()` | eigener Bereich ohne Liga (z. B. das Tippspiel) mit eigenem Titel und Link zurück zur Ligenübersicht |
 
 Bei Seiten gilt diese Reihenfolge: erst die Controller des Kerns, dann die der Addons, zuletzt
 die Auffangseiten des Kerns (die Ligenübersicht ohne gewählte Liga). Ein Controller entscheidet

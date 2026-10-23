@@ -263,6 +263,21 @@ final class Addons
         return $schalter;
     }
 
+    /** Der Titel des Bereichs eines Addons, zu dem die Anfrage gehoert (MitBereich), sonst null. */
+    public function bereichstitel(Kontext $kontext): ?string
+    {
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitBereich) {
+                $titel = $addon->bereichstitel($kontext);
+                if ($titel !== null) {
+                    return $titel;
+                }
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Die Startseiten einer Liga aller Addons (MitLigaStartseiten), nach ihrem Wert in OnRun.
      *
