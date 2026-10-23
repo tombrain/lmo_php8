@@ -112,6 +112,10 @@ class OptionenControllerTest extends TestCase
         self::assertStringContainsString('<input type="checkbox" name="t3" value="a.l98[4]">Delta</td>', $html);
         self::assertStringNotContainsString('Eins', $html);
         self::assertStringContainsString('name="zaehler" value="4"', $html);
+
+        $nurB = $this->seite(['formular2' => '1', 'B2' => 'x', 'zaehler' => '3', 'c2' => 'c2', 'dateiname' => 'meine', 'config_array' => 'modus=1']);
+        self::assertStringContainsString('<input type="checkbox" name="t0" value="b.l98[1]">Eins</td>', $nurB, 'die angekreuzte Liga (bis 4.5 die erste)');
+        self::assertStringNotContainsString('Alpha', $nurB);
     }
 
     public function testNameBleibtImOrdner(): void
