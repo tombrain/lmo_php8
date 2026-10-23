@@ -3,7 +3,7 @@
 parameters:
     level: 5
     phpVersion:
-        min: 80000
+        min: 80100
         max: 80599
     # ohne ini.php und update_addons.php: beide binden den alten Code ein und arbeiten mit
     # dessen globalen Variablen (dafuer gilt Stufe 0 aus phpstan.neon.dist)

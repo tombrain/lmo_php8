@@ -23,7 +23,7 @@ if (!defined('PATH_TO_LMO')) {
 /**
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var \Lmo\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php); nur bei $st > 0
+ * @var \Lmo\Addon\Tipp\Tipprunde $lmo_tipprunde Spieltag der Tippabgabe (lmo-tippedit.php); nur bei $st > 0
  * @var array<int|string, mixed> $text Sprachtexte
  * @var int|string $st gewaehlter Spieltag
  * @var string $todo gewaehlte Aktion (Aufrufparameter)
@@ -46,23 +46,23 @@ if ($todo == "tippuseredit") {
 }
  
 if ($tippfile != "") {
-  //if (decoct(fileperms($tippfile))!=100777){chmod ($tippfile, 0777);}
   if (substr($tippfile, -4) == ".tip") {
-    $daten = array("");
-    if ($st > 0 && file_exists($tippfile)) {
-      $datei = fopen($tippfile, "rb");
-      while ($datei && !feof($datei)) {
-        $zeile = fgets($datei, 1000);
-        $zeile = trim(chop($zeile));
-        if ($zeile != "") {
-          array_push($daten, $zeile);
+    // die Tippdatei (Lmo\Addon\Tipp\Tippdatei): die uebrigen Spieltage bleiben, der getippte kommt ans Ende
+    $lmo_tippdatei = $st > 0 ? \Lmo\Addon\Tipp\Tippdatei::lies($tippfile) : \Lmo\Addon\Tipp\Tippdatei::leer();
+    if ($st > 0) {
+      $lmo_tipps = array();
+      for ($j = 0; $j < $lmo_tipprunde->plaetze; $j++) {
+        if (!$lmo_tipprunde->pokal) {
+          $lmo_tipps[$j] = array($goaltippa[$j], $goaltippb[$j]);
+        } else {
+          for ($n = 0; $n < $lmo_tipprunde->spieleJePaarung; $n++) {
+            $lmo_tipps[$j][$n] = array($goaltippa[$j][$n], $goaltippb[$j][$n]);
+          }
         }
       }
-      fclose($datei);
+      $lmo_tippdatei = $lmo_tippdatei->mitRunde((int)$st, $lmo_tipps, $tipp_jokertipp == 1 ? (string)$jksp : null, $lmo_tipprunde->pokal);
     }
-     
-    $datei = fopen($tippfile, "wb");
-    if (!$datei) {
+    if (!$lmo_tippdatei->speichere($tippfile)) {
       echo getMessage($text[283],true);
       exit;
     } elseif ($todo != "newtipper" && $todo != "newligen" && $todo != "tippuseredit") {
@@ -75,66 +75,7 @@ if ($tippfile != "") {
         echo getMessage($text['tipp'][41]." ".$text['tipp'][292]);
       }
     }
-    flock($datei, 2);
-     
-    $round = 0;
-    for ($i = 0; $i < count($daten); $i++) {
-      if ((substr($daten[$i], 0, 1) == "[") && (substr($daten[$i], -1) == "]")) {
-        $round = substr($daten[$i], 6, -1);
-      }
-      if ($round != $st) {
-        //////////// nur die unveränderten Spieltage werden zurückgeschrieben
-        fputs($datei, $daten[$i]."\n");
-      }
-    }
-     
-    if ($st > 0) {
-      // am Ende getippten Spieltag dazu schreiben
-      fputs($datei, "\n[Round".$st."]\n");
-      if ($tipp_jokertipp == 1) {
-        fputs($datei, "@".$jksp."@\n");
-      }
-      for ($j = 1; $j <= $lmo_tipprunde->plaetze; $j++) {
-        if (!$lmo_tipprunde->pokal) {
-          if ($goaltippa[$j-1] == "_") {
-            fputs($datei, "GA".$j."=-1\n");
-          } elseif ($goaltippa[$j-1] == "") {
-            fputs($datei, "GA".$j."=-1\n");
-          } else {
-            fputs($datei, "GA".$j."=".$goaltippa[$j-1]."\n");
-          }
-          if ($goaltippb[$j-1] == "_") {
-            fputs($datei, "GB".$j."=-1\n");
-          } elseif ($goaltippb[$j-1] == "") {
-            fputs($datei, "GB".$j."=-1\n");
-          } else {
-            fputs($datei, "GB".$j."=".$goaltippb[$j-1]."\n");
-          }
-        } else {
-          for ($n = 1; $n <= $lmo_tipprunde->spieleJePaarung; $n++) {
-            if ($goaltippa[$j-1][$n-1] == "_") {
-              fputs($datei, "GA".$j.$n."=-1\n");
-            } elseif ($goaltippa[$j-1][$n-1] == "") {
-              fputs($datei, "GA".$j.$n."=-1\n");
-            } else {
-              fputs($datei, "GA".$j.$n."=".$goaltippa[$j-1][$n-1]."\n");
-            }
-            if ($goaltippb[$j-1][$n-1] == "_") {
-              fputs($datei, "GB".$j.$n."=-1\n");
-            } elseif ($goaltippb[$j-1][$n-1] == "") {
-              fputs($datei, "GB".$j.$n."=-1\n");
-            } else {
-              fputs($datei, "GB".$j.$n."=".$goaltippb[$j-1][$n-1]."\n");
-            }
-          }
-        }
-      }
-    } // am Ende getippten Spieltag dazu schreiben
-    flock($datei, 3);
-    fclose($datei);
   }
-   
   clearstatcache();
 }
-
 ?>

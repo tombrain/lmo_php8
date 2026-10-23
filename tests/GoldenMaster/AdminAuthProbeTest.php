@@ -46,17 +46,12 @@ final class AdminAuthProbeTest extends TestCase
 
         foreach ([
             'lmo-adminmain.php' => 'action=admin',
-            'lmo-adminedit.php' => 'action=admin&todo=edit&file=golden/basic.l98&st=1',
             'lmo-saveliga.php' => 'file=golden/basic.l98',
             'lmo-adminmimesend.php' => '',
             'lmo-adminjavascript.php' => '',
             'lmo-admincal.php' => '',
-            'lmo-adminrounds.php' => 'file=golden/basic.l98',
             'lmo-adminsubnavi.php' => 'file=golden/basic.l98',
             'lmo-savehtml.php' => 'file=golden/basic.l98',
-            'lmo-kocal.php' => '',
-            'lmo-rueckrunde.php' => 'file=golden/basic.l98',
-            'lmo-dirlist.php' => '',
             'lmo-openfile.php' => 'file=golden/basic.l98',
         ] as $script => $query) {
             $t->add('direkter Aufruf ' . $script, $c->get($script, $query), $c->changes());

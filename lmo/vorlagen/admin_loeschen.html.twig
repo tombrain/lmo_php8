@@ -1,0 +1,33 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Eine Liga loeschen (Lmo\Web\Admin\LoeschenController), bis 4.5 lmo-admindelete.php mit lmo-admindeldir.php #}
+      <table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><h1>{{ text[295]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="nobr" align="left">
+                  <ul>
+{% for l in ligen %}
+                    <li><a href="{{ link|raw }}{{ l.pfad|raw }}" onclick="return dellmolink(this.href, {{ l.name|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES')) }});">{{ l.name|raw }}</a></li>
+{% else %}
+                    <li>[{{ text[223]|raw }}]</li>
+{% endfor %}
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>

@@ -21,88 +21,34 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 
-// Tipp noch änderbar oder nicht
+// Tipp noch änderbar oder nicht (Lmo\Addon\Tipp\Tippzeit). Gezeigten Spieltag, geladene Liga und den
+// Sicherheitsabstand gibt der Aufrufer mit; die Einstellungen liest lmo_tippzeit() aus der Konfiguration.
 
-function tippaenderbar($mterm0, $datum1, $datum2) {
-    global $plus; // eine Minute Sicherheitsabstand zwischen Seitenaufruf und abspeichern
+/**
+ * Die Tippzeit nach den Einstellungen des Tippspiels (tipp/cfg.txt, deftime aus cfg.txt).
+ */
+function lmo_tippzeit(): \Lmo\Addon\Tipp\Tippzeit {
     global $tipp_imvorraus;
-    global $st;
-    global $lmo_liga;
-    // aktueller Spieltag der geladenen Liga
-    $stx = isset($lmo_liga) ? $lmo_liga->einstellungen()->aktuellerSpieltag() : 0;
     global $tipp_tippBis;
     global $tipp_tippohne;
     global $deftime;
 
-    if ($tipp_imvorraus >= 0 && $st > ($stx + $tipp_imvorraus)) {
-        $btip = false;
-    }
-    else {
-        $btip = false;
-        $now = strtotime('+' . ($tipp_tippBis + $plus) . ' minute');
-        if ($mterm0 > 0) {
-            if ($now < $mterm0) {
-                $btip = true;
-            }
-        }
-        else {
-            if ($datum1 != '') {
-                if ($tipp_tippohne == 1 && $deftime > 0) {
-                    $datum1a = mktime(substr($deftime, 0, 2), substr($deftime, 3, 2), 0, substr($datum1, 3, 2), substr($datum1, 0, 2), substr($datum1, -4));
-                }
-                else {
-                    $datum1a = mktime(0, 0, 0, substr($datum1, 3, 2), substr($datum1, 0, 2), substr($datum1, -4));
-                }
-                if ($now < $datum1a) {
-                    $btip = true;
-                }
-            }
-            elseif ($datum2 != '') {
-                if ($tipp_tippohne == 1 && $deftime > 0) {
-                    $datum1a = mktime(substr($deftime, 0, 2), substr($deftime, 3, 2), 0, substr($datum2, 3, 2), substr($datum2, 0, 2), substr($datum2, -4));
-                }
-                else {
-                    $datum1a = mktime(0, 0, 0, substr($datum2, 3, 2), substr($datum2, 0, 2), substr($datum2, -4));
-                }
-                if ($now < $datum1a) {
-                    $btip = true;
-                }
-            }
-        }
-    }
-    return $btip;
+    return new \Lmo\Addon\Tipp\Tippzeit((int)$tipp_tippBis, $tipp_tippohne == 1, (string)$deftime, (int)$tipp_imvorraus);
+}
+
+/**
+ * @param mixed $st gezeigter Spieltag
+ * @param \Lmo\Liga\Rohdaten\Liga|null $lmo_liga geladene Liga (ihr aktueller Spieltag)
+ * @param int $plus eine Minute Sicherheitsabstand zwischen Seitenaufruf und abspeichern
+ */
+function tippaenderbar($mterm0, $datum1, $datum2, $st, $lmo_liga, $plus) {
+    // aktueller Spieltag der geladenen Liga
+    $stx = isset($lmo_liga) ? $lmo_liga->einstellungen()->aktuellerSpieltag() : 0;
+
+    return lmo_tippzeit()->aenderbar((int)$mterm0, (string)$datum1, (string)$datum2, is_int($st) || is_string($st) ? $st : null, $stx, (int)$plus);
 }
 
 function zeit($mterm0, $datum1, $datum2) {
-    global $tipp_tippohne;
-    global $deftime;
-    global $tipp_tippBis;
-
-    if ($mterm0 > 0) {
-        $zeit = $mterm0;
-    }
-    elseif ($datum1 != '') {
-        if ($tipp_tippohne == 1 && $deftime > 0) {
-            $zeit = mktime(substr($deftime, 0, 2), substr($deftime, 3, 2), 0, substr($datum1, 3, 2), substr($datum1, 0, 2), substr($datum1, -4));
-        }
-        else {
-            $zeit = mktime(0, 0, 0, substr($datum1, 3, 2), substr($datum1, 0, 2), substr($datum1, -4));
-        }
-    }
-    elseif ($datum2 != '') {
-        if ($tipp_tippohne == 1 && $deftime > 0) {
-            $zeit = mktime(substr($deftime, 0, 2), substr($deftime, 3, 2), 0, substr($datum2, 3, 2), substr($datum2, 0, 2), substr($datum2, -4));
-        }
-        else {
-            $zeit = mktime(0, 0, 0, substr($datum2, 3, 2), substr($datum2, 0, 2), substr($datum2, -4));
-        }
-    }
-    else {
-        $zeit = '';
-    }
-    if ($zeit != '') {
-        $zeit -= $tipp_tippBis * 60;
-    }
-    return $zeit;
+    return lmo_tippzeit()->bis((int)$mterm0, (string)$datum1, (string)$datum2) ?? '';
 }
 ?>

@@ -1,0 +1,63 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Einstellungen der Addons (Lmo\Web\Admin\AddonsController), bis 4.5 lmo-adminaddon.php #}
+      <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=options" onclick="return chklmolink();" title="{{ text[320]|raw }}">{{ text[319]|raw }}</a></td>
+          <td align="center">{{ text[497]|raw }}</td>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=design" onclick="return chklmolink();" title="{{ text[422]|raw }}">{{ text[421]|raw }}</a></td>
+          <td align="center"><a href="{{ adresse }}?action=admin&amp;todo=user" onclick="return chklmolink();" title="{{ text[318]|raw }}">{{ text[317]|raw }}</a></td>
+        </tr>
+      </table>
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center" colspan="2">{{ warnung|raw }}</td>
+        </tr>
+        <tr>
+          <td align="center" colspan="2"><h1>{{ text[498]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td valign="top">
+            <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for addon in addons %}
+              <tr>
+                <td align="right"{% if loop.index0 == show %} class="active">{{ addon.name }}{% else %} class="lmost4"><a href="{{ adresse }}?action=admin&amp;todo=addons&amp;show={{ loop.index0 }}">{{ addon.name }}</a>{% endif %}</td>
+              </tr>
+{% endfor %}
+            </table>
+          </td>
+          <td align="left" valign="top">
+            <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="addons">
+              <input type="hidden" name="save" value="1">
+              <input type="hidden" name="file" value="{{ datei }}">
+              <input type="hidden" name="show" value="{{ show }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% for addon in addons|filter((a, i) => i == show) %}
+{% for name, wert in addon.werte %}
+                <tr>
+                  <td class="lmost5" width="20">&nbsp;</td>
+                  <td align="right">{{ name }}</td>
+                  <td align="left"><input class="lmo-formular-input" type="text" name="x{{ name }}" size="30" value="{{ wert }}" onChange="dolmoedit()"></td>
+                </tr>
+{% endfor %}
+{% endfor %}
+                <tr>
+                  <td class="lmost5" colspan="3" align="center">
+                    <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[188]|raw }}">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>

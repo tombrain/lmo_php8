@@ -67,7 +67,12 @@ function lmo_latest_release($packagist, string $package = LMO_PACKAGE): ?array
 {
     $latest = null;
     $entry = array();
-    $list = isset($packagist['packages'][$package]) && is_array($packagist['packages'][$package]) ? $packagist['packages'][$package] : array();
+    // Werte der Antwort als Text; was kein einfacher Wert ist, zaehlt als leer
+    $text = static function ($wert): string {
+        return is_scalar($wert) ? (string)$wert : '';
+    };
+    $packages = is_array($packagist) && isset($packagist['packages']) && is_array($packagist['packages']) ? $packagist['packages'] : array();
+    $list = isset($packages[$package]) && is_array($packages[$package]) ? $packages[$package] : array();
     foreach ($list as $diff) {
         foreach ((array)$diff as $key => $value) {
             if ($value === '__unset') {
@@ -76,17 +81,18 @@ function lmo_latest_release($packagist, string $package = LMO_PACKAGE): ?array
                 $entry[$key] = $value;
             }
         }
-        $version = isset($entry['version']) ? ltrim((string)$entry['version'], 'vV') : '';
+        $version = ltrim($text($entry['version'] ?? ''), 'vV');
         // nur fertige Versionen, keine alpha/beta/RC
         if (!preg_match('/^\d+(\.\d+)+$/', $version) || ($latest !== null && version_compare($version, $latest['version'], '<='))) {
             continue;
         }
-        $source = isset($entry['source']['url']) ? (string)preg_replace('/\.git$/', '', (string)$entry['source']['url']) : '';
+        $quelle = isset($entry['source']) && is_array($entry['source']) ? $text($entry['source']['url'] ?? '') : '';
+        $source = $quelle !== '' ? (string)preg_replace('/\.git$/', '', $quelle) : '';
         $latest = array(
             'version' => $version,
-            'time' => isset($entry['time']) ? substr((string)$entry['time'], 0, 10) : '',
-            'php' => isset($entry['require']['php']) ? (string)$entry['require']['php'] : '',
-            'changelog' => preg_match('#^https://#', $source) ? $source . '/blob/' . rawurlencode((string)$entry['version']) . '/changelog.md' : '',
+            'time' => substr($text($entry['time'] ?? ''), 0, 10),
+            'php' => isset($entry['require']) && is_array($entry['require']) ? $text($entry['require']['php'] ?? '') : '',
+            'changelog' => preg_match('#^https://#', $source) ? $source . '/blob/' . rawurlencode($text($entry['version'] ?? '')) . '/changelog.md' : '',
         );
     }
     return $latest;
@@ -106,7 +112,7 @@ function lmo_update_info(string $cacheFile, bool $force = false, int $maxAge = 8
     $cache = is_file($cacheFile) ? json_decode((string)@file_get_contents($cacheFile), true) : null;
     $checked = is_array($cache) && isset($cache['checked']) && is_int($cache['checked']) ? $cache['checked'] : null;
     $known = is_array($cache) && isset($cache['latest']) ? lmo_release_from_cache($cache['latest']) : null;
-    if ($known === null && isset($cache['latest'])) {
+    if ($known === null && is_array($cache) && isset($cache['latest'])) {
         $checked = null; // beschaedigte Merkdatei: neu fragen
     }
     if (!$force && $checked !== null && $now - $checked < $maxAge && $checked <= $now) {
@@ -119,7 +125,7 @@ function lmo_update_info(string $cacheFile, bool $force = false, int $maxAge = 8
         if (!ini_get('allow_url_fopen')) {
             return $known;
         }
-        $fetch = static function ($url) {
+        $fetch = static function (string $url) {
             $context = stream_context_create(array('http' => array('timeout' => 3, 'user_agent' => 'LMO update check')));
             return @file_get_contents($url, false, $context);
         };

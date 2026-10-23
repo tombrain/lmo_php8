@@ -8,7 +8,7 @@
         "Liga Manager Online",
         "Sportligen verwalten"
     ],
-    "license": "GPL-2.0-only",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Rene Marth (joker)",
@@ -25,9 +25,10 @@
         "forum": "https://www.liga-manager-online.org/forum/"
     },
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "pear/html_template_it": "^1.3.3",
-        "phpmailer/phpmailer": "^7.1"
+        "phpmailer/phpmailer": "^7.1",
+        "twig/twig": "^3.27"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.3",
@@ -42,9 +43,10 @@
             "lmo/includes/LmoTemplate.php"
         ],
         "psr-4": {
+            "Lmo\\Addon\\": "src/Addon/",
             "Lmo\\Install\\": "src/Install/",
             "Lmo\\Liga\\": "src/Liga/",
-            "Lmo\\Tipp\\": "src/Tipp/"
+            "Lmo\\Web\\": "src/Web/"
         }
     },
     "bin": [
@@ -71,7 +73,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0.30"
+            "php": "8.1.31"
         },
         "sort-packages": true
     }

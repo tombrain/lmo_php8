@@ -1,0 +1,35 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Menue des Tippspiels (Lmo\Addon\Tipp\Tipprahmen::menue()). Texte und Links sind fertiges HTML. -#}
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td class="nobr" align="left">
+{%- if uebersicht %}<a href="{{ uebersicht|raw }}" title="{{ t[53]|raw }}">{{ t[52]|raw }}</a>{% else %}{{ t[52]|raw }}{% endif %}&nbsp;&nbsp;
+{%- for punkt in punkte %}{% if punkt.link %}<a href="{{ punkt.link|raw }}" title="{{ punkt.titel|raw }}">{{ punkt.name|raw }}</a>{% else %}{{ punkt.name|raw }}{% endif %}&nbsp;&nbsp;{% endfor %}
+    </td>
+    <td width="8">&nbsp;</td>
+    <td class="nobr" align="right">
+{%- if regeln is not null %}
+      <a href="#" class="modern-link" onclick="document.getElementById('regelnModal').showModal(); return false;">{{ t[185]|raw }}</a>
+      <!-- Das Modal -->
+      <dialog id="regelnModal" style="border:none; border-radius:20px; padding:0; width:95%; max-width:850px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow:hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #fff; border-bottom: 1px solid #edf2f7;">
+          <h2 style="margin:0; font-size:1.1rem; font-family:sans-serif; color: #1a202c;">{{ t[185]|raw }}</h2>
+          <button onclick="document.getElementById('regelnModal').close();" style="background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-weight: 600; transition: all 0.2s;">{{ text[347]|raw }} ×</button>
+        </div>
+        <div style="max-height: 75vh; overflow-y: auto; background: #fff;">
+          <div class="regeln-wrapper">{{ regeln|raw }}</div>
+        </div>
+      </dialog>&nbsp;&nbsp;
+{%- endif %}<a href="{{ abmelden|raw }}">{{ text[88]|raw }}</a>&nbsp;
+    </td>
+  </tr>
+</table>

@@ -220,7 +220,7 @@
 <td class="nobr">17.05.2025 15:30</td>
 <td width="2">&nbsp;</td>
 <td class="nobr" align="right">
-<a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15" title="Hier gehts zum Spielplan der Mannschaft">Borussia M'gladbach</a>&nbsp;</td>
+<a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15" title="Hier gehts zum Spielplan der Mannschaft">Borussia M&#039;gladbach</a>&nbsp;</td>
 <td align="center" width="10">-</td>
 <td class="nobr" align="left">&nbsp;<a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=17" title="Hier gehts zum Spielplan der Mannschaft">VfL Wolfsburg</a>
 </td>
@@ -390,7 +390,7 @@
 </td>
 <td class="lmoTabelleCleague nobr" align="center">
 </td>
-<td class="lmoTabelleCleague nobr" align="left">Borussia M'gladbach</td>
+<td class="lmoTabelleCleague nobr" align="left">Borussia M&#039;gladbach</td>
 <td class="lmoTabelleCleague nobr" style="width:2px;">&nbsp;</td>
 <td class="lmoTabelleCleague nobr">&nbsp;</td>
 <td class="lmoTabelleCleague nobr" style="width:2px;">&nbsp;</td>

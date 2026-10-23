@@ -1,0 +1,36 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Eine Liga hochladen (Lmo\Web\Admin\HochladenController), bis 4.5 lmo-adminupload.php #}
+<table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ text[299]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form enctype="multipart/form-data" action="{{ adresse }}" method="post">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td align="center"><acronym title="{{ text[302]|raw }}">{{ text[300]|raw }}:</acronym></td>
+          </tr>
+          <tr>
+            <td align="center">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="upload">
+              <input type="hidden" name="upl" value="1">
+              <input type="file" name="userfile">
+            </td>
+          </tr>
+          <tr><td align="center"><input type="submit" value="{{ text[301]|raw }}"></td></tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>

@@ -39,11 +39,11 @@ docker compose run --rm tests
 docker compose run --rm tests --filter CalculationTest
 docker compose run --rm tests --filter 'PagesTest.*action=table'
 
-# Andere PHP-Version (README nennt 8.0 bis 8.5)
-PHP_VERSION=8.0 docker compose run --rm tests
+# Andere PHP-Version (README nennt 8.1 bis 8.5)
+PHP_VERSION=8.1 docker compose run --rm tests
 ```
 
-Ohne Docker: `composer install && php vendor/bin/phpunit` (PHP ≥ 8.0, optional `faketime`).
+Ohne Docker: `composer install && php vendor/bin/phpunit` (PHP ≥ 8.1, optional `faketime`).
 
 **Wichtig:** Snapshots nur am unveränderten Original aufzeichnen und nur dann neu aufzeichnen, wenn
 eine Abweichung geprüft und gewollt ist. Eine Abweichung ist zunächst ein Befund, kein Grund
@@ -76,7 +76,7 @@ eine Datei typisiert und von globalen Variablen befreit, kommt sie in `phpstan-s
 Auf Stufe 0 ist der gesamte Code ohne Meldung; eine Baseline gibt es deshalb nicht. Die einzige
 Ausnahme steht mit Begruendung in `phpstan.neon.dist` (`ignoreErrors`).
 
-Geprueft wird fuer PHP 8.0 bis 8.5 (`phpVersion` in der Konfiguration), unabhaengig davon, mit
+Geprueft wird fuer PHP 8.1 bis 8.5 (`phpVersion` in der Konfiguration), unabhaengig davon, mit
 welcher PHP-Version PHPStan selbst laeuft.
 
 ### Kopfkommentar einer alten Datei
@@ -244,7 +244,8 @@ Steht dort `KEIN FORMULAR GEFUNDEN` oder `LEERES FORMULAR`, hat der Test das For
 (falsche Annahme, nicht Verhalten der Anwendung).
 
 Fixture-Aenderung gegenueber v9: `Instance` legt jetzt auch an, was der Installer anlegen laesst
-(`addon/tipp/lmo-tippauth.txt`, Tipp- und Spieler-Verzeichnisse). Ohne diese Datei bricht
+(Tipperdatei `lmo-tippauth.txt`, Tipp- und Spieler-Verzeichnisse; heute im Datenordner `daten/tipp/`
+und `daten/spieler/`, beim Originalstand noch im Addon-Ordner). Ohne die Tipperdatei bricht
 `todo=tippuser` mit einem Fatal Error ab. Dadurch aendern sich einige Snapshots unter
 `admin-views` (`*todo=tipp*`); sie muessen neu aufgezeichnet werden.
 
@@ -279,8 +280,8 @@ im Kern einzeln geprueft:
 | Datei | Befund | Massnahme |
 |---|---|---|
 | `index.php` | reiner Redirect auf `lmo.php` | `CoreGapsTest::testIndexRedirectsToLmoPhp` |
-| `lmo-adminopenprogram.php` | Spielplan "aus Datei uebernehmen"; `$xprogram` wird ungeprueft an `fopen()` uebergeben (nur Suffix `.l98` verlangt) - eigener, kleiner Befund zum Pfad-Handling, siehe Klassenkommentar in `CoreGapsTest.php` | `CoreGapsTest::testCreateLeagueFromTemplate` |
-| `lmo-adminrndprogram.php` | erzeugt einen echten Zufallsspielplan (nicht deterministisch) | `RandomScheduleSmokeTest`: kein Golden-Master-Vergleich, sondern Plausibilitaetspruefung (jedes Team pro Spieltag genau einmal) + Pruefung auf PHP-Fehler |
+| `lmo-adminopenprogram.php` (heute `Lmo\Web\Admin\NeuController`) | Spielplan "aus Datei uebernehmen"; `$xprogram` wird ungeprueft an `fopen()` uebergeben (nur Suffix `.l98` verlangt) - eigener, kleiner Befund zum Pfad-Handling, siehe Klassenkommentar in `CoreGapsTest.php` | `CoreGapsTest::testCreateLeagueFromTemplate` |
+| `lmo-adminrndprogram.php` (heute `Lmo\Liga\Zufallsspielplan`, mit Unit-Test) | erzeugt einen echten Zufallsspielplan (nicht deterministisch) | `RandomScheduleSmokeTest`: kein Golden-Master-Vergleich, sondern Plausibilitaetspruefung (jedes Team pro Spieltag genau einmal) + Pruefung auf PHP-Fehler |
 | `lmo-admindir.php` | **toter Code** - keine einzige Referenz im gesamten Repository (auch nicht in Addons) | bewusst nicht getestet, bleibt bei 0% |
 | `lmo-paintgraph.php` | war toter Code ohne Referenz und ist in 4.2.1 entfernt (die Fieberkurve zeichnet der Browser mit Chart.js; das Tippspiel-Addon hat eine eigene Datei `lmo-tipppaintgraph.php`) | entfaellt |
 | `lmo-adminuserpass.php`, `lmo-openfiledat.php` | nur vom Tippspiel-Addon genutzt (Zufallspasswort bei neuem Tipper bzw. E-Mail-Versand mit Spieltagsbezug) | zurueckgestellt, gehoert zum separaten Block "Tippspiel-Addon" (aktuell 4% Abdeckung, 64 Dateien) |
@@ -320,6 +321,6 @@ Einzelspiel-Modus (Standard), oeffentliche Seiten (`action=program&selteam=N`,
 `action=results&st=N`, `action=cal`), Admin-Bearbeitung und ein Roundtrip (unveraendert speichern).
 
 NICHT abgedeckt (eigener, groesserer Block): Hin-/Rueckspiel und Best-of-3/5/7 (Modus 2/3/5/7),
-Playoffmode-Varianten (2-2-1 usw., siehe `$playoffmode` in `lmo-adminedit.php`/
+Playoffmode-Varianten (2-2-1 usw., siehe `heimZuerst()`/`toreReihe()` in `ErgebnisseBearbeitenController`/
 `lmo-showkoresults.php`), Spielerstatistik-Addon fuer KO, Tippspiel-Addon fuer KO
 (`lmo-tippeditko.php` und Verwandte), groessere Turnierbaeume (8/16/24/32+ Teams).

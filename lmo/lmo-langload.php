@@ -92,6 +92,17 @@ while (false !== ($f = readdir($handle))) {
     }
 }
 
+//Die lang-Dateien der Addons in ihrem eigenen Ordner (addon/<name>/lang); bis 4.5 lagen sie unter lang/<name>
+foreach (scandir(PATH_TO_ADDONDIR) ?: array() as $f) {
+    $lmo_addonlang = PATH_TO_ADDONDIR . '/' . $f . '/lang';
+    if ($f != '.' && $f != '..' && is_dir($lmo_addonlang)) {
+        if (file_exists($lmo_addonlang . '/lang-' . $deflang . '.txt')) read_langfile($text, $lmo_addonlang . '/lang-' . $deflang . '.txt', $f);
+        if (isset($lmouserlang)) {
+            if (file_exists($lmo_addonlang . '/lang-' . $lmouserlang . '.txt')) read_langfile($text, $lmo_addonlang . '/lang-' . $lmouserlang . '.txt', $f);
+        }
+    }
+}
+
 $orgpkt = $text[37];
 $orgtor = $text[38];
 

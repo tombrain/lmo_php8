@@ -1,0 +1,62 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Kalender einer Liga oder eines Pokals (Lmo\Web\Controller\KalenderController): ein Monat mit
+    den Spieltagen an ihren Tagen oder ein Jahr mit ihnen in ihren Monaten. Links und Sprachtexte
+    sind fertiges HTML. -#}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+{% if monat %}
+  <tr>
+    <td align="center">
+      <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="left"><a href="{{ link|raw }}{{ zurueck }}" title="{{ text[142]|raw }}">{{ text[5]|raw }}</a></td>
+          <td align="center"><a href="{{ link|raw }}{{ jahr }}" title="{{ text[173]|raw }}">{{ titel|raw }}</a></td>
+          <td align="right"><a href="{{ link|raw }}{{ heute }}" title="{{ text[143]|raw }}">{{ text[154]|raw }}</a>&nbsp;&nbsp;<a href="{{ link|raw }}{{ weiter }}" title="{{ text[144]|raw }}">{{ text[7]|raw }}</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="lmoKalender" align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+{% for nr in 147..153 %}
+          <th width="60" align="center">{{ text[nr]|raw }}</th>
+{% endfor %}
+        </tr>
+{#- je Woche eine Zeile, Montag bis Sonntag #}
+{% for woche in wochen %}
+<tr>{% for tag in woche %}{% if tag.leer %}<td class="lmoLeer">&nbsp;</td>{% else %}<td align='left' height="50" valign="top" class="{{ tag.klasse }}">{{ tag.tag }}{% if tag.links != '' %}<br>{{ tag.links|raw }}{% endif %}</td>{% endif %}{% endfor %}</tr>
+{% endfor %}
+{% else %}
+  <tr>
+    <td align="center">
+      <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="left"><a href="{{ link|raw }}{{ zurueck }}" title="{{ text[157]|raw }}">{{ text[5]|raw }}</a></td>
+          <td align="center">{{ text[156]|raw }} {{ titel }}</td>
+          <td align="right"><a href="{{ link|raw }}{{ heute }}" title="{{ text[158]|raw }}">{{ text[154]|raw }}</a>&nbsp;&nbsp;<a href="{{ link|raw }}{{ weiter }}" title="{{ text[159]|raw }}">{{ text[7]|raw }}</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="lmoKalender" align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{#- je Halbjahr eine Zeile mit den Monaten und eine mit ihren Spieltagen #}
+{%- for halbjahr in monate %}
+<tr>{% for m in halbjahr %}<th width="70" ><a href="{{ link|raw }}{{ m.nr }}{{ titel }}" title="{{ text[172]|raw }}">{{ text[159 + m.index]|raw }}</a></th>{% endfor %}</tr><tr><td valign='top' height="150">{% for m in halbjahr %}{% if not loop.first %}</td><td valign='top' >{% endif %}{{ m.links|raw }}<br>{% endfor %}</td></tr>
+{%- endfor %}
+{% endif %}
+      </table>
+    </td>
+  </tr>
+</table>

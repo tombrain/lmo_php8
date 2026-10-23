@@ -143,7 +143,7 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von&nbsp;Borussia M'gladbach">
+<acronym title="Der Spielplan von&nbsp;Borussia M&#039;gladbach">
 <a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15">BMG</a>
 </acronym>
 </td>
@@ -422,7 +422,7 @@
 <td style="width:2px;">&nbsp;</td>
 <td class="nobr">11.01.2025 15:30</td>
 <td style="width:2px;">&nbsp;</td>
-<td class="nobr" align="right">Borussia M'gladbach&nbsp;</td>
+<td class="nobr" align="right">Borussia M&#039;gladbach&nbsp;</td>
 <td align="center" style="width:10px;">-</td>
 <td class="nobr" align="left">&nbsp;<strong>Bayern München</strong>
 </td>
@@ -697,7 +697,7 @@
 <td class="nobr" align="right">
 <strong>Bayern München</strong>&nbsp;</td>
 <td align="center" style="width:10px;">-</td>
-<td class="nobr" align="left">&nbsp;Borussia M'gladbach</td>
+<td class="nobr" align="left">&nbsp;Borussia M&#039;gladbach</td>
 <td style="width:2px;">&nbsp;</td>
 <td align="right">_</td>
 <td align="center" style="width:8px;">:</td>

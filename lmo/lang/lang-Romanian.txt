@@ -484,9 +484,7 @@
 483=Versiunea pentru tiparire
 484=Doriți să creați o vizualizare pentru imprimantă?
 485=Statistici jucator
-486=Ar trebui să fie afișată intrarea statisticilor jucătorilor? (Trebuie să fie activat și individual pentru fiecare ligă!)
 487=Pronosticuri
-488=Doriti sa aratati pronosticurile?
 489=Statistici goluri
 490=Ar trebui să fie afișate statistici suplimentare despre obiective (goaluri totale și goluri medii)?
 491=sub clasament

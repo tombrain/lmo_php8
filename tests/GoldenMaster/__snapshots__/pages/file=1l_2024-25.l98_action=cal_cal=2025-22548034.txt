@@ -1,0 +1,231 @@
+### file=1l_2024-25.l98&action=cal&cal=2025
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>1. Bundesliga 2024/25</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>1. Bundesliga 2024/25</h1>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">Kalender&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=results" title="Anzeige der Spielergebnisse und Tabelle eines bestimmten Spieltags">Ergebnisse/Tabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=program" title="Anzeige des Spielplans einer bestimmten Mannschaft">Spielpläne</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cross" title="Anzeige aller Ergebnisse auf einen Blick">Kreuztabelle</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=graph" title="Anzeige der Fieberkurven">Fieberkurven</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=stats&amp;stat1=0&amp;stat2=0" title="Anzeige der Statistiken und Prognosen">Ligastatistik</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=spieler" title="Anzeige der Spielerstatistiken">Spielerstatistik</a>&nbsp;&nbsp;&nbsp;&nbsp;<td class="lmoMenu" align="right">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=info" title="Informationen zu diesem PHP-Script und seinem Autor">Info</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="left">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=2024" title="ein Jahr zurückblättern">«</a>
+</td>
+<td align="center">Übersicht 2025</td>
+<td align="right">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=032025" title="zum aktuellen Monat">#</a>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=2026" title="ein Jahr vorblättern">»</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoKalender" align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=012025" title="zur Ansicht dieses Monats wechseln">Januar</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=022025" title="zur Ansicht dieses Monats wechseln">Februar</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=032025" title="zur Ansicht dieses Monats wechseln">März</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=042025" title="zur Ansicht dieses Monats wechseln">April</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=052025" title="zur Ansicht dieses Monats wechseln">Mai</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=062025" title="zur Ansicht dieses Monats wechseln">Juni</a>
+</th>
+</tr>
+<tr>
+<td valign='top' height="150">&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=16" title="16. Spieltag: &#10;RB Leipzig - Werder Bremen, &#10;Borussia Dortmund - Bayer 04 Leverkusen, &#10;TSG Hoffenheim - VfL Wolfsburg, &#10;1.FC Heidenheim - 1.FC Union Berlin, &#10;SC Freiburg - Holstein Kiel, &#10;FC Augsburg - VfB Stuttgart, &#10;FSV Mainz 05 - VfL Bochum, &#10;Borussia M&#039;gladbach - Bayern München, &#10;FC St. Pauli - Eintracht Frankfurt">16. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=17" title="17. Spieltag: &#10;Bayer 04 Leverkusen - FSV Mainz 05, &#10;VfB Stuttgart - RB Leipzig, &#10;Bayern München - TSG Hoffenheim, &#10;Eintracht Frankfurt - SC Freiburg, &#10;Werder Bremen - 1.FC Heidenheim, &#10;VfL Wolfsburg - Borussia M&#039;gladbach, &#10;1.FC Union Berlin - FC Augsburg, &#10;VfL Bochum - FC St. Pauli, &#10;Holstein Kiel - Borussia Dortmund">17. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=18" title="18. Spieltag: &#10;Bayer 04 Leverkusen - Borussia M&#039;gladbach, &#10;VfB Stuttgart - SC Freiburg, &#10;Bayern München - VfL Wolfsburg, &#10;Eintracht Frankfurt - Borussia Dortmund, &#10;1.FC Heidenheim - FC St. Pauli, &#10;Werder Bremen - FC Augsburg, &#10;1.FC Union Berlin - FSV Mainz 05, &#10;VfL Bochum - RB Leipzig, &#10;Holstein Kiel - TSG Hoffenheim">18. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=19" title="19. Spieltag: &#10;RB Leipzig - Bayer 04 Leverkusen, &#10;Borussia Dortmund - Werder Bremen, &#10;TSG Hoffenheim - Eintracht Frankfurt, &#10;SC Freiburg - Bayern München, &#10;FC Augsburg - 1.FC Heidenheim, &#10;VfL Wolfsburg - Holstein Kiel, &#10;FSV Mainz 05 - VfB Stuttgart, &#10;Borussia M&#039;gladbach - VfL Bochum, &#10;FC St. Pauli - 1.FC Union Berlin">19. ST</a>
+<br>
+<br>
+</td>
+<td valign='top'>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=20" title="20. Spieltag: &#10;Bayer 04 Leverkusen - TSG Hoffenheim, &#10;VfB Stuttgart - Borussia M&#039;gladbach, &#10;Bayern München - Holstein Kiel, &#10;Eintracht Frankfurt - VfL Wolfsburg, &#10;1.FC Heidenheim - Borussia Dortmund, &#10;Werder Bremen - FSV Mainz 05, &#10;1.FC Union Berlin - RB Leipzig, &#10;VfL Bochum - SC Freiburg, &#10;FC St. Pauli - FC Augsburg">20. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=21" title="21. Spieltag: &#10;Bayern München - Werder Bremen, &#10;RB Leipzig - FC St. Pauli, &#10;Borussia Dortmund - VfB Stuttgart, &#10;TSG Hoffenheim - 1.FC Union Berlin, &#10;SC Freiburg - 1.FC Heidenheim, &#10;VfL Wolfsburg - Bayer 04 Leverkusen, &#10;FSV Mainz 05 - FC Augsburg, &#10;Borussia M&#039;gladbach - Eintracht Frankfurt, &#10;Holstein Kiel - VfL Bochum">21. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=22" title="22. Spieltag: &#10;Bayer 04 Leverkusen - Bayern München, &#10;VfB Stuttgart - VfL Wolfsburg, &#10;Eintracht Frankfurt - Holstein Kiel, &#10;1.FC Heidenheim - FSV Mainz 05, &#10;Werder Bremen - TSG Hoffenheim, &#10;FC Augsburg - RB Leipzig, &#10;1.FC Union Berlin - Borussia M&#039;gladbach, &#10;VfL Bochum - Borussia Dortmund, &#10;FC St. Pauli - SC Freiburg">22. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=23" title="23. Spieltag: &#10;Bayern München - Eintracht Frankfurt, &#10;RB Leipzig - 1.FC Heidenheim, &#10;Borussia Dortmund - 1.FC Union Berlin, &#10;TSG Hoffenheim - VfB Stuttgart, &#10;SC Freiburg - Werder Bremen, &#10;VfL Wolfsburg - VfL Bochum, &#10;FSV Mainz 05 - FC St. Pauli, &#10;Borussia M&#039;gladbach - FC Augsburg, &#10;Holstein Kiel - Bayer 04 Leverkusen">23. ST</a>
+<br>
+<br>
+</td>
+<td valign='top'>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=24" title="24. Spieltag: &#10;VfB Stuttgart - Bayern München, &#10;RB Leipzig - FSV Mainz 05, &#10;Eintracht Frankfurt - Bayer 04 Leverkusen, &#10;1.FC Heidenheim - Borussia M&#039;gladbach, &#10;Werder Bremen - VfL Wolfsburg, &#10;FC Augsburg - SC Freiburg, &#10;1.FC Union Berlin - Holstein Kiel, &#10;VfL Bochum - TSG Hoffenheim, &#10;FC St. Pauli - Borussia Dortmund">24. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=25" title="25. Spieltag: &#10;Bayer 04 Leverkusen - Werder Bremen, &#10;Bayern München - VfL Bochum, &#10;Borussia Dortmund - FC Augsburg, &#10;Eintracht Frankfurt - 1.FC Union Berlin, &#10;TSG Hoffenheim - 1.FC Heidenheim, &#10;SC Freiburg - RB Leipzig, &#10;VfL Wolfsburg - FC St. Pauli, &#10;Borussia M&#039;gladbach - FSV Mainz 05, &#10;Holstein Kiel - VfB Stuttgart">25. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=26" title="26. Spieltag: &#10;VfB Stuttgart - Bayer 04 Leverkusen, &#10;RB Leipzig - Borussia Dortmund, &#10;1.FC Heidenheim - Holstein Kiel, &#10;Werder Bremen - Borussia M&#039;gladbach, &#10;FC Augsburg - VfL Wolfsburg, &#10;FSV Mainz 05 - SC Freiburg, &#10;1.FC Union Berlin - Bayern München, &#10;VfL Bochum - Eintracht Frankfurt, &#10;FC St. Pauli - TSG Hoffenheim">26. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=27" title="27. Spieltag: &#10;Bayer 04 Leverkusen - VfL Bochum, &#10;Bayern München - FC St. Pauli, &#10;Borussia Dortmund - FSV Mainz 05, &#10;Eintracht Frankfurt - VfB Stuttgart, &#10;TSG Hoffenheim - FC Augsburg, &#10;SC Freiburg - 1.FC Union Berlin, &#10;VfL Wolfsburg - 1.FC Heidenheim, &#10;Borussia M&#039;gladbach - RB Leipzig, &#10;Holstein Kiel - Werder Bremen">27. ST</a>
+<br>
+<br>
+</td>
+<td valign='top'>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=28" title="28. Spieltag: &#10;RB Leipzig - TSG Hoffenheim, &#10;1.FC Heidenheim - Bayer 04 Leverkusen, &#10;Werder Bremen - Eintracht Frankfurt, &#10;SC Freiburg - Borussia Dortmund, &#10;FC Augsburg - Bayern München, &#10;FSV Mainz 05 - Holstein Kiel, &#10;1.FC Union Berlin - VfL Wolfsburg, &#10;VfL Bochum - VfB Stuttgart, &#10;FC St. Pauli - Borussia M&#039;gladbach">28. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=29" title="29. Spieltag: &#10;Bayer 04 Leverkusen - 1.FC Union Berlin, &#10;VfB Stuttgart - Werder Bremen, &#10;Bayern München - Borussia Dortmund, &#10;Eintracht Frankfurt - 1.FC Heidenheim, &#10;TSG Hoffenheim - FSV Mainz 05, &#10;VfL Wolfsburg - RB Leipzig, &#10;Borussia M&#039;gladbach - SC Freiburg, &#10;VfL Bochum - FC Augsburg, &#10;Holstein Kiel - FC St. Pauli">29. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=30" title="30. Spieltag: &#10;RB Leipzig - Holstein Kiel, &#10;Borussia Dortmund - Borussia M&#039;gladbach, &#10;1.FC Heidenheim - Bayern München, &#10;Werder Bremen - VfL Bochum, &#10;SC Freiburg - TSG Hoffenheim, &#10;FC Augsburg - Eintracht Frankfurt, &#10;FSV Mainz 05 - VfL Wolfsburg, &#10;1.FC Union Berlin - VfB Stuttgart, &#10;FC St. Pauli - Bayer 04 Leverkusen">30. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=31" title="31. Spieltag: &#10;Bayer 04 Leverkusen - FC Augsburg, &#10;VfB Stuttgart - 1.FC Heidenheim, &#10;Bayern München - FSV Mainz 05, &#10;Eintracht Frankfurt - RB Leipzig, &#10;TSG Hoffenheim - Borussia Dortmund, &#10;Werder Bremen - FC St. Pauli, &#10;VfL Wolfsburg - SC Freiburg, &#10;VfL Bochum - 1.FC Union Berlin, &#10;Holstein Kiel - Borussia M&#039;gladbach">31. ST</a>
+<br>
+<br>
+</td>
+<td valign='top'>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=32" title="32. Spieltag: &#10;RB Leipzig - Bayern München, &#10;Borussia Dortmund - VfL Wolfsburg, &#10;1.FC Heidenheim - VfL Bochum, &#10;SC Freiburg - Bayer 04 Leverkusen, &#10;FC Augsburg - Holstein Kiel, &#10;FSV Mainz 05 - Eintracht Frankfurt, &#10;Borussia M&#039;gladbach - TSG Hoffenheim, &#10;1.FC Union Berlin - Werder Bremen, &#10;FC St. Pauli - VfB Stuttgart">32. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=33" title="33. Spieltag: &#10;Bayer 04 Leverkusen - Borussia Dortmund, &#10;VfB Stuttgart - FC Augsburg, &#10;Bayern München - Borussia M&#039;gladbach, &#10;Eintracht Frankfurt - FC St. Pauli, &#10;Werder Bremen - RB Leipzig, &#10;VfL Wolfsburg - TSG Hoffenheim, &#10;1.FC Union Berlin - 1.FC Heidenheim, &#10;VfL Bochum - FSV Mainz 05, &#10;Holstein Kiel - SC Freiburg">33. ST</a>
+<br>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=1l_2024-25.l98&amp;st=34" title="34. Spieltag: &#10;RB Leipzig - VfB Stuttgart, &#10;Borussia Dortmund - Holstein Kiel, &#10;TSG Hoffenheim - Bayern München, &#10;1.FC Heidenheim - Werder Bremen, &#10;SC Freiburg - Eintracht Frankfurt, &#10;FC Augsburg - 1.FC Union Berlin, &#10;FSV Mainz 05 - Bayer 04 Leverkusen, &#10;Borussia M&#039;gladbach - VfL Wolfsburg, &#10;FC St. Pauli - VfL Bochum">34. ST</a>
+<br>
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+</tr>
+<tr>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=072025" title="zur Ansicht dieses Monats wechseln">Juli</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=082025" title="zur Ansicht dieses Monats wechseln">August</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=092025" title="zur Ansicht dieses Monats wechseln">September</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=102025" title="zur Ansicht dieses Monats wechseln">Oktober</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=112025" title="zur Ansicht dieses Monats wechseln">November</a>
+</th>
+<th width="70">
+<a href="/lmo/lmo.php?action=cal&amp;file=1l_2024-25.l98&amp;cal=122025" title="zur Ansicht dieses Monats wechseln">Dezember</a>
+</th>
+</tr>
+<tr>
+<td valign='top' height="150">
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+<td valign='top'>
+<br>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+</td>
+<td align="center">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?file=1l_2024-25.l98&amp;action=cal&amp;cal=2025&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">Letztes Update der Liga:&nbsp;01.01.2025 13:00<br>
+<a href="https://www.liga-manager-online.org" target="_blank" class="lmo-link-trigger" data-info="<strong>Liga Manager Online</strong>This is a clone of the original Liga Manager Online.<br>
+<b>Adapted for PHP 8.</b>
+<br>Clicking this link will take you to the website of the new project." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">LMO 4 for PHP8</a>&nbsp;-&nbsp;<span class="lmo-text-trigger" data-info="<strong>Liga Manager Online</strong>The original Liga Manager Online project on the website www.liga-manager-online.de was discontinued at the end of 2025." onmouseover="showLMOTooltip(this)" onmouseout="hideLMOTooltip()">© 1997-now LMO-Group</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>

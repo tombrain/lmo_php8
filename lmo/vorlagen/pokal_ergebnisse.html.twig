@@ -1,0 +1,80 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Ergebnisse einer Pokalrunde (Lmo\Web\Controller\PokalErgebnisseController). Spieltagsauswahl,
+    Links, Wappen, Tooltips und Sprachtexte sind fertiges HTML. -#}
+{%- macro mannschaft(m, spielplan, text) -%}
+{% if spielplan is not null %}<a href="{{ spielplan|raw }}{{ m.nr }}" title="{{ text[269]|raw }}">{% endif %}{% if m.fett %}<strong>{% endif %}{{ m.name }}{% if m.fett %}</strong>{% endif %}{% if spielplan is not null %}</a>{% endif %}
+{%- endmacro -%}
+{%- import _self as e -%}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center">{{ menue|raw }}</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th colspan="{{ breite }}" align="left">{{ titel|raw }}</th>
+        </tr>
+{% for p in paarungen %}
+{% for z in p.zeilen %}
+{% if z.kopf is not null %}
+        <tr>
+          <th class="nobr" colspan="{{ breite }}">{{ z.kopf|raw }}</th>
+        </tr>
+{% endif %}
+        <tr>
+{% if anstoss %}
+          <td class="nobr">{{ z.anstoss }}</td>
+{% endif %}
+          <td class="nobr" width="2">&nbsp;</td>
+{% if z.normal is not null %}
+          <td class="{% if z.links.sieger %}lmoTurnierSieger {% endif %}nobr" align="right">{{ e.mannschaft(z.links, z.spielplan, text) }}&nbsp;{{ z.links.wappen|raw }}&nbsp;</td>
+          <td class="nobr" align="center" width="10">-</td>
+          <td class="{% if z.rechts.sieger %}lmoTurnierSieger {% endif %}nobr" align="left">&nbsp;{{ z.rechts.wappen|raw }}&nbsp;{{ e.mannschaft(z.rechts, z.spielplan, text) }}</td>
+          <td class="nobr" width="2">&nbsp;</td>
+          <td class="nobr" align="right">{{ z.tore_links }}</td>
+          <td class="nobr" align="center" width="8">:</td>
+          <td class="nobr" align="left">{{ z.tore_rechts }}</td>
+{% endif %}
+          <td class="nobr" width="2">&nbsp;</td>
+          <td class="nobr">{{ z.zusatz|raw }}</td>
+          <td class="nobr" width="2">&nbsp;</td>
+          {#- Spielbericht, Stats Addon, Notiz #}
+          <td class="nobr">{% if berichte %}{% if z.bericht != '' %}{{ z.bericht|raw }}{% endif %}&nbsp;{% endif %}{{ z.addon|raw }}{% if z.notiz != '' %}{{ z.notiz|raw }}{% else %}&nbsp;{% endif %}</td>
+
+        </tr>
+{% endfor %}
+{% if p.trenner %}
+        <tr>
+          <td class="nobr" colspan="{{ breite }}">&nbsp;</td>
+        </tr>
+{% endif %}
+{% endfor %}
+      </table>
+    </td>
+  </tr>
+{#- Vor und Zurück-Pfeile #}
+  <tr>
+    <td>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+{% if zurueck is not null %}
+          <td align="left">&nbsp;<a href="{{ zurueck|raw }}" title="{{ text[6]|raw }}">{{ text[5]|raw }}&nbsp;{{ text[6]|raw }}</a>&nbsp;</td>
+{% endif %}
+{% if vor is not null %}
+          <td align="right">&nbsp;<a href="{{ vor|raw }}" title="{{ text[8]|raw }}">{{ text[8]|raw }}&nbsp;{{ text[7]|raw }}</a>&nbsp;</td>
+{% endif %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

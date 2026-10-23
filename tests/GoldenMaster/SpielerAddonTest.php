@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Addon "spieler" (Spielerstatistik): Der Admin legt Spieler und Spalten an und traegt Werte ein
- * (lmo-statadmin.php, gespeichert in addon/spieler/stats/<liga>.stat), die Ligaseite zeigt sie
- * unter action=spieler (lmo-statshow.php).
+ * (lmo-statadmin.php, gespeichert in daten/spieler/<liga>.stat), die Ligaseite zeigt sie
+ * unter action=spieler (Lmo\Addon\Spieler\StatistikController).
  *
  * Die Tests bauen aufeinander auf und laufen in dieser Reihenfolge auf einer eigenen Testinstanz.
  */
@@ -41,7 +41,7 @@ final class SpielerAddonTest extends TestCase
 
     private static function statFile(?AdminClient $client = null): string
     {
-        return ($client ?? self::$client)->instance()->path() . '/addon/spieler/stats/basic.stat';
+        return ($client ?? self::$client)->instance()->path() . '/daten/spieler/basic.stat';
     }
 
     /** @return string[][] Zeilen der Statistikdatei, Spalten an "#" getrennt */
@@ -209,9 +209,30 @@ final class SpielerAddonTest extends TestCase
         self::assertEquals(0, $players['Zander'][2]);
     }
 
+    public function testStatistikenZiehenAusDemAddonOrdnerUm(): void
+    {
+        // eine Installation von 4.5: die Statistiken liegen noch in addon/spieler/stats
+        $client = Fixture::loggedInClient();
+        $pfad = $client->instance()->path();
+        rmdir($pfad . '/daten/spieler');
+        mkdir($pfad . '/addon/spieler/stats');
+        file_put_contents($pfad . '/addon/spieler/stats/basic.stat', "Name#Tore
+Alt#3
+");
+
+        $html = self::admin([], $client);
+
+        self::assertStringNotContainsString('STDERR', $html);
+        self::assertStringEqualsFile($pfad . '/daten/spieler/basic.stat', "Name#Tore
+Alt#3
+");
+        self::assertFileDoesNotExist($pfad . '/addon/spieler/stats/basic.stat');
+        self::assertStringContainsString('Alt', $html, 'die Seite liest am neuen Ort');
+    }
+
     public function testFormulaWithOtherTextIsNotExecuted(): void
     {
-        $marker = self::$client->instance()->path() . '/addon/spieler/stats/eingeschleust.txt';
+        $marker = self::$client->instance()->path() . '/daten/spieler/eingeschleust.txt';
 
         $html = self::update([], 2, ['formel_str3' => "file_put_contents('$marker', 'x')"]);
 

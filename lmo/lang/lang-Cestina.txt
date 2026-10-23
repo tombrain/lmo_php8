@@ -484,9 +484,7 @@
 483=Nastavení tisku
 484=Měl by být vytvořen pohled vhodný pro tisk?
 485=Hráčská statistika
-486=Měl by se zobrazit záznam statistik hráčů? (Musí být také aktivován individuálně pro každou ligu!)
 487=Tipovačka
-488=Má být zobrazena sázková hra?
 489=Branková statistika
 490=Chcete, aby se zobrazovaly další statistiky cílů (celkové cíle a průměrné cíle)?
 491=pod tabulkou

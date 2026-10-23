@@ -37,101 +37,34 @@ if ($tippfile == "") {
 if (substr($tippfile, -4) != ".tip") {
   exit;
 }
-$tippdaten = array();
-$sekt = "";
-$jkwert = "";
 $jksp = "";
-$datei = fopen($tippfile, "rb");
-if ($datei == false) {
+if (!is_readable($tippfile)) {
   exit;
 }
-while (!feof($datei)) {
-  $zeile = fgets($datei, 1000);
-  $zeile = trim($zeile);
-  if ((substr($zeile, 0, 1) == "@") && (substr($zeile, -1) == "@")) {
-    $jkwert = trim(substr($zeile, 1, -1));
-  } elseif ((substr($zeile, 0, 1) == "[") && (substr($zeile, -1) == "]")) {
-    $sekt = trim(substr($zeile, 1, -1));
-  } elseif ((str_contains($zeile, '=')) && (substr($zeile, 0, 1) != ';')) {
-  //elseif ((strpos($zeile, "=") != false) && (substr($zeile, 0, 1) != ";")) {
-    $schl = trim(substr($zeile, 0, strpos($zeile, "=")));
-    $wert = trim(substr($zeile, strpos($zeile, "=")+1));
-    array_push($tippdaten, $sekt."|".$schl."|".$wert."|".$jkwert."|EOL");
-  }
-}
-fclose($datei);
-
 // der Spieltag aus Sicht des Tippspiels: so viele Paarungen und Spiele je Paarung fassen die Tipps
-$lmo_tipp_lader_runde = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
+$lmo_tipp_lader_runde = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, (int)$st);
+// nur der benoetigte Spieltag wird eingelesen (Lmo\Addon\Tipp\Tippdatei)
+$lmo_tipp_gelesen = \Lmo\Addon\Tipp\Tippdatei::lies($tippfile)->runde((int)$st, $lmo_tipp_lader_runde->plaetze, $lmo_tipp_lader_runde->pokal ? $lmo_tipp_lader_runde->spieleJePaarung : null);
+$jksp = $lmo_tipp_gelesen['joker'];
 if (!$lmo_tipp_lader_runde->pokal) {
   $goaltippa = array_pad(array("_"), $lmo_tipp_lader_runde->plaetze+1, "_");
   $goaltippb = array_pad(array("_"), $lmo_tipp_lader_runde->plaetze+1, "_");
+  foreach ($lmo_tipp_gelesen['tipps'] as $i => $lmo_tipp) {
+    $goaltippa[$i] = $lmo_tipp[0];
+    $goaltippb[$i] = $lmo_tipp[1];
+  }
 } else {
   $goaltippa = array_pad($array, $lmo_tipp_lader_runde->plaetze+1, "");
   $goaltippb = array_pad($array, $lmo_tipp_lader_runde->plaetze+1, "");
-  for ($i = 0; $i < $lmo_tipp_lader_runde->plaetze; $i++) {
+  foreach ($lmo_tipp_gelesen['tipps'] as $i => $lmo_tipp) {
     $goaltippa[$i] = array_pad(array("_"), $lmo_tipp_lader_runde->spieleJePaarung+1, "_");
     $goaltippb[$i] = array_pad(array("_"), $lmo_tipp_lader_runde->spieleJePaarung+1, "_");
+    foreach ($lmo_tipp as $n => $lmo_spiel) {
+      $goaltippa[$i][$n] = $lmo_spiel[0];
+      $goaltippb[$i][$n] = $lmo_spiel[1];
+    }
   }
 }
-for ($i = 1; $i <= count($tippdaten); $i++) {
-  $dum = explode('|', $tippdaten[$i-1]);
-  $op2 = substr($dum[0], 0, 5);
-  $op3 = substr($dum[0], 5)-1;
-  if ($op3 == $st-1) {
-    ////////////////////////////////////////////////// nur der benötigte Spieltag wird eingelesen
-    $jksp = $dum[3];
-    $op4 = substr($dum[1], 2)-1;
-    $op6 = (int)substr($dum[1], 2, -1)-1;
-    $op7 = substr($dum[1], -1)-1;
-    $op8 = substr($dum[1], 0, 2);
-    if (!$lmo_tipp_lader_runde->pokal) {
-      if (($op2 == "Round") && ($op8 == "GA")) {
-        $goaltippa[$op4] = $dum[2];
-        if ($goaltippa[$op4] == "") {
-          $goaltippa[$op4] = -1;
-        }
-        if ($goaltippa[$op4] == "-1") {
-          $goaltippa[$op4] = "_";
-        }
-        if ($goaltippa[$op4] == "-2") {
-          $goaltippa[$op4] = "0";
-        }
-      }
-      if (($op2 == "Round") && ($op8 == "GB")) {
-        $goaltippb[$op4] = $dum[2];
-        if ($goaltippb[$op4] == "") {
-          $goaltippb[$op4] = -1;
-        }
-        if ($goaltippb[$op4] == "-1") {
-          $goaltippb[$op4] = "_";
-        }
-        if ($goaltippb[$op4] == "-2") {
-          $goaltippb[$op4] = "0";
-        }
-      }
-    } else {
-      if (($op2 == "Round") && ($op8 == "GA")) {
-        $goaltippa[$op6][$op7] = $dum[2];
-        if ($goaltippa[$op6][$op7] == "") {
-          $goaltippa[$op6][$op7] = -1;
-        }
-        if ($goaltippa[$op6][$op7] == "-1") {
-          $goaltippa[$op6][$op7] = "_";
-        }
-      }
-      if (($op2 == "Round") && ($op8 == "GB")) {
-        $goaltippb[$op6][$op7] = $dum[2];
-        if ($goaltippb[$op6][$op7] == "") {
-          $goaltippb[$op6][$op7] = -1;
-        }
-        if ($goaltippb[$op6][$op7] == "-1") {
-          $goaltippb[$op6][$op7] = "_";
-        }
-      }
-    } // ende else
-  } // ende nur benötigter st
-} // ende for ($i=1;$i<=count($tippdaten);$i++)
 clearstatcache();
 
 ?>

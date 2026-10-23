@@ -6,6 +6,7 @@ use Lmo\Tests\GoldenMaster\Support\AdminClient;
 use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
 use Lmo\Tests\GoldenMaster\Support\Fixture;
 use Lmo\Tests\GoldenMaster\Support\Normalizer;
+use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -55,6 +56,24 @@ final class ViewerAddonTest extends TestCase
     private static function view(string $name): string
     {
         return self::$client->get('addon/viewer/viewer.php', 'multi=' . $name);
+    }
+
+    /**
+     * Der Assistent in der Administration: Einstellungen, Ligen, Mannschaften, Speichern. Gewaehlt
+     * wird die erste Liga des Ligenordners und deren erste Mannschaft. todo steht im Browser in der
+     * Adresse des Formulars, hier als Feld.
+     */
+    public function testAdminWizard(): void
+    {
+        $c = Fixture::loggedInClient();
+        $t = new Transcript();
+        $ligen = array_values(array_filter(scandir($c->instance()->ligenDir()) ?: [], static fn (string $f): bool => strtolower(substr($f, -4)) == '.l98'));
+
+        $t->add('Schritt 1: Einstellungen', $c->submitForm('lmoadmin.php', 'action=admin&todo=vieweroptions', 'formular1', ['dateiname' => 'assistent', 'titelzeile' => 'Assistent', 'todo' => 'vieweroptions']), $c->changes());
+        $t->add('Schritt 2: Ligen', $c->submitFromLast('formular2', ['c1' => 'c1', 'todo' => 'vieweroptions'], 'B2'), $c->changes());
+        $t->add('Schritt 3: Mannschaften', $c->submitFromLast('formular3', ['t0' => $ligen[0] . '[1]', 'todo' => 'vieweroptions']), $c->changes());
+
+        $this->assertMatchesSnapshot('viewer', 'assistent', $t->text());
     }
 
     public function testAdminSavesView(): void
@@ -156,5 +175,21 @@ final class ViewerAddonTest extends TestCase
 
         self::assertStringContainsString('gibtesnicht.view', $html);
         self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+        self::assertFileDoesNotExist(self::$client->instance()->path() . '/output/viewer_gibtesnicht_count.txt', 'kein Zaehler fuer eine unbekannte Ansicht');
+    }
+
+    public function testNameMitPfadOderSkript(): void
+    {
+        // Tags und Ereignis-Attribute entschaerft der LMO schon beim Einlesen der Anfrage; die Meldung
+        // maskiert den Namen zusaetzlich
+        $html = self::$client->get('addon/viewer/viewer.php', 'multi=' . rawurlencode('../gespeichert" onmouseover="x&'));
+
+        self::assertStringNotContainsString('onmouseover="', $html);
+        self::assertStringContainsString('x&amp;.view', $html, 'maskiert');
+        self::assertStringNotContainsString('Bayern München', $html, 'keine Ansicht ausserhalb von config/viewer');
+
+        self::saveView('umweg');
+        self::assertStringContainsString('Bayern München', self::view('umweg'));
+        self::assertStringNotContainsString('Bayern München', self::$client->get('addon/viewer/viewer.php', 'multi=' . rawurlencode('../viewer/umweg')), 'auch nicht ueber einen Umweg');
     }
 }

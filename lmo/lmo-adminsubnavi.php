@@ -29,75 +29,13 @@ if (!defined('PATH_TO_LMO')) {
  * @var int|string $st gewaehlter Spieltag
  * @var string $todo gewaehlte Aktion (Aufrufparameter)
  *
- * Einstellungen:
- * @var int|string $einspieler Einstellung aus cfg.txt
- *
  * Weitere Variablen des einbindenden Codes:
  * @var mixed $addb
  * @var mixed $addr
+ * @var \Lmo\Addon\Addons $lmo_admin_addons Addons der Installation (lmo-adminmain.php)
+ * @var \Lmo\Web\Kontext $lmo_admin_kontext Kontext der Anfrage (lmo-adminmain.php)
  */
 
-?>
-      <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
-        <tr>
-<?php
-if ($st < 0 || $todo != 'edit') {?>
-          <td align="center"><a href='<?php echo $addr; ?>1' onClick="return chklmolink();" title="<?php echo $text[411]; ?>"><?php echo $text[10]; ?></a></td>
-<?php
-}
-else {?>
-          <td align="center"><?php echo $text[10]; ?></td>
-<?php
-}
-if ($einspieler == 1) {
-    if ($st != -4) {?>
-          <td align="center"><a href='<?php echo $addr; ?>-4' onClick="return chklmolink();" title="<?php echo $text['spieler'][1]; ?>"><?php echo $text['spieler'][18]; ?></a></td>
-<?php
-    }
-    else {?>
-          <td align="center"><?php echo $text['spieler'][18]; ?></td>
-<?php
-    }
-}
 
-if ($st != -1) {?>
-          <td align="center"><a href='<?php echo $addr; ?>-1' onClick="return chklmolink();" title="<?php echo $text[100]; ?>"><?php echo $text[99]; ?></a></td>
-<?php
-}
-else {?>
-          <td align="center"><?php echo $text[99]; ?></td>
-<?php
-}
-
-if ($lmo_liga->einstellungen()->mitHandicap()) {
-    if ($todo != 'tabs') {?>
-          <td align="center"><a href='<?php echo $addb . $lmo_liga->einstellungen()->aktuellerSpieltag(); ?>' onClick="return chklmolink();" title="<?php echo $text[409]; ?>"><?php echo $text[16]; ?></a></td>
-<?php
-    }
-    else {?>
-          <td align="center"><?php echo $text[16]; ?></td>
-<?php
-    }
-}
-
-if ($_SESSION['lmouserok'] == 2 || $_SESSION['lmouserokerweitert'] == 1) {
-    if ($st != -2) {?>
-          <td align="center"><a href='<?php echo $addr; ?>-2' onClick="return chklmolink();" title="<?php echo $text[102]; ?>"><?php echo $text[101]; ?></a></td>
-<?php
-    }
-    else {?>
-          <td align="center"><?php echo $text[101]; ?></td>
-<?php
-    }
-}
-
-if ($st!=-10) {?>
-          <td align="center"><a href='<?php echo $addr; ?>-10' onclick="return chklmolink(this.href);" title="<?php echo $text[5002]; ?>"><?php echo $text[5001]; ?></a></td>
-<?php
-}
-else {?>
-          <td align="center"><?php echo $text[5001]; ?></td>
-<?php
-}?>
-        </tr>
-      </table>
+// die Navigation beim Bearbeiten einer Liga (Lmo\Web\Admin\LigaNavigation, Vorlage admin_liganavigation.html.twig)
+echo \Lmo\Web\Admin\LigaNavigation::html($lmo_admin_kontext, $lmo_admin_addons, $lmo_liga, (string)$todo, (string)$st, (string)$addr, (string)$addb);

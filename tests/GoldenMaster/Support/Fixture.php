@@ -29,8 +29,30 @@ final class Fixture
                 $app->destroy();
             });
             self::$instance = new self($app);
+            self::$instance->statistikdateienAnlegen();
         }
         return self::$instance;
+    }
+
+    /**
+     * Legt die Statistikdatei jeder Liga an (output/<liga>.l98.php). Sonst entsteht sie erst mit
+     * der Statistikseite, und Seiten, die vorher oder allein laufen (Tabelle und Ergebnisse zeigen
+     * daraus die Torstatistik), saehen sie nicht: Das Ergebnis hinge von der Reihenfolge der Tests ab.
+     */
+    private function statistikdateienAnlegen(): void
+    {
+        $ligen = array_keys(Matrix::leagues(self::sourceRoot()));
+        foreach (LeagueFactory::files() as $datei => $spieltage) {
+            $ligen[] = $datei;
+        }
+        foreach ($ligen as $datei) {
+            $this->runner->request('file=' . $datei . '&action=stats');
+            // Druckansicht: die Dateien entstehen beim Speichern; fuer die Links auf Ergebnis- und
+            // Tabellenseite genuegt, dass es sie gibt (ihr Inhalt: HtmlExportTest)
+            foreach (['-st.html', '-sp.html'] as $endung) {
+                touch($this->app->path() . '/output/' . basename($datei) . $endung);
+            }
+        }
     }
 
     /**

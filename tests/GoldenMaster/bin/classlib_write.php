@@ -1,7 +1,7 @@
 <?php
 /**
  * Kindprozess: legt Ligen komplett ueber die classlib an und speichert sie mit liga::writeFile(),
- * so wie LMO das selbst tut (lmo-rueckrunde.php, lmo-adminrounds.php) - mit init.php und
+ * so wie LMO das bis 4.5 selbst tat (Rueckrunde, Spieltage zuordnen) - mit init.php und
  * updateAddons(). Alle Ligen in einem Prozess, wie mehrere writeFile()-Aufrufe in einem Request.
  *
  * Aufruf: php classlib_write.php <Instanzpfad> <Praefix> <Fixture.json> [<Fixture.json> ...]
@@ -28,6 +28,7 @@ $_SERVER['QUERY_STRING'] = '';
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
 require $gm_instance . '/init.php';
+require_once PATH_TO_ADDONDIR . '/classlib/ini.php';
 // nur diese eine Klasse, ohne den Composer-Autoloader des Projekts (die Instanz hat ihren eigenen)
 require_once dirname(__DIR__, 2) . '/RealData/Support/RealLeague.php';
 

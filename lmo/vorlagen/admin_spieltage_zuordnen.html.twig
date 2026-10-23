@@ -1,0 +1,86 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Partien anderen Spieltagen zuordnen (Lmo\Web\Admin\SpieltageZuordnenController), bis 4.5 lmo-adminrounds.php #}
+<a name="top"></a>
+<table class="lmoSubmenu" width="100%" cellpadding="0" cellspacing="0">
+ <tr>
+   <td align="left">{{ navigation|raw }}</td>
+  </tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ name|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+        <input type="hidden" name="action" value="admin">
+        <input type="hidden" name="todo" value="edit">
+        <input type="hidden" name="save" value="1">
+        <input type="hidden" name="file" value="{{ datei }}">
+        <input type="hidden" name="st" value="{{ st }}">
+{{ ausgabe|raw }}{{ meldung|raw }}
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% for spieltag in spieltage %}
+{# Kopf des Spieltags: Nummer, Tage, Anzahl der Partien, Sprung nach oben und unten #}
+        <tr>
+          <th width="15" class="nobr">&nbsp;</th>
+          <th style="text-align:left" colspan="6" class="nobr">
+            <strong>{{ spieltag.nr }}. {{ text[2]|raw }}&nbsp;&nbsp;{{ spieltag.vonBis }}</strong> / {{ spieltag.zeilen|length }} {{ text[5003]|raw }}
+          </th>
+          <th style="text-align:right" colspan="3" class="nobr">
+            <a href="#top">{{ text[5011]|raw }}</a>&nbsp;/&nbsp;<a href="#bottom">{{ text[5012]|raw }}</a></th>
+        </tr>
+{# je Partie eine Zeile; gerade verschobene fett #}
+{% for z in spieltag.zeilen %}
+{% set an = z.markiert ? '<strong>' : '' %}{% set aus = z.markiert ? '</strong>' : '' %}
+        <tr>
+          <td>&nbsp;</td>
+          <td>{{ an|raw }}{{ z.anstoss }}{{ aus|raw }}</td>
+          <td>{{ an|raw }}{{ z.heimName|raw }}{{ aus|raw }}</td>
+          <td>-</td>
+          <td>{{ an|raw }}{{ z.gastName|raw }}{{ aus|raw }}</td>
+          <td align='right' >{{ an|raw }}{{ z.toreHeim }}{{ aus|raw }}</td>
+          <td>:</td>
+          <td align='center'>{{ an|raw }}{{ z.toreGast }}{{ aus|raw }}</td>
+          <td></td>
+          <td>
+            <select class="lmo-formular-input" onChange="dolmoedit()" name="sp_{{ spieltag.nr }}_{{ z.heim }}_{{ z.gast }}">
+{% for sp in 1..anzahl %}
+              <option value={{ sp }}{% if spieltag.nr == sp %} selected{% endif %}>{{ sp }}. {{ text[2]|raw }}</option>
+{% endfor %}
+            </select>
+          </td>
+        </tr>
+{% endfor %}
+{# wer an diesem Spieltag spielfrei ist #}
+{% for name in spieltag.spielfrei %}
+        <tr>
+          <td>&nbsp</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>{{ name|raw }}</td>
+          <td align='right' colspan=3>{{ text[5008]|raw }}</td>
+        </tr>
+{% endfor %}
+{% endfor %}
+        <tr>
+            <th style="text-align:right" class="nobr" colspan="10">
+              <acronym title="{{ text[114]|raw }}"><input class="lmo-formular-button" type="submit" name="spPlan" value="{{ text[5009]|raw }}"></acronym>&nbsp;&nbsp;&nbsp;
+            </th>
+        </tr>
+        </table>
+      </form>
+      <a name="bottom"></a>
+    </td>
+  </tr>
+</table>

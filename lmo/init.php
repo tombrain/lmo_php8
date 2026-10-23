@@ -50,6 +50,8 @@ if (!defined('PATH_TO_TEMPLATEDIR'))define('PATH_TO_TEMPLATEDIR', PATH_TO_LMO . 
 if (!defined('PATH_TO_IMGDIR')) define('PATH_TO_IMGDIR', PATH_TO_LMO . '/img');
 if (!defined('PATH_TO_LANGDIR')) define('PATH_TO_LANGDIR', PATH_TO_LMO . '/lang');
 if (!defined('PATH_TO_CONFIGDIR')) define('PATH_TO_CONFIGDIR', PATH_TO_LMO . '/config');
+// Daten der Addons (daten/<addon>/, Lmo\Addon\Datenordner); bleiben bei Updates wie config/ und ligen/
+if (!defined('PATH_TO_DATADIR')) define('PATH_TO_DATADIR', PATH_TO_LMO . '/daten');
 if (!defined('PATH_TO_JSDIR')) define('PATH_TO_JSDIR', PATH_TO_LMO . '/js');
 
 if (!defined('URL_TO_LMO')) define('URL_TO_LMO', $lmo_url);
@@ -108,10 +110,18 @@ require(PATH_TO_LMO . '/lmo-langload.php');
 // Composer-Autoloader: pear/html_template_it und LMO_Template (classmap); nennt auch die installierte Version.
 // lmo-install legt vendor/autoload.php als Verweis an; im Repo selbst liegt vendor/ neben lmo/.
 require_once(is_file(PATH_TO_LMO . '/vendor/autoload.php') ? PATH_TO_LMO . '/vendor/autoload.php' : dirname(PATH_TO_LMO) . '/vendor/autoload.php');
+// Klassen der Addons aus addon/<addon>/src (Lmo\Addon\Autoloader)
+\Lmo\Addon\Autoloader::registriere(PATH_TO_ADDONDIR);
 // Functions
 require_once(PATH_TO_LMO . '/lmo-functions.php');
-// Übergang Classlib
-require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
+// installierte Version (bis 4.5 aus addon/classlib/ini.php); Addons, die die Classlib brauchen
+// (Viewer, Mini), binden addon/classlib/ini.php selbst ein
+if (!defined('LMO_VERSION_NR')) {
+    define('LMO_VERSION_NR', lmo_installed_version());
+}
+if (!defined('LMO_VERSION')) {
+    define('LMO_VERSION', LMO_VERSION_NR);
+}
 
 // Remove Magic Quotes if necessary
 magicQuotesRemove($_GET);

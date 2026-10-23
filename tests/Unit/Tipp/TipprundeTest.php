@@ -2,10 +2,10 @@
 
 namespace Lmo\Tests\Unit\Tipp;
 
+use Lmo\Addon\Tipp\Tipprunde;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Paarung;
 use Lmo\Liga\Rohdaten\Liga;
-use Lmo\Tipp\Tipprunde;
 use PHPUnit\Framework\TestCase;
 
 /**

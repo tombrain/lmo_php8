@@ -4,11 +4,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-adminedit.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-saveliga.php ===
 
 --- Dateiaenderungen ---
@@ -202,32 +197,12 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-adminrounds.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-adminsubnavi.php ===
 
 --- Dateiaenderungen ---
 (keine)
 
 === direkter Aufruf lmo-savehtml.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-kocal.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-rueckrunde.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-dirlist.php ===
 
 --- Dateiaenderungen ---
 (keine)

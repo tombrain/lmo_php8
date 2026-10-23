@@ -1,0 +1,168 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Tabelle nach den Tipps (TabelleController), bis 4.5 lmo-tipptabelle.php #}
+{% macro fett(wert, fett) %}{% if fett %}<strong>{% endif %}{{ wert|raw }}{% if fett %}</strong>{% endif %}{% endmacro %}
+{% import _self as m %}
+<table class="lmoInner" cellspacing='0' cellpadding='0' border='0'>
+{% if nick != '' %}
+  <caption>{{ titel }}</caption>
+{% if spieltagsmenue is not null %}
+  <tr>
+    <td align="center">{{ spieltagsmenue|raw }}</td>
+  </tr>
+{% endif %}
+{% endif %}
+  <tr>
+    <th class="nobr" align="center">{{ ueberschrift }}</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing='0' cellpadding='0' border='0'>
+{%- if nick != '' %}
+        <caption>
+{%- for a in arten -%}
+  {%- if a.link is not null %}<a href="{{ a.link|raw }}" title="{{ a.titel|raw }}">{{ a.text|raw }}</a>{% else %}{{ a.text|raw }}{% endif %}{% if loop.index != 5 %}&nbsp;{% endif -%}
+{%- endfor %}</caption>
+{% endif %}
+        <tr>
+          <th align="left" colspan="6"> {{ stand|raw }}&nbsp;</th>
+          <th>&nbsp;</th>
+          <th class="nobr" align="right"> {{ text[33]|raw }}&nbsp;</th>
+          <th class="nobr" align="right"> {{ text[34]|raw }}&nbsp;</th>
+{%- if not ohneUnentschieden %}
+          <th class="nobr" align="right"> {{ text[35]|raw }}&nbsp;</th>
+{%- endif %}
+          <th class="nobr" align="right"> {{ text[36]|raw }}&nbsp;</th>
+{%- if tabpkt == 0 %}
+          <th>&nbsp;</th>
+          <th class="nobr" {{ punkteAttr|raw }}> {{ text[37]|raw }}&nbsp;</th>
+{%- endif %}
+{%- if ergebnismodus %}
+          <th>&nbsp;</th>
+          <th class="nobr" colspan='3' align="center"> {{ text[38]|raw }} </th>
+          <th class="nobr" align="right"> {{ text[39]|raw }} </th>
+{%- endif %}
+{%- if tabpkt == 1 %}
+          <th>&nbsp;</th>
+          <th class="nobr" {{ punkteAttr|raw }}>{{ text[37]|raw }} </th>
+{%- endif %}
+          <th class="nobr" align="right">{{ text[37]|raw }}/{{ text[33]|raw }}</th>
+        </tr>
+{%- for z in zeilen %}
+{%- set k = z.klasse %}
+        <tr>
+          <td class="{{ k }} nobr" align="right"> {{ m.fett(z.platz, z.fett) }} </td>
+{%- if stand != '' %}
+          <td class="{{ k }}"{% if art == 0 %}><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif" width="9" height="9" border="0" alt="">{% else %} width="2">&nbsp;{% endif %}</td>
+{%- else %}
+          <td class="{{ k }}">&nbsp;</td>
+{%- endif %}
+          <td class="{{ k }}" align="center">{{ z.symbol|raw }}&nbsp;</td>
+          <td class="{{ k }} nobr" align="left"> {{ m.fett(z.name, z.fett) }}
+{%- if z.url is not null %} <a href="{{ z.url|raw }}" target="_blank" title="{{ text[46]|raw }}"><img border="0" width="11" src="{{ bilder|raw }}/url.png" alt="{{ text[564]|raw }}" title="{{ text[46]|raw }}"></a> {% endif %}</td>
+          <td class="{{ k }}">&nbsp;</td>
+          <td class="{{ k }}" align="center">{{ z.notiz|raw }}
+          </td>
+          <td class="{{ k }}" width='2'>&nbsp;</td>
+          <td class="{{ k }}" align="right"> {{ m.fett(z.spiele, z.fett) }} &nbsp;</td>
+          <td class="{{ k }}" align="right"> {{ m.fett(z.siege, z.fett) }} &nbsp;</td>
+{%- if not ohneUnentschieden %}
+          <td class="{{ k }}" align="right"> {{ m.fett(z.unent, z.fett) }} &nbsp;</td>
+{%- endif %}
+          <td class="{{ k }}" align="right"> {{ m.fett(z.nieder, z.fett) }} &nbsp;</td>
+{%- if tabpkt == 0 %}
+          <td class="{{ k }}" width="2">&nbsp;</td><td class="{{ k }}" align="right">{{ z.punkte }}</td>
+{%- if minus %}
+          <td class="{{ k }}" align="center" width="4">:</td>
+          <td class="{{ k }}">{{ z.negativ }}</td>
+{%- endif %}
+{%- endif %}
+{%- if ergebnismodus %}
+          <td class="{{ k }}" width='2'>&nbsp;</td>
+          <td class="{{ k }}" align="right">{{ m.fett(z.etore, z.fett) }}</td>
+          <td class="{{ k }}" align="center" width='4'>{{ m.fett(':', z.fett) }}</td>
+          <td class="{{ k }}">{{ m.fett(z.atore, z.fett) }}</td>
+          <td class="{{ k }}" align="right">{{ m.fett(z.dtore, z.fett) }}</td>
+{%- endif %}
+{%- if tabpkt == 1 %}
+          <td class="{{ k }}" width="2">&nbsp;</td><td class="{{ k }}" align="right">{{ z.punkte }}</td>
+{%- if minus %}
+          <td class="{{ k }}" align="center" width="4">:</td>
+          <td class="{{ k }}">{{ z.negativ }}</td>
+{%- endif %}
+{%- endif %}
+          <td class="{{ k }}" align="right"><strong>{{ m.fett(z.quote, z.fett) }}</strong></td>
+        </tr>
+{%- endfor %}
+      </table>
+    </td>
+  </tr>
+</table>
+{% if stand != '' %}
+      <table width="100%" cellspacing='0' cellpadding='0' border='0'>
+        <tr>
+{%- if zurueck is not null %}
+          <td align="left">&nbsp;<a href="{{ zurueck|raw }}" title="{{ text[6]|raw }}">{{ text[5]|raw }} {{ text[6]|raw }}</a>&nbsp;</td>
+{%- endif %}
+{%- if weiter is not null %}
+          <td align="right">&nbsp;<a href="{{ weiter|raw }}" title="{{ text[8]|raw }}">{{ text[8]|raw }} {{ text[7]|raw }}</a>&nbsp;</td>
+{%- endif %}
+        </tr>
+      </table>
+{% endif %}
+{% if vereine is not null %}
+<p>&nbsp;</p>
+<table class="lmoInner" cellspacing='0' cellpadding='0' border='0'>
+  <tr>
+    <th align="center">{{ t[261]|raw }}</th>
+  </tr>
+{{ vereine.meldungen|raw }}
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing='0' cellpadding='0' border='0'>
+        <tr>
+          <th colspan='3'>{{ vereine.stand|raw }}</th>
+          <th width='2'>&nbsp;</th>
+          <th class="nobr" align="right">{{ text[33]|raw }}</th>
+          <th width='2'>&nbsp;</th>
+          <th class="nobr" align="right">{% if ergebnismodus %}{{ text[37]|raw }}{% else %}{{ t[122]|raw }}{% endif %}</th>
+          <th width='2'>&nbsp;</th>
+          <th class="nobr" align="right"><strong>{% if ergebnismodus %}{{ text[37]|raw }}/{{ text[33]|raw }}{% else %}{{ t[123]|raw }}%{% endif %}</strong></th>
+        </tr>
+{%- for z in vereine.zeilen %}
+        <tr>
+          <td class="nobr" align="right">{{ m.fett(z.platz, z.fett) }}&nbsp;</td>
+{%- if vereine.stand != '' %}
+          <td class="nobr"><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif" width="9" height="9" border="0" alt="">&nbsp;</td>
+{%- else %}
+<td class="nobr">&nbsp;</td>
+{%- endif %}
+          <td class="nobr" align="left">{{ m.fett(z.name, z.fett) }}</td>
+          <td class="nobr">&nbsp;</td>
+          <td class="nobr" align="right">{{ m.fett(z.spiele, z.fett) }}</td>
+          <td class="nobr">&nbsp;</td>
+          <td class="nobr" align="right">{{ m.fett(z.punkte, z.fett) }}</td>
+          <td class="nobr" width='2'>&nbsp;</td>
+          <td class="nobr" align="right">{% if z.fett %}<strong>{% endif %}<strong>{{ z.quote }}</strong>{% if z.fett %}</strong>{% endif %}</td>
+        </tr>
+{%- endfor %}
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td class="lmoFooter" align="center">
+{%- if meineTabelle is not null %}<a href="{{ meineTabelle|raw }}" title="{{ t[173]|raw }}">{{ t[182]|raw }}</a>{% endif -%}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{%- if alleTipper is not null %}<a href="{{ alleTipper|raw }}" title="{{ t[184]|raw }}">{{ t[183]|raw }}</a>{% endif %}
+    </td>
+  </tr>
+</table>
+{% endif %}

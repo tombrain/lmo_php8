@@ -61,12 +61,12 @@ $mail = lmo_mailer($aadr, $text['tipp'][92]);
 // Basis-URL für den [pass]-Platzhalter: da Passwoerter seit der Umstellung
 // auf password_hash() nicht mehr im Klartext vorliegen, wird statt des
 // (nutzlosen) Hash-Werts ein personalisierter Link zum Passwort-Reset
-// verschickt (nutzt denselben Mechanismus wie lmo-tippemailpass.php).
+// verschickt (nutzt denselben Mechanismus wie bis 4.5 lmo-tippemailpass.php).
 $tippResetBaseUrl = lmo_request_origin() . $_SERVER['PHP_SELF'] . '?action=tipp&todo=getpass&xtippername2=';
 
 if ($message != '') {
     $dumma = array();
-    $pswfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
+    $pswfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
     $dumma = file($pswfile);
     // Die PHP-Schutzzeile am Dateianfang ist kein Tipper-Datensatz
     $dumma = array_values(array_filter($dumma, function ($line) {
@@ -132,7 +132,7 @@ if ($message != '') {
 
             $anzligen = count($dateien);
 
-            // anstehende Spiele aller Ligen (Lmo\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel, $zeit
+            // anstehende Spiele aller Ligen (Lmo\Addon\Tipp\AnstehendesSpiel); gleicher Index wie $liga, $spieltag, $spiel, $zeit
             $lmo_spiele = array();
             $liga = array();
             $spieltag = array();
@@ -160,7 +160,7 @@ if ($message != '') {
                     $spiele = '';
                     for ($i = 0; $i < $anzspiele; $i ++) {
                         if ($i == 0 || $liga[$i] != $liga[$i - 1]) {
-                            $tippfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . $liga[$i] . '_' . $dummb[0] . '.tip';
+                            $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . $liga[$i] . '_' . $dummb[0] . '.tip';
                             if (file_exists($tippfile)) {
                                 require(PATH_TO_ADDONDIR . '/tipp/lmo-tippemailviewer1.php');
                                 $ktipp = 1;
@@ -226,7 +226,7 @@ if ($message != '') {
                 $dummb = explode('|', $dumma[$tippernr]);
                 if (isset($dummb[10], $dummb[4]) && $dummb[10] != -1 && $dummb[4] != '') {
                     $textmessage = $message;
-                    $tippfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . substr($file, 0, -4) . '_' . $dummb[0] . '.tip';
+                    $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . substr($file, 0, -4) . '_' . $dummb[0] . '.tip';
                     $spiele = '';
                     if (file_exists($tippfile)) {
                         // Einstellungen der Liga; so viele Paarungen je Spieltag werden durchsucht:
@@ -237,7 +237,7 @@ if ($message != '') {
                             require(PATH_TO_ADDONDIR . '/tipp/lmo-tippopenfile.php');
                             $st0 = $st - 1;
                             $anzst1 = $st - 1; // nur der gewaehlte Spieltag
-                            $lmo_mail_anzsp = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, (int)$st)->plaetze;
+                            $lmo_mail_anzsp = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, (int)$st)->plaetze;
                         } elseif ($st == 0) {
                             require(PATH_TO_ADDONDIR . '/tipp/lmo-tippopenfileall.php');
                             $st0 = 0;
@@ -246,7 +246,7 @@ if ($message != '') {
                         for (; $st0 <= $anzst1; $st0 ++) {
                             if ($tipp_imvorraus < 0 || $st0 <= ($lmo_einstellungen->aktuellerSpieltag() + $tipp_imvorraus)) {
                                 // der Spieltag $st0+1: Paarung $dd+1 hat den Index $dd, ihr Spiel $ddd+1 den Index $ddd
-                                $lmo_mail_runde = \Lmo\Tipp\Tipprunde::fuer($lmo_liga, $st0 + 1);
+                                $lmo_mail_runde = \Lmo\Addon\Tipp\Tipprunde::fuer($lmo_liga, $st0 + 1);
                                 for ($dd = 0; $dd < $lmo_mail_anzsp; $dd ++) {
                                     $lmo_mail_paarung = $lmo_mail_runde->paarungen[$dd] ?? null;
                                     if ($lmo_mail_paarung === null) {

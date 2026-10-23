@@ -1,0 +1,36 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Info-Seite (Lmo\Web\Controller\InfoController); die Sprachtexte sind fertiges HTML. -#}
+<table class="lmoMiddle" width="400" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ text[54]|raw }} - Vers. {{ version }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <p>{{ text[55]|raw }}</p>
+      <p>{{ text[56]|raw }}</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="lmotext">
+            <p>{{ text[47]|raw }}</p>
+            <p>{{ text[48]|raw }}</p>
+            <p>{{ text[49]|raw }}</p>
+            {{ text[50]|raw }}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

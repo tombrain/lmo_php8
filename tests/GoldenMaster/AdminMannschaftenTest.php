@@ -9,7 +9,7 @@ use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Mannschaften im Adminbereich (lmo-adminteams.php, st=-2): Daten speichern, eine Mannschaft
+ * Mannschaften im Adminbereich (st=-2, bis 4.5 lmo-adminteams.php, heute MannschaftenController): Daten speichern, eine Mannschaft
  * loeschen (team=<Nummer>: ihre Spiele fallen weg, die uebrigen ruecken auf, die Nummern dahinter
  * sinken) und eine anlegen (team=-1). Festgehalten wird, was danach in der Ligadatei steht.
  */

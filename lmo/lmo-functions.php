@@ -111,28 +111,6 @@ function filterZero($a)
 
 
 /**
- * Returns HTML imgage code for a small team icon
- *
- * @param   string  $team               Long name of the team
- * @param   string  $alternative_text   If image not found return this instead
- * @return  string  HTML image-Code for the small team icon
- */
-// Umstellung Classlib kann später mal weg
-function getSmallImage($team, $alternative_text = '')
-{
-    $team = str_replace('/', '', $team);
-    if (!file_exists(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif')) {
-        $team = preg_replace('/[^a-zA-Z0-9]/', '', $team);
-    }
-    if (!file_exists(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif')) {
-        return $alternative_text;
-    } else {
-        $imgdata = getimagesize(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif');
-        return ('<img border="0" src="' . URL_TO_IMGDIR . '/teams/small/' . rawurlencode($team) . '.gif" {$imgdata[3]} alt=""> ');
-    }
-}
-
-/**
  * Returns a formatted (error) Message
  *
  * @param   string  $message    Message to return
@@ -236,35 +214,13 @@ function gewinn ($gst, $gsp, $gmod, $m1, $m2)
     return $erg;
 }
 
+// Auswahl der Sprache in der Fusszeile (Lmo\Web\Seiten\Sprachauswahl); der Hauptadmin bekommt den Link zum Bearbeiten
 function getLangSelector()
 {
-    $output_sprachauswahl = '';
-    $border = '0';
-
-    $handle = opendir (PATH_TO_LANGDIR);
-    while (false !== ($f = readdir($handle))) {
-        if (preg_match('/^lang-?(.*)?\.txt$/', $f,$lang) > 0) {
-            if ($lang[1] == '') return '';
-            if ($lang[1] != ($_SESSION['lmouserlang'] ?? '')) {
-                $border = '1mm';
-                $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.svg';
-                $output_sprachauswahl .= '
-           <a href="' . $_SERVER['PHP_SELF'] . '?' . htmlentities(preg_replace('/&?lmouserlang=.+?\b/', '', $_SERVER['QUERY_STRING'])) . '&amp;lmouserlang=' . $lang[1] . '" title="' . $lang[1] . '"><img src="' . $imgfile . '" height="16" style="margin-right:' . $border . '" title="' . $lang[1] . '" alt="' . $lang[1] . '"></a>';
-            } else {
-                $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.selected.svg';
-                $output_sprachauswahl .= '
-          <img src="' . $imgfile . '" height="16" border="' . $border . '" title="' . $lang[1] . '" alt="' . $lang[1] . '">';
-            }
-        }
-        $border = '0';
-    }
-    closedir($handle);
-    if (isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] == 2) {
-        $output_sprachauswahl .= ' >> <a href="' . URL_TO_LMO . '/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="' . htmlspecialchars($GLOBALS['text'][573]) . '">';
-        $output_sprachauswahl .= '<img src="'.URL_TO_IMGDIR.'/pencil.svg" height="20" alt="Edit">';
-        $output_sprachauswahl .= '</a>';
-    }
-    return $output_sprachauswahl;
+    $bearbeiten = isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] == 2
+        ? array(URL_TO_LMO . '/lang/lmo-admintranslate.php', (string)$GLOBALS['text'][573])
+        : null;
+    return \Lmo\Web\Seiten\Sprachauswahl::html(PATH_TO_LANGDIR, URL_TO_IMGDIR, $_SERVER['PHP_SELF'], (string)$_SERVER['QUERY_STRING'], (string)($_SESSION['lmouserlang'] ?? ''), $bearbeiten);
 }
 
 function getLangSelectorSide()
@@ -316,38 +272,6 @@ function getLangSelectorSide()
     $output .= '</div></div>';
 
     return $output;
-}
-
-function get_timezones()
-{
-    //load avail timezones
-    if (function_exists('timezone_identifiers_list')) {
-        $zones = array_reverse(timezone_identifiers_list());
-
-        foreach ($zones as $zone) {
-            $zone = explode('/', $zone); // 0 => Continent, 1 => City
-
-            // Only use "friendly" continent names
-            if ($zone[0] == 'Africa' ||
-                $zone[0] == 'America' ||
-                $zone[0] == 'Antarctica' ||
-                $zone[0] == 'Arctic' ||
-                $zone[0] == 'Asia' ||
-                $zone[0] == 'Atlantic' ||
-                $zone[0] == 'Australia' ||
-                $zone[0] == 'Europe' ||
-                $zone[0] == 'Indian' ||
-                $zone[0] == 'Pacific')
-            {
-                if (isset($zone[1]) != '') {
-                    $locations[$zone[0]][$zone[0] . '/' . $zone[1]] = str_replace('_', ' ', $zone[1]); // Creates array(DateTimeZone => 'Friendly name')
-                }
-            }
-        }
-    } else {
-        return array();
-    }
-    return array_reverse($locations);
 }
 
 /**

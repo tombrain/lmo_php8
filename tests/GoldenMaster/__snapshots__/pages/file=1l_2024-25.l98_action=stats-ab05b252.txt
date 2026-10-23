@@ -145,7 +145,7 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Die Statistik 1 von Borussia M'gladbach">
+<acronym title="Die Statistik 1 von Borussia M&#039;gladbach">
 <a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=15&amp;stat2=0">BMG</a>
 </acronym>
 </td>
@@ -301,7 +301,7 @@
 <tr>
 <td>&nbsp;</td>
 <td align="left">
-<acronym title="Die Statistik 1 von Borussia M'gladbach">
+<acronym title="Die Statistik 1 von Borussia M&#039;gladbach">
 <a href="/lmo/lmo.php?action=stats&amp;file=1l_2024-25.l98&amp;stat1=0&amp;stat2=15">BMG</a>
 </acronym>
 </td>

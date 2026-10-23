@@ -145,7 +145,7 @@
 </tr>
 <tr>
 <td align="right">
-<acronym title="Der Spielplan von&nbsp;Borussia M'gladbach">
+<acronym title="Der Spielplan von&nbsp;Borussia M&#039;gladbach">
 <a href="/lmo/lmo.php?action=program&amp;file=1l_2024-25.l98&amp;selteam=15">BMG</a>
 </acronym>
 </td>

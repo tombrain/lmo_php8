@@ -1,0 +1,74 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Anzahl der Spieltage und Spiele einer Liga (Lmo\Web\Admin\AnzahlController), bis 4.5 lmo-adminanz.php #}
+{% macro zaehler(name, wert, groesse, laenge, auf, klick, titel, bild, bilder) %}
+                  <td align="right"><input class="lmo-formular-input" type="text" name="{{ name }}" size="{{ groesse }}" maxlength="{{ laenge }}" value="{{ wert }}" onChange="{{ auf }}('{{ name }}',0)" onKeyDown="{{ klick }}('{{ name }}',event.keyCode)"></td>
+                  <td align="center">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td><script type="text/javascript">document.write('<a href="#" onclick="{{ auf }}(\'{{ name }}\',1);" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ bild }}a\',img1)" onMouseOut="lmoimg(\'{{ bild }}a\',img0)"><img src="{{ bilder }}/lmo-admin0.gif" name="ximg{{ bild }}a" width="7" height="7" border="0"><\/a>')</script></td>
+                      </tr>
+                      <tr>
+                        <td><script type="text/javascript">document.write('<a href="#" onclick="{{ auf }}(\'{{ name }}\',-1);" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ bild }}b\',img3)" onMouseOut="lmoimg(\'{{ bild }}b\',img2)"><img src="{{ bilder }}/lmo-admin2.gif" name="ximg{{ bild }}b" width="7" height="7" border="0"><\/a>')</script></td>
+                      </tr>
+                    </table>
+                  </td>
+{% endmacro %}
+{% import _self as f %}
+      <table class="lmoSubmenu" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="left">
+{{ navigation|raw }}
+          </td>
+        </tr>
+      </table>
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center">
+            <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="edit">
+              <input type="hidden" name="save" value="1">
+              <input type="hidden" name="file" value="{{ datei }}">
+              <input type="hidden" name="st" value="{{ st }}">
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <th class="nobr" align="left" colspan="4">{{ text[340]|raw }}</th>
+                </tr>
+{# Warnung (Text 561): diese Einstellungen koennen eine bestehende Liga unbrauchbar machen #}
+                <tr>
+                  <td class="nobr" align="center" colspan="4">{{ warnung|raw }}</td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td align="right"><acronym title="{{ text[275]|raw }}">{{ text[274]|raw }}</acronym></td>
+{{ f.zaehler('xanzst', spieltage, 3, 3, 'lmoanzstauf', 'lmoanzstclk', text[276], 's', bilder) }}
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td align="right"><acronym title="{{ text[278]|raw }}">{{ text[277]|raw }}</acronym></td>
+{{ f.zaehler('xanzsp', spiele, 2, 2, 'lmoanzspauf', 'lmoanzspclk', text[279], 'p', bilder) }}
+                </tr>
+                <tr>
+                  <td colspan="4" align="right">
+                    <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[188]|raw }}">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="lmoFooter" align="left">
+                    <a href="{{ addr|raw }}-1">{{ text[544]|raw }}</a>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>

@@ -57,7 +57,7 @@ require_once(PATH_TO_LMO."/lmo-admintest.php");
 if ($action=="admin" && $todo=="tippuseredit" && ($nick!="" || $save==-1)) {
     include(PATH_TO_ADDONDIR."/tipp/lmo-admintippmenu.php");
 
-    $pswfile=PATH_TO_ADDONDIR . '/tipp/' . $tipp_tippauthtxt;
+    $pswfile=\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_tippauthtxt;
 
     // 1. DATEI EINLESEN & SCHUTZZEILE ENTFERNEN
     $users_raw = file_exists($pswfile) ? file($pswfile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) : array();
@@ -178,7 +178,7 @@ if ($action=="admin" && $todo=="tippuseredit" && ($nick!="" || $save==-1)) {
     file_put_contents($pswfile, $content, LOCK_EX);
 
     // .tip Dateien verwalten
-    $verz = opendir(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp);
+    $verz = opendir(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp);
     while($files=readdir($verz)) {
         if (substr($files, strrpos($files, '_') + 1, -4) == $nick && strtolower(substr($files, -4)) == '.tip') {
             $delete = 1;
@@ -191,7 +191,7 @@ if ($action=="admin" && $todo=="tippuseredit" && ($nick!="" || $save==-1)) {
                 }
             }
             if ($delete == 1) {
-                unlink(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . $files);
+                unlink(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . $files);
             }
         }
     }
@@ -199,7 +199,7 @@ if ($action=="admin" && $todo=="tippuseredit" && ($nick!="" || $save==-1)) {
 
     if (!empty($xtipperligen)) {
         foreach($xtipperligen as $key => $value) {
-            $verz = opendir(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp);
+            $verz = opendir(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp);
             while($files = readdir($verz)) {
                 $create = 1;
                 if (substr($files, strrpos($files, '_') + 1, -4) == $nick && substr($files, 0, strrpos($files, '_')) == $value && strtolower(substr($files, -4)) == '.tip') {
@@ -209,10 +209,10 @@ if ($action=="admin" && $todo=="tippuseredit" && ($nick!="" || $save==-1)) {
             }
             closedir($verz);
             if ($create == 1) {
-                $tippfile = PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . $value . '_' . $nick . '.tip';
+                $tippfile = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . $value . '_' . $nick . '.tip';
                 $st = -1;
                 require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsavefile.php');
-                $auswertdatei = fopen(PATH_TO_ADDONDIR . '/tipp/' . $tipp_dirtipp . 'auswert/' . $value . '.aus', 'ab');
+                $auswertdatei = fopen(\Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR) . '/' . $tipp_dirtipp . 'auswert/' . $value . '.aus', 'ab');
                 flock($auswertdatei, LOCK_EX);
                 fputs($auswertdatei, "\n[" . $nick . "]\n");
                 fputs($auswertdatei, 'Team=' . $tipp_tipperdaten[5] . "\n");

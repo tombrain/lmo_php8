@@ -1,0 +1,144 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Rangliste des Tippspiels (RanglisteController), bis 4.5 lmo-tippwert.php; die Zeilen bleiben wie bisher ohne </tr> #}
+{% macro fett(wert, fett) %}{% if fett %}<strong>{% endif %}{{ wert|raw }}{% if fett %}</strong>{% endif %}{% endmacro %}
+{% macro seiten(t, auswahl) %}
+  <tr>
+    <td align="center">
+      <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+        <tr><td class="nobr">{{ t[205]|raw }}&nbsp;</td>
+{%- for s in auswahl -%}
+  {%- if s.link is not null %}<td class='nobr'><a href="{{ s.link|raw }}">{% else %}<td class="nobr">{% endif %}{{ s.von }}-{{ s.bis }}{% if s.link is not null %}</a>{% endif %}&nbsp;</td>
+{%- endfor %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+{%- endmacro %}
+{% import _self as m %}
+
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ titel }}</caption>{% if mitTeams %}
+  <tr>
+    <td align="center">
+      <table class="lmoMenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th class="nobr">{% if wertung == 'einzel' %}{{ t[61]|raw }}{% else %}<a href="{{ artLink|raw }}einzel" title="{{ t[59]|raw }}">{{ t[61]|raw }}</a>{% endif %}
+          </th>
+          <th class="nobr">{% if wertung == 'team' %}{{ t[62]|raw }}{% else %}<a href="{{ artLink|raw }}team" title="{{ t[60]|raw }}">{{ t[62]|raw }}</a>{% endif %}
+          </th>
+{%- if internLink is not null %}
+          <th class="nobr">{% if internLink == '' %}{{ t[144]|raw }}{% else %}<a href="{{ internLink|raw }}" title="{{ t[144]|raw }}">{{ t[144]|raw }}</a>{% endif %}
+          </th>
+{%- endif %}
+        </tr>
+      </table>
+    </td>
+  </tr>{% endif %}
+  <tr>
+    <td align="center">{{ spieltagsmenue|raw }}</td>
+  </tr>
+{%- if auswahl is not empty %}{{ m.seiten(t, auswahl) }}{% endif %}
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{%- if mitModus %}
+        <caption class="nobr">{% if modus == 'nur' %}{{ t[202]|raw }}{% else %}<a href="{{ modusLink|raw }}nur" title="{{ t[202]|raw }}">{{ t[202]|raw }}</a>{% endif %}&nbsp;{% if modus == 'bis' %}{{ t[203]|raw }}{% else %}<a href="{{ modusLink|raw }}bis" title="{{ t[203]|raw }}">{{ t[203]|raw }}</a>{% endif %}
+</caption>
+{%- endif %}
+        <tr>
+          <th class="nobr" colspan="3"> {{ stand|raw }}       </th>
+{%- if einzeln %}
+{%- if mitTeams %}
+          <th class="nobr"> {{ t[27]|raw }} </th>
+{%- endif %}
+{%- else %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[120]|raw }}">{{ t[26]|raw }}</acronym>&nbsp;</th>
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[208]|raw }}">{{ t[26]|raw }}Ø</acronym>&nbsp;</th>
+{%- endif %}
+          <th class="nobr"  align="right">&nbsp;<acronym title="{{ t[117]|raw }}">{% if gewicht != 'spiele' %}<a href="{{ gewichtLink|raw }}spiele">{% endif %}{{ t[123]|raw }}{% if gewicht != 'spiele' %}</a>{% endif %}</acronym>&nbsp;
+          </th>
+{%- if spalten[1] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[34]|raw }}: {{ cfg.rergebnis }} {{ t[38]|raw }}">{{ t[221]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if spalten[2] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[35]|raw }}: {{ cfg.rtendenzdiff }} {{ t[38]|raw }}">{{ t[222]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if spalten[3] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[36]|raw }}: {{ cfg.rtendenz }} {{ t[38]|raw }}">{{ t[223]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if spalten[4] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[37]|raw }}: {{ cfg.rtor }} {{ t[38]|raw }}">{{ t[224]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if spalten[5] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[192]|raw }}: {{ cfg.rremis }} {{ t[38]|raw }}">{{ t[225]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if spalten[6] %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[227]|raw }}">{{ t[226]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+{%- if siege %}
+          <th class="nobr" align="right">&nbsp;<acronym title="{{ t[271]|raw }}">{{ t[90]|raw }}</acronym>&nbsp;</th>
+{%- endif %}
+          <th class="nobr"  align="right">&nbsp;<acronym title="{% if ergebnismodus %}{{ t[124]|raw }}{% else %}{{ t[125]|raw }}%{% endif %}">{% if gewicht != 'relativ' %}<a href="{{ gewichtLink|raw }}relativ">{% endif %}{{ t[123]|raw }}{% if ergebnismodus %}Ø{% else %}%{% endif %}{% if gewicht != 'relativ' %}</a>{% endif %}</acronym>&nbsp;
+          </th>
+          <th class="nobr"  align="right">&nbsp;<acronym title="{{ t[38]|raw }}">{% if gewicht != 'absolut' %}<a href="{{ gewichtLink|raw }}absolut" title="{{ t[149]|raw }}">{% endif %}{% if ergebnismodus %}{{ text[37]|raw }}{% else %}{{ t[122]|raw }}{% endif %}{% if gewicht != 'absolut' %}</a>{% endif %}</acronym>&nbsp;</th>
+        </tr>
+{%- for z in zeilen %}
+{%- set k = z.klasse %}
+        <tr>
+          <td class="{{ k }}" align="right">{% if z.platz is not null %}{{ m.fett(z.platz, z.fett) }}{% else %}&nbsp;{% endif %}
+          &nbsp;</td>
+{%- if z.pfeil is not null %}<td class="{{ k }}"><img src='{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif' width="9" height="9" border="0" alt=''></td>{% else %}<td class="{{ k }}">&nbsp;</td>{% endif %}
+{%- if einzeln %}
+          <td class="{{ k }}" align="left">&nbsp;{{ m.fett(z.name, z.fett) }}
+          &nbsp;</td>
+{%- else %}
+          <td class="{{ k }}" align="left">{% if z.teamLink is not null %}<a href="{{ z.teamLink|raw }}" title="{{ t[144]|raw }}">{% endif %}{{ m.fett(z.team, z.fett) }}{% if z.teamLink is not null %}</a>{% endif %}&nbsp;</td>
+{%- endif %}
+{%- if mitTeams %}
+{%- if einzeln %}
+          <td class="{{ k }}">{% if z.teamLink is not null %}<a href="{{ z.teamLink|raw }}" title="{{ t[144]|raw }}">{% endif %}{{ m.fett(z.team == '' ? '&nbsp;' : z.team, z.fett) }}{% if z.teamLink is not null %}</a>{% endif %}</td>
+{%- else %}
+          <td class="{{ k }}" align="right">&nbsp;{{ m.fett(z.tipper, z.fett) }} &nbsp;</td>
+          <td class="{{ k }}" align="right">&nbsp;{{ m.fett(z.schnitt, z.fett) }}&nbsp;</td>
+{%- endif %}
+{%- endif %}
+<td class="{{ k }}" align="right">{% if gewicht == 'spiele' %}<strong>{{ z.spiele }}</strong>{% else %}{{ m.fett(z.spiele, z.fett) }}{% endif %}&nbsp;</td>
+{%- for nr in 1..6 %}{% if spalten[nr] %}
+          <td class="{{ k }}" align="right">{{ m.fett(z.p[nr], z.fett) }}&nbsp;</td>
+{%- endif %}{% endfor %}
+{%- if siege %}
+          <td class="{{ k }}" align="right">{{ m.fett(z.siege, z.fett) }}&nbsp;</td>
+{%- endif %}
+<td class="{{ k }}" align="right">{% if gewicht == 'relativ' %}<strong>{{ z.quote }}</strong>{% else %}{{ m.fett(z.quote, z.fett) }}{% endif %}&nbsp;</td><td class="{{ k }}" align="right">{% if gewicht == 'absolut' %}<strong>{{ z.punkte }}</strong>{% else %}{{ m.fett(z.punkte, z.fett) }}{% endif %}&nbsp;</td>
+{%- endfor %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+{%- if auswahl is not empty %}{{ m.seiten(t, auswahl) }}{% endif %}
+</table>
+{%- if navigation %}
+  <tr>
+    <td>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+{%- if zurueck is not null %}
+          <td align="left"><a href="{{ zurueck|raw }}" title="{{ text[43]|raw }}">{{ text[5]|raw }} {{ text[6]|raw }}</a></td>
+{%- endif %}
+{%- if weiter is not null %}
+          <td align="right"><a href="{{ weiter|raw }}" title="{{ text[44]|raw }}">{{ text[8]|raw }} {{ text[7]|raw }}</a></td>
+{%- endif %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+{%- endif %}

@@ -484,9 +484,7 @@
 483=Druckansicht
 484=Soll eine druckerfreundliche Ansicht erzeugt werden?
 485=Spielerstatistik
-486=Soll die Eingabe von Spielerstatistiken angezeigt werden? (Muss zusätzlich für jede Liga einzeln aktiviert werden!)
 487=Tippspiel
-488=Soll das Tippspiel angezeigt werden?
 489=Torstatistik
 490=Sollen zusätzliche Torstatistiken (Gesamttore und Durchschnittstore) angezeigt werden?
 491=unter Tabellen

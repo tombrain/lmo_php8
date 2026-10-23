@@ -138,14 +138,14 @@ L98;
         $client = Fixture::loggedInClient();
         $path = $client->instance()->path();
         // Feld 10 (Index 10) ungleich -1: der Tipper will erinnert werden
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
             . "tester|geheim|5|Tina Test|tester@example.org||||1|1|1|EOL\n"
             . "zweiter|geheim|5|Zoe Zweite|zweite@example.org||||1|1|1|EOL\n"
             . "ohne|geheim|5|Otto Ohne|ohne@example.org||||1|1|1|EOL\n");
         file_put_contents($client->instance()->ligenDir() . '/erinnerliga.l98', self::LIGA);
         file_put_contents($client->instance()->ligenDir() . '/erinnerpokal.l98', self::POKAL);
         $client->instance()->freezeLeagueTimes();
-        $tipps = $path . '/addon/tipp/tipps/';
+        $tipps = $path . '/daten/tipp/tipps/';
         // "tester" hat schon einiges getippt, "zweiter" noch nichts, "ohne" tippt die Ligen gar nicht
         file_put_contents($tipps . 'erinnerliga_tester.tip', "[Round2]\n@0@\nGA1=1\nGB1=1\nGA2=-1\nGB2=-1\n[Round3]\n@0@\nGA1=2\nGB1=0\n");
         file_put_contents($tipps . 'erinnerliga_zweiter.tip', "[Round1]\n@0@\nGA1=1\nGB1=0\n");
