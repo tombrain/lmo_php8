@@ -44,6 +44,8 @@ $trans_lang = array( 'Monday' => $text['date'][0], 'Tuesday' => $text['date'][1]
 
 // Einstellungen der Liga mit Vorgabewerten (Lmo\Liga\Einstellungen)
 $lmo_html_e = $lmo_liga->einstellungen();
+// die Wappen (bis 4.5 HTML_icon() der Classlib)
+$lmo_html_bilder = new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR);
 $lmo_html_faktor = $lmo_html_e->torfaktor();
 // spielen nicht alle Mannschaften an jedem Spieltag, wird genannt, wer spielfrei ist
 $lmo_html_spielfrei = ($lmo_html_e->mannschaften() - ($lmo_html_e->spieltage() / 2 + 1)) != 0;
@@ -126,9 +128,9 @@ if (!$lmo_html_e->istPokal() && $st > 0) {
 
     <tr>
       <td><?php echo $dum1;?>&nbsp;</td>
-      <td align="right"><?php echo $heimteam;?></td><td><?php echo HTML_icon($heimteam, 'teams');?></td>
+      <td align="right"><?php echo $heimteam;?></td><td><?php echo $lmo_html_bilder->bild($heimteam, 'teams');?></td>
       <td>-</td>
-      <td><?php echo HTML_icon($gastteam, 'teams');?></td><td><?php echo $gastteam;?>&nbsp;</td>
+      <td><?php echo $lmo_html_bilder->bild($gastteam, 'teams');?></td><td><?php echo $gastteam;?>&nbsp;</td>
       <td align="right"><?php echo $heimtore;?></td>
       <td>:</td>
       <td align="left"><?php echo $gasttore;?></td><?php
@@ -186,7 +188,7 @@ if (!$lmo_html_e->istPokal() && $st > 0) {
 ?>
     <tr>
       <td align="right"><?php echo $platz;?>&nbsp;</td>
-      <td><?php echo HTML_icon($teamname, 'teams');?>&nbsp;</td>
+      <td><?php echo $lmo_html_bilder->bild($teamname, 'teams');?>&nbsp;</td>
       <td><?php echo $teamname;?>&nbsp;</td>
       <td align="right"><?php echo $spieleteam;?>&nbsp;</td>
       <td align="right"><?php echo $pluspunkte;
@@ -232,9 +234,9 @@ if (!$lmo_html_e->istPokal() && $st > 0) {
     <tr>
       <td><?php echo $dum1;?>&nbsp;</td>
       <td align="right"><?php echo $heimteam;?></td>
-      <td><?php echo HTML_icon($heimteam, 'teams');?></td>
+      <td><?php echo $lmo_html_bilder->bild($heimteam, 'teams');?></td>
       <td>-</td>
-      <td><?php echo HTML_icon($gastteam, 'teams');?></td>
+      <td><?php echo $lmo_html_bilder->bild($gastteam, 'teams');?></td>
       <td><?php echo $gastteam;?>&nbsp;</td>
       <td align="right"><?php echo $heimtore;?></td>
       <td>:</td>
