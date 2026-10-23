@@ -72,20 +72,18 @@ final class AnzahlController implements Controller
             }
             [$meldung, $liga] = ($this->speichere)($liga, $geladen->datei, $anfrage->text('st'));
         }
-        $addr = $kontext->adresse . '?action=admin&amp;todo=edit&amp;file=' . $geladen->datei . '&amp;st=';
-        $addb = $kontext->adresse . '?action=admin&amp;todo=tabs&amp;file=' . $geladen->datei . '&amp;st=';
 
         return new Seite($meldung . Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_anzahl.html.twig', [
             'text' => $kontext->text,
             'adresse' => $kontext->adresse,
             'bilder' => $kontext->pfade->bilder,
-            'navigation' => LigaNavigation::html($kontext, $kontext->addons, $liga, 'edit', $anfrage->text('st'), $addr, $addb),
+            'navigation' => LigaNavigation::fuer($kontext, $liga, 'edit', $anfrage->text('st')),
             'warnung' => Meldung::html($kontext->pfade->bilder, $kontext->text[561] ?? '', true),
             'datei' => $geladen->datei,
             'st' => $anfrage->text('st'),
             'spieltage' => $liga->einstellungen()->wert('Rounds'),
             'spiele' => $liga->einstellungen()->wert('Matches'),
-            'addr' => $addr,
+            'addr' => LigaNavigation::adresse($kontext, 'edit', $geladen->datei),
         ]));
     }
 }
