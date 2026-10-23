@@ -55,7 +55,7 @@ class SpieltageZuordnenControllerTest extends TestCase
         $controller = new SpieltageZuordnenController(function (string $datei, array $wuensche) use ($danach): array {
             $this->wuensche[] = [$datei, $wuensche];
 
-            return ['AUSGABE ', [[1, 2, 1, 2, 'Alpha', 'Beta']], $danach];
+            return ['AUSGABE ', [[1, 2, 1, 2, 'Alpha', 'Beta'], [2, 1, 2, 3, 'Beta', 'Gamma']], $danach];
         });
         self::assertTrue($controller->zustaendig($kontext));
 
@@ -104,7 +104,7 @@ class SpieltageZuordnenControllerTest extends TestCase
 
         self::assertSame([['a.l98', [[1, 2, 1, 2]]]], $this->wuensche, 'nur Auswahlen mit anderem Spieltag');
         self::assertStringContainsString('AUSGABE ', $html);
-        self::assertStringContainsString('T5007 Alpha - Beta T5004 1. T5005 2 . T5010 T5006.', $html);
+        self::assertStringContainsString('T5007 Alpha - Beta T5004 1. T5005 2 . T5010 T5006.<BR>T5007 Beta - Gamma T5004 2. T5005 1 . T5010 T5006.<BR>', $html, 'jede Verschiebung');
         self::assertStringContainsString('<td><strong>Alpha</strong></td>', $html, 'verschobene Partie fett');
         self::assertStringContainsString('/ 2 T5003', $html, 'angezeigt wird die Liga nach dem Verschieben');
         self::assertStringContainsString('/ 0 T5003', $html);

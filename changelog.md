@@ -104,6 +104,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Spieltage zuordnen: Werden mehrere Partien auf einmal verschoben, nennt die Meldung jetzt jede. Bisher stand nur die letzte da.  
 * Administration, Tabellenkorrektur: Das kleine Wappen in der Notiz einer Mannschaft kommt jetzt wie in der Tabelle aus `Darstellung::wappen()`. Bisher fand `getSmallImage()` nur `.gif`-Dateien und schrieb `{$imgdata[3]}` wörtlich ins HTML.  
 * Administration, Tabellenkorrektur: gültiges HTML in der Kopfzeile (`style="text-align:"left"`) und am Ende der Tabelle (`</th>` statt `</td>`).  
 * Administration, Tabellenkorrektur: Ein Klick auf das Symbol einer Mannschaft mit Notiz, Strafe oder Bonus zeigt diese jetzt auch im Hinweisfenster. Bisher blieb es leer, weil die Argumente von `addcslashes()` vertauscht waren.  
@@ -555,6 +556,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, assigning rounds: when several games are moved at once, the message now names each of them. So far only the last one was shown.  
 * Administration, table correction: the small logo in the note of a team now comes from `Darstellung::wappen()` as in the table. So far `getSmallImage()` only found `.gif` files and wrote `{$imgdata[3]}` literally into the HTML.  
 * Administration, table correction: valid HTML in the header row (`style="text-align:"left"`) and at the end of the table (`</th>` instead of `</td>`).  
 * Administration, table correction: clicking the symbol of a team with a note, penalty or bonus now also shows it in the alert box. So far it stayed empty because the arguments of `addcslashes()` were swapped.  
