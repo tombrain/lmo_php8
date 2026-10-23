@@ -60,10 +60,11 @@ class NeuControllerTest extends TestCase
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
         $controller = new NeuController(
-            function (Liga $liga, string $datei): string {
+            function (Liga $liga, string $datei, string $st): array {
                 $this->gespeichert[] = [$liga, $datei];
+                self::assertSame('1', $st, 'die neue Liga beginnt am ersten Spieltag');
 
-                return 'GESPEICHERT ';
+                return ['GESPEICHERT ', $liga];
             },
             static fn (int $von, int $bis): int => $bis
         );
