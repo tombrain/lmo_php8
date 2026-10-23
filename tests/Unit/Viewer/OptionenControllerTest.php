@@ -103,6 +103,19 @@ class OptionenControllerTest extends TestCase
         self::assertStringContainsString('name="zaehler" value="4"', $html);
     }
 
+    public function testNameBleibtImOrdner(): void
+    {
+        self::assertTrue(OptionenController::gueltigerName('Meine Ansicht ü-1'));
+        foreach (['', '../x', 'a/b', 'a\\b', '.versteckt'] as $name) {
+            self::assertFalse(OptionenController::gueltigerName($name), $name);
+        }
+
+        $html = $this->seite(['formular3' => '1', 'zaehler' => '0', 'dateiname' => '../../lmo', 'config_array' => 'modus=1']);
+        self::assertStringContainsString('Fehler: ../../lmo', $html);
+        self::assertStringContainsString('name="formular1"', $html, 'zurueck zu den Einstellungen');
+        self::assertFileDoesNotExist($this->ordner . '/lmo.view');
+    }
+
     public function testSpeichern(): void
     {
         $html = $this->seite(['formular3' => '1', 'zaehler' => '4', 'dateiname' => 'meine', 'config_array' => 'modus=1;titelzeile=T', 't0' => 'a.l98[1]', 't2' => 'a.l98[3]', 't3' => 'b.l98[2]']);

@@ -103,7 +103,13 @@ final class OptionenController implements Controller
         $ausgabe = '';
         if ($schritt3) {
             $dateiname = $a->text('dateiname');
-            [$ausgabe] = $this->speichere($kontext, $ligenordner, $dateiname, $t);
+            if (!self::gueltigerName($dateiname)) {
+                // der Name muss im Ordner der Ansichten bleiben (bis 4.5 ungeprueft): zurueck zu Schritt 1
+                $ausgabe = Meldung::html($kontext->pfade->bilder, ($text[567] ?? '') . ': ' . htmlspecialchars($dateiname), true);
+                $schritt1 = $schritt2 = $schritt3 = false;
+            } else {
+                [$ausgabe] = $this->speichere($kontext, $ligenordner, $dateiname, $t);
+            }
         }
 
         $mannschaften = $schritt2 && !$schritt3 ? $this->mannschaften($ligenordner, $ligen, $gewaehlt, $t) : [];
@@ -127,6 +133,15 @@ final class OptionenController implements Controller
             'anzahlMannschaften' => array_sum(array_map(static fn (array $liga): int => (int) array_sum(array_map('count', $liga['zeilen'])), $mannschaften)),
             'anzahlLigen' => count($gewaehlt),
         ]));
+    }
+
+    /**
+     * Ein Name fuer eine Ansicht bleibt im Ordner der Ansichten: nicht leer, ohne / und \, nicht
+     * mit einem Punkt am Anfang. Sonst ist alles erlaubt, wie bisher (auch Leerzeichen, Umlaute).
+     */
+    public static function gueltigerName(string $name): bool
+    {
+        return $name !== '' && strpbrk($name, '/\\') === false && $name[0] !== '.';
     }
 
     /**

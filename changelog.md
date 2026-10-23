@@ -142,6 +142,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Viewer: Der Name einer Ansicht muss im Ordner `config/viewer` bleiben (kein `/` oder `\`, kein Punkt am Anfang). Bisher konnte der Assistent der Administration `.view`-Dateien außerhalb des Ordners schreiben, und `viewer.php?multi=...` las sie von dort; die Meldung zu einer unbekannten Ansicht gab den Namen unmaskiert aus und legte trotzdem eine Zählerdatei an.  
 * Administration, neue Liga, Spielplan aus einer anderen Liga übernehmen: Das Formular trug den vollen Pfad der Datei auf dem Server, und übernommen wurde jede Datei mit Endung `.l98`, deren Pfad die Anfrage nannte. Jetzt steht dort der Dateiname, und übernommen wird nur eine Liga gleicher Größe aus dem Ligenordner, die das Formular auch anbietet (nur als Hauptadmin).  
 * Administration, neue Liga: Der Dateiname wird auch auf dem Server wie im Browser auf den reinen Namen gekürzt (ohne Ordner und `.l98`). Bisher ließ sich mit einer selbst gebauten Anfrage über `../` eine Datei mit Endung `.l98` außerhalb des Ligenordners anlegen (nur als Hauptadmin).  
 * Administration, Benutzer: Der Hauptadmin (das erste Konto) lässt sich nicht mehr über `del=0` in der Adresse löschen. Die Seite bot das nie an, verhinderte es aber nicht.  
@@ -602,6 +603,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Viewer: the name of a view has to stay in the folder `config/viewer` (no `/` or `\`, no leading dot). So far the admin wizard could write `.view` files outside the folder, and `viewer.php?multi=...` read them from there; the message for an unknown view printed the name unescaped and still created a counter file.  
 * Administration, new league, schedule from another league: the form carried the full path of the file on the server, and any file ending in `.l98` named by the request was read. Now it carries the file name, and only a league of the same size from the league folder that the form offers is used (main admin only).  
 * Administration, new league: the file name is now cut down to the bare name on the server too, as the browser already did (no folders, no `.l98`). Until now a crafted request could create a file ending in `.l98` outside the league folder via `../` (main admin only).  
 * Administration, users: the main admin (the first account) can no longer be deleted via `del=0` in the address. The page never offered that, but did not prevent it.  

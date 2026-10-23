@@ -28,6 +28,14 @@ require(__DIR__ . '/../../init.php');
 require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
 require_once(PATH_TO_ADDONDIR . '/viewer/viewer_functions.php');
 
+// der Name der Ansicht (multi, auch aus der Adresse) muss im Ordner config/viewer bleiben; bis 4.5
+// ungeprueft, und die Meldung zeigte ihn unmaskiert
+$multi = isset($multi) ? (string)$multi : '';
+$multi1 = PATH_TO_CONFIGDIR . '/viewer/' . $multi . '.view';
+if (!\Lmo\Addon\Viewer\OptionenController::gueltigerName($multi) || !file_exists($multi1)) {
+    die($text['viewer'][55] . ': ' . htmlspecialchars($multi1) . ' ' . $text['viewer'][56]);
+}
+
 // Load the cache-counter-file for viewers simple cache mechanism
 $viewer_cache_counter_filename = PATH_TO_LMO . '/' . $diroutput . '/viewer_' . $multi . '_count.txt';
 
@@ -42,8 +50,6 @@ $viewer_cache_counter = intval(trim(fgets($viewer_cache_counter_file)));
 fclose($viewer_cache_counter_file);
 
 if (!isset($cfgarray))$cfgarray = array();
-
-$multi1 = PATH_TO_CONFIGDIR . '/viewer/' . $multi . '.view';
 
 if (file_exists($multi1)) {
     // in Array lesen
