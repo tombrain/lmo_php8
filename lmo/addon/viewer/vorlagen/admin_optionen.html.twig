@@ -24,7 +24,7 @@
             <form action="#" onSubmit="return false;">
               <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <th colspan="2" align="center">{{ t[43]|raw }}</h1></th>
+                  <th colspan="2" align="center">{{ t[43]|raw }}</th>
                 </tr>
                 <tr>
                   <td class="nobr">
@@ -46,7 +46,7 @@
 {# Hauptauswahl: Name und Einstellungen der Ansicht #}
       <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0" width="600">
         <tr>
-          <th align="center"><h1>{{ t[21]|raw }}</h1></td>
+          <th align="center"><h1>{{ t[21]|raw }}</h1></th>
         </tr>
         <tr>
           <td class="nobr">
@@ -231,7 +231,7 @@
             <form method="POST" action="{{ adresse|raw }}" name="B3">
               <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <th colspan="2" align="center">{{ t[31]|raw }}</h1></th>
+                  <th colspan="2" align="center">{{ t[31]|raw }}</th>
                 </tr>
                 <tr>
                   <td class="nobr">
@@ -239,21 +239,17 @@
 {% if liga.fehler != '' %}
 {{ liga.fehler|raw }}<br>
 {% else %}
-                    <table class=lmoInner cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
                       <tr>
                         <td class="nobr"  colspan="3" align="center"><h1>{{ liga.name|raw }}</h1></td>
                       </tr>
 {% for zeile in liga.zeilen %}
-<tr>
+                      <tr>
 {% for m in zeile %}
-<td class="nobr"  align="left"><input type="checkbox" name="{{ m.feld }}" value="{{ m.wert|raw }}">{{ m.name|raw }}</td>
+                        <td class="nobr"  align="left"><input type="checkbox" name="{{ m.feld }}" value="{{ m.wert }}">{{ m.name|raw }}</td>
 {% endfor %}
-{# wie bisher: eine volle letzte Zeile bekommt ein </tr> zu viel, eine mit zwei Mannschaften keines #}
-{% if zeile|length == 3 %}</tr>
-{% endif %}
-{% if loop.last and zeile|length != 2 %}</tr>{% endif %}
+                      </tr>
 {% endfor %}
-{% if liga.zeilen is empty %}</tr>{% endif %}
                     </table>
 {% endif %}
 {% endfor %}
@@ -277,7 +273,7 @@
                     <input type="hidden" name="dateiname" value="{{ dateiname }}">
                     <input type="hidden" name="config_array" value="{{ einstellungen }}">
                     <input type="hidden" name="zaehler" value="{{ anzahlMannschaften }}">
-                    <input type="submit" class="lmo-formular-button" value="{{ t[32]|raw }} >>" name="B3"></p>
+                    <input type="submit" class="lmo-formular-button" value="{{ t[32]|raw }} >>" name="B3">
                   </td>
                 </tr>
               </table>
