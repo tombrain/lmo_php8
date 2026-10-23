@@ -1,0 +1,128 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Tabelle eines Spieltags korrigieren (Lmo\Web\Admin\TabellenkorrekturController), bis 4.5 lmo-admintab.php #}
+{# Kopf der Punkte, je nach tabpkt vor oder hinter den Toren #}
+{% macro punkteKopf(text, minuspunkte) %}
+            <th>&nbsp;</th>
+            <th {{ minuspunkte ? 'colspan="3" style="text-align:center"' : 'style="text-align:right"' }}>{{ text[37]|raw }}</th>
+{%- endmacro %}
+{# die Punkte einer Zeile, immer fett #}
+{% macro punkte(z, minuspunkte) %}
+            <td width="2">&nbsp;</td>
+            <td align="right"><strong>{{ z.punkte }}</strong></td>
+{%- if minuspunkte %}
+
+            <td align="center" width="4"><strong>:</strong></td>
+            <td><strong>{{ z.minuspunkte }}</strong></td>
+{%- endif %}
+{%- endmacro %}
+{% import _self as f %}
+{{ navigation|raw }}
+
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ name|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">{{ spieltagsmenue|raw }}</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopas2({{ mannschaften }})">
+        <input type="hidden" name="action" value="admin">
+        <input type="hidden" name="todo" value="tabs">
+        <input type="hidden" name="save" value="1">
+        <input type="hidden" name="file" value="{{ datei }}">
+        <input type="hidden" name="st" value="{{ st }}">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{# Kopf: Spieltag, Spiele, Siege, Unentschieden, Niederlagen, Punkte, Tore, Differenz #}
+          <tr>
+            <th style="text-align:left" colspan="4">{{ st }}. {{ text[2]|raw }}</th>
+            <th style="text-align:left" width="2">&nbsp;</th>
+            <th style="text-align:center"><acronym title="{{ text[63]|raw }}">{{ text[33]|raw }}</acronym></th>
+            <th style="text-align:center"><acronym title="{{ text[199]|raw }}">{{ text[34]|raw }}</acronym></th>
+{%- if unentschieden %}
+
+            <th style="text-align:center"><acronym title="{{ text[200]|raw }}">{{ text[35]|raw }}</acronym></th>
+{%- endif %}
+
+            <th style="text-align:center"><acronym title="{{ text[201]|raw }}">{{ text[36]|raw }}</acronym></th>
+{%- if punkteVorn %}
+
+{{ f.punkteKopf(text, minuspunkte) }}
+{%- endif %}
+
+            <th style="text-align:"left" width="2">&nbsp;</th>
+            <th style="text-align:"left" colspan="3" align="center">{{ text[38]|raw }}</th>
+            <th align="right">{{ text[39]|raw }}</th>
+{%- if punkteHinten %}
+
+{{ f.punkteKopf(text, minuspunkte) }}
+{%- endif %}
+
+          </tr>
+{# je Platz eine Zeile: der korrigierte Platz, die Mannschaft (Lieblingsmannschaft fett), ihre Notiz und ihre Werte #}
+{% for z in zeilen %}
+{% set an = z.liebling ? '<strong>' : '' %}{% set aus = z.liebling ? '</strong>' : '' %}
+          <tr>
+            <td align="right">
+              <select title="{{ text[414]|raw }}" class="lmo-formular-input" name="xplatz{{ z.x }}" onChange="dolmoedi2({{ mannschaften }},'xplatz{{ z.x }}')">
+{%- for y in 1..mannschaften %}
+
+                <option value="{{ y }}" {% if y == z.platz %} selected{% endif %}>{{ y }}</option>
+{% endfor %}
+              </select>
+            </td>
+            <td class="nobr">{{ an|raw }}{{ z.name|raw }}{{ aus|raw }}</td>
+            <td>&nbsp;</td>
+            <td>
+{%- if z.notiz is not null %}
+
+        <a href='#' onclick="alert('');window.focus();return false;"><img src='{{ bilder }}/lmo-st2.svg' height='15' border='0' alt=''><span class='popup'>{{ z.notiz|raw }}</span></a>
+{%- else %}&nbsp;{% endif %}
+
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">{{ an|raw }}{{ z.spiele }}{{ aus|raw }}</td>
+            <td align="right">{{ an|raw }}{{ z.siege }}{{ aus|raw }}</td>
+{%- if unentschieden %}
+
+            <td align="right">{{ an|raw }}{{ z.unentschieden }}{{ aus|raw }}</td>
+{%- endif %}
+
+            <td align="right">{{ an|raw }}{{ z.niederlagen }}{{ aus|raw }}</td>
+{%- if punkteVorn %}
+
+{{ f.punkte(z, minuspunkte) }}
+{%- endif %}
+
+            <td>&nbsp;</td>
+            <td align="right">{{ an|raw }}{{ z.tore }}{{ aus|raw }}</td>
+            <td align="center" width="4">{{ an|raw }}:{{ aus|raw }}</td>
+            <td>{{ an|raw }}{{ z.gegentore }}{{ aus|raw }}</td>
+            <td align="right">{{ an|raw }}{{ z.differenz }}{{ aus|raw }}</td>
+{%- if punkteHinten %}
+
+{{ f.punkte(z, minuspunkte) }}
+{%- endif %}
+
+          </tr>
+{% endfor %}
+          <tr>
+            <th style="text-align:center" colspan="{{ breite }}">
+              <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[415]|raw }}">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
