@@ -72,8 +72,8 @@ final class SpieltageZuordnenController implements Controller
         if ($wuensche !== []) {
             [$ausgabe, $verschoben, $neu] = ($this->verschiebe)($geladen->datei, $wuensche);
             foreach ($verschoben as [$alt, $nach, $heim, $gast, $heimName, $gastName]) {
-                // die Meldung nennt wie bisher nur die letzte Verschiebung
-                $meldung = ($text[5007] ?? '') . ' ' . $heimName . ' - ' . $gastName . ' ' . ($text[5004] ?? '') . ' ' . $alt . '. ' . ($text[5005] ?? '') . " $nach . " . ($text[5010] ?? '') . ' ' . ($text[5006] ?? '') . '.<BR>';
+                // je Verschiebung eine Zeile (bis 4.5 nur die letzte)
+                $meldung .= ($text[5007] ?? '') . ' ' . $heimName . ' - ' . $gastName . ' ' . ($text[5004] ?? '') . ' ' . $alt . '. ' . ($text[5005] ?? '') . " $nach . " . ($text[5010] ?? '') . ' ' . ($text[5006] ?? '') . '.<BR>';
                 $markiert[] = $heim . '-' . $gast;
             }
             if ($neu !== null) {
