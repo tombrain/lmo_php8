@@ -104,7 +104,6 @@ final class MannschaftenController implements Controller
             ];
         }
         $addr = LigaNavigation::adresse($kontext, 'edit', $geladen->datei);
-        $k = $kontext->konfiguration;
 
         return new Seite($meldung . Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_mannschaften.html.twig', [
             'text' => $kontext->text,
@@ -120,10 +119,8 @@ final class MannschaftenController implements Controller
             'mannschaften' => $mannschaften,
             'addr' => $addr,
             'addz' => $addr . '-2&amp;team=',
-            // der Link zur Anzahl der Spieltage nach dem Hinzufuegen oder Entfernen einer Mannschaft;
-            // wie bis 4.5 auch nach jedem Speichern mit Torstatistik: lmo-zustat.php (aus lmo-saveliga.php)
-            // hinterliess die globale Variable $team, die die Seite dafuer pruefte
-            'anzahlLink' => $team != '' || ($speichern && ($k->schalter('einzutore') || $k->schalter('einzutoretab') || $k->schalter('einzustats'))),
+            // der Link zur Anzahl der Spieltage nach dem Hinzufuegen oder Entfernen einer Mannschaft
+            'anzahlLink' => $team != '',
         ]));
     }
 

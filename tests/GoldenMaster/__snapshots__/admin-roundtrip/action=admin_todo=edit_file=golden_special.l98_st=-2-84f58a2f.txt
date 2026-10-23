@@ -328,11 +328,6 @@ xteamu6=
 </form>
 </td>
 </tr>
-<tr>
-<td class="nobr">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=golden/special.l98&amp;st=-3" onclick="return chklmolink();" title="Hier könen Sie die Anzahl der Spieltage und die Anzahl der Spiele pro Spieltag ändern. ACHTUNG: Das kann zu Datenverlust führen!">Spieltags- und Spiel-Anzahl</a>
-</td>
-</tr>
 </table>
 </td>
 </tr>

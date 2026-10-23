@@ -104,8 +104,7 @@ class MannschaftenControllerTest extends TestCase
         self::assertSame('Schalke', $liga->mannschaft(2)->name, 'leer gelassen: der bisherige Name');
         self::assertStringNotContainsString('st=-3', $html, 'ohne Torstatistik kein Link zur Anzahl');
 
-        // wie bis 4.5: nach dem Speichern mit Torstatistik der Link zur Anzahl (Seiteneffekt von lmo-zustat.php)
-        self::assertStringContainsString('st=-3" onclick', $this->seite(['save' => '1'], self::LIGA, ['einzutore' => '1']));
+        self::assertStringNotContainsString('st=-3" onclick', $this->seite(['save' => '1'], self::LIGA, ['einzutore' => '1']), 'auch nicht mit Torstatistik (bis 4.5 ein Seiteneffekt von lmo-zustat.php)');
     }
 
     public function testHinzufuegenUndEntfernen(): void
