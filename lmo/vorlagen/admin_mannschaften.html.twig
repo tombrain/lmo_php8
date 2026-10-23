@@ -1,0 +1,121 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Mannschaften einer Liga (Lmo\Web\Admin\MannschaftenController), bis 4.5 lmo-adminteams.php #}
+{{ navigation|raw }}
+
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ name|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+        <input type="hidden" name="action" value="admin">
+        <input type="hidden" name="todo" value="edit">
+        <input type="hidden" name="save" value="1">
+        <input type="hidden" name="file" value="{{ datei }}">
+        <input type="hidden" name="st" value="{{ st }}">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{# Kopfzeile: Namen, Strafen und Korrekturen (nur Liga), Notiz (nur Liga), Homepage #}
+          <tr>
+            <th class="nobr" align="left"><acronym title="{{ text[125]|raw }}, {{ text[572]|raw }}, {{ text[126]|raw }}">{{ text[127]|raw }}</acronym>&nbsp;</th>
+{% if not pokal %}
+            <th class="nobr" colspan="2" align="center"><acronym title="{{ text[131]|raw }}">{{ text[542]|raw }}/{{ text[543]|raw }}</acronym>&nbsp;</th>
+            <th class="nobr" align="center"><acronym title="{{ text[523]|raw }}">{{ text[524]|raw }}</acronym>&nbsp;</th>
+{% endif %}
+<!-- Hack-Straftore Ende -->
+{% if not pokal %}
+            <th class="nobr" align="center"><acronym title="{{ text[405]|raw }}"><img src="{{ bilder }}/notiz.svg" height="20" alt="{{ text[404]|raw }}"></acronym></th>
+{% endif %}
+            <th class="nobr" align="center"><acronym title="{{ text[130]|raw }}"><img src="{{ bilder }}/spielbericht.svg" height="20" alt="{{ text[129]|raw }}"></acronym></th>
+            <th class="nobr" colspan="{{ breite }}" align="center">&nbsp;</th>
+          </tr>
+{# je Mannschaft eine Zeile #}
+{% for m in mannschaften %}
+          <tr>
+            <td class="nobr">
+              <input class="lmo-formular-input" type="text" name="xteams{{ m.nr }}" size="32" maxlength="64" value="{{ m.name }}" onChange="dolmoedit()">
+              <input class="lmo-formular-input" type="text" name="xteamm{{ m.nr }}" size="12" maxlength="12" value="{{ m.mittel }}" onChange="dolmoedit()">
+              <input class="lmo-formular-input" type="text" name="xteamk{{ m.nr }}" size="5" maxlength="5" value="{{ m.kurz }}" onChange="dolmoedit()">
+              &nbsp;
+            </td>
+{% if not pokal %}
+{# Strafpunkte (und Minuspunkte), Torkorrektur, Strafe ab Spieltag #}
+            <td class="lmoBackMarkierung nobr" align="center">
+              <input class="lmo-formular-input" type="text" name="xstrafp{{ m.nr }}" size="1" maxlength="4" value="{{ m.strafpunkte }}" onChange="dolmoedit()">
+{% if minuspunkte %}
+              : <input class="lmo-formular-input" type="text" name="xstrafm{{ m.nr }}" size="1" maxlength="4" value="{{ m.strafminus }}" onChange="dolmoedit()">
+{% endif %}
+{{ text[37]|raw }}
+            </td>
+
+            <td class="nobr" align="center">
+                <input class="lmo-formular-input" type="text" name="xtorkorrektur1{{ m.nr }}" size="1" maxlength="4" value="{{ m.tore }}" onChange="dolmoedit()">
+              : <input class="lmo-formular-input" type="text" name="xtorkorrektur2{{ m.nr }}" size="1" maxlength="4" value="{{ m.gegentore }}" onChange="dolmoedit()">
+              {{ text[38]|raw }}
+            </td>
+            <td class="nobr" align="center">
+
+                <input class="lmo-formular-input" type="text" name="xstrafdat{{ m.nr }}" size="2" maxlength="2" value="{{ m.abSpieltag|raw }}" onChange="dolmoedit()">
+              &nbsp;
+            </td>
+
+{# Notiz, leer nur als "+" #}
+            <td class="nobr" align="center">
+              <input id="n{{ m.nr }}" class="lmo-formular-input" type="text" name="xteamn{{ m.nr }}" tabindex="{{ m.nr }}13" size="20" maxlength="255" value="{{ m.notiz|raw }}" onChange="dolmoedit()">
+{% if m.notizLeer %}
+              <script type="text/javascript">document.getElementById('n{{ m.nr }}').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'n{{ m.nr }}\').style.display=\'inline\';return false;">+</a>');</script>
+{% endif %}
+            </td>
+{% endif %}
+{# Homepage, leer nur als "+" #}
+            <td class="nobr" align="center">
+              <input id="h{{ m.nr }}" class="lmo-formular-input" type="text" name="xteamu{{ m.nr }}" tabindex="{{ m.nr }}14" size="30" maxlength="255" value="{{ m.url|raw }}" onChange="dolmoedit()">
+{% if m.urlLeer %}
+              <script type="text/javascript">document.getElementById('h{{ m.nr }}').style.display='none';document.write('<a href="#" onClick="this.style.display=\'none\';document.getElementById(\'h{{ m.nr }}\').style.display=\'inline\';return false;">+</a>');</script>
+{% endif %}
+            </td>
+{% if not pokal %}
+{# Mannschaft loeschen #}
+            <td class="nobr">
+              <a href='{{ addz|raw }}{{ m.nr }}' onclick="return dteamlmolink(this.href,'{{ m.name|raw }}');" title="{{ text[334]|raw }}">
+                <img src="{{ bilder }}/delete.svg" height="18" alt="" border="0">
+              </a>
+            </td>
+{% endif %}
+{# Wappen klein und gross #}
+            <td class="nobr">{{ m.wappen|raw }}</td>
+            <td class="nobr">{{ m.wappenGross|raw }}</td>
+          </tr>
+{% endfor %}
+          <tr>
+            <td class="nobr" colspan="{{ breite }}" align="right">
+              <input title="{{ text[114]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[132]|raw }}">
+            </td>
+{% if not pokal %}
+            <td class="nobr" colspan="{{ breite }}">
+              <a href='{{ addz|raw }}-1' onclick="return ateamlmolink(this.href);" title="{{ text[337]|raw }}">{{ text[336]|raw }}</a>
+            </td>
+{% endif %}
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+{# nach dem Hinzufuegen oder Entfernen: der Weg zur Anzahl der Spieltage #}
+{% if not pokal and anzahlLink %}
+  <tr>
+    <td class="nobr">
+      <a href="{{ addr|raw }}-3" onclick="return chklmolink();" title="{{ text[339]|raw }}">{{ text[338]|raw }}</a>
+    </td>
+  </tr>
+{% endif %}
+</table>
