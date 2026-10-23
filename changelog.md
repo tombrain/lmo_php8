@@ -88,6 +88,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Removed  
+* `getSmallImage()` aus `lmo-functions.php`; das kleine Wappen einer Mannschaft liefert `Lmo\Web\Darstellung::wappen()`.  
 * `lmo-showrestab.php`, `lmo-showresults.php` und `lmo-showtable.php` gibt es nicht mehr; Ergebnisse und Tabelle zeigt der `ErgebnisseController`.  
 * `lmo-showcross.php` gibt es nicht mehr; die Kreuztabelle zeigt der `KreuztabelleController`.  
 * `lmo-showprogram.php` gibt es nicht mehr; den Spielplan zeigt der `SpielplanController`.  
@@ -536,6 +537,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Removed  
+* `getSmallImage()` from `lmo-functions.php`; the small logo of a team comes from `Lmo\Web\Darstellung::wappen()`.  
 * `lmo-showrestab.php`, `lmo-showresults.php` and `lmo-showtable.php` are gone; results and table are shown by the `ErgebnisseController`.  
 * `lmo-showcross.php` is gone; the cross table is shown by the `KreuztabelleController`.  
 * `lmo-showprogram.php` is gone; the fixtures are shown by the `SpielplanController`.  
