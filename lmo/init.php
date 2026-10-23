@@ -114,8 +114,14 @@ require_once(is_file(PATH_TO_LMO . '/vendor/autoload.php') ? PATH_TO_LMO . '/ven
 \Lmo\Addon\Autoloader::registriere(PATH_TO_ADDONDIR);
 // Functions
 require_once(PATH_TO_LMO . '/lmo-functions.php');
-// Übergang Classlib
-require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
+// installierte Version (bis 4.5 aus addon/classlib/ini.php); Addons, die die Classlib brauchen
+// (Viewer, Mini), binden addon/classlib/ini.php selbst ein
+if (!defined('LMO_VERSION_NR')) {
+    define('LMO_VERSION_NR', lmo_installed_version());
+}
+if (!defined('LMO_VERSION')) {
+    define('LMO_VERSION', LMO_VERSION_NR);
+}
 
 // Remove Magic Quotes if necessary
 magicQuotesRemove($_GET);
