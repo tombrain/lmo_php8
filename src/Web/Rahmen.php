@@ -54,7 +54,8 @@ final class Rahmen
         if ($kontext->liga !== null) {
             $titel = $kontext->liga->liga->einstellungen()->name();
         } else {
-            $titel = $kontext->action == 'tipp' ? ($kontext->texteVon('tipp')[0] ?? '') : $text[53];
+            // ohne Liga der Titel eines Bereichs (Lmo\Addon\MitBereich, etwa das Tippspiel), sonst der allgemeine
+            $titel = $kontext->addons->bereichstitel($kontext) ?? $text[53];
         }
         $teile = [
             'Titel' => $titel,

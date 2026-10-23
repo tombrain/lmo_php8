@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Addons: Erweiterungspunkt `Lmo\Addon\MitBereich` für einen eigenen Bereich ohne Liga: Die Seite trägt dann den Titel des Bereichs, und die Fußzeile führt zurück zur Ligenübersicht. Das Tippspiel meldet so `action=tipp` an (`TippAddon::bereichstitel()`); Rahmen und Fußzeile nennen es nicht mehr.  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitLigaStartseiten` für eigene Seiten als Startseite einer Liga (`Lmo\Addon\LigaStartseite`: Wert in `OnRun`, Seite, Name, sperrender Schalter). Die Spielerstatistik meldet darüber ihre Startseite (`OnRun=7`) samt Text in ihren Sprachdateien an; der Kern kennt nur noch seine Seiten 0 bis 6 und nennt das Spieler-Addon dort nicht mehr. Ohne das Addon fehlt die Option in den Grundeinstellungen.  
 * Administration, Partien anderen Spieltagen zuordnen (`todo=edit&st=-10`): `Lmo\Web\Admin\SpieltageZuordnenController` mit der Vorlage `admin_spieltage_zuordnen.html.twig`. Verschoben und geschrieben wird vorerst weiter über die Classlib (Brücke in `lmo-adminmain.php`), die Datei bleibt dieselbe. `lmo-adminrounds.php` gibt es nicht mehr, ebenso die Variable `$pdf_addr_optionen`; der Kern bindet keine Seite der Administration mehr nach alter Art ein.  
 * Administration, neuere Version des LMO (`todo=update`): `Lmo\Web\Admin\UpdateController` mit der Vorlage `admin_update.html.twig`. `lmo-adminupdate.php` gibt es nicht mehr.  
@@ -464,6 +465,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Add-ons: extension point `Lmo\Addon\MitBereich` for an own area without a league: the page then carries the area's title, and the footer leads back to the league overview. The prediction game registers `action=tipp` this way (`TippAddon::bereichstitel()`); frame and footer no longer name it.  
 * Add-ons: extension point `Lmo\Addon\MitLigaStartseiten` for own pages as the start page of a league (`Lmo\Addon\LigaStartseite`: value in `OnRun`, page, name, blocking switch). The player statistics register their start page (`OnRun=7`) this way, with the text in their language files; the core only knows its pages 0 to 6 and no longer names the player add-on there. Without the add-on the option is missing from the basic settings.  
 * Administration, assigning games to other rounds (`todo=edit&st=-10`): `Lmo\Web\Admin\SpieltageZuordnenController` with the template `admin_spieltage_zuordnen.html.twig`. Moving and writing still goes through the classlib for now (bridge in `lmo-adminmain.php`); the file stays the same. `lmo-adminrounds.php` is gone, as is the variable `$pdf_addr_optionen`; the core no longer includes any admin page of the old kind.  
 * Administration, newer version of LMO (`todo=update`): `Lmo\Web\Admin\UpdateController` with the template `admin_update.html.twig`. `lmo-adminupdate.php` is gone.  

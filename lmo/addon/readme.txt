@@ -85,6 +85,8 @@ Addons nach neuer Art:
                                    Spieltags (Lmo\Addon\ErgebnisSpalte), z.B. "ohne Tippwertung"
     # Lmo\Addon\MitLigaStartseiten ligaStartseiten(): eigene Seiten als Startseite einer Liga
                                    (Lmo\Addon\LigaStartseite, Wert in OnRun ab 7), z.B. die Spielerstatistik
+    # Lmo\Addon\MitBereich       bereichstitel(): eigener Bereich ohne Liga (z.B. action=tipp) mit
+                                   eigenem Titel und Link zurueck zur Ligenuebersicht
 
   Weitere Erweiterungspunkte folgen.
 

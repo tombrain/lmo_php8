@@ -35,8 +35,9 @@ final class Fusszeile
         $datei = $kontext->liga !== null ? $kontext->liga->datei : '';
         $teile = ['Ligenuebersicht' => '', 'LetzteAuswertung' => '', 'Berechnungszeit' => ''];
 
-        // zurueck zur Ligenuebersicht, bei einer Liga im Unterordner zu diesem
-        if ($ligenuebersicht && ($datei !== '' || $kontext->action == 'tipp')) {
+        // zurueck zur Ligenuebersicht, bei einer Liga im Unterordner zu diesem; auch aus dem Bereich
+        // eines Addons (Lmo\Addon\MitBereich, etwa dem Tippspiel)
+        if ($ligenuebersicht && ($datei !== '' || $kontext->addons->bereichstitel($kontext) !== null)) {
             $ziel = basename($datei) == $datei ? $kontext->adresse : $kontext->adresse . '?subdir=' . dirname($datei) . '/';
             $teile['Ligenuebersicht'] = '<a href="' . $ziel . '" title="' . $text[392] . '">' . $text[391] . '</a>&nbsp;&nbsp;&nbsp;';
         }
