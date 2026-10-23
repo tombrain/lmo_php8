@@ -110,6 +110,8 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\NeuController($lmo_admin_speichere),
         new \Lmo\Web\Admin\AnzahlController($lmo_admin_speichere),
         new \Lmo\Web\Admin\MannschaftenController($lmo_admin_speichere),
+        // die Bezeichnungen fuer Punkte und Tore vor denen der Liga (lmo-langload.php)
+        new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -141,9 +143,7 @@ if ($action == 'admin') {
         // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'edit') {
-            if ($sty == -1) {
-                require(PATH_TO_LMO . '/lmo-adminbasic.php');
-            } elseif ($sty == -10) {
+            if ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
                 require(PATH_TO_LMO . '/lmo-adminedit.php');
@@ -155,9 +155,7 @@ if ($action == 'admin') {
         }
     } elseif ($_SESSION['lmouserok'] == 1) {
         if ($todo == 'edit') {
-            if ($sty == -1) {
-                require(PATH_TO_LMO . '/lmo-adminbasic.php');
-            } elseif ($sty == -10) {
+            if ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
                 require(PATH_TO_LMO . '/lmo-adminedit.php');
