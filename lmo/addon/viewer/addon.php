@@ -21,4 +21,4 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 // Spiele mehrerer Ligen zum Einbinden (viewer.php) mit Einstellungen in der Administration (Lmo\Addon\Viewer\ViewerAddon)
-return new \Lmo\Addon\Viewer\ViewerAddon(__DIR__);
+return new \Lmo\Addon\Viewer\ViewerAddon(__DIR__, PATH_TO_TEMPLATEDIR . '/viewer', PATH_TO_CONFIGDIR . '/viewer', URL_TO_JSDIR);
