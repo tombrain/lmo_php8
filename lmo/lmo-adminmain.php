@@ -127,6 +127,41 @@ if ($action == 'admin') {
         return (string)ob_get_clean();
     };
 
+    // Bruecke zum Verschieben von Partien nach alter Art (Classlib, bis 4.5 in lmo-adminrounds.php):
+    // je Wunsch (alter Spieltag, neuer Spieltag, Heim, Gast) die Partie verschieben, bei einer
+    // Aenderung die Datei mit writeFile() schreiben (samt updateAddons()). Zurueck kommen die
+    // Ausgabe dabei, die gelungenen Verschiebungen mit den Namen und die Liga aus der Datei.
+    $lmo_admin_verschiebe = static function (string $lmo_datei, array $lmo_wuensche) use ($dirliga): array {
+        $lmo_pfad = PATH_TO_LMO . '/' . $dirliga . $lmo_datei;
+        ob_start();
+        $liga1 = new liga();
+        $liga1->loadFile($lmo_pfad);
+        $lmo_verschoben = array();
+        foreach ($lmo_wuensche as list($alteSpielTagNr, $neueSpielTagNr, $heimNr, $gastNr)) {
+            $aSpielTag = $liga1->spieltagForNumber($alteSpielTagNr);
+            $newSpielTag = $liga1->spieltagForNumber($neueSpielTagNr);
+
+            $heim = $liga1->teamForNumber($heimNr);
+            $gast = $liga1->teamForNumber($gastNr);
+
+            $aPartie = $liga1->partieForTeams($heim, $gast);
+            if ($aSpielTag->removePartie($aPartie)) {
+                $newSpielTag->addPartie($aPartie);
+                $liga1->spieltage[$neueSpielTagNr - 1] = $newSpielTag;
+                $liga1->spieltage = array_values($liga1->spieltage); // Index neu erstellen
+                $liga1->spieltage[$alteSpielTagNr - 1] = $aSpielTag;
+                $liga1->spieltage = array_values($liga1->spieltage); // Index neu erstellen
+                $lmo_verschoben[] = array($alteSpielTagNr, $neueSpielTagNr, $heimNr, $gastNr, (string)$aPartie->heim->name, (string)$aPartie->gast->name);
+            }
+        }
+        $lmo_neu = null;
+        if ($lmo_verschoben !== array()) {
+            $liga1->writeFile($lmo_pfad, 0, 0);
+            $lmo_neu = \Lmo\Liga\Rohdaten\Liga::lies($lmo_pfad);
+        }
+        return array((string)ob_get_clean(), $lmo_verschoben, $lmo_neu);
+    };
+
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
@@ -150,10 +185,11 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten, $lmo_admin_rueckrunde),
         new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere),
         // die neueste Version laut Packagist (oben frisch gefragt)
+        new \Lmo\Web\Admin\SpieltageZuordnenController($lmo_admin_verschiebe),
         new \Lmo\Web\Admin\UpdateController($lmo_update ?? null, lmo_is_newer($new_lmo_version ?? null, $lmo_version), $lmo_version, (string)$lmo_license),
     );
 
-    // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
+    // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns; ohne zustaendige Seite bleibt der Inhalt leer
     $lmo_admin_seite = null;
     foreach (array_merge($lmo_admin_addons->adminController(), $lmo_admin_kern) as $lmo_admin_controller) {
         if ($lmo_admin_controller->zustaendig($lmo_admin_kontext)) {
@@ -178,16 +214,6 @@ if ($action == 'admin') {
         require($lmo_admin_seite->datei());
     } elseif ($lmo_admin_seite !== null) {
         echo $lmo_admin_seite->zeige($lmo_admin_kontext)->html;
-    } elseif ($_SESSION['lmouserok'] == 2) {
-        // fuer das PDF-Addon nach alter Art (nicht Teil des LMO)
-        $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
-        if ($todo == 'edit') {
-            require(PATH_TO_LMO . '/lmo-adminrounds.php');
-        }
-    } elseif ($_SESSION['lmouserok'] == 1) {
-        if ($todo == 'edit') {
-            require(PATH_TO_LMO . '/lmo-adminrounds.php');
-        }
     }
     $lmo_admin_inhalt = (string)ob_get_clean();
 

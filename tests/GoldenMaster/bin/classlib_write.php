@@ -1,7 +1,7 @@
 <?php
 /**
  * Kindprozess: legt Ligen komplett ueber die classlib an und speichert sie mit liga::writeFile(),
- * so wie LMO das selbst tut (lmo-rueckrunde.php, lmo-adminrounds.php) - mit init.php und
+ * so wie LMO das selbst tut (lmo-rueckrunde.php, Spieltage zuordnen) - mit init.php und
  * updateAddons(). Alle Ligen in einem Prozess, wie mehrere writeFile()-Aufrufe in einem Request.
  *
  * Aufruf: php classlib_write.php <Instanzpfad> <Praefix> <Fixture.json> [<Fixture.json> ...]

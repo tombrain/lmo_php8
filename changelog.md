@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Partien anderen Spieltagen zuordnen (`todo=edit&st=-10`): `Lmo\Web\Admin\SpieltageZuordnenController` mit der Vorlage `admin_spieltage_zuordnen.html.twig`. Verschoben und geschrieben wird vorerst weiter über die Classlib (Brücke in `lmo-adminmain.php`), die Datei bleibt dieselbe. `lmo-adminrounds.php` gibt es nicht mehr, ebenso die Variable `$pdf_addr_optionen`; der Kern bindet keine Seite der Administration mehr nach alter Art ein.  
 * Administration, neuere Version des LMO (`todo=update`): `Lmo\Web\Admin\UpdateController` mit der Vorlage `admin_update.html.twig`. `lmo-adminupdate.php` gibt es nicht mehr.  
 * Administration, Tabellenkorrektur eines Spieltags (`todo=tabs`): `Lmo\Web\Admin\TabellenkorrekturController` mit der Vorlage `admin_tabellenkorrektur.html.twig`. `lmo-admintab.php` gibt es nicht mehr.  
 * Administration, Ergebnisse eines Spieltags (`todo=edit` mit Spieltag): `Lmo\Web\Admin\ErgebnisseBearbeitenController` mit der Vorlage `admin_ergebnisse.html.twig`; das Spieltagsmenü kommt aus `Lmo\Web\Seiten\SpieltagsMenue`, die Spalten der Addons über `MitErgebnisSpalten`. Die Auswertungen der Addons (`MitErgebnisAuswertung`) und der Rückrundenspielplan (`lmo-rueckrunde.php`) laufen noch nach alter Art über Brücken in `lmo-adminmain.php`. Der Kern nennt das Tippspiel dort nicht mehr. `lmo-adminedit.php` gibt es nicht mehr.  
@@ -455,6 +456,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, assigning games to other rounds (`todo=edit&st=-10`): `Lmo\Web\Admin\SpieltageZuordnenController` with the template `admin_spieltage_zuordnen.html.twig`. Moving and writing still goes through the classlib for now (bridge in `lmo-adminmain.php`); the file stays the same. `lmo-adminrounds.php` is gone, as is the variable `$pdf_addr_optionen`; the core no longer includes any admin page of the old kind.  
 * Administration, newer version of LMO (`todo=update`): `Lmo\Web\Admin\UpdateController` with the template `admin_update.html.twig`. `lmo-adminupdate.php` is gone.  
 * Administration, table correction of a round (`todo=tabs`): `Lmo\Web\Admin\TabellenkorrekturController` with the template `admin_tabellenkorrektur.html.twig`. `lmo-admintab.php` is gone.  
 * Administration, results of a round (`todo=edit` with a round): `Lmo\Web\Admin\ErgebnisseBearbeitenController` with the template `admin_ergebnisse.html.twig`; the round menu comes from `Lmo\Web\Seiten\SpieltagsMenue`, the columns of the add-ons through `MitErgebnisSpalten`. The evaluations of the add-ons (`MitErgebnisAuswertung`) and the second-half schedule (`lmo-rueckrunde.php`) still run the old way through bridges in `lmo-adminmain.php`. The core no longer names the prediction game there. `lmo-adminedit.php` is gone.  
