@@ -110,8 +110,9 @@ keine Fehler verursacht, prüfen sie, ob es geladen ist (`$kontext->addons->hat(
 - **Ergebnisse eines Spieltags**: die Spalte „ohne Tippwertung“ und die Auswertung beim Speichern
   liefert das Tippspiel selbst über die Erweiterungspunkte `MitErgebnisSpalten` und
   `MitErgebnisAuswertung`; ohne `addon/tipp/` fehlen beide.
-- **Grundeinstellungen einer Liga**: die Option „Spielerstatistik“ liefert das Addon selbst über
-  den Erweiterungspunkt `MitLigaEinstellungen`; ohne `addon/spieler/` fehlt sie
+- **Grundeinstellungen einer Liga**: die Option „Spielerstatistik“ und die Spielerstatistik als
+  Startseite liefert das Addon selbst über die Erweiterungspunkte `MitLigaEinstellungen` und
+  `MitLigaStartseiten`; ohne `addon/spieler/` fehlen beide.
 
 Ist für die eingestellte Startseite einer Liga niemand zuständig (etwa „Spielerstatistik“,
 `OnRun=7`, ohne `addon/spieler/`), zeigt der LMO die Tabelle, im Pokal die Ergebnisse.

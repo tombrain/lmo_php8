@@ -16,10 +16,12 @@ namespace Lmo\Addon\Spieler;
 
 use Lmo\Addon\AlteAdminSeite;
 use Lmo\Addon\Datenordner;
+use Lmo\Addon\LigaStartseite;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitAdminMenue;
 use Lmo\Addon\MitAdminSeiten;
 use Lmo\Addon\MitLigaEinstellungen;
+use Lmo\Addon\MitLigaStartseiten;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
@@ -33,7 +35,7 @@ use Lmo\Web\Kontext;
  * nur, wenn das Addon eingeschaltet ist (einspieler); gepflegt wird die Statistik im
  * Adminbereich beim Bearbeiten der Liga (st=-4, noch lmo-statadmin.php).
  */
-final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitLigaEinstellungen
+final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitLigaEinstellungen, MitLigaStartseiten
 {
     /** Der Schalter in den Optionen: Spielerstatistik an (config/spieler/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'einspieler';
@@ -89,6 +91,15 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
         $t = $kontext->texteVon('spieler');
 
         return [new Schalter('mittore', $t[18] ?? '', $t[19] ?? '', true)];
+    }
+
+    /**
+     * Die Spielerstatistik als Startseite einer Liga (OnRun=7); gesperrt, wenn die Liga keine
+     * fuehrt (mittore=0). Bis 4.5 kannte der Kern sie selbst.
+     */
+    public function ligaStartseiten(Kontext $kontext): array
+    {
+        return [new LigaStartseite(7, 'spieler', $kontext->texteVon('spieler')[61] ?? '', 'mittore')];
     }
 
     public function controller(): array

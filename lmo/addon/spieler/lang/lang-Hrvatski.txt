@@ -59,3 +59,4 @@
 058=Spremi konfiguraciju
 059=Ažuriraj statistiku igrača
 060=Treba li prikazati statistiku tipkanja podataka igrača ? (Potrebno je uključiti za relativni šampionat)
+061=Statistika igrača

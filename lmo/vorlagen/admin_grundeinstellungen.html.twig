@@ -137,7 +137,10 @@
                             <option value="4"{% if o.Graph == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 4 %}{{ ' selected'|raw }}{% endif %}>{{ text[133]|raw }}</option>
                             <option value="5"{% if o.Ligastats == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 5 %}{{ ' selected'|raw }}{% endif %}>{{ text[18]|raw }}</option>
                             <option value="6"{% if o.DatS == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 6 %}{{ ' selected'|raw }}{% endif %}>{{ text[140]|raw }}</option>
-                            <option value="7"{% if o.mittore == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == 7 %}{{ ' selected'|raw }}{% endif %}>{{ text[485]|raw }}</option>
+{# die Startseiten der Addons (Lmo\Addon\MitLigaStartseiten) #}
+{% for s in startseiten %}
+                            <option value="{{ s.wert }}"{% if s.schalter != '' and (o[s.schalter] ?? null) == '0' %}{{ ' disabled'|raw }}{% elseif o.OnRun == s.wert %}{{ ' selected'|raw }}{% endif %}>{{ s.name|raw }}</option>
+{% endfor %}
                           </select>
                         </td>
                       </tr>

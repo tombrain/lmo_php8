@@ -59,3 +59,4 @@
 058=Guardar configuração
 059=Atualizar as estatísticas do jogador
 060=Deseja mostrar as entradas nas estatísticas dos jogadores? (Necessário activar para cada campeonato individualmente!)
+061=Estatísticas dos jogadores

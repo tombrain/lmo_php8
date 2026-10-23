@@ -59,3 +59,4 @@
 058=Salva configurazione
 059=Aggiorna statistiche giocatore
 060=Deve essere visualizzata la statistica della digitazione di dati dei giocatori? (É necessario attivarlo per un relativo campionato!)
+061=Statistica giocatori

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lmo\Tests\Unit\Web;
 
 use Lmo\Addon\Addons;
+use Lmo\Addon\LigaStartseite;
 use Lmo\Addon\MitSeiten;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
@@ -202,6 +203,16 @@ class AnwendungTest extends TestCase
         self::assertSame('', Anwendung::action(new Anfrage([]), Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'OnRun=9']))));
     }
 
+    public function testStartseiteEinesAddons(): void
+    {
+        $liga = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'OnRun=7']));
+        $startseiten = [new LigaStartseite(7, 'spieler', 'Spielerstatistik', 'mittore'), new LigaStartseite(8, 'demo', 'Demo')];
+
+        self::assertSame('spieler', Anwendung::action(new Anfrage([]), $liga, $startseiten));
+        self::assertSame('', Anwendung::action(new Anfrage([]), $liga), 'ohne das Addon niemand (dann die Tabelle)');
+        self::assertSame('cross', Anwendung::action(new Anfrage([]), Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'OnRun=3'])), $startseiten), 'die des Kerns bleiben');
+    }
+
     public function testStartseiteOhneAction(): void
     {
         $anwendung = $this->anwendung([self::controller('table')]);
@@ -223,8 +234,22 @@ OnRun=7
         self::assertSame('table', $gesehen?->action, 'Menue und Rahmen sehen die Tabelle');
         self::assertNull($anwendung->bearbeite(new Anfrage(['file' => 's.l98', 'action' => 'spieler']), '/lmo.php'), 'eine gewaehlte Seite bleibt, wie sie ist');
 
-        $mitAddon = $this->anwendung([self::controller('table'), self::controller('spieler')]);
+        // das Addon meldet seine Startseite (Lmo\Addon\MitLigaStartseiten) und ist fuer sie zustaendig
+        $spieler = new class () implements \Lmo\Addon\MitLigaStartseiten {
+            public function name(): string
+            {
+                return 'spieler';
+            }
+
+            public function ligaStartseiten(Kontext $kontext): array
+            {
+                return [new LigaStartseite(7, 'spieler', 'Spielerstatistik')];
+            }
+        };
+        $mitAddon = $this->anwendung([self::controller('table'), self::controller('spieler')], new Addons([$spieler]));
         self::assertSame('Seite spieler', $mitAddon->bearbeite(new Anfrage(['file' => 's.l98']), '/lmo.php')?->html, 'mit Addon die eingestellte Startseite');
+        $nurSeite = $this->anwendung([self::controller('table'), self::controller('spieler')]);
+        self::assertSame('Seite table', $nurSeite->bearbeite(new Anfrage(['file' => 's.l98']), '/lmo.php')?->html, 'ohne gemeldete Startseite kennt der Kern 7 nicht');
         unlink($this->ordner . '/s.l98');
     }
 }

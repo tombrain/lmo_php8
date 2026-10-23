@@ -59,3 +59,4 @@
 058=Lagre konfigurasjon
 059=Oppdater spillerstatistikk
 060=Skal spillerstatistikken vises? (Må ekstra aktiveres for hver liga!)
+061=Spillerstatistikk

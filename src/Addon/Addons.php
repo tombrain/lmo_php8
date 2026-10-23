@@ -264,6 +264,24 @@ final class Addons
     }
 
     /**
+     * Die Startseiten einer Liga aller Addons (MitLigaStartseiten), nach ihrem Wert in OnRun.
+     *
+     * @return list<LigaStartseite>
+     */
+    public function ligaStartseiten(Kontext $kontext): array
+    {
+        $startseiten = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitLigaStartseiten) {
+                array_push($startseiten, ...$addon->ligaStartseiten($kontext));
+            }
+        }
+        usort($startseiten, static fn (LigaStartseite $a, LigaStartseite $b): int => $a->wert <=> $b->wert);
+
+        return $startseiten;
+    }
+
+    /**
      * Die Spalten aller Addons fuer die Ergebnisse eines Spieltags in der Administration (MitErgebnisSpalten).
      *
      * @return list<ErgebnisSpalte>

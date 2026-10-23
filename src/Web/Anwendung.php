@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web;
 
 use Lmo\Addon\Addons;
+use Lmo\Addon\LigaStartseite;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Controller\Controller;
 
@@ -28,8 +29,8 @@ use Lmo\Web\Controller\Controller;
  */
 final class Anwendung
 {
-    /** Startseite einer Liga ohne gewaehlte Seite, nach ihrer Einstellung OnRun */
-    private const STARTSEITEN = ['results', 'table', 'program', 'cross', 'graph', 'stats', 'cal', 'spieler'];
+    /** Startseite einer Liga ohne gewaehlte Seite, nach ihrer Einstellung OnRun; weitere liefern Addons (Lmo\Addon\MitLigaStartseiten) */
+    private const STARTSEITEN = ['results', 'table', 'program', 'cross', 'graph', 'stats', 'cal'];
 
     private Konfiguration $konfiguration;
     private Sprachtexte $texte;
@@ -95,7 +96,9 @@ final class Anwendung
         $texte = $liga !== null ? $this->texte->fuerLiga($liga->liga) : $this->texte;
         $neu = fn (string $action): Kontext => new Kontext($anfrage, $action, $liga, $this->konfiguration, $texte->kern, $adresse, $this->pfade, $this->darstellung, $this->addons, $texte->weitere, $sitzung);
 
-        $kontext = $neu(self::action($anfrage, $liga?->liga));
+        // die Startseiten der Addons nur, wenn sie gebraucht werden: Liga ohne gewaehlte Seite
+        $startseiten = $liga !== null && $anfrage->text('action') === '' ? $this->addons->ligaStartseiten($neu('')) : [];
+        $kontext = $neu(self::action($anfrage, $liga?->liga, $startseiten));
         if ($liga !== null && $anfrage->text('action') === '' && !$this->hatSeite($kontext)) {
             $kontext = $neu($liga->liga->istPokal() ? 'results' : 'table');
         }
@@ -117,9 +120,11 @@ final class Anwendung
 
     /**
      * Die gewaehlte Seite: der Parameter action ("admin" heisst hier keine); ohne ihn die Startseite
-     * der Liga (Einstellung OnRun).
+     * der Liga (Einstellung OnRun), eine des Kerns oder eines Addons.
+     *
+     * @param list<LigaStartseite> $startseiten die Startseiten der Addons
      */
-    public static function action(Anfrage $anfrage, ?Liga $liga): string
+    public static function action(Anfrage $anfrage, ?Liga $liga, array $startseiten = []): string
     {
         $action = $anfrage->text('action');
         if ($action !== '') {
@@ -130,6 +135,13 @@ final class Anwendung
             return '';
         }
 
-        return self::STARTSEITEN[$liga->einstellungen()->laufendeTabelle()] ?? '';
+        $wert = $liga->einstellungen()->laufendeTabelle();
+        foreach ($startseiten as $startseite) {
+            if ($startseite->wert == $wert) {
+                return $startseite->action;
+            }
+        }
+
+        return self::STARTSEITEN[$wert] ?? '';
     }
 }

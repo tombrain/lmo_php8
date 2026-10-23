@@ -59,3 +59,4 @@
 058=Konfiguráció mentése
 059=Játékos statisztikák frissítése
 060=Kívánja megjeleníteni a játékos-statisztika bejegyzéseit? (Minden bajnokságra külön kell engedélyezni!)
+061=Játékosok statisztikái
