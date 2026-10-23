@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web\Admin;
 
 use Closure;
+use Lmo\Addon\Schalter;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\Controller;
@@ -63,8 +64,8 @@ final class GrundeinstellungenController implements Controller
         $anfrage = $kontext->anfrage;
         $sitzung = $kontext->sitzung;
         $voll = $sitzung->zahl('lmouserok') == 2 || $sitzung->zahl('lmouserokerweitert') == 1;
-        // Spielerstatistik geladen und eingeschaltet (Addon spieler)
-        $einspieler = $kontext->addons->hat('spieler') && $kontext->konfiguration->addonSchalter('spieler', 'einspieler', true);
+        // die Schalter der Addons (Lmo\Addon\MitLigaEinstellungen), etwa ob die Liga eine Spielerstatistik fuehrt
+        $addonSchalter = $kontext->addons->ligaEinstellungen($kontext);
         $tabonres = $kontext->konfiguration->tabonres();
         $liga = $geladen->liga;
 
@@ -76,7 +77,7 @@ final class GrundeinstellungenController implements Controller
         $show = $anfrage->text('show', '0');
         $meldung = '';
         if ($anfrage->text('save', '0') == 1) {
-            $o = $this->uebernimm($o, $show, $anfrage, $voll, $einspieler, $tabonres, $kontext->konfiguration->datumsformat());
+            $o = $this->uebernimm($o, $show, $anfrage, $voll, $addonSchalter, $tabonres, $kontext->konfiguration->datumsformat());
             foreach ($o as $schluessel => $wert) {
                 // streng wie bisher: ein Schalter (Zahl) gilt gegenueber dem Wert der Datei (Text) als geaendert
                 if ($wert !== ($geladenOptionen[$schluessel] ?? null)) {
@@ -102,7 +103,6 @@ final class GrundeinstellungenController implements Controller
 
         return new Seite($meldung . Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_grundeinstellungen.html.twig', [
             'text' => $kontext->text,
-            'spieler' => $kontext->texteVon('spieler'),
             'adresse' => $kontext->adresse,
             'navigation' => LigaNavigation::fuer($kontext, $liga, 'edit', $anfrage->text('st')),
             'addr' => LigaNavigation::adresse($kontext, 'edit', $geladen->datei),
@@ -113,7 +113,7 @@ final class GrundeinstellungenController implements Controller
             'o' => $o,
             'mannschaften' => $geladen->liga->einstellungen()->mannschaften(),
             'namen' => $namen,
-            'einspieler' => $einspieler,
+            'addonSchalter' => $addonSchalter,
             'tabonres' => $tabonres,
             'datumsformate' => self::DATUMSFORMATE,
             'datumsbeispiele' => $datumsbeispiele,
@@ -126,9 +126,10 @@ final class GrundeinstellungenController implements Controller
      * Eingaben als Text), weil das Speichern streng vergleicht.
      *
      * @param array<string, mixed> $o
+     * @param list<Schalter> $addonSchalter
      * @return array<string, mixed>
      */
-    private function uebernimm(array $o, string $show, Anfrage $a, bool $voll, bool $einspieler, int $tabonres, string $datumsformat): array
+    private function uebernimm(array $o, string $show, Anfrage $a, bool $voll, array $addonSchalter, int $tabonres, string $datumsformat): array
     {
         $an = static fn (string $name): int => $a->gesetzt($name) ? 1 : 0;
         $oder = static fn (string $name, mixed $sonst): mixed => $a->gesetzt($name) ? trim($a->text($name)) : $sonst;
@@ -173,8 +174,8 @@ final class GrundeinstellungenController implements Controller
                     $o['DatS'] = $an('xdats');
                     $o['Plan'] = $an('xplan');
                     $o['Ergebnis'] = $an('xergebnis');
-                    if ($einspieler) {
-                        $o['mittore'] = $an('xmittore');
+                    foreach ($addonSchalter as $schalter) {
+                        $o[$schalter->schluessel] = $an('x' . $schalter->schluessel);
                     }
                     $o['DatC'] = $an('xdatc');
                     if ($o['DatS'] == 0 && $o['DatM'] == 0) {

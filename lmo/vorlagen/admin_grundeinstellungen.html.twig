@@ -210,15 +210,24 @@
                         <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xkurve" onChange="dolmoedit()"{% if o.Graph == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[238]|raw }}">{{ text[237]|raw }}</acronym></td>
                       </tr>
 {% endif %}
+{# die Schalter der Addons (Lmo\Addon\MitLigaEinstellungen): der erste neben der Ligastatistik, weitere darunter #}
+{% macro addonschalter(s, o) %}<td class="nobr" align="right"><acronym title="{{ s.titel|raw }}">{{ s.name|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="x{{ s.schluessel }}" onChange="dolmoedit()"{% if (o[s.schluessel] ?? '') == 1 %} checked{% endif %}>&nbsp;</td>{% endmacro %}
+{% import _self as f %}
                       <tr>
-{% if einspieler == 1 %}
-                        <td class="nobr" align="right"><acronym title="{{ spieler[19]|raw }}">{{ spieler[18]|raw }}</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xmittore" onChange="dolmoedit()"{% if o.mittore == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;</td>{% else %}
+{% if addonSchalter is not empty %}
+                        {{ f.addonschalter(addonSchalter[0], o) }}{% else %}
                         <td></td>
 {% endif %}{% if o.Type == 0 %}
                         <td class="nobr" align="left">&nbsp;<input type="checkbox" class="lmo-formular-input" name="xligastats" onChange="dolmoedit()"{% if o.Ligastats == 1 %}{{ ' checked'|raw }}{% endif %}>&nbsp;<acronym title="{{ text[514]|raw }}">{{ text[18]|raw }}</acronym></td>{% else %}
                         <td></td>
 {% endif %}
                       </tr>
+{% for s in addonSchalter|slice(1) %}
+                      <tr>
+                        {{ f.addonschalter(s, o) }}
+                        <td></td>
+                      </tr>
+{% endfor %}
                       <tr>
                         <th align="left" colspan="2">{{ text[264]|raw }}</th>
                       </tr>

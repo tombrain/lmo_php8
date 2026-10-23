@@ -109,8 +109,8 @@ keine Fehler verursacht, prüfen sie, ob es geladen ist (`$kontext->addons->hat(
 - **Ergebnisse** (`lmo-adminedit.php`): die Spalte „ohne Tippwertung“ nur mit `addon/tipp/`.
   Die Auswertung beim Speichern liefert das Tippspiel selbst über den Erweiterungspunkt
   `MitErgebnisAuswertung`; ohne das Addon findet sie nicht statt.
-- **Grundeinstellungen einer Liga** (`lmo-adminbasic.php`): die Option „Spielerstatistik“ nur mit
-  `addon/spieler/`
+- **Grundeinstellungen einer Liga**: die Option „Spielerstatistik“ liefert das Addon selbst über
+  den Erweiterungspunkt `MitLigaEinstellungen`; ohne `addon/spieler/` fehlt sie
 
 Ist für die eingestellte Startseite einer Liga niemand zuständig (etwa „Spielerstatistik“,
 `OnRun=7`, ohne `addon/spieler/`), zeigt der LMO die Tabelle, im Pokal die Ergebnisse.

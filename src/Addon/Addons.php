@@ -246,6 +246,23 @@ final class Addons
         return $dateien;
     }
 
+    /**
+     * Die Schalter aller Addons fuer die Grundeinstellungen einer Liga (MitLigaEinstellungen).
+     *
+     * @return list<Schalter>
+     */
+    public function ligaEinstellungen(Kontext $kontext): array
+    {
+        $schalter = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitLigaEinstellungen) {
+                array_push($schalter, ...$addon->ligaEinstellungen($kontext));
+            }
+        }
+
+        return $schalter;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

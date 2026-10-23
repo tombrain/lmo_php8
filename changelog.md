@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Addons: Erweiterungspunkt `Lmo\Addon\MitLigaEinstellungen` für Schalter in den Grundeinstellungen einer Liga (Schlüssel aus `[Options]`). Die Spielerstatistik liefert darüber ihre Option `mittore`; der Kern nennt das Spieler-Addon dort nicht mehr.  
 * Administration, Grundeinstellungen einer Liga (`todo=edit&st=-1`): `Lmo\Web\Admin\GrundeinstellungenController` mit der Vorlage `admin_grundeinstellungen.html.twig` (alle vier Reiter, Speichern wie bisher). `lmo-adminbasic.php` gibt es nicht mehr.  
 * Administration, Mannschaften einer Liga (`todo=edit&st=-2`): `Lmo\Web\Admin\MannschaftenController` mit der Vorlage `admin_mannschaften.html.twig`; das große Wappen liefert `Darstellung::wappenGross()`. `lmo-adminteams.php` gibt es nicht mehr.  
 * Administration, Anzahl der Spieltage und Spiele einer Liga (`todo=edit&st=-3`): `Lmo\Web\Admin\AnzahlController` mit der Vorlage `admin_anzahl.html.twig`. Die Brücke zum Speichern (`lmo-saveliga.php`) nimmt jetzt den gewählten Spieltag und gibt die gespeicherte Liga zurück. `lmo-adminanz.php` gibt es nicht mehr.  
@@ -445,6 +446,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Add-ons: extension point `Lmo\Addon\MitLigaEinstellungen` for switches in the basic settings of a league (keys from `[Options]`). The player statistics provide their option `mittore` this way; the core no longer names the player add-on there.  
 * Administration, basic settings of a league (`todo=edit&st=-1`): `Lmo\Web\Admin\GrundeinstellungenController` with the template `admin_grundeinstellungen.html.twig` (all four tabs, saving as before). `lmo-adminbasic.php` is gone.  
 * Administration, teams of a league (`todo=edit&st=-2`): `Lmo\Web\Admin\MannschaftenController` with the template `admin_mannschaften.html.twig`; `Darstellung::wappenGross()` provides the big logo. `lmo-adminteams.php` is gone.  
 * Administration, number of rounds and games of a league (`todo=edit&st=-3`): `Lmo\Web\Admin\AnzahlController` with the template `admin_anzahl.html.twig`. The bridge for saving (`lmo-saveliga.php`) now takes the selected round and returns the saved league. `lmo-adminanz.php` is gone.  

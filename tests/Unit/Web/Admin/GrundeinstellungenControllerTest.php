@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Lmo\Tests\Unit\Web\Admin;
 
+use Lmo\Addon\Addons;
+use Lmo\Addon\MitLigaEinstellungen;
+use Lmo\Addon\Schalter;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Admin\GrundeinstellungenController;
@@ -30,7 +33,7 @@ class GrundeinstellungenControllerTest extends TestCase
      * @param array<string, string> $anfrage
      * @param array<string, int> $sitzung
      */
-    private function seite(array $anfrage, array $sitzung = ['lmouserok' => 2], string $liga = self::LIGA): string
+    private function seite(array $anfrage, array $sitzung = ['lmouserok' => 2], string $liga = self::LIGA, Addons $addons = new Addons()): string
     {
         $texte = [];
         for ($i = 0; $i <= 600; $i++) {
@@ -50,7 +53,8 @@ class GrundeinstellungenControllerTest extends TestCase
             '/lmoadmin.php',
             new Pfade('/lmo', dirname(__DIR__, 4) . '/lmo/vorlagen', 'IMG'),
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
-            weitereTexte: ['date' => [5 => 'Samstag', 12 => 'Sa']],
+            $addons,
+            ['date' => [5 => 'Samstag', 12 => 'Sa']],
             sitzung: new Sitzung($sitzung)
         );
         $controller = new GrundeinstellungenController(function (Liga $liga, string $datei, string $st): array {
@@ -107,6 +111,33 @@ class GrundeinstellungenControllerTest extends TestCase
         $liga = $this->gespeichert[0][0];
 
         self::assertSame(['2', '1', '1', '2'], [$liga->optionen['MinusPoints'], $liga->optionen['Direct'], $liga->optionen['DirectAway'], $liga->optionen['PointsForWin']]);
+    }
+
+    public function testSchalterDerAddons(): void
+    {
+        $addons = new Addons([new class () implements MitLigaEinstellungen {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function ligaEinstellungen(\Lmo\Web\Kontext $kontext): array
+            {
+                // Schluessel, die der LMO in [Options] kennt
+                return [new Schalter('mittore', 'Demo', 'Demo zeigen?', true), new Schalter('ticker', 'Mehr', 'Mehr zeigen?', true)];
+            }
+        }]);
+
+        $ohne = $this->seite(['show' => '2']);
+        self::assertStringNotContainsString('name="xmittore"', $ohne);
+
+        $html = $this->seite(['show' => '2'], addons: $addons);
+        self::assertStringContainsString('<acronym title="Demo zeigen?">Demo</acronym>&nbsp;<input type="checkbox" class="lmo-formular-input" name="xmittore" onChange="dolmoedit()" checked>', $html, 'mittore ist ohne Angabe an');
+        self::assertStringContainsString('name="xticker"', $html, 'weitere in eigenen Zeilen');
+
+        $this->seite(['save' => '1', 'show' => '2', 'xticker' => 'on'], addons: $addons);
+        $e = $this->gespeichert[0][0]->einstellungen();
+        self::assertEquals(['0', '1'], [$e->wert('mittore'), $e->wert('ticker')]);
     }
 
     public function testEigeneBezeichnungWieDerAllgemeineTextEntfaellt(): void
