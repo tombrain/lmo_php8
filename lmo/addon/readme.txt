@@ -77,6 +77,8 @@ Addons nach neuer Art:
     # Lmo\Addon\MitAdminMenue    adminMenue(), ligaMenue(), startseite(): Punkte in den Menues der Administration
     # Lmo\Addon\MitAdminSeiten   adminController(): eigene Seiten in der Administration
     # Lmo\Addon\MitSchaltern     schalter(): Schalter in den Optionen, z.B. das Addon ein- und ausschalten
+    # Lmo\Addon\MitLigaEinstellungen ligaEinstellungen(): Schalter in den Grundeinstellungen einer Liga
+                                   (Schluessel aus [Options] der Ligadatei, z.B. mittore)
     # Lmo\Addon\MitErgebnisAuswertung auswertungBeimSpeichern(): Dateien (alte Art), die beim Speichern der
                                    Ergebnisse eines Spieltags eingebunden werden, z.B. die Auswertung der Tipps
 

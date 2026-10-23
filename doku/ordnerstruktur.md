@@ -140,6 +140,7 @@ Ein Addon implementiert die Schnittstellen, an denen es etwas beiträgt:
 | `MitAdminMenue` | `adminMenue()`, `ligaMenue()`, `startseite()` | Punkte in den Menüs der Administration |
 | `MitAdminSeiten` | `adminController()` | eigene Seiten in der Administration |
 | `MitSchaltern` | `schalter()` | Schalter in den Optionen (z. B. Addon ein/aus) |
+| `MitLigaEinstellungen` | `ligaEinstellungen()` | Schalter in den Grundeinstellungen einer Liga (Schlüssel aus `[Options]`, z. B. `mittore`) |
 | `MitErgebnisAuswertung` | `auswertungBeimSpeichern()` | Auswertung beim Speichern der Ergebnisse eines Spieltags, noch als Dateien nach alter Art (z. B. Tipps) |
 
 Bei Seiten gilt diese Reihenfolge: erst die Controller des Kerns, dann die der Addons, zuletzt

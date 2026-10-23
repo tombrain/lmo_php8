@@ -165,6 +165,14 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame([], self::addons()->auswertungBeimSpeichern(self::kontext()), 'ohne Liga wertet das Tippspiel nichts aus');
     }
 
+    public function testLigaEinstellungen(): void
+    {
+        $schalter = self::addons()->ligaEinstellungen(self::kontext());
+        self::assertSame([['mittore', 'S18', 'S19']], array_map(static fn (Schalter $s): array => [$s->schluessel, $s->name, $s->titel], $schalter), 'Spielerstatistik, wenn eingeschaltet');
+
+        self::assertSame([], self::addons()->ligaEinstellungen(self::kontext([], ['spieler' => ['einspieler' => '0']])), 'abgeschaltet nichts');
+    }
+
     public function testSchalterJeAddon(): void
     {
         $mitSchalter = new class () implements MitSchaltern {
