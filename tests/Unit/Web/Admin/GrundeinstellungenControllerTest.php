@@ -140,6 +140,28 @@ class GrundeinstellungenControllerTest extends TestCase
         self::assertEquals(['0', '1'], [$e->wert('mittore'), $e->wert('ticker')]);
     }
 
+    public function testStartseitenDerAddons(): void
+    {
+        $addons = new Addons([new class () implements \Lmo\Addon\MitLigaStartseiten {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function ligaStartseiten(\Lmo\Web\Kontext $kontext): array
+            {
+                return [new \Lmo\Addon\LigaStartseite(7, 'spieler', 'Spielerstatistik', 'mittore'), new \Lmo\Addon\LigaStartseite(8, 'demo', 'Demo')];
+            }
+        }]);
+
+        $ohne = $this->seite(['show' => '2']);
+        self::assertStringNotContainsString('<option value="7"', $ohne, 'ohne Addon nur die Seiten des Kerns');
+
+        $html = $this->seite(['show' => '2'], liga: str_replace('Type=0', "Type=0\nOnRun=8\nmittore=0", self::LIGA), addons: $addons);
+        self::assertStringContainsString('<option value="7" disabled>Spielerstatistik</option>', $html, 'gesperrt ohne Spielerstatistik der Liga');
+        self::assertStringContainsString('<option value="8" selected>Demo</option>', $html);
+    }
+
     public function testEigeneBezeichnungWieDerAllgemeineTextEntfaellt(): void
     {
         $this->seite(['save' => '1', 'show' => '0', 'xnamepkt' => 'Punkte', 'xnametor' => 'Treffer']);

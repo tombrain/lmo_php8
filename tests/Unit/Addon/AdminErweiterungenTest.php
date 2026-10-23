@@ -188,6 +188,24 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame([], self::addons()->ergebnisSpalten(self::kontext()), 'ohne Liga keine Spalte des Tippspiels');
     }
 
+    public function testLigaStartseiten(): void
+    {
+        $demo = new class () implements \Lmo\Addon\MitLigaStartseiten {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function ligaStartseiten(Kontext $kontext): array
+            {
+                return [new \Lmo\Addon\LigaStartseite(9, 'demo', 'Demo')];
+            }
+        };
+        $startseiten = (new Addons([$demo, new SpielerAddon('/x/daten/spieler', '/x/spieler')]))->ligaStartseiten(self::kontext());
+
+        self::assertSame([[7, 'spieler', 'S61', 'mittore'], [9, 'demo', 'Demo', '']], array_map(static fn (\Lmo\Addon\LigaStartseite $s): array => [$s->wert, $s->action, $s->name, $s->schalter], $startseiten), 'nach dem Wert');
+    }
+
     public function testLigaEinstellungen(): void
     {
         $schalter = self::addons()->ligaEinstellungen(self::kontext());

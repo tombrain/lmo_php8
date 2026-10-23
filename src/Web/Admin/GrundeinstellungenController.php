@@ -111,6 +111,7 @@ final class GrundeinstellungenController implements Controller
             'show' => $show,
             'voll' => $voll,
             'o' => $o,
+            'startseiten' => $kontext->addons->ligaStartseiten($kontext),
             'mannschaften' => $geladen->liga->einstellungen()->mannschaften(),
             'namen' => $namen,
             'addonSchalter' => $addonSchalter,

@@ -83,6 +83,8 @@ Addons nach neuer Art:
                                    Ergebnisse eines Spieltags eingebunden werden, z.B. die Auswertung der Tipps
     # Lmo\Addon\MitErgebnisSpalten ergebnisSpalten(): eigene Spalten je Spiel in den Ergebnissen eines
                                    Spieltags (Lmo\Addon\ErgebnisSpalte), z.B. "ohne Tippwertung"
+    # Lmo\Addon\MitLigaStartseiten ligaStartseiten(): eigene Seiten als Startseite einer Liga
+                                   (Lmo\Addon\LigaStartseite, Wert in OnRun ab 7), z.B. die Spielerstatistik
 
   Weitere Erweiterungspunkte folgen.
 

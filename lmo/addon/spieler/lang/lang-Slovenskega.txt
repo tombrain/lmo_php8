@@ -59,3 +59,4 @@
 058=Shrani konfiguracijo
 059=Posodobi statistiko igralca
 060=Ali naj se prikaže vnos statistike igralca? (Mora biti aktiviran tudi posebej za vsako ligo!)
+061=Statistika igralcev
