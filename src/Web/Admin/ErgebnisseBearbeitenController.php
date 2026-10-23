@@ -287,8 +287,9 @@ final class ErgebnisseBearbeitenController implements Controller
         $gewaehlt = trim($a->text('xstx'));
         $liga->setzeEinstellung('Actual', $gewaehlt != 0 ? $gewaehlt : $st);
         $liga->setzeEinstellung('ticker', trim($a->text('xnticker')));
-        // die Newszeilen ohne die leeren; getrennt wie bis 4.5 an '\n' (Backslash und n)
-        $liga->setzeNews(array_values(array_filter(explode('\n', $a->text('xnlines')), static fn (string $y): bool => $y != '')));
+        // die Newszeilen ohne die leeren, getrennt an den Zeilenumbruechen der Textarea (bis 4.5 an
+        // '\n', Backslash und n: alles kam als eine Zeile mit Umbruechen in die Ligadatei)
+        $liga->setzeNews(array_values(array_filter(preg_split('/\r\n|\r|\n/', $a->text('xnlines')) ?: [], static fn (string $y): bool => $y != '')));
         // gespeichert wird mit dem gewaehlten Spieltag als aktuellem
         [$gespeichert, $liga] = ($this->speichere)($liga, $datei, (string) ($liga->optionen['Actual'] ?? ''));
 

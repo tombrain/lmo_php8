@@ -2274,7 +2274,7 @@ xmnote2=
 xmberi2=
 xstx=7
 xnticker=1
-xnlines=Erste Zeile\n\nZweite Zeile mit O'Neill\n
+xnlines=Erste Zeile\r\n\r\nZweite Zeile mit O'Neill\r\n
 --- Dateiaenderungen ---
 GEAENDERT ligen/golden/special.l98
 --- vorher
@@ -2293,14 +2293,15 @@ GEAENDERT ligen/golden/special.l98
 +ticker=1
  Graph=1
  Kreuz=1
-@@ -58,4 +58,6 @@
+@@ -58,4 +58,7 @@
  
  [News]
-+NC=1
-+N0=Erste ZeilennZweite Zeile mit O'Neilln
++NC=2
++N0=Erste Zeile
++N1=Zweite Zeile mit O'Neill
  
  [Teams]
-@@ -142,13 +144,14 @@
+@@ -142,13 +145,14 @@
  BE1=
  TI1=
 -AT1=0
@@ -2317,14 +2318,14 @@ GEAENDERT ligen/golden/special.l98
 +AT2=
  TA3=6
  TB3=4
-@@ -159,5 +162,5 @@
+@@ -159,5 +163,5 @@
  BE3=
  TI3=
 -AT3=0
 +AT3=
  
  [Round2]
-@@ -278,5 +281,4 @@
+@@ -278,5 +282,4 @@
  GA3=-1
  GB3=-1
 -SP3=0
@@ -2617,7 +2618,7 @@ xmnote2=
 xmberi2=
 xstx=0
 xnticker=1
-xnlines=Erste ZeilennZweite Zeile mit O'Neilln\n
+xnlines=Erste Zeile\nZweite Zeile mit O'Neill\n
 xteama0=6
 xteamb0=5
 xteama1=0
@@ -2635,19 +2636,13 @@ GEAENDERT ligen/golden/special.l98
 +Actual=6
  Kegel=0
  HandS=0
-@@ -61,4 +61,5 @@
- N0=Erste ZeilennZweite Zeile mit O'Neilln
- 
-+
- [Teams]
- 1=Mannschaft 1
-@@ -149,5 +150,4 @@
+@@ -150,5 +150,4 @@
  GA2=-1
  GB2=-1
 -SP2=0
  NT2=
  BE2=
-@@ -289,6 +289,6 @@
+@@ -290,6 +289,6 @@
  D1=
  D2=
 -TA1=5
@@ -2656,7 +2651,7 @@ GEAENDERT ligen/golden/special.l98
 +TB1=5
  GA1=1
  GB1=3
-@@ -297,13 +297,14 @@
+@@ -298,13 +297,14 @@
  BE1=
  TI1=
 -AT1=0
@@ -2677,7 +2672,7 @@ GEAENDERT ligen/golden/special.l98
 +AT2=
  TA3=4
  TB3=6
-@@ -314,5 +315,5 @@
+@@ -315,5 +315,5 @@
  BE3=
  TI3=
 -AT3=0
@@ -4717,7 +4712,7 @@ NEU output/basic.l98-st.html (5713 Bytes)
 <tr>
 <td colspan="19" align="center">
 <acronym title="Hier kommen die News für Ihren Ticker rein (immer 1 Meldung pro Zeile, bitte keine Leerzeilen lassen)">Tickertext: </acronym>
-<textarea tabindex="3015" class="lmo-formular-input" name="xnlines" cols="50" rows="4" onChange="dolmoedit()">Erste ZeilennZweite Zeile mit O'Neilln </textarea>
+<textarea tabindex="3015" class="lmo-formular-input" name="xnlines" cols="50" rows="4" onChange="dolmoedit()">Erste Zeile Zweite Zeile mit O'Neill </textarea>
 </td>
 </tr>
 <tr>

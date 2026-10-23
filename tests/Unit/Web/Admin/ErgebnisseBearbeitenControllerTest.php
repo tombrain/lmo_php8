@@ -170,7 +170,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
             'xgoala0' => '3', 'xgoalb0' => 'x',
             'xatdat0' => '01.02.2025', 'xattim0' => '',
             'xmsieg0' => '0', 'xmnote0' => ' Neu ', 'xmberi0' => '',
-            'xstx' => '2', 'xnticker' => '1', 'xnlines' => 'erste\nzweite\n',
+            'xstx' => '2', 'xnticker' => '1', 'xnlines' => "erste\r\n\r\nzweite\r\n",
         ]);
 
         self::assertStringStartsWith('GESPEICHERT ', $html);
@@ -180,7 +180,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
         self::assertSame([3, 1, 3, 0, 'Neu'], [$spiel->heim, $spiel->gast, $spiel->toreHeim, $spiel->toreGast, $spiel->notiz], '"X" heisst 0');
         self::assertSame(mktime(15, 30, 0, 2, 1, 2025), $spiel->anstoss, 'ohne Uhrzeit die Vorgabe');
         self::assertSame(['01.02.2025', '01.02.2025'], [$liga->spieltage[1]->werte['D1'] ?? '', $liga->spieltage[1]->werte['D2'] ?? ''], 'Datum aus den Spielen');
-        self::assertSame(['erste', 'zweite'], array_values(array_filter($liga->news, static fn ($k): bool => $k !== 'NC', ARRAY_FILTER_USE_KEY)), 'wie bisher getrennt an \n');
+        self::assertSame(['erste', 'zweite'], array_values(array_filter($liga->news, static fn ($k): bool => $k !== 'NC', ARRAY_FILTER_USE_KEY)), 'getrennt an den Zeilenumbruechen, ohne leere');
         self::assertSame('1', $liga->optionen['ticker']);
         self::assertSame([], $this->ausgewertet, 'ohne Addons keine Auswertung');
         self::assertStringContainsString('<option value="2" selected>2. T2</option>', $html, 'nach dem Speichern der aktuelle Spieltag gewaehlt');
