@@ -138,7 +138,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     /**
      * Beim Speichern der Ergebnisse einer getippten Liga die Auswertung der Tipps (tipp/cfg.txt
      * aktauswert: die Liga, aktauswertges: alle Ligen zusammen), noch nach alter Art. Bis 4.5 band
-     * lmo-adminedit.php die Dateien selbst ein.
+     * lmo-adminedit.php die Dateien selbst ein, heute die Bruecke in lmo-adminmain.php.
      */
     public function auswertungBeimSpeichern(Kontext $kontext): array
     {

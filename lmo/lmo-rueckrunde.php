@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__.'/init.php');
 require_once(PATH_TO_ADDONDIR."/classlib/ini.php");
-// nur aus dem Admin-Bereich (lmo-adminedit.php) und angemeldet: ein direkter Aufruf
+// nur aus dem Admin-Bereich (Ergebnisse eines Spieltags, Lmo\Web\Admin\ErgebnisseBearbeitenController) und angemeldet: ein direkter Aufruf
 // lmo-rueckrunde.php?file=... schrieb die Liga sonst ohne Anmeldung neu
 require_once(PATH_TO_LMO."/lmo-admintest.php");
 

@@ -321,6 +321,6 @@ Einzelspiel-Modus (Standard), oeffentliche Seiten (`action=program&selteam=N`,
 `action=results&st=N`, `action=cal`), Admin-Bearbeitung und ein Roundtrip (unveraendert speichern).
 
 NICHT abgedeckt (eigener, groesserer Block): Hin-/Rueckspiel und Best-of-3/5/7 (Modus 2/3/5/7),
-Playoffmode-Varianten (2-2-1 usw., siehe `$playoffmode` in `lmo-adminedit.php`/
+Playoffmode-Varianten (2-2-1 usw., siehe `heimZuerst()`/`toreReihe()` in `ErgebnisseBearbeitenController`/
 `lmo-showkoresults.php`), Spielerstatistik-Addon fuer KO, Tippspiel-Addon fuer KO
 (`lmo-tippeditko.php` und Verwandte), groessere Turnierbaeume (8/16/24/32+ Teams).

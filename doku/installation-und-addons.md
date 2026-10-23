@@ -106,14 +106,11 @@ Ohne diese Datei bricht jede Seite ab.
 Einige Stellen im alten Code des Kerns sprechen Addons noch direkt an. Damit ein entferntes Addon
 keine Fehler verursacht, prüfen sie, ob es geladen ist (`$kontext->addons->hat('<name>')`):
 
-- **Ergebnisse** (`lmo-adminedit.php`): die Spalte „ohne Tippwertung“ nur mit `addon/tipp/`.
-  Die Auswertung beim Speichern liefert das Tippspiel selbst über den Erweiterungspunkt
-  `MitErgebnisAuswertung`; ohne das Addon findet sie nicht statt.
+- **Ergebnisse eines Spieltags**: die Spalte „ohne Tippwertung“ und die Auswertung beim Speichern
+  liefert das Tippspiel selbst über die Erweiterungspunkte `MitErgebnisSpalten` und
+  `MitErgebnisAuswertung`; ohne `addon/tipp/` fehlen beide.
 - **Grundeinstellungen einer Liga**: die Option „Spielerstatistik“ liefert das Addon selbst über
   den Erweiterungspunkt `MitLigaEinstellungen`; ohne `addon/spieler/` fehlt sie
 
 Ist für die eingestellte Startseite einer Liga niemand zuständig (etwa „Spielerstatistik“,
 `OnRun=7`, ohne `addon/spieler/`), zeigt der LMO die Tabelle, im Pokal die Ergebnisse.
-
-Die Spalte „ohne Tippwertung“ verschwindet aus dem Kern, wenn die Seite der Ergebnisse umgebaut
-wird; dann bekommt sie einen Erweiterungspunkt für Spalten.
