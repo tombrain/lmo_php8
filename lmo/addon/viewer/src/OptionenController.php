@@ -108,7 +108,12 @@ final class OptionenController implements Controller
                 $ausgabe = Meldung::html($kontext->pfade->bilder, ($text[567] ?? '') . ': ' . htmlspecialchars($dateiname), true);
                 $schritt1 = $schritt2 = $schritt3 = false;
             } else {
-                [$ausgabe] = $this->speichere($kontext, $ligenordner, $dateiname, $t);
+                [$ausgabe, $gespeichert] = $this->speichere($kontext, $ligenordner, $dateiname, $t);
+                if (!$gespeichert) {
+                    // nicht geschrieben (bis 4.5 trotzdem "gespeichert" mit dem Code): zurueck zu Schritt 1
+                    $ausgabe .= Meldung::html($kontext->pfade->bilder, $text[567] ?? '', true);
+                    $schritt1 = $schritt2 = $schritt3 = false;
+                }
             }
         }
 
@@ -243,7 +248,7 @@ final class OptionenController implements Controller
      * vor der ersten einer Liga liga<n>=<Datei>.
      *
      * @param array<int, string> $t
-     * @return array{string} Ausgaben dabei (Fehler)
+     * @return array{string, bool} Ausgaben dabei (Fehler) und ob die Datei geschrieben ist
      */
     private function speichere(Kontext $kontext, string $ordner, string $dateiname, array $t): array
     {
@@ -280,10 +285,8 @@ final class OptionenController implements Controller
         foreach ($zeilen as $zeile) {
             $inhalt .= $zeile . "\n";
         }
-        if (@file_put_contents($this->ansichten . '/' . $dateiname . '.view', $inhalt) === false) {
-            $ausgabe .= $kontext->text[567] ?? '';
-        }
+        $geschrieben = @file_put_contents($this->ansichten . '/' . $dateiname . '.view', $inhalt) !== false;
 
-        return [$ausgabe];
+        return [$ausgabe, $geschrieben];
     }
 }
