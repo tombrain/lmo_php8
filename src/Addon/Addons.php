@@ -263,6 +263,23 @@ final class Addons
         return $schalter;
     }
 
+    /**
+     * Die Spalten aller Addons fuer die Ergebnisse eines Spieltags in der Administration (MitErgebnisSpalten).
+     *
+     * @return list<ErgebnisSpalte>
+     */
+    public function ergebnisSpalten(Kontext $kontext): array
+    {
+        $spalten = [];
+        foreach ($this->addons as $addon) {
+            if ($addon instanceof MitErgebnisSpalten) {
+                array_push($spalten, ...$addon->ergebnisSpalten($kontext));
+            }
+        }
+
+        return $spalten;
+    }
+
     /** Hat ein Addon Zusatz je Spiel? Sonst bleibt die Zeile ohne. */
     public function mitZusatzJeSpiel(): bool
     {

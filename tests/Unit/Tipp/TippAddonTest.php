@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Lmo\Tests\Unit\Tipp;
 
 use Lmo\Addon\Tipp\TippAddon;
+use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
+use Lmo\Liga\Spiel;
 use Lmo\Web\Anfrage;
 use Lmo\Web\Darstellung;
 use Lmo\Web\GeladeneLiga;
 use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
 use Lmo\Web\Pfade;
+use Lmo\Web\Sitzung;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -111,5 +114,40 @@ tippauthtxt=tipper.txt
         self::assertSame([], $dateien(['immeralle' => '1', 'aktauswert' => '0', 'aktauswertges' => '0']), 'keine Auswertung eingestellt');
         self::assertSame([], $dateien(['immeralle' => '1'] + $beide, null), 'ohne Liga');
         self::assertSame([], $dateien($beide), 'ohne immeralle zaehlt die (leere) Liste');
+    }
+
+    public function testErgebnisSpalten(): void
+    {
+        $addon = new TippAddon('/lmo/addon/tipp');
+        $liga = Liga::ausEintraegen(LigaDatei::zerlege(['[Options]', 'Teams=2', 'Rounds=1', 'Matches=1', '[Round1]', 'TA1=1', 'TB1=2', 'TI1=1']));
+        $spalten = static fn (array $cfg, int $rolle = 2, ?Liga $mit = null): array => $addon->ergebnisSpalten(new Kontext(
+            new Anfrage([]),
+            'admin',
+            $mit !== null ? new GeladeneLiga('golden/bula.l98', $mit, '') : null,
+            new Konfiguration(['tipp' => $cfg]),
+            [],
+            '/lmoadmin.php',
+            new Pfade('/lmo', '', 'IMG'),
+            new Darstellung(static fn (string $d, string $n, string $a): string => ''),
+            weitereTexte: ['tipp' => [57 => 'ohne Tipp', 199 => 'ja']],
+            sitzung: new Sitzung(['lmouserok' => $rolle])
+        ));
+
+        $alle = $spalten(['immeralle' => '1'], 2, $liga);
+        self::assertCount(1, $alle);
+        $spalte = $alle[0];
+        self::assertSame(['xmtipp', 'ohne Tipp', ['0' => '_', '1' => 'ja']], [$spalte->feld, $spalte->titel, $spalte->optionen]);
+        self::assertSame('1', $spalte->wert(Spiel::ausRohdaten($liga, 1, 1)));
+
+        $partie = $liga->spieltag(1)->partie(1);
+        $spalte->uebernimm($partie, ' 0 ', 1);
+        self::assertSame('0', $partie->spiele[1]['TI']);
+        self::assertSame('0', $spalte->wert(Spiel::ausRohdaten($liga, 1, 1)));
+        $spalte->uebernimm($partie, '1', 2);
+        self::assertSame('1', $partie->spiele[2]['TI'], 'je Spiel einer Paarung');
+
+        self::assertSame([], $spalten(['immeralle' => '1'], 1, $liga), 'nur fuer den Hauptadmin');
+        self::assertSame([], $spalten(['immeralle' => '1']), 'ohne Liga');
+        self::assertSame([], $spalten(['immeralle' => '0', 'ligenzutippen' => 'cup'], 2, $liga), 'Liga wird nicht getippt');
     }
 }
