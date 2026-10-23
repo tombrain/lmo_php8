@@ -110,6 +110,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Viewer, Administration: Der Schritt „Mannschaften“ zeigt die angekreuzten Ligen. Bisher zeigte er die ersten Ligen des Ordners, so viele, wie angekreuzt waren.  
 * Viewer, Administration: Anführungszeichen in den Einstellungen einer Ansicht (etwa in der Titelzeile) bleiben erhalten. Bisher beendeten sie das versteckte Feld, das die Einstellungen an den nächsten Schritt weitergibt, und alles dahinter ging verloren. Name und Einbindecode werden ebenfalls maskiert.  
 * Administration, Spieltage zuordnen: Leere Plätze eines Spieltags (0-0) erscheinen nicht mehr als Zeile ohne Mannschaften und zählen nicht mehr bei den Partien mit; ihre Auswahl hätte den leeren Platz verschoben.  
 * Administration, Spieltage zuordnen: nur noch für den Hauptadmin in einer Liga. Im Pokal riss die Seite ein einzelnes Spiel aus seiner Paarung; Hilfsadmins sahen den Link, bekamen aber eine leere Seite.  
@@ -572,6 +573,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Viewer, administration: the step "teams" shows the leagues that were ticked. So far it showed the first leagues of the folder, as many as had been ticked.  
 * Viewer, administration: quotes in the settings of a view (for example in the title line) are kept. So far they ended the hidden field passing the settings on to the next step, and everything after them was lost. Name and embedding code are escaped as well.  
 * Administration, assigning rounds: empty slots of a round (0-0) no longer appear as a row without teams and no longer count as games; their selection would have moved the empty slot.  
 * Administration, assigning rounds: only for the main admin in a league now. In a cup the page tore a single game out of its pairing; helper admins saw the link but got an empty page.  

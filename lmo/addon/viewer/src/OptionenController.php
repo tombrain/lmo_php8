@@ -218,8 +218,8 @@ final class OptionenController implements Controller
     {
         $ergebnis = [];
         $nummer = 0;
-        // wie bisher die ersten so vielen Ligen, wie angekreuzt sind, nicht die angekreuzten
-        for ($nr = 1; $nr <= count($gewaehlt); $nr++) {
+        // die angekreuzten Ligen (bis 4.5 die ersten so vielen, wie angekreuzt waren)
+        foreach ($gewaehlt as $nr) {
             $liga = $ligen[$nr - 1] ?? null;
             $datei = $liga['datei'] ?? '';
             if ($liga === null || !is_file($ordner . $datei)) {
