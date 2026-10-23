@@ -90,12 +90,15 @@ final class TabellenkorrekturController implements Controller
             $i = $tabelle->reihenfolge[$x - 1];
             $zeile = $tabelle->zeilen[$i];
             $mannschaft = $liga->mannschaften[$i] ?? new Mannschaft();
+            $notiz = $this->notiz($mannschaft, $text, $e->mitMinuspunkten(), $punktfaktor, $torfaktor);
             $zeilen[] = [
                 'x' => $x,
                 'platz' => $plaetze[$x],
                 'name' => $mannschaft->anzeigename(),
                 'liebling' => $i == $e->lieblingsmannschaft(),
-                'notiz' => $this->notiz($mannschaft, $text, $e->mitMinuspunkten(), $punktfaktor, $torfaktor),
+                'notiz' => $notiz !== null ? nl2br($notiz) : null,
+                // dieselbe Notiz als Text fuer alert() (bis 4.5 immer leer)
+                'alarm' => $notiz !== null ? (string) json_encode(trim(html_entity_decode(strip_tags($notiz))), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : '',
                 'spiele' => $zeile->spiele,
                 'siege' => $zeile->siege,
                 'unentschieden' => $zeile->unentschieden,
@@ -130,7 +133,8 @@ final class TabellenkorrekturController implements Controller
     }
 
     /**
-     * Die Notiz einer Mannschaft zum Aufklappen (Strafen, Boni, Notiz) als HTML, null ohne.
+     * Die Notiz einer Mannschaft zum Aufklappen (Strafen, Boni, Notiz) als HTML mit Zeilenumbruechen,
+     * null ohne.
      *
      * @param array<int, string> $text
      */
@@ -172,7 +176,7 @@ final class TabellenkorrekturController implements Controller
             $html .= "\n\n<strong>" . ($text[22] ?? '') . ":</strong>\n" . $notiz;
         }
 
-        return nl2br($html);
+        return $html;
     }
 
     /** Strafe (positiv gespeichert) oder Bonus (negativ) zum Anzeigen: Bonus mit "+", Strafe negativ. */

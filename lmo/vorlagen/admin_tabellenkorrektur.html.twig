@@ -86,7 +86,7 @@
             <td>
 {%- if z.notiz is not null %}
 
-        <a href='#' onclick="alert('');window.focus();return false;"><img src='{{ bilder }}/lmo-st2.svg' height='15' border='0' alt=''><span class='popup'>{{ z.notiz|raw }}</span></a>
+        <a href='#' onclick="alert({{ z.alarm }});window.focus();return false;"><img src='{{ bilder }}/lmo-st2.svg' height='15' border='0' alt=''><span class='popup'>{{ z.notiz|raw }}</span></a>
 {%- else %}&nbsp;{% endif %}
 
             </td>
