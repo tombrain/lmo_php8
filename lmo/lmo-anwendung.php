@@ -55,6 +55,9 @@ $lmo_statistik_erzeugen = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, st
     include(PATH_TO_LMO . '/lmo-zustat.php');
 };
 
+// Wappen, Liga- und Spielerbilder (bis 4.5 ueber die Classlib)
+$lmo_bilder = new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR);
+
 return new \Lmo\Web\Anwendung(
     $lmo_konfiguration,
     // Sprachtexte des alten Codes, getrennt in Kerntexte und die der Unterordner (date, Addons)
@@ -63,10 +66,10 @@ return new \Lmo\Web\Anwendung(
     new \Lmo\Web\LigaLader(PATH_TO_LMO . '/' . $lmo_konfiguration->ligenordner(), $lmo_konfiguration->datumsformat(), static fn (string $datei): bool => check_hilfsadmin($datei)),
     new \Lmo\Web\Pfade(PATH_TO_LMO, PATH_TO_LMO . '/vorlagen', URL_TO_IMGDIR, URL_TO_LMO),
     new \Lmo\Web\Darstellung(
-        static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute),
-        static fn (string $datei, string $attribute): string => (string)HTML_smallLigaIcon($datei, $attribute, ''),
-        static fn (string $name, string $attribute): string => (string)HTML_smallSpielerIcon($name, $attribute),
-        static fn (string $datei, string $name, string $attribute): string => (string)HTML_bigTeamIcon($datei, $name, $attribute)
+        static fn (string $datei, string $name, string $attribute): string => $lmo_bilder->bild($name, 'teams', 'small', $attribute),
+        static fn (string $datei, string $attribute): string => $lmo_bilder->ligaSymbol($datei, $attribute),
+        static fn (string $name, string $attribute): string => $lmo_bilder->bild($name, 'spieler', 'small', $attribute),
+        static fn (string $datei, string $name, string $attribute): string => $lmo_bilder->bild($name, 'teams', 'big', $attribute)
     ),
     [
         new \Lmo\Web\Controller\ErgebnisseController(),

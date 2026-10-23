@@ -17,10 +17,10 @@ namespace Lmo\Web;
 use Closure;
 
 /**
- * Was die Seiten-Klassen aus dem alten Code des LMO brauchen, solange er noch als Funktionen
- * vorliegt: das kleine und das grosse Vereinswappen einer Mannschaft (HTML_smallTeamIcon(),
- * HTML_bigTeamIcon()), das kleine Symbol einer Liga (HTML_smallLigaIcon()) und das kleine Bild
- * eines Spielers (HTML_smallSpielerIcon(), alle in addon/classlib/html_output.php).
+ * Was die Seiten-Klassen an Bildern brauchen, austauschbar fuer Tests: das kleine und das grosse
+ * Vereinswappen einer Mannschaft, das kleine Symbol einer Liga und das kleine Bild eines Spielers.
+ * In der Anwendung kommen sie aus Lmo\Web\Bilder (bis 4.5 HTML_smallTeamIcon() und Verwandte der
+ * Classlib).
  */
 final class Darstellung
 {

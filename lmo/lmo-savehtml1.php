@@ -57,6 +57,9 @@ if ($st > 0) {
   $actual = $lmo_html_e->aktuellerSpieltag();
 }
 
+// die Wappen (bis 4.5 HTML_icon() der Classlib); lmo-savehtml.php legt sie schon an
+$lmo_html_bilder = $lmo_html_bilder ?? new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR);
+
 // Die Tabelle hat lmo-savehtml.php schon gerechnet (bis zum gewaehlten Spieltag); laeuft diese Datei
 // allein, wird sie hier gerechnet.
 if (!$lmo_html_e->istPokal() && !isset($lmo_html_tabelle)) {
@@ -132,9 +135,9 @@ if (!$lmo_html_e->istPokal()) {
           <tr>
             <td><?php echo $dum1;?>&nbsp;</td>
             <td align="right"><?php echo $heimteam;?></td>
-            <td><?php echo HTML_icon($heimteam, 'teams');?></td>
+            <td><?php echo $lmo_html_bilder->bild($heimteam, 'teams');?></td>
             <td>-</td>
-            <td><?php echo HTML_icon($gastteam, 'teams');?></td>
+            <td><?php echo $lmo_html_bilder->bild($gastteam, 'teams');?></td>
             <td><?php echo $gastteam;?>&nbsp;</td>
             <td align="right"><?php echo $heimtore;?></td>
             <td>:</td>
@@ -210,7 +213,7 @@ if (!$lmo_html_e->istPokal()) {
 ?>
     <tr>
       <td align="right"><?php echo $platz;?>&nbsp;</td>
-      <td><?php echo HTML_icon($teamname, 'teams');?>&nbsp;</td>
+      <td><?php echo $lmo_html_bilder->bild($teamname, 'teams');?>&nbsp;</td>
       <td><?php echo $teamname;?>&nbsp;</td>
       <td align="right"><?php echo $spieleteam;?>&nbsp;</td>
       <td align="right"><?php echo $pluspunkte;

@@ -42,6 +42,6 @@ echo \Lmo\Addon\Spieler\Druckansicht::html(
     new \Lmo\Web\Darstellung(
         static fn (string $datei, string $name, string $attribute): string => '',
         null,
-        static fn (string $name, string $attribute): string => (string)HTML_smallSpielerIcon($name, $attribute)
+        static fn (string $name, string $attribute): string => (new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR))->bild($name, 'spieler', 'small', $attribute)
     )
 );
