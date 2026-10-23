@@ -110,6 +110,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Viewer, Administration: Lässt sich die Ansicht nicht schreiben (etwa ohne Schreibrechte auf `config/viewer`), meldet der Assistent einen Fehler und kehrt zu den Einstellungen zurück. Bisher meldete er trotzdem „Daten erfolgreich gespeichert“ und zeigte den Code zum Einbinden.  
 * Viewer, Administration: gültiges HTML im Assistenten. Jede Zeile der Mannschaften wird geschlossen (bisher je nach Anzahl ein `</tr>` zu viel oder zu wenig), dazu ohne verirrte `</h1>` und `</p>` und mit `</th>` statt `</td>`.  
 * Viewer, Administration: Der Schritt „Mannschaften“ zeigt die angekreuzten Ligen. Bisher zeigte er die ersten Ligen des Ordners, so viele, wie angekreuzt waren.  
 * Viewer, Administration: Anführungszeichen in den Einstellungen einer Ansicht (etwa in der Titelzeile) bleiben erhalten. Bisher beendeten sie das versteckte Feld, das die Einstellungen an den nächsten Schritt weitergibt, und alles dahinter ging verloren. Name und Einbindecode werden ebenfalls maskiert.  
@@ -574,6 +575,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Viewer, administration: if the view cannot be written (for example without write permission on `config/viewer`), the wizard reports an error and returns to the settings. So far it still reported "data saved successfully" and showed the embedding code.  
 * Viewer, administration: valid HTML in the wizard. Every row of teams is closed (so far one `</tr>` too many or too few depending on the count), without stray `</h1>` and `</p>` and with `</th>` instead of `</td>`.  
 * Viewer, administration: the step "teams" shows the leagues that were ticked. So far it showed the first leagues of the folder, as many as had been ticked.  
 * Viewer, administration: quotes in the settings of a view (for example in the title line) are kept. So far they ended the hidden field passing the settings on to the next step, and everything after them was lost. Name and embedding code are escaped as well.  

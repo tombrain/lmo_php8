@@ -131,6 +131,17 @@ class OptionenControllerTest extends TestCase
         self::assertFileDoesNotExist($this->ordner . '/lmo.view');
     }
 
+    public function testNichtGeschrieben(): void
+    {
+        exec('rm -rf ' . escapeshellarg($this->ordner . '/config/viewer'));
+        $html = @$this->seite(['formular3' => '1', 'zaehler' => '0', 'dateiname' => 'meine', 'config_array' => 'modus=1']);
+
+        self::assertStringNotContainsString('Gespeichert', $html, 'bis 4.5 trotzdem');
+        self::assertStringContainsString('Fehler', $html);
+        self::assertStringNotContainsString('viewer_code', $html, 'kein Code zum Einbinden');
+        self::assertStringContainsString('name="formular1"', $html, 'zurueck zu den Einstellungen');
+    }
+
     public function testSpeichern(): void
     {
         $html = $this->seite(['formular3' => '1', 'zaehler' => '4', 'dateiname' => 'meine', 'config_array' => 'modus=1;titelzeile=T', 't0' => 'a.l98[1]', 't2' => 'a.l98[3]', 't3' => 'b.l98[2]']);
