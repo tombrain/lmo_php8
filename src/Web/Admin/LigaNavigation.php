@@ -28,6 +28,25 @@ use Lmo\Web\Vorlagen;
 final class LigaNavigation
 {
     /**
+     * Die Navigation fuer eine Seite nach neuer Art: die Adressen der Links bildet sie aus der
+     * Adresse der Administration und der Datei der geladenen Liga.
+     *
+     * @param Liga $liga die Liga im geladenen oder gerade gespeicherten Stand
+     */
+    public static function fuer(Kontext $kontext, Liga $liga, string $todo, string $st): string
+    {
+        $datei = $kontext->liga->datei ?? '';
+
+        return self::html($kontext, $kontext->addons, $liga, $todo, $st, self::adresse($kontext, 'edit', $datei), self::adresse($kontext, 'tabs', $datei));
+    }
+
+    /** Die Adresse einer Seite der Liga bis "st=": todo=edit (Bearbeiten) oder todo=tabs (Tabellen). */
+    public static function adresse(Kontext $kontext, string $todo, string $datei): string
+    {
+        return $kontext->adresse . '?action=admin&amp;todo=' . $todo . '&amp;file=' . $datei . '&amp;st=';
+    }
+
+    /**
      * @param Addons $addons die Addons der Administration (mit denen nach alter Art)
      * @param Liga $liga die Liga im geladenen oder gerade gespeicherten Stand
      * @param string $todo gewaehlte Aktion (edit, tabs)
