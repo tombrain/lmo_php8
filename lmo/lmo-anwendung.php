@@ -65,7 +65,8 @@ return new \Lmo\Web\Anwendung(
     new \Lmo\Web\Darstellung(
         static fn (string $datei, string $name, string $attribute): string => (string)HTML_smallTeamIcon($datei, $name, $attribute),
         static fn (string $datei, string $attribute): string => (string)HTML_smallLigaIcon($datei, $attribute, ''),
-        static fn (string $name, string $attribute): string => (string)HTML_smallSpielerIcon($name, $attribute)
+        static fn (string $name, string $attribute): string => (string)HTML_smallSpielerIcon($name, $attribute),
+        static fn (string $datei, string $name, string $attribute): string => (string)HTML_bigTeamIcon($datei, $name, $attribute)
     ),
     [
         new \Lmo\Web\Controller\ErgebnisseController(),

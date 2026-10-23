@@ -18,9 +18,9 @@ use Closure;
 
 /**
  * Was die Seiten-Klassen aus dem alten Code des LMO brauchen, solange er noch als Funktionen
- * vorliegt: das kleine Vereinswappen einer Mannschaft (HTML_smallTeamIcon()), das kleine
- * Symbol einer Liga (HTML_smallLigaIcon()) und das kleine Bild eines Spielers
- * (HTML_smallSpielerIcon(), alle in addon/classlib/html_output.php).
+ * vorliegt: das kleine und das grosse Vereinswappen einer Mannschaft (HTML_smallTeamIcon(),
+ * HTML_bigTeamIcon()), das kleine Symbol einer Liga (HTML_smallLigaIcon()) und das kleine Bild
+ * eines Spielers (HTML_smallSpielerIcon(), alle in addon/classlib/html_output.php).
  */
 final class Darstellung
 {
@@ -30,17 +30,27 @@ final class Darstellung
     private Closure $ligaSymbol;
     /** @var Closure(string, string): string */
     private Closure $spielerbild;
+    /** @var Closure(string, string, string): string */
+    private Closure $wappenGross;
 
     /**
      * @param Closure(string, string, string): string $wappen Ligadatei, Name der Mannschaft, weitere Attribute => <img ...> oder ''
      * @param (Closure(string, string): string)|null $ligaSymbol Ligadatei, weitere Attribute => <img ...> oder ''; null: keins
      * @param (Closure(string, string): string)|null $spielerbild Name des Spielers, weitere Attribute => <img ...> oder ''; null: keins
+     * @param (Closure(string, string, string): string)|null $wappenGross wie $wappen fuer das grosse Wappen; null: keins
      */
-    public function __construct(Closure $wappen, ?Closure $ligaSymbol = null, ?Closure $spielerbild = null)
+    public function __construct(Closure $wappen, ?Closure $ligaSymbol = null, ?Closure $spielerbild = null, ?Closure $wappenGross = null)
     {
         $this->wappen = $wappen;
         $this->ligaSymbol = $ligaSymbol ?? static fn (string $datei, string $attribute): string => '';
         $this->spielerbild = $spielerbild ?? static fn (string $name, string $attribute): string => '';
+        $this->wappenGross = $wappenGross ?? static fn (string $datei, string $mannschaft, string $attribute): string => '';
+    }
+
+    /** Das grosse Wappen einer Mannschaft als HTML, '' ohne Bild. */
+    public function wappenGross(string $datei, string $mannschaft, string $attribute = ''): string
+    {
+        return ($this->wappenGross)($datei, $mannschaft, $attribute);
     }
 
     /** Das kleine Bild eines Spielers als HTML, '' ohne Bild. */

@@ -109,6 +109,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\DesignController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\NeuController($lmo_admin_speichere),
         new \Lmo\Web\Admin\AnzahlController($lmo_admin_speichere),
+        new \Lmo\Web\Admin\MannschaftenController($lmo_admin_speichere),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -142,8 +143,6 @@ if ($action == 'admin') {
         if ($todo == 'edit') {
             if ($sty == -1) {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
-            } elseif ($sty == -2) {
-                require(PATH_TO_LMO . '/lmo-adminteams.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
@@ -158,8 +157,6 @@ if ($action == 'admin') {
         if ($todo == 'edit') {
             if ($sty == -1) {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
-            } elseif ($sty == -2 && $_SESSION['lmouserokerweitert'] == 1) {
-                require(PATH_TO_LMO . '/lmo-adminteams.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
