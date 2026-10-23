@@ -101,6 +101,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Tabellenkorrektur: gültiges HTML in der Kopfzeile (`style="text-align:"left"`) und am Ende der Tabelle (`</th>` statt `</td>`).  
 * Administration, Tabellenkorrektur: Ein Klick auf das Symbol einer Mannschaft mit Notiz, Strafe oder Bonus zeigt diese jetzt auch im Hinweisfenster. Bisher blieb es leer, weil die Argumente von `addcslashes()` vertauscht waren.  
 * Administration, Ergebnisse eines Spieltags: Die Newszeilen werden an den Zeilenumbrüchen getrennt. Bisher trennte der LMO nur an der Zeichenfolge `\n`, die kein Browser schickt; mehrere Zeilen kamen so als eine Zeile mit Umbrüchen in die Ligadatei, und nach dem nächsten Laden war alles ab der zweiten Zeile verloren.  
 * Administration, Mannschaften: Der Link „Spieltags- und Spiel-Anzahl“ erscheint nur noch nach dem Hinzufügen oder Entfernen einer Mannschaft. Bisher stand er auch nach jedem Speichern, wenn eine Torstatistik eingeschaltet war: `lmo-zustat.php` hinterließ eine globale Variable `$team`, die die Seite dafür prüfte.  
@@ -547,6 +548,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, table correction: valid HTML in the header row (`style="text-align:"left"`) and at the end of the table (`</th>` instead of `</td>`).  
 * Administration, table correction: clicking the symbol of a team with a note, penalty or bonus now also shows it in the alert box. So far it stayed empty because the arguments of `addcslashes()` were swapped.  
 * Administration, results of a round: the news lines are split at the line breaks. So far LMO only split at the character sequence `\n`, which no browser sends; several lines went into the league file as one line with breaks, and after the next load everything from the second line on was lost.  
 * Administration, teams: the link "Spieltags- und Spiel-Anzahl" (number of rounds and games) now only appears after adding or removing a team. Until now it also appeared after every save while a goal statistic was switched on: `lmo-zustat.php` left a global variable `$team` behind, which the page checked for it.  

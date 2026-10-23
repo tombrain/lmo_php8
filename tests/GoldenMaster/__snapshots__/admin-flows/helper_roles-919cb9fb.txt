@@ -2236,8 +2236,8 @@ GEAENDERT config/lmo-auth.php
 <th style="text-align:center">
 <acronym title="Niederlage">n</acronym>
 </th>
-<th style="text-align:"left" width="2">&nbsp;</th>
-<th style="text-align:"left" colspan="3" align="center">Tore</th>
+<th style="text-align:left" width="2">&nbsp;</th>
+<th colspan="3" align="center">Tore</th>
 <th align="right">Diff.</th>
 <th>&nbsp;</th>
 <th style="text-align:right">Pkt.</th>
@@ -2493,7 +2493,7 @@ GEAENDERT config/lmo-auth.php
 <tr>
 <th style="text-align:center" colspan="16">
 <input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="manuelle Tabelle speichern">
-</td>
+</th>
 </tr>
 </table>
 </form>
