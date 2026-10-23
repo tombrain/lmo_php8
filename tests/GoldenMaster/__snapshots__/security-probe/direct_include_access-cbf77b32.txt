@@ -207,11 +207,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-rueckrunde.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-openfile.php ===
 
 --- Dateiaenderungen ---

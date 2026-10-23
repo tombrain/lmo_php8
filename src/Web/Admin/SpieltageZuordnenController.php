@@ -17,6 +17,7 @@ namespace Lmo\Web\Admin;
 use Closure;
 use DateTime;
 use Lmo\Liga\Rohdaten\Liga;
+use Lmo\Liga\Spielplan;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
 use Lmo\Web\Meldung;
@@ -27,19 +28,17 @@ use Lmo\Web\Vorlagen;
  * Partien anderen Spieltagen zuordnen (todo=edit&st=-10, nur Hauptadmin und nur in einer Liga;
  * sonst bleibt die Seite leer): je Spieltag seine Partien mit der Auswahl des Spieltags und die
  * spielfreien Mannschaften. Jede Auswahl sp_<Spieltag>_<Heim>_<Gast>, die auf einen anderen
- * Spieltag zeigt, verschiebt die Partie dorthin. Verschoben und geschrieben wird noch ueber die
- * Classlib (Bruecke in lmo-adminmain.php); die Anzeige zeigt die Liga so, wie die Classlib sie
- * liest. Bis 4.5 lmo-adminrounds.php.
+ * Spieltag zeigt, verschiebt die Partie dorthin (Lmo\Liga\Spielplan); gespeichert wird wie auf
+ * den uebrigen Seiten. Die Anzeige zeigt die Liga so, wie die Classlib sie las. Bis 4.5
+ * lmo-adminrounds.php, verschoben und geschrieben ueber die Classlib.
  */
 final class SpieltageZuordnenController implements Controller
 {
     /**
-     * @param Closure(string, list<array{int, int, int, int}>): array{string, list<array{int, int, int, int, string, string}>, ?Liga} $verschiebe
-     *        verschiebt in der Datei die Partien (alter Spieltag, neuer Spieltag, Heim, Gast) und schreibt sie;
-     *        zurueck kommen die Ausgabe dabei, die gelungenen Verschiebungen (dazu die Namen von Heim und Gast)
-     *        und die Liga, wie sie danach in der Datei steht (null ohne Verschiebung)
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
+     * @param Closure(Liga, string, string, list<string>): array{string, Liga} $auswerten bindet die Auswertungen der Addons ein (Liga, Datei, Spieltag, Dateien)
      */
-    public function __construct(private Closure $verschiebe)
+    public function __construct(private Closure $speichere, private Closure $auswerten)
     {
     }
 
@@ -70,16 +69,15 @@ final class SpieltageZuordnenController implements Controller
         $ausgabe = '';
         $meldung = '';
         $markiert = [];
-        if ($wuensche !== []) {
-            [$ausgabe, $verschoben, $neu] = ($this->verschiebe)($geladen->datei, $wuensche);
-            foreach ($verschoben as [$alt, $nach, $heim, $gast, $heimName, $gastName]) {
+        foreach ($wuensche as [$alt, $nach, $heim, $gast]) {
+            if (Spielplan::verschiebe($liga, $alt, $nach, $heim, $gast)) {
                 // je Verschiebung eine Zeile (bis 4.5 nur die letzte)
-                $meldung .= ($text[5007] ?? '') . ' ' . $heimName . ' - ' . $gastName . ' ' . ($text[5004] ?? '') . ' ' . $alt . '. ' . ($text[5005] ?? '') . " $nach . " . ($text[5010] ?? '') . ' ' . ($text[5006] ?? '') . '.<BR>';
+                $meldung .= ($text[5007] ?? '') . ' ' . $liga->mannschaftsname($heim) . ' - ' . $liga->mannschaftsname($gast) . ' ' . ($text[5004] ?? '') . ' ' . $alt . '. ' . ($text[5005] ?? '') . " $nach . " . ($text[5010] ?? '') . ' ' . ($text[5006] ?? '') . '.<BR>';
                 $markiert[] = $heim . '-' . $gast;
             }
-            if ($neu !== null) {
-                $liga = $neu;
-            }
+        }
+        if ($markiert !== []) {
+            [$ausgabe, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->auswerten, $this->speichere);
         }
 
         return new Seite(Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_spieltage_zuordnen.html.twig', [

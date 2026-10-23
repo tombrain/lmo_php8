@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Die beiden Admin-Funktionen, die ueber die classlib speichern (liga::writeFile()):
- * "Rueckrundenspielplan erstellen" (lmo-rueckrunde.php) und Partien in einen anderen Spieltag
- * verschieben (SpieltageZuordnenController, bis 4.5 lmo-adminrounds.php). Geprueft wird die gespeicherte Ligadatei, nicht das HTML.
+ * "Rueckrundenspielplan erstellen" und Partien in einen anderen Spieltag
+ * verschieben (Lmo\Liga\Spielplan, bis 4.5 ueber die Classlib in lmo-rueckrunde.php und lmo-adminrounds.php). Geprueft wird die gespeicherte Ligadatei, nicht das HTML.
  */
 final class AdminScheduleToolsTest extends TestCase
 {
@@ -143,15 +143,20 @@ L98;
         return $liga;
     }
 
-    /** @return array<int,string[]> Spieltag => Partien als "Heim-Gast Heimtore:Gasttore" */
+    /**
+     * Leere Plaetze (0-0), mit denen der LMO beim Speichern jeden Spieltag bis zur Anzahl der
+     * Partien auffuellt, zaehlen nicht.
+     *
+     * @return array<int,string[]> Spieltag => Partien als "Heim-Gast Heimtore:Gasttore"
+     */
     private static function schedule(\liga $liga): array
     {
         $rounds = [];
         foreach ($liga->spieltage as $spieltag) {
-            $rounds[(int)$spieltag->nr] = array_map(
+            $rounds[(int)$spieltag->nr] = array_values(array_map(
                 static fn (\partie $p): string => $p->heim->nr . '-' . $p->gast->nr . ' ' . (int)$p->hTore . ':' . (int)$p->gTore,
-                $spieltag->partien
-            );
+                array_filter($spieltag->partien, static fn (\partie $p): bool => $p->heim !== null || $p->gast !== null)
+            ));
         }
         return $rounds;
     }

@@ -20,8 +20,10 @@ use Lmo\Addon\ErgebnisSpalte;
 use Lmo\Liga\Paarung;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Liga\Spiel;
+use Lmo\Liga\Spielplan;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
+use Lmo\Web\Meldung;
 use Lmo\Web\Seite;
 use Lmo\Web\Seiten\SpieltagsMenue;
 use Lmo\Web\Vorlagen;
@@ -31,7 +33,8 @@ use Lmo\Web\Vorlagen;
  * Hilfsadmins): Termine, Paarungen (Hauptadmin und erweiterte Hilfsadmins), Tore, Zusatz,
  * Wertung am gruenen Tisch, Notiz, Bericht und die Spalten der Addons (Lmo\Addon\MitErgebnisSpalten);
  * darunter aktueller Spieltag, Ticker und Newszeilen. save=1 speichert, save=990 erstellt den
- * Rueckrundenspielplan (lmo-rueckrunde.php). Gibt es den Spieltag nicht, gilt der aktuelle.
+ * Rueckrundenspielplan (Lmo\Liga\Spielplan, bis 4.5 lmo-rueckrunde.php ueber die Classlib).
+ * Gibt es den Spieltag nicht, gilt der aktuelle.
  * Bis 4.5 lmo-adminedit.php.
  */
 final class ErgebnisseBearbeitenController implements Controller
@@ -41,9 +44,8 @@ final class ErgebnisseBearbeitenController implements Controller
     /**
      * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
      * @param Closure(Liga, string, string, list<string>): array{string, Liga} $auswerten bindet die Auswertungen der Addons ein (Liga, Datei, Spieltag, Dateien)
-     * @param Closure(string): string $rueckrunde erstellt den Rueckrundenspielplan der Datei, gibt die Meldung zurueck
      */
-    public function __construct(private Closure $speichere, private Closure $auswerten, private Closure $rueckrunde)
+    public function __construct(private Closure $speichere, private Closure $auswerten)
     {
     }
 
@@ -81,9 +83,14 @@ final class ErgebnisseBearbeitenController implements Controller
         if ($save == 1) {
             [$meldung, $liga] = $this->speichern($kontext, $liga, $geladen->datei, $st, $spalten, $paarungRechte);
         }
-        // Rueckrunden-Hack
+        // Rueckrunden-Hack: gespeichert wird nur, wenn die Anzahl der Spieltage gerade ist
         if ($save == 990) {
-            $meldung .= ($this->rueckrunde)($geladen->datei);
+            if (Spielplan::rueckrunde($liga)) {
+                [$gespeichert, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->auswerten, $this->speichere);
+                $meldung .= $gespeichert . Meldung::html($kontext->pfade->bilder, $text[3002] ?? '');
+            } else {
+                $meldung .= Meldung::html($kontext->pfade->bilder, $text[3001] ?? '', true);
+            }
         }
 
         // der Stand nach dem Speichern zum Anzeigen

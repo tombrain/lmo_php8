@@ -46,7 +46,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
         for ($i = 0; $i <= 600; $i++) {
             $texte[$i] = 'T' . $i;
         }
-        foreach ([999, 3000, 5001, 5002, 5030, 5031, 5032, 5033, 5034, 5035] as $nr) {
+        foreach ([999, 3000, 3001, 3002, 5001, 5002, 5030, 5031, 5032, 5033, 5034, 5035] as $nr) {
             $texte[$nr] = 'T' . $nr;
         }
         $kontext = new Kontext(
@@ -71,8 +71,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
                 $this->ausgewertet[] = $dateien;
 
                 return ['AUSGEWERTET ', $liga];
-            },
-            static fn (string $datei): string => 'RUECKRUNDE ' . $datei . ' '
+            }
         );
         self::assertTrue($controller->zustaendig($kontext));
 
@@ -113,7 +112,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
-        $controller = new ErgebnisseBearbeitenController(static fn (Liga $l): array => ['', $l], static fn (Liga $l): array => ['', $l], static fn (): string => '');
+        $controller = new ErgebnisseBearbeitenController(static fn (Liga $l): array => ['', $l], static fn (Liga $l): array => ['', $l]);
 
         self::assertTrue($controller->zustaendig($kontext(['st' => '3'], 1)));
         self::assertTrue($controller->zustaendig($kontext([], 2)), 'ohne Spieltag der aktuelle');
@@ -188,10 +187,40 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
 
     public function testRueckrunde(): void
     {
-        $html = $this->seite(['st' => '1', 'save' => '990']);
+        $html = $this->seite(['st' => '2', 'save' => '990']);
 
-        self::assertStringStartsWith('RUECKRUNDE a.l98 ', $html);
+        self::assertStringStartsWith('GESPEICHERT ', $html);
+        self::assertStringContainsString('T3002', $html);
+        [$liga, $datei, $st] = $this->gespeichert[0];
+        self::assertSame(['a.l98', '0'], [$datei, $st], 'mit dem bisherigen aktuellen Spieltag');
+        $spiel = Spiel::ausRohdaten($liga, 2, 1);
+        self::assertSame([2, 1, null, null], [$spiel->heim, $spiel->gast, $spiel->toreHeim, $spiel->toreGast], 'Hinspiel mit getauschtem Heimrecht, ohne Ergebnis');
+        self::assertStringContainsString('name="xteama0" onChange="dolmoedit()" tabindex="005">', $html);
+        self::assertMatchesRegularExpression('~name="xteama0".*?<option value="2" selected>Beta</option>~s', $html, 'angezeigt wird der neue Stand');
+
+        $this->gespeichert = [];
+        $html = $this->seite(['st' => '1', 'save' => '990'], liga: str_replace('Rounds=2', 'Rounds=3', self::LIGA));
+        self::assertStringContainsString('T3001', $html, 'ungerade Anzahl der Spieltage');
         self::assertSame([], $this->gespeichert);
+    }
+
+    public function testRueckrundeMitAuswertungDerAddons(): void
+    {
+        $addons = new Addons([new class () implements \Lmo\Addon\MitErgebnisAuswertung {
+            public function name(): string
+            {
+                return 'demo';
+            }
+
+            public function auswertungBeimSpeichern(Kontext $kontext): array
+            {
+                return ['/x/demo.php'];
+            }
+        }]);
+        $html = $this->seite(['st' => '1', 'save' => '990'], addons: $addons);
+
+        self::assertStringStartsWith('AUSGEWERTET GESPEICHERT ', $html);
+        self::assertSame([['/x/demo.php']], $this->ausgewertet);
     }
 
     public function testSpaltenDerAddons(): void
