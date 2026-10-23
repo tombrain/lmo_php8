@@ -219,12 +219,11 @@ todo=vieweroptions
 <form method="POST" action="/lmo/lmoadmin.php?action=admin&todo=vieweroptions" name="B3">
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr>
-<th colspan="2" align="center">Schritt 3 von 3 - Welche Teams sollen angezeigt werden?</h1>
-</th>
+<th colspan="2" align="center">Schritt 3 von 3 - Welche Teams sollen angezeigt werden?</th>
 </tr>
 <tr>
 <td class="nobr">
-<table class=lmoInner cellspacing="0" cellpadding="0" border="0" width="100%">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr>
 <td class="nobr" colspan="3" align="center">
 <h1>1. Bundesliga 2024/25</h1>
@@ -278,7 +277,6 @@ todo=vieweroptions
 <td class="nobr" align="left">
 <input type="checkbox" name="t17" value="1l_2024-25.l98[18]">Eintracht Frankfurt</td>
 </tr>
-</tr>
 </table>
 </td>
 </tr>
@@ -297,7 +295,6 @@ todo=vieweroptions
 <input type="hidden" name="config_array" value="modus=1;anzahl_tage_plus=7;anzahl_tage_minus=7;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=0;titelzeile=Assistent;anstosstermin=;template=big_nur_icons;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.gif;spielberichtesymbol=bericht.gif;notizsymbol=notiz.gif;spieltagtext=ST;cache_refresh=0;favteam_highlight=1">
 <input type="hidden" name="zaehler" value="18">
 <input type="submit" class="lmo-formular-button" value="fertigstellen>>" name="B3">
-</p>
 </td>
 </tr>
 </table>
@@ -424,8 +421,7 @@ todo=vieweroptions
 <form action="#" onSubmit="return false;">
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0" width="100%">
 <tr>
-<th colspan="2" align="center">Alles auswählen</h1>
-</th>
+<th colspan="2" align="center">Alles auswählen</th>
 </tr>
 <tr>
 <td class="nobr">
