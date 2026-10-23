@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Navigation beim Bearbeiten einer Liga: `Lmo\Web\Admin\LigaNavigation` mit der Vorlage `admin_liganavigation.html.twig`; `lmo-adminsubnavi.php` bindet sie nur noch für die Seiten nach alter Art ein.  
 * Administration, neue Liga (`todo=new`): `Lmo\Web\Admin\NeuController` mit der Vorlage `admin_neu.html.twig`; den ausgelosten Spielplan liefert `Lmo\Liga\Zufallsspielplan` (mit austauschbarem Zufall, dadurch testbar). Gespeichert wird weiter über `lmo-saveliga.php`. `lmo-adminnew.php`, `lmo-adminnewdir.php`, `lmo-adminopenprogram.php` und `lmo-adminrndprogram.php` gibt es nicht mehr.  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitErgebnisAuswertung` für Auswertungen beim Speichern der Ergebnisse eines Spieltags (vorerst als Dateien nach alter Art, eingebunden in `lmo-adminedit.php`). Das Tippspiel liefert so seine Auswertung (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` bindet dessen Dateien nicht mehr beim Namen ein.  
 * Dokumentation `doku/installation-und-addons.md`: was bei Installation, Update und beim Hinzufügen oder Entfernen eines Addons mit den Dateien geschieht, samt den bekannten Einschränkungen im alten Code.  
@@ -440,6 +441,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, navigation while editing a league: `Lmo\Web\Admin\LigaNavigation` with the template `admin_liganavigation.html.twig`; `lmo-adminsubnavi.php` only includes it for the pages of the old kind.  
 * Administration, new league (`todo=new`): `Lmo\Web\Admin\NeuController` with the template `admin_neu.html.twig`; the drawn schedule is `Lmo\Liga\Zufallsspielplan` (with a replaceable random source, so it can be tested). Saving still goes through `lmo-saveliga.php`. `lmo-adminnew.php`, `lmo-adminnewdir.php`, `lmo-adminopenprogram.php` and `lmo-adminrndprogram.php` are gone.  
 * Add-ons: extension point `Lmo\Addon\MitErgebnisAuswertung` for evaluations when the results of a round are saved (for now as files of the old kind, included in `lmo-adminedit.php`). The prediction game provides its evaluation this way (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` no longer includes its files by name.  
 * Documentation `doku/installation-und-addons.md` (German): what happens to the files on installation, update and when an add-on is added or removed, including the known limitations of the old code.  
