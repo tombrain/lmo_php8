@@ -92,6 +92,17 @@ class OptionenControllerTest extends TestCase
         self::assertStringContainsString('name="config_array" value="modus=2;anzahl_tage_plus=5;anzahl_tage_minus=;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=;titelzeile=Titel;anstosstermin=;template=standard;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.gif;spielberichtesymbol=bericht.gif;notizsymbol=notiz.gif;spieltagtext=;cache_refresh=;favteam_highlight="', $html);
     }
 
+    public function testAnfuehrungszeichenBleibenErhalten(): void
+    {
+        $html = $this->seite(['formular1' => '1', 'dateiname' => 'meine', 'modus' => '1', 'titelzeile' => 'Die "Ansicht"']);
+
+        self::assertStringContainsString('titelzeile=Die &quot;Ansicht&quot;;', $html, 'maskiert im versteckten Feld (bis 4.5 endete es am ersten Anfuehrungszeichen)');
+        self::assertStringContainsString('name="dateiname" value="meine"', $html);
+
+        $gespeichert = $this->seite(['formular3' => '1', 'zaehler' => '0', 'dateiname' => 'meine', 'config_array' => 'modus=1']);
+        self::assertStringContainsString("&lt;?php \n\$multi=&#039;meine&#039;;", $gespeichert, 'auch der Code zum Einbinden');
+    }
+
     public function testMannschaften(): void
     {
         $html = $this->seite(['formular2' => '1', 'B2' => 'x', 'zaehler' => '3', 'c1' => 'c1', 'dateiname' => 'meine', 'config_array' => 'modus=1']);
@@ -121,7 +132,7 @@ class OptionenControllerTest extends TestCase
         $html = $this->seite(['formular3' => '1', 'zaehler' => '4', 'dateiname' => 'meine', 'config_array' => 'modus=1;titelzeile=T', 't0' => 'a.l98[1]', 't2' => 'a.l98[3]', 't3' => 'b.l98[2]']);
 
         self::assertStringContainsString('Gespeichert', $html);
-        self::assertStringContainsString("\$multi='meine';\ninclude('/addon/viewer/viewer.php');", $html);
+        self::assertStringContainsString("\$multi=&#039;meine&#039;;\ninclude(&#039;/addon/viewer/viewer.php&#039;);", $html);
         self::assertSame("[config]\nmodus=1\ntitelzeile=T\n[Viewer Ligen]\nliga1=a.l98\na.l98_1=1\na.l98_2=3\nliga2=b.l98\nb.l98_1=2\n", file_get_contents($this->ordner . '/config/viewer/meine.view'));
     }
 }

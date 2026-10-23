@@ -429,9 +429,7 @@ todo=vieweroptions
 </tr>
 <tr>
 <td class="nobr">
-<textarea rows="6" id="viewer_code" cols="80">
-<?php $multi='assistent'; include('{LMO_PATH}/addon/viewer/viewer.php'); ?>
-</textarea>
+<textarea rows="6" id="viewer_code" cols="80">&lt;?php $multi=&#039;assistent&#039;; include(&#039;{LMO_PATH}/addon/viewer/viewer.php&#039;); ?&gt;</textarea>
 </td>
 </tr>
 <tr>

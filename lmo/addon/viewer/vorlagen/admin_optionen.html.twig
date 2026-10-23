@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                   <td class="nobr">
-                    <textarea rows="6" id="viewer_code" cols="80">{{ code|raw }}</textarea>
+                    <textarea rows="6" id="viewer_code" cols="80">{{ code }}</textarea>
                   </td>
                 </tr>
                 <tr>
@@ -206,8 +206,8 @@
                     <input type="hidden" name="action" value="admin">
                     <input type="hidden" name="formular2" value="1">
                     <input type="hidden" name="dateinameok" value="1">
-                    <input type="hidden" name="dateiname" value="{{ dateiname|raw }}">
-                    <input type="hidden" name="config_array" value="{{ einstellungen|raw }}">
+                    <input type="hidden" name="dateiname" value="{{ dateiname }}">
+                    <input type="hidden" name="config_array" value="{{ einstellungen }}">
                     <input type="hidden" name="zaehler" value="{{ ligen|length + 1 }}">
                     <input type="submit" class="lmo-formular-button" value="{{ t[22]|raw }} >>" name="B2">
                   </td>
@@ -274,8 +274,8 @@
                     <input type="hidden" name="formular3" value="1">
                     <input type="hidden" name="ausgewaehlte_ligen" value="{{ anzahlLigen }}">
                     <input type="hidden" name="zaehler" value="{{ anzahlMannschaften }}">
-                    <input type="hidden" name="dateiname" value="{{ dateiname|raw }}">
-                    <input type="hidden" name="config_array" value="{{ einstellungen|raw }}">
+                    <input type="hidden" name="dateiname" value="{{ dateiname }}">
+                    <input type="hidden" name="config_array" value="{{ einstellungen }}">
                     <input type="hidden" name="zaehler" value="{{ anzahlMannschaften }}">
                     <input type="submit" class="lmo-formular-button" value="{{ t[32]|raw }} >>" name="B3"></p>
                   </td>
