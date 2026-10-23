@@ -116,6 +116,10 @@ final class SpieltageZuordnenController implements Controller
                 $spiel = $partie->spiele[1] ?? [];
                 $heim = $team((int) $partie->heim);
                 $gast = $team((int) $partie->gast);
+                // leere Plaetze (0-0) sind keine Partie (bis 4.5 eine Zeile ohne Mannschaften)
+                if ($heim === null && $gast === null) {
+                    continue;
+                }
                 $dabei[] = $heim;
                 $dabei[] = $gast;
                 $hTore = $spiel['GA'] ?? '';
