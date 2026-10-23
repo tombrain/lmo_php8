@@ -6,6 +6,7 @@ use Lmo\Tests\GoldenMaster\Support\AdminClient;
 use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
 use Lmo\Tests\GoldenMaster\Support\Fixture;
 use Lmo\Tests\GoldenMaster\Support\Normalizer;
+use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -55,6 +56,24 @@ final class ViewerAddonTest extends TestCase
     private static function view(string $name): string
     {
         return self::$client->get('addon/viewer/viewer.php', 'multi=' . $name);
+    }
+
+    /**
+     * Der Assistent in der Administration: Einstellungen, Ligen, Mannschaften, Speichern. Gewaehlt
+     * wird die erste Liga des Ligenordners und deren erste Mannschaft. todo steht im Browser in der
+     * Adresse des Formulars, hier als Feld.
+     */
+    public function testAdminWizard(): void
+    {
+        $c = Fixture::loggedInClient();
+        $t = new Transcript();
+        $ligen = array_values(array_filter(scandir($c->instance()->ligenDir()) ?: [], static fn (string $f): bool => strtolower(substr($f, -4)) == '.l98'));
+
+        $t->add('Schritt 1: Einstellungen', $c->submitForm('lmoadmin.php', 'action=admin&todo=vieweroptions', 'formular1', ['dateiname' => 'assistent', 'titelzeile' => 'Assistent', 'todo' => 'vieweroptions']), $c->changes());
+        $t->add('Schritt 2: Ligen', $c->submitFromLast('formular2', ['c1' => 'c1', 'todo' => 'vieweroptions'], 'B2'), $c->changes());
+        $t->add('Schritt 3: Mannschaften', $c->submitFromLast('formular3', ['t0' => $ligen[0] . '[1]', 'todo' => 'vieweroptions']), $c->changes());
+
+        $this->assertMatchesSnapshot('viewer', 'assistent', $t->text());
     }
 
     public function testAdminSavesView(): void
