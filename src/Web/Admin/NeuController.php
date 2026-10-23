@@ -40,7 +40,7 @@ final class NeuController implements Controller
     private const POKALMODI = [1 => 353, 2 => 354, 3 => 355, 5 => 356, 7 => 357];
 
     /**
-     * @param Closure(Liga, string): string $speichere schreibt die neue Liga (Rohdaten, Dateiname im Ligenordner) wie lmo-saveliga.php und gibt dessen Meldungen zurueck
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere schreibt eine Liga (Rohdaten, Dateiname im Ligenordner, gewaehlter Spieltag) wie lmo-saveliga.php; zurueck kommen dessen Meldungen und die gespeicherte Liga
      * @param Closure(int, int): int|null $zufall Zufallszahl fuer den ausgelosten Spielplan (mt_rand)
      */
     public function __construct(private Closure $speichere, private ?Closure $zufall = null)
@@ -95,7 +95,8 @@ final class NeuController implements Controller
                     $vorlage = $kontext->pfade->lmo . '/' . $ordner . $angeboten['wert'];
                 }
             }
-            $meldung = ($this->speichere)($this->neueLiga($anfrage, $text, $xtitel, $xtype, $xteams, $xanzst, $xanzsp, $xprogram, $vorlage, $kontext->konfiguration->datumsformat()), $datei);
+            // die neue Liga beginnt am ersten Spieltag
+            [$meldung] = ($this->speichere)($this->neueLiga($anfrage, $text, $xtitel, $xtype, $xteams, $xanzst, $xanzsp, $xprogram, $vorlage, $kontext->konfiguration->datumsformat()), $datei, '1');
         }
 
         return new Seite($meldung . Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_neu.html.twig', [

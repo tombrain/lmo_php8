@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Anzahl der Spieltage und Spiele einer Liga (`todo=edit&st=-3`): `Lmo\Web\Admin\AnzahlController` mit der Vorlage `admin_anzahl.html.twig`. Die Brücke zum Speichern (`lmo-saveliga.php`) nimmt jetzt den gewählten Spieltag und gibt die gespeicherte Liga zurück. `lmo-adminanz.php` gibt es nicht mehr.  
 * Administration, Navigation beim Bearbeiten einer Liga: `Lmo\Web\Admin\LigaNavigation` mit der Vorlage `admin_liganavigation.html.twig`; `lmo-adminsubnavi.php` bindet sie nur noch für die Seiten nach alter Art ein.  
 * Administration, neue Liga (`todo=new`): `Lmo\Web\Admin\NeuController` mit der Vorlage `admin_neu.html.twig`; den ausgelosten Spielplan liefert `Lmo\Liga\Zufallsspielplan` (mit austauschbarem Zufall, dadurch testbar). Gespeichert wird weiter über `lmo-saveliga.php`. `lmo-adminnew.php`, `lmo-adminnewdir.php`, `lmo-adminopenprogram.php` und `lmo-adminrndprogram.php` gibt es nicht mehr.  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitErgebnisAuswertung` für Auswertungen beim Speichern der Ergebnisse eines Spieltags (vorerst als Dateien nach alter Art, eingebunden in `lmo-adminedit.php`). Das Tippspiel liefert so seine Auswertung (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` bindet dessen Dateien nicht mehr beim Namen ein.  
@@ -441,6 +442,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, number of rounds and games of a league (`todo=edit&st=-3`): `Lmo\Web\Admin\AnzahlController` with the template `admin_anzahl.html.twig`. The bridge for saving (`lmo-saveliga.php`) now takes the selected round and returns the saved league. `lmo-adminanz.php` is gone.  
 * Administration, navigation while editing a league: `Lmo\Web\Admin\LigaNavigation` with the template `admin_liganavigation.html.twig`; `lmo-adminsubnavi.php` only includes it for the pages of the old kind.  
 * Administration, new league (`todo=new`): `Lmo\Web\Admin\NeuController` with the template `admin_neu.html.twig`; the drawn schedule is `Lmo\Liga\Zufallsspielplan` (with a replaceable random source, so it can be tested). Saving still goes through `lmo-saveliga.php`. `lmo-adminnew.php`, `lmo-adminnewdir.php`, `lmo-adminopenprogram.php` and `lmo-adminrndprogram.php` are gone.  
 * Add-ons: extension point `Lmo\Addon\MitErgebnisAuswertung` for evaluations when the results of a round are saved (for now as files of the old kind, included in `lmo-adminedit.php`). The prediction game provides its evaluation this way (`TippAddon::auswertungBeimSpeichern()`, `TippAddon::wirdGetippt()`); `lmo-adminedit.php` no longer includes its files by name.  

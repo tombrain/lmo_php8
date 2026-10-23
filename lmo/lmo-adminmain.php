@@ -76,8 +76,9 @@ if ($action == 'admin') {
     }
 
     // Bruecke zum Speichern einer Liga nach alter Art (lmo-saveliga.php): mit den globalen Variablen
-    // per Referenz wie bisher im globalen Bereich; $file und $lmo_liga zeigen danach auf die Liga
-    $lmo_admin_speichere = static function (\Lmo\Liga\Rohdaten\Liga $lmo_speichern_liga, string $lmo_speichern_datei): string {
+    // per Referenz wie bisher im globalen Bereich; $file und $lmo_liga zeigen danach auf die Liga.
+    // Zurueck kommen die Meldungen und die Liga im gespeicherten Stand (Lmo\Liga\Normalform).
+    $lmo_admin_speichere = static function (\Lmo\Liga\Rohdaten\Liga $lmo_speichern_liga, string $lmo_speichern_datei, string $lmo_speichern_st): array {
         foreach (array_keys($GLOBALS) as $lmo_speichern_name) {
             if ($lmo_speichern_name !== 'GLOBALS' && $lmo_speichern_name[0] !== '_' && strpos($lmo_speichern_name, 'lmo_speichern_') !== 0) {
                 ${$lmo_speichern_name} = &$GLOBALS[$lmo_speichern_name];
@@ -86,10 +87,10 @@ if ($action == 'admin') {
         unset($lmo_speichern_name);
         $lmo_liga = $lmo_speichern_liga;
         $file = $lmo_speichern_datei;
-        $st = '1';
+        $st = $lmo_speichern_st;
         ob_start();
         require(PATH_TO_LMO . '/lmo-saveliga.php');
-        return (string)ob_get_clean();
+        return array((string)ob_get_clean(), $lmo_liga);
     };
 
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
@@ -107,6 +108,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\OptionenController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\DesignController(PATH_TO_CONFIGDIR),
         new \Lmo\Web\Admin\NeuController($lmo_admin_speichere),
+        new \Lmo\Web\Admin\AnzahlController($lmo_admin_speichere),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -142,8 +144,6 @@ if ($action == 'admin') {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
             } elseif ($sty == -2) {
                 require(PATH_TO_LMO . '/lmo-adminteams.php');
-            } elseif ($sty == -3) {
-                require(PATH_TO_LMO . '/lmo-adminanz.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
@@ -160,8 +160,6 @@ if ($action == 'admin') {
                 require(PATH_TO_LMO . '/lmo-adminbasic.php');
             } elseif ($sty == -2 && $_SESSION['lmouserokerweitert'] == 1) {
                 require(PATH_TO_LMO . '/lmo-adminteams.php');
-            } elseif ($sty == -3 && $_SESSION['lmouserokerweitert'] == 1) {
-                require(PATH_TO_LMO . '/lmo-adminanz.php');
             } elseif ($sty == -10) {
                 require(PATH_TO_LMO . '/lmo-adminrounds.php');
             } else {
