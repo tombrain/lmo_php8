@@ -28,6 +28,7 @@ $_SERVER['QUERY_STRING'] = '';
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
 require $gm_instance . '/init.php';
+require_once PATH_TO_ADDONDIR . '/classlib/ini.php';
 // nur diese eine Klasse, ohne den Composer-Autoloader des Projekts (die Instanz hat ihren eigenen)
 require_once dirname(__DIR__, 2) . '/RealData/Support/RealLeague.php';
 

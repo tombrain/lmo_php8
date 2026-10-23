@@ -31,6 +31,7 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
 define('LMO_AUTH', 1);
 require $gm_instance . '/init.php';
+require_once PATH_TO_ADDONDIR . '/classlib/ini.php';
 $_SESSION['lmouserok'] = 2;  // Hauptadmin, sonst speichert lmo-saveliga.php nicht
 
 /** @return array<string,string> "Abschnitt:Schluessel" => Wert */

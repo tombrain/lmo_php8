@@ -98,8 +98,9 @@ einen dieser Ordner, holt ihn das nächste `composer update` zurück. Abschalten
 Tippspiel und Spielerstatistik dauerhaft nur über ihren Schalter in der Administration
 („Optionen › Anzeigen/Darstellung“, Block „Addons“), nicht durch Löschen.
 
-**`classlib` darf nicht entfernt werden:** `init.php` bindet `addon/classlib/ini.php` fest ein.
-Ohne diese Datei bricht jede Seite ab.
+**`classlib` brauchen Viewer und Mini:** Der Kern kommt ohne sie aus. Viewer und Mini binden
+`addon/classlib/ini.php` aber selbst ein; ohne den Ordner brechen ihre Seiten ab. Ein eigenes
+Addon, das Klassen oder Funktionen der Classlib benutzt, bindet sie ebenso selbst ein.
 
 ## 5. Bekannte Einschränkungen
 
