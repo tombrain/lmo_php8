@@ -88,7 +88,7 @@ L98;
             'xdatum1' => '', 'xdatum2' => '', 'xatdat0' => '15.03.2025', 'xattim0' => '14:00', 'xatdat2' => '16.03.2025', 'xattim2' => '16:00',
         ]);
         self::speichere($c, $t, 'aktueller Spieltag und News', 'golden/special.l98', 1, 'xgoala0', [
-            'xstx' => '7', 'xnticker' => '1', 'xnlines' => 'Erste Zeile\n\nZweite Zeile mit O\'Neill\n',
+            'xstx' => '7', 'xnticker' => '1', 'xnlines' => "Erste Zeile\r\n\r\nZweite Zeile mit O'Neill\r\n",
         ]);
         self::speichere($c, $t, 'Partien neu ansetzen', 'golden/special.l98', 6, 'xgoala0', [
             'xteama0' => '6', 'xteamb0' => '5', 'xteama1' => '0', 'xteamb1' => '0', 'xgoala1' => '', 'xgoalb1' => '',

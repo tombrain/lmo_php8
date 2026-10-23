@@ -99,6 +99,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration, Ergebnisse eines Spieltags: Die Newszeilen werden an den Zeilenumbrüchen getrennt. Bisher trennte der LMO nur an der Zeichenfolge `\n`, die kein Browser schickt; mehrere Zeilen kamen so als eine Zeile mit Umbrüchen in die Ligadatei, und nach dem nächsten Laden war alles ab der zweiten Zeile verloren.  
 * Administration, Mannschaften: Der Link „Spieltags- und Spiel-Anzahl“ erscheint nur noch nach dem Hinzufügen oder Entfernen einer Mannschaft. Bisher stand er auch nach jedem Speichern, wenn eine Torstatistik eingeschaltet war: `lmo-zustat.php` hinterließ eine globale Variable `$team`, die die Seite dafür prüfte.  
 * Startseite einer Liga: War für die eingestellte Startseite niemand zuständig (etwa „Spielerstatistik“ ohne das Addon oder bei einer Liga ohne Spielerstatistik), blieb die Seite leer. Jetzt erscheint die Tabelle, im Pokal die Ergebnisse.  
 * Administration, Grundeinstellungen einer Liga: Ohne den Ordner `addon/spieler` erschien die Option „Spielerstatistik“ weiter, ohne Texte und mit PHP-Warnungen. Sie erscheint jetzt nur, wenn das Addon geladen ist. `doku/installation-und-addons.md` entsprechend angepasst.  
@@ -541,6 +542,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration, results of a round: the news lines are split at the line breaks. So far LMO only split at the character sequence `\n`, which no browser sends; several lines went into the league file as one line with breaks, and after the next load everything from the second line on was lost.  
 * Administration, teams: the link "Spieltags- und Spiel-Anzahl" (number of rounds and games) now only appears after adding or removing a team. Until now it also appeared after every save while a goal statistic was switched on: `lmo-zustat.php` left a global variable `$team` behind, which the page checked for it.  
 * League start page: if nobody is responsible for the configured start page (e.g. "player statistics" without the add-on, or a league without player statistics), the page stayed empty. The table is shown instead, the results for a cup.  
 * Administration, basic settings of a league: without the folder `addon/spieler` the option "player statistics" was still shown, without its texts and with PHP warnings. It now only appears when the add-on is loaded. `doku/installation-und-addons.md` updated accordingly.  
