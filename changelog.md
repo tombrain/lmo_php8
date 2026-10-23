@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Tabellenkorrektur eines Spieltags (`todo=tabs`): `Lmo\Web\Admin\TabellenkorrekturController` mit der Vorlage `admin_tabellenkorrektur.html.twig`. `lmo-admintab.php` gibt es nicht mehr.  
 * Administration, Ergebnisse eines Spieltags (`todo=edit` mit Spieltag): `Lmo\Web\Admin\ErgebnisseBearbeitenController` mit der Vorlage `admin_ergebnisse.html.twig`; das Spieltagsmenü kommt aus `Lmo\Web\Seiten\SpieltagsMenue`, die Spalten der Addons über `MitErgebnisSpalten`. Die Auswertungen der Addons (`MitErgebnisAuswertung`) und der Rückrundenspielplan (`lmo-rueckrunde.php`) laufen noch nach alter Art über Brücken in `lmo-adminmain.php`. Der Kern nennt das Tippspiel dort nicht mehr. `lmo-adminedit.php` gibt es nicht mehr.  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitErgebnisSpalten` für eigene Spalten je Spiel in den Ergebnissen eines Spieltags (`Lmo\Addon\ErgebnisSpalte`: Feld, Titel, Auswahl, Wert eines Spiels und Übernahme ins Spiel). Das Tippspiel liefert darüber seine Spalte „ohne Tippwertung“ (`TippAddon::ergebnisSpalten()`).  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitLigaEinstellungen` für Schalter in den Grundeinstellungen einer Liga (Schlüssel aus `[Options]`). Die Spielerstatistik liefert darüber ihre Option `mittore`; der Kern nennt das Spieler-Addon dort nicht mehr.  
@@ -449,6 +450,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, table correction of a round (`todo=tabs`): `Lmo\Web\Admin\TabellenkorrekturController` with the template `admin_tabellenkorrektur.html.twig`. `lmo-admintab.php` is gone.  
 * Administration, results of a round (`todo=edit` with a round): `Lmo\Web\Admin\ErgebnisseBearbeitenController` with the template `admin_ergebnisse.html.twig`; the round menu comes from `Lmo\Web\Seiten\SpieltagsMenue`, the columns of the add-ons through `MitErgebnisSpalten`. The evaluations of the add-ons (`MitErgebnisAuswertung`) and the second-half schedule (`lmo-rueckrunde.php`) still run the old way through bridges in `lmo-adminmain.php`. The core no longer names the prediction game there. `lmo-adminedit.php` is gone.  
 * Add-ons: extension point `Lmo\Addon\MitErgebnisSpalten` for own columns per game in the results of a round (`Lmo\Addon\ErgebnisSpalte`: field, title, choices, value of a game and taking it over into the game). The prediction game provides its column "without prediction scoring" this way (`TippAddon::ergebnisSpalten()`).  
 * Add-ons: extension point `Lmo\Addon\MitLigaEinstellungen` for switches in the basic settings of a league (keys from `[Options]`). The player statistics provide their option `mittore` this way; the core no longer names the player add-on there.  

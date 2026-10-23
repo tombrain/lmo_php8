@@ -148,6 +148,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
         // zuletzt: alle uebrigen Seiten mit todo=edit
         new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten, $lmo_admin_rueckrunde),
+        new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere, static fn (string $name): string => (string)getSmallImage($name)),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -180,16 +181,12 @@ if ($action == 'admin') {
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'edit') {
             require(PATH_TO_LMO . '/lmo-adminrounds.php');
-        } elseif ($todo == 'tabs') {
-            require(PATH_TO_LMO . '/lmo-admintab.php');
         } elseif ($todo == 'update') {
             require(PATH_TO_LMO . '/lmo-adminupdate.php');
         }
     } elseif ($_SESSION['lmouserok'] == 1) {
         if ($todo == 'edit') {
             require(PATH_TO_LMO . '/lmo-adminrounds.php');
-        } elseif ($todo == 'tabs') {
-            require(PATH_TO_LMO . '/lmo-admintab.php');
         }
     }
     $lmo_admin_inhalt = (string)ob_get_clean();
