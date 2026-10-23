@@ -613,9 +613,6 @@ xteams4=Gelb
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-1' onClick="return chklmolink();" title="Hier legen Sie die Grundwerte und -einstellungen Ihrer Liga fest (Anzahl der Spiele, Aufsteiger usw.)">Grundeinstellungen</a>
 </td>
 <td align="center">Mannschaften</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
-</td>
 </tr>
 </table>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
@@ -877,9 +874,6 @@ xgoalb10=3
 </td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
-</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
 </td>
 </tr>
 </table>
@@ -1284,9 +1278,6 @@ GEAENDERT ligen/pokal.l98
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
 </td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
-</td>
 </tr>
 </table>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
@@ -1683,9 +1674,6 @@ xgoalb00=2
 </td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
-</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=pokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
 </td>
 </tr>
 </table>

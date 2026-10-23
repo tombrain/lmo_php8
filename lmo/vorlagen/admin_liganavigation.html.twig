@@ -47,11 +47,13 @@
           <td align="center">{{ text[101]|raw }}</td>
 {% endif %}
 {% endif %}
-{# Runden #}
+{# Spieltage zuordnen: Hauptadmin, nur in einer Liga #}
+{% if runden %}
 {% if rundenVerlinkt %}
           <td align="center"><a href='{{ addr|raw }}-10' onclick="return chklmolink(this.href);" title="{{ text[5002]|raw }}">{{ text[5001]|raw }}</a></td>
 {% else %}
           <td align="center">{{ text[5001]|raw }}</td>
+{% endif %}
 {% endif %}
         </tr>
       </table>

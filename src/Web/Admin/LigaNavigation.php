@@ -72,6 +72,8 @@ final class LigaNavigation
             'aktuellerSpieltag' => $einstellungen->aktuellerSpieltag(),
             'mannschaften' => $sitzung->zahl('lmouserok') == 2 || $sitzung->zahl('lmouserokerweitert') == 1,
             'mannschaftenVerlinkt' => $st != -2,
+            // Spieltage zuordnen nur fuer den Hauptadmin in einer Liga (bis 4.5 auch im Pokal und fuer Hilfsadmins, mit leerer Seite)
+            'runden' => $sitzung->zahl('lmouserok') == 2 && !$einstellungen->istPokal(),
             'rundenVerlinkt' => $st != -10,
         ]);
     }
