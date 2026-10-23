@@ -1,0 +1,84 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Neuere Version des LMO (Lmo\Web\Admin\UpdateController), bis 4.5 lmo-adminupdate.php #}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><h1>{{ neuer ? text[593]|raw : text[596]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="lmost5" align="left">
+{% if neuer %}
+{# installierte und neue Version, Voraussetzung, Angaben zur neuen Version #}
+                  {{ text[590]|raw }}<br><br>
+                  <fieldset>
+                    <legend>{{ text[603]|raw }}</legend>
+                      <dl>
+                        <dt><label>{{ text[605]|raw }}:</label></dt>
+                        <dd>LMO v.{{ installiert|raw }}</dd>
+                      </dl>
+                      <dl>
+                        <dt><label>{{ text[604]|raw }}:</label></dt>
+                        <dd>LMO v.{{ neueste.version }}</dd>
+                      </dl>
+                  </fieldset><br>
+                  <fieldset>
+                    <legend>{{ text[591]|raw }}</legend>
+                      <dl>
+                        <dt><label>{{ text[592]|raw }}:</label></dt>
+                        <dd>{{ neueste.php }}</dd>
+                      </dl>
+                  </fieldset><br>
+                  <fieldset>
+                    <legend>{{ text[597]|raw }}: {{ neueste.version }}</legend>
+                      <dl>
+                        <dt><label>{{ text[598]|raw }}:</label></dt>
+                        <dd>{{ neueste.version }}</dd>
+                      </dl>
+{% if neueste.changelog != '' %}
+                      <dl>
+                        <dt><label>{{ text[600]|raw }}:</label></dt>
+                        <dd><a target="_blank" href="{{ neueste.changelog }}">{{ text[80]|raw }}</a></dd>
+                      </dl>
+{% endif %}
+                      <dl>
+                        <dt><label>{{ text[593]|raw }}:</label></dt>
+                        <dd><code>composer update</code></dd>
+                      </dl>
+                      <dl>
+                        <dt><label>{{ text[601]|raw }}:</label></dt>
+                        <dd>{{ neueste.time }}</dd>
+                      </dl>
+                      <dl>
+                        <dt><label>{{ text[602]|raw }}:</label></dt>
+                        <dd>{{ lizenz|raw }}</dd>
+                      </dl>
+                  </fieldset>
+{% else %}
+{# aktuell: erneut pruefen #}
+                  <fieldset>
+                    <legend>{{ text[20]|raw }}</legend>
+                      <dl>
+                        <dt><label>{{ text[594]|raw }}</label></dt>
+                      </dl>
+                      <dl>
+                        <dt><label><a href="{{ adresse|raw }}">{{ text[595]|raw }}</a></label></dt>
+                      </dl>
+                  </fieldset>
+{% endif %}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>

@@ -149,6 +149,8 @@ if ($action == 'admin') {
         // zuletzt: alle uebrigen Seiten mit todo=edit
         new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten, $lmo_admin_rueckrunde),
         new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere, static fn (string $name): string => (string)getSmallImage($name)),
+        // die neueste Version laut Packagist (oben frisch gefragt)
+        new \Lmo\Web\Admin\UpdateController($lmo_update ?? null, lmo_is_newer($new_lmo_version ?? null, $lmo_version), $lmo_version, (string)$lmo_license),
     );
 
     // der Inhalt: die Seite zu todo (und st); zuerst die der Addons, dann die des Kerns, sonst noch nach alter Art im globalen Bereich
@@ -181,8 +183,6 @@ if ($action == 'admin') {
         $pdf_addr_optionen = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=pdfoptions';
         if ($todo == 'edit') {
             require(PATH_TO_LMO . '/lmo-adminrounds.php');
-        } elseif ($todo == 'update') {
-            require(PATH_TO_LMO . '/lmo-adminupdate.php');
         }
     } elseif ($_SESSION['lmouserok'] == 1) {
         if ($todo == 'edit') {
