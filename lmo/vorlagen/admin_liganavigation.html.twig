@@ -1,0 +1,57 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Navigation beim Bearbeiten einer Liga (Lmo\Web\Admin\LigaNavigation), bis 4.5 lmo-adminsubnavi.php #}
+      <table class="lmoSubmenu" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+{# Ergebnisse #}
+{% if ergebnisseVerlinkt %}
+          <td align="center"><a href='{{ addr|raw }}1' onClick="return chklmolink();" title="{{ text[411]|raw }}">{{ text[10]|raw }}</a></td>
+{% else %}
+          <td align="center">{{ text[10]|raw }}</td>
+{% endif %}
+{# die Punkte der Addons (Lmo\Addon\MitAdminMenue::ligaMenue()) #}
+{% for punkt in addonPunkte %}
+{% if not punkt.aktiv %}
+          <td align="center"><a href='{{ addr|raw }}{{ punkt.ziel }}' onClick="return chklmolink();" title="{{ punkt.titel|raw }}">{{ punkt.name|raw }}</a></td>
+{% else %}
+          <td align="center">{{ punkt.name|raw }}</td>
+{% endif %}
+{% endfor %}
+{# Einstellungen #}
+{% if einstellungenVerlinkt %}
+          <td align="center"><a href='{{ addr|raw }}-1' onClick="return chklmolink();" title="{{ text[100]|raw }}">{{ text[99]|raw }}</a></td>
+{% else %}
+          <td align="center">{{ text[99]|raw }}</td>
+{% endif %}
+{# Tabellen, nur mit Handicap #}
+{% if tabellen %}
+{% if tabellenVerlinkt %}
+          <td align="center"><a href='{{ addb|raw }}{{ aktuellerSpieltag }}' onClick="return chklmolink();" title="{{ text[409]|raw }}">{{ text[16]|raw }}</a></td>
+{% else %}
+          <td align="center">{{ text[16]|raw }}</td>
+{% endif %}
+{% endif %}
+{# Mannschaften: Hauptadmin und erweiterte Hilfsadmins #}
+{% if mannschaften %}
+{% if mannschaftenVerlinkt %}
+          <td align="center"><a href='{{ addr|raw }}-2' onClick="return chklmolink();" title="{{ text[102]|raw }}">{{ text[101]|raw }}</a></td>
+{% else %}
+          <td align="center">{{ text[101]|raw }}</td>
+{% endif %}
+{% endif %}
+{# Runden #}
+{% if rundenVerlinkt %}
+          <td align="center"><a href='{{ addr|raw }}-10' onclick="return chklmolink(this.href);" title="{{ text[5002]|raw }}">{{ text[5001]|raw }}</a></td>
+{% else %}
+          <td align="center">{{ text[5001]|raw }}</td>
+{% endif %}
+        </tr>
+      </table>
