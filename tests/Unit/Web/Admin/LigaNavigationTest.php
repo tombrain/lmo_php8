@@ -18,7 +18,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Die Navigation beim Bearbeiten einer Liga: die gezeigte Seite ohne Link, Punkte der Addons,
- * Tabellen nur mit Handicap, Mannschaften nur fuer Hauptadmin und erweiterte Hilfsadmins.
+ * Tabellen nur mit Handicap, Mannschaften nur fuer Hauptadmin und erweiterte Hilfsadmins, Spieltage
+ * zuordnen nur fuer den Hauptadmin in einer Liga.
  */
 class LigaNavigationTest extends TestCase
 {
@@ -26,7 +27,7 @@ class LigaNavigationTest extends TestCase
     private const ADDB = '/lmoadmin.php?action=admin&amp;todo=tabs&amp;file=a.l98&amp;st=';
 
     /** @param array<string, int> $sitzung */
-    private static function html(string $todo, string $st, array $sitzung = ['lmouserok' => 2], bool $handicap = false): string
+    private static function html(string $todo, string $st, array $sitzung = ['lmouserok' => 2], bool $handicap = false, bool $pokal = false): string
     {
         $texte = [];
         foreach ([10, 16, 99, 100, 101, 102, 409, 411, 5001, 5002] as $nr) {
@@ -47,6 +48,7 @@ class LigaNavigationTest extends TestCase
         $liga = new Liga();
         $liga->setzeEinstellung('Actual', '7');
         $liga->setzeEinstellung('HandS', $handicap ? '1' : '0');
+        $liga->setzeEinstellung('Type', $pokal ? '1' : '0');
 
         return LigaNavigation::html($kontext, new Addons([new SpielerAddon('/x/daten/spieler', '/x/spieler')]), $liga, $todo, $st, self::ADDR, self::ADDB);
     }
@@ -74,6 +76,12 @@ class LigaNavigationTest extends TestCase
         $tabellen = self::html('tabs', '7', handicap: true);
         self::assertStringContainsString('<td align="center">T16</td>', $tabellen);
         self::assertStringContainsString("<a href='" . self::ADDR . "1'", $tabellen, 'Ergebnisse verlinkt');
+    }
+
+    public function testSpieltageZuordnenNurHauptadminInDerLiga(): void
+    {
+        self::assertStringNotContainsString('T5001', self::html('edit', '1', ['lmouserok' => 1, 'lmouserokerweitert' => 1]), 'nicht fuer Hilfsadmins');
+        self::assertStringNotContainsString('T5001', self::html('edit', '1', pokal: true), 'nicht im Pokal');
     }
 
     public function testMannschaftenNachRechten(): void

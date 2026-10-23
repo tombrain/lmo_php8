@@ -25,7 +25,7 @@ class SpieltageZuordnenControllerTest extends TestCase
 {
     private const LIGA = "[Options]\nName=Liga & Co\nType=0\nTeams=3\nRounds=2\nMatches=1\n\n[Teams]\n1=Alpha\n2=Beta\n3=Gamma\n\n[Round1]\nD1=01.02.2025\nD2=02.02.2025\nTA1=1\nTB1=2\nGA1=2\nGB1=1\nAT1=1738422000\n\n[Round2]\nTA1=2\nTB1=3\nGA1=-1\nGB1=-1\n";
 
-    private const POKAL = "[Options]\nName=Pokal\nType=1\nTeams=2\nRounds=1\nMatches=1\n\n[Teams]\n1=Alpha\n2=Beta\n\n[Round1]\nMO=2\nTA1=1\nTB1=2\nGA11=-2\nGB11=0\nGA12=-1\nGB12=-1\n";
+    private const POKAL = "[Options]\nName=Pokal\nType=1\nTeams=2\nRounds=1\nMatches=1\n\n[Teams]\n1=Alpha\n2=Beta\n\n[Round1]\nMO=2\nTA1=1\nTB1=2\n";
 
     /** @var list<array{string, list<array{int, int, int, int}>}> was verschoben werden sollte */
     private array $wuensche = [];
@@ -110,14 +110,16 @@ class SpieltageZuordnenControllerTest extends TestCase
         self::assertStringContainsString('/ 0 T5003', $html);
     }
 
-    public function testPokalJeSpielEineZeile(): void
+    public function testImPokalLeer(): void
     {
-        $html = $this->seite([], 2, self::POKAL);
+        self::assertSame('', $this->seite(['sp_1_1_2' => '2'], 2, self::POKAL), 'ein Spiel wuerde aus seiner Paarung gerissen');
+        self::assertSame([], $this->wuensche);
+    }
 
-        self::assertStringContainsString('name="sp_1_1_2"', $html);
-        self::assertStringContainsString('name="sp_1_2_1"', $html, 'zweites Spiel mit getauschtem Heimrecht');
-        self::assertStringContainsString("<td align='right' >0</td>", $html, 'Wertung am gruenen Tisch als 0:0');
-        self::assertStringContainsString('/ 2 T5003', $html);
-        self::assertStringNotContainsString('T5008', $html, 'kein spielfrei im Pokal');
+    public function testWertungAmGruenenTischAlsNullZuNull(): void
+    {
+        $html = $this->seite([], 2, str_replace("GA1=-1\nGB1=-1", "GA1=-2\nGB1=0", self::LIGA));
+
+        self::assertStringContainsString("<td align='right' >0</td>", $html);
     }
 }

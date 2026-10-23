@@ -24,8 +24,8 @@ use Lmo\Web\Seite;
 use Lmo\Web\Vorlagen;
 
 /**
- * Partien anderen Spieltagen zuordnen (todo=edit&st=-10, nur Hauptadmin; Hilfsadmins sehen eine
- * leere Seite): je Spieltag seine Partien mit der Auswahl des Spieltags, in der Liga dazu die
+ * Partien anderen Spieltagen zuordnen (todo=edit&st=-10, nur Hauptadmin und nur in einer Liga;
+ * sonst bleibt die Seite leer): je Spieltag seine Partien mit der Auswahl des Spieltags und die
  * spielfreien Mannschaften. Jede Auswahl sp_<Spieltag>_<Heim>_<Gast>, die auf einen anderen
  * Spieltag zeigt, verschiebt die Partie dorthin. Verschoben und geschrieben wird noch ueber die
  * Classlib (Bruecke in lmo-adminmain.php); die Anzeige zeigt die Liga so, wie die Classlib sie
@@ -51,8 +51,9 @@ final class SpieltageZuordnenController implements Controller
     public function zeige(Kontext $kontext): Seite
     {
         $geladen = $kontext->liga;
-        // ohne Liga leer, ebenso fuer Hilfsadmins
-        if ($geladen === null || $kontext->sitzung->zahl('lmouserok') != 2) {
+        // ohne Liga leer, ebenso fuer Hilfsadmins und im Pokal: dort wuerde ein einzelnes Spiel
+        // aus seiner Paarung gerissen (bis 4.5 ging das)
+        if ($geladen === null || $kontext->sitzung->zahl('lmouserok') != 2 || $geladen->liga->einstellungen()->istPokal()) {
             return new Seite('');
         }
         $text = $kontext->text;
@@ -95,8 +96,7 @@ final class SpieltageZuordnenController implements Controller
 
     /**
      * Die Spieltage, wie die Classlib die Liga liest: Spieltage, solange es sie in der Datei gibt;
-     * je Spieltag seine Partien, im Pokal je Spiel eine Zeile (jedes zweite mit getauschtem
-     * Heimrecht); Mannschaften nur mit einer Nummer bis zur Anzahl.
+     * je Spieltag seine Partien; Mannschaften nur mit einer Nummer bis zur Anzahl.
      *
      * @param list<string> $markiert "Heim-Gast" der gerade verschobenen Partien
      * @return array{spieltage: list<array<string, mixed>>, anzahl: int}
@@ -108,55 +108,49 @@ final class SpieltageZuordnenController implements Controller
             $namen[$nr] = (string) $mannschaft->name;
         }
         $team = static fn (int $nr): ?int => $nr > 0 && $nr <= count($namen) ? $nr : null;
-        $ligaTyp = ($liga->optionen['Type'] ?? null) == 0;
         $spieltage = [];
         for ($r = 1; isset($liga->spieltage[$r]) && ($liga->spieltage[$r]->werte !== [] || $liga->spieltage[$r]->partien !== []); $r++) {
             $spieltag = $liga->spieltage[$r];
-            $modus = max(1, (int) ($spieltag->werte['MO'] ?? 0));
             $zeilen = [];
             $dabei = [];
             for ($p = 1; isset($spieltag->partien[$p]) && $spieltag->partien[$p]->heim !== null; $p++) {
                 $partie = $spieltag->partien[$p];
-                for ($n = 1; $n <= $modus; $n++) {
-                    $spiel = $partie->spiele[$n] ?? [];
-                    // jedes zweite Spiel einer Paarung mit getauschtem Heimrecht
-                    [$heim, $gast] = $n % 2 ? [$team((int) $partie->heim), $team((int) $partie->gast)] : [$team((int) $partie->gast), $team((int) $partie->heim)];
-                    $dabei[] = $heim;
-                    $dabei[] = $gast;
-                    $hTore = $spiel['GA'] ?? '';
-                    $gTore = $spiel['GB'] ?? '';
-                    if ($hTore == -1 and $gTore == -1) {
-                        $hTore = '__';
-                        $gTore = '__';
-                    } elseif ($hTore < -1 or $gTore < -1) {
-                        $hTore = 0;
-                        $gTore = 0;
-                    }
-                    $zeit = $spiel['AT'] ?? '';
-                    $anstoss = '';
-                    if (is_numeric($zeit) && $zeit > 0) {
-                        $dt = (new DateTime())->setTimestamp((int) $zeit);
-                        $anstoss = $dt->format('d.m.Y') . ' ' . $dt->format('H:i');
-                    }
-                    $zeilen[] = [
-                        'anstoss' => $anstoss === '' ? ' ' : $anstoss,
-                        'heim' => $heim,
-                        'gast' => $gast,
-                        'heimName' => $heim !== null ? $namen[$heim] : '',
-                        'gastName' => $gast !== null ? $namen[$gast] : '',
-                        'toreHeim' => (string) $hTore,
-                        'toreGast' => (string) $gTore,
-                        'markiert' => in_array($heim . '-' . $gast, $markiert),
-                    ];
+                $spiel = $partie->spiele[1] ?? [];
+                $heim = $team((int) $partie->heim);
+                $gast = $team((int) $partie->gast);
+                $dabei[] = $heim;
+                $dabei[] = $gast;
+                $hTore = $spiel['GA'] ?? '';
+                $gTore = $spiel['GB'] ?? '';
+                if ($hTore == -1 and $gTore == -1) {
+                    $hTore = '__';
+                    $gTore = '__';
+                } elseif ($hTore < -1 or $gTore < -1) {
+                    $hTore = 0;
+                    $gTore = 0;
                 }
+                $zeit = $spiel['AT'] ?? '';
+                $anstoss = '';
+                if (is_numeric($zeit) && $zeit > 0) {
+                    $dt = (new DateTime())->setTimestamp((int) $zeit);
+                    $anstoss = $dt->format('d.m.Y') . ' ' . $dt->format('H:i');
+                }
+                $zeilen[] = [
+                    'anstoss' => $anstoss === '' ? ' ' : $anstoss,
+                    'heim' => $heim,
+                    'gast' => $gast,
+                    'heimName' => $heim !== null ? $namen[$heim] : '',
+                    'gastName' => $gast !== null ? $namen[$gast] : '',
+                    'toreHeim' => (string) $hTore,
+                    'toreGast' => (string) $gTore,
+                    'markiert' => in_array($heim . '-' . $gast, $markiert),
+                ];
             }
-            // in der Liga die Mannschaften ohne Partie an diesem Spieltag
+            // die Mannschaften ohne Partie an diesem Spieltag
             $spielfrei = [];
-            if ($ligaTyp) {
-                foreach ($namen as $nr => $name) {
-                    if (!in_array($nr, $dabei)) {
-                        $spielfrei[] = $name;
-                    }
+            foreach ($namen as $nr => $name) {
+                if (!in_array($nr, $dabei)) {
+                    $spielfrei[] = $name;
                 }
             }
             $von = $spieltag->ersterTagText();

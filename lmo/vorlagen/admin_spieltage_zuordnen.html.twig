@@ -39,7 +39,7 @@
           <th style="text-align:right" colspan="3" class="nobr">
             <a href="#top">{{ text[5011]|raw }}</a>&nbsp;/&nbsp;<a href="#bottom">{{ text[5012]|raw }}</a></th>
         </tr>
-{# je Partie (im Pokal je Spiel) eine Zeile; gerade verschobene fett #}
+{# je Partie eine Zeile; gerade verschobene fett #}
 {% for z in spieltag.zeilen %}
 {% set an = z.markiert ? '<strong>' : '' %}{% set aus = z.markiert ? '</strong>' : '' %}
         <tr>
@@ -61,7 +61,7 @@
           </td>
         </tr>
 {% endfor %}
-{# in der Liga: wer an diesem Spieltag spielfrei ist #}
+{# wer an diesem Spieltag spielfrei ist #}
 {% for name in spieltag.spielfrei %}
         <tr>
           <td>&nbsp</td>
