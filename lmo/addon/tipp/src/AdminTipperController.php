@@ -54,9 +54,10 @@ final class AdminTipperController implements Controller
                 }
             }
             if ($tipper !== null) {
-                // seine Tipps: wie bisher jede Datei, die auf <Nick>.tip endet
+                // seine Tipps: <Liga>_<Nick>.tip (bis 4.5 jede Datei, die auf <Nick>.tip endete, mit "ter"
+                // also auch die Tipps von "tester")
                 foreach (scandir(rtrim($tippordner, '/')) ?: [] as $tippdatei) {
-                    if (substr($tippdatei, -4 - strlen($tipper->nick())) == $tipper->nick() . '.tip') {
+                    if (substr($tippdatei, -5 - strlen($tipper->nick())) == '_' . $tipper->nick() . '.tip') {
                         @unlink($tippordner . $tippdatei);
                     }
                 }
