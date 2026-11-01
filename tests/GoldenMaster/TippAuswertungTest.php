@@ -195,4 +195,26 @@ L98;
 
         $this->assertMatchesSnapshot('tipp', 'tabelle', $t->text());
     }
+
+    /**
+     * Die Userverwaltung der Administration (todo=tippuser): Liste, sortiert, einen Tipper
+     * loeschen. "ter" ist nicht freigeschaltet und hat keine E-Mail-Adresse.
+     */
+    public function testAdminUserverwaltung(): void
+    {
+        $c = self::client();
+        $pfad = $c->instance()->path() . '/daten/tipp/';
+        file_put_contents($pfad . 'lmo-tippauth.txt', "ter|geheim|1|Ter Kurz||||||1|1|EOL\n", FILE_APPEND);
+        file_put_contents($pfad . 'tipps/tippliga_ter.tip', "[Round1]\n@0@\nGA1=1\nGB1=0\n");
+        touch($pfad . 'tipps/tippliga_ter.tip', mktime(18, 30, 0, 3, 12, 2025));
+        $c->resetChanges();
+        $t = new Transcript();
+        $a = 'action=admin&todo=tippuser';
+
+        $t->add('Liste', $c->get('lmoadmin.php', $a), $c->changes());
+        $t->add('nach Nick absteigend', $c->get('lmoadmin.php', $a . '&tipper_sort=nick&tipper_sort_direction=desc'), $c->changes());
+        $t->add('ter loeschen', $c->get('lmoadmin.php', $a . '&tipper_sort=nick&del=ter'), $c->changes());
+
+        $this->assertMatchesSnapshot('tipp', 'userverwaltung', $t->text());
+    }
 }
