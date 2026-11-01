@@ -4547,16 +4547,7 @@ GEAENDERT config/tipp/cfg.txt
 </body>
 </html>
 --- Dateiaenderungen ---
-GEAENDERT config/tipp/cfg.txt
---- vorher
-+++ nachher
-@@ -52,5 +52,5 @@
- showzus=1
- showstsiege=1
--krit1=0
-+krit1=tipps/
- krit2=1
- krit3=2
+(keine)
 
 === 3: Anzeige ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6647,7 +6638,7 @@ GEAENDERT config/tipp/cfg.txt
  showzus=1
 -showstsiege=1
 +showstsiege=0
- krit1=tipps/
+ krit1=0
  krit2=1
 
 === 10: Kriterien ===
@@ -6903,7 +6894,7 @@ GEAENDERT config/tipp/cfg.txt
 @@ -52,7 +52,7 @@
  showzus=1
  showstsiege=0
--krit1=tipps/
+-krit1=0
 -krit2=1
 -krit3=2
 +krit1=3
