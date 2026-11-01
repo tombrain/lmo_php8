@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Auswertung des Tippspiels: Der Admin laesst die Tipps einer Liga auswerten
- * (lmo-admintipp.php mit save=2 -> lmo-tippsavewert.php schreibt tipps/auswert/<liga>.aus), die
+ * (todo=tipp mit save=2, Lmo\Addon\Tipp\AdminAuswertungController -> lmo-tippsavewert.php schreibt tipps/auswert/<liga>.aus), die
  * Tipper sehen danach Rangliste (todo=wert), Fieberkurve (todo=fieber) und die Tabelle nach ihren
  * Tipps (todo=tabelle).
  *
