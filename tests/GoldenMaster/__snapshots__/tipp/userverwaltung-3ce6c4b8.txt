@@ -623,8 +623,7 @@
 <td align="left">Tina&nbsp;Test</td>
 <td align="left">
 </td>
-<td align="left">
-</td>
+<td align="left">10.03.2025 13:00</td>
 <td align="left">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=tester' onClick="return chklmolink();">Editieren</a>
 </td>
@@ -644,8 +643,7 @@
 <td align="left">Zoe&nbsp;Zweite</td>
 <td align="left">
 </td>
-<td align="left">
-</td>
+<td align="left">10.03.2025 13:00</td>
 <td align="left">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=zweiter' onClick="return chklmolink();">Editieren</a>
 </td>
@@ -735,8 +733,4 @@ GEAENDERT daten/tipp/lmo-tippauth.txt
  zweiter|geheim|5|Zoe Zweite|zweite@example.org||||1|1|EOL
 -ter|geheim|1|Ter Kurz||||||1|1|EOL
 GELOESCHT daten/tipp/tipps/tippliga_ter.tip
-GELOESCHT daten/tipp/tipps/tippliga_tester.tip
-GELOESCHT daten/tipp/tipps/tippliga_zweiter.tip
-GELOESCHT daten/tipp/tipps/tipppokal_tester.tip
-GELOESCHT daten/tipp/tipps/tipppokal_zweiter.tip
 

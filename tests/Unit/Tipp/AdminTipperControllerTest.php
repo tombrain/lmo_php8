@@ -107,6 +107,18 @@ class AdminTipperControllerTest extends TestCase
         self::assertSame((string) $this->seite(['del' => 'niemand']), (string) $this->seite([]), 'unbekannter Nick: nichts geloescht');
     }
 
+    public function testLoeschenNurDieEigenenTipps(): void
+    {
+        file_put_contents($this->ordner . '/lmo-tippauth.txt', "na|x|5|N A||||||1|1|EOL\n", FILE_APPEND);
+        file_put_contents($this->ordner . '/tipps/liga_na.tip', '');
+
+        $this->seite(['del' => 'na']);
+
+        self::assertFileDoesNotExist($this->ordner . '/tipps/liga_na.tip');
+        self::assertFileExists($this->ordner . '/tipps/liga_anna.tip', 'bis 4.5 auch geloescht: endet auf na.tip');
+        self::assertFileExists($this->ordner . '/tipps/cup_anna.tip');
+    }
+
     /** Das Menue ueber der Seite (bis zur ersten Tabelle der Seite). */
     private function seiteMenue(string $html): string
     {
