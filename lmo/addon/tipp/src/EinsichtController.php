@@ -133,8 +133,10 @@ final class EinsichtController implements Controller
                 }
             }
             $nick = htmlspecialchars($einer['nick']);
-            // den Namen kennt die Einsicht nicht (bis 4.5 blieb er leer), nur den Nick
-            $name = ($cfg['shownick'] ?? '') == 1 ? (($cfg['showname'] ?? '') == 1 ? ' (' . $nick . ')' : $nick) : '';
+            // den Namen kennt die Einsicht nicht (bis 4.5 blieb er leer), nur den Nick; ohne Name und
+            // E-Mail-Adresse wenigstens ihn (wie die Rangliste)
+            $mitNick = ($cfg['shownick'] ?? '') == 1 || (($cfg['showname'] ?? '') != 1 && ($cfg['showemail'] ?? '') != 1);
+            $name = $mitNick ? (($cfg['showname'] ?? '') == 1 ? ' (' . $nick . ')' : $nick) : '';
             $link = ($cfg['tipptabelle1'] ?? '') == 1 && !$runde->pokal
                 ? "\n" . '            <a href="' . $tabelle . rawurlencode($einer['nick']) . '" title="' . ($t[181] ?? '') . ' ' . $nick . '"><img src="' . $kontext->pfade->bilder . '/tabelle.gif" border="0" width="10" height="12" alt="' . ($t[172] ?? '') . '"></a>'
                 : '';

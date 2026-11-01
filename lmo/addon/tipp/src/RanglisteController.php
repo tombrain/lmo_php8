@@ -293,14 +293,16 @@ final class RanglisteController implements Controller
         $email = $cfg['showemail'] ?? null;
         $mail = "<a href='mailto:" . $h($e['email']) . "'>";
         $html = '';
+        // nicht angekreuzt ist leer: != 1 statt == 0 (seit PHP 8 ist "" == 0 falsch, dann fehlten Nick und E-Mail);
+        // ohne Adresse kein Link, statt der Adresse dann der Nick
+        $mitMail = $email == 1 && $e['email'] != '';
         if ($name == 1) {
-            $mitMail = $email == 1 && $e['email'] != '';
             $html .= ($mitMail ? $mail : '') . $h($e['name']) . ($mitMail ? '</a>' : '');
         }
-        if ($nick == 1 || ($email == 0 && $name == 0)) {
-            $html .= ($name == 1 ? ' (' : '') . ($name == 0 && $email == 1 ? $mail : '') . $h($e['nick'])
-                . ($name == 0 && $email == 1 ? '</a>' : '') . ($name == 1 ? ')' : '');
-        } elseif ($email == 1 && $name == 0) {
+        if ($nick == 1 || (!$mitMail && $name != 1)) {
+            $html .= ($name == 1 ? ' (' : '') . ($name != 1 && $mitMail ? $mail : '') . $h($e['nick'])
+                . ($name != 1 && $mitMail ? '</a>' : '') . ($name == 1 ? ')' : '');
+        } elseif ($mitMail && $name != 1) {
             $html .= $mail . $h($e['email']) . '</a>';
         }
 

@@ -113,6 +113,20 @@ class RanglisteControllerTest extends TestCase
         self::assertStringNotContainsString('lmo-tab', $html, 'ohne Spieltag keine Pfeile');
     }
 
+    public function testNichtAngekreuztIstLeer(): void
+    {
+        $html = $this->seite($this->kontext([], ['showname' => '', 'shownick' => '', 'showemail' => '']));
+        self::assertStringContainsString("&nbsp;anna\n", $html,'ohne Name und E-Mail der Nick (bis 4.5 unter PHP 8 nichts)');
+
+        $html = $this->seite($this->kontext([], ['showname' => '', 'shownick' => '1', 'showemail' => '1']));
+        self::assertStringContainsString("<a href='mailto:a@x'>anna</a>", $html, 'der Nick mit E-Mail-Link');
+
+        $html = $this->seite($this->kontext([], ['showname' => '', 'shownick' => '', 'showemail' => '1']));
+        self::assertStringContainsString("<a href='mailto:a@x'>a@x</a>", $html, 'nur die E-Mail-Adresse');
+        self::assertStringNotContainsString("mailto:'", $html, 'ohne Adresse kein Link');
+        self::assertStringContainsString('tester', $html, 'ohne Adresse der Nick');
+    }
+
     public function testBisSpieltagMitPfeilen(): void
     {
         $html = $this->seite($this->kontext(['endtab' => '2']));

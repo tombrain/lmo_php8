@@ -3961,7 +3961,7 @@ GEAENDERT config/tipp/cfg.txt
 <td class="lmoTabelleMeister nobr">
 <img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt=''>
 </td>
-<td class="lmoTabelleMeister nobr" align="left">&nbsp; &nbsp;</td>
+<td class="lmoTabelleMeister nobr" align="left">&nbsp;bert &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
 <a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;stwertmodus=bis&amp;file=tippliga.l98&amp;gewicht=absolut&amp;endtab=2&amp;wertung=intern&amp;teamintern=Blau" title="Team-intern-Wertung">Blau</a>
 </td>
@@ -3974,7 +3974,7 @@ GEAENDERT config/tipp/cfg.txt
 <td class="lmoTabelleCleague nobr">
 <img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt=''>
 </td>
-<td class="lmoTabelleCleague nobr" align="left">&nbsp; &nbsp;</td>
+<td class="lmoTabelleCleague nobr" align="left">&nbsp;<a href='mailto:anna@example.org'>anna@example.org</a> &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
 <a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;stwertmodus=bis&amp;file=tippliga.l98&amp;gewicht=absolut&amp;endtab=2&amp;wertung=intern&amp;teamintern=Rot" title="Team-intern-Wertung">Rot</a>
 </td>

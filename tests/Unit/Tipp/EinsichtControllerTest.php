@@ -112,6 +112,15 @@ class EinsichtControllerTest extends TestCase
         self::assertStringContainsString('Alpha<br>2:1<br>Beta', $html);
     }
 
+    public function testOhneNameUndEmailDerNick(): void
+    {
+        $html = $this->seite($this->kontext([], ['shownick' => '', 'showname' => '', 'showemail' => '']));
+        self::assertStringContainsString("\"nobr\">anna\n", $html, 'bis 4.5 unter PHP 8 leer');
+
+        $html = $this->seite($this->kontext([], ['shownick' => '', 'showname' => '', 'showemail' => '1']));
+        self::assertStringNotContainsString("\"nobr\">anna\n", $html, 'die E-Mail-Adresse kennt die Einsicht nicht');
+    }
+
     public function testTendenzModus(): void
     {
         $html = $this->seite($this->kontext(tipp: ['tippmodus' => '0']));
