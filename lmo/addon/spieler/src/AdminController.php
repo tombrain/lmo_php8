@@ -351,8 +351,9 @@ final class AdminController implements Controller
                 $teile = explode('=', $zeile, 2);
                 foreach (self::EINSTELLUNGEN as $feld => $nr) {
                     if (isset($t[$nr]) && $teile[0] == $t[$nr]) {
-                        // Vorsortierung Admin und Linkbezeichnung wie gelesen, die uebrigen als Zahl
-                        $e[$feld] = in_array($feld, ['adminbereich_standard_sortierung', 'ligalink'], true) ? ($teile[1] ?? '') : (int) ($teile[1] ?? 0);
+                        // Vorsortierung Admin und Linkbezeichnung als Text ohne Zeilenumbruch (bis 4.5 mit, dann
+                        // kam beim Speichern jedes Mal eine Leerzeile dazu), die uebrigen als Zahl
+                        $e[$feld] = in_array($feld, ['adminbereich_standard_sortierung', 'ligalink'], true) ? rtrim($teile[1] ?? '', "\r\n") : (int) ($teile[1] ?? 0);
                         break;
                     }
                 }
