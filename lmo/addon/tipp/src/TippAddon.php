@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Lmo\Addon\Tipp;
 
 use Closure;
-use Lmo\Addon\AlteAdminSeite;
 use Lmo\Addon\Datenordner;
 use Lmo\Addon\ErgebnisSpalte;
 use Lmo\Addon\Menuepunkt;
@@ -54,8 +53,9 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
      * @param string $version installierte Version des LMO (LMO_VERSION_NR) fuer die Info-Seite
      * @param string $daten Datenordner des Tippspiels (daten/tipp, datenordner()) mit Tipperdatei und Tipps; '' wie $ordner
      * @param Closure(string, array<string, mixed>): string $alterCode bindet eine Datei nach alter Art im globalen Bereich ein (mit diesen Variablen), gibt ihre Ausgabe zurueck
+     * @param string $konfiguration Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt, fuer die Optionen
      */
-    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $alterCode = null)
+    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $alterCode = null, private string $konfiguration = '')
     {
     }
 
@@ -199,7 +199,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         return !($alle == 0) || in_array(basename(substr($datei, 0, -4)), explode(',', $cfg['ligenzutippen'] ?? ''));
     }
 
-    /** Die Seiten der Administration des Tippspiels (noch nach alter Art), nur fuer den Hauptadmin. */
+    /** Die Seiten der Administration des Tippspiels, nur fuer den Hauptadmin. */
     public function adminController(): array
     {
         // die Auswertung nach neuer Art; ausgewertet wird noch mit dem alten Code
@@ -207,10 +207,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         $seiten[] = new AdminTipperController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminTipperBearbeitenController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminEmailController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '');
-        $seiten[] = new AlteAdminSeite(
-            static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'tippoptions' && $kontext->sitzung->zahl('lmouserok') == 2,
-            $this->ordner . '/lmo-admintippoptions.php'
-        );
+        $seiten[] = new AdminOptionenController($this->konfiguration);
 
         return $seiten;
     }

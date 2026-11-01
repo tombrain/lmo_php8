@@ -4726,7 +4726,7 @@ GEAENDERT config/tipp/cfg.txt
 <td width="20">&nbsp;</td>
 <td align="right">Link zu den Spielregeln</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="regeln&mehr.php" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="regeln&amp;mehr.php" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>
@@ -5014,7 +5014,7 @@ GEAENDERT config/tipp/cfg.txt
 <td width="20">&nbsp;</td>
 <td align="right">Link zu den Spielregeln</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="regeln&mehr.php" onChange="dolmoedit()" disabled>
+<input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="regeln&amp;mehr.php" onChange="dolmoedit()" disabled>
 </td>
 </tr>
 <tr>
