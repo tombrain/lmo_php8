@@ -1,0 +1,502 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Optionen des Tippspiels (Lmo\Addon\Tipp\AdminOptionenController), bis 4.5 lmo-admintippoptions.php
+   mit lmo-admintippjavascript.php #}
+<script type="text/javascript">
+<!---
+function immerallechange(){
+  lmotest=false;
+  for (i=0;i<document.getElementsByName("xtipperligen[]").length;i++){
+    if (document.getElementsByName("ximmeralle")[0].checked==0){
+      document.getElementsByName("xtipperligen[]")[i].disabled=false;
+      }
+    else {
+      document.getElementsByName("xtipperligen[]")[i].disabled=true;
+      }
+    }
+  }
+function moduschange(){
+  lmotest=false;
+  if (document.getElementsByName("xtippmodus")[0].value==1){
+    document.getElementsByName("xrergebnis")[0].disabled=false;
+    document.getElementsByName("xrtendenzdiff")[0].disabled=false;
+    document.getElementsByName("xrtendenz")[0].disabled=false;
+    document.getElementsByName("xrtor")[0].disabled=false;
+    document.getElementsByName("xrtendenztor")[0].disabled=false;
+    document.getElementsByName("xrtendenzremis")[0].disabled=false;
+    document.getElementsByName("xshowdurchschntipp")[0].disabled=false;
+    document.getElementsByName("xpfeiltipp")[0].disabled=false;
+    }
+  else {
+    document.getElementsByName("xrergebnis")[0].disabled=true;
+    document.getElementsByName("xrtendenzdiff")[0].disabled=true;
+    document.getElementsByName("xrtendenz")[0].disabled=true;
+    document.getElementsByName("xrtor")[0].disabled=true;
+    document.getElementsByName("xrtendenztor")[0].disabled=true;
+    document.getElementsByName("xrtendenzremis")[0].disabled=true;
+    document.getElementsByName("xshowdurchschntipp")[0].disabled=true;
+    document.getElementsByName("xpfeiltipp")[0].disabled=true;
+    }
+  }
+
+function regelnchange(){
+  lmotest=false;
+  if (document.getElementsByName("xregeln")[0].checked==1){
+    document.getElementsByName("xregelnlink")[0].disabled=false;
+    }
+  else {
+    document.getElementsByName("xregelnlink")[0].disabled=true;
+    }
+  }
+
+function jokerchange(){
+lmotest=false;
+  if (document.getElementsByName("xjokertipp")[0].checked==1){
+    document.getElementsByName("xjokertippmulti")[0].disabled=false;   
+    }
+  else {
+    document.getElementsByName("xjokertippmulti")[0].disabled=true;    
+    }
+  }
+
+function viewerchange(){
+lmotest=false;
+  if (document.getElementsByName("xviewertipp")[0].checked==1){
+    document.getElementsByName("xviewertage")[0].disabled=false;   
+  } else {
+    document.getElementsByName("xviewertage")[0].disabled=true;    
+  }
+  if (document.getElementsByName("xsttipp")[0].checked==0 && document.getElementsByName("xviewertipp")[0].checked==0){
+      alert('{{ t[301]|raw }}');
+  }
+}	  
+// --->
+</script>
+{{ menue|raw }}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center" colspan="2"><h1>{{ t[33]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <table class="lmoMenu" cellspacing="0" cellpadding="0" border="0">
+{% for nr, name in seiten %}
+        <tr><td align="right">{% if show == nr %}{{ name|raw }}{% else %}<a href="{{ adresse }}?action=admin&amp;todo=tippoptions&amp;show={{ nr }}">{{ name|raw }}</a>{% endif %}</td></tr>
+{% endfor %}
+      </table>
+    </td>
+    <td align="center" valign="top">
+      <form name="lmoedit" action="{{ adresse }}" method="post" onSubmit="return chklmopass()">
+        <input type="hidden" name="action" value="admin">
+        <input type="hidden" name="todo" value="tippoptions">
+        <input type="hidden" name="save" value="1">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if show == 0 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[91]|raw }}</td>
+            <td align="left">
+              <select name="xtippmodus" onChange="moduschange()">
+                <option value="1"{% if k.tippmodus == 1 %} selected{% endif %}>{{ t[31]|raw }}</option>
+                <option value="0"{% if k.tippmodus == 0 %} selected{% endif %}>{{ t[93]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+{% elseif show == 1 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[39]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xdirtipp" size="20" maxlength="80" value="{{ k.dirtipp }}" onChange="dolmoedit()"></td>
+          </tr>
+{% elseif show == 2 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[34]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xrergebnis" size="5" maxlength="5" value="{{ k.rergebnis }}" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>&nbsp;{{ t[38]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[35]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xrtendenzdiff" size="5" maxlength="5" value="{{ k.rtendenzdiff }}" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>&nbsp;{{ t[38]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[36]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xrtendenz" size="5" maxlength="5" value="{{ k.rtendenz }}" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>&nbsp;{{ t[38]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[37]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xrtor" size="5" maxlength="5" value="{{ k.rtor }}" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>&nbsp;{{ t[38]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[189]|raw }}</td>
+            <td align="left">
+              <select name="xrtendenztor" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>
+                <option value="1"{% if k.rtendenztor == 1 %} selected{% endif %}>{{ t[190]|raw }}</option>
+                <option value="0"{% if k.rtendenztor == 0 %} selected{% endif %}>{{ t[191]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[193]|raw }}</td>
+            <td align="left">
+              <select name="xrtendenzremis" onChange="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}>
+                <option value="1"{% if k.rtendenzremis == 1 %} selected{% endif %}>{{ t[194]|raw }}</option>
+                <option value="0"{% if k.rtendenzremis == 0 %} selected{% endif %}>{{ t[195]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[192]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xrremis" size="5" maxlength="5" value="{{ k.rremis }}" onChange="dolmoedit()">&nbsp;{{ t[38]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[152]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xentscheidungnv" onClick="dolmoedit()"{% if k.entscheidungnv == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[153]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xentscheidungie" onClick="dolmoedit()"{% if k.entscheidungie == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[196]|raw }}</td>
+            <td align="left">
+              <select name="xgtpunkte" onChange="dolmoedit()">
+                <option value="0"{% if k.gtpunkte == 0 %} selected{% endif %}>{{ t[197]|raw }}</option>
+                <option value="1"{% if k.gtpunkte == 1 %} selected{% endif %}>{{ t[198]|raw }}</option>
+                <option value="2"{% if k.gtpunkte == 2 %} selected{% endif %}>{{ t[199]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+{% elseif show == 3 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[157]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xtippeinsicht" onClick="dolmoedit()"{% if k.tippeinsicht == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[172]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xtipptabelle1" onClick="dolmoedit()"{% if k.tipptabelle1 == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ text[133]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xtippfieber" onClick="dolmoedit()"{% if k.tippfieber == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[56]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xgesamt" onClick="dolmoedit()"{% if k.gesamt == 1 %} checked{% endif %}></select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[187]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xregeln" onClick="regelnchange()"{% if k.regeln == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[186]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="{{ k.regelnlink }}" onChange="dolmoedit()"{% if k.regeln == 0 %} disabled{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[200]|raw }}</td>
+            <td align="left">
+            <input type="checkbox" name="xshownick" value="1" {% if k.shownick == 1 %}checked{% endif %} onClick="dolmoedit()">{{ t[23]|raw }}
+            <input type="checkbox" name="xshowname" value="1" {% if k.showname == 1 %}checked{% endif %} onClick="dolmoedit()">{{ t[134]|raw }}
+            <input type="checkbox" name="xshowemail" value="1" {% if k.showemail == 1 %}checked{% endif %} onClick="dolmoedit()">{{ t[219]|raw }}
+            </td>
+          </tr>
+{% elseif show == 4 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[87]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippbis" size="5" maxlength="5" value="{{ k.tippBis }}" onChange="dolmoedit()"> {{ t[88]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[248]|raw }}</td>
+            <td align="left">
+              <select name="xtippohne" onChange="dolmoedit()">
+                <option value="1"{% if k.tippohne == 1 %} selected{% endif %}>{{ t[249]|raw }}</option>
+                <option value="0"{% if k.tippohne == 0 %} selected{% endif %}>{{ t[250]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[100]|raw }}</td>
+            <td align="left">
+              <select name="xtipperteam" onChange="dolmoedit()">
+                <option value="-1"{% if k.tipperimteam == -1 %} selected{% endif %}>{{ t[101]|raw }}</option>
+                <option value="2"{% if k.tipperimteam == 2 %} selected{% endif %}>2</option>
+                <option value="3"{% if k.tipperimteam == 3 %} selected{% endif %}>3</option>
+                <option value="5"{% if k.tipperimteam == 5 %} selected{% endif %}>5</option>
+                <option value="10"{% if k.tipperimteam == 10 %} selected{% endif %}>10</option>
+                <option value="20"{% if k.tipperimteam == 20 %} selected{% endif %}>20</option>
+                <option value="30"{% if k.tipperimteam == 30 %} selected{% endif %}>30</option>
+                <option value="50"{% if k.tipperimteam == 50 %} selected{% endif %}>50</option>
+                <option value="100"{% if k.tipperimteam == 100 %} selected{% endif %}>100</option>
+                <option value="0"{% if k.tipperimteam == 0 %} selected{% endif %}>{{ t[102]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[154]|raw }}</td>
+            <td align="left">
+              <select name="ximvorraus" onChange="dolmoedit()">
+                <option value="0"{% if k.imvorraus == 0 %} selected{% endif %}>0</option>
+                <option value="1"{% if k.imvorraus == 1 %} selected{% endif %}>1</option>
+                <option value="2"{% if k.imvorraus == 2 %} selected{% endif %}>2</option>
+                <option value="3"{% if k.imvorraus == 3 %} selected{% endif %}>3</option>
+                <option value="4"{% if k.imvorraus == 4 %} selected{% endif %}>4</option>
+                <option value="5"{% if k.imvorraus == 5 %} selected{% endif %}>5</option>
+                <option value="-1"{% if k.imvorraus == -1 %} selected{% endif %}>{{ t[102]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[288]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xjokertipp" onClick="jokerchange()"{% if k.jokertipp == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[291]|raw }}</td>
+            <td align="left">
+              <select name="xjokertippmulti" onChange="dolmoedit()"{% if k.jokertipp == 0 %} disabled{% endif %}>
+                <option value="1.5"{% if k.jokertippmulti == "1.5" %} selected{% endif %}>1.5</option>
+                <option value="2"{% if k.jokertippmulti == "2" %} selected{% endif %}>2</option>
+                <option value="2.5"{% if k.jokertippmulti == "2.5" %} selected{% endif %}>2.5</option>
+                <option value="3"{% if k.jokertippmulti == "3" %} selected{% endif %}>3</option>
+            </td>
+          </tr>
+{% elseif show == 5 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[132]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xadresse" onClick="dolmoedit()"{% if k.adresse == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[286]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xrealname" onClick="dolmoedit()"{% if k.realname == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[299]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xfreischaltcode" onClick="dolmoedit()"{% if k.freischaltcode == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[146]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xfreischaltung" onClick="dolmoedit()"{% if k.freischaltung == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[293]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xmailbeianmeldung" onClick="dolmoedit()"{% if k.mailbeianmeldung == 1 %} checked{% endif %}></td>
+          </tr>
+{% elseif show == 6 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[245]|raw }} {{ t[294]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xpfeiltipp" onClick="dolmoedit()"{% if k.pfeiltipp == 1 %} checked{% endif %}{% if k.tippmodus == 0 %} disabled{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[188]|raw }} {{ t[212]|raw }} {{ t[294]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xshowtendenzabs" value="1" {% if k.showtendenzabs == 1 %}checked{% endif %} onClick="dolmoedit()"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[188]|raw }} {{ t[211]|raw }} {{ t[294]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xshowtendenzpro" value="1" {% if k.showtendenzpro == 1 %}checked{% endif %} onClick="dolmoedit()"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[213]|raw }} {{ t[294]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xshowdurchschntipp" value="1" {% if k.showdurchschntipp == 1 %}checked{% endif %} onClick="dolmoedit()"{% if k.tippmodus == 0 %} disabled{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[259]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xsttipp" onClick="viewerchange();"{% if k.sttipp == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[253]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xviewertipp" onClick="viewerchange();"{% if k.viewertipp == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[254]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xviewertage" size="2" maxlength="2" value="{{ k.viewertage }}" onChange="dolmoedit()"{% if k.viewertipp == 0 %} disabled{% endif %}>&nbsp;{{ t[171]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[161]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xakteinsicht" onClick="dolmoedit()"{% if k.akteinsicht == 1 %} checked{% endif %}></td>
+          </tr>
+{% elseif show == 7 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[160]|raw }}</td>
+            <td align="left">
+              <select name="xeinsichterst" onChange="dolmoedit()">
+                <option value="0"{% if k.einsichterst == 0 %} selected{% endif %}>{{ t[215]|raw }}</option>
+                <option value="1"{% if k.einsichterst == 1 %} selected{% endif %}>{{ t[216]|raw }}</option>
+                <option value="2"{% if k.einsichterst == 2 %} selected{% endif %}>{{ t[217]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[204]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xanzseite" size="5" maxlength="5" value="{{ k.anzseite }}" onChange="dolmoedit()"></td>
+          </tr>
+{% elseif show == 8 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[183]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xtipptabelle" onClick="dolmoedit()"{% if k.tipptabelle == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[260]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xwertverein" onClick="dolmoedit()"{% if k.wertverein == 1 %} checked{% endif %}></td>
+          </tr>
+{% elseif show == 9 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[302]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xnurgesamt" onClick="dolmoedit()"{% if k.nurgesamt == 1 %} checked{% endif %}{% if k.gesamt == 0 %} disabled{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[204]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xanzseite1" size="5" maxlength="5" value="{{ k.anzseite1 }}" onChange="dolmoedit()"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[251]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xshowzus" onClick="dolmoedit()"{% if k.showzus == 1 %} checked{% endif %}>{{ t[282]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[272]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xshowstsiege" onClick="dolmoedit()"{% if k.showstsiege == 1 %} checked{% endif %}></td>
+          </tr>
+{% elseif show == 10 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[275]|raw }} 1</td>
+            <td align="left">
+              <select name="xkrit1" onChange="dolmoedit()">
+                <option value="-1"{% if k.krit1 == -1 %} selected{% endif %}>{{ t[281]|raw }}</option>
+                <option value="0"{% if k.krit1 == 0 %} selected{% endif %}>{{ t[276]|raw }}</option>
+                <option value="1"{% if k.krit1 == 1 %} selected{% endif %}>{{ t[277]|raw }}</option>
+                <option value="2"{% if k.krit1 == 2 %} selected{% endif %}>{{ t[278]|raw }}</option>
+                <option value="3"{% if k.krit1 == 3 %} selected{% endif %}>{{ t[279]|raw }}</option>
+                <option value="4"{% if k.krit1 == 4 %} selected{% endif %}>{{ t[280]|raw }}</option>
+                <option value="5"{% if k.krit1 == 5 %} selected{% endif %}>{{ t[227]|raw }}</option>
+                <option value="6"{% if k.krit1 == 6 %} selected{% endif %}>{{ t[271]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[275]|raw }} 2</td>
+            <td align="left">
+              <select name="xkrit2" onChange="dolmoedit()">
+                <option value="-1"{% if k.krit2 == -1 %} selected{% endif %}>{{ t[281]|raw }}</option>
+                <option value="0"{% if k.krit2 == 0 %} selected{% endif %}>{{ t[276]|raw }}</option>
+                <option value="1"{% if k.krit2 == 1 %} selected{% endif %}>{{ t[277]|raw }}</option>
+                <option value="2"{% if k.krit2 == 2 %} selected{% endif %}>{{ t[278]|raw }}</option>
+                <option value="3"{% if k.krit2 == 3 %} selected{% endif %}>{{ t[279]|raw }}</option>
+                <option value="4"{% if k.krit2 == 4 %} selected{% endif %}>{{ t[280]|raw }}</option>
+                <option value="5"{% if k.krit2 == 5 %} selected{% endif %}>{{ t[227]|raw }}</option>
+                <option value="6"{% if k.krit2 == 6 %} selected{% endif %}>{{ t[271]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[275]|raw }} 3</td>
+            <td align="left">
+              <select name="xkrit3" onChange="dolmoedit()">
+                <option value="-1"{% if k.krit3 == -1 %} selected{% endif %}>{{ t[281]|raw }}</option>
+                <option value="0"{% if k.krit3 == 0 %} selected{% endif %}>{{ t[276]|raw }}</option>
+                <option value="1"{% if k.krit3 == 1 %} selected{% endif %}>{{ t[277]|raw }}</option>
+                <option value="2"{% if k.krit3 == 2 %} selected{% endif %}>{{ t[278]|raw }}</option>
+                <option value="3"{% if k.krit3 == 3 %} selected{% endif %}>{{ t[279]|raw }}</option>
+                <option value="4"{% if k.krit3 == 4 %} selected{% endif %}>{{ t[280]|raw }}</option>
+                <option value="5"{% if k.krit3 == 5 %} selected{% endif %}>{{ t[227]|raw }}</option>
+                <option value="6"{% if k.krit3 == 6 %} selected{% endif %}>{{ t[271]|raw }}</option>
+              </select>
+            </td>
+          </tr>
+{% elseif show == 11 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[81]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xaktauswert" onClick="dolmoedit()"{% if k.aktauswert == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[180]|raw }}</td>
+            <td align="left"><input type="checkbox" name="xaktauswertges" onClick="dolmoedit()"{% if k.aktauswertges == 1 %} checked{% endif %}></td>
+          </tr>
+{% elseif show == 12 %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">{{ t[104]|raw }}</td>
+            <td align="left"><input type="checkbox" name="ximmeralle" onClick="immerallechange()"{% if k.immeralle == 1 %} checked{% endif %}></td>
+          </tr>
+          <tr>
+            <td width="20" rowspan="2">&nbsp;</td>
+            <th align="left" colspan="2">{{ t[105]|raw }}
+            </th>
+          </tr>
+          <tr>
+            <td align="left" colspan="2">{% for liga in ligen %}
+<input type="checkbox" name="xtipperligen[]" value="{{ liga.datei }}"{% if liga.angekreuzt %}checked{% endif %} onClick="dolmoedit()"{% if k.immeralle == 1 %} disabled{% endif %}>{{ liga.name }}<br>{% else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endfor %}
+            </td>
+          </tr>
+{% endif %}
+
+          <tr>
+            <td class="lmost4" colspan="3" align="right">
+              <input type="hidden" name="show" value="{{ showText }}">
+              <input class="lmo-formular-button" type="submit" name="best" value="{{ text[188]|raw }}">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>

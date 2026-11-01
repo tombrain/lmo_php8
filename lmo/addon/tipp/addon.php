@@ -96,4 +96,4 @@ return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_
     ob_start();
     require($lmo_tipp_datei);
     return (string)ob_get_clean();
-});
+}, PATH_TO_CONFIGDIR);
