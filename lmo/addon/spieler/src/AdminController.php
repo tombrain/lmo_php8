@@ -416,9 +416,9 @@ final class AdminController implements Controller
     }
 
     /**
-     * Rechnet die Formelspalten (bis 4.5 formel_berechnen()). Eine Formel darf ausser den Namen
-     * der Spalten nur Zahlen, + - * / ( ) , . und MAX oder MIN enthalten; sonst steht dort der
-     * Fehlertext. Division durch 0 ergibt 0, eine unvollstaendige Formel den Fehlertext.
+     * Rechnet die Formelspalten der Reihe nach (bis 4.5 formel_berechnen() mit eval(), heute
+     * Lmo\Addon\Spieler\Formel). Eine ungueltige oder unvollstaendige Formel ergibt den
+     * Fehlertext, eine Division durch 0 den Wert 0.
      *
      * @param list<list<string>> $daten
      * @param array<int, bool> $formel
@@ -429,55 +429,25 @@ final class AdminController implements Controller
      */
     private static function berechne(array $daten, array $formel, array $formelzeile, array $spalten, array $t): array
     {
-        $nachLaenge = $spalten;
-        uasort($nachLaenge, static fn (string $a, string $b): int => strlen($a) == strlen($b) ? 0 : (strlen($a) > strlen($b) ? -1 : 1));
-        $code = [];
         for ($i = 0; $i < count($spalten); $i++) {
             if (!($formel[$i] ?? false)) {
                 continue;
             }
-            $ausdruck = strtoupper($formelzeile[$i] ?? '');
-            $rest = $ausdruck;
-            foreach ($nachLaenge as $nr => $name) {
-                if ($i != $nr) {
-                    $rest = str_replace(strtoupper($name), '', $rest);
-                    $ausdruck = str_replace(strtoupper($name), "\$data[\$j][$nr]", $ausdruck);
-                }
-            }
-            $rest = trim(strtr($rest, '+-*/0123456789.(),', '                  '));
-            $code[$i] = $rest === '' || $rest == 'MAX' || $rest == 'MIN' ? '$help2 = round(' . $ausdruck . ', 2);' : null;
-        }
-        foreach ($code as $i => $befehl) {
+            $rechnung = Formel::aus($formelzeile[$i] ?? '', $spalten, $i);
             for ($j = 0; $j < count($daten); $j++) {
-                $daten[$j][$i] = self::rechne($befehl, $daten, $j, $t[55] ?? '');
+                try {
+                    $wert = $rechnung !== null ? (string) $rechnung->rechne($daten[$j]) : ($t[55] ?? '');
+                } catch (\DivisionByZeroError) {
+                    $wert = '0';
+                } catch (\UnexpectedValueException) {
+                    // unvollstaendige Formel (z.B. "Tore/") oder ein Wert ohne Zahl: Fehlertext
+                    $wert = $t[55] ?? '';
+                }
+                $daten[$j][$i] = $wert;
             }
         }
 
         return $daten;
-    }
-
-    /**
-     * Fuehrt eine gepruefte Formel fuer eine Zeile aus; null: ungueltige Formel.
-     *
-     * @param list<list<string>> $data
-     */
-    private static function rechne(?string $befehl, array $data, int $j, string $fehler): string
-    {
-        if ($befehl === null) {
-            return $fehler;
-        }
-        $help2 = 0.0;
-        try {
-            // phpcs:ignore -- gepruefte Formel aus Spaltennamen, Zahlen und Rechenzeichen
-            @eval($befehl);
-        } catch (\DivisionByZeroError) {
-            $help2 = 0.0;
-        } catch (\Throwable) {
-            // unvollstaendige Formel (z.B. "Tore/"): Fehlertext statt Abbruch der Seite
-            $help2 = $fehler;
-        }
-
-        return (string) $help2;
     }
 
     /**
