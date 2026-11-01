@@ -74,6 +74,12 @@ function changetextarea(x){
       </select>
     </td>
   </tr>
+{% else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
 {% endfor %}
 {% if ligen %}
                 <tr>
@@ -109,8 +115,7 @@ function changetextarea(x){
           <tr>
             <td>&nbsp;</td>
             <td align="left" colspan="3">
-              <textarea id="message" name="message" rows="10" cols="60">{{ nachricht|raw }}
-              </textarea>
+              <textarea id="message" name="message" rows="10" cols="60">{{ nachricht|raw }}              </textarea>
             </td>
           </tr>
           <tr>
