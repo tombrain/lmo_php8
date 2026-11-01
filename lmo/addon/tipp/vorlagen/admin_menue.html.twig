@@ -12,8 +12,7 @@
 <table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td align="center">{% if todo != 'tipp' %}<a href='{{ adresse|raw }}tipp' onclick="return chklmolink();" title="{{ t[63]|raw }}">{{ t[63]|raw }}</a>{% else %}{{ t[63]|raw }}{% endif %} </td>
-    <td align="center">
-{% if hauptadmin %}
+    <td align="center">{% if hauptadmin %}
 {% if todo != 'tippemail' %}
       <a href='{{ adresse|raw }}tippemail' onClick="return chklmolink();" title="{{ t[165]|raw }}">{{ t[165]|raw }}</a>{% else %}{{ t[165]|raw }}{% endif %}
 

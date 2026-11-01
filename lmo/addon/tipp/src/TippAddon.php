@@ -206,12 +206,11 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         $seiten = [new AdminAuswertungController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '')];
         $seiten[] = new AdminTipperController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminTipperBearbeitenController($this->daten !== '' ? $this->daten : $this->ordner);
-        foreach (['tippemail' => 'lmo-admintippemail.php', 'tippoptions' => 'lmo-admintippoptions.php'] as $todo => $datei) {
-            $seiten[] = new AlteAdminSeite(
-                static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == $todo && $kontext->sitzung->zahl('lmouserok') == 2,
-                $this->ordner . '/' . $datei
-            );
-        }
+        $seiten[] = new AdminEmailController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '');
+        $seiten[] = new AlteAdminSeite(
+            static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'tippoptions' && $kontext->sitzung->zahl('lmouserok') == 2,
+            $this->ordner . '/lmo-admintippoptions.php'
+        );
 
         return $seiten;
     }
