@@ -1,0 +1,1635 @@
+### admin_email
+=== Formular ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Hallo [nick],&#13;&#13;diese Mail ist eine Erinnerung an Deine Tippabgabe.&#13;Bisher haben wir leider noch keine Tippabgabe von Dir für folgende Spielpaarungen:&#13;&#13;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="4" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Hallo Tipper [nick], </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippemail&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+(keine Mail)
+--- Dateiaenderungen ---
+(keine)
+
+=== Newsletter an alle ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> 3 Emails wurden versandt</p>
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Hallo [nick],&#13;&#13;diese Mail ist eine Erinnerung an Deine Tippabgabe.&#13;Bisher haben wir leider noch keine Tippabgabe von Dir für folgende Spielpaarungen:&#13;&#13;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" checked onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="9" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="Neues ">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Hallo [name] ([nick]) [pass] </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+An: ohne@example.org
+Hallo Otto Ohne (ohne) 
+http://lmo.test/lmo/lmoadmin.php?action=tipp&todo=getpass&xtippername2=ohne
+-----
+An: tester@example.org
+Hallo Tina Test (tester) 
+http://lmo.test/lmo/lmoadmin.php?action=tipp&todo=getpass&xtippername2=tester
+-----
+An: zweite@example.org
+Hallo Zoe Zweite (zweiter) 
+http://lmo.test/lmo/lmoadmin.php?action=tipp&todo=getpass&xtippername2=zweiter
+--- Dateiaenderungen ---
+NEU xss_log.txt (124 Bytes)
+[2025-03-15 13:00:00] [IP: 127.0.0.1] Blocked $_POST[betreff]
+[2025-03-15 13:00:00] [IP: 127.0.0.1] Blocked $_POST[message]
+
+=== Mail an zweiter ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Hallo [nick],&#13;&#13;diese Mail ist eine Erinnerung an Deine Tippabgabe.&#13;Bisher haben wir leider noch keine Tippabgabe von Dir für folgende Spielpaarungen:&#13;&#13;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" checked onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="9" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="Nur fuer dich">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Hallo [name] </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+An: zweite@example.org
+Hallo Zoe Zweite
+--- Dateiaenderungen ---
+(keine)
+
+=== Erinnerung Pokal, Runde 1 ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> 2 Emails wurden versandt</p>
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Hallo [nick]:&#10;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" checked onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1" selected>Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="9" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="Tippen!">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Hallo [nick]:&#10;[spiele] </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=erinnerpokal.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+An: tester@example.org
+Hallo tester:
+Alpha - Beta (Tippabgabe bis Dienstag, 18.März.2025 19:45)
+Gamma - Delta (Tippabgabe bis Sonntag, 16.März.2025 15:15)
+-----
+An: zweite@example.org
+Hallo zweiter:
+Alpha - Beta (Tippabgabe bis Sonntag, 16.März.2025 15:15)
+Alpha - Beta (Tippabgabe bis Dienstag, 18.März.2025 19:45)
+Gamma - Delta (Tippabgabe bis Sonntag, 16.März.2025 15:15)
+Gamma - Delta (Tippabgabe bis Dienstag, 18.März.2025 19:45)
+--- Dateiaenderungen ---
+GEAENDERT config/tipp/cfg.txt
+--- vorher
++++ nachher
+@@ -46,5 +46,5 @@
+ immeralle=1
+ ligenzutippen=
+-textreminder1=Gespeichert: [spiele]&#10;Gruss
++textreminder1=Hallo [nick]:&#10;[spiele]
+ showtendenzabs=1
+ showtendenzpro=1
+
+=== Erinnerung alle Ligen ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> 2 Emails wurden versandt</p>
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Alle [nick]:&#10;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" checked onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="9" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="Alle">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Alle [nick]:&#10;[spiele] </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=ligen/golden" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+An: tester@example.org
+Alle tester:
+
+Erinnerungsliga:
+2. Spieltag:
+Delta - Alpha (Tippabgabe bis 17.03.2025 15:15)
+3. Spieltag:
+Beta - Delta (Tippabgabe bis 20.03.2025 16:15)
+Erinnerungspokal:Halbfinale:
+Alpha - Beta (Tippabgabe bis 18.03.2025 19:45)
+Gamma - Delta (Tippabgabe bis 16.03.2025 15:15)Finale:
+Alpha - Gamma (Tippabgabe bis 20.03.2025 16:15)
+-----
+An: zweite@example.org
+Alle zweiter:
+
+Erinnerungsliga:
+2. Spieltag:
+Beta - Gamma (Tippabgabe bis 16.03.2025 15:15)
+Delta - Alpha (Tippabgabe bis 17.03.2025 15:15)
+3. Spieltag:
+Alpha - Gamma (Tippabgabe bis 20.03.2025 14:45)
+Beta - Delta (Tippabgabe bis 20.03.2025 16:15)
+Erinnerungspokal:Halbfinale:
+Alpha - Beta (Tippabgabe bis 16.03.2025 15:15)
+Alpha - Beta (Tippabgabe bis 18.03.2025 19:45)
+Gamma - Delta (Tippabgabe bis 16.03.2025 15:15)
+Gamma - Delta (Tippabgabe bis 18.03.2025 19:45)Finale:
+Alpha - Gamma (Tippabgabe bis 20.03.2025 16:15)
+Beta - Delta (Tippabgabe bis 20.03.2025 16:15)
+--- Dateiaenderungen ---
+GEAENDERT config/tipp/cfg.txt
+--- vorher
++++ nachher
+@@ -46,5 +46,5 @@
+ immeralle=1
+ ligenzutippen=
+-textreminder1=Hallo [nick]:&#10;[spiele]
++textreminder1=Alle [nick]:&#10;[spiele]
+ showtendenzabs=1
+ showtendenzpro=1
+
+=== ohne Text und Betreff ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<script type="text/javascript"> function changetextarea(x){ if (document.getElementById) { if (x==0){ document.getElementById("message").value="Hallo Tipper [nick],"; document.getElementById("betreff").value="Tippspiel-Newsletter"; } if (x==1){ document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value; document.getElementById("betreff").value="Tipp-Reminder"; } if (x==2){ document.getElementById("message").value="Hallo"; document.getElementById("betreff").value="Tippspiel"; } } } </script>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">Newsletter/Reminder </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="center">
+<h1>Newsletter/Reminder</h1>
+</th>
+</tr>
+<tr>
+<td align="left">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tippemail">
+<input type="hidden" name="save" value="1">
+<input type="hidden" name="textreminder1" value="Hallo [nick],&#13;&#13;diese Mail ist eine Erinnerung an Deine Tippabgabe.&#13;Bisher haben wir leider noch keine Tippabgabe von Dir für folgende Spielpaarungen:&#13;&#13;[spiele]">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td width="20">&nbsp;</td>
+<td colspan="3" align="left">
+<input type="radio" name="emailart" value="0" checked onClick="changetextarea(0)">Newsletter an Alle</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left">
+<input type="radio" name="emailart" value="2" onClick="changetextarea(2)">Persönliche Email an:</td>
+<td colspan="2" align="left">
+<select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+<option value="">Bitte auswählen</option>
+<option value="ohne">ohne (Otto Ohne - ohne@example.org)</option>
+<option value="tester">tester (Tina Test - tester@example.org)</option>
+<option value="zweiter">zweiter (Zoe Zweite - zweite@example.org)</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td valign="top" align="left">
+<input type="radio" name="emailart" value="1" onClick="changetextarea(1)">Tipp-Reminder </td>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="1l_2024-25.l98">
+<input type="radio" name="liganr" value="1" checked onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">1. Bundesliga 2024/25 </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[0].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerliga.l98">
+<input type="radio" name="liganr" value="2" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungsliga </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[1].checked=true;">
+<option value="0">alle Spieltage</option>
+<option value="1">1. Spieltag</option>
+<option value="2" selected>2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="nobr">
+<input type="hidden" name="liga1[]" value="erinnerpokal.l98">
+<input type="radio" name="liganr" value="3" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">Erinnerungspokal </td>
+<td class="nobr">
+<select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[2].checked=true;">
+<option value="0">alle Runden</option>
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">
+<input type="radio" name="liganr" value="0" onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">
+<strong>Alle Spieltage aller Ligen</strong>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+<td align="left"> Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3"> für Spiele in den nächsten <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="9" onFocus="emailart[2].checked=true;"> Tagen </td>
+</tr>
+<tr>
+<th colspan="4">&nbsp;</th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left"> Betreff: <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="Tippspiel">
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="left" colspan="3">
+<textarea id="message" name="message" rows="10" cols="60">Hallo Tipper [nick], </textarea>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+<input class="lmo-formular-button" type="submit" name="best" value="abschicken">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" width="20">&nbsp;</td>
+<td class="lmoFooter" valign="top" align="right">Platzhalter:</td>
+<td class="lmoFooter" colspan="2" align="left">[nick] Nickname<br>[pass] Passwort<br>[name] Name<br>[spiele] Auflistung der noch zu tippenden Spiele (nur Tip-Reminder)</td>
+</td>
+</tr>
+</table>
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+===== Mails
+(keine Mail)
+--- Dateiaenderungen ---
+(keine)
+
