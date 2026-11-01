@@ -112,6 +112,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Spielerstatistik, Administration: Spaltennamen, Formeln, Einstellungen und die Parameter der Seite stehen maskiert in den Formularfeldern. Bisher zerschnitt etwa ein Anführungszeichen im Namen einer Spalte das Feld, und beim nächsten Speichern ging der Rest verloren.  
 * Spielerstatistik, Administration: Nach dem Löschen eines Spielers zeigt die Seite Formelspalten wieder ohne ihre interne Markierung `*_*-*`. Bisher stand sie im Namensfeld, und das nächste Speichern der Werte hängte sie ein zweites Mal an; die Spalte war danach keine Formelspalte mehr.  
 * Spielerstatistik, Administration: Beim Speichern der Einstellungen einer Liga kommt hinter „Vorsortierung Admin“ keine Leerzeile mehr dazu. Bisher wurde der Wert samt Zeilenumbruch gelesen und mit einem weiteren geschrieben, bei jedem Speichern eine Zeile mehr.  
 * Viewer, Administration: Lässt sich die Ansicht nicht schreiben (etwa ohne Schreibrechte auf `config/viewer`), meldet der Assistent einen Fehler und kehrt zu den Einstellungen zurück. Bisher meldete er trotzdem „Daten erfolgreich gespeichert“ und zeigte den Code zum Einbinden.  
@@ -581,6 +582,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Player statistics, administration: column names, formulas, settings and the page parameters are escaped in the form fields. So far for example a quote in a column name cut the field, and the rest was lost on the next save.  
 * Player statistics, administration: after deleting a player the page shows formula columns without their internal marker `*_*-*` again. So far it appeared in the name field, and the next save of the values appended it a second time; the column was no longer a formula column afterwards.  
 * Player statistics, administration: saving the settings of a league no longer adds an empty line after "Vorsortierung Admin". So far the value was read with its line break and written with another one, one more line on every save.  
 * Viewer, administration: if the view cannot be written (for example without write permission on `config/viewer`), the wizard reports an error and returns to the settings. So far it still reported "data saved successfully" and showed the embedding code.  
