@@ -27,7 +27,7 @@ class AdminOptionenControllerTest extends TestCase
         mkdir($this->ordner . '/ligen', 0777, true);
         file_put_contents($this->ordner . '/config/cfg.txt', "dirliga=ligen/\ntimezone=Europe/Berlin\n");
         file_put_contents($this->ordner . '/config/tipp/cfg.txt', "dirtipp=tipps/\ntippmodus=1\nrergebnis=4\nrtendenzdiff=3\nrtendenz=2\nrtor=1\n"
-            . "rtendenztor=1\nrtendenzremis=1\nrremis=1\nentscheidungnv=1\nentscheidungie=1\ngtpunkte=0\nkrit1=0\nimmeralle=0\nligenzutippen=cup\n");
+            . "rtendenztor=1\nrtendenzremis=1\nrremis=1\nentscheidungnv=1\nentscheidungie=1\ngtpunkte=0\nkrit1=0\nimmeralle=0\nligenzutippen=cup\nshownick=1\nshowname=\nshowemail=\n");
         file_put_contents($this->ordner . '/ligen/bula.l98', "[Options]\nName=Bundesliga\n");
         file_put_contents($this->ordner . '/ligen/cup.l98', "[Options]\nName=\n");
     }
@@ -117,6 +117,15 @@ class AdminOptionenControllerTest extends TestCase
         $this->seite(['save' => '1', 'show' => '1']);
         self::assertStringContainsString("dirtipp=meine/tipps/\n", $this->cfg(), 'ohne Feld der bisherige');
         self::assertStringContainsString("krit1=0\n", $this->cfg(), 'bis 4.5 krit1=tipps/');
+    }
+
+    public function testOhneNameUndEmailDerNick(): void
+    {
+        $this->seite(['save' => '1', 'show' => '3']);
+        self::assertStringContainsString("shownick=1\n", $this->cfg(), 'bis 4.5 unter PHP 8 nichts angezeigt');
+
+        $this->seite(['save' => '1', 'show' => '3', 'xshowname' => '1']);
+        self::assertStringContainsString("shownick=\n", $this->cfg());
     }
 
     public function testLigen(): void

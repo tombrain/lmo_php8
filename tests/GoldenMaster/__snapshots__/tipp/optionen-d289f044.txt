@@ -5012,7 +5012,7 @@ GEAENDERT config/tipp/cfg.txt
 <td width="20">&nbsp;</td>
 <td align="right">Sichtbare User-Daten:</td>
 <td align="left">
-<input type="checkbox" name="xshownick" value="1" onClick="dolmoedit()">Nickname <input type="checkbox" name="xshowname" value="1" onClick="dolmoedit()">Realname <input type="checkbox" name="xshowemail" value="1" onClick="dolmoedit()">Email </td>
+<input type="checkbox" name="xshownick" value="1" checked onClick="dolmoedit()">Nickname <input type="checkbox" name="xshowname" value="1" onClick="dolmoedit()">Realname <input type="checkbox" name="xshowemail" value="1" onClick="dolmoedit()">Email </td>
 </tr>
 <tr>
 <td class="lmost4" colspan="3" align="right">
@@ -5088,10 +5088,12 @@ GEAENDERT config/tipp/cfg.txt
 GEAENDERT config/tipp/cfg.txt
 --- vorher
 +++ nachher
-@@ -2,12 +2,12 @@
+@@ -1,13 +1,13 @@
+ dirtipp=meinetipps/
  tippauthtxt=lmo-tippauth.txt
- shownick=
+-shownick=
 -showname=1
++shownick=1
 +showname=
  showemail=
  tippspiel=0
