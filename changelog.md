@@ -604,7 +604,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
-* Prediction game, ranking and tip view: unticked display options (name, nick, e-mail) count as switched off again under PHP 8. Without name and e-mail address the nick is shown again, with only the e-mail address the address as a link; so far the column stayed empty in both cases. A tipper without an address gets his nick instead of an empty link.  
+* Prediction game, ranking and tip view: unticked display options (name, nick, e-mail) count as switched off again under PHP 8. Without name and e-mail address the nick is shown again, with only the e-mail address the address as a link; so far the column stayed empty in both cases. A tipper without an address is shown by nick instead of an empty link.  
 * Prediction game, administration, options "display": if neither name nor e-mail address of the tippers is ticked, the nick is shown again. Under PHP 8 all three could be unticked, and the ranking and the tip view then showed the tippers without any name.  
 * Prediction game, administration, options "paths": if the tip folder was missing from the form, `tipps/` was saved as the first criterion for equal points (`krit1`). Now the folder stays as it was and `krit1` is left alone.  
 * Configuration: values containing `;` are written to `cfg.txt` in quotes (`Lmo\Web\Konfiguration::zeile()`, also in `lmo-savecfg.php`). Reading used to cut them off there. This affected the text of the prediction game reminder: it is stored with `&#10;`, so only its first line survived. The newsletter/reminder form now shows the saved text, so far it always showed the default one.  
