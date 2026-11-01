@@ -159,6 +159,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Tippspiel, Administration: Beim Bearbeiten und Anlegen eines Tippers gelten nur Ligen, die getippt werden. Bisher ging jeder Ligenname aus dem Formular in den Namen der Tippdatei, mit `../` auch außerhalb des Tippordners.  
 * Tippspiel, Administration: Ein neuer Tipper beginnt leer und braucht ein Kennwort. Bisher übernahm er die Daten des letzten Tippers der Datei; ohne eingegebenes Kennwort sogar dessen Kennwort, er konnte sich also mit dem fremden Kennwort anmelden. Nach einem Fehler zeigte das Formular die fremden Daten samt einem Löschen-Link für den anderen Tipper.  
 * Spielerstatistik: Formelspalten rechnet `Lmo\Addon\Spieler\Formel` statt `eval()`. Erlaubt sind wie bisher Spaltennamen, Zahlen, `+ - * /`, Klammern und `MAX`/`MIN`; die Ergebnisse bleiben dieselben, gerundet auf zwei Stellen, Division durch 0 ergibt 0. Ein Komma außerhalb von `MAX`/`MIN` (etwa `Tore,2`) ergibt jetzt den Fehlertext; bisher wurde es als Rundungsstellen gelesen.  
 * Viewer: Der Name einer Ansicht muss im Ordner `config/viewer` bleiben (kein `/` oder `\`, kein Punkt am Anfang). Bisher konnte der Assistent der Administration `.view`-Dateien außerhalb des Ordners schreiben, und `viewer.php?multi=...` las sie von dort; die Meldung zu einer unbekannten Ansicht gab den Namen unmaskiert aus und legte trotzdem eine Zählerdatei an.  
@@ -639,6 +640,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Prediction game, administration: editing and creating a tipper only accepts leagues that are tipped. So far every league name from the form went into the name of the tip file, with `../` even outside the tip folder.  
 * Prediction game, administration: a new tipper starts empty and needs a password. So far it took over the data of the last tipper in the file; without an entered password even that tipper's password, so it could log in with the other password. After an error the form showed the other tipper's data including a delete link for that tipper.  
 * Player statistics: formula columns are calculated by `Lmo\Addon\Spieler\Formel` instead of `eval()`. As before column names, numbers, `+ - * /`, parentheses and `MAX`/`MIN` are allowed; the results stay the same, rounded to two decimals, division by 0 gives 0. A comma outside `MAX`/`MIN` (for example `Tore,2`) now gives the error text; so far it was read as the number of decimals.  
 * Viewer: the name of a view has to stay in the folder `config/viewer` (no `/` or `\`, no leading dot). So far the admin wizard could write `.view` files outside the folder, and `viewer.php?multi=...` read them from there; the message for an unknown view printed the name unescaped and still created a counter file.  

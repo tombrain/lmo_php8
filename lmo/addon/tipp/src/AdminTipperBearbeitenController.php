@@ -57,7 +57,9 @@ final class AdminTipperBearbeitenController implements Controller
         $vereinswahl = $a->text('xtippervereinradio');
         $vereinAlt = $a->text('xtippervereinalt');
         $vereinNeu = $a->text('xtippervereinneu');
-        $gewaehlt = $a->werte('xtipperligen');
+        // nur Ligen, die getippt werden (bis 4.5 ging jeder Name aus dem Formular in einen Dateinamen)
+        $tippbar = array_column(Tippligen::tippbar($kontext), 'datei');
+        $gewaehlt = array_values(array_filter($a->werte('xtipperligen'), static fn (string $liga): bool => in_array($liga, $tippbar, true)));
         $tipperdatei = $this->daten . '/' . ($cfg['tippauthtxt'] ?? 'lmo-tippauth.txt');
         $tippordner = $this->daten . '/' . ($cfg['dirtipp'] ?? '');
         $imTeam = (int) ($cfg['tipperimteam'] ?? -1);
