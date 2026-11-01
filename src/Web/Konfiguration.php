@@ -134,15 +134,29 @@ final class Konfiguration
             if (is_array($wert)) {
                 $addon = '';
                 foreach ($wert as $name => $addonWert) {
-                    $addon .= $name . '=' . (is_scalar($addonWert) ? (string) $addonWert : '') . "\n";
+                    $addon .= self::zeile((string) $name, is_scalar($addonWert) ? (string) $addonWert : '');
                 }
                 $ok = @file_put_contents($ordner . '/' . $schluessel . '/cfg.txt', $addon, LOCK_EX) !== false && $ok;
             } else {
-                $haupt .= $schluessel . '=' . (is_scalar($wert) ? (string) $wert : '') . "\n";
+                $haupt .= self::zeile((string) $schluessel, is_scalar($wert) ? (string) $wert : '');
             }
         }
 
         return @file_put_contents($ordner . '/cfg.txt', $haupt, LOCK_EX) !== false && $ok;
+    }
+
+    /**
+     * Eine Zeile der cfg.txt: "Schluessel=Wert". Ein Wert mit ; steht in Anfuehrungszeichen, sonst
+     * schnitte parse_ini_file() ihn dort ab (bis 4.5 etwa der Text der Tipp-Erinnerung mit &#10;);
+     * ein " darin wird dann zu &quot;.
+     */
+    public static function zeile(string $schluessel, string $wert): string
+    {
+        if (str_contains($wert, ';')) {
+            $wert = '"' . str_replace('"', '&quot;', $wert) . '"';
+        }
+
+        return $schluessel . '=' . $wert . "\n";
     }
 
     /** Die Konfiguration mit den Anzeige-Optionen (ANZEIGEOPTIONEN), die die Anfrage mitbringt. */

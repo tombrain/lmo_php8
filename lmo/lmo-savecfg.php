@@ -38,14 +38,14 @@ if ($_SESSION['lmouserok'] == 2) {
                 if ($addon_datei) {
                     $ok = flock($datei, LOCK_EX) && $ok;
                     foreach ($cfgvalue as $addon_cfgname => $addon_cfgvalue) {
-                        $ok = fwrite($addon_datei, $addon_cfgname . '=' . ${$cfgname . '_' . $addon_cfgname} . "\n") && $ok;
+                        $ok = fwrite($addon_datei, \Lmo\Web\Konfiguration::zeile((string)$addon_cfgname, (string)${$cfgname . '_' . $addon_cfgname})) && $ok;
                     }
                     flock($addon_datei, LOCK_UN);
                     fclose($addon_datei);
                     clearstatcache();
                 }
             } else {                                                                            // Hauptkonfiguration
-                $ok = fwrite($datei, "$cfgname={${$cfgname}}\n") && $ok;
+                $ok = fwrite($datei, \Lmo\Web\Konfiguration::zeile((string)$cfgname, (string)${$cfgname})) && $ok;
             }
         }
         flock($datei, LOCK_UN);

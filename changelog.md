@@ -116,6 +116,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Konfiguration: Werte mit `;` stehen in der `cfg.txt` in Anführungszeichen (`Lmo\Web\Konfiguration::zeile()`, auch in `lmo-savecfg.php`). Bisher schnitt das Einlesen sie dort ab. Davon betroffen war der Text der Tipp-Erinnerung: Er wird mit `&#10;` gespeichert, also blieb nur die erste Zeile übrig. Das Formular unter Newsletter/Reminder zeigt jetzt den gespeicherten Text, bisher immer den vorgegebenen.  
 * Tippspiel, Administration: Bekommt ein Tipper beim Bearbeiten eine weitere Liga, trägt ihn deren Auswertung mit dem gerade gewählten Verein ein. Bisher stand dort der bisherige Verein.  
 * Spielerstatistik: Bilder für die Spaltenköpfe werden auch als SVG gefunden (`img/spieler/<Spalte>.svg`). Seit `Tore.gif` zu `Tore.svg` wurde, stand im Kopf der Spalte „Tore“ nur noch der Text.  
 * Tippspiel, Administration, Userverwaltung: gültiges HTML. Jede Zeile der Tipper wird geschlossen (bisher nur die letzte), ohne `</tbody>` ohne Tipper und ohne doppeltes `</th>`.  
@@ -598,6 +599,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Configuration: values containing `;` are written to `cfg.txt` in quotes (`Lmo\Web\Konfiguration::zeile()`, also in `lmo-savecfg.php`). Reading used to cut them off there. This affected the text of the prediction game reminder: it is stored with `&#10;`, so only its first line survived. The newsletter/reminder form now shows the saved text, so far it always showed the default one.  
 * Prediction game, administration: when a tipper gets another league while being edited, its evaluation lists them with the club just chosen. So far it showed the previous club.  
 * Player statistics: pictures for the column headers are also found as SVG (`img/spieler/<column>.svg`). Since `Tore.gif` became `Tore.svg`, the header of the column "Tore" only showed the text.  
 * Prediction game, administration, user management: valid HTML. Every row of tippers is closed (so far only the last one), without `</tbody>` when there are no tippers and without a double `</th>`.  
