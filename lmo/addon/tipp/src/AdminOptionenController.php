@@ -142,7 +142,8 @@ final class AdminOptionenController implements Controller
                 $neu['shownick'] = $wert('xshownick', '');
                 $neu['showname'] = $wert('xshowname', '');
                 $neu['showemail'] = $wert('xshowemail', '');
-                if ($neu['showname'] == 0 && $neu['showemail'] == 0) {
+                // ohne Name und E-Mail-Adresse wenigstens der Nick (seit PHP 8 griff das nicht mehr: "" == 0 ist falsch)
+                if ($neu['showname'] != 1 && $neu['showemail'] != 1) {
                     $neu['shownick'] = 1;
                 }
                 break;
