@@ -217,4 +217,50 @@ L98;
 
         $this->assertMatchesSnapshot('tipp', 'userverwaltung', $t->text());
     }
+
+    /**
+     * Einen Tipper in der Administration bearbeiten und anlegen (todo=tippuseredit): Formular,
+     * Speichern mit Verein und Ligen, ein neuer Tipper, Fehler. Zufallskennwort und Kennwort-Hash
+     * sind ersetzt.
+     */
+    public function testAdminTipperBearbeiten(): void
+    {
+        $c = self::client();
+        $t = new Transcript();
+        $a = ['action' => 'admin', 'todo' => 'tippuseredit'];
+        $ohneZufall = static fn (string $text): string => (string) preg_replace(
+            ['/\$(argon2id|argon2i|2y)\$[^|\s]+/', '/(name="xtipperpass" value=")[a-z0-9]{8,16}(")/'],
+            ['{HASH}', '$1{ZUFALL}$2'],
+            $text
+        );
+        $add = static fn (string $titel, string $html) => $t->add($titel, $ohneZufall($html), $ohneZufall($c->changes()));
+
+        $add('tester bearbeiten', $c->get('lmoadmin.php', 'action=admin&todo=tippuseredit&nick=tester'));
+        $add('tester speichern: neuer Verein, nur noch die Liga', $c->post('lmoadmin.php', '', $a + [
+            'nick' => 'tester', 'newpage' => '0', 'xtipperpass' => '', 'xtippervorname' => 'Tina', 'xtippernachname' => 'Neu',
+            'xtipperemail' => 'tina@example.org', 'xfrei' => 'on', 'xremind' => 'on', 'xtippervereinradio' => '2', 'xtippervereinneu' => 'Club',
+            'xtipperligen' => ['tippliga'], 'xtippersub' => 'x',
+        ]));
+        $add('neuer Tipper: Formular', $c->get('lmoadmin.php', 'action=admin&todo=tippuseredit&save=-1'));
+        $add('neuer Tipper: Verein schon voll', $c->post('lmoadmin.php', '', $a + [
+            'nick' => 'neu', 'newpage' => '1', 'xtipperpass' => 'abc123', 'xtippervorname' => 'Nora', 'xtippernachname' => 'Neu',
+            'xtipperemail' => 'nora@example.org', 'xnews' => 'on', 'xtippervereinradio' => '1', 'xtippervereinalt' => 'Club',
+            'xtipperligen' => ['tipppokal'], 'xtippersub' => 'x',
+        ]));
+        $add('neuer Tipper: anlegen', $c->post('lmoadmin.php', '', $a + [
+            'nick' => 'neu', 'newpage' => '1', 'xtipperpass' => 'abc123', 'xtippervorname' => 'Nora', 'xtippernachname' => 'Neu',
+            'xtipperemail' => 'nora@example.org', 'xnews' => 'on', 'xtippervereinradio' => '0',
+            'xtipperligen' => ['tipppokal'], 'xtippersub' => 'x',
+        ]));
+        $add('neuer Tipper: Nick schon vergeben', $c->post('lmoadmin.php', '', $a + [
+            'nick' => 'zweiter', 'newpage' => '1', 'xtipperpass' => 'abc', 'xtippervorname' => 'Zoe', 'xtippernachname' => 'Zwei',
+            'xtipperemail' => '', 'xtippervereinradio' => '0', 'xtippersub' => 'x',
+        ]));
+        $add('neuer Tipper: Name mit Leerzeichen', $c->post('lmoadmin.php', '', $a + [
+            'nick' => 'dritter', 'newpage' => '1', 'xtipperpass' => 'abc', 'xtippervorname' => 'Anna Lena', 'xtippernachname' => 'Drei',
+            'xtipperemail' => '', 'xtippervereinradio' => '2', 'xtippervereinneu' => '', 'xtippersub' => 'x',
+        ]));
+
+        $this->assertMatchesSnapshot('tipp', 'tipper_bearbeiten', $t->text());
+    }
 }
