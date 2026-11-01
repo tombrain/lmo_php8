@@ -75,7 +75,6 @@ final class AdminTipperBearbeitenController implements Controller
         if ($save != -1) {
             $gefunden = false;
             for ($i = 1; $i < count($zeilen) && !$gefunden; $i++) {
-                // wie bisher: ohne Treffer bleiben die Felder des letzten Tippers stehen
                 $daten = explode('|', $zeilen[$i]);
                 if ($nick == $daten[0] && $newpage == 0) {
                     $gefunden = true;
@@ -89,7 +88,13 @@ final class AdminTipperBearbeitenController implements Controller
                 }
             }
             if (!$gefunden) {
+                // ein neuer Tipper beginnt leer (bis 4.5 mit den Feldern des letzten Tippers der Datei,
+                // ohne Kennwort sogar mit dessen Kennwort)
                 $save = (string) count($zeilen);
+                $daten = array_fill(0, 12, '');
+                $daten[2] = '5';
+                $daten[9] = '1';
+                $daten[10] = '1';
             }
         } else {
             $daten = array_fill(0, 12, '');
@@ -114,8 +119,11 @@ final class AdminTipperBearbeitenController implements Controller
             $kennwort = trim($a->text('xtipperpass'));
             if ($kennwort != '') {
                 $daten[1] = password_hash($kennwort, defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT);
+            } elseif ($save == count($zeilen)) {
+                // ein neuer Tipper braucht ein Kennwort; beim Bearbeiten bleibt ohne Eingabe das bisherige
+                $newpage = '0';
+                $fehler($t[69] ?? '');
             }
-            // ohne Kennwort bleibt das bisherige
             $daten[3] = $a->text('xtippervorname') . ' ' . $a->text('xtippernachname');
             if (substr_count($daten[3], ' ') > 1) {
                 $newpage = '0';

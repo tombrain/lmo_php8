@@ -965,13 +965,13 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 <tr>
 <td align="right">&nbsp;Vorname</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xtippervorname" size="25" maxlength="32" value="Nora">
+<input class="lmo-formular-input" type="text" name="xtippervorname" size="25" maxlength="32" value="">
 </td>
 </tr>
 <tr>
 <td align="right">&nbsp;Nachname</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xtippernachname" size="25" maxlength="32" value="Neu">
+<input class="lmo-formular-input" type="text" name="xtippernachname" size="25" maxlength="32" value="">
 </td>
 </tr>
 <tr>
@@ -995,13 +995,13 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 <tr>
 <td align="right">&nbsp;E-Mail-Adresse</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xtipperemail" size="25" maxlength="64" value="nora@example.org">
+<input class="lmo-formular-input" type="text" name="xtipperemail" size="25" maxlength="64" value="">
 </td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td align="left">
-<input type="checkbox" name="xfrei">freigeschaltet</td>
+<input type="checkbox" name="xfrei" checked>freigeschaltet</td>
 </tr>
 <tr>
 <th align="left" colspan="2">Newsletter/Reminder</th>
@@ -1014,7 +1014,7 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 <tr>
 <td>&nbsp;</td>
 <td align="left">
-<input type="checkbox" name="xremind">Tipp-Reminder </td>
+<input type="checkbox" name="xremind" checked>Tipp-Reminder </td>
 </tr>
 <tr>
 <th align="left" colspan="2">abonnierte Ligen</th>
@@ -1028,7 +1028,7 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 </tr>
 <tr>
 <td align="left">
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;del=neu" onClick="return confirm('Wirklich löschen?');">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;del=" onClick="return confirm('Wirklich löschen?');">
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a> &nbsp;&nbsp;<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser">Abbrechen</a>
 </td>
@@ -1218,7 +1218,7 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 <tr>
 <td>&nbsp;</td>
 <td align="left">
-<input type="checkbox" name="xfrei">freigeschaltet</td>
+<input type="checkbox" name="xfrei" checked>freigeschaltet</td>
 </tr>
 <tr>
 <th align="left" colspan="2">Newsletter/Reminder</th>
@@ -1231,7 +1231,7 @@ NEU daten/tipp/tipps/tipppokal_neu.tip (1 Bytes)
 <tr>
 <td>&nbsp;</td>
 <td align="left">
-<input type="checkbox" name="xremind">Tipp-Reminder </td>
+<input type="checkbox" name="xremind" checked>Tipp-Reminder </td>
 </tr>
 <tr>
 <th align="left" colspan="2">abonnierte Ligen</th>
