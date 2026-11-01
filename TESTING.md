@@ -45,6 +45,19 @@ PHP_VERSION=8.1 docker compose run --rm tests
 
 Ohne Docker: `composer install && php vendor/bin/phpunit` (PHP ≥ 8.1, optional `faketime`).
 
+### `vendor/` im Docker-Volume
+
+Im Container liegt `vendor/` nicht im eingebundenen Projektordner, sondern im Volume
+`lmo_php8_vendor`. Über den Bind-Mount von Windows gelesen brauchte `PagesTest` 11:17 min, aus dem
+Volume 4:40 min (11/2026): Jede Anfrage ist ein eigener PHP-Prozess und lädt Autoloader und Twig neu.
+
+- Der erste Testlauf füllt das Volume (`composer install`), ebenso jeder Lauf nach einer Änderung
+  an `composer.lock`. Der Dienst `web` nutzt dasselbe Volume.
+- Das `vendor/` im Projektordner ist nur eine Kopie der PHP-Dateien für die IDE. Composer spiegelt
+  nach jedem Autoload-Dump selbst (`docker/sync_vendor.php`); von Hand:
+  `.\docker\sync_vendor.ps1` (`-Force` für alle Dateien).
+- Neu befüllen: `docker volume rm lmo_php8_vendor`, danach `docker compose run --rm tests`.
+
 **Wichtig:** Snapshots nur am unveränderten Original aufzeichnen und nur dann neu aufzeichnen, wenn
 eine Abweichung geprüft und gewollt ist. Eine Abweichung ist zunächst ein Befund, kein Grund
 zum Aktualisieren.

@@ -9,6 +9,13 @@ services:
     image: lmo-golden-tests:php${PHP_VERSION:-8.3}
     volumes:
       - .:/app
+      # vendor/ im Docker-Volume: ueber den Bind-Mount von Windows gelesen brauchte PagesTest 11:17 min,
+      # so 4:40 min (jede Anfrage ist ein eigener PHP-Prozess und laedt Autoloader und Twig neu).
+      # Neu befuellen: docker volume rm lmo_php8_vendor, dann docker compose run --rm tests
+      - vendor:/app/vendor
+      # vendor/ des Hosts, nur als Kopie fuer die IDE: docker/sync_vendor.php spiegelt die PHP-Dateien
+      # dorthin, Composer ruft es nach jedem Autoload-Dump auf (von Hand: docker/sync_vendor.ps1, -Force fuer alles)
+      - ./vendor:/host-vendor
       # unveraenderter Originalstand fuer das Aufzeichnen der Snapshots (optional)
       - ${ORIGINAL_DIR:-./.original}:/original:ro
     environment:
@@ -37,8 +44,9 @@ services:
       - "${WEB_PORT:-8082}:80"
     volumes:
       - ./lmo:/var/www/html/lmo
-      # Composer-Abhaengigkeiten liegen wie im Repo neben lmo/ (vorher: composer install bzw. docker compose run --rm tests)
-      - ./vendor:/var/www/html/vendor:ro
+      # Composer-Abhaengigkeiten liegen wie im Repo neben lmo/, aus dem Volume des Test-Dienstes
+      # (vorher einmal docker compose run --rm tests, das befuellt es)
+      - vendor:/var/www/html/vendor:ro
       # die Klassen des LMO (Lmo\Liga\...), die der Composer-Autoloader neben vendor/ erwartet
       - ./src:/var/www/html/src:ro
       # Laufzeitdaten getrennt vom Code (Neustart von vorn: docker compose down -v)
@@ -64,6 +72,7 @@ services:
       - "${MAIL_PORT:-8025}:8025"
 
 volumes:
+  vendor:
   web-config:
   web-ligen:
   web-output:

@@ -68,6 +68,7 @@
             "phpstan analyse -c phpstan-tests.neon.dist --no-progress --memory-limit=1G",
             "phpstan analyse -c phpstan-strict.neon.dist --no-progress --memory-limit=1G"
         ],
+        "post-autoload-dump": "@php -r \"is_file('docker/sync_vendor.php') && require 'docker/sync_vendor.php';\"",
         "test": "phpunit",
         "test:record": "GOLDEN_MODE=record phpunit"
     },
