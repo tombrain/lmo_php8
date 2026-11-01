@@ -174,14 +174,15 @@ final class AdminTipperBearbeitenController implements Controller
                     unlink($tippordner . $tippdatei);
                 }
             }
-            // neue Ligen: leere Tippdatei und ein Eintrag in der Auswertung der Liga (wie bisher mit dem bisherigen Verein)
+            // neue Ligen: leere Tippdatei und ein Eintrag in der Auswertung der Liga, mit dem Verein von eben
+            // (bis 4.5 mit dem bisherigen)
             foreach ($gewaehlt as $liga) {
                 $pfad = $tippordner . $liga . '_' . $nick . '.tip';
                 if (!is_file($pfad)) {
                     if (!Tippdatei::leer()->speichere($pfad)) {
                         return new Seite(AdminMenue::html($kontext, 'tippuseredit') . $meldungen . Meldung::html($bilder, $text[283] ?? '', true));
                     }
-                    file_put_contents($tippordner . 'auswert/' . $liga . '.aus', "\n[" . $nick . "]\nTeam=" . $daten[5] . "\nName=" . $daten[3] . "\n", FILE_APPEND | LOCK_EX);
+                    file_put_contents($tippordner . 'auswert/' . $liga . '.aus', "\n[" . $nick . "]\nTeam=" . $verein . "\nName=" . $daten[3] . "\n", FILE_APPEND | LOCK_EX);
                 }
             }
 
