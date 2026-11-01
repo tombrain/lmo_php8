@@ -100,12 +100,8 @@ final class AdminOptionenController implements Controller
                 $neu['tippmodus'] = $wert('xtippmodus', 0);
                 break;
             case 1:
-                $dirtipp = $k['dirtipp'] ?? '';
-                if ($a->gesetzt('xdirtipp')) {
-                    $dirtipp = $a->text('xdirtipp');
-                } else {
-                    $neu['krit1'] = 'tipps/';
-                }
+                // ohne Feld bleibt der bisherige (bis 4.5 kam dann "tipps/" in das erste Kriterium bei Punktgleichheit)
+                $dirtipp = $a->gesetzt('xdirtipp') ? $a->text('xdirtipp') : ($k['dirtipp'] ?? '');
                 if (substr($dirtipp, -1) != '/') {
                     $dirtipp .= '/';
                 }

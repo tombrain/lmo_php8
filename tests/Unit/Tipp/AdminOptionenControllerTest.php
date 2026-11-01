@@ -113,6 +113,10 @@ class AdminOptionenControllerTest extends TestCase
         $this->seite(['save' => '1', 'show' => '1', 'xdirtipp' => 'meine\\tipps']);
 
         self::assertStringContainsString("dirtipp=meine/tipps/\n", $this->cfg());
+
+        $this->seite(['save' => '1', 'show' => '1']);
+        self::assertStringContainsString("dirtipp=meine/tipps/\n", $this->cfg(), 'ohne Feld der bisherige');
+        self::assertStringContainsString("krit1=0\n", $this->cfg(), 'bis 4.5 krit1=tipps/');
     }
 
     public function testLigen(): void
