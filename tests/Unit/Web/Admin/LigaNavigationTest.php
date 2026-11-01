@@ -50,7 +50,7 @@ class LigaNavigationTest extends TestCase
         $liga->setzeEinstellung('HandS', $handicap ? '1' : '0');
         $liga->setzeEinstellung('Type', $pokal ? '1' : '0');
 
-        return LigaNavigation::html($kontext, new Addons([new SpielerAddon('/x/daten/spieler', '/x/spieler')]), $liga, $todo, $st, self::ADDR, self::ADDB);
+        return LigaNavigation::html($kontext, new Addons([new SpielerAddon('/x/daten/spieler')]), $liga, $todo, $st, self::ADDR, self::ADDB);
     }
 
     public function testGezeigteSeiteOhneLink(): void

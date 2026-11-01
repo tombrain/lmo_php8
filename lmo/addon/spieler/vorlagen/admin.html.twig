@@ -1,0 +1,273 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Spielerstatistik einer Liga pflegen (Lmo\Addon\Spieler\AdminController), bis 4.5 lmo-statadmin.php #}
+{# Plus und Minus an einem Zahlenfeld; nr wie bisher die Anzahl der Spalten #}
+{% macro pfeile(feld, nr, text, bilder) %}
+                      <table cellpadding="0" cellspacing="0"{{ feld == 'anzeige_pro_seite' ? ' border="0"' : '' }}>
+                        <tr>
+                          <td><script type="text/javascript">document.write('<a href="#" onclick="return change(\'+\',\'{{ feld }}\');" title="{{ text[120]|raw }}" onMouseOver="lmoimg(\'{{ nr }}a\',img1)" onMouseOut="lmoimg(\'{{ nr }}a\',img0)"><img src="{{ bilder }}/lmo-admin0.gif" name="ximg{{ nr }}a" width="7" height="7" border="0"><\/a>')</script></td>
+                        </tr>
+                        <tr>
+                          <td><script type="text/javascript">document.write('<a href="#" onclick="return change(\'-\',\'{{ feld }}\');" title="{{ text[120]|raw }}" onMouseOver="lmoimg(\'{{ nr }}b\',img3)" onMouseOut="lmoimg(\'{{ nr }}b\',img2)"><img src="{{ bilder }}/lmo-admin2.gif" name="ximg{{ nr }}b" width="7" height="7" border="0"><\/a>')</script></td>
+                        </tr>
+                      </table>
+{% endmacro %}
+{# die versteckten Felder eines Formulars, in der Reihenfolge wie bisher #}
+{% macro versteckt(felder) %}
+{% for name, wert in felder %}
+                    <input type="hidden" name="{{ name }}" value="{{ wert|raw }}">
+{% endfor %}
+{% endmacro %}
+{% import _self as f %}
+{% set nr = spalten|length %}
+{{ navigation|raw }}
+      <script type="text/javascript">
+        function change(op,x) {
+          var el=document.getElementsByName(x)[0];
+          var a=el.value;
+          if (!isNaN(a)) {
+            a=parseInt(a);
+            document.getElementsByName(x)[0].value=eval(a+op+"1");
+          }
+          lmotest=false;
+          mark(el);
+          return false;
+        }
+        function sel(x) {
+          document.getElementsByName(x)[0].select();
+        }
+        function mark(el) {
+          el.className="lmoTabelleMeister";
+        }
+      </script>
+      <table class="lmoMiddle">
+        <tr>
+          <th align="center"><h1>{{ t[18]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td>
+            <table class="lmoInner">
+{# Spieler anlegen und loeschen #}
+              <tr>
+                <th align="left" colspan="2">{{ t[6]|raw }}</th>
+              </tr>
+              <tr>
+                <td class="nobr" align="right">
+                  <form action="{{ adresse }}" method="post">
+                    <acronym title="{{ t[9]|raw }}"><input type="text" name="wert"></acronym>&nbsp;<input class="lmo-formular-button" type="submit" value=" + ">
+{{ f.versteckt({option: 'addplayer', sort: sort, todo: 'edit', st: st, file: datei}) }}
+                  </form>
+                </td>
+                <td class="nobr" align="left">
+                  <form action="{{ adresse }}" method="post">
+                    <acronym title="{{ t[10]|raw }}">
+                      <select name="wert" size="1">
+{% for z in zeilen %}
+                        <option value="{{ loop.index0 }}">{{ z[0].wert|raw }}</option>
+{% endfor %}
+                      </select>
+                    </acronym>
+                    <input class="lmo-formular-button" type="submit" value=" &minus; ">
+{{ f.versteckt({option: 'delplayer', todo: 'edit', sort: sort, st: st, file: datei}) }}
+                  </form>
+                </td>
+              </tr>
+{# Spalten anlegen und loeschen: Hauptadmin und Hilfsadmins mit Recht auf Spalten #}
+{% if spaltenRechte %}
+              <tr>
+                <th align="left" colspan="2">{{ t[5]|raw }}</th>
+              </tr>
+              <tr>
+                <td class="nobr" align="right">
+                  <form action="{{ adresse }}" method="post" name="spalten">
+                    <acronym title="{{ t[7]|raw }}"><input type="text" name="wert"></acronym>
+                    <input class="lmo-formular-button" type="submit" value=" + "><br>
+                    <acronym title="{{ t[30]|raw }}">{{ t[38]|raw }}:</acronym>
+                    <input type="radio" name="type" value="0" checked>&nbsp;{{ t[52]|raw }}
+                    <input type="radio" name="type" value="{{ t[43]|raw }}">&nbsp;{{ t[53]|raw }}
+                    <input type="radio" name="type" value="F">&nbsp;{{ t[54]|raw }}
+{{ f.versteckt({option: 'addcolumn', sort: sort, todo: 'edit', st: st, file: datei}) }}
+                  </form>
+                </td>
+                <td class="nobr" align="left" valign="top">
+                  <form action="{{ adresse }}" method="post" name="spieler">
+                    <acronym title="{{ t[8]|raw }}">
+                      <select name="wert" size="1">
+{% for spalte in spalten %}
+                        <option value="{{ loop.index0 }}"{% if loop.index0 == 0 %} disabled{% endif %}{% if loop.index0 == 1 %} selected{% endif %}>{{ spaltenMaskiert[loop.index0]|raw }}</option>
+{% endfor %}
+                      </select></acronym>&nbsp;<input class="lmo-formular-button" type="submit" value=" &minus; ">
+{{ f.versteckt({option: 'delcolumn', todo: 'edit', st: st, sort: sort, file: datei}) }}
+                  </form>
+                </td>
+              </tr>
+{% endif %}
+            </table>
+          </td>
+        </tr>
+{# die Statistik: Spaltennamen mit Sortierung, Formeln, je Spieler eine Zeile #}
+        <tr>
+          <th align="center"><h1>{{ t[1]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td>
+            <form action="{{ adresse }}" method="post">
+              <table id="stats" class="lmoInner" >
+                <thead>
+                  <tr>
+{% for spalte in spalten %}
+{% set sortieren = adresse ~ '?action=admin&amp;todo=edit&amp;st=-4&amp;sort=' ~ loop.index0 ~ '&amp;file=' ~ datei ~ '&amp;sort_direction=' %}
+                    <th colspan="2" class="nobr" align="center">
+                      <a href="{{ sortieren|raw }}asc" title="{{ text[527]|raw }} {{ text[526]|raw }}" onClick="return chklmolink();"><img src="{{ bilder }}/upsimple.svg" width="10" border="0" alt="&and;"></a>
+                      <input type="text" name="spalten{{ loop.index0 }}" onChange="mark(this)" value="{{ spalte|raw }}" size="{{ laenge.spalten[loop.index0] }}">
+                      <a href="{{ sortieren|raw }}desc" title="{{ text[528]|raw }} {{ text[526]|raw }}" onClick="return chklmolink();"><img src="{{ bilder }}/downsimple.svg" width="10" border="0" alt="&or;"></a>
+                    </th>
+{% endfor %}
+                  </tr>
+                </thead>
+                <tfoot>
+{% if formeln > 0 %}
+                  <tr>
+{% for spalte in spalten %}
+                    <th colspan="2" align="center">{% if formel[loop.index0] ?? false %}<input type="text" onClick="sel('formel_str{{ loop.index0 }}')" onChange="mark(this)" name="formel_str{{ loop.index0 }}" value="{{ (formelzeile[loop.index0] ?? '')|raw }}" size="{{ laenge.formeln[loop.index0] ?? 0 }}">{% elseif loop.index0 == 0 %}<strong>{{ t[54]|raw }}:</strong>{% else %}&nbsp;{% endif %}</th>
+{% endfor %}
+                  </tr>
+{% endif %}
+                  <tr>
+                    <td align="center" colspan="{{ nr * 2 }}">
+                      <input type="hidden" name="option" value="statupdate">
+                      <input type="hidden" name="todo" value="edit">
+                      <input type="hidden" name="st" value="{{ st|raw }}">
+                      <input type="hidden" name="sort" value="{{ sort|raw }}">
+                      <input type="hidden" name="file" value="{{ datei|raw }}">
+                      <input class="lmo-formular-button" type="submit" value="{{ t[59]|raw }}">
+                    </td>
+                  </tr>
+                </tfoot>
+                <tbody>
+{% for z in zeilen %}
+                  <tr>
+{% for feld in z %}
+{% if feld.art == 'formel' %}
+                    <td colspan="2" align="center">
+                      <input type="text" name="{{ feld.name }}" value="{{ feld.wert|raw }}" size="{{ feld.laenge }}" disabled>
+                    </td>
+{% elseif feld.art == 'zahl' %}
+                    <td align="right">
+                      <input type="text" name="{{ feld.name }}" value="{{ feld.wert|raw }}" size="{{ feld.laenge }}">
+                    </td>
+                    <td align="left">
+{{ f.pfeile('data' ~ feld.zeile ~ '|' ~ feld.spalte, nr, text, bilder) }}
+                    </td>
+{% elseif feld.art == 'verein' %}
+                    <td colspan="2" align="left">
+                      <select name="{{ feld.name }}" size="1">
+{% for verein in feld.vereine %}
+                        <option{% if verein == feld.wert %} selected{% endif %}>{{ verein|raw }}</option>
+{% endfor %}
+                      </select>
+                    </td>
+{% else %}
+                    <td colspan="2" align="left">
+                      <input type="text" name="{{ feld.name }}" value="{{ feld.wert|raw }}" size="{{ feld.laenge }}">
+                    </td>
+{% endif %}
+{% endfor %}
+                  </tr>
+{% endfor %}
+                </tbody>
+              </table>
+            </form>
+          </td>
+        </tr>
+{# Einstellungen der Liga #}
+        <tr>
+          <th align="center"><h1>{{ t[39]|raw }}</h1></th>
+        </tr>
+        <tr>
+          <td>
+            <form action="{{ adresse }}" method="post" name="form1">
+              <input type="hidden" name="option" value="saveconfig">
+              <input type="hidden" name="todo" value="edit">
+              <input type="hidden" name="st" value="{{ st|raw }}">
+              <input type="hidden" name="file" value="{{ datei|raw }}">
+              <table class="lmoInner">
+                <tr>
+                  <th colspan="3">{{ t[44]|raw }}</th>
+                  <th colspan="2">{{ t[45]|raw }}</th>
+                </tr>
+                <tr>
+                  <td class="nobr">{{ t[22]|raw }}: </td>
+                  <td align="right">
+                    <input type="text" name="anzeige_pro_seite" value="{{ e.anzeige_pro_seite|raw }}" size="{{ laenge.anzeige_pro_seite }}">
+                  </td>
+                  <td align="left">
+{{ f.pfeile('anzeige_pro_seite', nr, text, bilder) }}
+                  </td>
+                  <td align="left" class="nobr">{{ t[40]|raw }}: </td>
+                  <td align="left">
+                    <select name="adminbereich_standard_sortierung" onChange="mark(this)" size="1">
+{% for spalte in spalten %}
+                      <option value="{{ loop.index0 }}"{% if loop.index0 == e.adminbereich_standard_sortierung %} selected{% endif %}>{{ spalte|raw }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" class="nobr">{{ t[21]|raw }}: </td>
+                  <td align="left" colspan="2">
+                    <select name="standard_sortierung" onChange="mark(this)" size="1">
+{% for spalte in spalten %}
+                      <option value="{{ loop.index0 }}"{% if loop.index0 == e.standard_sortierung %} selected{% endif %}>{{ spalte|raw }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+{% if hauptadmin %}
+                  <td align="left" class="nobr">{{ t[31]|raw }}: </td>
+                  <td align="left"><input type="checkbox" name="adminbereich_hilfsadmin_zulassen" onChange="mark(this)" value="{{ e.adminbereich_hilfsadmin_zulassen|raw }}"{% if e.adminbereich_hilfsadmin_zulassen == 1 %} checked{% endif %} onClick="if (this.checked==true) document.form1.adminbereich_hilfsadmin_fuer_spalten.disabled=false; else {document.form1.adminbereich_hilfsadmin_fuer_spalten.disabled=true;document.form1.adminbereich_hilfsadmin_fuer_spalten.checked=false;}"></td>
+{% endif %}
+                </tr>
+                <tr>
+                  <td align="left" class="nobr" rowspan="2">{{ t[13]|raw }}: </td>
+                  <td align="left" class="nobr" colspan="2"><input type="radio" name="standard_richtung" onClick="mark(this)" value="1"{% if e.standard_richtung == 1 %} checked{% endif %}> {{ t[48]|raw }}</td>
+{% if hauptadmin %}
+                  <td align="left" class="nobr">{{ t[46]|raw }}: </td>
+                  <td align="left"><input{% if e.adminbereich_hilfsadmin_fuer_spalten != 1 %} disabled{% endif %} type="checkbox" onChange="mark(this)" name="adminbereich_hilfsadmin_fuer_spalten" value="{{ e.adminbereich_hilfsadmin_fuer_spalten|raw }}"{% if e.adminbereich_hilfsadmin_fuer_spalten == 1 %} checked{% endif %}></td>
+{% endif %}
+                </tr>
+                <tr>
+                  <td align="left" colspan="2" class="nobr"><input type="radio" name="standard_richtung" onClick="mark(this)" value="0"{% if e.standard_richtung == 0 %} checked{% endif %}> {{ t[47]|raw }}</td>
+                  <td colspan="2" rowspan="4">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td align="left" class="nobr">{{ t[41]|raw }}: </td>
+                  <td colspan="2" align="left"><input type="text" name="ligalink" onChange="mark(this)" value="{{ e.ligalink|raw }}" size="{{ laenge.ligalink }}"></td>
+                </tr>
+                <tr>
+                  <td align="left" class="nobr">{{ t[24]|raw }}: </td>
+                  <td colspan="2" align="left"><input type="checkbox" name="extra_sortierspalte" onClick="mark(this)" value="{{ e.extra_sortierspalte|raw }}"{% if e.extra_sortierspalte == 1 %} checked{% endif %}></td>
+                </tr>
+                <tr>
+                  <td align="left" class="nobr">{{ t[50]|raw }}: </td>
+                  <td colspan="2" align="left"><input type="checkbox" name="vereinsweise_anzeigen" onClick="mark(this)" value="{{ e.vereinsweise_anzeigen|raw }}"{% if e.vereinsweise_anzeigen == 1 %} checked{% endif %}{% if not vereinsspalte %} disabled{% endif %}></td>
+                </tr>
+                <tr>
+                  <td class="nobr">{{ t[23]|raw }}: </td>
+                  <td colspan="2" align="left"><input type="checkbox" name="nullwerte_anzeigen" onClick="mark(this)" value="{{ e.nullwerte_anzeigen|raw }}"{% if e.nullwerte_anzeigen == 1 %} checked{% endif %}></td>
+                </tr>
+                <tr>
+                  <td colspan="5" align="center"><input class="lmo-formular-button" type="submit" value="{{ t[58]|raw }}"></td>
+                </tr>
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>

@@ -18,7 +18,7 @@ namespace Lmo\Addon\Spieler;
  * Die Einstellungen der Spielerstatistik einer Liga: die des Addons (config/spieler/cfg.txt),
  * ersetzt durch die der Liga (daten/spieler/<liga>.cfg, vom Admin geschrieben). In der
  * Datei der Liga heissen die Einstellungen wie die Sprachtexte des Addons (z. B. "Anzeige pro
- * Seite=10"), wie bisher in lmo-statloadconfig.php.
+ * Seite=10"), wie bis 4.5 in lmo-statloadconfig.php.
  */
 final class Einstellungen
 {
