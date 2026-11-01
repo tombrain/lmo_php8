@@ -46,7 +46,7 @@
         </tr>
       </thead>
         <tbody>
-{# je Tipper eine Zeile; geschlossen wird wie bisher nur die letzte #}
+{# je Tipper eine Zeile #}
 {% for z in zeilen %}
         <tr>
           <td align="left">
@@ -65,10 +65,10 @@
           <td align="left">{{ z.zeit }}</td>
           <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuseredit&amp;nick={{ z.nick|raw }}' onClick="return chklmolink();">{{ t[98]|raw }}</a></td>
           <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuser&amp;tipper_sort={{ sortierung|raw }}&amp;del={{ z.nick|raw }}' onClick="return confirm('{{ text[499]|raw }}');"><img src="{{ bilder }}/delete.svg" border="0" height="18" alt="{{ text[82]|raw }}"></a></td>
-{% endfor %}
         </tr>
-{% endif %}
+{% endfor %}
         </tbody>
+{% endif %}
       </table>
       <script type="text/javascript">
           var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]);
@@ -78,7 +78,7 @@
   </tr>
   <tr>
     <th class="lmoMenu" align="center">
-      <a href="{{ adresse }}?action=admin&amp;todo=tippuseredit&amp;save=-1">{{ t[136]|raw }}</a></th>
+      <a href="{{ adresse }}?action=admin&amp;todo=tippuseredit&amp;save=-1">{{ t[136]|raw }}</a>
     </th>
   </tr>
 </table>

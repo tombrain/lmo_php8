@@ -114,6 +114,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Administration, Userverwaltung: gültiges HTML. Jede Zeile der Tipper wird geschlossen (bisher nur die letzte), ohne `</tbody>` ohne Tipper und ohne doppeltes `</th>`.  
 * Tippspiel, Administration, Userverwaltung: Ein Name ohne Leerzeichen erscheint vollständig. Bisher fehlte sein erster Buchstabe („&nbsp;leopatra“).  
 * Tippspiel, Administration: Beim Löschen eines Tippers werden nur noch seine eigenen Tipps (`<Liga>_<Nick>.tip`) gelöscht. Bisher traf es jede Tippdatei, die auf den Nick endete: Wer „ter“ löschte, löschte auch alle Tipps von „tester“ und „zweiter“.  
 * Spielerstatistik, Administration: Spaltennamen, Formeln, Einstellungen und die Parameter der Seite stehen maskiert in den Formularfeldern. Bisher zerschnitt etwa ein Anführungszeichen im Namen einer Spalte das Feld, und beim nächsten Speichern ging der Rest verloren.  
@@ -589,6 +590,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, administration, user management: valid HTML. Every row of tippers is closed (so far only the last one), without `</tbody>` when there are no tippers and without a double `</th>`.  
 * Prediction game, administration, user management: a name without a space is shown in full. So far its first letter was missing.  
 * Prediction game, administration: deleting a tipper only deletes their own tips (`<league>_<nick>.tip`). So far it hit every tip file ending in the nick: deleting "ter" also deleted all tips of "tester" and "zweiter".  
 * Player statistics, administration: column names, formulas, settings and the page parameters are escaped in the form fields. So far for example a quote in a column name cut the field, and the rest was lost on the next save.  

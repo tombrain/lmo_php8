@@ -134,6 +134,7 @@
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a>
 </td>
+</tr>
 <tr>
 <td align="left">
 <img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
@@ -154,6 +155,7 @@
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a>
 </td>
+</tr>
 <tr>
 <td align="left">
 <img src="http://lmo.test/lmo/img/wrong.svg" border="0" height="20" alt="+">
@@ -181,7 +183,6 @@
 <tr>
 <th class="lmoMenu" align="center">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
-</th>
 </th>
 </tr>
 </table>
@@ -382,6 +383,7 @@
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a>
 </td>
+</tr>
 <tr>
 <td align="left">
 <img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
@@ -402,6 +404,7 @@
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a>
 </td>
+</tr>
 <tr>
 <td align="left">
 <img src="http://lmo.test/lmo/img/wrong.svg" border="0" height="20" alt="+">
@@ -429,7 +432,6 @@
 <tr>
 <th class="lmoMenu" align="center">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
-</th>
 </th>
 </tr>
 </table>
@@ -632,6 +634,7 @@
 <img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
 </a>
 </td>
+</tr>
 <tr>
 <td align="left">
 <img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
@@ -661,7 +664,6 @@
 <tr>
 <th class="lmoMenu" align="center">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
-</th>
 </th>
 </tr>
 </table>
