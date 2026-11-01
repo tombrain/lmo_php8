@@ -1,7 +1,10 @@
 #!/bin/sh
 cd /app || exit 1
-if [ ! -x vendor/bin/phpunit ]; then
+# vendor/ liegt im Docker-Volume: neu installieren, wenn es leer ist oder composer.lock neuer
+# (z. B. nach git pull); Composer spiegelt danach auf den Host (docker/sync_vendor.php)
+if [ ! -x vendor/bin/phpunit ] || [ composer.lock -nt vendor/composer/installed.json ]; then
     composer install --no-interaction --no-progress --prefer-dist || exit 1
+    touch vendor/composer/installed.json  # ohne Aenderung schreibt Composer sie nicht neu
 fi
 echo "PHP $(php -r 'echo PHP_VERSION;'), Quelle: ${LMO_SOURCE:-/app}, Modus: ${GOLDEN_MODE:-compare}, Coverage: ${GOLDEN_COVERAGE:-0}"
 

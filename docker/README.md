@@ -40,6 +40,10 @@ Projektordner. So landet nichts davon versehentlich im Git.
 | `lmo/addon/tipp/tipps` | `web-tipps` | Tippspiel |
 | `lmo/addon/spieler/stats` | `web-stats` | Spielerstatistik |
 
+Die Composer-Pakete (`vendor/`) kommen aus dem Volume `vendor`, das der Dienst `tests` füllt: vor dem
+ersten Start von `web` einmal `docker compose run --rm tests` ausführen (siehe [TESTING.md](../TESTING.md)).
+`docker compose down -v` entfernt es mit; der nächste Testlauf füllt es neu.
+
 Beim ersten Start werden die Volumes mit dem Stand aus dem Projektordner gefüllt (Beispielligen).
 Später im Projektordner hinzugefügte Ligen erscheinen nicht von selbst im Container.
 
