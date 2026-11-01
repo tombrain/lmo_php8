@@ -43,7 +43,7 @@ class AdminEmailControllerTest extends TestCase
     }
 
     /** @param array<string, mixed> $anfrage */
-    private function seite(array $anfrage, int $rolle = 2, string $ligenzutippen = 'bula,cup'): ?string
+    private function seite(array $anfrage, int $rolle = 2, string $ligenzutippen = 'bula,cup', string $erinnerung = ''): ?string
     {
         $text = [];
         for ($i = 0; $i <= 600; $i++) {
@@ -57,7 +57,7 @@ class AdminEmailControllerTest extends TestCase
             new Anfrage($anfrage + ['action' => 'admin', 'todo' => 'tippemail']),
             '',
             null,
-            new Konfiguration(['dirliga' => 'ligen/', 'tipp' => ['ligenzutippen' => $ligenzutippen, 'immeralle' => '0', 'tippauthtxt' => 'lmo-tippauth.txt']]),
+            new Konfiguration(['dirliga' => 'ligen/', 'tipp' => ['ligenzutippen' => $ligenzutippen, 'immeralle' => '0', 'tippauthtxt' => 'lmo-tippauth.txt', 'textreminder1' => $erinnerung]]),
             $text,
             '/lmoadmin.php',
             new Pfade($this->ordner, dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
@@ -96,6 +96,21 @@ class AdminEmailControllerTest extends TestCase
         self::assertStringContainsString('name="tage" size="2" maxlength="2" value="4"', $html);
         self::assertStringContainsString('name="textreminder1" value="P174"', $html);
         self::assertMatchesRegularExpression('/<textarea id="message" name="message" rows="10" cols="60">P295\s*<\/textarea>/', $html);
+    }
+
+    public function testGespeicherteErinnerung(): void
+    {
+        $html = (string) $this->seite(['emailart' => '1', 'tipp_textreminder1' => 'aus dem Formular'], 2, 'bula', 'Bitte &quot;tippen&quot;&#10;[spiele]');
+
+        self::assertStringContainsString('name="textreminder1" value="Bitte &quot;tippen&quot;&#10;[spiele]"', $html, 'bis 4.5 immer der vorgegebene');
+        self::assertStringContainsString('cols="60">Bitte &quot;tippen&quot;&#10;[spiele]', $html);
+    }
+
+    public function testErinnerungVon45AbgeschnittenDannVorgegeben(): void
+    {
+        $html = (string) $this->seite([], 2, 'bula', 'Erste Zeile&#10');
+
+        self::assertStringContainsString('name="textreminder1" value="P174"', $html);
     }
 
     public function testOhneLigenKeinAlle(): void

@@ -60,8 +60,12 @@ final class AdminEmailController implements Controller
         // die Liga der Erinnerung (Dateiname mit .l98); null: keine (alle Ligen)
         $liga = '';
         $st = '';
-        // der Text der Erinnerung fuer das Formular, schon als HTML (Zeilenumbrueche als &#10;)
-        $erinnerung = self::html($a->text('tipp_textreminder1'));
+        // der Text der Erinnerung fuer das Formular, schon als HTML (Zeilenumbrueche als &#10;): der
+        // gespeicherte, mit &#10; und &quot; (bis 4.5 zeigte das Formular immer den vorgegebenen).
+        // Ohne Anfuehrungszeichen gespeichert (bis 4.5) endet er nach der ersten Zeile mit "&#10": dann
+        // der vorgegebene.
+        $gespeichert = $cfg['textreminder1'] ?? '';
+        $erinnerung = str_ends_with($gespeichert, '&#10') ? '' : self::html(html_entity_decode($gespeichert, ENT_QUOTES));
 
         $ausgabe = '';
         if ($save == 1) {

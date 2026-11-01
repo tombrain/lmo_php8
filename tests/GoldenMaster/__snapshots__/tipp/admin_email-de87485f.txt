@@ -1069,7 +1069,7 @@ GEAENDERT config/tipp/cfg.txt
  immeralle=1
  ligenzutippen=
 -textreminder1=Gespeichert: [spiele]&#10;Gruss
-+textreminder1=Hallo [nick]:&#10;[spiele]
++textreminder1="Hallo [nick]:&#10;[spiele]"
  showtendenzabs=1
  showtendenzpro=1
 
@@ -1369,8 +1369,8 @@ GEAENDERT config/tipp/cfg.txt
 @@ -46,5 +46,5 @@
  immeralle=1
  ligenzutippen=
--textreminder1=Hallo [nick]:&#10;[spiele]
-+textreminder1=Alle [nick]:&#10;[spiele]
+-textreminder1="Hallo [nick]:&#10;[spiele]"
++textreminder1="Alle [nick]:&#10;[spiele]"
  showtendenzabs=1
  showtendenzpro=1
 
@@ -1430,7 +1430,7 @@ GEAENDERT config/tipp/cfg.txt
 <input type="hidden" name="action" value="admin">
 <input type="hidden" name="todo" value="tippemail">
 <input type="hidden" name="save" value="1">
-<input type="hidden" name="textreminder1" value="Hallo [nick],&#13;&#13;diese Mail ist eine Erinnerung an Deine Tippabgabe.&#13;Bisher haben wir leider noch keine Tippabgabe von Dir für folgende Spielpaarungen:&#13;&#13;[spiele]">
+<input type="hidden" name="textreminder1" value="Alle [nick]:&#10;[spiele]">
 <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
 <tr>
 <td width="20">&nbsp;</td>

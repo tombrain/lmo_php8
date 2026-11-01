@@ -75,6 +75,15 @@ class KonfigurationTest extends TestCase
         self::assertStringEqualsFile($this->ordner . '/tipp/cfg.txt', "rangliste=1\nmail=a@b.de\n");
     }
 
+    public function testSpeichereWertMitSemikolon(): void
+    {
+        $konfiguration = Konfiguration::lies($this->ordner)->mit(['tipp' => ['mail' => 'Hallo "du"&#10;[spiele]']]);
+
+        self::assertTrue($konfiguration->speichere($this->ordner));
+        self::assertStringEqualsFile($this->ordner . '/tipp/cfg.txt', "rangliste=1\nmail=\"Hallo &quot;du&quot;&#10;[spiele]\"\n");
+        self::assertSame('Hallo &quot;du&quot;&#10;[spiele]', Konfiguration::lies($this->ordner)->addon('tipp')['mail'], 'bis 4.5 nur "Hallo "du"&#10"');
+    }
+
     public function testSpeichereFehler(): void
     {
         self::assertFalse((new Konfiguration(['gibtsnicht' => ['a' => '1']]))->speichere($this->ordner), 'Addon ohne Ordner');
