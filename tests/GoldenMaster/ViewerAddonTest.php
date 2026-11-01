@@ -38,8 +38,8 @@ final class ViewerAddonTest extends TestCase
             'anzahl_spieltage_zurueck' => 1, 'datumsformat' => 'd.m.Y', 'heute_highlight' => 1, 'tabelle_verlinken' => 1,
             'spielberichte_neues_fenster' => '', 'mannschaftshomepages_verlinken' => '', 'mannschaftsnamen' => 0,
             'titelzeile' => 'Testansicht', 'anstosstermin' => '', 'template' => 'standard', 'uhrzeitformat' => 'H:i',
-            'tordummy' => '_', 'tabellensymbol' => 'tabelle.gif', 'spielberichtesymbol' => 'bericht.gif',
-            'notizsymbol' => 'notiz.gif', 'spieltagtext' => 'ST', 'cache_refresh' => 0, 'favteam_highlight' => 1,
+            'tordummy' => '_', 'tabellensymbol' => 'tabelle.svg', 'spielberichtesymbol' => 'bericht.svg',
+            'notizsymbol' => 'notiz.svg', 'spieltagtext' => 'ST', 'cache_refresh' => 0, 'favteam_highlight' => 1,
         ];
         $pairs = [];
         foreach ($config as $key => $value) {
@@ -115,8 +115,8 @@ final class ViewerAddonTest extends TestCase
         $lines = ['[config]', 'modus=2', 'anzahl_tage_plus=7', 'anzahl_tage_minus=7', 'anzahl_spieltage_vor=1',
             'anzahl_spieltage_zurueck=1', 'datumsformat=d.m.Y', 'heute_highlight=1', 'tabelle_verlinken=1',
             'spielberichte_neues_fenster=', 'mannschaftshomepages_verlinken=', 'mannschaftsnamen=0', 'titelzeile=Mehrere Ligen',
-            'anstosstermin=', 'template=standard_spieltag', 'uhrzeitformat=H:i', 'tordummy=_', 'tabellensymbol=tabelle.gif',
-            'spielberichtesymbol=bericht.gif', 'notizsymbol=notiz.gif', 'spieltagtext=ST', 'cache_refresh=0',
+            'anstosstermin=', 'template=standard_spieltag', 'uhrzeitformat=H:i', 'tordummy=_', 'tabellensymbol=tabelle.svg',
+            'spielberichtesymbol=bericht.svg', 'notizsymbol=notiz.svg', 'spieltagtext=ST', 'cache_refresh=0',
             'favteam_highlight=1', '[Viewer Ligen]'];
         foreach (array_values($leagues) as $i => $league) {
             $lines[] = 'liga' . ($i + 1) . '=' . $league;

@@ -206,12 +206,12 @@
 <tr>
 <td class="nobr" align="right">1</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">Mannschaft 2 <a href="http://example.org/team2" target="_blank">
-<img border="0" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;">
+<img border="0" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)" width="11" src="http://lmo.test/lmo/img/url.svg" alt="&#8599;">
 </a>
 </td>
 <td class="nobr" style="width:2px;">&nbsp;</td>
@@ -280,7 +280,7 @@
 <tr>
 <td class="nobr" align="right">2</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -355,7 +355,7 @@
 <tr>
 <td class="nobr" align="right">3</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -426,7 +426,7 @@
 <tr>
 <td class="nobr" align="right">4</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab1.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -499,7 +499,7 @@
 <strong>5</strong>
 </td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab2.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -624,12 +624,12 @@
 <tr>
 <td class="nobr" align="right">6</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
 <td class="nobr" align="left">Mannschaft 4 <a href="https://example.org/team4?a=1&b=2" target="_blank">
-<img border="0" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;">
+<img border="0" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)" width="11" src="http://lmo.test/lmo/img/url.svg" alt="&#8599;">
 </a>
 </td>
 <td class="nobr" style="width:2px;">&nbsp;</td>

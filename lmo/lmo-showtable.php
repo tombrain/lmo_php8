@@ -221,12 +221,12 @@ for ($x = 1; $x <= $lmo_einstellungen->mannschaften(); $x++) {
             $y = 2;
         }
     } ?>
-    <td class="<?php echo $lmo_tabelle_class; ?>"><img src='<?php echo URL_TO_IMGDIR . '/lmo-tab' . $y . '.gif'; ?>' width="9" height="9" border="0" alt=""></td>
+    <td class="<?php echo $lmo_tabelle_class; ?>"><img src='<?php echo URL_TO_IMGDIR . '/lmo-tab' . $y . '.svg'; ?>' width="9" height="9" border="0" alt=""></td>
     <td class="<?php echo $lmo_tabelle_class; ?>" align="center"><?php echo HTML_smallTeamIcon($file, $lmo_name, ' alt=""'); ?></td>
     <td class="<?php echo $lmo_tabelle_class; ?>" align="left"><?php
     echo $dummy . $lmo_name . $dumm2;
     if (($lmo_url != '') && $lmo_einstellungen->mitMannschaftslinks()) { ?>
-        <a href="<?php echo $lmo_url; ?>" target="_blank"><img border="0" title="<?php echo $text[46]; ?>" width="11" src="<?php echo URL_TO_IMGDIR . '/url.png'; ?>" alt="<?php echo $text[564]?>"></a><?php
+        <a href="<?php echo $lmo_url; ?>" target="_blank"><img border="0" title="<?php echo $text[46]; ?>" width="11" src="<?php echo URL_TO_IMGDIR . '/url.svg'; ?>" alt="<?php echo $text[564]?>"></a><?php
     } ?></td>
     <td class="<?php echo $lmo_tabelle_class; ?>" style="width:2px;">&nbsp;</td>
     <td class="<?php echo $lmo_tabelle_class; ?>"><?php

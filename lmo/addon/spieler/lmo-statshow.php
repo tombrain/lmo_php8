@@ -246,14 +246,14 @@ if (is_readable($filename) && $filepointer = fopen($filename, 'r+b')) {
                 $pos = array_search($data[$j1][$j2], $lmo_urls);
                 echo HTML_icon($data[$j1][$j2], 'teams', 'small') . str_replace(' ', '&nbsp;', $data[$j1][$j2]) . '&nbsp;</td>';
                 if (!empty($pos) && $lmo_urls[$pos] != '' && $lmo_liga->einstellungen()->mitMannschaftslinks()) {
-                    echo '<a href="' . $lmo_urls[$pos] . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.png" alt="' . $spalten[$i] . '" title="' . $text[46] . '"></a></td>';
+                    echo '<a href="' . $lmo_urls[$pos] . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.svg" alt="' . $spalten[$i] . '" title="' . $text[46] . '"></a></td>';
                 }
 
             //Spielerlinks
             } elseif ($j2 == 0 && !is_null($linkspalte) && $linkspalte !== false && $data[$j1][$linkspalte] != $text['spieler'][43]) {
                 echo '
             <td' . $stat_class . ' align="left">&nbsp;' . $data[$j1][$j2];
-                echo '<a href="' . $data[$j1][$linkspalte] . '" title="' . $text['spieler'][34] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.png" alt="' . $text[564] . '"></a></td>';
+                echo '<a href="' . $data[$j1][$linkspalte] . '" title="' . $text['spieler'][34] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.svg" alt="' . $text[564] . '"></a></td>';
 
             //sonst. Spalten
             } elseif ($spalten[$j2] != $text['spieler'][32]) {

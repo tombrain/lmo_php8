@@ -203,7 +203,7 @@
 <tr>
 <td class="nobr" align="right">1</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -256,7 +256,7 @@
 <tr>
 <td class="nobr" align="right">2</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -309,7 +309,7 @@
 <tr>
 <td class="nobr" align="right">3</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -362,7 +362,7 @@
 <tr>
 <td class="nobr" align="right">4</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab1.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -415,7 +415,7 @@
 <tr>
 <td class="nobr" align="right">5</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab2.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -468,7 +468,7 @@
 <tr>
 <td class="nobr" align="right">6</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>

@@ -21,7 +21,7 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 require_once(PATH_TO_LMO . '/lmo-admintest.php');
-$subdir = isset($_REQUEST['subdir']) ? $_REQUEST['subdir'] : '';
+$subdir = isset($_REQUEST['subdir']) ? lmo_clean_subdir($_REQUEST['subdir']) : '';
 if (($action == 'admin') && ($todo == 'open')) {
     $adda = $_SERVER['PHP_SELF'] . '?action=admin&amp;todo=';
 ?>
@@ -38,7 +38,7 @@ if (($action == 'admin') && ($todo == 'open')) {
   <tr>
     <td align="left">
 <?php
-    $subdir = str_replace(array('../', './'), array('', ''), $subdir);
+    $subdir = lmo_clean_subdir($subdir);
     $dirs = get_dir($dirliga . $subdir);
     natcasesort($dirs);
     if (!empty($subdir) && substr($subdir, -1) != '/') $subdir .= '/';

@@ -151,6 +151,9 @@ if ($file != '' && $tipp_tipptabelle1 == 1) {
             }
         }
     }
+    // PHP8-Fix (upstream 7c1228b): $tab0 gibt es nur, wenn ein Tipper oder "alle Tipper" ausgewertet wurde;
+    // sonst keine Tabelle (bisher eine Tabelle voller Nullen mit "Undefined variable/array key"-Warnungen)
+    if (isset($tab0)) {
     $platz0 = array('');
     $platz0 = array_pad($array, $lmo_tipp_mannschaften + 1, '');
     for ($x = 0; $x < $lmo_tipp_mannschaften; $x++) {
@@ -281,7 +284,7 @@ if ($file != '' && $tipp_tipptabelle1 == 1) {
         if ($tabdat != '') {
             echo           '<td class="' . $lmo_tabelle_class . '"';
             if ($tabtype == 0) {
-                echo '><img src="' . URL_TO_IMGDIR . '/lmo-tab' . $y . '.gif" width="9" height="9" border="0" alt="">';
+                echo '><img src="' . URL_TO_IMGDIR . '/lmo-tab' . $y . '.svg" width="9" height="9" border="0" alt="">';
             } else {
                 echo ' width="2">&nbsp;';
             }
@@ -293,7 +296,7 @@ if ($file != '' && $tipp_tipptabelle1 == 1) {
           <td class="<?php echo $lmo_tabelle_class; ?> nobr" align="left"> <?php
         echo $dummy . $lmo_name . $dumm2;
         if (($lmo_url != '') && $lmo_einstellungen->mitMannschaftslinks()) {
-            echo ' <a href="' . $lmo_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.png" alt="' . $text[564] . '" title="' . $text[46] . '"></a> ';
+            echo ' <a href="' . $lmo_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.svg" alt="' . $text[564] . '" title="' . $text[46] . '"></a> ';
         } ?></td>
           <td class="<?php echo $lmo_tabelle_class; ?>">&nbsp;</td>
           <td class="<?php echo $lmo_tabelle_class; ?>" align="center"><?php
@@ -382,6 +385,7 @@ if ($file != '' && $tipp_tipptabelle1 == 1) {
   </tr>
 </table>
 <?php
+    } // ende if (isset($tab0))
 }
 if ($tabdat != '') { ?>
       <table width="100%" cellspacing='0' cellpadding='0' border='0'>
@@ -447,6 +451,8 @@ if ($tipp_wertverein == 1 && $tabtype == 0) { ?>
         $nick = '';
     }
 
+    // PHP8-Fix (upstream 7c1228b): wie oben, auch fuer die Vereinstabelle
+    if (isset($tab0)) {
     $platz0 = array('');
     $platz0 = array_pad($array, $lmo_tipp_vereine+1, '');
     for ($x = 0; $x < $lmo_tipp_vereine; $x++) {
@@ -494,7 +500,7 @@ if ($tipp_wertverein == 1 && $tabtype == 0) { ?>
         }
         if ($tabdat != '') {
             echo '          <td class="' . $lmo_tabelle_class . '"';
-            echo '><img src="' . URL_TO_IMGDIR . '/lmo-tab' . $y . '.gif" width="9" height="9" border="0" alt="">&nbsp;';
+            echo '><img src="' . URL_TO_IMGDIR . '/lmo-tab' . $y . '.svg" width="9" height="9" border="0" alt="">&nbsp;';
             echo '</td>';
         } else {
             echo '<td class="' . $lmo_tabelle_class . '">&nbsp;</td>';
@@ -538,5 +544,6 @@ if ($tipp_wertverein == 1 && $tabtype == 0) { ?>
   </tr>
 </table>
 <?php
+    } // ende if (isset($tab0))
 }
 ?>

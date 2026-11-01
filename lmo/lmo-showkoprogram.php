@@ -119,7 +119,7 @@ if ($file != '') {
                     }
                     echo '&nbsp;' . HTML_smallTeamIcon($file, $lmo_heim,' alt=""');
                     if (($lmo_heim_url != '') && $lmo_einstellungen->mitMannschaftslinks()) {
-                        echo ' <a href="' . $lmo_heim_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.png" alt="' . $text[564] . '" title="' . $text[46] . '"></a>';
+                        echo ' <a href="' . $lmo_heim_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.svg" alt="' . $text[564] . '" title="' . $text[46] . '"></a>';
                     } ?></td>
           <td class="lmost5" align="center" width="10">-</td>
 <?php
@@ -139,7 +139,7 @@ if ($file != '') {
                         echo '</strong>';
                     }
                     if (($lmo_gast_url != '') && $lmo_einstellungen->mitMannschaftslinks()) {
-                        echo '<a href="' . $lmo_gast_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.png" alt="' . $text[564] . '" title="' . $text[46] . '"></a>';
+                        echo '<a href="' . $lmo_gast_url . '" target="_blank" title="' . $text[46] . '"><img border="0" width="11" src="' . URL_TO_IMGDIR . '/url.svg" alt="' . $text[564] . '" title="' . $text[46] . '"></a>';
                     } ?></td>
 <?php
                     // die Spiele der Paarung (Lmo\Liga\Spiel); $n: Spiel ab 0
@@ -148,7 +148,7 @@ if ($file != '') {
                             if ($lmo_spiel->anstoss !== null) {  // ohne Anstoss keine Anzeige
                                 $dt = new DateTime();
                                 $dt->setTimeStamp($lmo_spiel->anstoss);
-                                $dumn1 = '<acronym title="' . $dt->format($lmo_einstellungen->datumsformat($defdateformat)) . '">';
+                                $dumn1 = '<acronym title="' . strtr($dt->format($lmo_einstellungen->datumsformat($defdateformat)), $trans_lang) . '">';
                                 $dumn2 = '</acronym>';
                             } else {
                                 $dumn1 = '';

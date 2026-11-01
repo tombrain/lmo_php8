@@ -1635,7 +1635,7 @@ GB22=2
 </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=tester" title="so würde die Tabelle aussehen mit den Tipps von tester">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>

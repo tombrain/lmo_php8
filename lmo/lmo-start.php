@@ -33,13 +33,17 @@ if((isset($_REQUEST['action']) && $_REQUEST['action'] == 'tipp') && session_id()
 
 $array = array();
 $ftype = '.l98';
-if (isset($_REQUEST['st'])) {$st = $_REQUEST['st'];}
+if (isset($_REQUEST['st'])) {
+    $st = $_REQUEST['st'];
+}
+
 if(!isset($_REQUEST['action'])) {
     $_REQUEST['action'] = '';
     $action = '';
 } else {
     $action = $_REQUEST['action'];
 }
+
 if (!isset($file)) {
     if(!isset($_REQUEST['file'])) {
         $_REQUEST['file'] = '';
@@ -48,7 +52,7 @@ if (!isset($file)) {
         $file = $_REQUEST['file'];
     }
 }
-$subdir = isset($_REQUEST['subdir']) ? $_REQUEST['subdir'] : '';
+$subdir = isset($_REQUEST['subdir']) ? lmo_clean_subdir($_REQUEST['subdir']) : '';
 
 if($_REQUEST['action'] == 'admin') {
     $_REQUEST['action'] = '';
