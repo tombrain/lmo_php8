@@ -114,6 +114,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Spielerstatistik: Bilder für die Spaltenköpfe werden auch als SVG gefunden (`img/spieler/<Spalte>.svg`). Seit `Tore.gif` zu `Tore.svg` wurde, stand im Kopf der Spalte „Tore“ nur noch der Text.  
 * Tippspiel, Administration, Userverwaltung: gültiges HTML. Jede Zeile der Tipper wird geschlossen (bisher nur die letzte), ohne `</tbody>` ohne Tipper und ohne doppeltes `</th>`.  
 * Tippspiel, Administration, Userverwaltung: Ein Name ohne Leerzeichen erscheint vollständig. Bisher fehlte sein erster Buchstabe („&nbsp;leopatra“).  
 * Tippspiel, Administration: Beim Löschen eines Tippers werden nur noch seine eigenen Tipps (`<Liga>_<Nick>.tip`) gelöscht. Bisher traf es jede Tippdatei, die auf den Nick endete: Wer „ter“ löschte, löschte auch alle Tipps von „tester“ und „zweiter“.  
@@ -590,6 +591,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Player statistics: pictures for the column headers are also found as SVG (`img/spieler/<column>.svg`). Since `Tore.gif` became `Tore.svg`, the header of the column "Tore" only showed the text.  
 * Prediction game, administration, user management: valid HTML. Every row of tippers is closed (so far only the last one), without `</tbody>` when there are no tippers and without a double `</th>`.  
 * Prediction game, administration, user management: a name without a space is shown in full. So far its first letter was missing.  
 * Prediction game, administration: deleting a tipper only deletes their own tips (`<league>_<nick>.tip`). So far it hit every tip file ending in the nick: deleting "ter" also deleted all tips of "tester" and "zweiter".  
