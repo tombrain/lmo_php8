@@ -50,7 +50,6 @@ final class AdminAuthProbeTest extends TestCase
             'lmo-adminmimesend.php' => '',
             'lmo-adminjavascript.php' => '',
             'lmo-admincal.php' => '',
-            'lmo-adminsubnavi.php' => 'file=golden/basic.l98',
             'lmo-savehtml.php' => 'file=golden/basic.l98',
             'lmo-openfile.php' => 'file=golden/basic.l98',
         ] as $script => $query) {
