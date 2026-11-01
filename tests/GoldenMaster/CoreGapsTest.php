@@ -16,9 +16,8 @@ use PHPUnit\Framework\TestCase;
  *   und das Formular trug den vollen Serverpfad; heute gilt nur eine angebotene Liga des Ligenordners.
  *
  * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-admindir.php ist
- * toter Code (keine einzige Referenz irgendwo im Repository); lmo-adminuserpass.php und
- * lmo-openfiledat.php werden ausschliesslich vom Tippspiel-Addon genutzt, das als eigener,
- * groesserer Block aussteht; lmo-adminrndprogram.php wird separat als Rauchtest gefuehrt
+ * toter Code (keine einzige Referenz irgendwo im Repository); lmo-openfiledat.php wird
+ * ausschliesslich vom Tippspiel-Addon genutzt (lmo-adminuserpass.php gibt es nicht mehr); lmo-adminrndprogram.php wird separat als Rauchtest gefuehrt
  * (siehe RandomScheduleSmokeTest), weil sein Ergebnis auf echtem Zufall beruht.
  */
 final class CoreGapsTest extends TestCase
