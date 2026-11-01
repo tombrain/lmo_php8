@@ -55,7 +55,7 @@
 <a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=2&amp;direction=1&amp;team=" title="Nach Tore absteigend sortieren">
 <img title="absteigend" border="0" src="http://lmo.test/lmo/img/downsimple.png" width="10" alt="&or;">
 </a>&nbsp;<acronym title="Tore">
-<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.png" alt="Tore">
+<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.svg" alt="Tore">
 </acronym>&nbsp;<a href="/lmo/lmo.php?file=golden/basic.l98&amp;action=spieler&amp;begin=0&amp;sort=2&amp;direction=0&amp;team=" title="Nach Tore aufsteigend sortieren">
 <img title="aufsteigend" border="0" src="http://lmo.test/lmo/img/upsimple.svg" width="10" alt="&and;">
 </a>

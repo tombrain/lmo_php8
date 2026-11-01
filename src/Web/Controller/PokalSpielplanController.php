@@ -124,7 +124,8 @@ final class PokalSpielplanController implements Controller
             if ($e->mitAnstosszeit() && $spiel->anstoss !== null) {  // ohne Anstoss keine Anzeige
                 $dt = new DateTime();
                 $dt->setTimestamp($spiel->anstoss);
-                $anstoss = $dt->format($e->datumsformat($kontext->konfiguration->datumsformat()));
+                // Wochentage und Monate in der Sprache der Texte (wie upstream 1ef898f in lmo-showkoprogram.php)
+                $anstoss = KalenderController::uebersetzt($dt->format($e->datumsformat($kontext->konfiguration->datumsformat())), $kontext->texteVon('date'));
             }
             /** Mannschaftsicons finden **/
             $mitWappen = $e->mitSpielberichten() || $spiel->notiz != '';

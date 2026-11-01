@@ -95,7 +95,7 @@ final class MiniAddonTest extends TestCase
 
         $html = self::page('lmo-minitab.php', 'mini_liga=tendenz' . $actual . '.l98&mini_template=standard&mini_ueber=99&mini_unter=99');
         self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
-        preg_match_all('~<img src="[^"]*lmo-tab\d\.gif" border="0" title="(-?\d+)">~', $html, $titles);
+        preg_match_all('~<img src="[^"]*lmo-tab\d\.svg" border="0" title="(-?\d+)">~', $html, $titles);
         self::assertCount(8, $titles[1], 'Tendenz fuer alle 8 Mannschaften');
         return array_map('intval', $titles[1]);
     }

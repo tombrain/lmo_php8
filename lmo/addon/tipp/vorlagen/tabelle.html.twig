@@ -61,13 +61,13 @@
         <tr>
           <td class="{{ k }} nobr" align="right"> {{ m.fett(z.platz, z.fett) }} </td>
 {%- if stand != '' %}
-          <td class="{{ k }}"{% if art == 0 %}><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif" width="9" height="9" border="0" alt="">{% else %} width="2">&nbsp;{% endif %}</td>
+          <td class="{{ k }}"{% if art == 0 %}><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.svg" width="9" height="9" border="0" alt="">{% else %} width="2">&nbsp;{% endif %}</td>
 {%- else %}
           <td class="{{ k }}">&nbsp;</td>
 {%- endif %}
           <td class="{{ k }}" align="center">{{ z.symbol|raw }}&nbsp;</td>
           <td class="{{ k }} nobr" align="left"> {{ m.fett(z.name, z.fett) }}
-{%- if z.url is not null %} <a href="{{ z.url|raw }}" target="_blank" title="{{ text[46]|raw }}"><img border="0" width="11" src="{{ bilder|raw }}/url.png" alt="{{ text[564]|raw }}" title="{{ text[46]|raw }}"></a> {% endif %}</td>
+{%- if z.url is not null %} <a href="{{ z.url|raw }}" target="_blank" title="{{ text[46]|raw }}"><img border="0" width="11" src="{{ bilder|raw }}/url.svg" alt="{{ text[564]|raw }}" title="{{ text[46]|raw }}"></a> {% endif %}</td>
           <td class="{{ k }}">&nbsp;</td>
           <td class="{{ k }}" align="center">{{ z.notiz|raw }}
           </td>
@@ -141,7 +141,7 @@
         <tr>
           <td class="nobr" align="right">{{ m.fett(z.platz, z.fett) }}&nbsp;</td>
 {%- if vereine.stand != '' %}
-          <td class="nobr"><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif" width="9" height="9" border="0" alt="">&nbsp;</td>
+          <td class="nobr"><img src="{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.svg" width="9" height="9" border="0" alt="">&nbsp;</td>
 {%- else %}
 <td class="nobr">&nbsp;</td>
 {%- endif %}

@@ -96,7 +96,7 @@
         <tr>
           <td class="{{ k }}" align="right">{% if z.platz is not null %}{{ m.fett(z.platz, z.fett) }}{% else %}&nbsp;{% endif %}
           &nbsp;</td>
-{%- if z.pfeil is not null %}<td class="{{ k }}"><img src='{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.gif' width="9" height="9" border="0" alt=''></td>{% else %}<td class="{{ k }}">&nbsp;</td>{% endif %}
+{%- if z.pfeil is not null %}<td class="{{ k }}"><img src='{{ bilder|raw }}/lmo-tab{{ z.pfeil }}.svg' width="9" height="9" border="0" alt=''></td>{% else %}<td class="{{ k }}">&nbsp;</td>{% endif %}
 {%- if einzeln %}
           <td class="{{ k }}" align="left">&nbsp;{{ m.fett(z.name, z.fett) }}
           &nbsp;</td>

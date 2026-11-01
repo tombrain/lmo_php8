@@ -412,7 +412,7 @@ span.colorpicker.nocolor {
 }
 span.colorpicker.invalid {
   display:              inline;
-  background-image:     url("http://lmo.test/lmo/img/attention.gif");
+  background-image:     url("http://lmo.test/lmo/img/attention.svg");
   background-position:  center;
   background-repeat:    no-repeat;
   border:               0;

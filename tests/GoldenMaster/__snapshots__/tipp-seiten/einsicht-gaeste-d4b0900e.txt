@@ -481,7 +481,7 @@
 <td align="center" class="nobr">_:_&nbsp; </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=anna" title="so würde die Tabelle aussehen mit den Tipps von anna">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>
@@ -498,7 +498,7 @@
 <td align="center" class="nobr">_:_&nbsp; </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=Bert" title="so würde die Tabelle aussehen mit den Tipps von Bert">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>
@@ -837,7 +837,7 @@
 <td align="center" class="nobr">_:_&nbsp; </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=zora" title="so würde die Tabelle aussehen mit den Tipps von zora">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>
@@ -1177,7 +1177,7 @@
 <td align="center" class="nobr">_ </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=anna" title="so würde die Tabelle aussehen mit den Tipps von anna">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>
@@ -1194,7 +1194,7 @@
 <td align="center" class="nobr">_ </td>
 <td class="lmoFrontMarkierung" align="right">0</td>
 <td class="nobr" align="left">&nbsp; <a href="/lmo/lmo.php?action=tipp&amp;todo=tabelle&amp;file=1l_2024-25.l98&amp;endtab=&amp;nick=Bert" title="so würde die Tabelle aussehen mit den Tipps von Bert">
-<img src="http://lmo.test/lmo/img/tabelle.gif" border="0" width="10" height="12" alt="Tipp-Tabelle">
+<img src="http://lmo.test/lmo/img/tabelle.svg" border="0" width="10" height="12" alt="Tipp-Tabelle">
 </a>
 </td>
 </tr>

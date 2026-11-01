@@ -39,7 +39,7 @@
 <td>_ : _ </td>
 <td>
 <a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=1" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
-<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.svg" border="0" alt="#">
 </a>
 </td>
 <td>
@@ -69,7 +69,7 @@
 <td>_ : _ </td>
 <td>
 <a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=1" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
-<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.svg" border="0" alt="#">
 </a>
 </td>
 <td>
@@ -103,7 +103,7 @@
 <td>_ : _ </td>
 <td>
 <a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=2" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
-<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.svg" border="0" alt="#">
 </a>
 </td>
 <td>
@@ -133,7 +133,7 @@
 <td>_ : _ </td>
 <td>
 <a href="http://lmo.test/lmo/lmo.php?file=1l_2024-25.l98&amp;action=table&amp;st=2" target="_blank" title="zur Tabellenansicht (wird in neuem Fenster geöffnet)">
-<img src="http://lmo.test/lmo/img/viewer/tabelle.gif" border="0" alt="#">
+<img src="http://lmo.test/lmo/img/viewer/tabelle.svg" border="0" alt="#">
 </a>
 </td>
 <td>

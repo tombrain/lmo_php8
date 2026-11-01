@@ -132,7 +132,7 @@
 </td>
 <td class="nobr" align="left">&nbsp;Heute hervorheben</td>
 <td class="nobr" align="right">Berichtsymbol</td>
-<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spielberichtesymbol" size="20" value="bericht.gif" onChange="document.getElementById('spielberichtesymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="spielberichtesymbol" src="http://lmo.test/lmo/img/viewer/bericht.gif" alt="">
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="spielberichtesymbol" size="20" value="bericht.svg" onChange="document.getElementById('spielberichtesymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="spielberichtesymbol" src="http://lmo.test/lmo/img/viewer/bericht.svg" alt="">
 </td>
 </tr>
 <tr>
@@ -141,7 +141,7 @@
 </td>
 <td class="nobr" align="left">&nbsp;Spielberichte in neuem Fenster</td>
 <td class="nobr" align="right">Tabellensymbol</td>
-<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tabellensymbol" size="20" value="tabelle.gif" onChange="document.getElementById('tabellensymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="tabellensymbol" src="http://lmo.test/lmo/img/viewer/tabelle.gif" alt="">
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="tabellensymbol" size="20" value="tabelle.svg" onChange="document.getElementById('tabellensymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="tabellensymbol" src="http://lmo.test/lmo/img/viewer/tabelle.svg" alt="">
 </td>
 </tr>
 <tr>
@@ -150,7 +150,7 @@
 </td>
 <td class="nobr" align="left">&nbsp;Tabelle in neuem Fenster</td>
 <td class="nobr" align="right">Notizsymbol</td>
-<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="notizsymbol" size="20" value="notiz.gif" onChange="document.getElementById('notizsymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="notizsymbol" src="http://lmo.test/lmo/img/viewer/notiz.gif" alt="">
+<td class="nobr" align="left">&nbsp;<input class="lmo-formular-input" type="text" name="notizsymbol" size="20" value="notiz.svg" onChange="document.getElementById('notizsymbol').src='http://lmo.test/lmo/img/viewer/'+this.value;">&nbsp;<img id="notizsymbol" src="http://lmo.test/lmo/img/viewer/notiz.svg" alt="">
 </td>
 </tr>
 <tr>

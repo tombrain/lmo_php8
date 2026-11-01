@@ -153,13 +153,13 @@ final class StatistikController implements Controller
                     $nr = array_search($wert, $namen, true);
                     $url = $nr !== false && $nr > 0 && $liga->liga->einstellungen()->mitMannschaftslinks() ? $urls[$nr] : '';
                     $zellen .= "\n" . '<td' . $klasse . ' align="left">' . $kontext->darstellung->wappen($datei, $wert) . str_replace(' ', '&nbsp;', $wert) . '&nbsp;'
-                        . ($url != '' ? '<a href="' . htmlspecialchars($url) . '" target="_blank" title="' . ($text[46] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.png" alt="' . ($text[564] ?? '') . '" title="' . ($text[46] ?? '') . '"></a>' : '')
+                        . ($url != '' ? '<a href="' . htmlspecialchars($url) . '" target="_blank" title="' . ($text[46] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.svg" alt="' . ($text[564] ?? '') . '" title="' . ($text[46] ?? '') . '"></a>' : '')
                         . '</td>';
 
                 //Spielerlinks
                 } elseif ($j2 == 0 && $linkspalte !== false && ($data[$j1][$linkspalte] ?? null) != ($t[43] ?? '')) {
                     $zellen .= "\n" . '<td' . $klasse . ' align="left">&nbsp;' . $wert
-                        . '<a href="' . ($data[$j1][$linkspalte] ?? '') . '" title="' . ($t[34] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.png" alt="' . ($text[564] ?? '') . '"></a></td>';
+                        . '<a href="' . ($data[$j1][$linkspalte] ?? '') . '" title="' . ($t[34] ?? '') . '"><img border="0" width="11" src="' . $bilder . '/url.svg" alt="' . ($text[564] ?? '') . '"></a></td>';
 
                 //sonst. Spalten
                 } elseif ($spalten[$j2] != ($t[32] ?? '')) {

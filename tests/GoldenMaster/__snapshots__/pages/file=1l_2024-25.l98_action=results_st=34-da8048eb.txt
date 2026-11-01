@@ -293,7 +293,7 @@
 <tr>
 <td class="lmoTabelleMeister nobr" align="right">1</td>
 <td class="lmoTabelleMeister nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleMeister nobr" align="center">
 </td>
@@ -324,7 +324,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">2</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">
 </td>
@@ -355,7 +355,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">3</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">
 </td>
@@ -386,7 +386,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">4</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">
 </td>
@@ -417,7 +417,7 @@
 <tr>
 <td class="lmoTabelleCleaguequali nobr" align="right">5</td>
 <td class="lmoTabelleCleaguequali nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleaguequali nobr" align="center">
 </td>
@@ -448,7 +448,7 @@
 <tr>
 <td class="lmoTabelleUefa nobr" align="right">6</td>
 <td class="lmoTabelleUefa nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleUefa nobr" align="center">
 </td>
@@ -479,7 +479,7 @@
 <tr>
 <td class="nobr" align="right">7</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -510,7 +510,7 @@
 <tr>
 <td class="nobr" align="right">8</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -541,7 +541,7 @@
 <tr>
 <td class="nobr" align="right">9</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -572,7 +572,7 @@
 <tr>
 <td class="nobr" align="right">10</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -603,7 +603,7 @@
 <tr>
 <td class="nobr" align="right">11</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -634,7 +634,7 @@
 <tr>
 <td class="nobr" align="right">12</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -665,7 +665,7 @@
 <tr>
 <td class="nobr" align="right">13</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -696,7 +696,7 @@
 <tr>
 <td class="nobr" align="right">14</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -727,7 +727,7 @@
 <tr>
 <td class="nobr" align="right">15</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">
 </td>
@@ -758,7 +758,7 @@
 <tr>
 <td class="lmoTabelleRelegation nobr" align="right">16</td>
 <td class="lmoTabelleRelegation nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleRelegation nobr" align="center">
 </td>
@@ -789,7 +789,7 @@
 <tr>
 <td class="lmoTabelleAbsteiger nobr" align="right">17</td>
 <td class="lmoTabelleAbsteiger nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleAbsteiger nobr" align="center">
 </td>
@@ -820,7 +820,7 @@
 <tr>
 <td class="lmoTabelleAbsteiger nobr" align="right">18</td>
 <td class="lmoTabelleAbsteiger nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt="">
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleAbsteiger nobr" align="center">
 </td>

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web\Admin;
 
 use Closure;
+use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
@@ -68,7 +69,7 @@ final class StartseiteController implements Controller
         }
         // Unterordner wie bisher aus der Adresse, sonst der Ordner der gewaehlten Datei
         $unterordner ??= $anfrage->gesetzt('subdir') ? $anfrage->text('subdir') : dirname($anfrage->text('file')) . '/';
-        $unterordner = str_replace(['../', './'], '', $unterordner == '/' ? '' : $unterordner);
+        $unterordner = Anfrage::unterordner($unterordner);
         $liste = new Ligenliste($kontext->text, $kontext->darstellung, $kontext->pfade->vorlagen, $kontext->pfade->bilder, $kontext->pfade->adresse, $darfLesen);
 
         return $liste->zeige(
