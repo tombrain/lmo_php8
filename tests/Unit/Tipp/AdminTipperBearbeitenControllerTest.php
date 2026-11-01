@@ -103,6 +103,11 @@ class AdminTipperBearbeitenControllerTest extends TestCase
         self::assertStringContainsString("anna|HASH||Anna Neu|neu@example.org|FC N||||-1|1|EOL\n", $this->tipper(), 'ohne Kennwort das bisherige, ohne Haken nicht freigeschaltet');
         self::assertFileExists($this->ordner . '/daten/tipps/bula_anna.tip');
         self::assertFileDoesNotExist($this->ordner . '/daten/tipps/cup_anna.tip', 'abgewaehlt');
+
+        // eine neu gewaehlte Liga: der Eintrag in ihrer Auswertung mit dem neuen Verein
+        unlink($this->ordner . '/daten/tipps/bula_anna.tip');
+        $this->seite(['nick' => 'anna', 'newpage' => '0', 'xtippervorname' => 'Anna', 'xtippernachname' => 'Neu', 'xtippervereinradio' => '2', 'xtippervereinneu' => 'FC Z', 'xtipperligen' => ['bula']]);
+        self::assertSame("\n[anna]\nTeam=FC Z\nName=Anna Neu\n", file_get_contents($this->ordner . '/daten/tipps/auswert/bula.aus'), 'bis 4.5 der bisherige Verein (FC N)');
     }
 
     public function testNeuerTipper(): void
