@@ -148,7 +148,6 @@ class SpielerAdminTest extends TestCase
         self::assertStringContainsString('name="ligalink" onChange="mark(this)" value="Statistik" size="9"', $html);
 
         $this->seite(['option' => 'saveconfig', 'anzeige_pro_seite' => '3', 'ligalink' => 'X'], 1);
-        // wie bisher: Vorsortierung Admin kommt mit ihrem Zeilenumbruch aus der Datei zurueck
-        self::assertSame("S21=1\nS13=0\nS40=0\n\nS22=3\nS23=0\nS24=0\nS50=0\nS41=X", file_get_contents($this->ordner . '/daten/a.cfg'), 'Hilfsadmin schreibt seine Rechte nicht');
+        self::assertSame("S21=1\nS13=0\nS40=0\nS22=3\nS23=0\nS24=0\nS50=0\nS41=X", file_get_contents($this->ordner . '/daten/a.cfg'), 'Hilfsadmin schreibt seine Rechte nicht; keine Leerzeile hinter Vorsortierung Admin (bis 4.5 bei jedem Speichern eine mehr)');
     }
 }

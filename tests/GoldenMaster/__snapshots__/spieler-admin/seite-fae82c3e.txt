@@ -3477,10 +3477,7 @@ GEAENDERT daten/spieler/basic.stat
 GEAENDERT daten/spieler/basic.cfg
 --- vorher
 +++ nachher
-@@ -2,9 +2,10 @@
- Sortierung=0
- Vorsortierung Admin=1
-+
+@@ -4,7 +4,7 @@
  Anzeige pro Seite=5
  Nullwerte einblenden=0
 -Extra Sortierspalte=1
@@ -3502,10 +3499,7 @@ GEAENDERT config/lmo-auth.php
 GEAENDERT daten/spieler/basic.cfg
 --- vorher
 +++ nachher
-@@ -2,9 +2,10 @@
- Sortierung=0
- Vorsortierung Admin=1
-+
+@@ -4,7 +4,7 @@
  Anzeige pro Seite=5
  Nullwerte einblenden=0
 -Extra Sortierspalte=1
