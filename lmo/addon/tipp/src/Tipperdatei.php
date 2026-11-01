@@ -17,7 +17,7 @@ namespace Lmo\Addon\Tipp;
 /**
  * Die Tipperdatei (addon/tipp/lmo-tippauth.txt, tipp/cfg.txt tippauthtxt): eine Schutzzeile, dann
  * je Tipper eine Zeile (Lmo\Addon\Tipp\Tipper). Bis 4.5 lasen und schrieben die Seiten des
- * Tippspiels sie jede selbst (lmo-tippsaveauth.php).
+ * Tippspiels sie jede selbst (lmo-tippsaveauth.php und andere).
  */
 final class Tipperdatei
 {
