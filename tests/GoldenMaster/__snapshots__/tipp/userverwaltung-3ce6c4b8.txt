@@ -1,0 +1,742 @@
+### userverwaltung
+=== Liste ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippemail' onClick="return chklmolink();" title="Newsletter/Reminder">Newsletter/Reminder</a>
+</td>
+<td align="center">Userverwaltung </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Userverwaltung</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="tipper" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<thead>
+<tr>
+<th class="nobr" align="right">
+</th>
+<th class="nobr" align="right">
+<script type="text/javascript">document.write('#');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> # <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Nickname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Nickname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Realname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Realname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Team');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Team <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('letzter Tipp');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> letzter Tipp <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">1</td>
+<td align="left">
+<a href="mailto:tester@example.org">tester</a>
+</td>
+<td align="left">Tina&nbsp;Test</td>
+<td align="left">
+</td>
+<td align="left">10.03.2025 13:00</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=tester' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;del=tester' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">2</td>
+<td align="left">
+<a href="mailto:zweite@example.org">zweiter</a>
+</td>
+<td align="left">Zoe&nbsp;Zweite</td>
+<td align="left">
+</td>
+<td align="left">10.03.2025 13:00</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=zweiter' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;del=zweiter' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" height="20" alt="+">
+</td>
+<td align="right">3</td>
+<td align="left">ter </td>
+<td align="left">Ter&nbsp;Kurz</td>
+<td align="left">
+</td>
+<td align="left">12.03.2025 19:30</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=ter' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;del=ter' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]); tipperTable.sort(1); </script>
+</td>
+</tr>
+<tr>
+<th class="lmoMenu" align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
+</th>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== nach Nick absteigend ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippemail' onClick="return chklmolink();" title="Newsletter/Reminder">Newsletter/Reminder</a>
+</td>
+<td align="center">Userverwaltung </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Userverwaltung</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="tipper" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<thead>
+<tr>
+<th class="nobr" align="right">
+</th>
+<th class="nobr" align="right">
+<script type="text/javascript">document.write('#');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> # <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Nickname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Nickname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Realname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Realname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Team');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Team <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('letzter Tipp');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> letzter Tipp <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">2</td>
+<td align="left">
+<a href="mailto:zweite@example.org">zweiter</a>
+</td>
+<td align="left">Zoe&nbsp;Zweite</td>
+<td align="left">
+</td>
+<td align="left">10.03.2025 13:00</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=zweiter' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=zweiter' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">1</td>
+<td align="left">
+<a href="mailto:tester@example.org">tester</a>
+</td>
+<td align="left">Tina&nbsp;Test</td>
+<td align="left">
+</td>
+<td align="left">10.03.2025 13:00</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=tester' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=tester' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/wrong.svg" border="0" height="20" alt="+">
+</td>
+<td align="right">3</td>
+<td align="left">ter </td>
+<td align="left">Ter&nbsp;Kurz</td>
+<td align="left">
+</td>
+<td align="left">12.03.2025 19:30</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=ter' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]); tipperTable.sort(1); </script>
+</td>
+</tr>
+<tr>
+<th class="lmoMenu" align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
+</th>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== ter loeschen ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Daten erfolgreich gespeichert</p>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tipp' onclick="return chklmolink();" title="Auswertung">Auswertung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippemail' onClick="return chklmolink();" title="Newsletter/Reminder">Newsletter/Reminder</a>
+</td>
+<td align="center">Userverwaltung </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">
+<h1>Userverwaltung</h1>
+</td>
+</tr>
+<tr>
+<td align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/sortabletable.js">
+</script>
+<script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
+</script>
+<table id="tipper" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<thead>
+<tr>
+<th class="nobr" align="right">
+</th>
+<th class="nobr" align="right">
+<script type="text/javascript">document.write('#');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> # <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=id&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Nickname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Nickname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Realname');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Realname <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=name&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('Team');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> Team <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=team&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th align="left" class="nobr">
+<script type="text/javascript">document.write('letzter Tipp');</script>
+<noscript>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=asc" title="Aufsteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/upsimple.png" width="7" height="7" border="0" alt="&and;">
+</a> letzter Tipp <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=ltipp&amp;tipper_sort_direction=desc" title="Absteigend&nbsp;sortieren" onClick="return chklmolink();">
+<img src="http://lmo.test/lmo/img/downsimple.png" width="7" height="7" border="0" alt="&or;">
+</a>
+</noscript>
+</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">1</td>
+<td align="left">
+<a href="mailto:tester@example.org">tester</a>
+</td>
+<td align="left">Tina&nbsp;Test</td>
+<td align="left">
+</td>
+<td align="left">
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=tester' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=tester' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+<tr>
+<td align="left">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" height="20" alt="-">
+</td>
+<td align="right">2</td>
+<td align="left">
+<a href="mailto:zweite@example.org">zweiter</a>
+</td>
+<td align="left">Zoe&nbsp;Zweite</td>
+<td align="left">
+</td>
+<td align="left">
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;nick=zweiter' onClick="return chklmolink();">Editieren</a>
+</td>
+<td align="left">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=zweiter' onClick="return confirm('Wirklich löschen?');">
+<img src="http://lmo.test/lmo/img/delete.svg" border="0" height="18" alt="Löschen">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript"> var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]); tipperTable.sort(1); </script>
+</td>
+</tr>
+<tr>
+<th class="lmoMenu" align="center">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
+</th>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuser&amp;tipper_sort=nick&amp;del=ter&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/lmo-tippauth.txt
+--- vorher
++++ nachher
+@@ -2,3 +2,2 @@
+ tester|geheim|5|Tina Test|tester@example.org||||1|1|EOL
+ zweiter|geheim|5|Zoe Zweite|zweite@example.org||||1|1|EOL
+-ter|geheim|1|Ter Kurz||||||1|1|EOL
+GELOESCHT daten/tipp/tipps/tippliga_ter.tip
+GELOESCHT daten/tipp/tipps/tippliga_tester.tip
+GELOESCHT daten/tipp/tipps/tippliga_zweiter.tip
+GELOESCHT daten/tipp/tipps/tipppokal_tester.tip
+GELOESCHT daten/tipp/tipps/tipppokal_zweiter.tip
+
