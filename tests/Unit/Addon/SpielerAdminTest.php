@@ -130,6 +130,18 @@ class SpielerAdminTest extends TestCase
         self::assertSame("Name#Tore\nMüller#4\n", $this->stat());
     }
 
+    public function testFormelspalteNachDemLoeschenEinesSpielers(): void
+    {
+        $this->seite(['option' => 'addplayer', 'wert' => 'A']);
+        $this->seite(['option' => 'addplayer', 'wert' => 'B']);
+        $this->seite(['option' => 'addcolumn', 'wert' => 'Quote', 'type' => 'F']);
+        $html = $this->seite(['option' => 'delplayer', 'wert' => '0']);
+
+        self::assertStringContainsString('name="spalten1" onChange="mark(this)" value="Quote"', $html, 'ohne Markierung (bis 4.5 Quote*_*-*)');
+        $this->seite(['option' => 'statupdate', 'spalten1' => 'Quote']);
+        self::assertStringStartsWith("Name#Quote*_*-*\n", $this->stat(), 'die Markierung nur einmal');
+    }
+
     public function testSpielerLoeschen(): void
     {
         $this->seite(['option' => 'addplayer', 'wert' => 'A']);

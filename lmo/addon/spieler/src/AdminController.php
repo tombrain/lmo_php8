@@ -180,7 +180,8 @@ final class AdminController implements Controller
                         }
                     }
                     @file_put_contents($statdatei, $text);
-                    // wie bisher neu gelesen: die Spaltennamen mit Formel-Markierung, die Zeilen ungeordnet
+                    // neu gelesen, die Zeilen ungeordnet; die Spaltennamen ohne Formel-Markierung (bis 4.5 mit ihr,
+                    // dann haengte das naechste Speichern der Werte sie ein zweites Mal an)
                     [$spalten, $daten] = self::liesNeu($statdatei, $formeln > 0);
                     $anzahl = count($daten);
                     @touch($ligadatei);
@@ -364,8 +365,8 @@ final class AdminController implements Controller
     }
 
     /**
-     * Die Datei nach dem Loeschen eines Spielers neu gelesen: Spaltennamen wie in der Datei, die
-     * Zeilen der Spieler in ihrer Reihenfolge.
+     * Die Datei nach dem Loeschen eines Spielers neu gelesen: Spaltennamen ohne Formel-Markierung,
+     * die Zeilen der Spieler in ihrer Reihenfolge.
      *
      * @return array{list<string>, list<list<string>>}
      */
@@ -375,7 +376,7 @@ final class AdminController implements Controller
         if ($zeiger === false) {
             return [[], []];
         }
-        $spalten = array_map('strval', fgetcsv($zeiger, separator: '#', escape: '') ?: []);
+        $spalten = array_map(static fn ($s): string => str_replace(self::FORMEL, '', (string) $s), fgetcsv($zeiger, separator: '#', escape: '') ?: []);
         if ($mitFormeln) {
             fgetcsv($zeiger, separator: '#', escape: '');  // Zeile mit Formeln uebergehen
         }
