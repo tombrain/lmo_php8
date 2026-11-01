@@ -142,6 +142,15 @@ class SpielerAdminTest extends TestCase
         self::assertStringStartsWith("Name#Quote*_*-*\n", $this->stat(), 'die Markierung nur einmal');
     }
 
+    public function testWerteInAttributenMaskiert(): void
+    {
+        $html = $this->seite(['option' => 'addcolumn', 'wert' => 'Tor "x"', 'type' => '0', 'sort' => '1"']);
+
+        self::assertStringContainsString('name="spalten1" onChange="mark(this)" value="Tor &quot;x&quot;"', $html, 'bis 4.5 zerschnitt das Anfuehrungszeichen das Feld');
+        self::assertStringContainsString('name="sort" value="1&quot;"', $html);
+        self::assertStringContainsString('<option value="1" selected>Tor &quot;x&quot;</option>', $html);
+    }
+
     public function testSpielerLoeschen(): void
     {
         $this->seite(['option' => 'addplayer', 'wert' => 'A']);
