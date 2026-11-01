@@ -117,6 +117,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Rangliste und Tipp-Einsicht: Nicht angekreuzte Anzeige-Optionen (Name, Nick, E-Mail) zählen unter PHP 8 wieder als abgeschaltet. Ohne Name und E-Mail-Adresse steht wieder der Nick da, mit nur der E-Mail-Adresse die Adresse als Link; bisher blieb die Spalte in beiden Fällen leer. Hat ein Tipper keine Adresse, steht statt eines leeren Links sein Nick da.  
 * Tippspiel, Administration, Optionen „Anzeigen“: Sind weder Name noch E-Mail-Adresse der Tipper angekreuzt, wird wieder der Nick angezeigt. Unter PHP 8 ließen sich alle drei abwählen; Rangliste und Tipp-Einsicht zeigten die Tipper dann ohne Namen.  
 * Tippspiel, Administration, Optionen „Pfade“: Fehlte der Tippordner im Formular, wurde `tipps/` als erstes Kriterium bei Punktgleichheit (`krit1`) gespeichert. Jetzt bleibt der bisherige Tippordner, `krit1` unverändert.  
 * Konfiguration: Werte mit `;` stehen in der `cfg.txt` in Anführungszeichen (`Lmo\Web\Konfiguration::zeile()`, auch in `lmo-savecfg.php`). Bisher schnitt das Einlesen sie dort ab. Davon betroffen war der Text der Tipp-Erinnerung: Er wird mit `&#10;` gespeichert, also blieb nur die erste Zeile übrig. Das Formular unter Newsletter/Reminder zeigt jetzt den gespeicherten Text, bisher immer den vorgegebenen.  
@@ -603,6 +604,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, ranking and tip view: unticked display options (name, nick, e-mail) count as switched off again under PHP 8. Without name and e-mail address the nick is shown again, with only the e-mail address the address as a link; so far the column stayed empty in both cases. A tipper without an address gets his nick instead of an empty link.  
 * Prediction game, administration, options "display": if neither name nor e-mail address of the tippers is ticked, the nick is shown again. Under PHP 8 all three could be unticked, and the ranking and the tip view then showed the tippers without any name.  
 * Prediction game, administration, options "paths": if the tip folder was missing from the form, `tipps/` was saved as the first criterion for equal points (`krit1`). Now the folder stays as it was and `krit1` is left alone.  
 * Configuration: values containing `;` are written to `cfg.txt` in quotes (`Lmo\Web\Konfiguration::zeile()`, also in `lmo-savecfg.php`). Reading used to cut them off there. This affected the text of the prediction game reminder: it is stored with `&#10;`, so only its first line survived. The newsletter/reminder form now shows the saved text, so far it always showed the default one.  
