@@ -313,7 +313,8 @@ final class AdminController implements Controller
             'st' => $a->text('st'),
             'sort' => $sort,
             'hauptadmin' => $rolle == 2,
-            'spaltenRechte' => $rolle == 2 || ($rolle == 1 && $e['adminbereich_hilfsadmin_zulassen'] == 1 && $e['adminbereich_hilfsadmin_fuer_spalten'] == 1),
+            // Hilfsadmins sind hier schon zugelassen (sonst oben die Meldung); Spalten nur mit Recht darauf
+            'spaltenRechte' => $rolle == 2 || $e['adminbereich_hilfsadmin_fuer_spalten'] == 1,
             'spalten' => $spalten,
             'spaltenMaskiert' => array_map(static fn (string $s): string => htmlentities(stripslashes($s), ENT_COMPAT), $spalten),
             // Feldgroessen wie bisher mit strlen (Bytes)
@@ -344,7 +345,7 @@ final class AdminController implements Controller
         $addon = $kontext->konfiguration->addon('spieler');
         $e = [];
         foreach (array_keys(self::EINSTELLUNGEN) as $feld) {
-            $e[$feld] = isset($addon[$feld]) && is_scalar($addon[$feld]) ? (string) $addon[$feld] : '';
+            $e[$feld] = $addon[$feld] ?? '';
         }
         $e['ligalink'] = $t[18] ?? '';
         if (is_readable($datei) && ($zeilen = file($datei))) {
@@ -407,8 +408,8 @@ final class AdminController implements Controller
         $ohneAkzente = static fn (string $s): string => strtr($s, '¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ', 'YuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy');
 
         return static function (array $a2, array $a1) use ($spalte, $ohneAkzente): int {
-            $x = $ohneAkzente((string) ($a1[$spalte] ?? ''));
-            $y = $ohneAkzente((string) ($a2[$spalte] ?? ''));
+            $x = $ohneAkzente(is_scalar($a1[$spalte] ?? null) ? (string) $a1[$spalte] : '');
+            $y = $ohneAkzente(is_scalar($a2[$spalte] ?? null) ? (string) $a2[$spalte] : '');
             $c = strnatcasecmp($y, $x);
 
             return $c != 0 ? $c : strnatcasecmp($x, $y);
@@ -420,12 +421,12 @@ final class AdminController implements Controller
      * Lmo\Addon\Spieler\Formel). Eine ungueltige oder unvollstaendige Formel ergibt den
      * Fehlertext, eine Division durch 0 den Wert 0.
      *
-     * @param list<list<string>> $daten
+     * @param array<int, array<int, string>> $daten
      * @param array<int, bool> $formel
      * @param array<int, string> $formelzeile
-     * @param list<string> $spalten
+     * @param array<int, string> $spalten
      * @param array<int, string> $t
-     * @return list<list<string>>
+     * @return array<int, array<int, string>>
      */
     private static function berechne(array $daten, array $formel, array $formelzeile, array $spalten, array $t): array
     {
@@ -454,8 +455,8 @@ final class AdminController implements Controller
      * Die Zeilen zum Anzeigen: je Feld Name im Formular, Wert (maskiert), Art (formel, zahl,
      * verein, text) und bei Vereinen die Auswahl der Mannschaften.
      *
-     * @param list<list<string>> $daten
-     * @param list<string> $spalten
+     * @param array<int, array<int, string>> $daten
+     * @param array<int, string> $spalten
      * @param array<int, bool> $formel
      * @param array<int, string> $t
      * @return list<list<array<string, mixed>>>
