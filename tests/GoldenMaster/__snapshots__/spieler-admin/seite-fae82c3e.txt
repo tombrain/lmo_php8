@@ -2335,7 +2335,7 @@ Linkbezeichnung=Statistik
 <option value="0" disabled>Name</option>
 <option value="1" selected>Tore</option>
 <option value="2">Verein</option>
-<option value="3">Quote*_*-*</option>
+<option value="3">Quote</option>
 </select>
 </acronym>&nbsp;<input class="lmo-formular-button" type="submit" value=" &minus; ">
 <input type="hidden" name="option" value="delcolumn">
@@ -2391,7 +2391,7 @@ Linkbezeichnung=Statistik
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;st=-4&amp;sort=3&amp;file=golden/basic.l98&amp;sort_direction=asc" title="Aufsteigend sortieren" onClick="return chklmolink();">
 <img src="http://lmo.test/lmo/img/upsimple.svg" width="10" border="0" alt="&and;">
 </a>
-<input type="text" name="spalten3" onChange="mark(this)" value="Quote*_*-*" size="10">
+<input type="text" name="spalten3" onChange="mark(this)" value="Quote" size="5">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;st=-4&amp;sort=3&amp;file=golden/basic.l98&amp;sort_direction=desc" title="Absteigend sortieren" onClick="return chklmolink();">
 <img src="http://lmo.test/lmo/img/downsimple.svg" width="10" border="0" alt="&or;">
 </a>
@@ -2514,7 +2514,7 @@ Linkbezeichnung=Statistik
 <option value="0">Name</option>
 <option value="1" selected>Tore</option>
 <option value="2">Verein</option>
-<option value="3">Quote*_*-*</option>
+<option value="3">Quote</option>
 </select>
 </td>
 </tr>
@@ -2525,7 +2525,7 @@ Linkbezeichnung=Statistik
 <option value="0">Name</option>
 <option value="1" selected>Tore</option>
 <option value="2">Verein</option>
-<option value="3">Quote*_*-*</option>
+<option value="3">Quote</option>
 </select>
 </td>
 <td align="left" class="nobr">Hilfsadmin: </td>
