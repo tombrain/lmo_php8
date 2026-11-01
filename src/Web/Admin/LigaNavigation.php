@@ -23,7 +23,7 @@ use Lmo\Web\Vorlagen;
  * Die Navigation beim Bearbeiten einer Liga: Ergebnisse, die Punkte der Addons (z. B.
  * Spielerstatistik), Einstellungen, Tabellen (nur mit Handicap), Mannschaften (Hauptadmin und
  * erweiterte Hilfsadmins) und Runden. Die gezeigte Seite steht ohne Link. Bis 4.5
- * lmo-adminsubnavi.php; das bindet heute nur noch diese Klasse ein.
+ * lmo-adminsubnavi.php.
  */
 final class LigaNavigation
 {
