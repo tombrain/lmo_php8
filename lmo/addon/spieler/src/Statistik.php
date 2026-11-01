@@ -17,7 +17,7 @@ namespace Lmo\Addon\Spieler;
 /**
  * Die Spielerstatistik einer Liga aus daten/spieler/<liga>.stat: eine Zeile mit den
  * Spaltennamen, bei Formelspalten eine Zeile mit den Formeln, dann je Spieler eine Zeile, die
- * Felder an "#" getrennt. Die Datei schreibt der Admin (lmo-statadmin.php).
+ * Felder an "#" getrennt. Die Datei schreibt der Admin (AdminController).
  */
 final class Statistik
 {

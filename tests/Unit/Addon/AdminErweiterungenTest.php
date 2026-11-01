@@ -67,7 +67,7 @@ class AdminErweiterungenTest extends TestCase
 
     private static function addons(): Addons
     {
-        return (new Addons([new SpielerAddon('/x/daten/spieler', '/x/spieler'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]))
+        return (new Addons([new SpielerAddon('/x/daten/spieler'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]))
             ->mit(new AltesAdminAddon('pdf', 'pdfoptions', '/x/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
@@ -115,8 +115,9 @@ class AdminErweiterungenTest extends TestCase
         $viewer = array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig(self::kontext(['todo' => 'vieweroptions']))));
         self::assertInstanceOf(\Lmo\Addon\Viewer\OptionenController::class, $viewer[0] ?? null, 'der Viewer nach neuer Art');
         self::assertSame('/x/pdf/lmo-adminpdfoptions.inc.php', $seite(self::kontext(['todo' => 'pdfoptions'])));
-        self::assertSame('/x/spieler/lmo-statadmin.php', $seite(self::kontext(['todo' => 'edit', 'st' => '-4'], rolle: 1)), 'auch fuer Hilfsadmins');
-        self::assertNull($seite(self::kontext(['todo' => 'edit', 'st' => '-4'], ['einspieler' => '0'])), 'abgeschaltet: die Ergebnisse');
+        $spieler = static fn (Kontext $kontext): array => array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig($kontext)));
+        self::assertInstanceOf(\Lmo\Addon\Spieler\AdminController::class, $spieler(self::kontext(['todo' => 'edit', 'st' => '-4'], rolle: 1))[0] ?? null, 'auch fuer Hilfsadmins');
+        self::assertSame([], $spieler(self::kontext(['todo' => 'edit', 'st' => '-4'], ['einspieler' => '0'])), 'abgeschaltet: die Ergebnisse');
         self::assertNull($seite(self::kontext(['todo' => 'edit', 'st' => '1'])));
     }
 
@@ -145,7 +146,7 @@ class AdminErweiterungenTest extends TestCase
         self::assertFalse(TippAddon::an(new Konfiguration(['eintippspiel' => '0'])));
         self::assertTrue(TippAddon::an(new Konfiguration(['eintippspiel' => '0', 'tipp' => ['eintippspiel' => '1']])));
         self::assertTrue(SpielerAddon::an(new Konfiguration([])));
-        self::assertSame([], (new SpielerAddon('/x/daten/spieler', '/x/spieler'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
+        self::assertSame([], (new SpielerAddon('/x/daten/spieler'))->ligaMenue(self::kontext(['st' => '-4'], ['spieler' => ['einspieler' => '0']])));
     }
 
     public function testAuswertungBeimSpeichernAllerAddons(): void
@@ -202,7 +203,7 @@ class AdminErweiterungenTest extends TestCase
                 return [new \Lmo\Addon\LigaStartseite(9, 'demo', 'Demo')];
             }
         };
-        $startseiten = (new Addons([$demo, new SpielerAddon('/x/daten/spieler', '/x/spieler')]))->ligaStartseiten(self::kontext());
+        $startseiten = (new Addons([$demo, new SpielerAddon('/x/daten/spieler')]))->ligaStartseiten(self::kontext());
 
         self::assertSame([[7, 'spieler', 'S61', 'mittore'], [9, 'demo', 'Demo', '']], array_map(static fn (\Lmo\Addon\LigaStartseite $s): array => [$s->wert, $s->action, $s->name, $s->schalter], $startseiten), 'nach dem Wert');
     }

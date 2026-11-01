@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Lmo\Addon\Spieler;
 
-use Lmo\Addon\AlteAdminSeite;
 use Lmo\Addon\Datenordner;
 use Lmo\Addon\LigaStartseite;
 use Lmo\Addon\Menuepunkt;
@@ -33,18 +32,15 @@ use Lmo\Web\Kontext;
  * Addon "spieler": die Spielerstatistik einer Liga als eigene Seite (action=spieler) mit
  * Menuepunkt, wenn die Liga Spielerstatistiken hat (Option mittore). Den Menuepunkt gibt es
  * nur, wenn das Addon eingeschaltet ist (einspieler); gepflegt wird die Statistik im
- * Adminbereich beim Bearbeiten der Liga (st=-4, noch lmo-statadmin.php).
+ * Adminbereich beim Bearbeiten der Liga (st=-4, AdminController).
  */
 final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitLigaEinstellungen, MitLigaStartseiten
 {
     /** Der Schalter in den Optionen: Spielerstatistik an (config/spieler/cfg.txt, bis 4.5 config/cfg.txt) */
     public const SCHALTER = 'einspieler';
 
-    /**
-     * @param string $ordner Ordner der Statistiken (daten/spieler, datenordner())
-     * @param string $addonordner Ordner des Addons (addon/spieler) mit dem alten Code
-     */
-    public function __construct(private string $ordner, private string $addonordner)
+    /** @param string $ordner Ordner der Statistiken (daten/spieler, datenordner()) */
+    public function __construct(private string $ordner)
     {
     }
 
@@ -110,10 +106,7 @@ final class SpielerAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, M
     /** Die Pflege der Statistik beim Bearbeiten einer Liga (st=-4), fuer Haupt- und Hilfsadmins. */
     public function adminController(): array
     {
-        return [new AlteAdminSeite(
-            static fn (Kontext $kontext): bool => $kontext->anfrage->text('todo') == 'edit' && $kontext->anfrage->text('st') == -4 && self::an($kontext->konfiguration),
-            $this->addonordner . '/lmo-statadmin.php'
-        )];
+        return [new AdminController($this->ordner)];
     }
 
     public function adminMenue(Kontext $kontext): array
