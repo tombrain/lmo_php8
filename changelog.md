@@ -114,6 +114,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Administration, Userverwaltung: Ein Name ohne Leerzeichen erscheint vollständig. Bisher fehlte sein erster Buchstabe („&nbsp;leopatra“).  
 * Tippspiel, Administration: Beim Löschen eines Tippers werden nur noch seine eigenen Tipps (`<Liga>_<Nick>.tip`) gelöscht. Bisher traf es jede Tippdatei, die auf den Nick endete: Wer „ter“ löschte, löschte auch alle Tipps von „tester“ und „zweiter“.  
 * Spielerstatistik, Administration: Spaltennamen, Formeln, Einstellungen und die Parameter der Seite stehen maskiert in den Formularfeldern. Bisher zerschnitt etwa ein Anführungszeichen im Namen einer Spalte das Feld, und beim nächsten Speichern ging der Rest verloren.  
 * Spielerstatistik, Administration: Nach dem Löschen eines Spielers zeigt die Seite Formelspalten wieder ohne ihre interne Markierung `*_*-*`. Bisher stand sie im Namensfeld, und das nächste Speichern der Werte hängte sie ein zweites Mal an; die Spalte war danach keine Formelspalte mehr.  
@@ -588,6 +589,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, administration, user management: a name without a space is shown in full. So far its first letter was missing.  
 * Prediction game, administration: deleting a tipper only deletes their own tips (`<league>_<nick>.tip`). So far it hit every tip file ending in the nick: deleting "ter" also deleted all tips of "tester" and "zweiter".  
 * Player statistics, administration: column names, formulas, settings and the page parameters are escaped in the form fields. So far for example a quote in a column name cut the field, and the rest was lost on the next save.  
 * Player statistics, administration: after deleting a player the page shows formula columns without their internal marker `*_*-*` again. So far it appeared in the name field, and the next save of the values appended it a second time; the column was no longer a formula column afterwards.  

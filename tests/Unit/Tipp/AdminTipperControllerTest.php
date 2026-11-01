@@ -84,6 +84,13 @@ class AdminTipperControllerTest extends TestCase
         self::assertStringContainsString('todo=tippuseredit&amp;nick=anna', $html);
     }
 
+    public function testNameOhneLeerzeichen(): void
+    {
+        file_put_contents($this->ordner . '/lmo-tippauth.txt', "cleo|x|5|Cleopatra||||||1|1|EOL\n", FILE_APPEND);
+
+        self::assertStringContainsString('<td align="left">Cleopatra</td>', (string) $this->seite([]), 'bis 4.5 "&nbsp;leopatra"');
+    }
+
     public function testSortierung(): void
     {
         $html = (string) $this->seite(['tipper_sort' => 'nick']);
