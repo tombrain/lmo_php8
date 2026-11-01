@@ -125,7 +125,7 @@ final class AdminTipperController implements Controller
                 return $x == $y ? 0 : ($x > $y ? 1 : -1);
             }
 
-            return strnatcasecmp($ohneAkzente((string) $x), $ohneAkzente((string) $y));
+            return strnatcasecmp($ohneAkzente(is_scalar($x) ? (string) $x : ''), $ohneAkzente(is_scalar($y) ? (string) $y : ''));
         };
     }
 }
