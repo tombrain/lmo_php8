@@ -137,6 +137,15 @@ class AdminTipperBearbeitenControllerTest extends TestCase
         self::assertStringNotContainsString('bert@example.org', $html, 'nichts vom letzten Tipper im Formular');
     }
 
+    public function testNurLigenDieGetipptWerden(): void
+    {
+        $this->seite(['nick' => 'anna', 'newpage' => '0', 'xtippervorname' => 'Anna', 'xtippernachname' => 'Alt', 'xtippervereinradio' => '0', 'xtipperligen' => ['bula', '../x', 'gibtesnicht']]);
+
+        self::assertFileExists($this->ordner . '/daten/tipps/bula_anna.tip');
+        self::assertFileDoesNotExist($this->ordner . '/daten/x_anna.tip', 'bis 4.5 ausserhalb des Tippordners angelegt');
+        self::assertFileDoesNotExist($this->ordner . '/daten/tipps/gibtesnicht_anna.tip');
+    }
+
     public function testFehler(): void
     {
         $doppelt = (string) $this->seite(['nick' => 'bert', 'newpage' => '1', 'xtippervorname' => 'B', 'xtippernachname' => 'B', 'xtippervereinradio' => '0']);
