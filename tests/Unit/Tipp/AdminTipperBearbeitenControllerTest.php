@@ -123,6 +123,15 @@ class AdminTipperBearbeitenControllerTest extends TestCase
         self::assertStringContainsString("[cleo]\nTeam=", (string) file_get_contents($this->ordner . '/daten/tipps/auswert/cup.aus'));
     }
 
+    public function testNeuerTipperBeginntLeer(): void
+    {
+        $html = (string) $this->seite(['nick' => 'cleo', 'newpage' => '1', 'xtipperpass' => '', 'xtippervorname' => 'Cleo', 'xtippernachname' => 'Neu', 'xtippervereinradio' => '0']);
+
+        self::assertStringContainsString('P69', $html, 'ohne Kennwort nicht angelegt (bis 4.5 mit dem Kennwort von bert)');
+        self::assertStringNotContainsString('cleo|', $this->tipper());
+        self::assertStringNotContainsString('bert@example.org', $html, 'nichts vom letzten Tipper im Formular');
+    }
+
     public function testFehler(): void
     {
         $doppelt = (string) $this->seite(['nick' => 'bert', 'newpage' => '1', 'xtippervorname' => 'B', 'xtippernachname' => 'B', 'xtippervereinradio' => '0']);
