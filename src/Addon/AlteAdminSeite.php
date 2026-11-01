@@ -20,7 +20,7 @@ use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
 
 /**
- * Bruecke zu einer Seite der Administration nach alter Art (z. B. addon/tipp/lmo-admintipp.php).
+ * Bruecke zu einer Seite der Administration nach alter Art (z. B. addon/tipp/lmo-admintippoptions.php).
  * Die Administration bindet die Datei (datei()) wie bisher im globalen Bereich ein: Der alte Code
  * legt dort Variablen an, die seine Funktionen per global lesen (etwa die Zaehler der Tipp-
  * Auswertung). zeige() bindet sie ersatzweise mit allen globalen Variablen per Referenz ein; neue

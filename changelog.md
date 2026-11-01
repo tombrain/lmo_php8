@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Tippspiel, Administration, Auswertung (`todo=tipp`): `Lmo\Addon\Tipp\AdminAuswertungController` mit der Vorlage `addon/tipp/vorlagen/admin_auswertung.html.twig`, das Menü der Tippspiel-Administration als `Lmo\Addon\Tipp\AdminMenue`. Ausgewertet wird weiter mit dem alten Code über eine Brücke in `addon/tipp/addon.php`. `lmo-admintipp.php` gibt es nicht mehr.  
 * Spielerstatistik, Administration (`todo=edit&st=-4`): `Lmo\Addon\Spieler\AdminController` mit der Vorlage `addon/spieler/vorlagen/admin.html.twig`; Spieler, Spalten, Werte, Formeln und Einstellungen der Liga wie bisher. `lmo-statadmin.php` und `lmo-statloadconfig.php` gibt es nicht mehr; `SpielerAddon` braucht den Ordner des Addons nicht mehr.  
 * Viewer, Administration (`todo=vieweroptions`): `Lmo\Addon\Viewer\OptionenController` mit der Vorlage `addon/viewer/vorlagen/admin_optionen.html.twig`; die Mannschaften liest er aus den Rohdaten statt über die Classlib. `lmo-adminvieweroptions.php` gibt es nicht mehr.  
 * Addons: Erweiterungspunkt `Lmo\Addon\MitBereich` für einen eigenen Bereich ohne Liga: Die Seite trägt dann den Titel des Bereichs, und die Fußzeile führt zurück zur Ligenübersicht. Das Tippspiel meldet so `action=tipp` an (`TippAddon::bereichstitel()`); Rahmen und Fußzeile nennen es nicht mehr.  
@@ -477,6 +478,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Prediction game, administration, evaluation (`todo=tipp`): `Lmo\Addon\Tipp\AdminAuswertungController` with the template `addon/tipp/vorlagen/admin_auswertung.html.twig`, the menu of the prediction game administration as `Lmo\Addon\Tipp\AdminMenue`. The evaluation still runs the old code through a bridge in `addon/tipp/addon.php`. `lmo-admintipp.php` is gone.  
 * Player statistics, administration (`todo=edit&st=-4`): `Lmo\Addon\Spieler\AdminController` with the template `addon/spieler/vorlagen/admin.html.twig`; players, columns, values, formulas and league settings as before. `lmo-statadmin.php` and `lmo-statloadconfig.php` are gone; `SpielerAddon` no longer needs the add-on folder.  
 * Viewer, administration (`todo=vieweroptions`): `Lmo\Addon\Viewer\OptionenController` with the template `addon/viewer/vorlagen/admin_optionen.html.twig`; it reads the teams from the raw data instead of through the classlib. `lmo-adminvieweroptions.php` is gone.  
 * Add-ons: extension point `Lmo\Addon\MitBereich` for an own area without a league: the page then carries the area's title, and the footer leads back to the league overview. The prediction game registers `action=tipp` this way (`TippAddon::bereichstitel()`); frame and footer no longer name it.  

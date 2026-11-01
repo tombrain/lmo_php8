@@ -1,0 +1,31 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Menue der Tippspiel-Administration (Lmo\Addon\Tipp\AdminMenue), bis 4.5 lmo-admintippmenu.php #}
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center">{% if todo != 'tipp' %}<a href='{{ adresse|raw }}tipp' onclick="return chklmolink();" title="{{ t[63]|raw }}">{{ t[63]|raw }}</a>{% else %}{{ t[63]|raw }}{% endif %} </td>
+    <td align="center">
+{% if hauptadmin %}
+{% if todo != 'tippemail' %}
+      <a href='{{ adresse|raw }}tippemail' onClick="return chklmolink();" title="{{ t[165]|raw }}">{{ t[165]|raw }}</a>{% else %}{{ t[165]|raw }}{% endif %}
+
+    </td>
+    <td align="center">{% if todo != 'tippuser' and todo != 'tippuseredit' %}
+      <a href='{{ adresse|raw }}tippuser' onClick="return chklmolink();" title="{{ t[114]|raw }}">{{ t[114]|raw }}</a>{% else %}{{ t[114]|raw }}{% endif %}
+
+    </td>
+    <td align="center">{% if todo != 'tippoptions' %}
+      <a href='{{ adresse|raw }}tippoptions' onClick="return chklmolink();" title="{{ t[55]|raw }}">{{ text[86]|raw }}</a>{% else %}{{ text[86]|raw }}{% endif %}
+
+    </td>
+{% endif %}
+  </tr>
+</table>

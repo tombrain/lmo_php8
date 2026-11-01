@@ -110,8 +110,9 @@ class AdminErweiterungenTest extends TestCase
         };
 
         self::assertSame('/x/tipp/lmo-admintippoptions.php', $seite(self::kontext(['todo' => 'tippoptions'])));
-        self::assertSame('/x/tipp/lmo-admintipp.php', $seite(self::kontext(['todo' => 'tipp'])));
-        self::assertNull($seite(self::kontext(['todo' => 'tipp'], rolle: 1)), 'nur fuer den Hauptadmin');
+        $zustaendig = static fn (Kontext $kontext): array => array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig($kontext)));
+        self::assertInstanceOf(\Lmo\Addon\Tipp\AdminAuswertungController::class, $zustaendig(self::kontext(['todo' => 'tipp']))[0] ?? null, 'die Auswertung nach neuer Art');
+        self::assertSame([], $zustaendig(self::kontext(['todo' => 'tipp'], rolle: 1)), 'nur fuer den Hauptadmin');
         $viewer = array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig(self::kontext(['todo' => 'vieweroptions']))));
         self::assertInstanceOf(\Lmo\Addon\Viewer\OptionenController::class, $viewer[0] ?? null, 'der Viewer nach neuer Art');
         self::assertSame('/x/pdf/lmo-adminpdfoptions.inc.php', $seite(self::kontext(['todo' => 'pdfoptions'])));
