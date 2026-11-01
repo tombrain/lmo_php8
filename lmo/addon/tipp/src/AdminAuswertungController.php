@@ -74,7 +74,7 @@ final class AdminAuswertungController implements Controller
      * Die getippten Ligen mit der Auswahl der Spieltage und "von"/"bis" der Tipper (bis 4.5
      * lmo-tippnewdir.php mit iptype auswert bzw. einsicht).
      *
-     * @param array<string, mixed> $cfg Einstellungen des Tippspiels
+     * @param array<string, string> $cfg Einstellungen des Tippspiels
      * @param bool $gewaehlt die Anfrage war diese Auswertung (dann gelten Spieltag, von, bis der Anfrage fuer ihre Liga)
      * @return list<array<string, mixed>>
      */
@@ -91,9 +91,9 @@ final class AdminAuswertungController implements Controller
             }
         }
         sort($dateien);
-        $zuTippen = explode(',', (string) ($cfg['ligenzutippen'] ?? ''));
+        $zuTippen = explode(',', $cfg['ligenzutippen'] ?? '');
         $immerAlle = ($cfg['immeralle'] ?? '') == 1;
-        $tippordner = $this->daten . '/' . (string) ($cfg['dirtipp'] ?? '');
+        $tippordner = $this->daten . '/' . ($cfg['dirtipp'] ?? '');
         $ohneNamen = 0;
         $ligen = [];
         foreach ($dateien as $datei) {
