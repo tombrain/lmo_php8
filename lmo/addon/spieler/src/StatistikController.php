@@ -111,7 +111,8 @@ final class StatistikController implements Controller
             }
             //Anfang der Suche nach Bildern fuer die Spaltenueberschriften
             $titel = '&nbsp;' . $spalte . '&nbsp;';
-            foreach (['png', 'gif'] as $endung) {
+            // svg seit den Bildern als SVG (img/spieler/Tore.svg); bis dahin nur png und gif
+            foreach (['png', 'gif', 'svg'] as $endung) {
                 if (file_exists($kontext->pfade->lmo . '/img/spieler/' . $spalte . '.' . $endung)) {
                     $titel = '&nbsp;<acronym title="' . $spalte . '"><img border="0" src="' . $bilder . '/spieler/' . rawurlencode($spalte) . '.' . $endung . '" alt="' . $spalte . '"></acronym>&nbsp;';
                     break;
