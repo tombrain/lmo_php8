@@ -158,6 +158,62 @@ L98;
     }
 
     /**
+     * Die Auswertungsdateien im Einzelnen (save=2): mit Zusatzauswertung (showzus, P1 bis P6), Wertung
+     * nach Vereinen (wertverein, auswert/vereine/*.ver), Namen und E-Mail; ein Spieltag fuehrt die
+     * alte Datei fort, von/bis wertet nur einen Teil der Tipper aus. Dazu eine Tippdatei ohne Tipper
+     * (geist), ein geloeschter Tipper in der alten Datei (weg), der Pokal ueber alle Runden und der
+     * Tendenz-Modus. Festgehalten werden die geaenderten Dateien.
+     */
+    public function testAuswertungsdateienImDetail(): void
+    {
+        $c = self::client();
+        $path = $c->instance()->path();
+        $cfg = $path . '/config/tipp/cfg.txt';
+        $setze = static function (array $werte) use ($cfg): void {
+            $inhalt = (string) file_get_contents($cfg);
+            foreach ($werte as $schluessel => $wert) {
+                $inhalt = (string) preg_replace('/^' . $schluessel . '=.*$/m', $schluessel . '=' . $wert, $inhalt, 1, $count);
+                self::assertSame(1, $count, $schluessel);
+            }
+            file_put_contents($cfg, $inhalt);
+        };
+        $setze(['showzus' => '1', 'wertverein' => '1', 'showname' => '1', 'showemail' => '1']);
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "dritter|geheim|5|Dora Dritte|dritte@example.org|Club||||1|1|EOL\n", FILE_APPEND);
+        $tipps = $path . '/daten/tipp/tipps/';
+        // dritter: Spieltag 3 mit Joker auf Paarung 2, Spieltag 4 mit -2 und leerem Tipp, Spieltag 12 noch ohne Ergebnis
+        file_put_contents($tipps . 'tippliga_dritter.tip', "[Round3]\n@2@\nGA1=1\nGB1=0\nGA2=2\nGB2=2\nGA3=0\nGB3=1\nGA4=3\nGB4=0\n"
+            . "[Round4]\n@0@\nGA1=-2\nGB1=1\nGA2=\nGB2=\nGA3=1\nGB3=1\n[Round12]\n@1@\nGA1=2\nGB1=0\n");
+        file_put_contents($tipps . 'tippliga_geist.tip', "[Round1]\n@0@\nGA1=1\nGB1=0\n");
+        file_put_contents($tipps . 'tipppokal_dritter.tip', "[Round1]\n@12@\nGA11=0\nGB11=0\nGA12=2\nGB12=1\nGA21=1\nGB21=1\n");
+        foreach (glob($tipps . '*.tip') ?: [] as $tippdatei) {
+            touch($tippdatei, mktime(12, 0, 0, 3, 10, 2025));
+        }
+        // eine alte Auswertung: zweiter mit einem Spieltag, den es nicht mehr gibt, und ein geloeschter Tipper
+        file_put_contents($tipps . 'auswert/tippliga.aus', "\n[weg]\nTeam=\nSG1=3\nTP1=9\n\n[zweiter]\nTeam=Alt\nName=Zoe Alt\nSG2=1\nTP2=7\nSG13=2\nTP13=4\n");
+        $c->resetChanges();
+        $t = new Transcript();
+        $werte = static function (string $titel, array $anfrage) use ($c, $t): void {
+            $c->post('lmoadmin.php', '', ['action' => 'admin', 'todo' => 'tipp', 'save' => '2'] + $anfrage);
+            $t->add($titel, '', $c->changes());
+        };
+
+        $werte('Liga, Spieltag 2: fuehrt die alte Datei fort', ['liga' => 'tippliga', 'st' => '2']);
+        $werte('Liga, Spieltag 3, nur Tipper 2 bis 2', ['liga' => 'tippliga', 'st' => '3', 'start' => '2', 'ende' => '2']);
+        $werte('Liga, alle Spieltage', ['liga' => 'tippliga', 'st' => '0']);
+        $werte('Liga, Spieltag 4', ['liga' => 'tippliga', 'st' => '4']);
+        $werte('Liga, alle Spieltage, nur Tipper 1 bis 2', ['liga' => 'tippliga', 'st' => '0', 'start' => '1', 'ende' => '2']);
+        $werte('Pokal, alle Runden', ['liga' => 'tipppokal', 'st' => '0']);
+        $werte('Pokal, Runde 1', ['liga' => 'tipppokal', 'st' => '1']);
+        $werte('Pokal, Finale ohne Ergebnis', ['liga' => 'tipppokal', 'st' => '2']);
+        $setze(['tippmodus' => '0', 'wertverein' => '0', 'showname' => '0', 'showemail' => '0']);
+        $c->resetChanges();
+        $werte('Tendenz-Modus ohne Vereine, Namen und E-Mail, alle Spieltage', ['liga' => 'tippliga', 'st' => '0']);
+        $werte('Tendenz-Modus, Spieltag 3', ['liga' => 'tippliga', 'st' => '3']);
+
+        $this->assertMatchesSnapshot('tipp', 'auswertungsdateien', $t->text());
+    }
+
+    /**
      * Die Tabelle nach den Tipps (lmo-tipptabelle.php mit lmo-tippcalctable.php) in ihren Ansichten:
      * gesamt, heim, auswaerts, Hin- und Rueckrunde, bis zu einem Spieltag, fuer einen anderen und
      * fuer alle Tipper; dazu eine Liga mit Minuspunkten, Strafen und direktem Vergleich

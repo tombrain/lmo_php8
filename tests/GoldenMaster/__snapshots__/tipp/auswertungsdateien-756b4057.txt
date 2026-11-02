@@ -1,0 +1,294 @@
+### auswertungsdateien
+=== Liga, Spieltag 2: fuehrt die alte Datei fort ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,13 +1,22 @@
+ 
+-[weg]
++[dritter]
++Team=Club
++Name=Dora Dritte
++Email=dritte@example.org
++
++[tester]
+ Team=
+-SG1=3
+-TP1=9
++Name=Tina Test
++Email=tester@example.org
++SG2=3
++P32=1
++P42=1
++TP2=3
+ 
+ [zweiter]
+-Team=Alt
+-Name=Zoe Alt
+-SG2=1
+-TP2=7
++Team=
++Name=Zoe Zweite
++Email=zweite@example.org
++SG2=2
+ SG13=2
+ TP13=4
+NEU daten/tipp/tipps/auswert/vereine/tippliga_dritter.ver (32 Bytes)
+[1]
+[2]
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+NEU daten/tipp/tipps/auswert/vereine/tippliga_tester.ver (92 Bytes)
+[1]
+TP2=2
+SG2=1
+[2]
+SG2=1
+[3]
+SG2=1
+[4]
+TP2=1
+SG2=1
+[5]
+[6]
+TP2=2
+SG2=1
+[7]
+[8]
+TP2=1
+SG2=1
+NEU daten/tipp/tipps/auswert/vereine/tippliga_zweiter.ver (56 Bytes)
+[1]
+SG2=1
+[2]
+SG2=1
+[3]
+SG2=1
+[4]
+[5]
+[6]
+SG2=1
+[7]
+[8]
+
+=== Liga, Spieltag 3, nur Tipper 2 bis 2 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,8 +1,6 @@
+-
+ [dritter]
+ Team=Club
+ Name=Dora Dritte
+ Email=dritte@example.org
+-
+ [tester]
+ Team=
+@@ -13,5 +11,4 @@
+ P42=1
+ TP2=3
+-
+ [zweiter]
+ Team=
+
+=== Liga, alle Spieltage ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,14 +1,23 @@
++
+ [dritter]
+ Team=Club
+ Name=Dora Dritte
+ Email=dritte@example.org
++SG3=3
++P13=1
++TP3=4
++
+ [tester]
+ Team=
+ Name=Tina Test
+ Email=tester@example.org
++SG1=1
++P41=1
++TP1=1
+ SG2=3
+ P32=1
+ P42=1
+ TP2=3
++
+ [zweiter]
+ Team=
+@@ -16,4 +25,2 @@
+ Email=zweite@example.org
+ SG2=2
+-SG13=2
+-TP13=4
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_dritter.ver
+--- vorher
++++ nachher
+@@ -1,8 +1,16 @@
+ [1]
++TP3=4
++SG3=1
+ [2]
++SG3=1
+ [3]
++SG3=1
+ [4]
+ [5]
++TP3=4
++SG3=1
+ [6]
+ [7]
++SG3=1
+ [8]
++SG3=1
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_tester.ver
+--- vorher
++++ nachher
+@@ -3,4 +3,6 @@
+ SG2=1
+ [2]
++TP1=1
++SG1=1
+ SG2=1
+ [3]
+@@ -10,4 +12,6 @@
+ SG2=1
+ [5]
++TP1=1
++SG1=1
+ [6]
+ TP2=2
+
+=== Liga, Spieltag 4 ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Liga, alle Spieltage, nur Tipper 1 bis 2 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -7,5 +7,4 @@
+ P13=1
+ TP3=4
+-
+ [tester]
+ Team=
+@@ -19,5 +18,4 @@
+ P42=1
+ TP2=3
+-
+ [zweiter]
+ Team=
+
+=== Pokal, alle Runden ===
+
+--- Dateiaenderungen ---
+NEU daten/tipp/tipps/auswert/tipppokal.aus (177 Bytes)
+
+[dritter]
+Team=Club
+Name=Dora Dritte
+Email=dritte@example.org
+
+[tester]
+Team=
+Name=Tina Test
+Email=tester@example.org
+
+[zweiter]
+Team=
+Name=Zoe Zweite
+Email=zweite@example.org
+
+=== Pokal, Runde 1 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tipppokal.aus
+--- vorher
++++ nachher
+@@ -4,4 +4,7 @@
+ Name=Dora Dritte
+ Email=dritte@example.org
++SG1=3
++P41=1
++TP1=1
+ 
+ [tester]
+@@ -9,4 +12,8 @@
+ Name=Tina Test
+ Email=tester@example.org
++SG1=3
++P11=1
++P41=2
++TP1=6
+ 
+ [zweiter]
+@@ -14,2 +21,6 @@
+ Name=Zoe Zweite
+ Email=zweite@example.org
++SG1=2
++P11=1
++P31=1
++TP1=6
+
+=== Pokal, Finale ohne Ergebnis ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Tendenz-Modus ohne Vereine, Namen und E-Mail, alle Spieltage ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -2,23 +2,14 @@
+ [dritter]
+ Team=Club
+-Name=Dora Dritte
+-Email=dritte@example.org
+ SG3=3
+-P13=1
+-TP3=4
++TP3=1
++
+ [tester]
+ Team=
+-Name=Tina Test
+-Email=tester@example.org
+ SG1=1
+-P41=1
+-TP1=1
+ SG2=3
+-P32=1
+-P42=1
+-TP2=3
++TP2=1
++
+ [zweiter]
+ Team=
+-Name=Zoe Zweite
+-Email=zweite@example.org
+ SG2=2
+
+=== Tendenz-Modus, Spieltag 3 ===
+
+--- Dateiaenderungen ---
+(keine)
+
