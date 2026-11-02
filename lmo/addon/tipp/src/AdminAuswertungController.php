@@ -19,19 +19,20 @@ use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
+use Lmo\Web\Meldung;
 use Lmo\Web\Seite;
 use Lmo\Web\Vorlagen;
 
 /**
  * Die Auswertung des Tippspiels in der Administration (todo=tipp, nur Hauptadmin): je getippter
  * Liga die Tipps auswerten (save=2) und die Tipp-Einsicht erstellen (save=3), dazu die
- * Gesamtwertung (save=4). Ausgewertet wird noch mit dem alten Code (lmo-tippsavewert.php,
- * lmo-tippsaveeinsicht.php, lmo-tippsavewertgesamt.php). Bis 4.5 lmo-admintipp.php.
+ * Gesamtwertung (save=4). Die Liga wertet Ligaauswertung aus, Einsicht und Gesamtwertung noch
+ * der alte Code (lmo-tippsaveeinsicht.php, lmo-tippsavewertgesamt.php). Bis 4.5 lmo-admintipp.php.
  */
 final class AdminAuswertungController implements Controller
 {
     /** save => Datei der Auswertung nach alter Art */
-    private const AUSWERTUNGEN = [2 => 'lmo-tippsavewert.php', 3 => 'lmo-tippsaveeinsicht.php', 4 => 'lmo-tippsavewertgesamt.php'];
+    private const AUSWERTUNGEN = [3 => 'lmo-tippsaveeinsicht.php', 4 => 'lmo-tippsavewertgesamt.php'];
 
     /**
      * @param string $ordner Ordner des Addons (addon/tipp)
@@ -54,7 +55,9 @@ final class AdminAuswertungController implements Controller
         $save = $a->text('save', '0');
         $liga = $a->text('liga');
         $ausgabe = '';
-        if (isset(self::AUSWERTUNGEN[(int) $save]) && $save == (int) $save) {
+        if ($save == 2) {
+            $ausgabe = $this->werteAus($kontext, $cfg, $liga);
+        } elseif (isset(self::AUSWERTUNGEN[(int) $save]) && $save == (int) $save) {
             $ausgabe = ($this->alterCode)($this->ordner . '/' . self::AUSWERTUNGEN[(int) $save], ['save' => $save, 'liga' => $liga]);
         }
         $t = $kontext->texteVon('tipp');
@@ -68,6 +71,33 @@ final class AdminAuswertungController implements Controller
             'einsicht' => $this->ligen($kontext, $cfg, 'einsicht', (int) $save == 3),
             'gesamt' => ($cfg['gesamt'] ?? '') == 1,
         ]));
+    }
+
+    /**
+     * Wertet die Tipps einer Liga aus (Ligaauswertung): den Spieltag st, 0 fuer alle; mit start und
+     * ende nur diese Tipper. Zurueck kommt die Meldung.
+     *
+     * @param array<string, string> $cfg Einstellungen des Tippspiels
+     */
+    private function werteAus(Kontext $kontext, array $cfg, string $liga): string
+    {
+        $a = $kontext->anfrage;
+        $t = $kontext->texteVon('tipp');
+        $text = $kontext->text;
+        $bilder = $kontext->pfade->bilder;
+        $datei = $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner() . $liga . '.l98';
+        $meldung = '';
+        $rohdaten = null;
+        if (file_exists($datei)) {
+            $meldung = Meldung::html($bilder, ($t[0] ?? '') . ': ' . ($t[29] ?? '') . ' <var>' . htmlspecialchars($liga) . '</var> ' . ($t[65] ?? ''));
+            $rohdaten = Liga::lies($datei);
+        }
+        $auswertung = new Ligaauswertung($this->daten . '/' . ($cfg['dirtipp'] ?? ''), $this->daten . '/' . ($cfg['tippauthtxt'] ?? 'lmo-tippauth.txt'), $cfg, (string) ($text[0] ?? ''), (string) ($text[1] ?? ''));
+        if (!$auswertung->werte($liga, $rohdaten, $a->zahl('st'), $a->gesetzt('start') ? $a->zahl('start') : null, $a->gesetzt('ende') ? $a->zahl('ende') : null)) {
+            $meldung .= Meldung::html($bilder, ($t[29] ?? '') . ' ' . ($text[283] ?? ''), true);
+        }
+
+        return $meldung;
     }
 
     /**
