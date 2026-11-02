@@ -196,7 +196,7 @@ final class Ligaauswertung
                         if ($spiel === null) {
                             continue;
                         }
-                        $tipp = $pokal ? ($tipps[$i][$n] ?? null) : ($tipps[$i] ?? null);
+                        $tipp = $pokal ? Tippdatei::tippAus($tipps, $i, $n) : Tippdatei::tippAus($tipps, $i);
                         $nummer = $pokal ? ($i + 1) . ($n + 1) : (string) ($i + 1);
                         $faktor = $joker && $jokerspiel == $nummer ? $jokerfaktor : 1;
                         $wert = -1;

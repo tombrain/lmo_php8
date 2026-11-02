@@ -45,6 +45,18 @@ class TippdateiTest extends TestCase
         ], Tippdatei::lies($this->pfad)->alleRunden(), '-2 bleibt wie bis 4.5 stehen');
     }
 
+    public function testTippAus(): void
+    {
+        $liga = [0 => ['2', '1'], 1 => ['_', '_']];
+        $pokal = [0 => [0 => ['3', '1'], 1 => ['-2', '_']]];
+
+        self::assertSame(['2', '1'], Tippdatei::tippAus($liga, 0));
+        self::assertNull(Tippdatei::tippAus($liga, 2), 'keine solche Paarung');
+        self::assertSame(['-2', '_'], Tippdatei::tippAus($pokal, 0, 1));
+        self::assertNull(Tippdatei::tippAus($pokal, 0, 2));
+        self::assertNull(Tippdatei::tippAus(['x'], 0), 'kein Tipp');
+    }
+
     public function testAlleRundenMitJoker(): void
     {
         file_put_contents($this->pfad, "[Round1]\n@2@\nGA1=2\nGB1=1\n[Round2]\nGA1=1\n@1@\nGB1=0\n[Round3]\nGA1=0\nGB1=0\n[Round4]\n@3@\n");

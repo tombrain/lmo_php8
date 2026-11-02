@@ -65,8 +65,11 @@ final class Gesamtwertung
         }
 
         // je Tipper und Liga: Punkte, Spiele und die Wertungen 1 bis 6; ein Nick zaehlt fuer den ersten Tipper mit ihm
+        /** @var array<int, array<int, int>> $tp */
         $tp = [];
+        /** @var array<int, array<int, int>> $sg */
         $sg = [];
+        /** @var array<int, array<int, array<int, int>>> $p Tipper => Liga => Wertung 1 bis 6 */
         $p = [];
         foreach ($ligen as $k => $liga) {
             $abschnitt = '';
@@ -98,7 +101,8 @@ final class Gesamtwertung
                 } elseif ($art == 'SG') {
                     $sg[$j][$k] = ($sg[$j][$k] ?? 0) + $wert;
                 } elseif (substr($art, 0, 1) == 'P' && $zusatz) {
-                    $p[$j][$k][substr($art, 1, 1)] = ($p[$j][$k][substr($art, 1, 1)] ?? 0) + $wert;
+                    $nr = (int) substr($art, 1, 1);
+                    $p[$j][$k][$nr] = ($p[$j][$k][$nr] ?? 0) + $wert;
                 }
             }
         }
