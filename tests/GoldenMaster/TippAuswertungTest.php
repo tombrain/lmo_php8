@@ -229,6 +229,36 @@ L98;
     }
 
     /**
+     * Die Tipp-Einsicht erstellen (save=3): je Spieltag einsicht/<liga>_<st>.ein mit den Tipps und dem
+     * Joker aller Tipper; von/bis nur ein Teil, die anderen aus der alten Datei (ohne geloeschte
+     * Tipper). Dazu eine zweite Liga, deren Name mit dem der ersten beginnt (tippliga2), und der Pokal.
+     */
+    public function testEinsichtErstellen(): void
+    {
+        $c = self::client();
+        $path = $c->instance()->path();
+        $tipps = $path . '/daten/tipp/tipps/';
+        file_put_contents($tipps . 'tippliga2_fremd.tip', "[Round1]\n@1@\nGA1=9\nGB1=9\n");
+        file_put_contents($tipps . 'einsicht/tippliga_2.ein', "\n[weg]\nGA1=1\nGB1=1\n\n[zweiter]\n@3@\nGA1=7\nGB1=7\n");
+        touch($tipps . 'tippliga2_fremd.tip', mktime(12, 0, 0, 3, 10, 2025));
+        $c->resetChanges();
+        $t = new Transcript();
+        $einsicht = static function (string $titel, array $anfrage) use ($c, $t): void {
+            $html = $c->post('lmoadmin.php', '', ['action' => 'admin', 'todo' => 'tipp', 'save' => '3'] + $anfrage);
+            preg_match_all('~<p class="(?:message|error)">.*?</p>~s', $html, $meldungen);
+            $t->add($titel, implode("\n", $meldungen[0]), $c->changes());
+        };
+
+        $einsicht('Liga, Spieltag 1', ['liga' => 'tippliga', 'st' => '1', 'start' => '1', 'ende' => '9']);
+        $einsicht('Liga, Spieltag 2, nur Tipper 1 bis 1', ['liga' => 'tippliga', 'st' => '2', 'start' => '1', 'ende' => '1']);
+        $einsicht('Liga, Spieltag 2, alle', ['liga' => 'tippliga', 'st' => '2', 'start' => '1', 'ende' => '9']);
+        $einsicht('Pokal, Runde 1', ['liga' => 'tipppokal', 'st' => '1', 'start' => '1', 'ende' => '9']);
+        $einsicht('Liga ohne Datei', ['liga' => 'tippliga2', 'st' => '1', 'start' => '1', 'ende' => '9']);
+
+        $this->assertMatchesSnapshot('tipp', 'einsicht_erstellen', $t->text());
+    }
+
+    /**
      * Die Tabelle nach den Tipps (lmo-tipptabelle.php mit lmo-tippcalctable.php) in ihren Ansichten:
      * gesamt, heim, auswaerts, Hin- und Rueckrunde, bis zu einem Spieltag, fuer einen anderen und
      * fuer alle Tipper; dazu eine Liga mit Minuspunkten, Strafen und direktem Vergleich
