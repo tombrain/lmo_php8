@@ -77,23 +77,11 @@ return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_
     ob_start();
     include(__DIR__ . '/lmo-admintippbenachrichtigung.php');
     return (string)ob_get_clean();
-}, (string)constant('LMO_VERSION_NR'), \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR), static function (string $lmo_tipp_datei, array $lmo_tipp_variablen): string {
-    // Dateien nach alter Art aus der Administration (Auswertungen): im globalen Bereich, die
-    // uebergebenen Variablen (etwa liga, save) dort gesetzt; zurueck kommt ihre Ausgabe
-    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
-        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && strpos($lmo_tipp_name, 'lmo_tipp_') !== 0) {
-            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
-        }
-    }
-    foreach ($lmo_tipp_variablen as $lmo_tipp_name => $lmo_tipp_wert) {
-        $GLOBALS[$lmo_tipp_name] = $lmo_tipp_wert;
-        ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
-    }
-    unset($lmo_tipp_name, $lmo_tipp_wert);
-    if (!defined('LMO_TIPPAUTH')) {
-        define('LMO_TIPPAUTH', 1);
-    }
-    ob_start();
-    require($lmo_tipp_datei);
-    return (string)ob_get_clean();
-}, PATH_TO_CONFIGDIR);
+}, (string)constant('LMO_VERSION_NR'), \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR), static function (string $lmo_an, string $lmo_betreff, string $lmo_text): ?string {
+    // eine Mail aus Newsletter/Reminder (bis 4.5 in lmo-tippemail.php)
+    $mail = lmo_mailer($GLOBALS['aadr'], $GLOBALS['text']['tipp'][92]);
+    $mail->Subject = $lmo_betreff . ' (' . $_SERVER['HTTP_HOST'] . ')';
+    $mail->Body = $lmo_text;
+    $mail->addAddress($lmo_an);
+    return $mail->send() ? null : (string)$mail->ErrorInfo;
+}, PATH_TO_CONFIGDIR, function_exists('lmo_request_origin') ? (string)lmo_request_origin() : '');

@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Erinnerungsmail des Tippspiels fuer eine einzelne Liga (Adminbereich, todo=tippemail mit
- * emailart=1 und gewaehlter Liga -> lmo-tippemail.php mit lmo-tippopenfile.php bzw.
- * lmo-tippopenfileall.php): Jeder Tipper bekommt die anstehenden Spiele, die er noch nicht getippt hat.
+ * emailart=1 und gewaehlter Liga -> Lmo\Addon\Tipp\Rundmail, bis 4.5 lmo-tippemail.php): Jeder
+ * Tipper bekommt die anstehenden Spiele, die er noch nicht getippt hat.
  *
  * Die Mails landen ueber bin/sendmail.php als Dateien in der Testinstanz. "Heute" ist der 15.03.2025.
  */

@@ -15,20 +15,21 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Newsletter/Reminder in der Administration: das Formular mit Tippern und getippten Ligen, der
- * Versand nach alter Art ueber die Bruecke.
+ * Versand und der gespeicherte Text der Erinnerung.
  */
 class AdminEmailControllerTest extends TestCase
 {
     private string $ordner;
 
-    /** @var list<array{string, array<string, mixed>}> eingebundene Dateien nach alter Art */
-    private array $eingebunden = [];
+    /** @var list<array{string, string, string}> verschickte Mails: Adresse, Betreff, Text */
+    private array $mails = [];
 
     protected function setUp(): void
     {
         $this->ordner = sys_get_temp_dir() . '/lmo-tippemail-' . uniqid();
         mkdir($this->ordner . '/ligen', 0777, true);
         mkdir($this->ordner . '/daten', 0777, true);
+        mkdir($this->ordner . '/config/tipp', 0777, true);
         file_put_contents($this->ordner . '/ligen/bula.l98', "[Options]\nName=Bundesliga\nType=0\nTeams=4\nRounds=3\nActual=2\n");
         file_put_contents($this->ordner . '/ligen/cup.l98', "[Options]\nName=Pokal\nType=1\nTeams=4\nActual=1\n");
         file_put_contents($this->ordner . '/ligen/nicht.l98', "[Options]\nName=Ohne Tipps\nTeams=2\nRounds=1\n");
@@ -65,11 +66,11 @@ class AdminEmailControllerTest extends TestCase
             weitereTexte: ['tipp' => $t],
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
-        $controller = new AdminEmailController('/addon/tipp', $this->ordner . '/daten', function (string $datei, array $variablen): string {
-            $this->eingebunden[] = [$datei, $variablen];
+        $controller = new AdminEmailController($this->ordner . '/daten', $this->ordner . '/config', function (string $an, string $betreff, string $text): ?string {
+            $this->mails[] = [$an, $betreff, $text];
 
-            return 'VERSCHICKT ';
-        });
+            return null;
+        }, 'http://lmo.test');
 
         return $controller->zustaendig($kontext) ? $controller->zeige($kontext)->html : null;
     }
@@ -83,7 +84,7 @@ class AdminEmailControllerTest extends TestCase
     {
         $html = (string) $this->seite([]);
 
-        self::assertSame([], $this->eingebunden);
+        self::assertSame([], $this->mails);
         self::assertStringContainsString('<h1>P165</h1>', $html);
         self::assertMatchesRegularExpression('/value="anna">anna \(Anna A - anna@example.org\)<\/option>\s*<option value="zora">/', $html, 'nach Nick sortiert');
         self::assertStringContainsString('name="liga1[]" value="bula.l98"', $html);
@@ -122,9 +123,8 @@ class AdminEmailControllerTest extends TestCase
     {
         $html = (string) $this->seite(['save' => '1', 'emailart' => '0', 'betreff' => '', 'message' => "Hallo <b>\n[nick]", 'start' => '1', 'ende' => '2']);
 
-        self::assertSame([['/addon/tipp/lmo-tippemail.php', ['save' => '1', 'message' => "Hallo <b>\n[nick]", 'betreff' => 'P0', 'emailart' => '0',
-            'adressat' => '', 'start' => '1', 'ende' => '2', 'tage' => '4']]], $this->eingebunden);
-        self::assertStringStartsWith('VERSCHICKT ', $html);
+        self::assertSame([['zora@example.org', 'P0', "Hallo <b>\nzora"], ['anna@example.org', 'P0', "Hallo <b>\nanna"]], $this->mails, 'in der Reihenfolge der Tipperdatei');
+        self::assertStringStartsWith('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> 2 P175</p>', $html);
         self::assertStringContainsString('name="emailart" value="0" checked', $html);
         self::assertStringContainsString('name="betreff" id="betreff" size="20" maxlength="40" value="P0"', $html, 'ohne Betreff der Name des Tippspiels');
         self::assertStringContainsString("cols=\"60\">Hallo &lt;b&gt;\n[nick]", $html, 'maskiert (bis 4.5 nicht)');
@@ -135,7 +135,9 @@ class AdminEmailControllerTest extends TestCase
         $html = (string) $this->seite(['save' => '1', 'emailart' => '1', 'liganr' => '2', 'liga1' => ['bula.l98', 'cup.l98'], 'st1' => ['2', '2'],
             'tage' => '9', 'betreff' => 'Tippen', 'message' => "Bitte\n[spiele]"]);
 
-        self::assertSame(['st' => '2', 'liga' => 'cup.l98', 'viewermode' => 0], array_slice($this->eingebunden[0][1], -3));
+        self::assertStringStartsWith('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> T138</p>', $html, 'der Text gespeichert');
+        self::assertStringContainsString('0 P175', $html, 'ohne Tippdateien keine Mail');
+        self::assertStringContainsString("textreminder1=\"Bitte&#10;[spiele]\"\n", (string) file_get_contents($this->ordner . '/config/tipp/cfg.txt'));
         self::assertStringContainsString('name="liganr" value="2" checked', $html);
         self::assertStringNotContainsString('name="liganr" value="1" checked', $html);
         self::assertStringContainsString('<option value="2" selected>T374</option>', $html, 'die gewaehlte Runde');
@@ -144,11 +146,30 @@ class AdminEmailControllerTest extends TestCase
         self::assertStringContainsString('name="tage" size="2" maxlength="2" value="9"', $html);
     }
 
+    public function testEinzeln(): void
+    {
+        $html = (string) $this->seite(['save' => '1', 'emailart' => '2', 'adressat' => 'anna', 'betreff' => 'Du', 'message' => 'Hallo [name], [pass]']);
+
+        self::assertSame([['anna@example.org', 'Du', 'Hallo Anna A, http://lmo.test/lmoadmin.php?action=tipp&todo=getpass&xtippername2=anna']], $this->mails);
+        self::assertStringNotContainsString('P175', $html, 'ohne Meldung (wie bis 4.5)');
+
+        $this->mails = [];
+        $this->seite(['save' => '1', 'emailart' => '2', 'adressat' => 'gibtsnicht', 'message' => 'X']);
+        self::assertSame('anna@example.org', $this->mails[0][0] ?? null, 'wie bis 4.5 an den letzten Tipper der Datei');
+    }
+
+    public function testOhneTextNichts(): void
+    {
+        self::assertStringNotContainsString('P175', (string) $this->seite(['save' => '1', 'emailart' => '0', 'message' => '', 'start' => '1', 'ende' => '2']));
+        self::assertSame([], $this->mails);
+    }
+
     public function testErinnerungAllerLigen(): void
     {
         $html = (string) $this->seite(['save' => '1', 'emailart' => '1', 'liganr' => '0', 'liga1' => ['bula.l98', 'cup.l98'], 'st1' => ['2', '1'], 'message' => 'X']);
 
-        self::assertSame(['st' => 0, 'file' => '', 'viewermode' => 1], array_slice($this->eingebunden[0][1], -3));
+        self::assertStringContainsString('0 P175', $html);
+        self::assertSame([], $this->mails);
         self::assertStringContainsString('name="liganr" value="0" checked', $html);
         self::assertStringNotContainsString('name="liganr" value="1" checked', $html, 'keine einzelne Liga');
     }
