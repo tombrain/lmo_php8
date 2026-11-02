@@ -45,6 +45,14 @@ class TippdateiTest extends TestCase
         ], Tippdatei::lies($this->pfad)->alleRunden(), '-2 bleibt wie bis 4.5 stehen');
     }
 
+    public function testAlleRundenMitJoker(): void
+    {
+        file_put_contents($this->pfad, "[Round1]\n@2@\nGA1=2\nGB1=1\n[Round2]\nGA1=1\n@1@\nGB1=0\n[Round3]\nGA1=0\nGB1=0\n[Round4]\n@3@\n");
+
+        self::assertSame([0 => '2', 1 => '1', 2 => ''], Tippdatei::lies($this->pfad)->alleRundenMitJoker()['joker'],
+            'es gilt die @-Zeile vor dem letzten Eintrag des Abschnitts, ohne Eintrag kein Joker (wie bis 4.5)');
+    }
+
     public function testPokalLesen(): void
     {
         file_put_contents($this->pfad, "[Round1]\n@12@\nGA11=3\nGB11=1\nGA12=-2\nGB22=0\n");

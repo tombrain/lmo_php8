@@ -112,15 +112,31 @@ final class Tippdatei
      */
     public function alleRunden(): array
     {
+        return $this->alleRundenMitJoker()['tipps'];
+    }
+
+    /**
+     * Wie alleRunden(), dazu je Spieltag (ab 0) das Spiel mit Joker: die @-Zeile, die vor dem letzten
+     * Eintrag des Abschnitts stand ('' ohne).
+     *
+     * @return array{tipps: array<int, array<int, array{0: string, 1: string}>>, joker: array<int, string>}
+     */
+    public function alleRundenMitJoker(): array
+    {
         $tipps = [];
+        $joker = [];
         $abschnitt = '';
+        $jokerZeile = '';
         foreach ($this->zeilen as $zeile) {
             if (str_starts_with($zeile, '@') && str_ends_with($zeile, '@')) {
+                $jokerZeile = trim(substr($zeile, 1, -1));
                 continue;
             }
             if (str_starts_with($zeile, '[') && str_ends_with($zeile, ']')) {
                 $abschnitt = trim(substr($zeile, 1, -1));
+                $jokerZeile = '';
             } elseif (str_contains($zeile, '=') && !str_starts_with($zeile, ';') && substr($abschnitt, 0, 5) == 'Round') {
+                $joker[(int) substr($abschnitt, 5) - 1] = $jokerZeile;
                 $schluessel = trim(substr($zeile, 0, (int) strpos($zeile, '=')));
                 $seite = substr($schluessel, 0, 2) == 'GA' ? 0 : (substr($schluessel, 0, 2) == 'GB' ? 1 : null);
                 if ($seite === null) {
@@ -134,7 +150,7 @@ final class Tippdatei
             }
         }
 
-        return $tipps;
+        return ['tipps' => $tipps, 'joker' => $joker];
     }
 
     /**
