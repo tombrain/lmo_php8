@@ -105,7 +105,7 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
-        $controller = new ErgebnisseBearbeitenController(static fn (Liga $l): array => ['', $l], static fn (Liga $l): array => ['', $l]);
+        $controller = new ErgebnisseBearbeitenController(static fn (Liga $l): array => ['', $l]);
 
         self::assertTrue($controller->zustaendig($kontext(['st' => '3'], 1)));
         self::assertTrue($controller->zustaendig($kontext([], 2)), 'ohne Spieltag der aktuelle');
