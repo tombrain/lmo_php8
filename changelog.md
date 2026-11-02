@@ -122,6 +122,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Newsletter/Reminder: Eine persönliche Mail an einen Nick, den es nicht gibt, wird nicht mehr verschickt. Bisher bekam sie der letzte Tipper der Tipperdatei.  
 * Tippspiel, Administration, Auswertung: Die Vorgabe für „bis“ zählt nur die Tippdateien der Liga selbst. Bisher zählten auch die jeder Liga mit, deren Name mit dem der Liga beginnt.  
 * Tippspiel, Tipp-Einsicht erstellen: Es zählen nur die Tipper der Liga selbst, in fester Reihenfolge. Bisher kamen auch die Tipper jeder Liga dazu, deren Name mit dem der Liga beginnt (zu `liga` etwa die von `liga2`), in der Reihenfolge des Verzeichnisses.  
 * Tippspiel, Rangliste und Tipp-Einsicht: Nicht angekreuzte Anzeige-Optionen (Name, Nick, E-Mail) zählen unter PHP 8 wieder als abgeschaltet. Ohne Name und E-Mail-Adresse steht wieder der Nick da, mit nur der E-Mail-Adresse die Adresse als Link; bisher blieb die Spalte in beiden Fällen leer. Hat ein Tipper keine Adresse, steht statt eines leeren Links sein Nick da.  
@@ -617,6 +618,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, newsletter/reminder: a personal mail to a nick that does not exist is no longer sent. So far the last tipper of the tipper file received it.  
 * Prediction game, administration, evaluation: the default for "to" only counts the tip files of the league itself. So far those of every league whose name starts with the league's name counted as well.  
 * Prediction game, creating the tip view: only the tippers of the league itself count, in a fixed order. So far the tippers of every league whose name starts with the league's name were included as well (for `liga` e.g. those of `liga2`), in directory order.  
 * Prediction game, ranking and tip view: unticked display options (name, nick, e-mail) count as switched off again under PHP 8. Without name and e-mail address the nick is shown again, with only the e-mail address the address as a link; so far the column stayed empty in both cases. A tipper without an address is shown by nick instead of an empty link.  

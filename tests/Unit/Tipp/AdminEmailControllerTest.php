@@ -155,7 +155,7 @@ class AdminEmailControllerTest extends TestCase
 
         $this->mails = [];
         $this->seite(['save' => '1', 'emailart' => '2', 'adressat' => 'gibtsnicht', 'message' => 'X']);
-        self::assertSame('anna@example.org', $this->mails[0][0] ?? null, 'wie bis 4.5 an den letzten Tipper der Datei');
+        self::assertSame([], $this->mails, 'bis 4.5 an den letzten Tipper der Datei');
     }
 
     public function testOhneTextNichts(): void

@@ -83,8 +83,8 @@ final class Rundmail
     }
 
     /**
-     * Eine Mail an einen Tipper. Wie bis 4.5: Gibt es den Nick nicht, bekommt sie der letzte Tipper
-     * der Datei.
+     * Eine Mail an einen Tipper; gibt es den Nick nicht, keine (bis 4.5 bekam sie dann der letzte
+     * Tipper der Datei).
      *
      * @return array{int, string} verschickte Mails und die Fehler
      */
@@ -92,11 +92,13 @@ final class Rundmail
     {
         $anzahl = 0;
         $fehler = '';
-        $felder = explode('|', $this->zeilen[0] ?? '');
-        for ($i = 0; $i < count($this->zeilen) && $nick != $felder[0]; $i++) {
-            $felder = explode('|', $this->zeilen[$i]);
+        foreach ($this->zeilen as $zeile) {
+            $felder = explode('|', $zeile);
+            if ($felder[0] == $nick) {
+                $this->schicke($felder, $this->ersetze($nachricht, $felder), $anzahl, $fehler);
+                break;
+            }
         }
-        $this->schicke($felder, $this->ersetze($nachricht, $felder), $anzahl, $fehler);
 
         return [$anzahl, $fehler];
     }
