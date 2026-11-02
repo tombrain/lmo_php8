@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Lmo\Addon\Tipp;
 
-use Closure;
 use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Controller\Controller;
@@ -26,20 +25,13 @@ use Lmo\Web\Vorlagen;
 /**
  * Die Auswertung des Tippspiels in der Administration (todo=tipp, nur Hauptadmin): je getippter
  * Liga die Tipps auswerten (save=2) und die Tipp-Einsicht erstellen (save=3), dazu die
- * Gesamtwertung (save=4). Die Liga wertet Ligaauswertung aus, die Gesamtwertung Gesamtwertung,
- * die Einsicht noch der alte Code (lmo-tippsaveeinsicht.php). Bis 4.5 lmo-admintipp.php.
+ * Gesamtwertung (save=4), mit Ligaauswertung, Einsichtsdatei und Gesamtwertung. Bis 4.5
+ * lmo-admintipp.php mit lmo-tippsavewert.php, lmo-tippsaveeinsicht.php und lmo-tippsavewertgesamt.php.
  */
 final class AdminAuswertungController implements Controller
 {
-    /** save => Datei der Auswertung nach alter Art */
-    private const AUSWERTUNGEN = [3 => 'lmo-tippsaveeinsicht.php'];
-
-    /**
-     * @param string $ordner Ordner des Addons (addon/tipp)
-     * @param string $daten Datenordner des Tippspiels (daten/tipp)
-     * @param Closure(string, array<string, mixed>): string $alterCode bindet eine Datei nach alter Art im globalen Bereich ein (mit diesen Variablen), gibt ihre Ausgabe zurueck
-     */
-    public function __construct(private string $ordner, private string $daten, private Closure $alterCode)
+    /** @param string $daten Datenordner des Tippspiels (daten/tipp) */
+    public function __construct(private string $daten)
     {
     }
 
@@ -61,10 +53,8 @@ final class AdminAuswertungController implements Controller
             $ausgabe = $getippt ? $this->werteAus($kontext, $cfg, $liga) : '';
         } elseif ($save == 4) {
             $ausgabe = $this->gesamtwertung($kontext, $cfg);
-        } elseif ($save == 3 && !$getippt) {
-            $ausgabe = '';
-        } elseif (isset(self::AUSWERTUNGEN[(int) $save]) && $save == (int) $save) {
-            $ausgabe = ($this->alterCode)($this->ordner . '/' . self::AUSWERTUNGEN[(int) $save], ['save' => $save, 'liga' => $liga]);
+        } elseif ($save == 3 && $getippt) {
+            $ausgabe = $this->einsicht($kontext, $cfg, $liga);
         }
         $t = $kontext->texteVon('tipp');
 
@@ -104,6 +94,26 @@ final class AdminAuswertungController implements Controller
         }
 
         return $meldung;
+    }
+
+    /**
+     * Die Tipp-Einsicht eines Spieltags erstellen (Einsichtsdatei), wenn es die Liga gibt; mit start
+     * und ende nur diese Tipper (ohne ende keiner, wie bis 4.5). Zurueck kommt die Meldung.
+     *
+     * @param array<string, string> $cfg Einstellungen des Tippspiels
+     */
+    private function einsicht(Kontext $kontext, array $cfg, string $liga): string
+    {
+        $a = $kontext->anfrage;
+        $t = $kontext->texteVon('tipp');
+        if ($a->text('st') == '' || !file_exists($kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner() . $liga . '.l98')) {
+            return '';
+        }
+        $einsicht = new Einsichtsdatei($this->daten . '/' . ($cfg['dirtipp'] ?? ''), ($cfg['jokertipp'] ?? '') == 1);
+
+        return $einsicht->erstelle($liga, $a->zahl('st'), $a->zahl('start'), $a->zahl('ende'))
+            ? Meldung::html($kontext->pfade->bilder, ($t[157] ?? '') . ' ' . htmlspecialchars($liga) . ' ' . ($t[65] ?? ''))
+            : Meldung::html($kontext->pfade->bilder, ($t[157] ?? '') . ' ' . ($kontext->text[283] ?? ''), true);
     }
 
     /**

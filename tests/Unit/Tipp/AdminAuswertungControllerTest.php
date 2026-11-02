@@ -21,9 +21,6 @@ class AdminAuswertungControllerTest extends TestCase
 {
     private string $ordner;
 
-    /** @var list<array{string, array<string, mixed>}> eingebundene Dateien nach alter Art */
-    private array $eingebunden = [];
-
     protected function setUp(): void
     {
         $this->ordner = sys_get_temp_dir() . '/lmo-tippadmin-' . uniqid();
@@ -65,11 +62,7 @@ class AdminAuswertungControllerTest extends TestCase
             weitereTexte: ['tipp' => $t],
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
-        $controller = new AdminAuswertungController('/addon/tipp', $this->ordner . '/daten', function (string $datei, array $variablen): string {
-            $this->eingebunden[] = [$datei, $variablen];
-
-            return 'AUSGEWERTET ';
-        });
+        $controller = new AdminAuswertungController($this->ordner . '/daten');
 
         return $controller->zustaendig($kontext) ? $controller->zeige($kontext)->html : null;
     }
@@ -92,7 +85,6 @@ class AdminAuswertungControllerTest extends TestCase
         self::assertMatchesRegularExpression('~name="liga" value="cup">\s*<select class="lmo-formular-input" name="st">\s*<option value="1" selected>T372</option>\s*<option value="2">T373</option>\s*<option value="3">T374</option>~', $html, 'Pokal: Runden mit Namen, ohne "alle"');
         self::assertStringContainsString('name="ende" size="2" maxlength="4" value="3"', $html, 'bis: Tippdateien der Liga');
         self::assertStringContainsString('name="save" value="4"', $html, 'Gesamtwertung');
-        self::assertSame([], $this->eingebunden);
     }
 
     public function testAuswerten(): void
@@ -101,7 +93,6 @@ class AdminAuswertungControllerTest extends TestCase
         $html = (string) $this->seite(['save' => '2', 'liga' => 'bula', 'st' => '3', 'start' => '2', 'ende' => '2']);
 
         self::assertStringStartsWith('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> P0: P29 <var>bula</var> P65</p>', $html);
-        self::assertSame([], $this->eingebunden, 'nicht mehr nach alter Art');
         self::assertFileExists($this->ordner . '/daten/tipps/auswert/bula.aus');
         self::assertMatchesRegularExpression('~name="save" value="2">\s*<input type="hidden" name="liga" value="bula">.*?<option value="3" selected>.*?name="start" size="2" maxlength="4" value="2">.*?name="ende" size="2" maxlength="4" value="2">~s', $html, 'die gewaehlten Werte bleiben stehen');
         self::assertMatchesRegularExpression('~name="save" value="3">\s*<input type="hidden" name="liga" value="bula">.*?<option value="2" selected>~s', $html, 'nicht in der Einsicht');
@@ -112,22 +103,25 @@ class AdminAuswertungControllerTest extends TestCase
         mkdir($this->ordner . '/daten/tipps/auswert');
         $html = (string) $this->seite(['save' => '2', 'liga' => '../ligen/bula', 'st' => '0']);
         $this->seite(['save' => '2', 'liga' => 'nicht', 'st' => '0']);
-        $this->seite(['save' => '3', 'liga' => '../x']);
+        mkdir($this->ordner . '/daten/tipps/einsicht');
+        $this->seite(['save' => '3', 'liga' => '../tipps/einsicht/x', 'st' => '1']);
 
         self::assertStringNotContainsString('P65', $html);
         self::assertFileDoesNotExist($this->ordner . '/daten/tipps/ligen/bula.aus', 'bis 4.5 ausserhalb des Ordners der Auswertungen');
         self::assertFileDoesNotExist($this->ordner . '/daten/tipps/auswert/nicht.aus', 'wird nicht getippt');
-        self::assertSame([], $this->eingebunden, 'keine Einsicht');
+        self::assertSame(['.', '..'], scandir($this->ordner . '/daten/tipps/einsicht'), 'keine Einsicht');
     }
 
     public function testEinsichtUndGesamt(): void
     {
         mkdir($this->ordner . '/daten/tipps/auswert');
-        $this->seite(['save' => '3', 'liga' => 'cup']);
+        mkdir($this->ordner . '/daten/tipps/einsicht');
+        $html = (string) $this->seite(['save' => '3', 'liga' => 'cup', 'st' => '1', 'start' => '1', 'ende' => '9']);
         $this->seite(['save' => '4']);
         $this->seite(['save' => '5']);
 
-        self::assertSame(['/addon/tipp/lmo-tippsaveeinsicht.php'], array_column($this->eingebunden, 0), 'die Gesamtwertung nicht mehr nach alter Art');
+        self::assertStringStartsWith('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> P157 cup P65</p>', $html);
+        self::assertSame("\n[anna]\n", file_get_contents($this->ordner . '/daten/tipps/einsicht/cup_1.ein'));
         self::assertFileExists($this->ordner . '/daten/tipps/auswert/gesamt.aus');
     }
 }
