@@ -78,6 +78,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Tippspiel: Die Freischaltmail und die Mail an den Admin über einen neuen Tipper schicken die Closures in `addon/tipp/addon.php` selbst, wie bisher. `lmo-admintippfreischaltung.php`, `lmo-admintippbenachrichtigung.php` und `lmo-tipptest.php` gibt es nicht mehr.  
 * Erweiterungspunkt `Lmo\Addon\MitErgebnisAuswertung`: Statt Dateinamen, die die Administration im globalen Bereich einband, gibt es jetzt `werteBeimSpeichern(Kontext, Liga, int $st): string`. Das Addon wertet selbst aus und gibt seine Meldungen zurück; die Brücke in `lmo-adminmain.php` gibt es nicht mehr. Das Tippspiel wertet beim Speichern mit `Ligaauswertung` und `Gesamtwertung` aus.  
 * Die Classlib (`addon/classlib`) lädt `init.php` nicht mehr für jede Seite; der Kern braucht sie nicht mehr. `LMO_VERSION_NR` und `LMO_VERSION` definiert der Kern selbst. **Für Addons:** Wer Klassen oder Funktionen der Classlib benutzt (`liga`, `HTML_icon()` …), bindet `addon/classlib/ini.php` selbst ein, wie Viewer und Mini; sonst bricht das Addon mit einem Fatal Error ab.  
 * Wappen, Liga- und Spielerbilder: Der Kern sucht sie mit `Lmo\Web\Bilder` statt mit `HTML_icon()` und Verwandten der Classlib, auf dieselbe Weise. Die Endungen sind fest `.gif`, `.jpg`, `.png`, `.jpeg` (die Vorgabe von `img_types` in `config/classlib/cfg.txt`); eine dort geänderte Liste gilt nur noch für die Addons, die die Classlib benutzen (Viewer, Mini).  
@@ -575,6 +576,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Prediction game: the closures in `addon/tipp/addon.php` send the activation mail and the mail to the admin about a new tipper themselves, as before. `lmo-admintippfreischaltung.php`, `lmo-admintippbenachrichtigung.php` and `lmo-tipptest.php` are gone.  
 * Extension point `Lmo\Addon\MitErgebnisAuswertung`: instead of file names that the administration included in the global scope there is now `werteBeimSpeichern(Kontext, Liga, int $st): string`. The add-on evaluates itself and returns its messages; the bridge in `lmo-adminmain.php` is gone. The prediction game evaluates with `Ligaauswertung` and `Gesamtwertung` when saving.  
 * `init.php` no longer loads the classlib (`addon/classlib`) for every page; the core no longer needs it. The core defines `LMO_VERSION_NR` and `LMO_VERSION` itself. **For add-ons:** whoever uses classes or functions of the classlib (`liga`, `HTML_icon()` …) includes `addon/classlib/ini.php` itself, like Viewer and Mini; otherwise the add-on stops with a fatal error.  
 * Team logos, league and player pictures: the core looks them up with `Lmo\Web\Bilder` instead of the classlib's `HTML_icon()` and relatives, in the same way. The extensions are fixed to `.gif`, `.jpg`, `.png`, `.jpeg` (the default of `img_types` in `config/classlib/cfg.txt`); a list changed there only applies to the add-ons using the classlib (Viewer, Mini).  
