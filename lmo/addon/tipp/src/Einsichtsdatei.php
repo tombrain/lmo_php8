@@ -44,17 +44,17 @@ final class Einsichtsdatei
         $einsichtfile = $this->tippordner . 'einsicht/' . $liga . '_' . $st . '.ein';
         $alt = $st > 0 ? $this->alteDaten($einsichtfile, $liga) : [''];
 
-        // die Tippdateien der Liga, in der Reihenfolge des Verzeichnisses (wie bis 4.5)
+        // die Tippdateien der Liga (<liga>_<nick>.tip), in fester Reihenfolge wie bei der Auswertung;
+        // bis 4.5 jede, deren Name mit dem der Liga beginnt (zu "liga" auch die von "liga2"), in der
+        // Reihenfolge des Verzeichnisses
         $dateien = [];
-        $verzeichnis = is_dir($this->tippordner) ? opendir($this->tippordner) : false;
-        while ($verzeichnis !== false && ($datei = readdir($verzeichnis)) !== false) {
-            if (strtolower(substr($datei, -4)) == '.tip' && strtolower(substr($datei, 0, strlen($liga))) == strtolower($liga)) {
+        foreach (is_dir($this->tippordner) ? (scandir($this->tippordner) ?: []) : [] as $datei) {
+            $unterstrich = strrpos($datei, '_');
+            if ($unterstrich !== false && strtolower(substr($datei, 0, $unterstrich)) == strtolower($liga) && strtolower(substr($datei, -4)) == '.tip') {
                 $dateien[] = $datei;
             }
         }
-        if ($verzeichnis !== false) {
-            closedir($verzeichnis);
-        }
+        sort($dateien);
 
         $aus = '';
         foreach ($dateien as $k => $datei) {

@@ -3,7 +3,7 @@
 <p class="message">
 <img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Tippeinsicht tippliga erfolgreich ausgewertet</p>
 --- Dateiaenderungen ---
-NEU daten/tipp/tipps/einsicht/tippliga_1.ein (114 Bytes)
+NEU daten/tipp/tipps/einsicht/tippliga_1.ein (89 Bytes)
 
 [tester]
 @2@
@@ -20,11 +20,6 @@ GA1=0
 GB1=0
 GA2=3
 GB2=1
-
-[fremd]
-@1@
-GA1=9
-GB1=9
 
 === Liga, Spieltag 2, nur Tipper 1 bis 1 ===
 <p class="message">
@@ -55,7 +50,7 @@ GEAENDERT daten/tipp/tipps/einsicht/tippliga_2.ein
 GEAENDERT daten/tipp/tipps/einsicht/tippliga_2.ein
 --- vorher
 +++ nachher
-@@ -8,6 +8,11 @@
+@@ -8,6 +8,9 @@
  GA3=0
  GB3=1
 +
@@ -68,8 +63,6 @@ GEAENDERT daten/tipp/tipps/einsicht/tippliga_2.ein
 +GB1=2
 +GA3=1
 +GB3=0
-+
-+[fremd]
 
 === Pokal, Runde 1 ===
 <p class="message">
