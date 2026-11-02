@@ -107,6 +107,19 @@ class AdminAuswertungControllerTest extends TestCase
         self::assertMatchesRegularExpression('~name="save" value="3">\s*<input type="hidden" name="liga" value="bula">.*?<option value="2" selected>~s', $html, 'nicht in der Einsicht');
     }
 
+    public function testNurLigenDieGetipptWerden(): void
+    {
+        mkdir($this->ordner . '/daten/tipps/auswert');
+        $html = (string) $this->seite(['save' => '2', 'liga' => '../ligen/bula', 'st' => '0']);
+        $this->seite(['save' => '2', 'liga' => 'nicht', 'st' => '0']);
+        $this->seite(['save' => '3', 'liga' => '../x']);
+
+        self::assertStringNotContainsString('P65', $html);
+        self::assertFileDoesNotExist($this->ordner . '/daten/tipps/ligen/bula.aus', 'bis 4.5 ausserhalb des Ordners der Auswertungen');
+        self::assertFileDoesNotExist($this->ordner . '/daten/tipps/auswert/nicht.aus', 'wird nicht getippt');
+        self::assertSame([], $this->eingebunden, 'keine Einsicht');
+    }
+
     public function testEinsichtUndGesamt(): void
     {
         $this->seite(['save' => '3', 'liga' => 'cup']);

@@ -54,9 +54,13 @@ final class AdminAuswertungController implements Controller
         $cfg = $kontext->konfiguration->addon('tipp');
         $save = $a->text('save', '0');
         $liga = $a->text('liga');
+        // nur eine Liga, die getippt wird (bis 4.5 ging jeder Name in die Dateinamen, mit ../ auch ausserhalb des Tippordners)
+        $getippt = in_array($liga, array_column(Tippligen::tippbar($kontext), 'datei'), true);
         $ausgabe = '';
         if ($save == 2) {
-            $ausgabe = $this->werteAus($kontext, $cfg, $liga);
+            $ausgabe = $getippt ? $this->werteAus($kontext, $cfg, $liga) : '';
+        } elseif ($save == 3 && !$getippt) {
+            $ausgabe = '';
         } elseif (isset(self::AUSWERTUNGEN[(int) $save]) && $save == (int) $save) {
             $ausgabe = ($this->alterCode)($this->ordner . '/' . self::AUSWERTUNGEN[(int) $save], ['save' => $save, 'liga' => $liga]);
         }
