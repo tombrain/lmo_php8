@@ -222,7 +222,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     public function adminController(): array
     {
         // die Auswertung nach neuer Art; ausgewertet wird noch mit dem alten Code
-        $seiten = [new AdminAuswertungController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '')];
+        $seiten = [new AdminAuswertungController($this->daten !== '' ? $this->daten : $this->ordner)];
         $seiten[] = new AdminTipperController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminTipperBearbeitenController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminEmailController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '');
