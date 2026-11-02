@@ -185,10 +185,12 @@ final class AdminAuswertungController implements Controller
             for ($y = 1; $y <= $spieltage; $y++) {
                 $optionenSt[] = ['wert' => $y, 'name' => self::spieltagName($y, $pokal, $runden, $text), 'gewaehlt' => $y == $aktuell];
             }
-            // "bis": so viele Tipper, wie es Tippdateien der Liga gibt
+            // "bis": so viele Tipper, wie es Tippdateien der Liga gibt (<liga>_<nick>.tip; bis 4.5 jede,
+            // deren Name mit dem der Liga beginnt, zu "liga" auch die von "liga2")
             $tipper = 0;
             foreach (scandir(rtrim($tippordner, '/')) ?: [] as $tippdatei) {
-                if (strtolower(substr($tippdatei, 0, strlen($kurz))) == strtolower($kurz) && strtolower(substr($tippdatei, -4)) == '.tip') {
+                $unterstrich = strrpos($tippdatei, '_');
+                if ($unterstrich !== false && strtolower(substr($tippdatei, 0, $unterstrich)) == strtolower($kurz) && strtolower(substr($tippdatei, -4)) == '.tip') {
                     $tipper++;
                 }
             }
