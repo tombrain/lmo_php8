@@ -6,6 +6,12 @@ on:
   pull_request:
   workflow_dispatch:
 
+# ein neuer Lauf fuer denselben Branch bzw. Pull Request bricht den noch laufenden ab; Push und
+# Pull Request zum selben Commit laufen getrennt
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   phpstan:
     runs-on: ubuntu-24.04
