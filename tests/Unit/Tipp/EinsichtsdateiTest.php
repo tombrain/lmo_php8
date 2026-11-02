@@ -43,6 +43,15 @@ class EinsichtsdateiTest extends TestCase
         self::assertSame("\n[anna]\nGA1=0\nGB1=0\n", $this->einsicht(2), 'ohne Jokertipp');
     }
 
+    public function testNurDieTipperDerLiga(): void
+    {
+        file_put_contents($this->ordner . 'liga2_fremd.tip', "[Round1]\nGA1=9\nGB1=9\n");
+        file_put_contents($this->ordner . 'liga_bert.tip', "[Round1]\nGA1=1\nGB1=1\n");
+
+        (new Einsichtsdatei($this->ordner, false))->erstelle('liga', 1, 1, 9);
+        self::assertSame("\n[anna]\nGA1=2\nGB1=1\n\n[bert]\nGA1=1\nGB1=1\n", $this->einsicht(1), 'nach Dateinamen, ohne die Tipper von liga2 (bis 4.5 mit)');
+    }
+
     public function testVonBis(): void
     {
         file_put_contents($this->ordner . 'einsicht/liga_1.ein', "\n[weg]\nGA1=5\n\n[anna]\n@1@\nGA1=7\nGB1=7\n");
