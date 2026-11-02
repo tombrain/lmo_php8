@@ -20,10 +20,6 @@ parameters:
         -
             identifier: isset.variable
     paths:
-        - lmo/addon/tipp/lmo-tippemail.php
-        - lmo/addon/tipp/lmo-tippemailviewer.php
-        - lmo/addon/tipp/lmo-tippopenfile.php
-        - lmo/addon/tipp/lmo-tippopenfileall.php
         - lmo/addon/tipp/lmo-tippsavewert.php
         - lmo/lmo-openfile.php
         - lmo/lmo-zustat.php

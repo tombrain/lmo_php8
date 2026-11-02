@@ -54,10 +54,11 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
      * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
      * @param string $version installierte Version des LMO (LMO_VERSION_NR) fuer die Info-Seite
      * @param string $daten Datenordner des Tippspiels (daten/tipp, datenordner()) mit Tipperdatei und Tipps; '' wie $ordner
-     * @param Closure(string, array<string, mixed>): string $alterCode bindet eine Datei nach alter Art im globalen Bereich ein (mit diesen Variablen), gibt ihre Ausgabe zurueck
-     * @param string $konfiguration Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt, fuer die Optionen
+     * @param Closure(string, string, string): ?string $rundmail schickt eine Mail aus Newsletter/Reminder (Adresse, Betreff, Text); null oder der Fehler
+     * @param string $konfiguration Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt, fuer Optionen und Erinnerung
+     * @param string $herkunft Schema und Host der Seite (lmo_request_origin()), fuer Links in Mails
      */
-    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $alterCode = null, private string $konfiguration = '')
+    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $rundmail = null, private string $konfiguration = '', private string $herkunft = '')
     {
     }
 
@@ -225,7 +226,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
         $seiten = [new AdminAuswertungController($this->daten !== '' ? $this->daten : $this->ordner)];
         $seiten[] = new AdminTipperController($this->daten !== '' ? $this->daten : $this->ordner);
         $seiten[] = new AdminTipperBearbeitenController($this->daten !== '' ? $this->daten : $this->ordner);
-        $seiten[] = new AdminEmailController($this->ordner, $this->daten !== '' ? $this->daten : $this->ordner, $this->alterCode ?? static fn (string $datei, array $variablen): string => '');
+        $seiten[] = new AdminEmailController($this->daten !== '' ? $this->daten : $this->ordner, $this->konfiguration, $this->rundmail ?? static fn (string $an, string $betreff, string $text): ?string => null, $this->herkunft);
         $seiten[] = new AdminOptionenController($this->konfiguration);
 
         return $seiten;

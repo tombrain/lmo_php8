@@ -1040,7 +1040,7 @@ Hallo Zoe Zweite
 </tr>
 <tr>
 <td align="left">
-<a href="http://lmo.test/lmo/lmo.php?file=erinnerpokal.l98" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
 </td>
 <td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
 </tr>
@@ -1322,7 +1322,7 @@ GEAENDERT config/tipp/cfg.txt
 </tr>
 <tr>
 <td align="left">
-<a href="http://lmo.test/lmo/lmo.php?file=ligen/golden" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
 </td>
 <td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
 </tr>

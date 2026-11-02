@@ -53,6 +53,29 @@ final class Tippdatei
     }
 
     /**
+     * Alle Eintraege mit ihrem Abschnitt, wie sie in der Datei stehen (ohne @-Zeilen und Kommentare).
+     *
+     * @return list<array{string, string, string}> Abschnitt, Schluessel, Wert
+     */
+    public function zeilenJeAbschnitt(): array
+    {
+        $eintraege = [];
+        $abschnitt = '';
+        foreach ($this->zeilen as $zeile) {
+            if (str_starts_with($zeile, '@') && str_ends_with($zeile, '@')) {
+                continue;
+            }
+            if (str_starts_with($zeile, '[') && str_ends_with($zeile, ']')) {
+                $abschnitt = trim(substr($zeile, 1, -1));
+            } elseif (str_contains($zeile, '=') && !str_starts_with($zeile, ';')) {
+                $eintraege[] = [$abschnitt, trim(substr($zeile, 0, (int) strpos($zeile, '='))), trim(substr($zeile, (int) strpos($zeile, '=') + 1))];
+            }
+        }
+
+        return $eintraege;
+    }
+
+    /**
      * Die Tipps eines Spieltags: Paarung (ab 0) => Tore Heim und Gast, im Pokal je Spiel (ab 0).
      * Fehlt ein Tipp, steht dort KEIN_TIPP.
      *

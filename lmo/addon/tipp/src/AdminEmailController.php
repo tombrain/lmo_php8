@@ -19,24 +19,26 @@ use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
+use Lmo\Web\Meldung;
 use Lmo\Web\Seite;
 use Lmo\Web\Vorlagen;
 
 /**
  * Newsletter/Reminder in der Administration des Tippspiels (todo=tippemail, nur Hauptadmin):
  * ein Newsletter an alle Tipper (emailart=0), eine Mail an einen Tipper (2) oder die Erinnerung
- * an die noch nicht getippten Spiele einer Liga bzw. aller Ligen (1). Verschickt wird noch mit
- * dem alten Code (lmo-tippemail.php). Bis 4.5 lmo-admintippemail.php mit lmo-tippselectemail.php
- * und lmo-tippnewdir.php (iptype reminder).
+ * an die noch nicht getippten Spiele einer Liga bzw. aller Ligen (1), mit Rundmail; der Text der
+ * Erinnerung wird gespeichert (tipp/cfg.txt textreminder1). Bis 4.5 lmo-admintippemail.php mit
+ * lmo-tippselectemail.php, lmo-tippnewdir.php (iptype reminder) und lmo-tippemail.php.
  */
 final class AdminEmailController implements Controller
 {
     /**
-     * @param string $ordner Ordner des Addons (addon/tipp)
      * @param string $daten Datenordner des Tippspiels (daten/tipp)
-     * @param Closure(string, array<string, mixed>): string $alterCode bindet eine Datei nach alter Art im globalen Bereich ein (mit diesen Variablen), gibt ihre Ausgabe zurueck
+     * @param string $konfigurationsordner Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt
+     * @param Closure(string, string, string): ?string $versende schickt eine Mail (Adresse, Betreff, Text); null oder der Fehler
+     * @param string $herkunft Schema und Host der Seite (fuer den Link bei [pass])
      */
-    public function __construct(private string $ordner, private string $daten, private Closure $alterCode)
+    public function __construct(private string $daten, private string $konfigurationsordner, private Closure $versende, private string $herkunft)
     {
     }
 
@@ -69,23 +71,21 @@ final class AdminEmailController implements Controller
 
         $ausgabe = '';
         if ($save == 1) {
-            $variablen = ['save' => $save, 'message' => $message, 'betreff' => $betreff, 'emailart' => $emailart, 'adressat' => $a->text('adressat'),
-                'start' => $a->text('start', '0'), 'ende' => $a->text('ende', '0'), 'tage' => $a->text('tage', '4')];
             if ($emailart == 1) {
                 if ($liganr == 0) {
                     $liga = null;
-                    $variablen += ['st' => 0, 'file' => '', 'viewermode' => 1];
                 } else {
                     $st = $spieltage[(int) $liganr - 1] ?? '';
                     $liga = $ligen[(int) $liganr - 1] ?? '';
-                    $variablen += ['st' => $st, 'liga' => $liga, 'viewermode' => 0];
                 }
                 if ($message != '') {
-                    // gespeichert als neuer Text der Erinnerung (lmo-tippemail.php)
+                    // gespeichert als neuer Text der Erinnerung
                     $erinnerung = self::html($message);
                 }
             }
-            $ausgabe = ($this->alterCode)($this->ordner . '/lmo-tippemail.php', $variablen);
+            if ($message != '') {
+                $ausgabe = $this->verschicke($kontext, $cfg, $emailart, $betreff, $message, $liga, $liganr == 0 ? '0' : $st);
+            }
         }
         if ($erinnerung == '') {
             $erinnerung = $t[174] ?? '';
@@ -111,6 +111,56 @@ final class AdminEmailController implements Controller
             'betreff' => $save == 1 ? $betreff : $a->text('betreff1'),
             'nachricht' => $emailart == 1 ? $erinnerung : ($message != '' ? htmlspecialchars($message, ENT_QUOTES) : ($t[295] ?? '')),
         ]));
+    }
+
+    /**
+     * Verschickt die Mails (Rundmail); bei der Erinnerung wird vorher ihr Text gespeichert. Zurueck
+     * kommen die Meldungen.
+     *
+     * @param array<string, string> $cfg Einstellungen des Tippspiels
+     * @param string|null $liga die Liga der Erinnerung (Dateiname mit .l98); null: alle Ligen
+     */
+    private function verschicke(Kontext $kontext, array $cfg, string $emailart, string $betreff, string $message, ?string $liga, string $st): string
+    {
+        $a = $kontext->anfrage;
+        $t = $kontext->texteVon('tipp');
+        $bilder = $kontext->pfade->bilder;
+        $rundmail = new Rundmail(
+            $this->daten . '/' . ($cfg['tippauthtxt'] ?? 'lmo-tippauth.txt'),
+            $this->daten . '/' . ($cfg['dirtipp'] ?? ''),
+            $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner(),
+            $cfg,
+            new Tippzeit((int) ($cfg['tippBis'] ?? 0), ($cfg['tippohne'] ?? '') == 1, $kontext->konfiguration->wert('deftime'), (int) ($cfg['imvorraus'] ?? -1)),
+            $kontext->text,
+            $t,
+            $kontext->texteVon('date'),
+            $this->herkunft . $kontext->adresse . '?action=tipp&todo=getpass&xtippername2=',
+            fn (string $an, string $text): ?string => ($this->versende)($an, $betreff, $text),
+            time()
+        );
+        $von = $a->zahl('start');
+        $bis = $a->zahl('ende');
+        if ($emailart == 0) {
+            [$anzahl, $fehler] = $rundmail->newsletter($message, $von, $bis);
+
+            return $fehler . Meldung::html($bilder, $anzahl . ' ' . ($t[175] ?? ''));
+        }
+        if ($emailart == 1) {
+            // der Text der Erinnerung fuer das naechste Mal, die Zeilenumbrueche als &#10;
+            $neu = array_intersect_key(['textreminder1' => str_replace(["\r\n", "\n", "\r"], '&#10;', $message)], $cfg);
+            $ausgabe = $kontext->konfiguration->mit(['tipp' => $neu])->speichere($this->konfigurationsordner)
+                ? Meldung::html($bilder, $kontext->text[138] ?? '')
+                : Meldung::html($bilder, $kontext->text[283] ?? '', true);
+            [$anzahl, $fehler] = $rundmail->erinnerung($message, $a->text('tage', '4'), $von, $bis, $liga, $st);
+
+            return $ausgabe . $fehler . Meldung::html($bilder, $anzahl . ' ' . ($t[175] ?? ''));
+        }
+        if ($emailart == 2 && $a->text('adressat') != '') {
+            // wie bis 4.5 ohne Meldung
+            return $rundmail->einzeln($message, $a->text('adressat'))[1];
+        }
+
+        return '';
     }
 
     /**
