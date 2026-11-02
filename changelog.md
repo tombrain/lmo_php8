@@ -173,6 +173,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Tippspiel, Newsletter/Reminder: Die Erinnerung für eine Liga gilt nur für Ligen, die getippt werden. Bisher las sie jede Datei, deren Name in der Anfrage stand, mit `../` auch außerhalb des Ligenordners.  
 * Tippspiel, Administration, Auswertung: Auswerten (`save=2`) und Tipp-Einsicht erstellen (`save=3`) gelten nur für Ligen, die getippt werden. Bisher ging jeder Ligenname aus der Anfrage in die Dateinamen, mit `../` auch außerhalb des Tippordners.  
 * Tippspiel, Administration: Beim Bearbeiten und Anlegen eines Tippers gelten nur Ligen, die getippt werden. Bisher ging jeder Ligenname aus dem Formular in den Namen der Tippdatei, mit `../` auch außerhalb des Tippordners.  
 * Tippspiel, Administration: Ein neuer Tipper beginnt leer und braucht ein Kennwort. Bisher übernahm er die Daten des letzten Tippers der Datei; ohne eingegebenes Kennwort sogar dessen Kennwort, er konnte sich also mit dem fremden Kennwort anmelden. Nach einem Fehler zeigte das Formular die fremden Daten samt einem Löschen-Link für den anderen Tipper.  
@@ -669,6 +670,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Prediction game, newsletter/reminder: the reminder for a league only applies to leagues that are tipped. So far it read every file whose name was in the request, with `../` even outside the league folder.  
 * Prediction game, administration, evaluation: evaluating (`save=2`) and creating the tip view (`save=3`) only apply to leagues that are tipped. So far every league name from the request went into the file names, with `../` even outside the tip folder.  
 * Prediction game, administration: editing and creating a tipper only accepts leagues that are tipped. So far every league name from the form went into the name of the tip file, with `../` even outside the tip folder.  
 * Prediction game, administration: a new tipper starts empty and needs a password. So far it took over the data of the last tipper in the file; without an entered password even that tipper's password, so it could log in with the other password. After an error the form showed the other tipper's data including a delete link for that tipper.  

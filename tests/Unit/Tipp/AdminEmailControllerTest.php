@@ -146,6 +146,22 @@ class AdminEmailControllerTest extends TestCase
         self::assertStringContainsString('name="tage" size="2" maxlength="2" value="9"', $html);
     }
 
+    public function testErinnerungNurFuerLigenDieGetipptWerden(): void
+    {
+        $liga = "[Options]\nName=X\nType=0\nTeams=2\nRounds=1\nMatches=1\n\n[Teams]\n1=A\n2=B\n\n[Round1]\nTA1=1\nTB1=2\nGA1=-1\nGB1=-1\nAT1=" . (time() + 3600) . "\n";
+        file_put_contents($this->ordner . '/geheim.l98', $liga);
+        file_put_contents($this->ordner . '/geheim_anna.tip', '');
+        file_put_contents($this->ordner . '/ligen/bula.l98', $liga);
+        file_put_contents($this->ordner . '/daten/bula_anna.tip', '');
+        $erinnere = fn (string $datei): ?string => $this->seite(['save' => '1', 'emailart' => '1', 'liganr' => '1', 'liga1' => [$datei], 'st1' => ['0'],
+            'tage' => '1', 'start' => '1', 'ende' => '9', 'message' => '[spiele]']);
+
+        $erinnere('../geheim.l98');
+        self::assertSame([], $this->mails, 'bis 4.5 auch ausserhalb des Ligenordners');
+        $erinnere('bula.l98');
+        self::assertSame('anna@example.org', $this->mails[0][0] ?? null);
+    }
+
     public function testEinzeln(): void
     {
         $html = (string) $this->seite(['save' => '1', 'emailart' => '2', 'adressat' => 'anna', 'betreff' => 'Du', 'message' => 'Hallo [name], [pass]']);

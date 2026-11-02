@@ -151,6 +151,10 @@ final class AdminEmailController implements Controller
             $ausgabe = $kontext->konfiguration->mit(['tipp' => $neu])->speichere($this->konfigurationsordner)
                 ? Meldung::html($bilder, $kontext->text[138] ?? '')
                 : Meldung::html($bilder, $kontext->text[283] ?? '', true);
+            // nur eine Liga, die getippt wird (bis 4.5 jede Datei, deren Name in der Anfrage stand, mit ../ auch ausserhalb des Ligenordners)
+            if ($liga !== null && !in_array($liga, array_map(static fn (array $l): string => $l['datei'] . '.l98', Tippligen::tippbar($kontext)), true)) {
+                $liga = '';
+            }
             [$anzahl, $fehler] = $rundmail->erinnerung($message, $a->text('tage', '4'), $von, $bis, $liga, $st);
 
             return $ausgabe . $fehler . Meldung::html($bilder, $anzahl . ' ' . ($t[175] ?? ''));
