@@ -29,7 +29,7 @@ class AdminAuswertungControllerTest extends TestCase
         file_put_contents($this->ordner . '/ligen/bula.l98', "[Options]\nName=Bundesliga\nType=0\nTeams=4\nRounds=3\nActual=2\n");
         file_put_contents($this->ordner . '/ligen/cup.l98', "[Options]\nName=\nType=1\nTeams=8\nRounds=3\nActual=1\n");
         file_put_contents($this->ordner . '/ligen/nicht.l98', "[Options]\nName=Ohne Tipps\nTeams=2\nRounds=1\n");
-        foreach (['bula_anna.tip', 'bula_bert.tip', 'Bula_cleo.tip', 'cup_anna.tip', 'bula_anna.txt'] as $datei) {
+        foreach (['bula_anna.tip', 'bula_bert.tip', 'Bula_cleo.tip', 'cup_anna.tip', 'bula_anna.txt', 'bula2_dora.tip'] as $datei) {
             file_put_contents($this->ordner . '/daten/tipps/' . $datei, '');
         }
     }
@@ -83,7 +83,7 @@ class AdminAuswertungControllerTest extends TestCase
         self::assertStringNotContainsString('Ohne Tipps', $html, 'nur getippte Ligen');
         self::assertMatchesRegularExpression('~name="liga" value="bula">\s*<select class="lmo-formular-input" name="st">\s*<option value="0">P228</option>\s*<option value="1">1. T2</option>\s*<option value="2" selected>2. T2</option>~', $html, 'Auswertung: alle Spieltage, der aktuelle gewaehlt');
         self::assertMatchesRegularExpression('~name="liga" value="cup">\s*<select class="lmo-formular-input" name="st">\s*<option value="1" selected>T372</option>\s*<option value="2">T373</option>\s*<option value="3">T374</option>~', $html, 'Pokal: Runden mit Namen, ohne "alle"');
-        self::assertStringContainsString('name="ende" size="2" maxlength="4" value="3"', $html, 'bis: Tippdateien der Liga');
+        self::assertStringContainsString('name="ende" size="2" maxlength="4" value="3"', $html, 'bis: Tippdateien der Liga, ohne die von bula2 (bis 4.5 mit)');
         self::assertStringContainsString('name="save" value="4"', $html, 'Gesamtwertung');
     }
 
