@@ -36,9 +36,8 @@ final class SpieltageZuordnenController implements Controller
 {
     /**
      * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
-     * @param Closure(Liga, string, string, list<string>): array{string, Liga} $auswerten bindet die Auswertungen der Addons ein (Liga, Datei, Spieltag, Dateien)
      */
-    public function __construct(private Closure $speichere, private Closure $auswerten)
+    public function __construct(private Closure $speichere)
     {
     }
 
@@ -77,7 +76,7 @@ final class SpieltageZuordnenController implements Controller
             }
         }
         if ($markiert !== []) {
-            [$ausgabe, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->auswerten, $this->speichere);
+            [$ausgabe, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->speichere);
         }
 
         return new Seite(Vorlagen::zeige($kontext->pfade->vorlagen, 'admin_spieltage_zuordnen.html.twig', [

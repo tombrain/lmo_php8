@@ -21,15 +21,12 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 /**
- * Die Auswertung der Tipps einer Liga (Lmo\Addon\Tipp\Ligaauswertung) fuer den alten Code, der sie
- * noch einbindet: beim Speichern der Ergebnisse (todo=edit, mit dem gerade eingegebenen Stand in
- * $lmo_liga) und in classlib/update_addons.php.
+ * Die Auswertung der Tipps einer Liga (Lmo\Addon\Tipp\Ligaauswertung) fuer classlib/update_addons.php,
+ * die sie nach writeFile() noch so einbindet. Die Administration ruft die Klasse selbst auf.
  *
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var \Lmo\Liga\Rohdaten\Liga|null $lmo_liga Rohdaten der geladenen Liga, beim Speichern (todo=edit)
  * @var array<int|string, mixed> $text Sprachtexte
- * @var string $file Ligadatei relativ zum Ligenordner (todo=edit)
  * @var mixed $liga Name der Liga (Dateiname ohne .l98)
  * @var int|string $st der Spieltag, 0 fuer alle
  * @var string $dirliga Ligenordner relativ zum LMO (Konfiguration)
@@ -41,9 +38,7 @@ if (!defined('PATH_TO_LMO')) {
  */
 
 require_once(PATH_TO_LMO."/lmo-admintest.php");
-if (isset($todo) && $todo != "edit") {
-  $file = $liga.".l98";
-}
+$file = $liga.".l98";
 // die Einstellungen, wie sie gerade gelten
 $lmo_wert_cfg = array();
 foreach (array_keys($cfgarray['tipp'] ?? array()) as $lmo_wert_name) {
@@ -52,8 +47,7 @@ foreach (array_keys($cfgarray['tipp'] ?? array()) as $lmo_wert_name) {
 $lmo_wert_liga = null;
 if (file_exists(PATH_TO_LMO.'/'.$dirliga.$file)) {
   echo getMessage($text['tipp'][0].': '.$text['tipp'][29]." <var>".$liga."</var> ".$text['tipp'][65]);
-  // beim Speichern im Adminbereich (todo=edit) steht der gerade eingegebene Stand schon in $lmo_liga
-  $lmo_wert_liga = isset($todo) && $todo == "edit" ? ($lmo_liga ?? new \Lmo\Liga\Rohdaten\Liga()) : \Lmo\Liga\Rohdaten\Liga::lies(PATH_TO_LMO.'/'.$dirliga.$file);
+  $lmo_wert_liga = \Lmo\Liga\Rohdaten\Liga::lies(PATH_TO_LMO.'/'.$dirliga.$file);
 }
 $lmo_wert_daten = \Lmo\Addon\Tipp\TippAddon::datenordner(PATH_TO_DATADIR, PATH_TO_ADDONDIR, PATH_TO_CONFIGDIR);
 $lmo_wert_auswertung = new \Lmo\Addon\Tipp\Ligaauswertung($lmo_wert_daten . '/' . $tipp_dirtipp, $lmo_wert_daten . '/' . $tipp_tippauthtxt, $lmo_wert_cfg, (string)$text[0], (string)$text[1]);
@@ -62,6 +56,4 @@ if (!$lmo_wert_auswertung->werte((string)$liga, $lmo_wert_liga, (int)$st, isset(
 }
 
 clearstatcache();
-if (isset($todo) && $todo != "edit") {
-  $file = "";
-}
+$file = "";

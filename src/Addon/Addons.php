@@ -230,20 +230,21 @@ final class Addons
     }
 
     /**
-     * Die Dateien aller Addons, die beim Speichern der Ergebnisse eingebunden werden (MitErgebnisAuswertung).
+     * Die Auswertungen aller Addons beim Speichern der Ergebnisse (MitErgebnisAuswertung); zurueck
+     * kommen ihre Meldungen.
      *
-     * @return list<string>
+     * @param int $st der gespeicherte Spieltag, 0 fuer alle
      */
-    public function auswertungBeimSpeichern(Kontext $kontext): array
+    public function werteBeimSpeichern(Kontext $kontext, \Lmo\Liga\Rohdaten\Liga $liga, int $st): string
     {
-        $dateien = [];
+        $meldungen = '';
         foreach ($this->addons as $addon) {
             if ($addon instanceof MitErgebnisAuswertung) {
-                array_push($dateien, ...$addon->auswertungBeimSpeichern($kontext));
+                $meldungen .= $addon->werteBeimSpeichern($kontext, $liga, $st);
             }
         }
 
-        return $dateien;
+        return $meldungen;
     }
 
     /**

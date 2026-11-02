@@ -14,24 +14,22 @@ declare(strict_types=1);
 
 namespace Lmo\Addon;
 
+use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Web\Kontext;
 
 /**
- * Erweiterungspunkt: Auswertung beim Speichern der Ergebnisse eines Spieltags in der Administration
- * (todo=edit), etwa die Tipps des Tippspiels. Noch nach alter Art: Die Administration bindet die
- * Dateien ueber eine Bruecke in lmo-adminmain.php im globalen Bereich ein (bis 4.5 in
- * lmo-adminedit.php), nachdem die Ergebnisse in $lmo_liga stehen und bevor die Liga gespeichert
- * wird; sie sehen dort $lmo_liga, $file, $liga (Dateiname ohne .l98), $st, $text und die
- * Einstellungen als Variablen. Die Bruecke ist eine Funktion: Variablen, die erst die Dateien anlegen
- * und die eine Funktion per global liest, muessen die Dateien selbst als global erklaeren.
+ * Erweiterungspunkt: Auswertung beim Speichern der Ergebnisse in der Administration (todo=edit, auch
+ * nach einer Aenderung am Spielplan), etwa die Tipps des Tippspiels. Sie laeuft, nachdem die
+ * Ergebnisse in der Liga stehen und bevor die Liga gespeichert wird. Bis 4.5 band lmo-adminedit.php
+ * dafuer Dateien des Addons im globalen Bereich ein.
  */
 interface MitErgebnisAuswertung extends Addon
 {
     /**
-     * Die Dateien, die beim Speichern eingebunden werden; [] fuer keine (etwa wenn die Liga das
-     * Addon nicht betrifft). $kontext->liga ist die bearbeitete Liga.
+     * Wertet aus. $kontext->liga ist die bearbeitete Liga (ihre Datei), $liga ihr neuer Stand.
      *
-     * @return list<string>
+     * @param int $st der gespeicherte Spieltag, 0 fuer alle
+     * @return string Meldungen (HTML), '' ohne
      */
-    public function auswertungBeimSpeichern(Kontext $kontext): array;
+    public function werteBeimSpeichern(Kontext $kontext, Liga $liga, int $st): string;
 }

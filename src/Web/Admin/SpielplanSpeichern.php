@@ -26,18 +26,13 @@ use Lmo\Web\Kontext;
 final class SpielplanSpeichern
 {
     /**
-     * @param Closure(Liga, string, string, list<string>): array{string, Liga} $auswerten bindet die Auswertungen der Addons ein (Liga, Datei, Spieltag, Dateien)
      * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
      * @return array{string, Liga} Ausgaben und die gespeicherte Liga
      */
-    public static function nach(Kontext $kontext, Liga $liga, string $datei, Closure $auswerten, Closure $speichere): array
+    public static function nach(Kontext $kontext, Liga $liga, string $datei, Closure $speichere): array
     {
-        $ausgabe = '';
-        $dateien = $kontext->addons->auswertungBeimSpeichern($kontext);
-        if ($dateien !== []) {
-            // Spieltag 0: alle Spieltage
-            [$ausgabe, $liga] = $auswerten($liga, $datei, '0', $dateien);
-        }
+        // Spieltag 0: alle Spieltage
+        $ausgabe = $kontext->addons->werteBeimSpeichern($kontext, $liga, 0);
         [$gespeichert, $liga] = $speichere($liga, $datei, '0');
 
         return [$ausgabe . $gespeichert, $liga];
