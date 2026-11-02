@@ -26,13 +26,13 @@ use Lmo\Web\Vorlagen;
 /**
  * Die Auswertung des Tippspiels in der Administration (todo=tipp, nur Hauptadmin): je getippter
  * Liga die Tipps auswerten (save=2) und die Tipp-Einsicht erstellen (save=3), dazu die
- * Gesamtwertung (save=4). Die Liga wertet Ligaauswertung aus, Einsicht und Gesamtwertung noch
- * der alte Code (lmo-tippsaveeinsicht.php, lmo-tippsavewertgesamt.php). Bis 4.5 lmo-admintipp.php.
+ * Gesamtwertung (save=4). Die Liga wertet Ligaauswertung aus, die Gesamtwertung Gesamtwertung,
+ * die Einsicht noch der alte Code (lmo-tippsaveeinsicht.php). Bis 4.5 lmo-admintipp.php.
  */
 final class AdminAuswertungController implements Controller
 {
     /** save => Datei der Auswertung nach alter Art */
-    private const AUSWERTUNGEN = [3 => 'lmo-tippsaveeinsicht.php', 4 => 'lmo-tippsavewertgesamt.php'];
+    private const AUSWERTUNGEN = [3 => 'lmo-tippsaveeinsicht.php'];
 
     /**
      * @param string $ordner Ordner des Addons (addon/tipp)
@@ -59,6 +59,8 @@ final class AdminAuswertungController implements Controller
         $ausgabe = '';
         if ($save == 2) {
             $ausgabe = $getippt ? $this->werteAus($kontext, $cfg, $liga) : '';
+        } elseif ($save == 4) {
+            $ausgabe = $this->gesamtwertung($kontext, $cfg);
         } elseif ($save == 3 && !$getippt) {
             $ausgabe = '';
         } elseif (isset(self::AUSWERTUNGEN[(int) $save]) && $save == (int) $save) {
@@ -102,6 +104,21 @@ final class AdminAuswertungController implements Controller
         }
 
         return $meldung;
+    }
+
+    /**
+     * Die Gesamtwertung aus den Auswertungen der Ligen (Gesamtwertung). Zurueck kommt die Meldung.
+     *
+     * @param array<string, string> $cfg Einstellungen des Tippspiels
+     */
+    private function gesamtwertung(Kontext $kontext, array $cfg): string
+    {
+        $t = $kontext->texteVon('tipp');
+        $gesamtwertung = new Gesamtwertung($this->daten . '/' . ($cfg['dirtipp'] ?? ''), $this->daten . '/' . ($cfg['tippauthtxt'] ?? 'lmo-tippauth.txt'), $cfg);
+
+        return $gesamtwertung->werte()
+            ? Meldung::html($kontext->pfade->bilder, ($t[0] ?? '') . ': ' . ($t[56] ?? '') . ' ' . ($t[65] ?? ''))
+            : Meldung::html($kontext->pfade->bilder, ($t[0] ?? '') . ': ' . ($t[29] ?? '') . ' ' . ($kontext->text[283] ?? ''), true);
     }
 
     /**

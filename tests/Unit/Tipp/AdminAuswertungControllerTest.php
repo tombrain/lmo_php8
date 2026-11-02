@@ -122,10 +122,12 @@ class AdminAuswertungControllerTest extends TestCase
 
     public function testEinsichtUndGesamt(): void
     {
+        mkdir($this->ordner . '/daten/tipps/auswert');
         $this->seite(['save' => '3', 'liga' => 'cup']);
         $this->seite(['save' => '4']);
         $this->seite(['save' => '5']);
 
-        self::assertSame(['/addon/tipp/lmo-tippsaveeinsicht.php', '/addon/tipp/lmo-tippsavewertgesamt.php'], array_column($this->eingebunden, 0));
+        self::assertSame(['/addon/tipp/lmo-tippsaveeinsicht.php'], array_column($this->eingebunden, 0), 'die Gesamtwertung nicht mehr nach alter Art');
+        self::assertFileExists($this->ordner . '/daten/tipps/auswert/gesamt.aus');
     }
 }
