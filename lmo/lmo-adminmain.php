@@ -93,27 +93,6 @@ if ($action == 'admin') {
         return array((string)ob_get_clean(), $lmo_liga);
     };
 
-    // Bruecke zu den Auswertungen der Addons beim Speichern der Ergebnisse (Lmo\Addon\MitErgebnisAuswertung):
-    // die Dateien wie bisher im globalen Bereich, mit $lmo_liga, $file, $st und $liga (Dateiname ohne .l98)
-    // wie bis 4.5 in lmo-adminedit.php. Zurueck kommen ihre Ausgabe und die Liga.
-    $lmo_admin_auswerten = static function (\Lmo\Liga\Rohdaten\Liga $lmo_auswerten_liga, string $lmo_auswerten_datei, string $lmo_auswerten_st, array $lmo_auswerten_dateien): array {
-        foreach (array_keys($GLOBALS) as $lmo_auswerten_name) {
-            if ($lmo_auswerten_name !== 'GLOBALS' && $lmo_auswerten_name[0] !== '_' && strpos($lmo_auswerten_name, 'lmo_auswerten_') !== 0) {
-                ${$lmo_auswerten_name} = &$GLOBALS[$lmo_auswerten_name];
-            }
-        }
-        unset($lmo_auswerten_name);
-        $lmo_liga = $lmo_auswerten_liga;
-        $file = $lmo_auswerten_datei;
-        $st = $lmo_auswerten_st;
-        $liga = basename(substr($file, 0, -4));
-        ob_start();
-        foreach ($lmo_auswerten_dateien as $lmo_auswerten_einzeln) {
-            require($lmo_auswerten_einzeln);
-        }
-        return array((string)ob_get_clean(), $lmo_liga);
-    };
-
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(
         new \Lmo\Web\Admin\StartseiteController(static fn (string $datei): bool => check_hilfsadmin($datei)),
@@ -134,10 +113,10 @@ if ($action == 'admin') {
         // die Bezeichnungen fuer Punkte und Tore vor denen der Liga (lmo-langload.php)
         new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
         // zuletzt: alle uebrigen Seiten mit todo=edit
-        new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere, $lmo_admin_auswerten),
+        new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere),
         new \Lmo\Web\Admin\TabellenkorrekturController($lmo_admin_speichere),
         // die neueste Version laut Packagist (oben frisch gefragt)
-        new \Lmo\Web\Admin\SpieltageZuordnenController($lmo_admin_speichere, $lmo_admin_auswerten),
+        new \Lmo\Web\Admin\SpieltageZuordnenController($lmo_admin_speichere),
         new \Lmo\Web\Admin\UpdateController($lmo_update ?? null, lmo_is_newer($new_lmo_version ?? null, $lmo_version), $lmo_version, (string)$lmo_license),
     );
 

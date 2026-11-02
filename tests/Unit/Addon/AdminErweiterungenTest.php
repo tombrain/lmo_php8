@@ -158,14 +158,14 @@ class AdminErweiterungenTest extends TestCase
                 return 'demo';
             }
 
-            public function auswertungBeimSpeichern(Kontext $kontext): array
+            public function werteBeimSpeichern(Kontext $kontext, \Lmo\Liga\Rohdaten\Liga $liga, int $st): string
             {
-                return ['/x/demo/auswertung.php'];
+                return 'AUSGEWERTET ' . $st;
             }
         };
 
-        self::assertSame(['/x/demo/auswertung.php'], (new Addons([new ViewerAddon('/x/viewer'), $auswertung]))->auswertungBeimSpeichern(self::kontext()));
-        self::assertSame([], self::addons()->auswertungBeimSpeichern(self::kontext()), 'ohne Liga wertet das Tippspiel nichts aus');
+        self::assertSame('AUSGEWERTET 3', (new Addons([new ViewerAddon('/x/viewer'), $auswertung]))->werteBeimSpeichern(self::kontext(), new \Lmo\Liga\Rohdaten\Liga(), 3));
+        self::assertSame('', self::addons()->werteBeimSpeichern(self::kontext(), new \Lmo\Liga\Rohdaten\Liga(), 0), 'ohne Liga wertet das Tippspiel nichts aus');
     }
 
     public function testErgebnisSpaltenAllerAddons(): void

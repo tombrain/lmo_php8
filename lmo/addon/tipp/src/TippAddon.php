@@ -27,10 +27,12 @@ use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\MitSeiten;
 use Lmo\Addon\Schalter;
+use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Liga\Rohdaten\Partie;
 use Lmo\Liga\Spiel;
 use Lmo\Web\Konfiguration;
 use Lmo\Web\Kontext;
+use Lmo\Web\Meldung;
 
 /**
  * Addon "tipp": das Tippspiel (action=tipp) mit Menuepunkt, wenn es eingeschaltet ist (eintippspiel).
@@ -138,25 +140,42 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     }
 
     /**
-     * Beim Speichern der Ergebnisse einer getippten Liga die Auswertung der Tipps (tipp/cfg.txt
-     * aktauswert: die Liga, aktauswertges: alle Ligen zusammen), noch nach alter Art. Bis 4.5 band
-     * lmo-adminedit.php die Dateien selbst ein, heute die Bruecke in lmo-adminmain.php.
+     * Beim Speichern der Ergebnisse einer getippten Liga die Auswertung der Tipps mit dem neuen Stand
+     * (tipp/cfg.txt aktauswert: die Liga, Ligaauswertung; aktauswertges: alle Ligen zusammen,
+     * Gesamtwertung). Bis 4.5 band lmo-adminedit.php dafuer lmo-tippsavewert.php und
+     * lmo-tippsavewertgesamt.php ein.
      */
-    public function auswertungBeimSpeichern(Kontext $kontext): array
+    public function werteBeimSpeichern(Kontext $kontext, Liga $liga, int $st): string
     {
         $cfg = $kontext->konfiguration->addon('tipp');
         if ($kontext->liga === null || !self::wirdGetippt($cfg, $kontext->liga->datei)) {
-            return [];
+            return '';
         }
-        $dateien = [];
+        $t = $kontext->texteVon('tipp');
+        $bilder = $kontext->pfade->bilder;
+        $daten = $this->daten !== '' ? $this->daten : $this->ordner;
+        $tippordner = $daten . '/' . ($cfg['dirtipp'] ?? '');
+        $tipperdatei = $daten . '/' . ($cfg['tippauthtxt'] ?? 'lmo-tippauth.txt');
+        $meldungen = '';
         if (($cfg['aktauswert'] ?? '') == 1) {
-            $dateien[] = $this->ordner . '/lmo-tippsavewert.php';
+            $name = basename(substr($kontext->liga->datei, 0, -4));
+            // ohne Ligadatei bleibt die Auswertung leer (wie bis 4.5)
+            $vorhanden = file_exists($kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner() . $kontext->liga->datei);
+            if ($vorhanden) {
+                $meldungen .= Meldung::html($bilder, ($t[0] ?? '') . ': ' . ($t[29] ?? '') . ' <var>' . htmlspecialchars($name) . '</var> ' . ($t[65] ?? ''));
+            }
+            $auswertung = new Ligaauswertung($tippordner, $tipperdatei, $cfg, (string) ($kontext->text[0] ?? ''), (string) ($kontext->text[1] ?? ''));
+            if (!$auswertung->werte($name, $vorhanden ? $liga : null, $st)) {
+                $meldungen .= Meldung::html($bilder, ($t[29] ?? '') . ' ' . ($kontext->text[283] ?? ''), true);
+            }
         }
         if (($cfg['aktauswertges'] ?? '') == 1) {
-            $dateien[] = $this->ordner . '/lmo-tippsavewertgesamt.php';
+            $meldungen .= (new Gesamtwertung($tippordner, $tipperdatei, $cfg))->werte()
+                ? Meldung::html($bilder, ($t[0] ?? '') . ': ' . ($t[56] ?? '') . ' ' . ($t[65] ?? ''))
+                : Meldung::html($bilder, ($t[0] ?? '') . ': ' . ($t[29] ?? '') . ' ' . ($kontext->text[283] ?? ''), true);
         }
 
-        return $dateien;
+        return $meldungen;
     }
 
     /** Das Tippspiel (action=tipp) als eigener Bereich mit seinem Titel. Bis 4.5 kannte der Kern es dafuer selbst. */

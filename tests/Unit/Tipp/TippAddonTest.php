@@ -104,16 +104,28 @@ tippauthtxt=tipper.txt
 
     public function testAuswertungBeimSpeichern(): void
     {
-        $addon = new TippAddon('/lmo/addon/tipp');
-        $beide = ['aktauswert' => '1', 'aktauswertges' => '1'];
-        $dateien = static fn (array $cfg, ?string $datei = 'golden/bula.l98'): array => $addon->auswertungBeimSpeichern(self::kontext('', $datei, ['tipp' => $cfg]));
+        $daten = sys_get_temp_dir() . '/lmo-tippspeichern-' . bin2hex(random_bytes(4));
+        mkdir($daten . '/tipps/auswert', 0777, true);
+        $addon = new TippAddon('/lmo/addon/tipp', daten: $daten);
+        $beide = ['aktauswert' => '1', 'aktauswertges' => '1', 'dirtipp' => 'tipps/'];
+        $werte = static fn (array $cfg, ?string $datei = 'golden/bula.l98'): string => $addon->werteBeimSpeichern(self::kontext('', $datei, ['tipp' => $cfg]), new Liga(), 0);
+        $dateien = static function () use ($daten): array {
+            $da = array_values(array_diff(scandir($daten . '/tipps/auswert') ?: [], ['.', '..']));
+            array_map('unlink', glob($daten . '/tipps/auswert/*') ?: []);
 
-        self::assertSame(['/lmo/addon/tipp/lmo-tippsavewert.php', '/lmo/addon/tipp/lmo-tippsavewertgesamt.php'], $dateien(['immeralle' => '1'] + $beide));
-        self::assertSame(['/lmo/addon/tipp/lmo-tippsavewert.php'], $dateien(['immeralle' => '0', 'ligenzutippen' => 'x,bula', 'aktauswert' => '1']), 'die Liga steht in der Liste');
-        self::assertSame([], $dateien(['immeralle' => '0', 'ligenzutippen' => 'bundesliga'] + $beide), 'nur ganze Namen');
-        self::assertSame([], $dateien(['immeralle' => '1', 'aktauswert' => '0', 'aktauswertges' => '0']), 'keine Auswertung eingestellt');
-        self::assertSame([], $dateien(['immeralle' => '1'] + $beide, null), 'ohne Liga');
-        self::assertSame([], $dateien($beide), 'ohne immeralle zaehlt die (leere) Liste');
+            return $da;
+        };
+
+        self::assertStringContainsString('Tippspiel: ', $werte(['immeralle' => '1'] + $beide));
+        self::assertSame(['bula.aus', 'gesamt.aus'], $dateien(), 'ohne Ligadatei bleibt die Auswertung leer');
+        $werte(['immeralle' => '0', 'ligenzutippen' => 'x,bula', 'aktauswert' => '1', 'dirtipp' => 'tipps/']);
+        self::assertSame(['bula.aus'], $dateien(), 'die Liga steht in der Liste');
+        self::assertSame('', $werte(['immeralle' => '0', 'ligenzutippen' => 'bundesliga'] + $beide), 'nur ganze Namen');
+        self::assertSame('', $werte(['immeralle' => '1', 'aktauswert' => '0', 'aktauswertges' => '0']), 'keine Auswertung eingestellt');
+        self::assertSame('', $werte(['immeralle' => '1'] + $beide, null), 'ohne Liga');
+        self::assertSame('', $werte($beide), 'ohne immeralle zaehlt die (leere) Liste');
+        self::assertSame([], $dateien());
+        exec('rm -rf ' . escapeshellarg($daten));
     }
 
     public function testBereich(): void

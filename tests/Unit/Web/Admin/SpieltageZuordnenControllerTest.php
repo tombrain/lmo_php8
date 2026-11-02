@@ -57,8 +57,7 @@ class SpieltageZuordnenControllerTest extends TestCase
                 $this->gespeichert[] = [$liga, $datei, $st];
 
                 return ['GESPEICHERT ', $liga];
-            },
-            static fn (Liga $liga): array => ['', $liga]
+            }
         );
         self::assertTrue($controller->zustaendig($kontext));
 
@@ -78,7 +77,7 @@ class SpieltageZuordnenControllerTest extends TestCase
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
             sitzung: new Sitzung(['lmouserok' => 2])
         );
-        $controller = new SpieltageZuordnenController(static fn (Liga $l): array => ['', $l], static fn (Liga $l): array => ['', $l]);
+        $controller = new SpieltageZuordnenController(static fn (Liga $l): array => ['', $l]);
 
         self::assertTrue($controller->zustaendig($kontext('-10')));
         self::assertFalse($controller->zustaendig($kontext('1')));

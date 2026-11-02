@@ -33,8 +33,6 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
     /** @var list<array{Liga, string, string}> was gespeichert wurde */
     private array $gespeichert = [];
 
-    /** @var list<list<string>> welche Auswertungen eingebunden wurden */
-    private array $ausgewertet = [];
 
     /**
      * @param array<string, string> $anfrage
@@ -66,11 +64,6 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
                 $this->gespeichert[] = [$liga, $datei, $st];
 
                 return ['GESPEICHERT ', $liga];
-            },
-            function (Liga $liga, string $datei, string $st, array $dateien): array {
-                $this->ausgewertet[] = $dateien;
-
-                return ['AUSGEWERTET ', $liga];
             }
         );
         self::assertTrue($controller->zustaendig($kontext));
@@ -181,7 +174,6 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
         self::assertSame(['01.02.2025', '01.02.2025'], [$liga->spieltage[1]->werte['D1'] ?? '', $liga->spieltage[1]->werte['D2'] ?? ''], 'Datum aus den Spielen');
         self::assertSame(['erste', 'zweite'], array_values(array_filter($liga->news, static fn ($k): bool => $k !== 'NC', ARRAY_FILTER_USE_KEY)), 'getrennt an den Zeilenumbruechen, ohne leere');
         self::assertSame('1', $liga->optionen['ticker']);
-        self::assertSame([], $this->ausgewertet, 'ohne Addons keine Auswertung');
         self::assertStringContainsString('<option value="2" selected>2. T2</option>', $html, 'nach dem Speichern der aktuelle Spieltag gewaehlt');
     }
 
@@ -212,15 +204,15 @@ class ErgebnisseBearbeitenControllerTest extends TestCase
                 return 'demo';
             }
 
-            public function auswertungBeimSpeichern(Kontext $kontext): array
+            public function werteBeimSpeichern(Kontext $kontext, Liga $liga, int $st): string
             {
-                return ['/x/demo.php'];
+                return 'AUSGEWERTET ' . $st . ' ';
             }
         }]);
         $html = $this->seite(['st' => '1', 'save' => '990'], addons: $addons);
 
-        self::assertStringStartsWith('AUSGEWERTET GESPEICHERT ', $html);
-        self::assertSame([['/x/demo.php']], $this->ausgewertet);
+        self::assertStringStartsWith('AUSGEWERTET 0 GESPEICHERT ', $html, 'alle Spieltage');
+        self::assertStringStartsWith('AUSGEWERTET 2 GESPEICHERT ', $this->seite(['st' => '2', 'save' => '1'], addons: $addons), 'der gespeicherte Spieltag');
     }
 
     public function testSpaltenDerAddons(): void

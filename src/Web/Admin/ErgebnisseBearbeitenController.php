@@ -43,9 +43,8 @@ final class ErgebnisseBearbeitenController implements Controller
 
     /**
      * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
-     * @param Closure(Liga, string, string, list<string>): array{string, Liga} $auswerten bindet die Auswertungen der Addons ein (Liga, Datei, Spieltag, Dateien)
      */
-    public function __construct(private Closure $speichere, private Closure $auswerten)
+    public function __construct(private Closure $speichere)
     {
     }
 
@@ -86,7 +85,7 @@ final class ErgebnisseBearbeitenController implements Controller
         // Rueckrunden-Hack: gespeichert wird nur, wenn die Anzahl der Spieltage gerade ist
         if ($save == 990) {
             if (Spielplan::rueckrunde($liga)) {
-                [$gespeichert, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->auswerten, $this->speichere);
+                [$gespeichert, $liga] = SpielplanSpeichern::nach($kontext, $liga, $geladen->datei, $this->speichere);
                 $meldung .= $gespeichert . Meldung::html($kontext->pfade->bilder, $text[3002] ?? '');
             } else {
                 $meldung .= Meldung::html($kontext->pfade->bilder, $text[3001] ?? '', true);
@@ -284,12 +283,8 @@ final class ErgebnisseBearbeitenController implements Controller
                 $spieltag->setzeLetztenTag(date('d.m.Y', max($spieltermine)));
             }
         }
-        // Auswertungen der Addons beim Speichern (Lmo\Addon\MitErgebnisAuswertung), wie bisher im globalen Bereich
-        $meldung = '';
-        $dateien = $kontext->addons->auswertungBeimSpeichern($kontext);
-        if ($dateien !== []) {
-            [$meldung, $liga] = ($this->auswerten)($liga, $datei, $st, $dateien);
-        }
+        // Auswertungen der Addons beim Speichern (Lmo\Addon\MitErgebnisAuswertung)
+        $meldung = $kontext->addons->werteBeimSpeichern($kontext, $liga, (int) $st);
         // aktueller Spieltag: der im Formular gewaehlte, sonst der bearbeitete
         $gewaehlt = trim($a->text('xstx'));
         $liga->setzeEinstellung('Actual', $gewaehlt != 0 ? $gewaehlt : $st);

@@ -21,8 +21,8 @@ if (!defined('PATH_TO_LMO')) {
 }
 
 /**
- * Die Gesamtwertung des Tippspiels (Lmo\Addon\Tipp\Gesamtwertung) fuer den alten Code, der sie
- * noch einbindet: beim Speichern der Ergebnisse (todo=edit) und in classlib/update_addons.php.
+ * Die Gesamtwertung des Tippspiels (Lmo\Addon\Tipp\Gesamtwertung) fuer classlib/update_addons.php,
+ * die sie nach writeFile() noch so einbindet. Die Administration ruft die Klasse selbst auf.
  *
  * Diese Datei wird eingebunden und erwartet:
  *
@@ -48,6 +48,4 @@ if ((new \Lmo\Addon\Tipp\Gesamtwertung($lmo_gesamt_daten . '/' . $tipp_dirtipp, 
 }
 
 clearstatcache();
-if (isset($todo) && $todo != "edit") {
-  $file = "";
-}
+$file = "";
