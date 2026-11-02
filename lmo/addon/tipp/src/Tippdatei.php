@@ -53,6 +53,31 @@ final class Tippdatei
     }
 
     /**
+     * Ein Tipp aus Tipps, wie runde() oder alleRunden() sie liefern: [Heim, Gast] der Paarung, im
+     * Pokal mit dem Spiel als zweitem Schluessel; null, wenn es ihn dort nicht gibt.
+     *
+     * @param array<int, mixed> $tipps
+     * @return array{0: string, 1: string}|null
+     */
+    public static function tippAus(array $tipps, int ...$schluessel): ?array
+    {
+        $wert = $tipps;
+        foreach ($schluessel as $s) {
+            if (!is_array($wert) || !array_key_exists($s, $wert)) {
+                return null;
+            }
+            $wert = $wert[$s];
+        }
+        if (!is_array($wert)) {
+            return null;
+        }
+        $heim = $wert[0] ?? null;
+        $gast = $wert[1] ?? null;
+
+        return [is_scalar($heim) ? (string) $heim : self::KEIN_TIPP, is_scalar($gast) ? (string) $gast : self::KEIN_TIPP];
+    }
+
+    /**
      * Alle Eintraege mit ihrem Abschnitt, wie sie in der Datei stehen (ohne @-Zeilen und Kommentare).
      *
      * @return list<array{string, string, string}> Abschnitt, Schluessel, Wert

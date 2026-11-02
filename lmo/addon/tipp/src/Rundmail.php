@@ -174,7 +174,7 @@ final class Rundmail
                         continue;
                     }
                     if ($st > 0) {
-                        $tipp = $pokal ? ($tipps[$dd][$ddd][0] ?? null) : ($tipps[$dd][0] ?? Tippdatei::KEIN_TIPP);
+                        $tipp = $pokal ? (Tippdatei::tippAus($tipps, $dd, $ddd)[0] ?? null) : (Tippdatei::tippAus($tipps, $dd)[0] ?? Tippdatei::KEIN_TIPP);
                     } else {
                         $tipp = $pokal ? self::tippAusAllen($tipps, $st0, $dd, $ddd, 7, 64, 7) : self::tippAusAllen($tipps, $st0, $dd, null, 116, 40, 0);
                     }
@@ -225,7 +225,10 @@ final class Rundmail
         if ($runde < 0 || $runde >= $runden || $paarung < 0 || $paarung >= $paarungen || ($spiel !== null && ($spiel < 0 || $spiel >= $spiele))) {
             return null;
         }
-        $tipp = $spiel === null ? ($tipps[$runde][$paarung] ?? Tippdatei::KEIN_TIPP) : ($tipps[$runde][$paarung][$spiel] ?? Tippdatei::KEIN_TIPP);
+        $tipp = $tipps[$runde][$paarung] ?? Tippdatei::KEIN_TIPP;
+        if ($spiel !== null) {
+            $tipp = is_array($tipp) ? ($tipp[$spiel] ?? Tippdatei::KEIN_TIPP) : Tippdatei::KEIN_TIPP;
+        }
 
         return is_string($tipp) ? $tipp : Tippdatei::KEIN_TIPP;
     }
