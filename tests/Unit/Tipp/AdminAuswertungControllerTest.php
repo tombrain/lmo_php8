@@ -97,10 +97,12 @@ class AdminAuswertungControllerTest extends TestCase
 
     public function testAuswerten(): void
     {
+        mkdir($this->ordner . '/daten/tipps/auswert');
         $html = (string) $this->seite(['save' => '2', 'liga' => 'bula', 'st' => '3', 'start' => '2', 'ende' => '2']);
 
-        self::assertStringStartsWith('AUSGEWERTET ', $html);
-        self::assertSame([['/addon/tipp/lmo-tippsavewert.php', ['save' => '2', 'liga' => 'bula']]], $this->eingebunden);
+        self::assertStringStartsWith('<p class="message"><img src="IMG/right.svg" border="0" width="20" alt=""> P0: P29 <var>bula</var> P65</p>', $html);
+        self::assertSame([], $this->eingebunden, 'nicht mehr nach alter Art');
+        self::assertFileExists($this->ordner . '/daten/tipps/auswert/bula.aus');
         self::assertMatchesRegularExpression('~name="save" value="2">\s*<input type="hidden" name="liga" value="bula">.*?<option value="3" selected>.*?name="start" size="2" maxlength="4" value="2">.*?name="ende" size="2" maxlength="4" value="2">~s', $html, 'die gewaehlten Werte bleiben stehen');
         self::assertMatchesRegularExpression('~name="save" value="3">\s*<input type="hidden" name="liga" value="bula">.*?<option value="2" selected>~s', $html, 'nicht in der Einsicht');
     }
