@@ -162,7 +162,8 @@ L98;
      * nach Vereinen (wertverein, auswert/vereine/*.ver), Namen und E-Mail; ein Spieltag fuehrt die
      * alte Datei fort, von/bis wertet nur einen Teil der Tipper aus. Dazu eine Tippdatei ohne Tipper
      * (geist), ein geloeschter Tipper in der alten Datei (weg), der Pokal ueber alle Runden und der
-     * Tendenz-Modus. Festgehalten werden die geaenderten Dateien.
+     * Tendenz-Modus; zuletzt die Gesamtwertung (save=4) mit Kommapunkten durch den Joker und nur mit
+     * den Ligen zum Tippen. Festgehalten werden die geaenderten Dateien.
      */
     public function testAuswertungsdateienImDetail(): void
     {
@@ -209,6 +210,20 @@ L98;
         $c->resetChanges();
         $werte('Tendenz-Modus ohne Vereine, Namen und E-Mail, alle Spieltage', ['liga' => 'tippliga', 'st' => '0']);
         $werte('Tendenz-Modus, Spieltag 3', ['liga' => 'tippliga', 'st' => '3']);
+
+        // die Gesamtwertung (save=4) aus den Auswertungen der Ligen
+        $gesamt = static function (string $titel) use ($c, $t): void {
+            $t->add($titel, $c->post('lmoadmin.php', '', ['action' => 'admin', 'todo' => 'tipp', 'save' => '4']), $c->changes());
+        };
+        $setze(['tippmodus' => '1', 'showname' => '1', 'showemail' => '1', 'jokertippmulti' => '1.5']);
+        $c->resetChanges();
+        $werte('Liga mit Joker 1.5, alle Spieltage', ['liga' => 'tippliga', 'st' => '0']);
+        $werte('Pokal mit Joker 1.5, Runde 1', ['liga' => 'tipppokal', 'st' => '1']);
+        $gesamt('Gesamtwertung aller Ligen');
+        file_put_contents($tipps . 'auswert/alteliga.aus', "\n[tester]\nTeam=\nSG1=5\nTP1=50\n");
+        $setze(['immeralle' => '0', 'ligenzutippen' => 'tippliga,alteliga', 'showzus' => '0', 'showemail' => '0']);
+        $c->resetChanges();
+        $gesamt('Gesamtwertung nur der Ligen zum Tippen, ohne Zusatz und E-Mail');
 
         $this->assertMatchesSnapshot('tipp', 'auswertungsdateien', $t->text());
     }
