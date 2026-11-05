@@ -86,10 +86,13 @@ if (basename($_SERVER['PHP_SELF']) == 'lmo-minitab.php') {?>
 
 $CacheOutput = '';
 $TableCacheFile = PATH_TO_LMO . '/' . $diroutput . basename($m_liga) . '-' . $m_template . '.cache';
+// der Schluessel in der ersten Zeile: Stand der Liga, Vorlage und Ausschnitt (bis 4.5 stand der
+// Ausschnitt nur als Text '$m_ueber' darin und die Zeile endete nicht, der Cache griff nie)
+$lmo_mini_cacheschluessel = (is_file(PATH_TO_LMO . '/' . $dirliga . $m_liga) ? filemtime(PATH_TO_LMO . '/' . $dirliga . $m_liga) : '') . '-' . $m_template . '|' . $m_ueber . '|' . $m_unter . '|' . $m_platz;
 // If Cache File is present and up to date, print this out.
 if (is_readable($TableCacheFile) && $cfgarray['mini']['CacheTable'] == 1) {
     $CacheFile = file ($TableCacheFile);
-    if (trim(array_shift($CacheFile)) == (filemtime(PATH_TO_LMO . '/' . $dirliga . $m_liga) . '-' . $m_template . '|$m_ueber|$m_unter|$m_platz')) {
+    if (trim((string)array_shift($CacheFile)) == $lmo_mini_cacheschluessel) {
         // echo 'Cache Output: <br>';
         $CacheOutput = print implode('', $CacheFile);
     }
@@ -273,7 +276,7 @@ if (empty($CacheOutput)) {
         $template->setVariable('Tabelle', $text[16]);
         // write cache File
         if ( is_writable(dirname($TableCacheFile)) && $cfgarray['mini']['CacheTable'] == 1 ) {
-            $CacheOutput = filemtime(PATH_TO_LMO . '/' . $dirliga . $m_liga) . '-' . $m_template . '|$m_ueber|$m_unter|$m_platz\n' . $template->get();
+            $CacheOutput = $lmo_mini_cacheschluessel . "\n" . $template->get();
             if ($fileHandle = @fopen($TableCacheFile, 'wb')) {
                 fwrite($fileHandle, $CacheOutput);
                 fclose($fileHandle);
