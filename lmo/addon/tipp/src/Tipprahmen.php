@@ -24,6 +24,11 @@ use Lmo\Web\Vorlagen;
  */
 final class Tipprahmen
 {
+    /** @param string $eigeneRegeln Ordner einer eigenen Vorlage der Tippregeln (config/tipp), '' ohne */
+    public function __construct(private string $eigeneRegeln = '')
+    {
+    }
+
     /** Die Seite mit Menue und Ueberschrift um ihren Inhalt. */
     public function html(Kontext $kontext, string $inhalt): string
     {
@@ -124,7 +129,7 @@ final class Tipprahmen
             'punkte' => $punkte,
             // die Regeln in der Sprache des Besuchers, wie bis 4.5 tippregeln.php sie bestimmte
             'regeln' => ($cfg['regeln'] ?? '') == 1
-                ? Tippregeln::html($cfg, $kontext->anfrage->text('lmouserlang', $kontext->sitzung->text('lmouserlang', 'Deutsch')))
+                ? Tippregeln::html($cfg, $kontext->anfrage->text('lmouserlang', $kontext->sitzung->text('lmouserlang', 'Deutsch')), $this->eigeneRegeln)
                 : null,
             'abmelden' => $adda . 'logout',
         ]);

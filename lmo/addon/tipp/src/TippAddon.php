@@ -117,7 +117,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     public function controller(): array
     {
         $daten = $this->daten !== '' ? $this->daten : $this->ordner;
-        $rahmen = new Tipprahmen();
+        $rahmen = new Tipprahmen($this->konfiguration !== '' ? $this->konfiguration . '/tipp' : '');
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
 

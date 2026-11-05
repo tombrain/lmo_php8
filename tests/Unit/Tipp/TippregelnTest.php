@@ -33,6 +33,18 @@ class TippregelnTest extends TestCase
         self::assertStringNotContainsString('Bonus für richtigen Unentschieden-Tipp', $ohneRemis);
     }
 
+    public function testEigeneVorlage(): void
+    {
+        $ordner = sys_get_temp_dir() . '/lmo-tippregeln-' . bin2hex(random_bytes(4));
+        mkdir($ordner);
+        self::assertStringContainsString('Anleitung', Tippregeln::html([], 'Deutsch', $ordner), 'ohne eigene Vorlage die mitgelieferte');
+
+        file_put_contents($ordner . '/tippregeln.html.twig', 'Unsere Regeln: {{ k.rergebnis }} {{ r.ABS_3_text2_1 }}');
+        self::assertSame('Unsere Regeln: 4 Punkte', Tippregeln::html(['rergebnis' => '4'], 'Deutsch', $ordner));
+        unlink($ordner . '/tippregeln.html.twig');
+        rmdir($ordner);
+    }
+
     public function testOhneEigeneTexteEnglisch(): void
     {
         self::assertStringContainsString('<h1>Instructions for the Prediction Game</h1>', Tippregeln::html([], 'Magyar'));
