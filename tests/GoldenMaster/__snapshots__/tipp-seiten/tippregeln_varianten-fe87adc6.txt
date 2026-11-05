@@ -401,9 +401,9 @@
 <span class="label">nur eine Toranzahl richtig</span>
 </div>
 <div class="point-card highlight">
-<span class="unit">Faktor</span>
-<span class="value">x&nbsp;2</span>
-<span class="label">Jokermultiplikator</span>
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">Bonus für richtigen Unentschieden-Tipp</span>
 </div>
 </div>
 <strong>Die Liga- und Spieltagswertung</strong>
@@ -510,9 +510,9 @@
 <span class="label">nur eine Toranzahl richtig</span>
 </div>
 <div class="point-card highlight">
-<span class="unit">Faktor</span>
-<span class="value">x&nbsp;2</span>
-<span class="label">Jokermultiplikator</span>
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">Bonus für richtigen Unentschieden-Tipp</span>
 </div>
 </div>
 <strong>Die Liga- und Spieltagswertung</strong>
