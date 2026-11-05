@@ -169,6 +169,53 @@ final class ViewerAddonTest extends TestCase
         }
     }
 
+    /**
+     * Alle Schalter einer Ansicht auf einer Liga mit Sonderfaellen: Torfaktor 10, ein Spiel mit
+     * Notiz, Spielbericht und Spielende nach Verlaengerung, die Homepage einer Mannschaft, die
+     * Lieblingsmannschaft. Nach Spieltag (sortiert nach Datum) mit mittleren Namen und Links, nach
+     * Datum mit kurzen Namen.
+     */
+    public function testAlleSchalter(): void
+    {
+        $ligen = self::$client->instance()->ligenDir();
+        $liga = str_replace("\r\n", "\n", (string)file_get_contents($ligen . '/' . self::LIGA));
+        $liga = str_replace(['goalfaktor=1', 'favTeam=0', "[Team2]\nSP=0\nSM=0\nTOR1=0\nTOR2=0\nSTDA=0\nURL=\n"], ['goalfaktor=10', 'favTeam=2', "[Team2]\nSP=0\nSM=0\nTOR1=0\nTOR2=0\nSTDA=0\nURL=http://bayern.example\n"], $liga);
+        $liga = (string)preg_replace('/(\[Round25\]\n(?:.*\n)*?)GA1=-1\nGB1=-1\nNT1=\nBE1=\n/', "$1GA1=30\nGB1=10\nNT1=Notiz zum Spiel\nBE1=http://bericht.example\nSP1=1\n", $liga, 1, $count);
+        self::assertSame(1, $count, 'Spiel 1 am Spieltag 25');
+        file_put_contents($ligen . '/viewer-alles.l98', $liga);
+
+        $dir = self::$client->instance()->path() . '/config/viewer';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        $schreibe = static function (string $name, array $werte) use ($dir): void {
+            $zeilen = ['[config]'];
+            foreach ($werte + [
+                'anzahl_tage_plus' => 7, 'anzahl_tage_minus' => 7, 'anzahl_spieltage_vor' => 1, 'anzahl_spieltage_zurueck' => 1,
+                'datumsformat' => 'd.m.Y', 'heute_highlight' => 1, 'tabelle_verlinken' => 0, 'spielberichte_neues_fenster' => 1,
+                'mannschaftshomepages_verlinken' => 1, 'titelzeile' => 'Alles', 'anstosstermin' => '', 'uhrzeitformat' => 'H:i',
+                'tordummy' => '-', 'tabellensymbol' => 'tabelle.svg', 'spielberichtesymbol' => 'bericht.svg', 'notizsymbol' => 'notiz.svg',
+                'spieltagtext' => 'ST', 'cache_refresh' => 0, 'favteam_highlight' => 1,
+            ] as $schluessel => $wert) {
+                $zeilen[] = $schluessel . '=' . $wert;
+            }
+            $zeilen[] = '[Viewer Ligen]';
+            $zeilen[] = 'liga1=viewer-alles.l98';
+            file_put_contents($dir . '/' . $name . '.view', implode("\n", $zeilen) . "\n");
+        };
+        $schreibe('alles-spieltag', ['modus' => 2, 'template' => 'standard_spieltag', 'mannschaftsnamen' => 2]);
+        $schreibe('alles-datum', ['modus' => 1, 'template' => 'standard', 'mannschaftsnamen' => 1]);
+
+        $t = new Transcript();
+        foreach (['alles-spieltag', 'alles-datum'] as $name) {
+            $html = self::view($name);
+            self::assertStringNotContainsString('STDERR', $html, 'PHP-Meldungen');
+            $t->add($name, Normalizer::html($html, self::$client->instance()->path(), 'multi=' . $name), '');
+        }
+
+        $this->assertMatchesSnapshot('viewer', 'alle Schalter', $t->text());
+    }
+
     public function testUnknownView(): void
     {
         $html = self::view('gibtesnicht');
