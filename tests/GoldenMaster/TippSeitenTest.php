@@ -215,6 +215,39 @@ final class TippSeitenTest extends TestCase
         $this->assertMatchesSnapshot('tipp-seiten', 'tippregeln', $c->get('addon/tipp/tippregeln.php'));
     }
 
+    /**
+     * Die Tippregeln in anderen Sprachen (auch einer ohne eigene Texte), mit anderen Einstellungen
+     * (ohne Joker, mit Remis-Bonus) und als Dialog im Menue des Tippspiels (regeln=1).
+     */
+    public function testTippregelnVarianten(): void
+    {
+        $c = self::client();
+        $t = new Transcript();
+        $cfg = $c->instance()->path() . '/config/tipp/cfg.txt';
+        $setze = static function (array $werte) use ($cfg): void {
+            $inhalt = (string) file_get_contents($cfg);
+            foreach ($werte as $schluessel => $wert) {
+                $inhalt = (string) preg_replace('/^' . $schluessel . '=.*$/m', $schluessel . '=' . $wert, $inhalt, 1, $count);
+                self::assertSame(1, $count, $schluessel);
+            }
+            file_put_contents($cfg, $inhalt);
+        };
+        // nur der Teil mit den Inhalten, ohne die Stile
+        $inhalt = static fn (string $html): string => substr($html, (int) strpos($html, '<div class="regeln-container">'));
+
+        $t->add('Englisch', $inhalt($c->get('addon/tipp/tippregeln.php', 'lmouserlang=English')), '');
+        $t->add('Italienisch', $inhalt($c->get('addon/tipp/tippregeln.php', 'lmouserlang=Italiano')), '');
+        $t->add('Ungarisch (ohne eigene Texte)', $inhalt($c->get('addon/tipp/tippregeln.php', 'lmouserlang=Magyar')), '');
+        $setze(['jokertipp' => '0', 'rremis' => '2', 'tippBis' => '30', 'rergebnis' => '1']);
+        $t->add('ohne Joker, mit Remis-Bonus', $inhalt($c->get('addon/tipp/tippregeln.php', 'lmouserlang=Deutsch')), '');
+        $setze(['regeln' => '1']);
+        self::anmelden($c);
+        $html = $c->get('lmo.php', 'action=tipp');
+        $t->add('Dialog im Menue', substr($html, (int) strpos($html, '<dialog id="regelnModal"'), 400) . "\n...\n" . $inhalt($html), '');
+
+        $this->assertMatchesSnapshot('tipp-seiten', 'tippregeln_varianten', $t->text());
+    }
+
     /** Beim Anmelden und Aendern wird das Kennwort gehasht (zufaelliges Salz). */
     private static function ohneKennwort(string $changes): string
     {
