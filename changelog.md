@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Tippspiel, Fieberkurve: `Lmo\Addon\Tipp\Fieberbild` zeichnet das Bild wie bisher. `addon/tipp/lmo-tipppaintgraph.php` bleibt seine Adresse, liest aber nur noch die Parameter und die Farben des Designs und ruft die Klasse auf; Werte aus `$_POST` und Cookies zählen dort nicht mehr.  
 * Tippspiel, Newsletter/Reminder: `Lmo\Addon\Tipp\Rundmail` verschickt Newsletter, Einzelmail und Erinnerung wie bisher; den Text der Erinnerung speichert `AdminEmailController` über `Konfiguration`. Die Brücke zum alten Code in `addon/tipp/addon.php` gibt es nicht mehr, `TippAddon` bekommt stattdessen eine Closure für den Versand und die Herkunft der Seite. Der Link „zur Besucheransicht“ zeigt nach dem Versand nicht mehr auf die zuletzt verwendete Liga. `lmo-tippemail.php`, `lmo-tippemailviewer.php`, `lmo-tippemailviewer1.php`, `lmo-tippaenderbar.php`, `lmo-tippopenfile.php` und `lmo-tippopenfileall.php` gibt es nicht mehr.  
 * Tippspiel, Tipp-Einsicht erstellen: `Lmo\Addon\Tipp\Einsichtsdatei` schreibt `einsicht/<liga>_<st>.ein` wie bisher, die Administration (`save=3`) ruft sie direkt auf. `lmo-tippsaveeinsicht.php` gibt es nicht mehr.  
 * Tippspiel, Gesamtwertung: `Lmo\Addon\Tipp\Gesamtwertung` schreibt `auswert/gesamt.aus` aus den Auswertungen der Ligen wie bisher; eine Leerzeile in der Tipperdatei ergibt keinen Tipper mehr. `lmo-tippsavewertgesamt.php` ruft nur noch diese Klasse auf, die Administration (`save=4`) sie direkt.  
@@ -504,6 +505,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Prediction game, fever curve: `Lmo\Addon\Tipp\Fieberbild` draws the image as before. `addon/tipp/lmo-tipppaintgraph.php` remains its address but only reads the parameters and the design colours and calls the class; values from `$_POST` and cookies no longer count there.  
 * Prediction game, newsletter/reminder: `Lmo\Addon\Tipp\Rundmail` sends the newsletter, single mails and reminders as before; `AdminEmailController` saves the reminder text through `Konfiguration`. The bridge to the old code in `addon/tipp/addon.php` is gone, `TippAddon` receives a closure for sending and the origin of the page instead. After sending, the "visitor view" link no longer points to the league used last. `lmo-tippemail.php`, `lmo-tippemailviewer.php`, `lmo-tippemailviewer1.php`, `lmo-tippaenderbar.php`, `lmo-tippopenfile.php` and `lmo-tippopenfileall.php` are gone.  
 * Prediction game, creating the tip view: `Lmo\Addon\Tipp\Einsichtsdatei` writes `einsicht/<liga>_<st>.ein` as before, the administration (`save=3`) calls it directly. `lmo-tippsaveeinsicht.php` is gone.  
 * Prediction game, overall ranking: `Lmo\Addon\Tipp\Gesamtwertung` writes `auswert/gesamt.aus` from the league evaluations as before; an empty line in the tipper file no longer counts as a tipper. `lmo-tippsavewertgesamt.php` only calls this class, the administration (`save=4`) calls it directly.  
