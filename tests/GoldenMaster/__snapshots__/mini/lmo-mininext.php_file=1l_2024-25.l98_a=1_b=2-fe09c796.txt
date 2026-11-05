@@ -65,7 +65,7 @@
 </tr>
 <tr>
 <td align="right">
-<small>Stand: 01.01.2025&nbsp;[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group (classlib&nbsp;2.8)'>©</acronym>]</small>
+<small>Stand: 01.01.2025&nbsp;[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group'>©</acronym>]</small>
 </td>
 </tr>
 </table>

@@ -80,6 +80,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Mini, Mini-Spielplan: Die Fußzeile nennt die Classlib nicht mehr (bisher „(classlib 2.8)“); den Platzhalter `CLASSLIB_VERSION` gibt es in den Sprachdateien des Mini nicht mehr.  
 * Mini, Mini-Spielplan (`addon/mini/lmo-mininext.php`): Liga, Spiele und Archiv liest er mit `Lmo\Addon\Mini\Begegnungen` und `Lmo\Addon\Mini\Spiel` (Bilder über `Lmo\Web\Bilder`) und braucht die Classlib nicht mehr. Ausgabe, Vorlagen, Cache und Einbindung bleiben, wie sie waren.  
 * Mini, Minitabelle (`addon/mini/lmo-minitab.php`): Sie liest die Liga und rechnet die Tabelle wie der Kern (`Lmo\Liga\Rohdaten\Liga`, `Lmo\Liga\Tabelle`, Bilder über `Lmo\Web\Bilder`) und braucht die Classlib nicht mehr. Ausgabe, Vorlagen und Einbindung bleiben, wie sie waren.  
 * Tippspiel, Administration, Optionen „Anzeigen“: Das Feld „Link zu den Spielregeln“ (`regelnlink`) gibt es nicht mehr; eigene Regeln stehen in `config/tipp/tippregeln.html.twig`. Der Schalter für die Regeln im Menü bleibt.  
@@ -587,6 +588,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Mini, mini schedule: the footer no longer names the classlib (so far "(classlib 2.8)"); the placeholder `CLASSLIB_VERSION` is gone from the mini language files.  
 * Mini, mini schedule (`addon/mini/lmo-mininext.php`): it reads league, games and archive with `Lmo\Addon\Mini\Begegnungen` and `Lmo\Addon\Mini\Spiel` (images through `Lmo\Web\Bilder`) and no longer needs the classlib. Output, templates, cache and embedding stay as they were.  
 * Mini, mini table (`addon/mini/lmo-minitab.php`): it reads the league and calculates the table like the core (`Lmo\Liga\Rohdaten\Liga`, `Lmo\Liga\Tabelle`, images through `Lmo\Web\Bilder`) and no longer needs the classlib. Output, templates and embedding stay as they were.  
 * Prediction game, administration, options "display": the field "link to the rules" (`regelnlink`) is gone; custom rules go into `config/tipp/tippregeln.html.twig`. The switch for the rules in the menu remains.  

@@ -184,8 +184,8 @@ if (!file_exists($mini_cache_filename) ||
             $rest = $rest - ($minutes * 60);
             $template->setVariable('countDown', $text['mini'][15] . ': ' . $days . ', ' . $text['mini'][16] . ': ' . $hours . ', ' . $text['mini'][17] . ': ' . $minutes);
 
-            // die Fusszeile nennt wie bisher die Version der Classlib
-            $template->setVariable('copy', str_replace('CLASSLIB_VERSION', '(classlib&nbsp;2.8)', $text['mini'][0]));
+            // die Fusszeile (bis 4.5 mit der Version der Classlib)
+            $template->setVariable('copy', $text['mini'][0]);
             $template->setVariable('imgHomeSmall', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'small'));
             $template->setVariable('imgHomeMiddle', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'middle'));
             $template->setVariable('imgHomeBig', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'big'));

@@ -1,4 +1,4 @@
-000=[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group CLASSLIB_VERSION'>©</acronym>]
+000=[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group'>©</acronym>]
 001=Naslednja igra
 002=Zadnja tekma sezone
 003=Napeljave
