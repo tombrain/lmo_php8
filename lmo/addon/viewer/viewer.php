@@ -25,7 +25,6 @@ if (!defined('VIEWER_VERSION_NR')) {
 if (!defined('VIEWER_VERSION'))  define('VIEWER_VERSION', '[<acronym title="Viewer ' . VIEWER_VERSION_NR . ' © LMO-Group">©</acronym>]');
 
 require(__DIR__ . '/../../init.php');
-require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
 require_once(PATH_TO_ADDONDIR . '/viewer/viewer_functions.php');
 
 // der Name der Ansicht (multi, auch aus der Adresse) muss im Ordner config/viewer bleiben; bis 4.5

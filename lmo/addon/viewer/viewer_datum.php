@@ -25,32 +25,37 @@ $startzeit = zeitberechnung('1', - $multi_cfgarray['anzahl_tage_minus']);
 $endzeit = zeitberechnung('2', $multi_cfgarray['anzahl_tage_plus']);
 // Durchlaufe so oft Ligen vorhanden sind
 for ($i = 1; $i <= $anzahl_ligen; $i++) {
-    $liga = new liga();
+    // die Liga mit ihren Spielen (Lmo\Liga\Begegnungen; bis 4.5 die Classlib)
+    $lmo_viewer_datei = PATH_TO_LMO . '/' . $dirliga . $fav_liga[$i];
+    $lmo_viewer_rohdaten = is_file($lmo_viewer_datei) ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_viewer_datei) : null;
     // Ligenfile vorhanden?
-    if ($liga->loadFile(PATH_TO_LMO . '/' . $dirliga . $fav_liga[$i]) == true) {
+    if ($lmo_viewer_rohdaten !== null) {
+        $liga = \Lmo\Liga\Begegnungen::aus($lmo_viewer_rohdaten);
+        $lmo_viewer_einstellungen = $lmo_viewer_rohdaten->einstellungen();
+        $lmo_viewer_liganame = (string)($lmo_viewer_rohdaten->optionen['Name'] ?? '');
+        $lmo_viewer_ligadatum = date((string)$lmo_viewer_einstellungen->wert('DatF'), (int)filemtime($lmo_viewer_datei));
         $template->setCurrentBlock('Liga');  // Äusserer Block für die Liga
         $template->setVariable('Anfangsdatum', date($multi_cfgarray['datumsformat'], zeitberechnung('2', - $multi_cfgarray['anzahl_tage_minus'])));  // Relevante Daten setzen
         $template->setVariable('Enddatum', date($multi_cfgarray['datumsformat'], zeitberechnung('2', $multi_cfgarray['anzahl_tage_plus'])));  // Relevante Daten setzen
         //Anfang Ergebnisse verlinken
         $template->setVariable('ErgebnisLink', URL_TO_LMO . '/lmo.php?file=' . $fav_liga[$i] . '&amp;action=results');
-        $template->setVariable('Liganame', $liga->name);
-        $template->setVariable('Ligadatum', $liga->ligaDatumAsString());
+        $template->setVariable('Liganame', $lmo_viewer_liganame);
+        $template->setVariable('Ligadatum', $lmo_viewer_ligadatum);
 
         //all teams
         if ($all_teams == false) {
         }
         else {
-            $team_count = count($liga->teams);
+            $team_count = $liga->anzahl();
             for ($x = 0; $x < $team_count; $x++) {
             $fav_team[$i][] = $x;
             }
         }
 
         // Sortiert nach Datum Tim's
-        $sortedGames = $liga->gamesSorted(false);
+        $sortedGames = $liga->nachZeit();
         foreach ($sortedGames as $game) {
-            $partie = &$game['partie'];
-            $mySpieltag = &$game['spieltag'];
+            $partie = $game;
             $template->setCurrentBlock('Inhalt');
             // Passend in das Zeitraster?
             if (($partie->zeit <= $endzeit) && ($partie->zeit >= $startzeit)) {
