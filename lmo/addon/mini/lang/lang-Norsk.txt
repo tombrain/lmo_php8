@@ -1,4 +1,4 @@
-000=[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group CLASSLIB_VERSION'>©</acronym>]
+000=[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group'>©</acronym>]
 001=Neste kamp
 002=Sesongens siste kamp
 003=Inventar
