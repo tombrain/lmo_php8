@@ -47,16 +47,6 @@ function moduschange(){
     }
   }
 
-function regelnchange(){
-  lmotest=false;
-  if (document.getElementsByName("xregeln")[0].checked==1){
-    document.getElementsByName("xregelnlink")[0].disabled=false;
-    }
-  else {
-    document.getElementsByName("xregelnlink")[0].disabled=true;
-    }
-  }
-
 function jokerchange(){
 lmotest=false;
   if (document.getElementsByName("xjokertipp")[0].checked==1){
@@ -208,12 +198,7 @@ lmotest=false;
           <tr>
             <td width="20">&nbsp;</td>
             <td align="right">{{ t[187]|raw }}</td>
-            <td align="left"><input type="checkbox" name="xregeln" onClick="regelnchange()"{% if k.regeln == 1 %} checked{% endif %}></td>
-          </tr>
-          <tr>
-            <td width="20">&nbsp;</td>
-            <td align="right">{{ t[186]|raw }}</td>
-            <td align="left"><input class="lmo-formular-input" type="text" name="xregelnlink" size="30" maxlength="256" value="{{ k.regelnlink }}" onChange="dolmoedit()"{% if k.regeln == 0 %} disabled{% endif %}></td>
+            <td align="left"><input type="checkbox" name="xregeln" onClick="dolmoedit()"{% if k.regeln == 1 %} checked{% endif %}></td>
           </tr>
           <tr>
             <td width="20">&nbsp;</td>
