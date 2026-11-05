@@ -213,7 +213,8 @@ if (empty($CacheOutput)) {
                 // Striped Tables
                 if (!empty($cfgarray['mini']['stripedTable'])) {
                     $stripedColor = explode(';', trim($cfgarray['mini']['stripedTable']));
-                    $style .= $j % 2 == 0 ? 'background-color: ' . $stripedColor[0] . ';\n' : 'background-color: ' . $stripedColor[1] . ';\n';
+                    // bis 4.5 stand am Ende ein Backslash mit n (in einfachen Anfuehrungszeichen) im Stil
+                    $style .= 'background-color: ' . ($j % 2 == 0 ? $stripedColor[0] : ($stripedColor[1] ?? '')) . ';';
                 }
 
                 if ($LigaTabelle[$j]['pos'] <= $lmo_mini_wert('Champ')) {
