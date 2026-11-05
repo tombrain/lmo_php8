@@ -149,6 +149,35 @@ final class MiniAddonTest extends TestCase
         self::assertSame([], self::previousMatches('file=golden/basic.l98&a=1&b=1&mini_withArchiv=0'));
     }
 
+    /**
+     * Mit Cache (CacheTable=1) zeigt jeder Ausschnitt seine Plaetze, und ein zweiter Aufruf kommt
+     * aus dem Cache. Bis 4.5 griff der Cache nie (die erste Zeile endete nicht) und haette den
+     * Ausschnitt nicht beachtet.
+     */
+    public function testCacheBeachtetDenAusschnitt(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        file_put_contents($cfg, (string)preg_replace('/^CacheTable=.*$/m', 'CacheTable=1', $vorher));
+        $cache = self::$app->path() . '/output/basic.l98-standard.cache';
+        $plaetze = static function (string $platz): array {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=' . $platz . '&mini_ueber=1&mini_unter=1');
+            preg_match_all('~<td align="center"><strong>(\d+)</strong></td>~', $html, $treffer);
+            return $treffer[1];
+        };
+        try {
+            self::assertSame(['4', '5', '6'], $plaetze('5'));
+            self::assertFileExists($cache);
+            self::assertStringEndsWith('|1|1|5', explode("\n", (string)file_get_contents($cache))[0], 'der Ausschnitt im Schluessel');
+            self::assertSame(['1', '2', '3'], $plaetze('1'), 'ein anderer Ausschnitt nicht aus dem Cache');
+            file_put_contents($cache, (string)preg_replace('~<strong>2</strong>~', '<strong>99</strong>', (string)file_get_contents($cache)));
+            self::assertSame(['1', '99', '3'], $plaetze('1'), 'derselbe Ausschnitt aus dem Cache');
+        } finally {
+            file_put_contents($cfg, $vorher);
+            @unlink($cache);
+        }
+    }
+
     public function testMissingArchiveFolderShowsMessage(): void
     {
         $html = self::page('lmo-mininext.php', 'file=golden/basic.l98&a=1&b=2&folder=gibtesnicht');
