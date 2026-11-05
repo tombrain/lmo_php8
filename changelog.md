@@ -125,6 +125,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Tippspiel, Tippregeln: Der Bonus für ein richtiges Remis erscheint, wenn es ihn gibt, der Jokermultiplikator, wenn der Joker eingeschaltet ist. Bisher waren die beiden Bedingungen vertauscht; ohne Joker, aber mit Remis-Bonus zeigten die Regeln etwa den Joker.  
 * Tippspiel, Newsletter/Reminder: Eine persönliche Mail an einen Nick, den es nicht gibt, wird nicht mehr verschickt. Bisher bekam sie der letzte Tipper der Tipperdatei.  
 * Tippspiel, Administration, Auswertung: Die Vorgabe für „bis“ zählt nur die Tippdateien der Liga selbst. Bisher zählten auch die jeder Liga mit, deren Name mit dem der Liga beginnt.  
 * Tippspiel, Tipp-Einsicht erstellen: Es zählen nur die Tipper der Liga selbst, in fester Reihenfolge. Bisher kamen auch die Tipper jeder Liga dazu, deren Name mit dem der Liga beginnt (zu `liga` etwa die von `liga2`), in der Reihenfolge des Verzeichnisses.  
@@ -625,6 +626,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Prediction game, rules: the bonus for a correct draw is shown when there is one, the joker multiplier when the joker is switched on. So far the two conditions were swapped; without joker but with a draw bonus the rules showed the joker, for example.  
 * Prediction game, newsletter/reminder: a personal mail to a nick that does not exist is no longer sent. So far the last tipper of the tipper file received it.  
 * Prediction game, administration, evaluation: the default for "to" only counts the tip files of the league itself. So far those of every league whose name starts with the league's name counted as well.  
 * Prediction game, creating the tip view: only the tippers of the league itself count, in a fixed order. So far the tippers of every league whose name starts with the league's name were included as well (for `liga` e.g. those of `liga2`), in directory order.  

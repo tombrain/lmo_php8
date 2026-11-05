@@ -181,14 +181,15 @@
                     <span class="value">{{ k.rtor }}</span>
                     <span class="label">{{ r.ABS_3_text5|raw }}</span>
                 </div>
-{% if k.jokertipp == 1 %}
+{# bis 4.5 vertauscht: der Remis-Bonus mit dem Joker, der Joker mit dem Remis-Bonus #}
+{% if k.rremis >= 1 %}
                 <div class="point-card highlight">
                     <span class="unit">{{ (k.rremis > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
                     <span class="value">{{ k.rremis }}</span>
                     <span class="label">{{ r.ABS_3_text6_1|raw }}</span>
                 </div>
 {% endif %}
-{% if k.rremis >= 1 %}
+{% if k.jokertipp == 1 %}
                 <div class="point-card highlight">
                     <span class="unit">{{ r.ABS_3_text2_2|raw }}</span>
                     <span class="value">x&nbsp;{{ k.jokertippmulti }}</span>

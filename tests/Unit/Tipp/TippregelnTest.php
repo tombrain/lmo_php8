@@ -22,6 +22,17 @@ class TippregelnTest extends TestCase
         self::assertStringContainsString('x&nbsp;3', $html);
     }
 
+    public function testRemisBonusUndJokerUnabhaengig(): void
+    {
+        $ohneJoker = Tippregeln::html(['jokertipp' => '0', 'jokertippmulti' => '2', 'rremis' => '2'], 'Deutsch');
+        self::assertStringContainsString('Bonus für richtigen Unentschieden-Tipp', $ohneJoker);
+        self::assertStringNotContainsString('Jokermultiplikator', $ohneJoker, 'bis 4.5 vertauscht: Joker statt Remis-Bonus');
+
+        $ohneRemis = Tippregeln::html(['jokertipp' => '1', 'jokertippmulti' => '2', 'rremis' => '0'], 'Deutsch');
+        self::assertStringContainsString('Jokermultiplikator', $ohneRemis);
+        self::assertStringNotContainsString('Bonus für richtigen Unentschieden-Tipp', $ohneRemis);
+    }
+
     public function testOhneEigeneTexteEnglisch(): void
     {
         self::assertStringContainsString('<h1>Instructions for the Prediction Game</h1>', Tippregeln::html([], 'Magyar'));
