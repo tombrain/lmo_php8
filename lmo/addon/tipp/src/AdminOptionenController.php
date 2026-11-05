@@ -135,10 +135,8 @@ final class AdminOptionenController implements Controller
                 if ($neu['gesamt'] == 0) {
                     $neu['nurgesamt'] = 0;
                 }
+                // die Regeln an oder aus; eine eigene Datei (regelnlink) gibt es nicht mehr, eigene Regeln stehen in config/tipp/tippregeln.html.twig
                 $neu['regeln'] = $an('xregeln');
-                if ($neu['regeln'] == 1) {
-                    $neu['regelnlink'] = $wert('xregelnlink', 'tippregeln.php');
-                }
                 $neu['shownick'] = $wert('xshownick', '');
                 $neu['showname'] = $wert('xshowname', '');
                 $neu['showemail'] = $wert('xshowemail', '');
@@ -246,7 +244,7 @@ final class AdminOptionenController implements Controller
     {
         return ['adresse', 'aktauswert', 'aktauswertges', 'akteinsicht', 'anzseite', 'anzseite1', 'dirtipp', 'einsichterst', 'entscheidungie',
             'entscheidungnv', 'freischaltcode', 'freischaltung', 'gesamt', 'gtpunkte', 'immeralle', 'imvorraus', 'jokertipp', 'jokertippmulti',
-            'krit1', 'krit2', 'krit3', 'mailbeianmeldung', 'nurgesamt', 'pfeiltipp', 'realname', 'regeln', 'regelnlink', 'rergebnis', 'rremis',
+            'krit1', 'krit2', 'krit3', 'mailbeianmeldung', 'nurgesamt', 'pfeiltipp', 'realname', 'regeln', 'rergebnis', 'rremis',
             'rtendenz', 'rtendenzdiff', 'rtendenzremis', 'rtendenztor', 'rtor', 'showdurchschntipp', 'showemail', 'showname', 'shownick',
             'showstsiege', 'showtendenzabs', 'showtendenzpro', 'showzus', 'sttipp', 'tippBis', 'tippeinsicht', 'tipperimteam', 'tippfieber',
             'tippmodus', 'tippohne', 'tipptabelle', 'tipptabelle1', 'viewertage', 'viewertipp', 'wertverein'];
