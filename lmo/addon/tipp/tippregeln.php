@@ -27,4 +27,4 @@ $lmo_regeln_cfg = array();
 foreach (array_keys($cfgarray['tipp'] ?? array()) as $lmo_regeln_name) {
   $lmo_regeln_cfg[$lmo_regeln_name] = (string)(${'tipp_' . $lmo_regeln_name} ?? '');
 }
-echo \Lmo\Addon\Tipp\Tippregeln::html($lmo_regeln_cfg, (string)$_SESSION['lmouserlang']);
+echo \Lmo\Addon\Tipp\Tippregeln::html($lmo_regeln_cfg, (string)$_SESSION['lmouserlang'], PATH_TO_CONFIGDIR . '/tipp');
