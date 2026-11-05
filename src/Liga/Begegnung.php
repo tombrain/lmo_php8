@@ -12,14 +12,14 @@
 
 declare(strict_types=1);
 
-namespace Lmo\Addon\Mini;
+namespace Lmo\Liga;
 
 /**
- * Ein Spiel einer Liga fuer den Mini-Spielplan, mit den Werten, wie sie in der Ligadatei stehen
- * (Tore und Anstoss als Text, '' wenn sie fehlen). Bis 4.5 die Klasse partie der Classlib; die
- * Ausgaben rechnen wie dort.
+ * Ein Spiel einer Liga, wie Mini-Spielplan und Viewer es zeigen, mit den Werten, wie sie in der
+ * Ligadatei stehen (Tore und Anstoss als Text, '' wenn sie fehlen). Bis 4.5 die Klasse partie der
+ * Classlib; die Ausgaben rechnen wie dort.
  */
-final class Spiel
+final class Begegnung
 {
     /**
      * @param int $spieltag Nummer des Spieltags
@@ -29,6 +29,8 @@ final class Spiel
      * @param int $gast Nummer der Gastmannschaft, 0 ohne
      * @param string $toreHeim Tore wie in der Datei (GA): -1 ohne Ergebnis, -2 am gruenen Tisch gewonnen
      * @param string $toreGast Tore wie in der Datei (GB)
+     * @param string $bericht Adresse des Spielberichts (BE)
+     * @param int $spielende 0 regulaer, 1 im Elfmeterschiessen, 2 nach Verlaengerung (SP)
      */
     public function __construct(
         public int $spieltag,
@@ -39,6 +41,8 @@ final class Spiel
         public int $gast,
         public string $toreHeim,
         public string $toreGast,
+        public string $bericht = '',
+        public int $spielende = 0,
     ) {
     }
 
@@ -54,16 +58,34 @@ final class Spiel
         return $this->datum($leer, $format);
     }
 
-    /** Die Tore der Heimmannschaft zum Anzeigen: ohne Ergebnis $leer, am gruenen Tisch 0* bzw. 0. */
-    public function toreHeimText(string $leer = '_'): string
+    /**
+     * Die Tore der Heimmannschaft zum Anzeigen: ohne Ergebnis $leer, am gruenen Tisch 0* bzw. 0,
+     * sonst geteilt durch den Torfaktor.
+     */
+    public function toreHeimText(string $leer = '_', int|string $faktor = '1'): string
     {
-        return self::tore($this->toreHeim, $this->toreGast, $leer);
+        return self::tore($this->toreHeim, $this->toreGast, $leer, $faktor);
     }
 
     /** Die Tore der Gastmannschaft zum Anzeigen, wie toreHeimText(). */
-    public function toreGastText(string $leer = '_'): string
+    public function toreGastText(string $leer = '_', int|string $faktor = '1'): string
     {
-        return self::tore($this->toreGast, $this->toreHeim, $leer);
+        return self::tore($this->toreGast, $this->toreHeim, $leer, $faktor);
+    }
+
+    /**
+     * Wie das Spiel endete: nach Verlaengerung Text 0, im Elfmeterschiessen Text 1, sonst $leer.
+     *
+     * @param array<int|string, mixed> $text Sprachtexte
+     */
+    public function spielendeText(array $text, string $leer = ''): string
+    {
+        return match ($this->spielende) {
+            0 => $leer,
+            1 => (string) ($text[1] ?? ''),
+            2 => (string) ($text[0] ?? ''),
+            default => (string) $this->spielende,
+        };
     }
 
     /** Wer gewonnen hat: 1 Heim, 2 Gast, 0 unentschieden, -1 ohne Ergebnis. */
@@ -80,7 +102,7 @@ final class Spiel
         return $this->toreGast == -2 ? 2 : -1;
     }
 
-    private static function tore(string $eigene, string $andere, string $leer): string
+    private static function tore(string $eigene, string $andere, string $leer, int|string $faktor): string
     {
         if ($eigene == -1) {
             return $leer;
@@ -92,6 +114,6 @@ final class Spiel
             return '0';
         }
 
-        return (string) intval($eigene);
+        return (string) (intval($eigene) / (intval($faktor) ?: 1));
     }
 }

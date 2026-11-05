@@ -116,7 +116,7 @@ if (!file_exists($mini_cache_filename) ||
 
     $template = new LMO_Template($template_folder);  // folder
     $template->loadTemplatefile($mini_template);
-    // die Spiele der Liga (Lmo\Addon\Mini\Begegnungen; bis 4.5 die Classlib), Mannschaften als Nummern
+    // die Spiele der Liga (Lmo\Liga\Begegnungen; bis 4.5 die Classlib), Mannschaften als Nummern
     $team_a = NULL;
     $team_b = NULL;
     $partie = NULL;
@@ -125,7 +125,7 @@ if (!file_exists($mini_cache_filename) ||
     $lmo_mini_bilder = new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR);
     $lmo_mini_datei = PATH_TO_LMO . '/' . $dirliga . $file;
     $lmo_mini_rohdaten = $file && file_exists($lmo_mini_datei) && !is_dir($lmo_mini_datei) ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_mini_datei) : null;
-    $liga = $lmo_mini_rohdaten !== null ? \Lmo\Addon\Mini\Begegnungen::aus($lmo_mini_rohdaten) : null;
+    $liga = $lmo_mini_rohdaten !== null ? \Lmo\Liga\Begegnungen::aus($lmo_mini_rohdaten) : null;
     if ($liga !== null && $lmo_mini_rohdaten !== null) {
         $lmo_mini_favorit = $liga->mannschaft((string)$lmo_mini_rohdaten->einstellungen()->wert('favTeam'));
         if (!is_null($a)) {
@@ -141,7 +141,7 @@ if (!file_exists($mini_cache_filename) ||
             $showLastGame = true;
             // ohne Mannschaft a (ungueltige Nummer) die Spiele der Lieblingsmannschaft, wie bis 4.5
             $lmo_mini_fuer = $team_a ?? $lmo_mini_favorit;
-            foreach ($lmo_mini_fuer === null ? array() : $liga->spieleNachZeit($lmo_mini_fuer) as $game) {  // Only sort by time regardless of game day
+            foreach ($lmo_mini_fuer === null ? array() : $liga->nachZeit($lmo_mini_fuer) as $game) {  // Only sort by time regardless of game day
                 if ($now < $game->zeit) {  // find the last game
                     $partie = $game;
                     $template->setVariable('gameTxt', $text['mini'][1]);  // There is a future game
@@ -267,9 +267,9 @@ if (!file_exists($mini_cache_filename) ||
             $nameA = (string)$liga->daten((int)$team_a)->name;
             foreach ($dataArray as $ligaFile) {
                 if ($ligaFile != $lmo_mini_datei && is_file($ligaFile)) {
-                    $newLiga = \Lmo\Addon\Mini\Begegnungen::aus(\Lmo\Liga\Rohdaten\Liga::lies($ligaFile));
+                    $newLiga = \Lmo\Liga\Begegnungen::aus(\Lmo\Liga\Rohdaten\Liga::lies($ligaFile));
                     $newTeam_a = $newLiga->mannschaftNamens($nameA);
-                    $seachNames = $mini_unGreedy == 1 ? \Lmo\Addon\Mini\Begegnungen::aehnlicheNamen($newLiga->namen(), $nameB) : NULL;  // ungreedy Searching
+                    $seachNames = $mini_unGreedy == 1 ? \Lmo\Liga\Begegnungen::aehnlicheNamen($newLiga->namen(), $nameB) : NULL;  // ungreedy Searching
                     if (isset($seachNames) && count($seachNames) == 1) {
                         $newTeam_b = $newLiga->mannschaftNamens($seachNames[0]);  // Ungreedy Searching was successful
                         $match = $seachNames[0];
