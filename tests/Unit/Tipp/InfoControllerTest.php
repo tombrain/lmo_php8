@@ -46,7 +46,7 @@ class InfoControllerTest extends TestCase
 
     public function testInfo(): void
     {
-        $controller = new InfoController(new Tipprahmen(static fn (string $datei): string => ''), '4.6');
+        $controller = new InfoController(new Tipprahmen(), '4.6');
 
         self::assertFalse($controller->zustaendig(self::kontext(['todo' => 'wert'])));
         self::assertFalse($controller->zustaendig(self::kontext(['viewermode' => '1'])));

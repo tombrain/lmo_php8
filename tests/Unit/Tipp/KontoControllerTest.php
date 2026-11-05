@@ -179,7 +179,7 @@ Name=Tina Test
 
     private function controller(): KontoController
     {
-        return new KontoController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''), function (string $email, string $nick, string $kennwort): string {
+        return new KontoController($this->ordner, new Tipprahmen(), function (string $email, string $nick, string $kennwort): string {
             $this->mails[] = [$email, $nick, $kennwort];
 
             return '[Mail an ' . $email . ']';

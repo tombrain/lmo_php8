@@ -77,7 +77,7 @@ class EinsichtControllerTest extends TestCase
 
     private function controller(): EinsichtController
     {
-        return new EinsichtController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        return new EinsichtController($this->ordner, new Tipprahmen());
     }
 
     private function seite(Kontext $kontext): string

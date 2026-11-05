@@ -65,7 +65,7 @@ class StartseiteControllerTest extends TestCase
             weitereTexte: ['tipp' => $texte],
             sitzung: new Sitzung(['lmotipperok' => '5', 'lmotippername' => 'tester', 'lmotipperverein' => ''])
         );
-        $controller = new StartseiteController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        $controller = new StartseiteController($this->ordner, new Tipprahmen());
         self::assertTrue($controller->zustaendig($kontext));
 
         return $controller->zeige($kontext)->html;

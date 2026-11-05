@@ -46,7 +46,7 @@ class UebersichtControllerTest extends TestCase
 
     public function testZustaendigUndOhneSpiele(): void
     {
-        $controller = new UebersichtController(sys_get_temp_dir(), new Tipprahmen(static fn (string $datei): string => ''));
+        $controller = new UebersichtController(sys_get_temp_dir(), new Tipprahmen());
 
         self::assertTrue($controller->zustaendig(self::kontext(['todo' => 'einsicht'])), 'viewermode zeigt die Uebersicht, gleich welches todo');
         self::assertFalse($controller->zustaendig(self::kontext(ok: '0')), 'Gaeste nicht');

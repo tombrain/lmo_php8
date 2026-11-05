@@ -72,7 +72,7 @@ class RanglisteControllerTest extends TestCase
 
     private function controller(): RanglisteController
     {
-        return new RanglisteController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        return new RanglisteController($this->ordner, new Tipprahmen());
     }
 
     private function seite(Kontext $kontext): string

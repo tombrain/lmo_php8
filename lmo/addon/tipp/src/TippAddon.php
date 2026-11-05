@@ -38,8 +38,8 @@ use Lmo\Web\Meldung;
  * Addon "tipp": das Tippspiel (action=tipp) mit Menuepunkt, wenn es eingeschaltet ist (eintippspiel).
  *
  * Alle Seiten zeigen die Controller des Addons; zuletzt steht der AnmeldungController, der auch
- * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Was noch aus dem alten Code
- * kommt (Tippregeln, Mails), gibt addon.php als Closure mit.
+ * alle uebrigen zeigt (bis 4.5 lmo-tippstart.php und was es einband). Den Versand der Mails gibt
+ * addon.php als Closures mit.
  */
 final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitAdminSeiten, MitSchaltern, MitErgebnisAuswertung, MitErgebnisSpalten, MitBereich
 {
@@ -48,7 +48,6 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
 
     /**
      * @param string $ordner Ordner des Addons (addon/tipp)
-     * @param Closure(string): string $regeln gibt die Tippregeln aus (Datei relativ zum Ordner, tipp/cfg.txt regelnlink)
      * @param Closure(string, string, string): string $freischaltmail schickt E-Mail-Adresse, Nick und Kennwort an den Tipper, gibt die Meldung zurueck
      * @param Closure(string, string, string): ?string $kennwortmail schickt E-Mail-Adresse, Nick und neues Kennwort ("Kennwort vergessen"); null oder der Fehler
      * @param Closure(string): string $adminmail meldet dem Admin einen neuen Tipper (Nick), gibt einen Fehler zurueck ('' ohne)
@@ -58,7 +57,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
      * @param string $konfiguration Ordner der Konfiguration (PATH_TO_CONFIGDIR) mit tipp/cfg.txt, fuer Optionen und Erinnerung
      * @param string $herkunft Schema und Host der Seite (lmo_request_origin()), fuer Links in Mails
      */
-    public function __construct(private string $ordner = '', private ?Closure $regeln = null, private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $rundmail = null, private string $konfiguration = '', private string $herkunft = '')
+    public function __construct(private string $ordner = '', private ?Closure $freischaltmail = null, private ?Closure $kennwortmail = null, private ?Closure $adminmail = null, private string $version = '', private string $daten = '', private ?Closure $rundmail = null, private string $konfiguration = '', private string $herkunft = '')
     {
     }
 
@@ -118,7 +117,7 @@ final class TippAddon implements MitSeiten, MitRahmenteilen, MitAdminMenue, MitA
     public function controller(): array
     {
         $daten = $this->daten !== '' ? $this->daten : $this->ordner;
-        $rahmen = new Tipprahmen($this->regeln ?? static fn (string $datei): string => '');
+        $rahmen = new Tipprahmen();
 
         $freischaltmail = $this->freischaltmail ?? static fn (string $email, string $nick, string $kennwort): string => '';
 

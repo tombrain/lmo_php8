@@ -24,11 +24,6 @@ use Lmo\Web\Vorlagen;
  */
 final class Tipprahmen
 {
-    /** @param Closure(string): string $regeln gibt die Tippregeln aus (Datei aus tipp/cfg.txt regelnlink) */
-    public function __construct(private Closure $regeln)
-    {
-    }
-
     /** Die Seite mit Menue und Ueberschrift um ihren Inhalt. */
     public function html(Kontext $kontext, string $inhalt): string
     {
@@ -127,7 +122,10 @@ final class Tipprahmen
             't' => $t,
             'uebersicht' => $todo != '' ? $kontext->adresse . '?action=tipp' : null,
             'punkte' => $punkte,
-            'regeln' => ($cfg['regeln'] ?? '') == 1 ? ($this->regeln)($cfg['regelnlink'] ?? '') : null,
+            // die Regeln in der Sprache des Besuchers, wie bis 4.5 tippregeln.php sie bestimmte
+            'regeln' => ($cfg['regeln'] ?? '') == 1
+                ? Tippregeln::html($cfg, $kontext->anfrage->text('lmouserlang', $kontext->sitzung->text('lmouserlang', 'Deutsch')))
+                : null,
             'abmelden' => $adda . 'logout',
         ]);
     }

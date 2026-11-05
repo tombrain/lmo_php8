@@ -69,7 +69,7 @@ class FieberkurveControllerTest extends TestCase
 
     private function seite(Kontext $kontext): string
     {
-        $controller = new FieberkurveController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        $controller = new FieberkurveController($this->ordner, new Tipprahmen());
         self::assertTrue($controller->zustaendig($kontext));
 
         return $controller->zeige($kontext)->html;
@@ -77,7 +77,7 @@ class FieberkurveControllerTest extends TestCase
 
     public function testZustaendig(): void
     {
-        $controller = new FieberkurveController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        $controller = new FieberkurveController($this->ordner, new Tipprahmen());
         self::assertFalse($controller->zustaendig($this->kontext(['todo' => 'wert'])));
         self::assertFalse($controller->zustaendig($this->kontext(['viewermode' => '1'])));
         self::assertFalse($controller->zustaendig($this->kontext(mitLiga: false)));
