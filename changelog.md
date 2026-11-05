@@ -129,6 +129,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Mini, Minitabelle: Mit gestreifter Tabelle (`stripedTable`) steht im Stil der Zeilen kein `\n` mehr als Text.  
 * Mini, Minitabelle: Mit eingeschaltetem Cache (`CacheTable=1`) greift er jetzt, und jeder Ausschnitt (Platz, darüber, darunter) hat seinen eigenen Eintrag. Bisher endete die erste Zeile der Cache-Datei nicht und der Ausschnitt stand nur als Text `$m_ueber` im Schlüssel; der Cache griff nie.  
 * Tippspiel, Tippregeln: Der Bonus für ein richtiges Remis erscheint, wenn es ihn gibt, der Jokermultiplikator, wenn der Joker eingeschaltet ist. Bisher waren die beiden Bedingungen vertauscht; ohne Joker, aber mit Remis-Bonus zeigten die Regeln etwa den Joker.  
 * Tippspiel, Newsletter/Reminder: Eine persönliche Mail an einen Nick, den es nicht gibt, wird nicht mehr verschickt. Bisher bekam sie der letzte Tipper der Tipperdatei.  
@@ -635,6 +636,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Mini, mini table: with a striped table (`stripedTable`) the row style no longer contains `\n` as text.  
 * Mini, mini table: with the cache switched on (`CacheTable=1`) it now takes effect, and each section (position, above, below) has its own entry. So far the first line of the cache file did not end and the section was only in the key as the text `$m_ueber`; the cache never took effect.  
 * Prediction game, rules: the bonus for a correct draw is shown when there is one, the joker multiplier when the joker is switched on. So far the two conditions were swapped; without joker but with a draw bonus the rules showed the joker, for example.  
 * Prediction game, newsletter/reminder: a personal mail to a nick that does not exist is no longer sent. So far the last tipper of the tipper file received it.  

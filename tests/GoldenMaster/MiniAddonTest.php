@@ -178,6 +178,23 @@ final class MiniAddonTest extends TestCase
         }
     }
 
+    /** Gestreifte Tabelle (stripedTable): abwechselnd die beiden Farben, ohne "\n" im Stil (bis 4.5 mit). */
+    public function testGestreifteTabelle(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        // in Anfuehrungszeichen, sonst schneidet das Einlesen den Wert beim ";" ab
+        file_put_contents($cfg, $vorher . "stripedTable=\"#111;#222\"\n");
+        try {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=5&mini_ueber=1&mini_unter=1');
+        } finally {
+            file_put_contents($cfg, $vorher);
+        }
+
+        self::assertStringContainsString('background-color: #222;', $html);
+        self::assertStringNotContainsString('\n', $html);
+    }
+
     public function testMissingArchiveFolderShowsMessage(): void
     {
         $html = self::page('lmo-mininext.php', 'file=golden/basic.l98&a=1&b=2&folder=gibtesnicht');
