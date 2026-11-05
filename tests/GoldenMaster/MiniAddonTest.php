@@ -14,8 +14,8 @@ use PHPUnit\Framework\TestCase;
  * Addon "mini": Minitabelle (lmo-minitab.php) und Mini-Spielplan (lmo-mininext.php), direkt
  * aufgerufen wie in einem IFRAME.
  *
- * Die Minitabelle rechnet mit der classlib, die Haupttabelle mit lmo-calctable.php: beide muessen
- * dieselbe Tabelle zeigen. Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
+ * Die Minitabelle und die Haupttabelle muessen dieselbe Tabelle zeigen (bis 4.5 rechnete die
+ * Minitabelle mit der Classlib). Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
  */
 final class MiniAddonTest extends TestCase
 {

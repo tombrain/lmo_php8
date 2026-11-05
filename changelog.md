@@ -80,6 +80,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Mini, Mini-Spielplan (`addon/mini/lmo-mininext.php`): Liga, Spiele und Archiv liest er mit `Lmo\Addon\Mini\Begegnungen` und `Lmo\Addon\Mini\Spiel` (Bilder über `Lmo\Web\Bilder`) und braucht die Classlib nicht mehr. Ausgabe, Vorlagen, Cache und Einbindung bleiben, wie sie waren.  
 * Mini, Minitabelle (`addon/mini/lmo-minitab.php`): Sie liest die Liga und rechnet die Tabelle wie der Kern (`Lmo\Liga\Rohdaten\Liga`, `Lmo\Liga\Tabelle`, Bilder über `Lmo\Web\Bilder`) und braucht die Classlib nicht mehr. Ausgabe, Vorlagen und Einbindung bleiben, wie sie waren.  
 * Tippspiel, Administration, Optionen „Anzeigen“: Das Feld „Link zu den Spielregeln“ (`regelnlink`) gibt es nicht mehr; eigene Regeln stehen in `config/tipp/tippregeln.html.twig`. Der Schalter für die Regeln im Menü bleibt.  
 * Tippspiel, Tippregeln: `Lmo\Addon\Tipp\Tippregeln` zeigt sie mit der Vorlage `addon/tipp/vorlagen/tippregeln.html.twig`, die Texte stehen in `addon/tipp/lang/tippregeln.php`. `addon/tipp/tippregeln.php` bleibt als eigene Seite und ruft nur noch die Klasse auf. Die Einstellung `regelnlink` gilt nicht mehr: Im Menü erscheinen immer diese Regeln, eine eigene PHP-Datei wird nicht mehr eingebunden. Sie lag im Ordner des Addons und wäre bei einem Update über Composer ohnehin verloren gegangen.  
@@ -584,6 +585,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Mini, mini schedule (`addon/mini/lmo-mininext.php`): it reads league, games and archive with `Lmo\Addon\Mini\Begegnungen` and `Lmo\Addon\Mini\Spiel` (images through `Lmo\Web\Bilder`) and no longer needs the classlib. Output, templates, cache and embedding stay as they were.  
 * Mini, mini table (`addon/mini/lmo-minitab.php`): it reads the league and calculates the table like the core (`Lmo\Liga\Rohdaten\Liga`, `Lmo\Liga\Tabelle`, images through `Lmo\Web\Bilder`) and no longer needs the classlib. Output, templates and embedding stay as they were.  
 * Prediction game, administration, options "display": the field "link to the rules" (`regelnlink`) is gone; custom rules go into `config/tipp/tippregeln.html.twig`. The switch for the rules in the menu remains.  
 * Prediction game, rules: `Lmo\Addon\Tipp\Tippregeln` shows them with the template `addon/tipp/vorlagen/tippregeln.html.twig`, the texts are in `addon/tipp/lang/tippregeln.php`. `addon/tipp/tippregeln.php` remains as a page of its own and only calls the class. The setting `regelnlink` no longer applies: the menu always shows these rules, a custom PHP file is no longer included. It lived in the add-on folder and would have been lost on a Composer update anyway.  
