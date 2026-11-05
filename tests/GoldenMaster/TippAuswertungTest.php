@@ -259,6 +259,65 @@ L98;
     }
 
     /**
+     * Das Bild der Tipp-Fieberkurve (addon/tipp/lmo-tipppaintgraph.php): Punkte eines Tippers,
+     * Plaetze zweier Tipper mit den farbigen Rangzeilen, die Modi 3 und 4 mit den zweiten Linien
+     * und ohne Hoechstwert. Festgehalten sind Groesse und Pixel (nicht die Bytes, die sich mit der
+     * GD-Version aendern koennen).
+     */
+    public function testFieberkurvenBild(): void
+    {
+        $c = self::client();
+        $t = new Transcript();
+        $bild = static function (string $titel, string $query) use ($c, $t): void {
+            $c->get('addon/tipp/lmo-tipppaintgraph.php', $query);
+            $t->add($titel, self::pixel($c->roh()), '');
+        };
+
+        $bild('Punkte eines Tippers', 'pganz=1&pgteam1=tester&max=6&pgst=4&pgplatz1=1,6,,3,0&kmodus=1&pgtext1=Spieltag&pgtext2=PUNKTE');
+        $bild('Plaetze zweier Tipper', 'pganz=2&pgteam1=tester&pgteam2=zweiter&max=3&pgst=3&pgplatz1=1,2,1,0&pgplatz2=3,,2,0&kmodus=2&pgtext1=Spieltag&pgtext2=Platz');
+        $bild('Modus 3 mit zweiten Linien', 'pganz=2&pgteam1=a&pgteam2=b&max=5&pgst=3&pgplatz1=1,2,3,0&pgplatz2=5,4,3,0&pgplatz1a=2,2,2,0&pgplatz2a=4,4,4,0&kmodus=3&pgtext1=x&pgtext2=y');
+        $bild('Modus 4, nur zweite Linien', 'pganz=1&pgteam1=a&max=4&pgst=2&pgplatz1a=1,4,0&kmodus=4&pgtext1=x&pgtext2=y');
+        $bild('ohne Hoechstwert', 'pganz=1&pgteam1=a&max=0&pgst=2&pgplatz1=,,0&kmodus=1&pgtext1=x&pgtext2=y');
+        $bild('viele Plaetze', 'pganz=1&pgteam1=a&max=60&pgst=3&pgplatz1=1,30,60,0&kmodus=2&pgtext1=x&pgtext2=y');
+
+        $this->assertMatchesSnapshot('tipp', 'fieberkurven_bild', $t->text());
+    }
+
+    /** Groesse und Pixel eines Bildes: je Zeile die Farben als Laengen gleicher Farbe. */
+    private static function pixel(string $png): string
+    {
+        $bild = @imagecreatefromstring($png);
+        if ($bild === false) {
+            return '(kein Bild) ' . substr($png, 0, 300);
+        }
+        $breite = imagesx($bild);
+        $hoehe = imagesy($bild);
+        $zeilen = [];
+        for ($y = 0; $y < $hoehe; $y++) {
+            $laeufe = [];
+            $letzte = null;
+            $anzahl = 0;
+            for ($x = 0; $x < $breite; $x++) {
+                $f = imagecolorsforindex($bild, imagecolorat($bild, $x, $y));
+                $farbe = sprintf('%02x%02x%02x', $f['red'], $f['green'], $f['blue']);
+                if ($farbe === $letzte) {
+                    $anzahl++;
+                    continue;
+                }
+                if ($letzte !== null) {
+                    $laeufe[] = $letzte . '*' . $anzahl;
+                }
+                $letzte = $farbe;
+                $anzahl = 1;
+            }
+            $laeufe[] = $letzte . '*' . $anzahl;
+            $zeilen[] = implode(' ', $laeufe);
+        }
+
+        return $breite . 'x' . $hoehe . ', Pixel md5 ' . md5(implode("\n", $zeilen)) . "\n" . implode("\n", array_slice($zeilen, 0, 40));
+    }
+
+    /**
      * Die Tabelle nach den Tipps (lmo-tipptabelle.php mit lmo-tippcalctable.php) in ihren Ansichten:
      * gesamt, heim, auswaerts, Hin- und Rueckrunde, bis zu einem Spieltag, fuer einen anderen und
      * fuer alle Tipper; dazu eine Liga mit Minuspunkten, Strafen und direktem Vergleich

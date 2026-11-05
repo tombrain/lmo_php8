@@ -97,6 +97,12 @@ final class AdminClient
         $this->state = StateTracker::read($this->instance->path());
     }
 
+    /** Die letzte Antwort, wie sie kam (etwa ein Bild), ohne Normalisierung. */
+    public function roh(): string
+    {
+        return $this->lastRaw;
+    }
+
     public function instance(): Instance
     {
         return $this->instance;
