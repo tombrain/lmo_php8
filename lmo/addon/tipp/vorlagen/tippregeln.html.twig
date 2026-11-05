@@ -1,0 +1,221 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Die Tippregeln (Lmo\Addon\Tipp\Tippregeln): r sind die Texte der Sprache, k die Einstellungen des
+   Tippspiels. Bis 4.5 tippregeln.php. #}
+<style type="text/css">
+    :root {
+        --primary: #3182ce;
+        --bg-soft: #f7fafc;
+        --text-main: #2d3748;
+        --text-muted: #718096;
+        --border: #e2e8f0;
+    }
+
+    /* Basis-Korrektur für Zeilenumbrüche und Ausrichtung */
+    .regeln-wrapper {
+        font-family: 'Inter', -apple-system, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        padding: 20px;
+        background: #fff;
+        text-align: left !important;
+        /* Erzwingt Zeilenumbruch bei langem Text */
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important;
+    }
+
+    h1 { font-size: 1.75rem; font-weight: 800; text-align: center; margin-bottom: 30px; }
+
+    /* Accordion Design */
+    details { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; }
+    summary {
+        padding: 16px 20px; font-weight: 800; cursor: pointer; color: var(--primary);
+        display: flex; justify-content: space-between; align-items: center; list-style: none;
+    }
+    summary::after { content: "+"; font-size: 2.0rem; }
+    details[open] summary::after { content: "−"; }
+
+    /* Info-Blöcke (dd) und Definitionslisten (dt) */
+    dl { margin: 0; width: 100%; }
+    dt {
+        font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted);
+        margin-top: 20px; font-weight: 700; display: block;
+    }
+    dd {
+        margin: 4px 0 16px 0 !important;
+        padding: 15px !important;
+        background: var(--bg-soft);
+        border-radius: 10px;
+        border-left: 4px solid var(--primary);
+        display: block !important;
+        float: none !important; /* Verhindert das Nebeneinander-Stehen */
+        width: 100% !important;
+    }
+
+    /* FIX FÜR DIE AUFZÄHLUNG (ul/li) INNERHALB VON DD */
+    .regeln-wrapper ul {
+        margin: 10px 0 0 0 !important;
+        padding-left: 20px !important; /* Platz für Bullets */
+        list-style-type: disc !important; /* Standard-Punkte */
+        text-align: left !important;
+    }
+
+    .regeln-wrapper li {
+        margin-bottom: 8px !important;
+        text-align: left !important;
+        display: list-item !important; /* Erzwingt klassisches Listenverhalten */
+        float: none !important;
+        color: var(--text-main) !important;
+    }
+
+    .points-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 20px 0; }
+    .point-card { background: #fff; border: 1px solid var(--border); padding: 16px; border-radius: 12px; text-align: center; }
+    .point-card .value { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    .point-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    display: flex;
+    flex-direction: column; /* Stapelt Elemente untereinander */
+    justify-content: flex-start;
+    min-height: 120px; /* Optionale Mindesthöhe für Gleichmäßigkeit */
+    text-align: center !important;
+}
+
+.point-card .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.point-card .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* AUSRICHTUNG NACH UNTEN */
+.point-card .unit {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 10px;
+}
+
+</style>
+<div class="regeln-container">
+    <h1>{{ r.ABS_1|raw }}</h1>
+    <p style="text-align:center; color: #718096; margin-bottom: 30px;">{{ r.ABS_1_text1|raw }}</p>
+
+    <details open>
+        <summary>{{ r.ABS_2|raw }}</summary>
+        <div class="accordion-content">
+            <strong>{{ r.ABS_2_text1|raw }}</strong>
+            <p>{{ r.ABS_2_text2|raw }}</p>
+            <p>{{ r.ABS_2_text3|raw }}</p>
+            <p>{{ r.ABS_2_text4|raw }}</p>
+            <p>{{ r.ABS_2_text5|raw }}</p>
+            <ul>
+                <li>{{ r.ABS_2_text6|raw }}</li>
+                <li><strong>{{ r.ABS_2_text7|raw }}</strong></li>
+                <li><strong>{{ r.ABS_2_text8|raw }}</strong></li>
+                <li><strong>{{ r.ABS_2_text9|raw }}</strong></li>
+                <li><strong>{{ r.ABS_2_text10|raw }}</strong></li>
+                <li>{{ r.ABS_2_text11|raw }}</li>
+                <li><strong>{{ r.ABS_2_text12|raw }}</strong></li>
+            </ul>
+            <hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+            <strong>{{ r.ABS_2_text13|raw }}</strong>
+            <p>{{ r.ABS_2_text14|raw }}</p>
+            <p>{{ r.ABS_2_text15|raw }}</p>
+            <p>{{ r.ABS_2_text16|raw }}</p>
+            <p>{{ r.ABS_2_text17|raw }}</p>
+{% if k.jokertipp == 1 %}
+            <p>{{ r.ABS_2_text18|raw }}</p>
+{% endif %}
+            <strong>{{ r.ABS_2_text19|raw }}</strong>
+            <p>{{ r.ABS_2_text20|raw }}</p>
+            <p>{{ r.ABS_2_text21|raw }} {{ k.tippBis }} {{ r.ABS_2_text21_1|raw }}</p>
+            <p>{{ r.ABS_2_text22|raw }}</p>
+        </div>
+    </details>
+
+    <details>
+        <summary>{{ r.ABS_3|raw }}</summary>
+        <div class="accordion-content">
+            <p>{{ r.ABS_3_text1|raw }}</p>
+            <div class="points-grid">
+                <div class="point-card">
+                    <span class="unit">{{ (k.rergebnis > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
+                    <span class="value">{{ k.rergebnis }}</span>
+                    <span class="label">{{ r.ABS_3_text2|raw }}</span>
+                </div>
+                <div class="point-card">
+                    <span class="unit">{{ (k.rtendenzdiff > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
+                    <span class="value">{{ k.rtendenzdiff }}</span>
+                    <span class="label">{{ r.ABS_3_text3|raw }}</span>
+                </div>
+                <div class="point-card">
+                    <span class="unit">{{ (k.rtendenz > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
+                    <span class="value">{{ k.rtendenz }}</span>
+                    <span class="label">{{ r.ABS_3_text4|raw }}</span>
+                </div>
+                <div class="point-card">
+                    <span class="unit">{{ (k.rtor > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
+                    <span class="value">{{ k.rtor }}</span>
+                    <span class="label">{{ r.ABS_3_text5|raw }}</span>
+                </div>
+{% if k.jokertipp == 1 %}
+                <div class="point-card highlight">
+                    <span class="unit">{{ (k.rremis > 1 ? r.ABS_3_text2_1 : r.ABS_3_text2_0)|raw }}</span>
+                    <span class="value">{{ k.rremis }}</span>
+                    <span class="label">{{ r.ABS_3_text6_1|raw }}</span>
+                </div>
+{% endif %}
+{% if k.rremis >= 1 %}
+                <div class="point-card highlight">
+                    <span class="unit">{{ r.ABS_3_text2_2|raw }}</span>
+                    <span class="value">x&nbsp;{{ k.jokertippmulti }}</span>
+                    <span class="label">{{ r.ABS_3_text6|raw }}</span>
+                </div>
+{% endif %}
+            </div>
+            <strong>{{ r.ABS_3_text8|raw }}</strong>
+            <p>{{ r.ABS_3_text9|raw }}</p>
+            <p>{{ r.ABS_3_text10|raw }}</p>
+            <p>{{ r.ABS_3_text11|raw }}</p>
+            <p>{{ r.ABS_3_text12|raw }}</p>
+            <p>{{ r.ABS_3_text13|raw }}</p>
+            <p>{{ r.ABS_3_text14|raw }}</p>
+            <strong>{{ r.ABS_3_text15|raw }}</strong>
+            <p>{{ r.ABS_3_text16|raw }}</p>
+            <p>{{ r.ABS_3_text17|raw }}</p>
+        </div>
+    </details>
+
+    <details>
+        <summary>{{ r.ABS_4|raw }}</summary>
+        <div class="accordion-content">
+            <p>{{ r.ABS_4_text1|raw }}</p>
+            <p>{{ r.ABS_4_text2|raw }}</p>
+            <p style="font-style: italic; color: #e53e3e;"><strong>{{ r.ABS_4_text3|raw }}</strong></p>
+        </div>
+    </details>
+</div>
+

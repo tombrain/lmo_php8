@@ -81,7 +81,7 @@ class TabelleControllerTest extends TestCase
 
     private function controller(): TabelleController
     {
-        return new TabelleController($this->ordner, new Tipprahmen(static fn (string $datei): string => ''));
+        return new TabelleController($this->ordner, new Tipprahmen());
     }
 
     private function seite(Kontext $kontext): string

@@ -66,7 +66,7 @@ class AnmeldungControllerTest extends TestCase
             weitereTexte: ['tipp' => $texte],
             sitzung: $sitzung
         );
-        $rahmen = new Tipprahmen(static fn (string $datei): string => '');
+        $rahmen = new Tipprahmen();
         $controller = new AnmeldungController($this->ordner, $rahmen, new StartseiteController($this->ordner, $rahmen), function (string $an, string $nick, string $kennwort): ?string {
             $this->mails[] = [$an, $nick, $kennwort];
 

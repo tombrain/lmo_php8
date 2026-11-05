@@ -22,20 +22,9 @@ if (!defined('PATH_TO_LMO')) {
 
 // Tippspiel mit Menuepunkt (Lmo\Addon\Tipp\TippAddon); seine Seiten zeigen die Controller des Addons.
 // Tipper und Tipps liegen im Datenordner daten/tipp (bis 4.5 hier im Addon-Ordner, von dort ziehen sie einmal um).
-// Was das Addon von aussen braucht, geben diese Closures mit: die Tippregeln (noch alter Code, im
-// globalen Bereich eingebunden) und die Mails (mit lmo_mailer(), Absender und Texten aus dem globalen Bereich).
-return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $lmo_tipp_regeln): string {
-    // die Tippregeln im Menue: eine Seite nach alter Art, wie bisher im globalen Bereich eingebunden
-    foreach (array_keys($GLOBALS) as $lmo_tipp_name) {
-        if ($lmo_tipp_name !== 'GLOBALS' && $lmo_tipp_name[0] !== '_' && $lmo_tipp_name !== 'lmo_tipp_regeln') {
-            ${$lmo_tipp_name} = &$GLOBALS[$lmo_tipp_name];
-        }
-    }
-    unset($lmo_tipp_name);
-    ob_start();
-    include(__DIR__ . '/' . $lmo_tipp_regeln);
-    return (string)ob_get_clean();
-}, static function (string $xtipperemail, string $xtippernick, string $xtipperpass): string {
+// Was das Addon von aussen braucht, geben diese Closures mit: die Mails (mit lmo_mailer(), Absender und
+// Texten aus dem globalen Bereich).
+return new \Lmo\Addon\Tipp\TippAddon(__DIR__, static function (string $xtipperemail, string $xtippernick, string $xtipperpass): string {
     // die Freischaltmail mit Nick, Kennwort und Anmeldelink (bis 4.5 lmo-admintippfreischaltung.php)
     $text = $GLOBALS['text'];
     $mail = lmo_mailer($GLOBALS['aadr'], $text['tipp'][92]);
