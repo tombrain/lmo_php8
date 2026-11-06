@@ -52,6 +52,26 @@
             $setup_error = lmo_create_admin(trim($_POST['setup_user'] ?? ''), $_POST['setup_pass'] ?? '', $_POST['setup_pass2'] ?? '');
         }
     }
+    // Anmeldung (Lmo\Web\Admin\Anmeldung; bis 4.5 lmo-adminauth.php, lmo-admincheck_auth.php und
+    // lmo-loadauth.php), ebenfalls vor jeder Ausgabe ausgewertet
+    if (lmo_has_admin()) {
+        $lmo_anmeldung = new \Lmo\Web\Admin\Anmeldung(PATH_TO_CONFIGDIR . '/lmo-auth.php');
+        if (empty($_SESSION['lmouserok']) && isset($_POST['xusername']) && is_string($_POST['xusername'])) {
+            $_SESSION['lmousername'] = $_POST['xusername'];
+            // das Kennwort bleibt nicht in der Sitzung (bis 4.5 im Klartext in lmouserpass)
+            $_SESSION['lmouserpass'] = '';
+            $lmo_konto = $lmo_anmeldung->meldeAn($_SESSION['lmousername'], is_string($_POST['xuserpass'] ?? null) ? $_POST['xuserpass'] : '');
+            if ($lmo_konto !== null) {
+                // neue Sitzungs-ID gegen Session Fixation (bis 4.5 blieb die vor der Anmeldung)
+                session_regenerate_id(true);
+                $_SESSION['lmouserok'] = $lmo_konto['rang'];
+                if ($_SESSION['lmouserok'] == 1) {
+                    $_SESSION['lmouserfile'] = $lmo_konto['ligen'];
+                    $_SESSION['lmouserokerweitert'] = $lmo_konto['erweitert'];
+                }
+            }
+        }
+    }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                 "http://www.w3.org/TR/html4/loose.dtd">
@@ -70,25 +90,8 @@
     if (!lmo_has_admin()) {
         require(PATH_TO_LMO . '/lmo-adminsetup.php');
     }
-    if (lmo_has_admin()) {
-        // Anmeldung (Lmo\Web\Admin\Anmeldung; bis 4.5 lmo-adminauth.php, lmo-admincheck_auth.php und
-        // lmo-loadauth.php)
-        $lmo_anmeldung = new \Lmo\Web\Admin\Anmeldung(PATH_TO_CONFIGDIR . '/lmo-auth.php');
-        if (empty($_SESSION['lmouserok']) && isset($_POST['xusername']) && is_string($_POST['xusername'])) {
-            $_SESSION['lmousername'] = $_POST['xusername'];
-            $_SESSION['lmouserpass'] = is_string($_POST['xuserpass'] ?? null) ? $_POST['xuserpass'] : '';
-            $lmo_konto = $lmo_anmeldung->meldeAn($_SESSION['lmousername'], $_SESSION['lmouserpass']);
-            if ($lmo_konto !== null) {
-                $_SESSION['lmouserok'] = $lmo_konto['rang'];
-                if ($_SESSION['lmouserok'] == 1) {
-                    $_SESSION['lmouserfile'] = $lmo_konto['ligen'];
-                    $_SESSION['lmouserokerweitert'] = $lmo_konto['erweitert'];
-                }
-            }
-        }
-        if (empty($_SESSION['lmouserok'])) {
-            echo $lmo_anmeldung->formular($text, (string)$_SERVER['PHP_SELF'], (string)$_SESSION['lmousername'], !empty($einsprachwahl) ? getLangSelector() : '', URL_TO_LMO, PATH_TO_LMO . '/vorlagen');
-        }
+    if (isset($lmo_anmeldung) && lmo_has_admin() && empty($_SESSION['lmouserok'])) {
+        echo $lmo_anmeldung->formular($text, (string)$_SERVER['PHP_SELF'], (string)$_SESSION['lmousername'], !empty($einsprachwahl) ? getLangSelector() : '', URL_TO_LMO, PATH_TO_LMO . '/vorlagen');
     }
     if (isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0) {
         $file =! empty($_REQUEST['file']) ? $_REQUEST['file'] : '';
