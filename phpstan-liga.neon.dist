@@ -1,6 +1,5 @@
 # Alte Dateien, die am Dateianfang angeben, welche
 # Variablen sie erwarten (@var): Stufe 6 statt Stufe 0.
-# Besteht eine Datei aus phpstan-liga-basis.neon.dist auch Stufe 6, wandert sie hierher.
 parameters:
     level: 6
     phpVersion:
