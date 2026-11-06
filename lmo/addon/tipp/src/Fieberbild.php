@@ -135,7 +135,7 @@ final class Fieberbild
             for ($i = $min; $i <= $max; $i++) {
                 if ($i == 1 || $i == 2 || $i == 3) {
                     for ($k = 1; $k <= $pgst; $k++) {
-                        imagefill($bild, 20 + ($k * 12), (int) (29 + (($i - $min) * $khoch)), $raenge[(int) $i]);
+                        imagefill($bild, 20 + ($k * 12), (int) (29 + (($i - $min) * $khoch)), $raenge[(int) $i] ?? $gitter);
                     }
                 }
             }

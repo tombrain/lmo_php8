@@ -250,7 +250,8 @@ final class Druckdateien
         foreach ($namen as $i => $name) {
             // "May" steht nur als Kurzname drin (wie bis 4.5)
             if ($name !== null) {
-                $paare[$name] = (string) ($datum[$i] ?? '');
+                $wert = $datum[$i] ?? '';
+                $paare[$name] = is_scalar($wert) ? (string) $wert : '';
             }
         }
 
