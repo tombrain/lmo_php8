@@ -202,6 +202,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Tippspiel, Userverwaltung der Administration: Nick, Name, E-Mail und Verein der Tipper werden maskiert ausgegeben, Nick und Sortierung in Links kodiert. Diese Werte geben Tipper selbst ein; mit einem Anführungszeichen im Nick ließ sich bisher Skript in die Seite des Admins einschleusen.  
 * Administration, Anmeldeformular: Der zuletzt eingegebene Benutzername und die eigene Adresse werden maskiert ausgegeben. Bisher ließ sich darüber HTML und JavaScript in die Anmeldeseite einschleusen.  
 * Administration, Anmeldung: Nach erfolgreicher Anmeldung gibt es eine neue Sitzungs-ID (gegen Session Fixation), und das Kennwort steht nicht mehr im Klartext in der Sitzung (`lmouserpass`). Ausgewertet wird die Anmeldung jetzt vor jeder Ausgabe der Seite.  
 * Administration, Anmeldung: Der Hash aus `config/lmo-auth.php` gilt nicht mehr selbst als Kennwort. Der Vergleich im Klartext, gedacht für alte Konten, galt bisher für jeden gespeicherten Wert; wer den Hash kannte (etwa aus einer Sicherung), konnte sich damit anmelden. Klartext zählt jetzt nur, wo kein Hash steht, der Vergleich ist zeitkonstant, und ein leeres Kennwort meldet nie an.  
@@ -736,6 +737,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Prediction game, user management in the administration: nick, name, e-mail and club of the tippers are output escaped, nick and sort order are encoded in links. Tippers enter these values themselves; with a quote in the nick, script could so far be injected into the admin's page.  
 * Administration, login form: the last entered user name and the page's own address are output escaped. Until now HTML and JavaScript could be injected into the login page through them.  
 * Administration, login: after a successful login there is a new session ID (against session fixation), and the password is no longer kept in plain text in the session (`lmouserpass`). The login is now evaluated before any output of the page.  
 * Administration, login: the hash from `config/lmo-auth.php` no longer works as a password itself. The plain-text comparison, meant for old accounts, applied to every stored value; anyone who knew the hash (e.g. from a backup) could log in with it. Plain text now only counts where no hash is stored, the comparison is constant-time, and an empty password never logs in.  

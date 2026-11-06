@@ -59,12 +59,12 @@
           <td align="right">{{ z.id }}</td>
           <td align="left">{% if z.email != '' %}
 
-            <a href="mailto:{{ z.email|raw }}">{{ z.nick|raw }}</a>{% else %}{{ z.nick|raw }}{% endif %} </td>
+            <a href="mailto:{{ z.email }}">{{ z.nick }}</a>{% else %}{{ z.nick }}{% endif %} </td>
           <td align="left">{{ z.name|raw }}</td>
-          <td align="left">{{ z.team|raw }}</td>
+          <td align="left">{{ z.team }}</td>
           <td align="left">{{ z.zeit }}</td>
-          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuseredit&amp;nick={{ z.nick|raw }}' onClick="return chklmolink();">{{ t[98]|raw }}</a></td>
-          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuser&amp;tipper_sort={{ sortierung|raw }}&amp;del={{ z.nick|raw }}' onClick="return confirm('{{ text[499]|raw }}');"><img src="{{ bilder }}/delete.svg" border="0" height="18" alt="{{ text[82]|raw }}"></a></td>
+          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuseredit&amp;nick={{ z.nick|url_encode }}' onClick="return chklmolink();">{{ t[98]|raw }}</a></td>
+          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuser&amp;tipper_sort={{ sortierung|url_encode }}&amp;del={{ z.nick|url_encode }}' onClick="return confirm('{{ text[499]|raw }}');"><img src="{{ bilder }}/delete.svg" border="0" height="18" alt="{{ text[82]|raw }}"></a></td>
         </tr>
 {% endfor %}
         </tbody>
