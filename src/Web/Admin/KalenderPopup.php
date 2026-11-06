@@ -40,6 +40,11 @@ final class KalenderPopup
     public function html(array $anfrage, string $selbst, int $jetzt): string
     {
         $wert = static fn (string $name): string => isset($anfrage[$name]) && is_string($anfrage[$name]) ? $anfrage[$name] : '';
+        // Formular und Feld stehen als Namen im JavaScript: nur Buchstaben, Ziffern und _ (bis 4.5
+        // ungeprueft, ein Link konnte so Skript einschleusen)
+        $name = static fn (string $parameter): string => preg_match('/^[A-Za-z_][A-Za-z0-9_]*$/', $wert($parameter)) === 1 ? $wert($parameter) : '';
+        $abs = $name('abs');
+        $feld = $name('feld');
         $heute = getdate($jetzt);
         $monat = $wert('calshow') !== '' ? $wert('calshow') : $heute['month'] . ' ' . $heute['year'];
         $zeit = static fn (string $angabe): int => (int) strtotime($angabe);
@@ -75,9 +80,9 @@ final class KalenderPopup
         return Vorlagen::zeige($this->vorlagen, 'admin_kalender.html.twig', [
             'text' => $this->text,
             'datum' => $datum,
-            'abs' => $wert('abs'),
-            'feld' => $wert('feld'),
-            'adresse' => $selbst . '?abs=' . $wert('abs') . '&amp;feld=' . $wert('feld'),
+            'abs' => $abs,
+            'feld' => $feld,
+            'adresse' => htmlspecialchars($selbst) . '?abs=' . $abs . '&amp;feld=' . $feld,
             'davor' => $davor['month'] . ' ' . $davor['year'],
             'danach' => $danach['month'] . ' ' . $danach['year'],
             'titel' => ($datum[self::MONATE[$erster['month']]] ?? '') . ' ' . $erster['year'],
