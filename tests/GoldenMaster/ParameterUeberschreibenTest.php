@@ -1,0 +1,33 @@
+<?php
+
+namespace Lmo\Tests\GoldenMaster;
+
+use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
+use Lmo\Tests\GoldenMaster\Support\Fixture;
+use Lmo\Tests\GoldenMaster\Support\Transcript;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Parameter der Adresse gegen Variablen, die init.php schon gesetzt hat (Konfiguration,
+ * Sprachtexte): init.php uebernimmt die Parameter per extract() fuer den alten Code.
+ */
+final class ParameterUeberschreibenTest extends TestCase
+{
+    use AssertsSnapshots;
+
+    public function testSeiten(): void
+    {
+        $c = Fixture::anonymousClient();
+        $t = new Transcript();
+        foreach ([
+            'Sprachtext aus der Adresse' => 'action=table&file=golden/basic.l98&text[16]=<b>EINGESCHLEUST</b>',
+            'Ligenordner aus der Adresse' => 'dirliga=../config/',
+            'Sprachwahl' => 'action=table&file=golden/basic.l98&lmouserlang=English',
+            'unbekannte Sprache' => 'action=table&file=golden/basic.l98&lmouserlang=../../x',
+        ] as $fall => $parameter) {
+            $t->add($fall, $c->get('lmo.php', $parameter), $c->changes());
+        }
+
+        $this->assertMatchesSnapshot('parameter-ueberschreiben', 'seiten', $t->text());
+    }
+}
