@@ -52,9 +52,9 @@ final class KalenderPopup
         $davor = getdate($zeit('1 ' . $monat . ' -1 month'));
         $danach = getdate($zeit('1 ' . $monat . ' +1 month'));
 
-        // die Tage: wie bis 4.5 beginnt jeder Montag eine Zeile und jeder Sonntag schliesst sie
+        // die Tage: jeder Montag beginnt eine Zeile (der erste Tag hat seine schon), jeder Sonntag schliesst sie
         $tage = [];
-        $letzterSonntag = false;
+        $letzterWochentag = 7;
         for ($i = 1; $i <= 31; $i++) {
             $tag = getdate($zeit($i . ' ' . $monat));
             if ($tag['mon'] != $erster['mon']) {
@@ -64,15 +64,13 @@ final class KalenderPopup
             $istHeute = $heute['mday'] . '.' . $heute['mon'] . '.' . $heute['year'] == $tag['mday'] . '.' . $tag['mon'] . '.' . $tag['year'];
             $wochenende = $wochentag == 6 || $wochentag == 7;
             $tage[] = [
-                'zeileAuf' => $wochentag == 1,
+                'zeileAuf' => $wochentag == 1 && $tage !== [],
                 'zeileZu' => $wochentag == 7,
                 'stil' => $istHeute ? ($wochenende ? 'calhe' : 'calht') : ($wochenende ? 'calwe' : 'calat'),
                 'datum' => date('d.m.Y', $zeit($i . ' ' . $monat)),
                 'tag' => ($i <= 9 ? '0' : '') . $i,
             ];
-            if ($wochentag == 7) {
-                $letzterSonntag = true;
-            }
+            $letzterWochentag = $wochentag;
         }
         $beginn = $erster['wday'] == 0 ? 7 : $erster['wday'];
         $datum = is_array($this->text['date'] ?? null) ? $this->text['date'] : [];
@@ -88,8 +86,8 @@ final class KalenderPopup
             'titel' => (is_scalar($datum[self::MONATE[$erster['month']]] ?? null) ? (string) $datum[self::MONATE[$erster['month']]] : '') . ' ' . $erster['year'],
             'leerVorn' => $beginn - 1,
             'tage' => $tage,
-            // bis 4.5 blieb $j auf 7 stehen, sobald ein Sonntag kam: dann keine Fuellung hinten
-            'leerHinten' => $letzterSonntag ? 0 : 7,
+            // die letzte Woche bis Sonntag auffuellen (bis 4.5 blieb sie offen)
+            'leerHinten' => 7 - $letzterWochentag,
         ]);
     }
 }
