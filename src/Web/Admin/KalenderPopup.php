@@ -85,7 +85,7 @@ final class KalenderPopup
             'adresse' => htmlspecialchars($selbst) . '?abs=' . $abs . '&amp;feld=' . $feld,
             'davor' => $davor['month'] . ' ' . $davor['year'],
             'danach' => $danach['month'] . ' ' . $danach['year'],
-            'titel' => ($datum[self::MONATE[$erster['month']]] ?? '') . ' ' . $erster['year'],
+            'titel' => (is_scalar($datum[self::MONATE[$erster['month']]] ?? null) ? (string) $datum[self::MONATE[$erster['month']]] : '') . ' ' . $erster['year'],
             'leerVorn' => $beginn - 1,
             'tage' => $tage,
             // bis 4.5 blieb $j auf 7 stehen, sobald ein Sonntag kam: dann keine Fuellung hinten
