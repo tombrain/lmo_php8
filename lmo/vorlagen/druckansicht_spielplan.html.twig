@@ -8,7 +8,8 @@
 
   REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
 -#}
-{# Druckansicht <liga>-sp.html: Spielplan und Tabelle (Lmo\Web\Druckdateien) #}
+{# Druckansicht <liga>-sp.html: Spielplan und Tabelle (Lmo\Web\Druckdateien). Leerraum wie bis 4.5
+   (lmo-savehtml1.php), daher stehen manche Tags mitten in der Zeile. #}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +37,7 @@
 {% for t in spieltage %}
 {% if t.angesetzt %}
         <table>
-        <caption>{{ t.st }}. {{ text[2]|raw }}{% if t.datum %} - {{ t.datum[0]|raw }} {{ text[4]|raw }} {{ t.datum[1]|raw }}{% endif %}</caption>
+        <caption>{{ t.st }}.  {{ text[2]|raw }}{% if t.datum %} - {{ t.datum[0]|raw }} {{ text[4]|raw }} {{ t.datum[1]|raw }}{% endif %}</caption>
 {% for s in t.spiele %}
           <tr>
             <td>{{ s.anstoss|raw }}&nbsp;</td>
@@ -59,8 +60,7 @@
         </table>
 {% endif %}
 {% if t.spielfrei is not null %}
-      {% if t.spielfrei %}<p><small>{{ text[4004]|raw }}: {% endif %}{% for n in t.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}
-      </small></p>
+{% if t.spielfrei %}      <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in t.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>
 {% endif %}
 {% endfor %}
       </td>
@@ -81,15 +81,10 @@
       <td>{{ z.bild|raw }}&nbsp;</td>
       <td>{{ z.name|raw }}&nbsp;</td>
       <td align="right">{{ z.spiele }}&nbsp;</td>
-{% if minuspunkte %}
-      <td align="right">{{ z.punkte }}:</td>
+      <td align="right">{{ z.punkte }}{% if minuspunkte %}:</td>
       <td align="left">{{ z.minuspunkte }}&nbsp;</td>
-{% else %}
-      <td align="right">{{ z.punkte }}
-      </td>
-      <td align="left">&nbsp;</td>
-{% endif %}
-      <td align="right">{{ z.tore }}:{{ z.gegentore }}&nbsp;</td>
+{% else %}      </td>
+      <td align="left">&nbsp;</td>{% endif %}      <td align="right">{{ z.tore }}:{{ z.gegentore }}&nbsp;</td>
       <td align="right">&nbsp;&nbsp;{{ z.differenz }}</td>
     </tr>
 {% endfor %}
