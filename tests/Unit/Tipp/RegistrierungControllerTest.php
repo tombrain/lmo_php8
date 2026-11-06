@@ -138,7 +138,8 @@ class RegistrierungControllerTest extends TestCase
     {
         [$html] = $this->seite(['xtippervorname' => 'Nora Lena'] + self::nora());
         self::assertStringContainsString('T109', $html, 'kein Leerzeichen im Vornamen (bis 4.5 erlaubt)');
-        self::assertNull(Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora'));
+        $abgelehnt = Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora');
+        self::assertNull($abgelehnt);
 
         $this->seite(['xtippervorname' => '', 'xtippernachname' => ''] + self::nora(), ['realname' => '0']);
         self::assertStringContainsString('|5||nora@example.org|', (string) Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora')?->zeile(), 'ohne Namen leer (bis 4.5 &nbsp;)');
