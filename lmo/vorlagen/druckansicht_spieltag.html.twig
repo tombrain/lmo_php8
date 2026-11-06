@@ -8,7 +8,8 @@
 
   REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
 -#}
-{# Druckansicht <liga>-st.html: Spieltag, Tabelle und folgender Spieltag (Lmo\Web\Druckdateien) #}
+{# Druckansicht <liga>-st.html: Spieltag, Tabelle und folgender Spieltag (Lmo\Web\Druckdateien).
+   Leerraum wie bis 4.5 (lmo-savehtml.php), daher stehen manche Tags mitten in der Zeile. #}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,11 +31,11 @@
 </head>
 <body>
   <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">{{ text[562]|raw }}<\/a><\/small>');</script>
-  <h1>{{ name|raw }}</h1>
-{% if angesetzt %}
+  <h1>{{ name|raw }}</h1>{% if angesetzt %}
+
   <table>
-  <caption>{{ st }}. {{ text[2]|raw }} {% if datum %} - {{ datum[0]|raw }} {{ text[4]|raw }} {{ datum[1]|raw }}{% endif %}</caption>
-{% for s in spiele %}
+  <caption>{{ st }}. {{ text[2]|raw }} {% if datum %} - {{ datum[0]|raw }} {{ text[4]|raw }} {{ datum[1]|raw }}{% endif %}</caption>{% for s in spiele %}
+
     <tr>
       <td>{{ s.anstoss|raw }}&nbsp;</td>
       <td align="right">{{ s.heim|raw }}</td><td>{{ s.heimBild|raw }}</td>
@@ -42,21 +43,16 @@
       <td>{{ s.gastBild|raw }}</td><td>{{ s.gast|raw }}&nbsp;</td>
       <td align="right">{{ s.toreHeim }}</td>
       <td>:</td>
-      <td align="left">{{ s.toreGast }}</td>
-{% if s.gegenBeide %}
+      <td align="left">{{ s.toreGast }}</td>{% if s.gegenBeide %}
       <td width="2">/</td>
       <td align="right">{{ s.toreGast }}</td>
       <td align="center" width="8">:</td>
-      <td align="left">{{ s.toreHeim }}</td>
-{% endif %}
-    </tr>
-{% endfor %}
-  </table>
-{% if spielfrei is not null %}
-  {% if spielfrei %}<p><small>{{ text[4004]|raw }}: {% endif %}{% for n in spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}
-  </small></p>
-{% endif %}
-{% endif %}
+      <td align="left">{{ s.toreHeim }}</td>{% endif %}
+
+    </tr>{% endfor %}
+
+  </table>{% if spielfrei is not null %}{% if spielfrei %}      <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>{% endif %}{% endif %}
+
   <table>
     <caption>{{ text[16]|raw }} - {{ st }}. {{ text[2]|raw }}</caption>
     <tr>
@@ -72,14 +68,10 @@
       <td>{{ z.bild|raw }}&nbsp;</td>
       <td>{{ z.name|raw }}&nbsp;</td>
       <td align="right">{{ z.spiele }}&nbsp;</td>
-{% if minuspunkte %}
-      <td align="right">{{ z.punkte }}:</td>
+      <td align="right">{{ z.punkte }}{% if minuspunkte %}:</td>
       <td align="left">{{ z.minuspunkte }}&nbsp;</td>
-{% else %}
-      <td align="right">{{ z.punkte }}</td>
-      <td align="left">&nbsp;</td>
-{% endif %}
-      <td align="right">{{ z.tore }}:{{ z.gegentore }}&nbsp;</td>
+{% else %}</td>
+      <td align="left">&nbsp;</td>{% endif %}      <td align="right">{{ z.tore }}:{{ z.gegentore }}&nbsp;</td>
       <td align="right">&nbsp;&nbsp;{{ z.differenz }}</td>
     </tr>
 {% endfor %}
@@ -89,8 +81,7 @@
   <p><strong>{{ text[568]|raw }}</strong></p>
 {% elseif folge %}
   <table>
-  <caption>{{ folge.st }}. {{ text[2]|raw }}{% if folge.datum %} - {{ folge.datum[0]|raw }} {{ text[4]|raw }} {{ folge.datum[1]|raw }}{% endif %}</caption>
-{% for s in folge.spiele %}
+  <caption>{{ folge.st }}. {{ text[2]|raw }}{% if folge.datum %} - {{ folge.datum[0]|raw }} {{ text[4]|raw }} {{ folge.datum[1]|raw }}{% endif %}</caption>{% for s in folge.spiele %}
     <tr>
       <td>{{ s.anstoss|raw }}&nbsp;</td>
       <td align="right">{{ s.heim|raw }}</td>
@@ -100,20 +91,17 @@
       <td>{{ s.gast|raw }}&nbsp;</td>
       <td align="right">{{ s.toreHeim }}</td>
       <td>:</td>
-      <td align="left">{{ s.toreGast }}</td>
-{% if s.gegenBeide %}
+      <td align="left">{{ s.toreGast }}</td>{% if s.gegenBeide %}
       <td width="2">/</td>
       <td align="right">{{ s.toreGast }}</td>
       <td align="center" width="8">:</td>
       <td align="left">{{ s.toreHeim }}</td>
 {% endif %}
+
     </tr>
 {% endfor %}
   </table>
-{% if folge.spielfrei is not null %}
-  {% if folge.spielfrei %}<p><small>{{ text[4004]|raw }}: {% endif %}{% for n in folge.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}
-  </small></p>
-{% endif %}
+{% if folge.spielfrei is not null %}{% if folge.spielfrei %}  <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in folge.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}  </small></p>{% endif %}
 {% endif %}
   <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">{{ text[562]|raw }}<\/a><\/small>');</script>
 </body>
