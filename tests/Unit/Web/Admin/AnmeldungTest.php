@@ -44,6 +44,20 @@ class AnmeldungTest extends TestCase
         self::assertSame(['rang' => '1', 'ligen' => 'basic,bula', 'erweitert' => '1'], (new Anmeldung($this->datei))->meldeAn('hilfe', 'geheim'));
     }
 
+    public function testDerHashIstKeinKennwort(): void
+    {
+        $hash = explode('|', (file($this->datei, FILE_IGNORE_NEW_LINES) ?: [])[2])[1];
+
+        self::assertNull((new Anmeldung($this->datei))->meldeAn('hilfe', $hash), 'bis 4.5 meldete der Hash aus lmo-auth.php selbst an');
+    }
+
+    public function testLeeresKennwort(): void
+    {
+        file_put_contents($this->datei, "<?php exit(); ?>\nleer||2|||\n");
+
+        self::assertNull((new Anmeldung($this->datei))->meldeAn('leer', ''), 'ohne Kennwort keine Anmeldung');
+    }
+
     public function testFalsch(): void
     {
         $anmeldung = new Anmeldung($this->datei);
