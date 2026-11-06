@@ -7,7 +7,7 @@ use Lmo\Tests\GoldenMaster\Support\Fixture;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Ersteinrichtung ohne Installer (lmo-setup.php, lmo-adminsetup.php): LMO wird hochgeladen
+ * Ersteinrichtung ohne Installer (lmo-setup.php, Lmo\Web\Admin\Ersteinrichtung): LMO wird hochgeladen
  * und laeuft sofort; Pfad/URL werden ermittelt, die Standardkonfiguration wird angelegt und
  * das erste Admin-Konto beim ersten Aufruf von lmoadmin.php festgelegt.
  *
