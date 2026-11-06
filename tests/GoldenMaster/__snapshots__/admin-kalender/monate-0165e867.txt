@@ -1,0 +1,829 @@
+### monate
+=== dieser Monat ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Pop-Up Kalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body{font-size:81%;font-family:sans-serif;} table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;} table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;} a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;} a:hover, a:active { color:#fff; background-color:#48f;} td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; } td.calat { color:#000; } td.calat a:link, td.calat a:visited { color:#000; background-color:#fff; text-decoration:none; } td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;} td.calht { color:#000; background-color:#aaf;font-weight: bolder; } td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf; text-decoration:none; } td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;} td.calhe { color:#f00; background-color:#aaf; font-weight: bolder; } td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf; text-decoration:none; } td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;} td.calwe { color:#f00; font-weight: bolder; } td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff; text-decoration:none; } td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;} </style>
+<script type="text/javascript">
+<!-- opener.document.forms.lmoedit.xdatum1.select(); function lmogeben(x){ opener.document.forms.lmoedit.xdatum1.value=x; self.close(); } // -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="left">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=February 2025" title="zum vorigen Monat">&nbsp;&lt;&nbsp;</a>
+</td>
+<td align="center" class="caltz">März 2025</td>
+<td align="right">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1" title="zum aktuellen Monat">&nbsp;#&nbsp;</a>
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=April 2025" title="zum nächsten Monat">&nbsp;&gt;&nbsp;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="center" class="calwt">Mo</td>
+<td align="center" class="calwt">Di</td>
+<td align="center" class="calwt">Mi</td>
+<td align="center" class="calwt">Do</td>
+<td align="center" class="calwt">Fr</td>
+<td align="center" class="calwt">Sa</td>
+<td align="center" class="calwt">So</td>
+</tr>
+<tr>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("01.03.2025")' title="Datum übernehmen">01</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("02.03.2025")' title="Datum übernehmen">02</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("03.03.2025")' title="Datum übernehmen">03</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("04.03.2025")' title="Datum übernehmen">04</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("05.03.2025")' title="Datum übernehmen">05</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("06.03.2025")' title="Datum übernehmen">06</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("07.03.2025")' title="Datum übernehmen">07</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("08.03.2025")' title="Datum übernehmen">08</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("09.03.2025")' title="Datum übernehmen">09</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("10.03.2025")' title="Datum übernehmen">10</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("11.03.2025")' title="Datum übernehmen">11</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("12.03.2025")' title="Datum übernehmen">12</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("13.03.2025")' title="Datum übernehmen">13</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("14.03.2025")' title="Datum übernehmen">14</a>
+</td>
+<td align="center" class="calhe">
+<a href="#" onclick='lmogeben("15.03.2025")' title="Datum übernehmen">15</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("16.03.2025")' title="Datum übernehmen">16</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("17.03.2025")' title="Datum übernehmen">17</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("18.03.2025")' title="Datum übernehmen">18</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("19.03.2025")' title="Datum übernehmen">19</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("20.03.2025")' title="Datum übernehmen">20</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("21.03.2025")' title="Datum übernehmen">21</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("22.03.2025")' title="Datum übernehmen">22</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("23.03.2025")' title="Datum übernehmen">23</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("24.03.2025")' title="Datum übernehmen">24</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("25.03.2025")' title="Datum übernehmen">25</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("26.03.2025")' title="Datum übernehmen">26</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("27.03.2025")' title="Datum übernehmen">27</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("28.03.2025")' title="Datum übernehmen">28</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("29.03.2025")' title="Datum übernehmen">29</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("30.03.2025")' title="Datum übernehmen">30</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
+</td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="#" onclick="self.close()" title="Kalender schließen, ohne ein Datum zu übernehmen">[Fenster schließen]</a>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== Maerz 2025 (Beginn Samstag) ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Pop-Up Kalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body{font-size:81%;font-family:sans-serif;} table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;} table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;} a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;} a:hover, a:active { color:#fff; background-color:#48f;} td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; } td.calat { color:#000; } td.calat a:link, td.calat a:visited { color:#000; background-color:#fff; text-decoration:none; } td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;} td.calht { color:#000; background-color:#aaf;font-weight: bolder; } td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf; text-decoration:none; } td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;} td.calhe { color:#f00; background-color:#aaf; font-weight: bolder; } td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf; text-decoration:none; } td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;} td.calwe { color:#f00; font-weight: bolder; } td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff; text-decoration:none; } td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;} </style>
+<script type="text/javascript">
+<!-- opener.document.forms.lmoedit.xdatum1.select(); function lmogeben(x){ opener.document.forms.lmoedit.xdatum1.value=x; self.close(); } // -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="left">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=February 2025" title="zum vorigen Monat">&nbsp;&lt;&nbsp;</a>
+</td>
+<td align="center" class="caltz">März 2025</td>
+<td align="right">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1" title="zum aktuellen Monat">&nbsp;#&nbsp;</a>
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=April 2025" title="zum nächsten Monat">&nbsp;&gt;&nbsp;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="center" class="calwt">Mo</td>
+<td align="center" class="calwt">Di</td>
+<td align="center" class="calwt">Mi</td>
+<td align="center" class="calwt">Do</td>
+<td align="center" class="calwt">Fr</td>
+<td align="center" class="calwt">Sa</td>
+<td align="center" class="calwt">So</td>
+</tr>
+<tr>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("01.03.2025")' title="Datum übernehmen">01</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("02.03.2025")' title="Datum übernehmen">02</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("03.03.2025")' title="Datum übernehmen">03</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("04.03.2025")' title="Datum übernehmen">04</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("05.03.2025")' title="Datum übernehmen">05</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("06.03.2025")' title="Datum übernehmen">06</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("07.03.2025")' title="Datum übernehmen">07</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("08.03.2025")' title="Datum übernehmen">08</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("09.03.2025")' title="Datum übernehmen">09</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("10.03.2025")' title="Datum übernehmen">10</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("11.03.2025")' title="Datum übernehmen">11</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("12.03.2025")' title="Datum übernehmen">12</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("13.03.2025")' title="Datum übernehmen">13</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("14.03.2025")' title="Datum übernehmen">14</a>
+</td>
+<td align="center" class="calhe">
+<a href="#" onclick='lmogeben("15.03.2025")' title="Datum übernehmen">15</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("16.03.2025")' title="Datum übernehmen">16</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("17.03.2025")' title="Datum übernehmen">17</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("18.03.2025")' title="Datum übernehmen">18</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("19.03.2025")' title="Datum übernehmen">19</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("20.03.2025")' title="Datum übernehmen">20</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("21.03.2025")' title="Datum übernehmen">21</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("22.03.2025")' title="Datum übernehmen">22</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("23.03.2025")' title="Datum übernehmen">23</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("24.03.2025")' title="Datum übernehmen">24</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("25.03.2025")' title="Datum übernehmen">25</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("26.03.2025")' title="Datum übernehmen">26</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("27.03.2025")' title="Datum übernehmen">27</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("28.03.2025")' title="Datum übernehmen">28</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("29.03.2025")' title="Datum übernehmen">29</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("30.03.2025")' title="Datum übernehmen">30</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
+</td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="#" onclick="self.close()" title="Kalender schließen, ohne ein Datum zu übernehmen">[Fenster schließen]</a>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== Februar 2024 (Schaltjahr) ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Pop-Up Kalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body{font-size:81%;font-family:sans-serif;} table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;} table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;} a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;} a:hover, a:active { color:#fff; background-color:#48f;} td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; } td.calat { color:#000; } td.calat a:link, td.calat a:visited { color:#000; background-color:#fff; text-decoration:none; } td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;} td.calht { color:#000; background-color:#aaf;font-weight: bolder; } td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf; text-decoration:none; } td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;} td.calhe { color:#f00; background-color:#aaf; font-weight: bolder; } td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf; text-decoration:none; } td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;} td.calwe { color:#f00; font-weight: bolder; } td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff; text-decoration:none; } td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;} </style>
+<script type="text/javascript">
+<!-- opener.document.forms.lmoedit.xdatum1.select(); function lmogeben(x){ opener.document.forms.lmoedit.xdatum1.value=x; self.close(); } // -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="left">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=January 2024" title="zum vorigen Monat">&nbsp;&lt;&nbsp;</a>
+</td>
+<td align="center" class="caltz">Februar 2024</td>
+<td align="right">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1" title="zum aktuellen Monat">&nbsp;#&nbsp;</a>
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=March 2024" title="zum nächsten Monat">&nbsp;&gt;&nbsp;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="center" class="calwt">Mo</td>
+<td align="center" class="calwt">Di</td>
+<td align="center" class="calwt">Mi</td>
+<td align="center" class="calwt">Do</td>
+<td align="center" class="calwt">Fr</td>
+<td align="center" class="calwt">Sa</td>
+<td align="center" class="calwt">So</td>
+</tr>
+<tr>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("01.02.2024")' title="Datum übernehmen">01</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("02.02.2024")' title="Datum übernehmen">02</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("03.02.2024")' title="Datum übernehmen">03</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("04.02.2024")' title="Datum übernehmen">04</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("05.02.2024")' title="Datum übernehmen">05</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("06.02.2024")' title="Datum übernehmen">06</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("07.02.2024")' title="Datum übernehmen">07</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("08.02.2024")' title="Datum übernehmen">08</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("09.02.2024")' title="Datum übernehmen">09</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("10.02.2024")' title="Datum übernehmen">10</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("11.02.2024")' title="Datum übernehmen">11</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("12.02.2024")' title="Datum übernehmen">12</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("13.02.2024")' title="Datum übernehmen">13</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("14.02.2024")' title="Datum übernehmen">14</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("15.02.2024")' title="Datum übernehmen">15</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("16.02.2024")' title="Datum übernehmen">16</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("17.02.2024")' title="Datum übernehmen">17</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("18.02.2024")' title="Datum übernehmen">18</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("19.02.2024")' title="Datum übernehmen">19</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("20.02.2024")' title="Datum übernehmen">20</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("21.02.2024")' title="Datum übernehmen">21</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("22.02.2024")' title="Datum übernehmen">22</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("23.02.2024")' title="Datum übernehmen">23</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("24.02.2024")' title="Datum übernehmen">24</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("25.02.2024")' title="Datum übernehmen">25</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("26.02.2024")' title="Datum übernehmen">26</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("27.02.2024")' title="Datum übernehmen">27</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("28.02.2024")' title="Datum übernehmen">28</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("29.02.2024")' title="Datum übernehmen">29</a>
+</td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="#" onclick="self.close()" title="Kalender schließen, ohne ein Datum zu übernehmen">[Fenster schließen]</a>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== Juni 2025 (endet Montag) ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Pop-Up Kalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body{font-size:81%;font-family:sans-serif;} table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;} table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;} a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;} a:hover, a:active { color:#fff; background-color:#48f;} td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; } td.calat { color:#000; } td.calat a:link, td.calat a:visited { color:#000; background-color:#fff; text-decoration:none; } td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;} td.calht { color:#000; background-color:#aaf;font-weight: bolder; } td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf; text-decoration:none; } td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;} td.calhe { color:#f00; background-color:#aaf; font-weight: bolder; } td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf; text-decoration:none; } td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;} td.calwe { color:#f00; font-weight: bolder; } td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff; text-decoration:none; } td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;} </style>
+<script type="text/javascript">
+<!-- opener.document.forms.lmoedit.xdatum1.select(); function lmogeben(x){ opener.document.forms.lmoedit.xdatum1.value=x; self.close(); } // -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="left">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=May 2025" title="zum vorigen Monat">&nbsp;&lt;&nbsp;</a>
+</td>
+<td align="center" class="caltz">Juni 2025</td>
+<td align="right">
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1" title="zum aktuellen Monat">&nbsp;#&nbsp;</a>
+<a href="/lmo/lmo-admincal.php?abs=lmoedit&amp;feld=xdatum1&amp;calshow=July 2025" title="zum nächsten Monat">&nbsp;&gt;&nbsp;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="center" class="calwt">Mo</td>
+<td align="center" class="calwt">Di</td>
+<td align="center" class="calwt">Mi</td>
+<td align="center" class="calwt">Do</td>
+<td align="center" class="calwt">Fr</td>
+<td align="center" class="calwt">Sa</td>
+<td align="center" class="calwt">So</td>
+</tr>
+<tr>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("01.06.2025")' title="Datum übernehmen">01</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("02.06.2025")' title="Datum übernehmen">02</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("03.06.2025")' title="Datum übernehmen">03</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("04.06.2025")' title="Datum übernehmen">04</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("05.06.2025")' title="Datum übernehmen">05</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("06.06.2025")' title="Datum übernehmen">06</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("07.06.2025")' title="Datum übernehmen">07</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("08.06.2025")' title="Datum übernehmen">08</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("09.06.2025")' title="Datum übernehmen">09</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("10.06.2025")' title="Datum übernehmen">10</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("11.06.2025")' title="Datum übernehmen">11</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("12.06.2025")' title="Datum übernehmen">12</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("13.06.2025")' title="Datum übernehmen">13</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("14.06.2025")' title="Datum übernehmen">14</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("15.06.2025")' title="Datum übernehmen">15</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("16.06.2025")' title="Datum übernehmen">16</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("17.06.2025")' title="Datum übernehmen">17</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("18.06.2025")' title="Datum übernehmen">18</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("19.06.2025")' title="Datum übernehmen">19</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("20.06.2025")' title="Datum übernehmen">20</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("21.06.2025")' title="Datum übernehmen">21</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("22.06.2025")' title="Datum übernehmen">22</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("23.06.2025")' title="Datum übernehmen">23</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("24.06.2025")' title="Datum übernehmen">24</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("25.06.2025")' title="Datum übernehmen">25</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("26.06.2025")' title="Datum übernehmen">26</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("27.06.2025")' title="Datum übernehmen">27</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("28.06.2025")' title="Datum übernehmen">28</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("29.06.2025")' title="Datum übernehmen">29</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("30.06.2025")' title="Datum übernehmen">30</a>
+</td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="#" onclick="self.close()" title="Kalender schließen, ohne ein Datum zu übernehmen">[Fenster schließen]</a>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
+=== ohne Formular ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Pop-Up Kalender</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body{font-size:81%;font-family:sans-serif;} table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;} table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;} a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;} a:hover, a:active { color:#fff; background-color:#48f;} td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; } td.calat { color:#000; } td.calat a:link, td.calat a:visited { color:#000; background-color:#fff; text-decoration:none; } td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;} td.calht { color:#000; background-color:#aaf;font-weight: bolder; } td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf; text-decoration:none; } td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;} td.calhe { color:#f00; background-color:#aaf; font-weight: bolder; } td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf; text-decoration:none; } td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;} td.calwe { color:#f00; font-weight: bolder; } td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff; text-decoration:none; } td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;} </style>
+<script type="text/javascript">
+<!-- opener.document.forms...select(); function lmogeben(x){ opener.document.forms...value=x; self.close(); } // -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="left">
+<a href="/lmo/lmo-admincal.php?abs=&amp;feld=&amp;calshow=February 2025" title="zum vorigen Monat">&nbsp;&lt;&nbsp;</a>
+</td>
+<td align="center" class="caltz">März 2025</td>
+<td align="right">
+<a href="/lmo/lmo-admincal.php?abs=&amp;feld=" title="zum aktuellen Monat">&nbsp;#&nbsp;</a>
+<a href="/lmo/lmo-admincal.php?abs=&amp;feld=&amp;calshow=April 2025" title="zum nächsten Monat">&nbsp;&gt;&nbsp;</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="caltab1" width=100%>
+<tr>
+<td align="center" class="calwt">Mo</td>
+<td align="center" class="calwt">Di</td>
+<td align="center" class="calwt">Mi</td>
+<td align="center" class="calwt">Do</td>
+<td align="center" class="calwt">Fr</td>
+<td align="center" class="calwt">Sa</td>
+<td align="center" class="calwt">So</td>
+</tr>
+<tr>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("01.03.2025")' title="Datum übernehmen">01</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("02.03.2025")' title="Datum übernehmen">02</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("03.03.2025")' title="Datum übernehmen">03</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("04.03.2025")' title="Datum übernehmen">04</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("05.03.2025")' title="Datum übernehmen">05</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("06.03.2025")' title="Datum übernehmen">06</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("07.03.2025")' title="Datum übernehmen">07</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("08.03.2025")' title="Datum übernehmen">08</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("09.03.2025")' title="Datum übernehmen">09</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("10.03.2025")' title="Datum übernehmen">10</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("11.03.2025")' title="Datum übernehmen">11</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("12.03.2025")' title="Datum übernehmen">12</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("13.03.2025")' title="Datum übernehmen">13</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("14.03.2025")' title="Datum übernehmen">14</a>
+</td>
+<td align="center" class="calhe">
+<a href="#" onclick='lmogeben("15.03.2025")' title="Datum übernehmen">15</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("16.03.2025")' title="Datum übernehmen">16</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("17.03.2025")' title="Datum übernehmen">17</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("18.03.2025")' title="Datum übernehmen">18</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("19.03.2025")' title="Datum übernehmen">19</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("20.03.2025")' title="Datum übernehmen">20</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("21.03.2025")' title="Datum übernehmen">21</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("22.03.2025")' title="Datum übernehmen">22</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("23.03.2025")' title="Datum übernehmen">23</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("24.03.2025")' title="Datum übernehmen">24</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("25.03.2025")' title="Datum übernehmen">25</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("26.03.2025")' title="Datum übernehmen">26</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("27.03.2025")' title="Datum übernehmen">27</a>
+</td>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("28.03.2025")' title="Datum übernehmen">28</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("29.03.2025")' title="Datum übernehmen">29</a>
+</td>
+<td align="center" class="calwe">
+<a href="#" onclick='lmogeben("30.03.2025")' title="Datum übernehmen">30</a>
+</td>
+</tr>
+<tr>
+<td align="center" class="calat">
+<a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
+</td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<a href="#" onclick="self.close()" title="Kalender schließen, ohne ein Datum zu übernehmen">[Fenster schließen]</a>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+
