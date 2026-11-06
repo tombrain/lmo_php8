@@ -34,8 +34,9 @@ function updateAddons($fileName) {
 
     // ZUSTAT
     //Statistiken aktualisieren
-    if ($einzutore == 1 || $einzutoretab == 1 || $einzustats == 1) {
-        include PATH_TO_LMO . '/lmo-zustat.php';
+    // (Lmo\Liga\Saisonstatistik, bis 4.5 lmo-zustat.php; wie dort nur angemeldet)
+    if (($einzutore == 1 || $einzutoretab == 1 || $einzustats == 1) && isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0) {
+        \Lmo\Liga\Saisonstatistik::schreibe($lmo_liga, PATH_TO_LMO . '/' . $diroutput . basename($file) . '.php', (string)$text[145]);
     }
     // ZUSTAT
 

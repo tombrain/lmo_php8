@@ -85,7 +85,7 @@ final class ErgebnisseController implements Controller
         $spieltagLink = $basis . 'tabtype=' . $tabtype . '&amp;file=' . $datei . '&amp;st=';
         $tabellenLink = $basis . 'file=' . $datei . '&amp;endtab=' . $endtab . '&amp;st=' . $st . '&amp;tabtype=';
 
-        // Statistikdatei der Liga (lmo-zustat.php) fuer die Torstatistik
+        // Statistikdatei der Liga (Lmo\Liga\Saisonstatistik) fuer die Torstatistik
         $statistik = Statistikdatei::lies($kontext->pfade->ausgabe($k, str_replace('.l98', '.l98.php', basename($datei))));
         $faktor = $e->torfaktor();
 

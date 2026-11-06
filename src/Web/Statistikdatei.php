@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web;
 
 /**
- * Die Statistikdatei einer Liga (output/<liga>.l98.php, geschrieben von lmo-zustat.php): PHP-Code,
+ * Die Statistikdatei einer Liga (output/<liga>.l98.php, geschrieben von Lmo\Liga\Saisonstatistik): PHP-Code,
  * der Variablen setzt. Hier wird sie in einem eigenen Bereich eingebunden, statt die Variablen
  * global zu verteilen.
  */

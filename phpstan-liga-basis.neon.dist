@@ -21,4 +21,3 @@ parameters:
             identifier: isset.variable
     paths:
         - lmo/lmo-openfile.php
-        - lmo/lmo-zustat.php

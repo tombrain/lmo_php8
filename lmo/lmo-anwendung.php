@@ -48,11 +48,9 @@ if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php')) {
     $lmo_addons = $lmo_addons->mit(new \Lmo\Addon\AltesSeitenInclude('pdf', 'program', PATH_TO_ADDONDIR . '/pdf/lmo-showprogram.inc.php'));
 }
 
-// schreibt die Statistikdatei einer Liga neu (lmo-zustat.php), fuer die Statistikseite
+// schreibt die Statistikdatei einer Liga neu (Lmo\Liga\Saisonstatistik, bis 4.5 lmo-zustat.php)
 $lmo_statistik_erzeugen = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $file, array $text) use ($lmo_konfiguration): void {
-    $diroutput = $lmo_konfiguration->ausgabeordner();
-    $generate_zustat = true;
-    include(PATH_TO_LMO . '/lmo-zustat.php');
+    \Lmo\Liga\Saisonstatistik::schreibe($lmo_liga, PATH_TO_LMO . '/' . $lmo_konfiguration->ausgabeordner() . basename($file) . '.php', (string)($text[145] ?? ''));
 };
 
 // Wappen, Liga- und Spielerbilder (bis 4.5 ueber die Classlib)

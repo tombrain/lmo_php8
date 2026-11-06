@@ -43,7 +43,7 @@ final class StatistikController implements Controller
     /**
      * @param (Closure(Liga, string, array<int|string, string|array<int, string>>): void)|null $statistikErzeugen
      *        schreibt die Statistikdatei einer Liga neu (Liga, Ligadatei, Sprachtexte wie im alten Code;
-     *        lmo-zustat.php); null: nie
+     *        Lmoigasaisonstatistik); null: nie
      */
     public function __construct(?Closure $statistikErzeugen = null)
     {
