@@ -1,0 +1,345 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+
+  Das Stylesheet ohne .lmoMain davor (lmo-style-nc.php) (Lmo\Web\Stylesheet). Die Werte kommen aus der Konfiguration: wert.NAME, gesetzt.NAME
+  wie empty() in PHP. Leerraum wie bis 4.5, daher stehen manche Tags mitten in der Zeile.
+#}
+
+.message{
+  color: #080;
+}
+
+.error{
+  color: #a00;
+}
+
+/** Außenbereich*/
+.lmoMain {
+  background: {{ wert.lmo_main_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color1|default(false) %}color: {{ wert.lmo_main_color1|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_main_fontsize1|default(false) %}font-size: {{ wert.lmo_main_fontsize1|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_main_fontfamily1|default(false) %}font-family: {{ wert.lmo_main_fontfamily1|default("")|raw }};{% endif %}
+}
+.lmoMain p {
+  margin:0;
+}
+
+/** Außenbereich Überschrift*/
+.lmoMain h1 {
+  background: {{ wert.lmo_main_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color2|default(false) %}color: {{ wert.lmo_main_color2|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_main_fontsize2|default(false) %}font-size: {{ wert.lmo_main_fontsize2|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_main_fontfamily2|default(false) %}font-family: {{ wert.lmo_main_fontfamily2|default("")|raw }};{% endif %}
+}
+
+/** Außenbereich Menü */
+.lmoMain .lmoMenu {
+  font-weight: bold;
+  background: {{ wert.lmo_main_background4|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color4|default(false) %}color: {{ wert.lmo_main_color4|default("")|raw }};{% endif %}
+}
+
+.lmoMain .lmoMenu a {
+  background: {{ wert.lmo_main_background5|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color5|default(false) %}color: {{ wert.lmo_main_color5|default("")|raw }};{% endif %}
+}
+
+/** Außenbereich Untermenü */
+.lmoMain .lmoSubmenu {
+  font-weight: bold;
+  background: {{ wert.lmo_main_background6|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color6|default(false) %}color: {{ wert.lmo_main_color6|default("")|raw }};{% endif %}
+}
+
+.lmoMain .lmoSubmenu a {
+  line-height:140%;
+  font-weight: normal;
+  text-decoration: none;
+  background: {{ wert.lmo_main_background7|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color7|default(false) %}color: {{ wert.lmo_main_color7|default("")|raw }};{% endif %}
+}
+
+/** Außenbereich Fusszeilen */
+.lmoMain .lmoFooter {
+  {% if gesetzt.lmo_main_fontsize3|default(false) %}font-size: {{ wert.lmo_main_fontsize3|default("")|raw }};{% endif %}
+  font-weight: normal;
+}
+
+.lmoMain .lmoFooter a {
+  text-decoration: underline;
+  background: {{ wert.lmo_main_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_main_color1|default(false) %}color: {{ wert.lmo_main_color1|default("")|raw }};{% endif %}
+}
+
+/** Ende Außenbereich */
+
+/** Mittelbereich */
+.lmoMiddle {
+  background: {{ wert.lmo_middle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color1|default(false) %}color: {{ wert.lmo_middle_color1|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_middle_fontsize1|default(false) %}font-size: {{ wert.lmo_middle_fontsize1|default("")|raw }};{% endif %}
+  font-weight: bold;
+}
+
+/** Überschrift im Mittelbereich */
+.lmoMiddle h1{
+  background: {{ wert.lmo_middle_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color2|default(false) %}color: {{ wert.lmo_middle_color2|default("")|raw }};{% endif %}
+  font-size:{{ wert.lmo_middle_fontsize2|default("")|raw }};
+}
+
+/** Links im Mittelbereich */
+.lmoMiddle a {
+  line-height:150%;
+  text-decoration: none;
+  background: {{ wert.lmo_middle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color1|default(false) %}color: {{ wert.lmo_middle_color1|default("")|raw }};{% endif %}
+  font-weight: normal;
+}
+
+.lmoMiddle .lmoMenu {
+  font-weight: bold;
+  background: {{ wert.lmo_middle_background4|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color4|default(false) %}color: {{ wert.lmo_middle_color4|default("")|raw }};{% endif %}
+}
+
+.lmoMiddle .lmoMenu a {
+  line-height:140%;
+  font-weight: normal;
+  text-decoration: none;
+  background: {{ wert.lmo_middle_background5|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color5|default(false) %}color: {{ wert.lmo_middle_color5|default("")|raw }};{% endif %}
+}
+
+.lmoMiddle .lmoSubmenu {
+  background: {{ wert.lmo_middle_background6|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color6|default(false) %}color: {{ wert.lmo_middle_color6|default("")|raw }};{% endif %}
+}
+
+.lmoMiddle .lmoSubmenu a {
+  background: {{ wert.lmo_middle_background7|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color7|default(false) %}color: {{ wert.lmo_middle_color7|default("")|raw }};{% endif %}
+}
+
+/** Innerer Bereich */
+.lmoInner {
+  background: {{ wert.lmo_inner_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_inner_color1|default(false) %}color: {{ wert.lmo_inner_color1|default("")|raw }};{% endif %}
+  {% if gesetzt.lmo_inner_fontsize1|default(false) %}font-size: {{ wert.lmo_inner_fontsize1|default("")|raw }};{% endif %}
+  font-weight: normal;
+}
+
+.lmoInner a {
+  line-height:100%;
+  text-decoration: none;
+  background: {{ wert.lmo_inner_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_inner_color1|default(false) %}color: {{ wert.lmo_inner_color1|default("")|raw }};{% endif %}
+  font-weight: normal;
+}
+
+.lmoInner caption {
+  background: {{ wert.lmo_middle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color1|default(false) %}color: {{ wert.lmo_middle_color1|default("")|raw }};{% endif %}
+  font-weight: bold;
+}
+
+.lmoInner caption a{
+  background: {{ wert.lmo_middle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_middle_color1|default(false) %}color: {{ wert.lmo_middle_color1|default("")|raw }};{% endif %}
+  font-weight: normal;
+}
+
+.lmoInner .lmoFooter {
+  background: {{ wert.lmo_inner_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_inner_color2|default(false) %}color: {{ wert.lmo_inner_color2|default("")|raw }};{% endif %}
+}
+
+.lmoInner .lmoFooter a {
+  line-height:150%;
+  text-decoration: underline;
+  background: {{ wert.lmo_inner_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_inner_color2|default(false) %}color: {{ wert.lmo_inner_color2|default("")|raw }};{% endif %}
+}
+
+.lmoKreuz table {
+  {% if gesetzt.lmo_kreuz_fontsize1|default(false) %}font-size: {{ wert.lmo_kreuz_fontsize1|default("")|raw }};{% endif %}
+}
+
+.lmoBackMarkierung {
+  background: {{ wert.lmo_kreuzkal_background1|default("")|raw }} repeat;
+}
+
+.lmoBackMarkierung a {
+  line-height:190%;
+  background: {{ wert.lmo_kreuzkal_background1|default("")|raw }} repeat;
+  font-weight: bold;
+}
+
+.lmoFrontMarkierung {
+  {% if gesetzt.lmo_kreuzkal_color1|default(false) %}color: {{ wert.lmo_kreuzkal_color1|default("")|raw }};{% endif %}
+  font-weight: bold;
+}
+
+.lmoLeer {
+  background: {{ wert.lmo_kreuzkal_background2|default("")|raw }} repeat;
+}
+
+.lmoTabelleMeister {
+  background: {{ wert.lmo_tabelle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color1|default(false) %}color: {{ wert.lmo_tabelle_color1|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleMeister a {
+  background: {{ wert.lmo_tabelle_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color1|default(false) %}color: {{ wert.lmo_tabelle_color1|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleCleague {
+  background: {{ wert.lmo_tabelle_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color2|default(false) %}color: {{ wert.lmo_tabelle_color2|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleCleague a {
+  background: {{ wert.lmo_tabelle_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color2|default(false) %}color: {{ wert.lmo_tabelle_color2|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleCleaguequali {
+  background: {{ wert.lmo_tabelle_background3|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color3|default(false) %}color: {{ wert.lmo_tabelle_color3|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleCleaguequali a {
+  background: {{ wert.lmo_tabelle_background3|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color3|default(false) %}color: {{ wert.lmo_tabelle_color3|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleUefa {
+  background: {{ wert.lmo_tabelle_background4|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color4|default(false) %}color: {{ wert.lmo_tabelle_color4|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleUefa a {
+  background: {{ wert.lmo_tabelle_background4|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color4|default(false) %}color: {{ wert.lmo_tabelle_color4|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleRelegation {
+  background: {{ wert.lmo_tabelle_background5|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color5|default(false) %}color: {{ wert.lmo_tabelle_color5|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleRelegation a {
+  background: {{ wert.lmo_tabelle_background5|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color5|default(false) %}color: {{ wert.lmo_tabelle_color5|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleAbsteiger {
+  background: {{ wert.lmo_tabelle_background6|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color6|default(false) %}color: {{ wert.lmo_tabelle_color6|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleAbsteiger a {
+  background: {{ wert.lmo_tabelle_background6|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color6|default(false) %}color: {{ wert.lmo_tabelle_color6|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTabelleHeimbilanz {
+  background: {{ wert.lmo_tabelle_background7|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color7|default(false) %}color: {{ wert.lmo_tabelle_color7|default("")|raw }};{% endif %}
+}
+
+.lmoTabelleGastbilanz {
+  background: {{ wert.lmo_tabelle_background8|default("")|raw }} repeat;
+  {% if gesetzt.lmo_tabelle_color8|default(false) %}color: {{ wert.lmo_tabelle_color8|default("")|raw }};{% endif %}
+}
+
+.lmoTurnierSieger {
+  background: {{ wert.lmo_turnier_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_color1|default(false) %}color: {{ wert.lmo_turnier_color1|default("")|raw }};{% endif %}
+}
+
+.lmoTurnierSieger a {
+  background: {{ wert.lmo_turnier_background1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_color1|default(false) %}color: {{ wert.lmo_turnier_color1|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTurnierSieger a:hover{
+  background: {{ wert.lmo_turnier_color1|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_background1|default(false) %}color: {{ wert.lmo_turnier_background1|default("")|raw }};{% endif %}
+}
+
+.lmoTurnierVerlierer {
+  background: {{ wert.lmo_turnier_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_color2|default(false) %}color: {{ wert.lmo_turnier_color2|default("")|raw }};{% endif %}
+}
+
+.lmoTurnierVerlierer a {
+  background: {{ wert.lmo_turnier_background2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_color2|default(false) %}color: {{ wert.lmo_turnier_color2|default("")|raw }};{% endif %}
+  text-decoration: none;
+}
+
+.lmoTurnierVerlierer a:hover{
+  background: {{ wert.lmo_turnier_color2|default("")|raw }} repeat;
+  {% if gesetzt.lmo_turnier_background2|default(false) %}color: {{ wert.lmo_turnier_background2|default("")|raw }};{% endif %}
+}
+
+.lmotext {
+  text-align: justify;
+}
+
+.colorpicker {
+  display:none;
+}
+
+.sort-arrow {
+  display:none;
+}
+
+.sort-arrow.descending {
+  display:none;
+}
+
+.sort-arrow.ascending {
+  display:none;
+}
+a span.popup, a:link span.popup{
+  display: none;
+}
+
+th.bottom {
+  vertical-align: bottom;
+}
+
+.baseline {
+  vertical-align: baseline;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+#myChart{
+    width: 700px;
+    height: 500px;
+}
+{{ eigene|raw }}
