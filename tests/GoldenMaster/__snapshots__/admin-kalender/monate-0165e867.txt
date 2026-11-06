@@ -150,7 +150,12 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
@@ -318,7 +323,12 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
@@ -476,7 +486,9 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("29.02.2024")' title="Datum übernehmen">29</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
@@ -642,7 +654,12 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("30.06.2025")' title="Datum übernehmen">30</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
@@ -810,7 +827,12 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
