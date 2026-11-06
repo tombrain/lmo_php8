@@ -68,6 +68,14 @@ class RundmailTest extends TestCase
         self::assertSame([0, ''], $this->rundmail()->newsletter('X', 2, 3), 'nur von bis');
     }
 
+    public function testNameAusDerRegistrierung(): void
+    {
+        file_put_contents($this->ordner . 'tipper.txt', "<?php exit; ?>\nnora|x|5|Nora&nbsp;Neu|nora@x||||1|1|EOL\nleer|x|5|&nbsp;|leer@x||||1|1|EOL\n");
+
+        $this->rundmail()->newsletter('Hallo [name]!', 1, 2);
+        self::assertSame([['nora@x', 'Hallo Nora Neu!'], ['leer@x', 'Hallo !']], $this->mails, 'bis 4.5 mit &nbsp; im Text');
+    }
+
     public function testEinzelnMitFehler(): void
     {
         file_put_contents($this->ordner . 'tipper.txt', "<?php exit; ?>\nfehl|x|5|F|fehler@x||||1|1|EOL\n");
