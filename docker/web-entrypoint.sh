@@ -4,6 +4,13 @@
 # Beim ersten Start werden sie mit dem Stand aus dem Repo befuellt (Beispielligen,
 # .htaccess-Schutz, leere Ordner); Laufzeitdateien aus dem Repo-Ordner werden nicht uebernommen.
 set -e
+
+# Composer-Abhängigkeiten installieren, falls vendor/ leer ist
+if [ ! -f /var/www/html/vendor/autoload.php ]; then
+    cd /var/www/html
+    composer install --no-interaction --no-progress --prefer-dist
+fi
+
 src=/srv/lmo-src
 app=/var/www/html/lmo
 for dir in config ligen output addon/tipp/tipps addon/spieler/stats; do
