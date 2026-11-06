@@ -127,6 +127,15 @@ class RanglisteControllerTest extends TestCase
         self::assertStringContainsString('tester', $html, 'ohne Adresse der Nick');
     }
 
+    public function testNameAusDerRegistrierung(): void
+    {
+        file_put_contents($this->ordner . '/tipps/auswert/x.aus', "[anna]\nTeam=Rot\nName=Anna&nbsp;Alt\nEmail=\nSG1=1\nTP1=1\n");
+
+        $html = $this->seite($this->kontext([], ['showemail' => '']));
+        self::assertStringContainsString('Anna Alt (anna)', $html, 'bis 4.5 maskiert als "Anna&amp;nbsp;Alt"');
+        self::assertStringNotContainsString('&amp;nbsp;', $html);
+    }
+
     public function testBisSpieltagMitPfeilen(): void
     {
         $html = $this->seite($this->kontext(['endtab' => '2']));

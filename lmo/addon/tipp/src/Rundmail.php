@@ -354,7 +354,8 @@ final class Rundmail
     {
         $nick = $felder[0];
 
-        return str_replace(['[nick]', '[pass]', '[name]'], [$nick, $this->kennwortAdresse . urlencode($nick), $felder[3] ?? ''], $nachricht);
+        // der Name ohne &nbsp; (bis 4.5 schrieb die Registrierung es zwischen Vor- und Nachname, in der Mail stand es als Text)
+        return str_replace(['[nick]', '[pass]', '[name]'], [$nick, $this->kennwortAdresse . urlencode($nick), trim(str_replace('&nbsp;', ' ', $felder[3] ?? ''))], $nachricht);
     }
 
     /** @param list<string> $felder */

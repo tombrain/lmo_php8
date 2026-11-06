@@ -111,7 +111,8 @@ final class Rangliste
                 if ($schluessel == 'Team') {
                     $eintraege[$t]['team'] = $wert;
                 } elseif ($schluessel == 'Name') {
-                    $eintraege[$t]['name'] = $wert;
+                    // bis 4.5 schrieb die Registrierung &nbsp; zwischen Vor- und Nachname; maskiert stuende es sonst als Text da
+                    $eintraege[$t]['name'] = str_replace('&nbsp;', ' ', $wert);
                 } elseif ($schluessel == 'Email') {
                     $eintraege[$t]['email'] = $wert;
                 } elseif ($zaehlt($runde) && ($art == 'SG' || $art == 'TP' || ($zusatz && in_array($art, ['P1', 'P2', 'P3', 'P4', 'P5', 'P6'], true)))) {
