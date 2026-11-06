@@ -91,7 +91,13 @@ if ($action == 'admin') {
             include(PATH_TO_LMO . '/lmo-savehtml1.php');
         }
     );
-    $lmo_admin_speichere = \Closure::fromCallable(array($lmo_admin_ligaspeichern, 'speichere'));
+    // die zuletzt gespeicherte Datei: auf sie zeigt der Ruecklink (etwa nach dem Anlegen einer Liga;
+    // bis 4.5 setzte lmo-saveliga.php dafuer das globale $file)
+    $lmo_admin_gespeichert = null;
+    $lmo_admin_speichere = static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $lmo_datei, string $lmo_st) use ($lmo_admin_ligaspeichern, &$lmo_admin_gespeichert): array {
+        $lmo_admin_gespeichert = $lmo_datei;
+        return $lmo_admin_ligaspeichern->speichere($lmo_liga, $lmo_datei, $lmo_st);
+    };
 
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(
@@ -155,7 +161,7 @@ if ($action == 'admin') {
         'lademeldung' => $lmo_admin_lademeldung,
         'inhalt' => $lmo_admin_inhalt,
         'sprachwahl' => $einsprachwahl == 1 ? getLangSelector() : '',
-        'ruecklink' => (string)$file,
+        'ruecklink' => (string)($lmo_admin_gespeichert ?? $file),
         'ladezeit' => number_format((getmicrotime() - $startzeit), 4, '.', ','),
     ));
 }
