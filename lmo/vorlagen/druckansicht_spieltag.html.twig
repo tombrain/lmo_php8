@@ -51,7 +51,7 @@
 
     </tr>{% endfor %}
 
-  </table>{% if spielfrei is not null %}{% if spielfrei %}      <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>{% endif %}{% endif %}
+  </table>{% if spielfrei %}      <p><small>{{ text[4004]|raw }}: {% for n in spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>{% endif %}{% endif %}
 
   <table>
     <caption>{{ text[16]|raw }} - {{ st }}. {{ text[2]|raw }}</caption>
@@ -101,7 +101,7 @@
     </tr>
 {% endfor %}
   </table>
-{% if folge.spielfrei is not null %}{% if folge.spielfrei %}  <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in folge.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}  </small></p>{% endif %}
+{% if folge.spielfrei %}  <p><small>{{ text[4004]|raw }}: {% for n in folge.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}  </small></p>{% endif %}
 {% endif %}
   <script type="text/javascript">document.write('<small><a href="#" onClick="history.back();return false;">{{ text[562]|raw }}<\/a><\/small>');</script>
 </body>

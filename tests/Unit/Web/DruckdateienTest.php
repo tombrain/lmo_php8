@@ -78,6 +78,31 @@ class DruckdateienTest extends TestCase
         }
     }
 
+    public function testSpielfrei(): void
+    {
+        // 5 Mannschaften: am 1. Spieltag A-B, C-D (E frei), am 2. nur A-C (B, D, E frei)
+        $liga = "[Options]\nName=Testliga\nType=0\nTeams=5\nRounds=4\nMatches=2\nActual=1\n\n[Teams]\n1=A\n2=B\n3=C\n4=D\n5=E\n\n"
+            . "[Round1]\nTA1=1\nTB1=2\nGA1=1\nGB1=0\nTA2=3\nTB2=4\nGA2=0\nGB2=0\n\n[Round2]\nTA1=1\nTB1=3\nGA1=-1\nGB1=-1\n";
+        $this->schreibe($liga, '1');
+        $text = self::flach((string) file_get_contents($this->ordner . 'test.l98-st.html'));
+
+        self::assertStringContainsString('Spielfrei: E', $text, 'am gespeicherten Spieltag');
+        self::assertStringContainsString('Spielfrei: B D E', $text, 'am folgenden Spieltag mit dessen Partien (bis 4.5 galten C und D noch als belegt)');
+    }
+
+    public function testOhneSpielfreieKeinRest(): void
+    {
+        // 4 Mannschaften, 2 Partien: alle spielen; die Liste der Spielfreien gilt aber (nur 4 Spieltage)
+        $liga = "[Options]\nName=Testliga\nType=0\nTeams=4\nRounds=4\nMatches=2\nActual=1\n\n[Teams]\n1=A\n2=B\n3=C\n4=D\n\n"
+            . "[Round1]\nTA1=1\nTB1=2\nTA2=3\nTB2=4\n\n[Round2]\nTA1=1\nTB1=3\nTA2=2\nTB2=4\n";
+        $this->schreibe($liga, '1');
+
+        foreach (['-st.html', '-sp.html'] as $endung) {
+            $html = (string) file_get_contents($this->ordner . 'test.l98' . $endung);
+            self::assertSame(substr_count($html, '<p><small>'), substr_count($html, '</small></p>'), $endung . ': kein </small></p> ohne Anfang (bis 4.5)');
+        }
+    }
+
     public function testPokal(): void
     {
         $this->schreibe(str_replace('Type=0', 'Type=1', self::LIGA), '1');

@@ -80,8 +80,8 @@ final class Druckdateien
     }
 
     /**
-     * Der gespeicherte und der folgende Spieltag. Wer spielfrei ist, rechnet der folgende wie bis
-     * 4.5 auf den Partien des gespeicherten weiter.
+     * Der gespeicherte und der folgende Spieltag, jeder mit seinen Spielfreien (bis 4.5 rechnete der
+     * folgende auf den Partien des gespeicherten weiter).
      *
      * @return array<string, mixed>
      */
@@ -103,6 +103,7 @@ final class Druckdateien
             'folge' => null,
         ];
         if (!$daten['letzter'] && $angesetzt) {
+            $belegt = [];
             $daten['folge'] = [
                 'st' => $nr + 1,
                 'datum' => $this->datum($liga->spieltage[$nr + 1] ?? new Spieltag()),
