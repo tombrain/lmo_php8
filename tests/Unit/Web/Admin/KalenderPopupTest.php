@@ -42,6 +42,15 @@ class KalenderPopupTest extends TestCase
         self::assertStringContainsString('calshow=April 2025"', $html);
     }
 
+    public function testParameterNurAlsBezeichner(): void
+    {
+        $html = self::html(['abs' => 'x;alert(1)//', 'feld' => '</script><script>alert(2)</script>']);
+
+        self::assertStringNotContainsString('alert', $html);
+        self::assertStringContainsString('opener.document.forms...value=x;', $html, 'ohne gueltigen Namen leer');
+        self::assertStringContainsString('opener.document.forms.lmoedit.feld_1.value=x;', self::html(['feld' => 'feld_1']));
+    }
+
     public function testAndererMonat(): void
     {
         $html = self::html(['calshow' => 'May 2025']);
