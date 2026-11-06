@@ -187,8 +187,3 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-openfile.php ===
-
---- Dateiaenderungen ---
-(keine)
-

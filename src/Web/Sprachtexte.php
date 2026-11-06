@@ -121,7 +121,7 @@ final class Sprachtexte
 
     /**
      * Die Texte fuer die Seiten einer Liga: Eine eigene Bezeichnung der Liga fuer Punkte und Tore
-     * (namePkt, nameTor) ersetzt die Texte 37 und 38; im Pokal nicht (wie lmo-openfile.php).
+     * (namePkt, nameTor) ersetzt die Texte 37 und 38; im Pokal nicht (wie Lmo\Web\LigaOeffnen).
      */
     public function fuerLiga(Liga $liga): self
     {

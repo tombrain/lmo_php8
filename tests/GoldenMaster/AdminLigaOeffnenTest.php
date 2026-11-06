@@ -9,8 +9,9 @@ use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Eine Liga in der Administration laden (lmo-openfile.php): unbekannte und fremde Dateien, eine
- * Datei ohne .l98 und eigene Bezeichnungen der Liga fuer Punkte und Tore.
+ * Eine Liga in der Administration laden (Lmo\Web\LigaOeffnen, bis 4.5 lmo-openfile.php):
+ * unbekannte und fremde Dateien, eine Datei ohne .l98 und eigene Bezeichnungen der Liga fuer Punkte
+ * und Tore.
  */
 final class AdminLigaOeffnenTest extends TestCase
 {
