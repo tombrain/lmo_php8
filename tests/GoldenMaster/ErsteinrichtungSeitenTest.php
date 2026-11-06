@@ -32,6 +32,8 @@ final class ErsteinrichtungSeitenTest extends TestCase
         $t->add('angelegt', $einrichten('admin', 'geheim123', 'geheim123'), (string) preg_replace('/\$argon2id\$\S+|\$2y\$\S+/', '{HASH}', $c->changes()));
         $t->add('danach', $c->get('lmoadmin.php', 'action=admin'), $c->changes());
 
-        $this->assertMatchesSnapshot('ersteinrichtung', 'seiten', $t->text());
+        // was von der Testinstanz abhaengt: der Stempel der Standardkonfiguration und die Zeiten der Ligadateien
+        $text = (string) preg_replace(['/^[0-9a-f]{32}$/m', '/<!--\d+-->\d\d\.\d\d\.\d{4} \d\d:\d\d/'], ['{STEMPEL}', '{DATEIZEIT}'], $t->text());
+        $this->assertMatchesSnapshot('ersteinrichtung', 'seiten', $text);
     }
 }

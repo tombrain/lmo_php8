@@ -109,7 +109,7 @@
 </html>
 --- Dateiaenderungen ---
 NEU config/.defaults-stamp (32 Bytes)
-45cd03ab3660067c2bf7e349d070c808
+{STEMPEL}
 NEU config/cfg.txt (2607 Bytes)
 dirliga=ligen/
 ArchivDir=ligen/archiv/
@@ -651,7 +651,7 @@ NEU xss_log.txt (65 Bytes)
 <td class="nobr" align="left">1l_2024-25.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
-<!--1794002017-->06.11.2026 22:53</td>
+{DATEIZEIT}</td>
 </tr>
 </tbody>
 </table>
@@ -852,7 +852,7 @@ NEU daten/tipp/lmo-tippauth.txt (0 Bytes)
 <td class="nobr" align="left">1l_2024-25.l98 &nbsp;</td>
 <td class="nobr" align="left">Spieltag 1 &nbsp;</td>
 <td class="nobr" align="left">
-<!--1794002017-->06.11.2026 22:53</td>
+{DATEIZEIT}</td>
 </tr>
 </tbody>
 </table>
