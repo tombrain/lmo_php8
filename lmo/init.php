@@ -150,10 +150,13 @@ magicQuotesRemove($_POST);
 magicQuotesRemove($_COOKIE);
 
 // Workaround for register_globals TODO: fix that!!!
+// Ohne Superglobale: bis 4.5 ueberschrieb ?_SESSION[lmouserok]=2 die Sitzung und meldete als
+// Hauptadmin an.
 if (!function_exists('ini_get') || !ini_get('register_globals')) {
-    @extract($_GET);
-    @extract($_POST);
-    @extract($_COOKIE);
+    foreach (array($_GET, $_POST, $_COOKIE) as $lmo_anfragewerte) {
+        @extract(array_filter($lmo_anfragewerte, static fn ($lmo_name): bool => is_string($lmo_name) && $lmo_name !== '' && $lmo_name[0] !== '_' && $lmo_name !== 'GLOBALS', ARRAY_FILTER_USE_KEY));
+    }
+    unset($lmo_anfragewerte);
 }
 
 ?>
