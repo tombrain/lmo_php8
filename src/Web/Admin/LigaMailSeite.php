@@ -96,16 +96,16 @@ final class LigaMailSeite
         $meldung = ['', false];
         if (!class_exists(ZipArchive::class)) {
             // ohne die PHP-Erweiterung zip laesst sich der Anhang nicht packen
-            $meldung = [Meldung::html($this->bilder, $this->text[550] . ' Details: PHP extension "zip" is missing.', true), false];
+            $meldung = [Meldung::html($this->bilder, self::sprachtext($this->text, 550) . ' Details: PHP extension "zip" is missing.', true), false];
         } elseif ($down > 0) {
             $datei = $dateien[$down - 1] ?? '';
             if ($datei != '' && ($this->darf)($datei)) {
                 $this->packe($zip, [$datei]);
-                $meldung = [$this->sende($madr, (string) $this->text[342], $zip, $datei . '.zip'), true];
+                $meldung = [$this->sende($madr, self::sprachtext($this->text, 342), $zip, $datei . '.zip'), true];
             }
         } elseif ($down == -1 && $dateien !== []) {
             $this->packe($zip, array_values(array_filter($dateien, $this->darf)));
-            $meldung = [$this->sende($madr, (string) $this->text[330], $zip, ''), true];
+            $meldung = [$this->sende($madr, self::sprachtext($this->text, 330), $zip, ''), true];
         }
         if (file_exists($zip)) {
             unlink($zip);
@@ -130,12 +130,24 @@ final class LigaMailSeite
     {
         $mail = ($this->mailer)();
         $mail->addAddress($madr);
-        $mail->Subject = (string) $this->text[341];
+        $mail->Subject = self::sprachtext($this->text, 341);
         $mail->Body = $text;
         $mail->addAttachment($zip, $anhang);
 
         return $mail->send()
-            ? Meldung::html($this->bilder, (string) $this->text[348])
-            : Meldung::html($this->bilder, $this->text[550] . ' Details: ' . $mail->ErrorInfo, true);
+            ? Meldung::html($this->bilder, self::sprachtext($this->text, 348))
+            : Meldung::html($this->bilder, self::sprachtext($this->text, 550) . ' Details: ' . $mail->ErrorInfo, true);
+    }
+
+    /**
+     * Ein Sprachtext; '' ohne.
+     *
+     * @param array<int|string, mixed> $text
+     */
+    private static function sprachtext(array $text, int $nr): string
+    {
+        $wert = $text[$nr] ?? '';
+
+        return is_scalar($wert) ? (string) $wert : '';
     }
 }

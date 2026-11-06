@@ -270,34 +270,59 @@ final class Saisonstatistik
             }
         }
 
-        $zahl = static fn (string $name, int|float $wert): string => '$' . $name . '=' . $wert . ";\n";
-        // in doppelten Anfuehrungszeichen: $ und \ maskiert, sonst liefe ein Name wie {${...}} beim
-        // Einbinden der Datei als PHP-Code
-        $text = static fn (string $name, string $wert): string => '$' . $name . '="' . addcslashes($wert, '\\$') . "\";\n";
-        $html = static fn (string $name, string $wert): string => $text($name, htmlspecialchars($wert));
-        $rekord = static fn (array $r, array $namen): string => $html($namen[0], (string) $r['heim']) . $html($namen[1], (string) $r['gast'])
-            . $text($namen[2], (string) $r['toreHeim']) . $text($namen[3], (string) $r['toreGast']) . $zahl($namen[4], $r['st']);
-
-        $aus .= $zahl('gzutore', $gzutore) . $zahl('gdstore', $gdstore) . $zahl('gzusieg1', $gzusieg1) . $zahl('gzusieg2', $gzusieg2)
-            . $zahl('gzuunent', $gzuunent) . $zahl('gbeide', $gbeide) . $zahl('gheimtore', $gheimtore) . $zahl('ggasttore', $ggasttore)
-            . $zahl('dsheimtore', $dsheimtore) . $zahl('dsgasttore', $dsgasttore)
-            . $rekord($h, ['hheimsieg', 'hgastsieg', 'hheimsiegtor', 'hgastsiegtor', 'spieltagflag'])
-            . $rekord($h1, ['hheimsieg1', 'hgastsieg1', 'hheimsiegtor1', 'hgastsiegtor1', 'spieltagflag1'])
-            . $zahl('counteranz', $counteranz)
-            . $rekord($a, ['aheimsieg', 'agastsieg', 'aheimsiegtor', 'agastsiegtor', 'spieltagflag2'])
-            . $rekord($a1, ['aheimsieg1', 'agastsieg1', 'aheimsiegtor1', 'agastsiegtor1', 'spieltagflag3'])
-            . $zahl('counteranz1', $counteranz1)
-            . $rekord($t, ['htorreichm1', 'htorreichm2', 'htorreicht1', 'htorreicht2', 'spieltagflag4'])
-            . $rekord($t1, ['htorreichm3', 'htorreichm4', 'htorreicht3', 'htorreicht4', 'spieltagflag5'])
-            . $zahl('counteranz5', $counteranz5);
+        $aus .= self::zahl('gzutore', $gzutore) . self::zahl('gdstore', $gdstore) . self::zahl('gzusieg1', $gzusieg1) . self::zahl('gzusieg2', $gzusieg2)
+            . self::zahl('gzuunent', $gzuunent) . self::zahl('gbeide', $gbeide) . self::zahl('gheimtore', $gheimtore) . self::zahl('ggasttore', $ggasttore)
+            . self::zahl('dsheimtore', $dsheimtore) . self::zahl('dsgasttore', $dsgasttore)
+            . self::rekord($h, ['hheimsieg', 'hgastsieg', 'hheimsiegtor', 'hgastsiegtor', 'spieltagflag'])
+            . self::rekord($h1, ['hheimsieg1', 'hgastsieg1', 'hheimsiegtor1', 'hgastsiegtor1', 'spieltagflag1'])
+            . self::zahl('counteranz', $counteranz)
+            . self::rekord($a, ['aheimsieg', 'agastsieg', 'aheimsiegtor', 'agastsiegtor', 'spieltagflag2'])
+            . self::rekord($a1, ['aheimsieg1', 'agastsieg1', 'aheimsiegtor1', 'agastsiegtor1', 'spieltagflag3'])
+            . self::zahl('counteranz1', $counteranz1)
+            . self::rekord($t, ['htorreichm1', 'htorreichm2', 'htorreicht1', 'htorreicht2', 'spieltagflag4'])
+            . self::rekord($t1, ['htorreichm3', 'htorreichm4', 'htorreicht3', 'htorreicht4', 'spieltagflag5'])
+            . self::zahl('counteranz5', $counteranz5);
         foreach (self::SERIEN as $art) {
-            $aus .= $zahl('akt_' . $art, $akt[$art]) . $html('team_akt_' . $art, implode("\n", $teamAkt[$art]));
+            $aus .= self::zahl('akt_' . $art, $akt[$art]) . self::html('team_akt_' . $art, implode("\n", $teamAkt[$art]));
         }
         foreach (self::SERIEN as $art) {
-            $aus .= $zahl('max_' . $art, $max[$art]) . $html('team_max_' . $art, implode("\n", $teamMax[$art]));
+            $aus .= self::zahl('max_' . $art, $max[$art]) . self::html('team_max_' . $art, implode("\n", $teamMax[$art]));
         }
 
         return $aus . '?>';
+    }
+
+    /** Eine Zahl als Zuweisung in der Datei */
+    private static function zahl(string $name, int|float $wert): string
+    {
+        return '$' . $name . '=' . $wert . ";\n";
+    }
+
+    /**
+     * Ein Text als Zuweisung in der Datei, in doppelten Anfuehrungszeichen: $ und \ maskiert, sonst
+     * liefe ein Name wie {${...}} beim Einbinden der Datei als PHP-Code.
+     */
+    private static function text(string $name, string $wert): string
+    {
+        return '$' . $name . '="' . addcslashes($wert, '\\$') . "\";\n";
+    }
+
+    /** Ein Text wie text(), vorher fuer HTML maskiert (Namen der Mannschaften) */
+    private static function html(string $name, string $wert): string
+    {
+        return self::text($name, htmlspecialchars($wert));
+    }
+
+    /**
+     * Ein Rekord: Heim, Gast, Tore beider und Spieltag.
+     *
+     * @param array{heim: string, gast: string, toreHeim: int, toreGast: int, st: int} $r
+     * @param array{string, string, string, string, string} $namen
+     */
+    private static function rekord(array $r, array $namen): string
+    {
+        return self::html($namen[0], $r['heim']) . self::html($namen[1], $r['gast'])
+            . self::text($namen[2], (string) $r['toreHeim']) . self::text($namen[3], (string) $r['toreGast']) . self::zahl($namen[4], $r['st']);
     }
 
     /**

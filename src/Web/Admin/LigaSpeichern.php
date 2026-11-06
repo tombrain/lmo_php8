@@ -64,16 +64,16 @@ final class LigaSpeichern
         $k = $this->konfiguration;
         $ausgabe = '';
         // alles, was der LMO in die Datei schreibt; als aktueller Spieltag gilt der gewaehlte
-        $liga = Normalform::von($liga, (string) ($this->text[54] ?? ''), $st > 0 ? $st : $liga->einstellungen()->aktuellerSpieltag(), $k->datumsformat());
+        $liga = Normalform::von($liga, self::sprachtext($this->text, 54), $st > 0 ? $st : $liga->einstellungen()->aktuellerSpieltag(), $k->datumsformat());
         if ($k->wert('einzutore') == 1 || $k->wert('einzutoretab') == 1 || $k->wert('einzustats') == 1) {
             $ausgabe .= self::ausgabe(fn () => ($this->statistik)($liga, $datei));
         }
         if (@file_put_contents($this->ligenordner . $datei, $liga->alsText(), LOCK_EX) === false) {
             clearstatcache();
 
-            return [$ausgabe . Meldung::html($this->bilder, (string) ($this->text[283] ?? ''), true), $liga];
+            return [$ausgabe . Meldung::html($this->bilder, self::sprachtext($this->text, 283), true), $liga];
         }
-        $ausgabe .= Meldung::html($this->bilder, (string) ($this->text[138] ?? ''));
+        $ausgabe .= Meldung::html($this->bilder, self::sprachtext($this->text, 138));
         // der Zaehler des Viewer-Caches einer gleichnamigen Ansicht (wie bis 4.5)
         $zaehler = $this->ausgabeordner . '/viewer_' . substr($datei, 0, -4) . '_count.txt';
         if (file_exists($zaehler)) {
@@ -95,5 +95,17 @@ final class LigaSpeichern
         $aufruf();
 
         return (string) ob_get_clean();
+    }
+
+    /**
+     * Ein Sprachtext; '' ohne.
+     *
+     * @param array<int|string, mixed> $text
+     */
+    private static function sprachtext(array $text, int $nr): string
+    {
+        $wert = $text[$nr] ?? '';
+
+        return is_scalar($wert) ? (string) $wert : '';
     }
 }

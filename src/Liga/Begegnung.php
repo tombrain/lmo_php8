@@ -82,8 +82,8 @@ final class Begegnung
     {
         return match ($this->spielende) {
             0 => $leer,
-            1 => (string) ($text[1] ?? ''),
-            2 => (string) ($text[0] ?? ''),
+            1 => self::sprachtext($text, 1),
+            2 => self::sprachtext($text, 0),
             default => (string) $this->spielende,
         };
     }
@@ -115,5 +115,17 @@ final class Begegnung
         }
 
         return (string) (intval($eigene) / (intval($faktor) ?: 1));
+    }
+
+    /**
+     * Ein Sprachtext; '' ohne.
+     *
+     * @param array<int|string, mixed> $text
+     */
+    private static function sprachtext(array $text, int $nr): string
+    {
+        $wert = $text[$nr] ?? '';
+
+        return is_scalar($wert) ? (string) $wert : '';
     }
 }
