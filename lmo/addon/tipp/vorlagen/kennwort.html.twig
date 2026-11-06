@@ -1,0 +1,57 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Kennwort aendern (Lmo\Addon\Tipp\KontoController). Texte und Name des Tippers sind fertiges HTML; die Eingaben werden maskiert. -#}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ tipper|raw }}</caption>
+  <tr>
+    <th align="center">{{ t[107]|raw }}</th>
+  </tr>
+{% if not gespeichert %}
+  <tr>
+    <td align="center">
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="pwchange">
+        <input type="hidden" name="newpage" value="1">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td class="nobr" align="right">&nbsp;{{ t[140]|raw }} &nbsp;</td>
+            <td class="nobr"><input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value="{{ alt }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td class="nobr" align="right">&nbsp;{{ t[139]|raw }} &nbsp;</td>
+            <td class="nobr"><input class="lmo-formular-input" type="password" name="xtipperpassneu" size="16" maxlength="32" value="{{ neu }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td class="nobr" align="right">&nbsp;{{ t[139]|raw }}&nbsp;{{ t[19]|raw }}&nbsp;</td>
+            <td class="nobr"><input class="lmo-formular-input" type="password" name="xtipperpassneuw" size="16" maxlength="32" value="{{ wiederholt }}"></td>
+          </tr>
+          <tr>
+            <td class="lmost4" colspan="3" align="right">
+              <input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ text[329]|raw }}">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+{% else %}
+  <tr>
+    <td align="center"><p class="message"><img src="{{ bilder|raw }}/right.svg" border="0" width="20" alt=""> {{ t[121]|raw }}</p></td>
+  </tr>
+  <tr>
+    <td class="lmoFooter" align="right"><a href="{{ adresse|raw }}?action=tipp&amp;todo=">{{ text[5]|raw }}&nbsp;{{ t[1]|raw }}</a></td>
+  </tr>
+{% endif %}
+</table>

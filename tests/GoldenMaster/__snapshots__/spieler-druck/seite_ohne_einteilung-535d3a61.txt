@@ -1,0 +1,186 @@
+### seite_ohne_einteilung
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>Spielerstatistik</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> body {background:#fff; color:#000; font:10pt sans-serif;} caption, p, h1 {margin:3pt auto; text-align:center;} table {border:1pt solid #000; border-radius:6px; margin:2pt auto;} td {padding:10; white-space:nowrap;} th {padding: 1pt;border-bottom: 1px solid #000; border-right: 1px solid #000;} h1 {font:14pt bolder;} .odd {background:#eee;} caption {margin-top:10pt; font-weight:bolder; white-space:nowrap;} @media print { a {display:none;} } </style>
+</head>
+<body>
+<script type="text/javascript">document.write('<small>
+<a href="#" onClick="history.back();return false;">zurück<\/a>
+<\/small>');</script>
+<center>
+<h1>Spielerstatistik </h1>
+<table cellpadding="0" cellspacing="1" border="0">
+<tr>
+<th colspan="2">
+</th>
+<th class="nobr" align="center">Name</th>
+<th class="nobr" align="center">Verein</th>
+<th class="nobr" align="center">Tore</th>
+<th class="nobr" align="center">Spiele</th>
+</tr>
+<tr>
+<td align="right">
+<strong>1. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Zander&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 1&nbsp;&nbsp;</td>
+<td align="center">0&nbsp;&nbsp;</td>
+<td align="center">2&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>2. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Müller&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 1&nbsp;&nbsp;</td>
+<td class="odd" align="center">5&nbsp;&nbsp;</td>
+<td class="odd" align="center">10&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<strong>3. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Lange&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 2&nbsp;&nbsp;</td>
+<td align="center">3&nbsp;&nbsp;</td>
+<td align="center">8&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>4. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Krause&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 4&nbsp;&nbsp;</td>
+<td class="odd" align="center">7&nbsp;&nbsp;</td>
+<td class="odd" align="center">9&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<strong>5. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Jung&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 2&nbsp;&nbsp;</td>
+<td align="center">3&nbsp;&nbsp;</td>
+<td align="center">1&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>6. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Ilić&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 4&nbsp;&nbsp;</td>
+<td class="odd" align="center">4&nbsp;&nbsp;</td>
+<td class="odd" align="center">9&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<strong>7. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Hahn&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 3&nbsp;&nbsp;</td>
+<td align="center">3&nbsp;&nbsp;</td>
+<td align="center">6&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>8. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Graf&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 1&nbsp;&nbsp;</td>
+<td class="odd" align="center">2&nbsp;&nbsp;</td>
+<td class="odd" align="center">5&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<strong>9. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Fuchs&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 6&nbsp;&nbsp;</td>
+<td align="center">0&nbsp;&nbsp;</td>
+<td align="center">0&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>10. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Engel&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 5&nbsp;&nbsp;</td>
+<td class="odd" align="center">1&nbsp;&nbsp;</td>
+<td class="odd" align="center">3&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right">
+<strong>11. </strong>
+</td>
+<td align="center">
+</td>
+<td align="left">
+<strong>Bauer&nbsp;&nbsp;</strong>
+</td>
+<td align="left">Mannschaft 3&nbsp;&nbsp;</td>
+<td align="center">3&nbsp;&nbsp;</td>
+<td align="center">7&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td align="right" class="odd">
+<strong>12. </strong>
+</td>
+<td align="center" class="odd">
+</td>
+<td class="odd" align="left">
+<strong>Ahrens&nbsp;&nbsp;</strong>
+</td>
+<td class="odd" align="left">Mannschaft 2&nbsp;&nbsp;</td>
+<td class="odd" align="center">3&nbsp;&nbsp;</td>
+<td class="odd" align="center">4&nbsp;&nbsp;</td>
+</tr>
+</table>
+</center>
+<script type="text/javascript">document.write('<small>
+<a href="#" onClick="history.back();return false;">zurück<\/a>
+<\/small>');</script>
+</body>
+</html>

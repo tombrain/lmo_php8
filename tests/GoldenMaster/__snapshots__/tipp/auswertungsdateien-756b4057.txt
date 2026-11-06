@@ -1,0 +1,957 @@
+### auswertungsdateien
+=== Liga, Spieltag 2: fuehrt die alte Datei fort ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,13 +1,22 @@
+ 
+-[weg]
++[dritter]
++Team=Club
++Name=Dora Dritte
++Email=dritte@example.org
++
++[tester]
+ Team=
+-SG1=3
+-TP1=9
++Name=Tina Test
++Email=tester@example.org
++SG2=3
++P32=1
++P42=1
++TP2=3
+ 
+ [zweiter]
+-Team=Alt
+-Name=Zoe Alt
+-SG2=1
+-TP2=7
++Team=
++Name=Zoe Zweite
++Email=zweite@example.org
++SG2=2
+ SG13=2
+ TP13=4
+NEU daten/tipp/tipps/auswert/vereine/tippliga_dritter.ver (32 Bytes)
+[1]
+[2]
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+NEU daten/tipp/tipps/auswert/vereine/tippliga_tester.ver (92 Bytes)
+[1]
+TP2=2
+SG2=1
+[2]
+SG2=1
+[3]
+SG2=1
+[4]
+TP2=1
+SG2=1
+[5]
+[6]
+TP2=2
+SG2=1
+[7]
+[8]
+TP2=1
+SG2=1
+NEU daten/tipp/tipps/auswert/vereine/tippliga_zweiter.ver (56 Bytes)
+[1]
+SG2=1
+[2]
+SG2=1
+[3]
+SG2=1
+[4]
+[5]
+[6]
+SG2=1
+[7]
+[8]
+
+=== Liga, Spieltag 3, nur Tipper 2 bis 2 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,8 +1,6 @@
+-
+ [dritter]
+ Team=Club
+ Name=Dora Dritte
+ Email=dritte@example.org
+-
+ [tester]
+ Team=
+@@ -13,5 +11,4 @@
+ P42=1
+ TP2=3
+-
+ [zweiter]
+ Team=
+
+=== Liga, alle Spieltage ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -1,14 +1,23 @@
++
+ [dritter]
+ Team=Club
+ Name=Dora Dritte
+ Email=dritte@example.org
++SG3=3
++P13=1
++TP3=4
++
+ [tester]
+ Team=
+ Name=Tina Test
+ Email=tester@example.org
++SG1=1
++P41=1
++TP1=1
+ SG2=3
+ P32=1
+ P42=1
+ TP2=3
++
+ [zweiter]
+ Team=
+@@ -16,4 +25,2 @@
+ Email=zweite@example.org
+ SG2=2
+-SG13=2
+-TP13=4
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_dritter.ver
+--- vorher
++++ nachher
+@@ -1,8 +1,16 @@
+ [1]
++TP3=4
++SG3=1
+ [2]
++SG3=1
+ [3]
++SG3=1
+ [4]
+ [5]
++TP3=4
++SG3=1
+ [6]
+ [7]
++SG3=1
+ [8]
++SG3=1
+GEAENDERT daten/tipp/tipps/auswert/vereine/tippliga_tester.ver
+--- vorher
++++ nachher
+@@ -3,4 +3,6 @@
+ SG2=1
+ [2]
++TP1=1
++SG1=1
+ SG2=1
+ [3]
+@@ -10,4 +12,6 @@
+ SG2=1
+ [5]
++TP1=1
++SG1=1
+ [6]
+ TP2=2
+
+=== Liga, Spieltag 4 ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Liga, alle Spieltage, nur Tipper 1 bis 2 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -7,5 +7,4 @@
+ P13=1
+ TP3=4
+-
+ [tester]
+ Team=
+@@ -19,5 +18,4 @@
+ P42=1
+ TP2=3
+-
+ [zweiter]
+ Team=
+
+=== Pokal, alle Runden ===
+
+--- Dateiaenderungen ---
+NEU daten/tipp/tipps/auswert/tipppokal.aus (177 Bytes)
+
+[dritter]
+Team=Club
+Name=Dora Dritte
+Email=dritte@example.org
+
+[tester]
+Team=
+Name=Tina Test
+Email=tester@example.org
+
+[zweiter]
+Team=
+Name=Zoe Zweite
+Email=zweite@example.org
+
+=== Pokal, Runde 1 ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tipppokal.aus
+--- vorher
++++ nachher
+@@ -4,4 +4,7 @@
+ Name=Dora Dritte
+ Email=dritte@example.org
++SG1=3
++P41=1
++TP1=1
+ 
+ [tester]
+@@ -9,4 +12,8 @@
+ Name=Tina Test
+ Email=tester@example.org
++SG1=3
++P11=1
++P41=2
++TP1=6
+ 
+ [zweiter]
+@@ -14,2 +21,6 @@
+ Name=Zoe Zweite
+ Email=zweite@example.org
++SG1=2
++P11=1
++P31=1
++TP1=6
+
+=== Pokal, Finale ohne Ergebnis ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Tendenz-Modus ohne Vereine, Namen und E-Mail, alle Spieltage ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -2,23 +2,14 @@
+ [dritter]
+ Team=Club
+-Name=Dora Dritte
+-Email=dritte@example.org
+ SG3=3
+-P13=1
+-TP3=4
++TP3=1
++
+ [tester]
+ Team=
+-Name=Tina Test
+-Email=tester@example.org
+ SG1=1
+-P41=1
+-TP1=1
+ SG2=3
+-P32=1
+-P42=1
+-TP2=3
++TP2=1
++
+ [zweiter]
+ Team=
+-Name=Zoe Zweite
+-Email=zweite@example.org
+ SG2=2
+
+=== Tendenz-Modus, Spieltag 3 ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Liga mit Joker 1.5, alle Spieltage ===
+
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/tippliga.aus
+--- vorher
++++ nachher
+@@ -2,14 +2,25 @@
+ [dritter]
+ Team=Club
++Name=Dora Dritte
++Email=dritte@example.org
+ SG3=3
+-TP3=1
++P13=1
++TP3=4
+ 
+ [tester]
+ Team=
++Name=Tina Test
++Email=tester@example.org
+ SG1=1
++P41=1
++TP1=1
+ SG2=3
+-TP2=1
++P32=1
++P42=1
++TP2=3
+ 
+ [zweiter]
+ Team=
++Name=Zoe Zweite
++Email=zweite@example.org
+ SG2=2
+
+=== Pokal mit Joker 1.5, Runde 1 ===
+
+--- Dateiaenderungen ---
+(keine)
+
+=== Gesamtwertung aller Ligen ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Tippspiel: Gesamtwertung erfolgreich ausgewertet</p>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">Auswertung </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippemail' onClick="return chklmolink();" title="Newsletter/Reminder">Newsletter/Reminder</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th style="text-align:center">
+<h1>Auswertung</h1>
+</th>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="left" colspan="3">Die Tipps welcher Ligen möchtest Du neu auswerten?</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">1. Bundesliga 2024/25</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="2">
+<input type="hidden" name="liga" value="1l_2024-25">
+<select class="lmo-formular-input" name="st">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="0">
+<input class="lmo-formular-button" type="submit" name="best" value="auswerten">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">basic</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="2">
+<input type="hidden" name="liga" value="tippliga">
+<select class="lmo-formular-input" name="st">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="auswerten">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">Tipp-Pokal</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="2">
+<input type="hidden" name="liga" value="tipppokal">
+<select class="lmo-formular-input" name="st">
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3">
+<input class="lmo-formular-button" type="submit" name="best" value="auswerten">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="left">
+<strong>Gesamtwertung</strong>
+</td>
+<td align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="aktualisieren">
+</form>
+</td>
+</tr>
+<tr>
+<th align="left" colspan="3">Die Tipp-Einsichten welcher Ligen möchtest Du erstellen?</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">1. Bundesliga 2024/25</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="3">
+<input type="hidden" name="liga" value="1l_2024-25">
+<select class="lmo-formular-input" name="st">
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+<option value="15">15. Spieltag</option>
+<option value="16">16. Spieltag</option>
+<option value="17">17. Spieltag</option>
+<option value="18">18. Spieltag</option>
+<option value="19">19. Spieltag</option>
+<option value="20">20. Spieltag</option>
+<option value="21">21. Spieltag</option>
+<option value="22">22. Spieltag</option>
+<option value="23">23. Spieltag</option>
+<option value="24">24. Spieltag</option>
+<option value="25">25. Spieltag</option>
+<option value="26">26. Spieltag</option>
+<option value="27">27. Spieltag</option>
+<option value="28">28. Spieltag</option>
+<option value="29">29. Spieltag</option>
+<option value="30">30. Spieltag</option>
+<option value="31">31. Spieltag</option>
+<option value="32">32. Spieltag</option>
+<option value="33">33. Spieltag</option>
+<option value="34">34. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="0">
+<input class="lmo-formular-button" type="submit" name="best" value="erstellen">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">basic</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="3">
+<input type="hidden" name="liga" value="tippliga">
+<select class="lmo-formular-input" name="st">
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="erstellen">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">Tipp-Pokal</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="3">
+<input type="hidden" name="liga" value="tipppokal">
+<select class="lmo-formular-input" name="st">
+<option value="1">Halbfinale</option>
+<option value="2">Finale</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="3">
+<input class="lmo-formular-button" type="submit" name="best" value="erstellen">
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+NEU daten/tipp/tipps/auswert/gesamt.aus (353 Bytes)
+[Options]
+AnzLigen=2
+TT1=tippliga.aus
+TT2=tipppokal.aus
+
+[tester]
+Team=
+Name=Tina Test
+Email=tester@example.org
+TP1=4
+SG1=4
+P31=1
+P41=2
+TP2=6
+SG2=3
+P12=1
+P42=2
+
+[zweiter]
+Team=
+Name=Zoe Zweite
+Email=zweite@example.org
+TP1=0
+SG1=2
+TP2=6
+SG2=2
+P12=1
+P32=1
+
+[dritter]
+Team=Club
+Name=Dora Dritte
+Email=dritte@example.org
+TP1=4
+SG1=3
+P11=1
+TP2=1
+SG2=3
+P42=1
+
+=== Gesamtwertung nur der Ligen zum Tippen, ohne Zusatz und E-Mail ===
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="de">
+<head>
+<title>LMO Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="http://lmo.test/lmo/lmo-style-nc.php">
+<style type="text/css">@import url("http://lmo.test/lmo/lmo-style.php");</style>
+</head>
+<body>
+<div align="center">
+<script type="text/javascript" src="http://lmo.test/lmo/js/admin.js.php">
+</script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="2" align="center">
+<h1>Administration des Liga Manager Online 4</h1>
+</td>
+</tr>
+<tr>
+<td class="lmoMenu" align="left">
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=new&amp;newpage=0" onclick="return chklmolink();" title="Eine neue Liga erstellen">Neu</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=open&amp;subdir=" onclick="return chklmolink();" title="Eine Liga zum Bearbeiten öffnen">Öffnen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete" onclick="return chklmolink();" title="Eine nicht mehr benötigte Liga löschen">Löschen</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=upload" onclick="return chklmolink();" title="Eine Liga von Ihrer Festplatte auf diesen Server hochladen">Upload</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=download" onclick="return chklmolink();" title="Eine Liga von Ihrem Server runterladen, um sie offline zu sichern">Download</a>&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=options" onclick="return chklmolink();" title="Globale Optionen für dieses Script festlegen">Optionen</a>&nbsp; Tippspiel&nbsp; <a href="/lmo/lmoadmin.php?action=admin&amp;todo=vieweroptions" onclick="return chklmolink();" title="Konfiguration LMO-Viewer 4.1">Viewer</a>
+</td>
+<td class="lmoMenu" align="right">
+<a href="http://lmo.test/lmo/help/Deutsch/index.html" target="_blank" title="Hilfedatei aufrufen (wird in neuem Fenster geöffnet)">Hilfe</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=logout" onclick="return chklmolink();" title="Hier loggen Sie sich aus dem Admin-Bereich aus. (Das sollten Sie nach jeder Sitzung tun)">Logout</a>&nbsp; </td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<p class="message">
+<img src="http://lmo.test/lmo/img/right.svg" border="0" width="20" alt=""> Tippspiel: Gesamtwertung erfolgreich ausgewertet</p>
+<table class="lmoSubmenu" width="99%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td align="center">Auswertung </td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippemail' onClick="return chklmolink();" title="Newsletter/Reminder">Newsletter/Reminder</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippuser' onClick="return chklmolink();" title="Userverwaltung">Userverwaltung</a>
+</td>
+<td align="center">
+<a href='/lmo/lmoadmin.php?action=admin&amp;todo=tippoptions' onClick="return chklmolink();" title="Zu den Optionen des Tippspiels">Optionen</a>
+</td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th style="text-align:center">
+<h1>Auswertung</h1>
+</th>
+</tr>
+<tr>
+<td align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<th align="left" colspan="3">Die Tipps welcher Ligen möchtest Du neu auswerten?</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">basic</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="2">
+<input type="hidden" name="liga" value="tippliga">
+<select class="lmo-formular-input" name="st">
+<option value="0">alle Spieltage</option>
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="auswerten">
+</form>
+</td>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td align="left">
+<strong>Gesamtwertung</strong>
+</td>
+<td align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="aktualisieren">
+</form>
+</td>
+</tr>
+<tr>
+<th align="left" colspan="3">Die Tipp-Einsichten welcher Ligen möchtest Du erstellen?</th>
+</tr>
+<tr>
+<td width="20">&nbsp;</td>
+<td class="nobr" align="left">basic</td>
+<td class="nobr" align="right">
+<form name="lmoedit" action="/lmo/lmoadmin.php" method="post">
+<input type="hidden" name="action" value="admin">
+<input type="hidden" name="todo" value="tipp">
+<input type="hidden" name="save" value="3">
+<input type="hidden" name="liga" value="tippliga">
+<select class="lmo-formular-input" name="st">
+<option value="1" selected>1. Spieltag</option>
+<option value="2">2. Spieltag</option>
+<option value="3">3. Spieltag</option>
+<option value="4">4. Spieltag</option>
+<option value="5">5. Spieltag</option>
+<option value="6">6. Spieltag</option>
+<option value="7">7. Spieltag</option>
+<option value="8">8. Spieltag</option>
+<option value="9">9. Spieltag</option>
+<option value="10">10. Spieltag</option>
+<option value="11">11. Spieltag</option>
+<option value="12">12. Spieltag</option>
+<option value="13">13. Spieltag</option>
+<option value="14">14. Spieltag</option>
+</select>Tipper <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="1"> bis <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="4">
+<input class="lmo-formular-button" type="submit" name="best" value="erstellen">
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="lmoFooter" align="left">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmoadmin.php?&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>>>
+<a href="http://lmo.test/lmo/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="Translation-Tool">
+<img src="http://lmo.test/lmo/img/pencil.svg" height="20" alt="Edit">
+</a>
+</td>
+</tr>
+<tr>
+<td align="left">
+<a href="http://lmo.test/lmo/lmo.php?file=" target="_blank" title="So sehen Ihre Besucher das Script (wird in einem neuen Fenster geöffnet)">« zur Besucheransicht</a>
+</td>
+<td class="lmoFooter" align="right">Dauer Berechnungen u. Seitenaufbau: {ZEIT} sek.</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+--- Dateiaenderungen ---
+GEAENDERT daten/tipp/tipps/auswert/gesamt.aus
+--- vorher
++++ nachher
+@@ -1,39 +1,28 @@
+ [Options]
+ AnzLigen=2
+-TT1=tippliga.aus
+-TT2=tipppokal.aus
++TT1=alteliga.aus
++TT2=tippliga.aus
+ 
+ [tester]
+ Team=
+ Name=Tina Test
+-Email=tester@example.org
+-TP1=4
+-SG1=4
+-P31=1
+-P41=2
+-TP2=6
+-SG2=3
+-P12=1
+-P42=2
++TP1=50
++SG1=5
++TP2=4
++SG2=4
+ 
+ [zweiter]
+ Team=
+ Name=Zoe Zweite
+-Email=zweite@example.org
+ TP1=0
+-SG1=2
+-TP2=6
++SG1=0
++TP2=0
+ SG2=2
+-P12=1
+-P32=1
+ 
+ [dritter]
+ Team=Club
+ Name=Dora Dritte
+-Email=dritte@example.org
+-TP1=4
+-SG1=3
+-P11=1
+-TP2=1
++TP1=0
++SG1=0
++TP2=4
+ SG2=3
+-P42=1
+

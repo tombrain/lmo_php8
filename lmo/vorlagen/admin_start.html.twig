@@ -1,0 +1,45 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Startseite der Administration (Lmo\Web\Admin\StartseiteController), bis 4.5 lmo-adminpad.php #}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><h1>{{ text[92]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="lmost5" align="left">
+                  <ul>
+{% if hauptadmin %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}new">{{ text[93]|raw }}</a></li>
+{% endif %}
+                    <li>{{ text[94]|raw }}:{{ ligen|raw }}
+                    </li>
+{% if hauptadmin %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}delete">{{ text[95]|raw }}</a></li>
+                    <li class="lmoadminli"><a href="{{ adda|raw }}upload">{{ text[96]|raw }}</a></li>
+{% endif %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}download">{{ text[349]|raw }}</a></li>
+{% if hauptadmin %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}options">{{ text[97]|raw }}</a></li>
+{% for p in addons %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}{{ p.ziel|raw }}">{{ p.name|raw }}</a></li>
+{% endfor %}
+{% endif %}
+                    <li class="lmoadminli"><a href="{{ adda|raw }}logout">{{ text[98]|raw }}</a></li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>

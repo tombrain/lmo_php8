@@ -1,0 +1,84 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Userverwaltung des Tippspiels (Lmo\Addon\Tipp\AdminTipperController), bis 4.5 lmo-admintippuser.php #}
+{# Kopf einer Spalte: mit Skript sortiert sortabletable.js, ohne die Links auf- und absteigend #}
+{% macro kopf(spalte, name, attribute, sortieren, text, bilder) %}
+          <th {{ attribute|raw }}>
+            <script type="text/javascript">document.write('{{ name|raw }}');</script>
+            <noscript>
+              <a href="{{ sortieren|raw }}{{ spalte }}&amp;tipper_sort_direction=asc" title="{{ text[527]|raw }}&nbsp;{{ text[526]|raw }}" onClick="return chklmolink();"><img src="{{ bilder }}/upsimple.png" width="7" height="7" border="0" alt="&and;"></a>
+              {{ name|raw }}
+              <a href="{{ sortieren|raw }}{{ spalte }}&amp;tipper_sort_direction=desc" title="{{ text[528]|raw }}&nbsp;{{ text[526]|raw }}" onClick="return chklmolink();"><img src="{{ bilder }}/downsimple.png" width="7" height="7" border="0" alt="&or;"></a>
+            </noscript>
+          </th>
+{% endmacro %}
+{% import _self as f %}
+{% set sortieren = adresse ~ '?action=admin&amp;todo=tippuser&amp;tipper_sort=' %}
+{{ menue|raw }}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ t[114]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <script type="text/javascript" src="{{ lmo }}/js/sortable/sortabletable.js"></script>
+      <script type="text/javascript" src="{{ lmo }}/js/sortable/limSortFunctions.js"></script>
+      <table id="tipper" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+{% if zeilen is not empty %}
+      <thead>
+        <tr>
+          <th class="nobr" align="right"></th>
+{{ f.kopf('id', '#', 'class="nobr" align="right"', sortieren, text, bilder) }}
+{{ f.kopf('nick', t[23], 'align="left" class="nobr"', sortieren, text, bilder) }}
+{{ f.kopf('name', t[134], 'align="left" class="nobr"', sortieren, text, bilder) }}
+{{ f.kopf('team', t[27], 'align="left" class="nobr"', sortieren, text, bilder) }}
+{{ f.kopf('ltipp', t[270], 'align="left" class="nobr"', sortieren, text, bilder) }}
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+        <tbody>
+{# je Tipper eine Zeile #}
+{% for z in zeilen %}
+        <tr>
+          <td align="left">
+{% if z.freig != '5' %}
+            <img src="{{ bilder }}/wrong.svg" border="0" height="20" alt="+">
+{% else %}
+            <img src="{{ bilder }}/right.svg" border="0" height="20" alt="-">
+{% endif %}
+ </td>
+          <td align="right">{{ z.id }}</td>
+          <td align="left">{% if z.email != '' %}
+
+            <a href="mailto:{{ z.email }}">{{ z.nick }}</a>{% else %}{{ z.nick }}{% endif %} </td>
+          <td align="left">{{ z.name|raw }}</td>
+          <td align="left">{{ z.team }}</td>
+          <td align="left">{{ z.zeit }}</td>
+          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuseredit&amp;nick={{ z.nick|url_encode }}' onClick="return chklmolink();">{{ t[98]|raw }}</a></td>
+          <td align="left"><a href='{{ adresse|raw }}?action=admin&amp;todo=tippuser&amp;tipper_sort={{ sortierung|url_encode }}&amp;del={{ z.nick|url_encode }}' onClick="return confirm('{{ text[499]|raw }}');"><img src="{{ bilder }}/delete.svg" border="0" height="18" alt="{{ text[82]|raw }}"></a></td>
+        </tr>
+{% endfor %}
+        </tbody>
+{% endif %}
+      </table>
+      <script type="text/javascript">
+          var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]);
+          tipperTable.sort(1);
+       </script>
+    </td>
+  </tr>
+  <tr>
+    <th class="lmoMenu" align="center">
+      <a href="{{ adresse }}?action=admin&amp;todo=tippuseredit&amp;save=-1">{{ t[136]|raw }}</a>
+    </th>
+  </tr>
+</table>

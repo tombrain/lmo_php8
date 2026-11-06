@@ -484,9 +484,7 @@
 483=Printer View
 484=Should a Printer friendly view be created?
 485=Player Statistic
-486=Should the entries from Spieler Statistic be shown? (Must be for each League separately ativated)
 487=Predictions Game
-488=Should the Predictions Game be shown?
 489=Goal Statistics
 490=Should extra Goal statistics be shown? (Total Goals, Average Goals)
 491=Under Tables

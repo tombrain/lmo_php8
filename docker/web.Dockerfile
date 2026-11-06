@@ -15,6 +15,9 @@ RUN apt-get update \
 RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" \
     && printf 'date.timezone=Europe/Berlin\n' > "$PHP_INI_DIR/conf.d/zz-lmo.ini"
 
+# Composer fuer automatische Abhaengigkeits-Installation beim Start
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 # mail() liefert an den Dienst "mail" (Mailpit, siehe docker-compose.yml) statt an ein echtes Mailprogramm
 COPY --from=axllent/mailpit /mailpit /usr/local/bin/mailpit
 RUN printf 'sendmail_path="/usr/local/bin/mailpit sendmail -S mail:1025"\n' >> "$PHP_INI_DIR/conf.d/zz-lmo.ini"

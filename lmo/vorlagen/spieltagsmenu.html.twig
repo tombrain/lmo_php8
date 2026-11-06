@@ -1,0 +1,22 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Auswahl der Spieltage (Lmo\Web\Seiten\SpieltagsMenue); Links und Sprachtexte sind fertiges HTML -#}
+            <table class="lmoSubmenu" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+{% for e in eintraege %}
+                <td align='center'>{% if e.link is not null %}<a href="{{ e.link|raw }}" title="{{ e.titel|raw }}">{{ e.text|raw }}</a>{% else %}{{ e.text|raw }}{% endif %}&nbsp;</td>
+{% if e.umbruch %}
+              </tr>
+              <tr>
+{% endif %}
+{% endfor %}
+              </tr>
+            </table>

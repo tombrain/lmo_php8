@@ -111,28 +111,6 @@ function filterZero($a)
 
 
 /**
- * Returns HTML imgage code for a small team icon
- *
- * @param   string  $team               Long name of the team
- * @param   string  $alternative_text   If image not found return this instead
- * @return  string  HTML image-Code for the small team icon
- */
-// Umstellung Classlib kann später mal weg
-function getSmallImage($team, $alternative_text = '')
-{
-    $team = str_replace('/', '', $team);
-    if (!file_exists(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif')) {
-        $team = preg_replace('/[^a-zA-Z0-9]/', '', $team);
-    }
-    if (!file_exists(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif')) {
-        return $alternative_text;
-    } else {
-        $imgdata = getimagesize(PATH_TO_IMGDIR . '/teams/small/' . $team . '.gif');
-        return ('<img border="0" src="' . URL_TO_IMGDIR . '/teams/small/' . rawurlencode($team) . '.gif" {$imgdata[3]} alt=""> ');
-    }
-}
-
-/**
  * Returns a formatted (error) Message
  *
  * @param   string  $message    Message to return
@@ -236,35 +214,13 @@ function gewinn ($gst, $gsp, $gmod, $m1, $m2)
     return $erg;
 }
 
+// Auswahl der Sprache in der Fusszeile (Lmo\Web\Seiten\Sprachauswahl); der Hauptadmin bekommt den Link zum Bearbeiten
 function getLangSelector()
 {
-    $output_sprachauswahl = '';
-    $border = '0';
-
-    $handle = opendir (PATH_TO_LANGDIR);
-    while (false !== ($f = readdir($handle))) {
-        if (preg_match('/^lang-?(.*)?\.txt$/', $f,$lang) > 0) {
-            if ($lang[1] == '') return '';
-            if ($lang[1] != ($_SESSION['lmouserlang'] ?? '')) {
-                $border = '1mm';
-                $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.svg';
-                $output_sprachauswahl .= '
-           <a href="' . $_SERVER['PHP_SELF'] . '?' . htmlentities(preg_replace('/&?lmouserlang=.+?\b/', '', $_SERVER['QUERY_STRING'])) . '&amp;lmouserlang=' . $lang[1] . '" title="' . $lang[1] . '"><img src="' . $imgfile . '" height="16" style="margin-right:' . $border . '" title="' . $lang[1] . '" alt="' . $lang[1] . '"></a>';
-            } else {
-                $imgfile = URL_TO_IMGDIR . '/' . $lang[1] . '.selected.svg';
-                $output_sprachauswahl .= '
-          <img src="' . $imgfile . '" height="16" border="' . $border . '" title="' . $lang[1] . '" alt="' . $lang[1] . '">';
-            }
-        }
-        $border = '0';
-    }
-    closedir($handle);
-    if (isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] == 2) {
-        $output_sprachauswahl .= ' >> <a href="' . URL_TO_LMO . '/lang/lmo-admintranslate.php" class="lmo-lang-edit" title="' . htmlspecialchars($GLOBALS['text'][573]) . '">';
-        $output_sprachauswahl .= '<img src="'.URL_TO_IMGDIR.'/pencil.svg" height="20" alt="Edit">';
-        $output_sprachauswahl .= '</a>';
-    }
-    return $output_sprachauswahl;
+    $bearbeiten = isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] == 2
+        ? array(URL_TO_LMO . '/lang/lmo-admintranslate.php', (string)$GLOBALS['text'][573])
+        : null;
+    return \Lmo\Web\Seiten\Sprachauswahl::html(PATH_TO_LANGDIR, URL_TO_IMGDIR, $_SERVER['PHP_SELF'], (string)$_SERVER['QUERY_STRING'], (string)($_SESSION['lmouserlang'] ?? ''), $bearbeiten);
 }
 
 function getLangSelectorSide()
@@ -316,38 +272,6 @@ function getLangSelectorSide()
     $output .= '</div></div>';
 
     return $output;
-}
-
-function get_timezones()
-{
-    //load avail timezones
-    if (function_exists('timezone_identifiers_list')) {
-        $zones = array_reverse(timezone_identifiers_list());
-
-        foreach ($zones as $zone) {
-            $zone = explode('/', $zone); // 0 => Continent, 1 => City
-
-            // Only use "friendly" continent names
-            if ($zone[0] == 'Africa' ||
-                $zone[0] == 'America' ||
-                $zone[0] == 'Antarctica' ||
-                $zone[0] == 'Arctic' ||
-                $zone[0] == 'Asia' ||
-                $zone[0] == 'Atlantic' ||
-                $zone[0] == 'Australia' ||
-                $zone[0] == 'Europe' ||
-                $zone[0] == 'Indian' ||
-                $zone[0] == 'Pacific')
-            {
-                if (isset($zone[1]) != '') {
-                    $locations[$zone[0]][$zone[0] . '/' . $zone[1]] = str_replace('_', ' ', $zone[1]); // Creates array(DateTimeZone => 'Friendly name')
-                }
-            }
-        }
-    } else {
-        return array();
-    }
-    return array_reverse($locations);
 }
 
 /**
@@ -451,4 +375,28 @@ $_POST    = lmo_sanitize_and_log($_POST, '$_POST', (isset($_SESSION['lmouserok']
 // Manually construct $_REQUEST from the already clean values
 $_REQUEST = array_merge($_GET, $_POST, $_COOKIE);
 
+// Eine Sprachdatei in $text lesen (bis 4.5 in lmo-langload.php; der LMO liest seine Texte ueber
+// Lmo\Web\Sprachtexte, die Funktion bleibt fuer eigene Skripte)
+if (!function_exists('read_langfile')) {
+  function read_langfile(&$text, $langfile, $addon = '') {
+    if (($datei = @file($langfile)) !== false) {
+      foreach ($datei as $value) {
+        $paar = explode('=', trim($value), 2);
+        if (isset($paar[0]) && is_numeric($paar[0])) {
+          if (!isset($paar[1])) $paar[1] = '';
+          if (func_num_args() == 2) {
+            $text[intval($paar[0])] = $paar[1];
+          }
+          else {
+            $text[$addon][intval($paar[0])] = $paar[1];
+          }
+        }
+      }
+    }
+  }
+}
+
+// Copyright-Hinweis (bis 4.5 in lmo-langload.php): c() fuer den Rahmen, d() fuer eigene Vorlagen nach alter Art
+if (!function_exists('c')) {function c($c) {if ($c == 1) return(base64_decode('PGEgaHJlZj0iaHR0cHM6Ly93d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5vcmciIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ibG1vLWxpbmstdHJpZ2dlciIgZGF0YS1pbmZvPSI8c3Ryb25nPkxpZ2EgTWFuYWdlciBPbmxpbmU8L3N0cm9uZz5UaGlzIGlzIGEgY2xvbmUgb2YgdGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUuPGJyPjxiPkFkYXB0ZWQgZm9yIFBIUCA4LjwvYj48YnI+Q2xpY2tpbmcgdGhpcyBsaW5rIHdpbGwgdGFrZSB5b3UgdG8gdGhlIHdlYnNpdGUgb2YgdGhlIG5ldyBwcm9qZWN0LiIgb25tb3VzZW92ZXI9InNob3dMTU9Ub29sdGlwKHRoaXMpIiBvbm1vdXNlb3V0PSJoaWRlTE1PVG9vbHRpcCgpIj5MTU8gNCBmb3IgUEhQODwvYT4mbmJzcDstJm5ic3A7')); return(base64_decode('PHNwYW4gY2xhc3M9Imxtby10ZXh0LXRyaWdnZXIiIGRhdGEtaW5mbz0iPHN0cm9uZz5MaWdhIE1hbmFnZXIgT25saW5lPC9zdHJvbmc+VGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUgcHJvamVjdCBvbiB0aGUgd2Vic2l0ZSB3d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5kZSB3YXMgZGlzY29udGludWVkIGF0IHRoZSBlbmQgb2YgMjAyNS4iIG9ubW91c2VvdmVyPSJzaG93TE1PVG9vbHRpcCh0aGlzKSIgb25tb3VzZW91dD0iaGlkZUxNT1Rvb2x0aXAoKSI+wqkgMTk5Ny1ub3cgTE1PLUdyb3VwPC9zcGFuPg=='));}}
+if (!function_exists('d')) {function d($c) {if (strpos(htmlentities($c), htmlentities(base64_decode('PCEtLUluZm9saW5rLS0+'))) > 0) {false;} else {eval(base64_decode('ZWNobyAnPGEgaHJlZj0iaHR0cHM6Ly93d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5vcmciIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ibG1vLWxpbmstdHJpZ2dlciIgZGF0YS1pbmZvPSI8c3Ryb25nPkxpZ2EgTWFuYWdlciBPbmxpbmU8L3N0cm9uZz5UaGlzIGlzIGEgY2xvbmUgb2YgdGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUuPGJyPjxiPkFkYXB0ZWQgZm9yIFBIUCA4LjwvYj48YnI+Q2xpY2tpbmcgdGhpcyBsaW5rIHdpbGwgdGFrZSB5b3UgdG8gdGhlIHdlYnNpdGUgb2YgdGhlIG5ldyBwcm9qZWN0LiIgb25tb3VzZW92ZXI9InNob3dMTU9Ub29sdGlwKHRoaXMpIiBvbm1vdXNlb3V0PSJoaWRlTE1PVG9vbHRpcCgpIj5MTU8gNCBmb3IgUEhQODwvYT4mbmJzcDstJm5ic3A7PHNwYW4gY2xhc3M9Imxtby10ZXh0LXRyaWdnZXIiIGRhdGEtaW5mbz0iPHN0cm9uZz5MaWdhIE1hbmFnZXIgT25saW5lPC9zdHJvbmc+VGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUgcHJvamVjdCBvbiB0aGUgd2Vic2l0ZSB3d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5kZSB3YXMgZGlzY29udGludWVkIGF0IHRoZSBlbmQgb2YgMjAyNS4iIG9ubW91c2VvdmVyPSJzaG93TE1PVG9vbHRpcCh0aGlzKSIgb25tb3VzZW91dD0iaGlkZUxNT1Rvb2x0aXAoKSI+wqkgMTk5Ny1ub3cgTE1PLUdyb3VwPC9zcGFuPic7'));}}}
 ?>

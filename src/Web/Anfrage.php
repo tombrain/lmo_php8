@@ -1,0 +1,124 @@
+<?php
+/** Liga Manager Online 4
+  *
+  * http://lmo.sourceforge.net/
+  *
+  * Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+  *
+  * SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+  */
+
+declare(strict_types=1);
+
+namespace Lmo\Web;
+
+/**
+ * Die Parameter eines Aufrufs (Adresse und Formular), mit typisierten Gettern. Controller lesen
+ * hieraus statt aus $_GET, $_POST oder globalen Variablen.
+ */
+final class Anfrage
+{
+    /** @var array<string, mixed> */
+    private array $werte;
+
+    /** @param array<string, mixed> $werte Name => Wert */
+    public function __construct(array $werte)
+    {
+        $this->werte = $werte;
+    }
+
+    /** Die Parameter des laufenden Aufrufs; wie $_REQUEST gilt das Formular vor der Adresse. */
+    public static function ausGlobalen(): self
+    {
+        $werte = [];
+        foreach ($_POST + $_GET as $name => $wert) {
+            $werte[(string) $name] = $wert;
+        }
+
+        return new self($werte);
+    }
+
+    /**
+     * Alle Parameter, wie sie kamen (fuer Addons nach alter Art, die sie als Variablen erwarten).
+     *
+     * @return array<string, mixed>
+     */
+    public function alle(): array
+    {
+        return $this->werte;
+    }
+
+    /** Dieselbe Anfrage mit einem anderen Wert fuer den Parameter */
+    public function mit(string $name, mixed $wert): self
+    {
+        return new self([$name => $wert] + $this->werte);
+    }
+
+    /** Ist der Parameter da, auch leer (wie isset())? */
+    public function gesetzt(string $name): bool
+    {
+        return isset($this->werte[$name]);
+    }
+
+    /** Ist der Parameter gesetzt und nicht leer (wie empty(): "" und "0" gelten als leer)? */
+    public function hat(string $name): bool
+    {
+        return !empty($this->werte[$name]);
+    }
+
+    /** Der Parameter als ganze Zahl; fehlt er oder ist er kein Text bzw. keine Zahl: die Vorgabe. */
+    public function zahl(string $name, int $vorgabe = 0): int
+    {
+        $wert = $this->werte[$name] ?? null;
+
+        return is_scalar($wert) && $wert !== '' ? (int) $wert : $vorgabe;
+    }
+
+    /**
+     * Der Parameter als Liste von Texten (Formularfeld mit name="...[]"); [] ohne. Werte, die kein
+     * Text bzw. keine Zahl sind, fehlen.
+     *
+     * @return list<string>
+     */
+    public function werte(string $name): array
+    {
+        $liste = [];
+        $werte = $this->werte[$name] ?? null;
+        foreach (is_array($werte) ? $werte : [] as $wert) {
+            if (is_scalar($wert)) {
+                $liste[] = (string) $wert;
+            }
+        }
+
+        return $liste;
+    }
+
+    /** Der Parameter als Text; fehlt er oder ist er kein Text bzw. keine Zahl: die Vorgabe. */
+    public function text(string $name, string $vorgabe = ''): string
+    {
+        $wert = $this->werte[$name] ?? null;
+
+        return is_scalar($wert) ? (string) $wert : $vorgabe;
+    }
+
+    /**
+     * Ein Unterordner des Ligenordners (subdir) ohne Weg heraus, wie lmo_clean_subdir() in init.php:
+     * jeder Pfadteil einzeln, leere Teile, "." und ".." fallen weg, ebenso Nullbytes; "\" gilt als "/".
+     * Das fruehere str_replace(['../', './'], '', ...) liess sich umgehen ("...././/" ergab "../").
+     *
+     * @return string "" oder ein relativer Pfad mit "/" am Ende
+     */
+    public static function unterordner(string $pfad): string
+    {
+        $teile = [];
+        foreach (explode('/', str_replace(["\0", '\\'], ['', '/'], $pfad)) as $teil) {
+            if ($teil !== '' && $teil !== '.' && $teil !== '..') {
+                $teile[] = $teil;
+            }
+        }
+
+        return $teile !== [] ? implode('/', $teile) . '/' : '';
+    }
+}

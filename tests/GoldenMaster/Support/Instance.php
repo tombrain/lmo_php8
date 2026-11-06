@@ -41,6 +41,10 @@ final class Instance
         if (is_dir($defaults)) {
             self::mergeTree($defaults, $path . '/config');
         }
+        // die Vorlagen der Addons (addon/<name>/config-default/ nach config/<name>/)
+        foreach (glob($path . '/addon/*/config-default', GLOB_ONLYDIR) ?: [] as $addonDefaults) {
+            self::mergeTree($addonDefaults, $path . '/config/' . basename(dirname($addonDefaults)));
+        }
         if (!is_file($path . '/config/lmo-auth.php')) {
             // gleicher Inhalt wie install/config/lmo-auth.php im Original
             file_put_contents($path . '/config/lmo-auth.php', "<?php exit(); ?>\nadmin|lmo|2|||");
@@ -55,7 +59,7 @@ final class Instance
             if (!function_exists('lmo_defaults_stamp')) {
                 require_once $path . '/lmo-setup.php';
             }
-            file_put_contents($path . '/config/.defaults-stamp', lmo_defaults_stamp($path . '/config-default'));
+            file_put_contents($path . '/config/.defaults-stamp', lmo_defaults_stamp(lmo_default_sources($path)));
         }
         $text = file_get_contents($cfg);
         // Berechnungszeit ("Seite in 0.0123 Sek.") wuerde jede Ausgabe veraendern.
@@ -69,14 +73,17 @@ final class Instance
 
         // Was frueher der Installer anlegte bzw. als schreibbar pruefte (install/install.php, Liste 777/666):
         // ohne addon/tipp/lmo-tippauth.txt bricht z. B. die Tippspiel-Benutzerverwaltung mit einem Fatal Error ab.
-        foreach (['addon/tipp/tipps', 'addon/tipp/tipps/auswert', 'addon/tipp/tipps/einsicht',
-            'addon/tipp/tipps/auswert/vereine', 'addon/spieler/stats', 'config/viewer'] as $dir) {
+        // Daten der Addons: neuer Stand im Datenordner daten/<addon>/, der Originalstand im Addon-Ordner
+        $daten = is_dir($path . '/daten');
+        $tipp = $daten ? 'daten/tipp' : 'addon/tipp';
+        foreach ([$tipp . '/tipps', $tipp . '/tipps/auswert', $tipp . '/tipps/einsicht',
+            $tipp . '/tipps/auswert/vereine', $daten ? 'daten/spieler' : 'addon/spieler/stats', 'config/viewer'] as $dir) {
             if (!is_dir($path . '/' . $dir)) {
                 mkdir($path . '/' . $dir, 0777, true);
             }
         }
-        if (!is_file($path . '/addon/tipp/lmo-tippauth.txt')) {
-            file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', '');
+        if (!is_file($path . '/' . $tipp . '/lmo-tippauth.txt')) {
+            file_put_contents($path . '/' . $tipp . '/lmo-tippauth.txt', '');
         }
 
         foreach (['output', 'ligen/archiv', '.sessions'] as $dir) {
@@ -171,6 +178,10 @@ final class Instance
             if (is_file($file)) {
                 unlink($file);
             }
+        }
+        // Daten der Addons einer lokalen Installation (daten/<addon>/), nur der Schutz bleibt
+        foreach (glob($path . '/daten/*', GLOB_ONLYDIR) ?: [] as $dir) {
+            self::removeTree($dir);
         }
     }
 

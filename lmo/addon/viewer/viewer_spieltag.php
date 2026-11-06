@@ -25,12 +25,18 @@ $template->setVariable('Spieltageminus', $multi_cfgarray['anzahl_spieltage_zurue
 $template->setVariable('Spieltageplus', $multi_cfgarray['anzahl_spieltage_vor']);
 // Durchlaufe so oft Ligen vorhanden sind
 for ($i = 1; $i <= $anzahl_ligen; $i++) {
-    $liga = new liga();
+    // die Liga mit ihren Spielen (Lmo\Liga\Begegnungen; bis 4.5 die Classlib)
+    $lmo_viewer_datei = PATH_TO_LMO . '/' . $dirliga . $fav_liga[$i];
+    $lmo_viewer_rohdaten = is_file($lmo_viewer_datei) ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_viewer_datei) : null;
     // Ligenfile vorhanden?
-    if ($liga->loadFile(PATH_TO_LMO . '/' . $dirliga . $fav_liga[$i]) == true) {
+    if ($lmo_viewer_rohdaten !== null) {
+        $liga = \Lmo\Liga\Begegnungen::aus($lmo_viewer_rohdaten);
+        $lmo_viewer_einstellungen = $lmo_viewer_rohdaten->einstellungen();
+        $lmo_viewer_liganame = (string)($lmo_viewer_rohdaten->optionen['Name'] ?? '');
+        $lmo_viewer_ligadatum = date((string)$lmo_viewer_einstellungen->wert('DatF'), (int)filemtime($lmo_viewer_datei));
         $template->setCurrentBlock('Liga');  // Äusserer Block für die Liga
-        $rounds = $liga->options->keyValues['Rounds'];
-        $aktueller_spieltag = $liga->options->keyValues['Actual'];
+        $rounds = $lmo_viewer_einstellungen->wert('Rounds');
+        $aktueller_spieltag = $lmo_viewer_einstellungen->wert('Actual');
         $star = $aktueller_spieltag - ($multi_cfgarray['anzahl_spieltage_zurueck']);
         $end = $aktueller_spieltag + $multi_cfgarray['anzahl_spieltage_vor'];
         $ende = '';
@@ -55,29 +61,23 @@ for ($i = 1; $i <= $anzahl_ligen; $i++) {
         if ($all_teams == false) {
         }
         else {
-            $team_count = count($liga->teams);
+            $team_count = $liga->anzahl();
             for ($x = 0; $x < $team_count; $x++) {
                 $fav_team[$i][] = $x;
             }
         }
         //Anfang Ergebnisse verlinken
         $template->setVariable('ErgebnisLink', URL_TO_LMO . '/lmo.php?file=' . $fav_liga[$i] . '&amp;action=results');
-        $template->setVariable('Liganame', $liga->name);
-        $template->setVariable('Ligadatum', $liga->ligaDatumAsString());
+        $template->setVariable('Liganame', $lmo_viewer_liganame);
+        $template->setVariable('Ligadatum', $lmo_viewer_ligadatum);
         for ($spieltag = $start; $spieltag <= $ende; $spieltag++) {
             $template->setCurrentBlock('Spieltag');
             //Anfang Spieltag verlinken
             $spieltag_link = URL_TO_LMO . '/lmo.php?file=' . $fav_liga[$i] . '&amp;action=results&amp;st=' . $spieltag;
             $template->setVariable('AktSpieltag', $spieltag);
             $template->setVariable('AktSpieltagLink', $spieltag_link);
-            $akt_spieltag = $liga->spieltagForNumber($spieltag);
-            if ($liga->options->keyValues['enableGameSort'] == '1') {
-                //Spieltagssortierung ist aktiv
-                $partien = $akt_spieltag->getPartien('datum');
-            }
-            else {
-                $partien = $akt_spieltag->getPartien();
-            }
+            // mit Spieltagssortierung nach dem Anstoss
+            $partien = $liga->spieltag((int)$spieltag, $lmo_viewer_einstellungen->wert('enableGameSort') == '1');
 
             $template->setCurrentBlock('Inhalt');  //Ausgabe Inhalt Beginn
             foreach ($partien as $partie) {

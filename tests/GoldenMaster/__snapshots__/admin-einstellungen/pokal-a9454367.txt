@@ -42,9 +42,6 @@
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
 </td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
-</td>
 </tr>
 </table>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
@@ -344,9 +341,6 @@ GEAENDERT ligen/einstellpokal.l98
 <td align="center">Grundeinstellungen</td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
-</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
 </td>
 </tr>
 </table>
@@ -692,9 +686,6 @@ GEAENDERT ligen/einstellpokal.l98
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
 </td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
-</td>
 </tr>
 </table>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
@@ -841,9 +832,6 @@ GEAENDERT ligen/einstellpokal.l98
 <td align="center">Grundeinstellungen</td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
-</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
 </td>
 </tr>
 </table>
@@ -1075,9 +1063,6 @@ GEAENDERT ligen/einstellpokal.l98
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
 </td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
-</td>
 </tr>
 </table>
 <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
@@ -1282,9 +1267,6 @@ GEAENDERT ligen/einstellpokal.l98
 <td align="center">Grundeinstellungen</td>
 <td align="center">
 <a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-2' onClick="return chklmolink();" title="Hier bearbeiten Sie die Namen, Abkürzungen, URLs und Strafpunkte der einzelnen Mannschaften">Mannschaften</a>
-</td>
-<td align="center">
-<a href='/lmo/lmoadmin.php?action=admin&amp;todo=edit&amp;file=einstellpokal.l98&amp;st=-10' onclick="return chklmolink(this.href);" title="Hier können Sie bestimmte Partien anderen Spieltagen zuordnen">Spieltage</a>
 </td>
 </tr>
 </table>

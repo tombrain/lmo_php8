@@ -160,6 +160,6 @@ save=4
 </html>
 
 ### DATEIAENDERUNGEN
-NEU addon/tipp/tipps/auswert/gesamt.aus (21 Bytes)
+NEU daten/tipp/tipps/auswert/gesamt.aus (21 Bytes)
 [Options]
 AnzLigen=0

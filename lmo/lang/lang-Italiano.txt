@@ -484,9 +484,7 @@
 483=Visualizzazione stampo
 484=Deve essere creata una visualizzazione da stampo semplice?
 485=Statistica giocatori
-486=Deve essere visualizzata la statistica della digitazione di dati dei giocatori? (É necessario attivarlo per un relativo campionato!)
 487=Gioco pronostici
-488=Deve essere visualizzato il gioco pronostici?
 489=Statische reti
 490=Devono essere visualizzati altre statistiche di reti (Reti complessive e media delle reti)?
 491=Nelle classifiche

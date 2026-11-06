@@ -1,0 +1,102 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Fieberkurve (Lmo\Web\Controller\FieberkurveController): Platz je Mannschaft und Spieltag als
+    Liniendiagramm mit js/chart.js. Namen und Sprachtexte stehen wie bisher unveraendert im Skript. -#}
+          <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top" align="center">
+                <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td align="center"><br/><canvas id="myChart" width="700" height="500"></canvas>
+                      <script src="{{ adresse|raw }}/js/chart.js"></script>
+                      <script>
+                        const ctx = document.getElementById('myChart');
+                        new Chart(ctx, {
+                          type: 'line',
+                          data: {
+                            labels: [{{ spieltage }}],
+                            datasets: [{% for k in kurven %}{
+                              label: '{{ k.name|raw }}',
+                              fill: false,
+                              lineTension: 0.4,
+                              backgroundColor: 'rgba({{ k.farbe }})',
+                              borderColor: 'rgba({{ k.farbe }})',
+                              data: [{{ k.plaetze }}],
+                              hidden: {{ k.versteckt ? 'true' : 'false' }},
+                            },{% endfor %}]
+                          },
+                          options: {
+                            scales: {
+                              x: {
+                                grid: {
+                                  color: 'rgba(90, 90, 90, 1)'
+                                },
+                                title: {
+                                  display: true,
+                                  text: '{{ text[135]|raw }}',
+                                  color: 'rgba(90, 90, 90, 1)',
+                                  font: {
+                                    size: 24,
+                                  },
+                                },
+                                ticks: {
+                                  color: 'rgba(90, 90, 90, 1)'
+                                }
+                              },
+                              y: {
+                                grid: {
+                                  color: 'rgba(90, 90, 90, 1)'
+                                },
+                                title: {
+                                  display: true,
+                                  text: '{{ text[136]|raw }}',
+                                  color: 'rgba(90, 90, 90, 1)',
+                                  font: {
+                                    size: 24,
+                                  },
+                                },
+                                min: 1,
+                                max: {{ mannschaften }},
+                                reverse: true,
+                                ticks: {
+                                  maxTicksLimit: {{ mannschaften }},
+                                  color: 'rgba(90, 90, 90, 1)'
+                                }
+                              },
+                            },
+                            plugins: {
+                              tooltip: {
+                                displayColors: true,
+                                mode: 'index',
+                                callbacks: {
+                                  label: function(context) {
+                                      var label = context.dataset.label;
+                                      var pos = "{{ text[577]|raw }}: ";
+                                      pos += context.parsed.y;
+                                      return label + " - " + pos;
+                                  },
+                                  title: function(context) {
+                                      var label = context[0].label;
+                                      label += ". {{ text[2]|raw }}";
+                                      return label;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        });
+                      </script>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>

@@ -54,7 +54,6 @@
 <script type="text/javascript" src="http://lmo.test/lmo/js/sortable/limSortFunctions.js">
 </script>
 <table id="tipper" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
-</tbody>
 </table>
 <script type="text/javascript"> var tipperTable = new SortableTable(document.getElementById("tipper"),["None","Number","CaseInsensitiveString","CaseInsensitiveString","CaseInsensitiveString","GermanDateTime","None","None"]); tipperTable.sort(1); </script>
 </td>
@@ -62,7 +61,6 @@
 <tr>
 <th class="lmoMenu" align="center">
 <a href="/lmo/lmoadmin.php?action=admin&amp;todo=tippuseredit&amp;save=-1">Neuen Tipper anlegen</a>
-</th>
 </th>
 </tr>
 </table>

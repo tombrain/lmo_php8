@@ -484,9 +484,7 @@
 483=Modo Imprimir
 484=Deseja criar uma vista de impressão?
 485=Estatísticas dos jogadores
-486=Deseja mostrar as entradas nas estatísticas dos jogadores? (Necessário activar para cada campeonato individualmente!)
 487=Apostas
-488=Deseja mostrar as apostas?
 489=Estatísticas dos golos
 490=Do you want to show betting additional goal stats (Total de golos e média de golos)?
 491=Debaixo da classificação

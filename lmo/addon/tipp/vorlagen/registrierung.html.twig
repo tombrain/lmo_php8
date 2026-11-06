@@ -1,0 +1,146 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Registrierung eines neuen Tippers (Lmo\Addon\Tipp\RegistrierungController). Texte sind fertiges HTML; Eingaben und Namen werden maskiert. -#}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+{% if not gespeichert %}
+  <tr>
+    <td colspan="3" align="center">
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="newtipper">
+        <input type="hidden" name="newpage" value="1">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+          <caption>{{ t[13]|raw }}</caption>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[23]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippernick" size="25" maxlength="32" value="{{ werte.nick }}"></td>
+          </tr>
+{% if realname %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[14]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippervorname" size="25" maxlength="32" value="{{ werte.vorname }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[15]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippernachname" size="25" maxlength="32" value="{{ werte.nachname }}"></td>
+          </tr>
+{% endif %}
+{% if mitAdresse %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[126]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtipperstrasse" size="25" maxlength="32" value="{{ werte.strasse }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[127]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtipperplz" size="7" maxlength="5" value="{{ werte.plz }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[128]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtipperort" size="25" maxlength="32" value="{{ werte.ort }}"></td>
+          </tr>
+{% endif %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ t[16]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtipperemail" size="25" maxlength="64" value="{{ werte.email }}"></td>
+          </tr>
+{% if mitCode %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right"><acronym title="{{ t[300]|raw }}">&nbsp;{{ t[16]|raw }}&nbsp;{{ t[19]|raw }}</acronym></td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtipperemail2" size="25" maxlength="64" value="{{ werte.email2 }}"></td>
+          </tr>
+{% else %}
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ text[308]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="password" name="xtipperpass" size="25" maxlength="32" value="{{ werte.kennwort }}"></td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="right">&nbsp;{{ text[308]|raw }}&nbsp;{{ t[19]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="password" name="xtipperpassw" size="25" maxlength="32" value="{{ werte.wiederholt }}"></td>
+          </tr>
+{% endif %}
+{% if team %}
+          <tr>
+            <th align="left" colspan="3">{{ t[47]|raw }}</th>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td colspan="2" align="left"><input type="radio" name="xtippervereinradio" value="0"{% if vereinswahl == 0 %} checked{% endif %}>{{ t[50]|raw }}</td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="left"><input type="radio" name="xtippervereinradio" value="1"{% if vereinswahl == 1 %} checked{% endif %}>{{ t[48]|raw }}</td>
+            <td align="left">
+              <select name="xtippervereinalt" onChange="xtippervereinradio[1].checked=true">
+                <option value=""{% if vereinAlt == '' %} selected{% endif %}>{{ t[51]|raw }}</option>
+{% for verein in vereine %}
+  <option value="{{ verein.name }}"{% if vereinAlt == verein.name %} selected{% endif %}>{{ verein.name }} [{{ verein.tipper }}]</option>
+{% endfor %}
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td align="left"><input type="radio" name="xtippervereinradio" value="2"{% if vereinswahl == 2 %} checked{% endif %}>{{ t[49]|raw }}</td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippervereinneu" size="25" maxlength="32" value="{{ werte.vereinNeu }}" onFocus="xtippervereinradio[2].checked=true"></td>
+          </tr>
+{% endif %}
+          <tr>
+            <th align="left" colspan="3">{{ t[18]|raw }}</th>
+          </tr>
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td colspan="2" align="left">
+{%- for liga in ligen %}
+<input type="checkbox" name="xtipperligen[]" value="{{ liga.datei }}"{% if liga.angekreuzt %}checked{% endif %}>{{ liga.name }}<br>
+{%- else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endfor %}</td>
+          </tr>
+          <tr>
+            <td align="center" colspan="3"><input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ t[11]|raw }}"></td>
+          </tr>
+          <tr>
+            <td align="left" class="lmoFooter" colspan="3"><a href="{{ adresse|raw }}?action=tipp" title="{{ t[110]|raw }}">« {{ t[110]|raw }}</a></td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+{% else %}
+  <tr>
+    <td align="center">
+      <table width="100%" class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <caption>{{ t[13]|raw }}</caption>
+        <tr>
+          <td align="center"><p class="message"><img src="{{ bilder|raw }}/right.svg" border="0" width="20" alt=""> {{ t[20]|raw }}</p></td>
+        </tr>
+        <tr>
+          <td class="lmoFooter" align="right"><a href="{{ adresse|raw }}?action=tipp&amp;todo=logout&amp;">« {{ t[21]|raw }}</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+{% endif %}
+</table>

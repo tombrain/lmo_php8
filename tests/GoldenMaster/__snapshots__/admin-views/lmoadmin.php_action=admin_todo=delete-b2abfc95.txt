@@ -40,7 +40,7 @@
 <td class="nobr" align="left">
 <ul>
 <li>
-<a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete&amp;del=1&amp;dfile=ligen/1l_2024-25.l98" onclick="return dellmolink(this.href, 1. Bundesliga 2024/25">1. Bundesliga 2024/25</a>
+<a href="/lmo/lmoadmin.php?action=admin&amp;todo=delete&amp;del=1&amp;dfile=ligen/1l_2024-25.l98" onclick="return dellmolink(this.href, &quot;1. Bundesliga 2024/25&quot;);">1. Bundesliga 2024/25</a>
 </li>
 </ul>
 </td>

@@ -18,7 +18,6 @@
   */
 
 require_once(__DIR__ . '/../../init.php');
-require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
 
 $template_folder = PATH_TO_TEMPLATEDIR . '/mini/';
 
@@ -117,60 +116,66 @@ if (!file_exists($mini_cache_filename) ||
 
     $template = new LMO_Template($template_folder);  // folder
     $template->loadTemplatefile($mini_template);
+    // die Spiele der Liga (Lmo\Liga\Begegnungen; bis 4.5 die Classlib), Mannschaften als Nummern
     $team_a = NULL;
     $team_b = NULL;
     $partie = NULL;
     $lastPartie = NULL;
-    $liga = new liga();
     $showLastGame = true;
-    if ($file && $liga->loadFile(PATH_TO_LMO . '/' . $dirliga . $file) == true) {
+    $lmo_mini_bilder = new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR);
+    $lmo_mini_datei = PATH_TO_LMO . '/' . $dirliga . $file;
+    $lmo_mini_rohdaten = $file && file_exists($lmo_mini_datei) && !is_dir($lmo_mini_datei) ? \Lmo\Liga\Rohdaten\Liga::lies($lmo_mini_datei) : null;
+    $liga = $lmo_mini_rohdaten !== null ? \Lmo\Liga\Begegnungen::aus($lmo_mini_rohdaten) : null;
+    if ($liga !== null && $lmo_mini_rohdaten !== null) {
+        $lmo_mini_favorit = $liga->mannschaft((string)$lmo_mini_rohdaten->einstellungen()->wert('favTeam'));
         if (!is_null($a)) {
-            $team_a = $liga->teamForNumber($a);
-        } elseif (is_null($team_a = $liga->teamForNumber($liga->options->keyValues['favTeam']))) {
+            $team_a = $liga->mannschaft($a);
+        } elseif (is_null($team_a = $lmo_mini_favorit)) {
             echo getMessage($text['mini'][8], true);
             exit;
         }
 
-        if (is_null($team_b = $liga->teamForNumber($b))) {
+        if (is_null($team_b = $liga->mannschaft($b))) {
             // We determine the nearest opponent of team 'a' if team 'b' is not specified
-            $sortedGames = $liga->gamesSortedForTeam($team_a, false);  // Only sort by time regardless of game day
             $now = time();
             $showLastGame = true;
-            foreach ($sortedGames as $game) {
-                if ($now < $game['partie']->zeit) {  // find the last game
-                    $partie = $game['partie'];
+            // ohne Mannschaft a (ungueltige Nummer) die Spiele der Lieblingsmannschaft, wie bis 4.5
+            $lmo_mini_fuer = $team_a ?? $lmo_mini_favorit;
+            foreach ($lmo_mini_fuer === null ? array() : $liga->nachZeit($lmo_mini_fuer) as $game) {  // Only sort by time regardless of game day
+                if ($now < $game->zeit) {  // find the last game
+                    $partie = $game;
                     $template->setVariable('gameTxt', $text['mini'][1]);  // There is a future game
                     $template->setVariable('gameNote', $partie->notiz);
                     break;  // found an opponent
                 }
-                $lastPartie = $game['partie'];
+                $lastPartie = $game;
             }
             if (!isset($partie)) {  // No more games found, so show last game (season ended)
                 $partie = $lastPartie;
-                unset($lastPartie);
+                $lastPartie = NULL;
                 $showLastGame = false;
                 $template->setVariable('gameTxt', $text['mini'][2]);
             } else {
                 $showLastGame = true;
             }
 
-            if ($partie->heim == $team_a) {
-                $team_b = $partie->gast;
-            } else {
-                $team_b = $partie->heim;
+            if (isset($partie)) {
+                $team_b = $partie->heim == $team_a ? $partie->gast : $partie->heim;
             }
         } else {  // Team 'a' and 'b' were specified so show the result of this game
-            $partie = $liga->partieForTeams($team_a, $team_b);
+            $partie = $team_a === null ? NULL : ($liga->zwischen($team_a, $team_b, false)[0] ?? NULL);
             $template->setVariable('gameTxt', $text['mini'][3]);
         }
 
         if (isset($partie)) {
-            $template->setVariable('gameDate', $partie->datumString());
-            $template->setVariable('gameTime', $partie->zeitString());
-            $template->setVariable('ligaDatum', $text['mini'][14] . ': ' . $liga->ligaDatumAsString('d.m.Y'));
+            $heim = $liga->daten($partie->heim);
+            $gast = $liga->daten($partie->gast);
+            $template->setVariable('gameDate', $partie->datum());
+            $template->setVariable('gameTime', $partie->uhrzeit());
+            $template->setVariable('ligaDatum', $text['mini'][14] . ': ' . date('d.m.Y', (int)filemtime($lmo_mini_datei)));
 
             $now = time();
-            $gameDateTime = $partie->zeit;
+            $gameDateTime = (int)$partie->zeit;
             $days = floor(($gameDateTime - $now) / 86400);
             $rest = ($gameDateTime - $now) - ($days * 86400);
             $hours = floor($rest / 3600);
@@ -179,108 +184,113 @@ if (!file_exists($mini_cache_filename) ||
             $rest = $rest - ($minutes * 60);
             $template->setVariable('countDown', $text['mini'][15] . ': ' . $days . ', ' . $text['mini'][16] . ': ' . $hours . ', ' . $text['mini'][17] . ': ' . $minutes);
 
-            $template->setVariable('copy', str_replace('CLASSLIB_VERSION', CLASSLIB_VERSION, $text['mini'][0]));
-            $template->setVariable('imgHomeSmall', HTML_icon($partie->heim->name, 'teams', 'small'));
-            $template->setVariable('imgHomeMiddle', HTML_icon($partie->heim->name, 'teams', 'middle'));
-            $template->setVariable('imgHomeBig', HTML_icon($partie->heim->name, 'teams', 'big'));
-            $template->setVariable('imgGuestSmall', HTML_icon($partie->gast->name, 'teams', 'small'));
-            $template->setVariable('imgGuestMiddle', HTML_icon($partie->gast->name, 'teams', 'middle'));
-            $template->setVariable('imgGuestBig', HTML_icon($partie->gast->name, 'teams', 'big'));
+            // die Fusszeile (bis 4.5 mit der Version der Classlib)
+            $template->setVariable('copy', $text['mini'][0]);
+            $template->setVariable('imgHomeSmall', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'small'));
+            $template->setVariable('imgHomeMiddle', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'middle'));
+            $template->setVariable('imgHomeBig', $lmo_mini_bilder->bild((string)$heim->name, 'teams', 'big'));
+            $template->setVariable('imgGuestSmall', $lmo_mini_bilder->bild((string)$gast->name, 'teams', 'small'));
+            $template->setVariable('imgGuestMiddle', $lmo_mini_bilder->bild((string)$gast->name, 'teams', 'middle'));
+            $template->setVariable('imgGuestBig', $lmo_mini_bilder->bild((string)$gast->name, 'teams', 'big'));
 
-            $template->setVariable('homeName', $partie->heim->name);
-            $template->setVariable('guestName', $partie->gast->name);
-            $template->setVariable('homeNameMiddle', $partie->heim->mittel);
-            $template->setVariable('guestNameMiddle', $partie->gast->mittel);
-            $template->setVariable('homeNameShort', $partie->heim->kurz);
-            $template->setVariable('guestNameShort', $partie->gast->kurz);
+            $template->setVariable('homeName', (string)$heim->name);
+            $template->setVariable('guestName', (string)$gast->name);
+            $template->setVariable('homeNameMiddle', (string)$heim->mittel);
+            $template->setVariable('guestNameMiddle', (string)$gast->mittel);
+            $template->setVariable('homeNameShort', (string)$heim->kurz);
+            $template->setVariable('guestNameShort', (string)$gast->kurz);
 
             if (!$showLastGame) {
-                $template->setVariable('homeTore', $partie->hToreString());
-                $template->setVariable('guestTore', $partie->gToreString());
+                $template->setVariable('homeTore', $partie->toreHeimText());
+                $template->setVariable('guestTore', $partie->toreGastText());
             }
 
             // previous game
             if (isset($lastPartie)) {
+                $vorherHeim = $liga->daten($lastPartie->heim);
+                $vorherGast = $liga->daten($lastPartie->gast);
                 $template->setCurrentBlock('previous');
-                $template->setVariable('previous_gameDate', $lastPartie->datumString());
-                $template->setVariable('previous_gameTime', $lastPartie->zeitString());
+                $template->setVariable('previous_gameDate', $lastPartie->datum());
+                $template->setVariable('previous_gameTime', $lastPartie->uhrzeit());
                 $template->setVariable('previous_gameNote', $lastPartie->notiz);
-                $template->setVariable('previous_imgHomeSmall', HTML_icon($lastPartie->heim->name, 'teams', 'small'));
-                $template->setVariable('previous_imgHomeMiddle', HTML_icon($lastPartie->heim->name, 'teams', 'middle'));
-                $template->setVariable('previous_imgHomeBig', HTML_icon($lastPartie->heim->name, 'teams', 'big'));
-                $template->setVariable('previous_imgGuestSmall', HTML_icon($lastPartie->gast->name, 'teams', 'small'));
-                $template->setVariable('previous_imgGuestMiddle', HTML_icon($lastPartie->gast->name, 'teams', 'middle'));
-                $template->setVariable('previous_imgGuestBig', HTML_icon($lastPartie->gast->name, 'teams', 'big'));
+                $template->setVariable('previous_imgHomeSmall', $lmo_mini_bilder->bild((string)$vorherHeim->name, 'teams', 'small'));
+                $template->setVariable('previous_imgHomeMiddle', $lmo_mini_bilder->bild((string)$vorherHeim->name, 'teams', 'middle'));
+                $template->setVariable('previous_imgHomeBig', $lmo_mini_bilder->bild((string)$vorherHeim->name, 'teams', 'big'));
+                $template->setVariable('previous_imgGuestSmall', $lmo_mini_bilder->bild((string)$vorherGast->name, 'teams', 'small'));
+                $template->setVariable('previous_imgGuestMiddle', $lmo_mini_bilder->bild((string)$vorherGast->name, 'teams', 'middle'));
+                $template->setVariable('previous_imgGuestBig', $lmo_mini_bilder->bild((string)$vorherGast->name, 'teams', 'big'));
 
-                $template->setVariable('previous_homeName', $lastPartie->heim->name);
-                $template->setVariable('previous_guestName', $lastPartie->gast->name);
-                $template->setVariable('previous_homeNameMiddle', $lastPartie->heim->mittel);
-                $template->setVariable('previous_guestNameMiddle', $lastPartie->gast->mittel);
-                $template->setVariable('previous_homeNameShort', $lastPartie->heim->kurz);
-                $template->setVariable('previous_guestNameShort', $lastPartie->gast->kurz);
+                $template->setVariable('previous_homeName', (string)$vorherHeim->name);
+                $template->setVariable('previous_guestName', (string)$vorherGast->name);
+                $template->setVariable('previous_homeNameMiddle', (string)$vorherHeim->mittel);
+                $template->setVariable('previous_guestNameMiddle', (string)$vorherGast->mittel);
+                $template->setVariable('previous_homeNameShort', (string)$vorherHeim->kurz);
+                $template->setVariable('previous_guestNameShort', (string)$vorherGast->kurz);
 
-                $template->setVariable('previous_hTore', $lastPartie->hToreString());
-                $template->setVariable('previous_gTore', $lastPartie->gToreString());
+                $template->setVariable('previous_hTore', $lastPartie->toreHeimText());
+                $template->setVariable('previous_gTore', $lastPartie->toreGastText());
                 $template->setVariable('previous_gameTxt', $text['mini'][7]);
                 $template->parseCurrentBlock();
             }
 
-            $dataArray = array();
             $archivPaarungen = array();
             $archivSortDummy = array();
             // determine games of the current league
-
-            $spiele = $liga->allPartieForTeams($team_a, $team_b, true);
-            foreach($spiele ?? array() as $spiel) {  // null: die beiden treffen in dieser Liga nie aufeinander
-                if ($spiel->hTore != -1 && $spiel->gTore != -1) {
+            $nameB = (string)$liga->daten((int)$team_b)->name;
+            foreach ($team_a === null || $team_b === null ? array() : $liga->zwischen($team_a, $team_b, true) as $spiel) {
+                if ($spiel->toreHeim != -1 && $spiel->toreGast != -1) {
                     $archivSortDummy[] = $spiel->zeit;
-                    if ($spiel->heim == $team_a) {
-                        $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $text['mini'][13], 'partie' => $spiel, 'match' => NULL);
-                    } else {
-                        $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $text['mini'][12], 'partie' => $spiel, 'match' => NULL);
+                    $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $spiel->heim == $team_a ? $text['mini'][13] : $text['mini'][12], 'partie' => $spiel, 'match' => NULL);
+                }
+            }
+
+            // Read archive folder (die Ligadateien darin in der Reihenfolge des Verzeichnisses)
+            $lmo_mini_archiv = PATH_TO_LMO . '/' . $dirliga . $archivFolder;
+            $dataArray = array();
+            if ($mini_withArchiv == 1) {
+                if (!file_exists($lmo_mini_archiv)) {
+                    echo getMessage($text['mini'][6].' '.$lmo_mini_archiv, true);
+                } else {
+                    $lmo_mini_verzeichnis = dir($lmo_mini_archiv);
+                    while ($lmo_mini_verzeichnis && ($data = $lmo_mini_verzeichnis->read()) !== false) {
+                        $punkt = strrpos($data, '.');
+                        if ($punkt !== false && strtolower(substr($data, $punkt + 1)) == 'l98') {
+                            $dataArray[] = $lmo_mini_verzeichnis->path . $data;
+                        }
+                    }
+                    if ($lmo_mini_verzeichnis) {
+                        $lmo_mini_verzeichnis->close();
                     }
                 }
             }
 
-            // Read archive folder
-
-            if ($mini_withArchiv == 1 && readLigaDir(PATH_TO_LMO . '/' . $dirliga . $archivFolder, $dataArray) == false) {
-                echo getMessage($text['mini'][6].' '.PATH_TO_LMO . '/' . $dirliga . $archivFolder, true);
-            }
-
+            $nameA = (string)$liga->daten((int)$team_a)->name;
             foreach ($dataArray as $ligaFile) {
-                if ($ligaFile['path'] . $ligaFile['src'] != PATH_TO_LMO . '/' . $dirliga . $file) {
-                    $newLiga = new liga();
-                    if ($newLiga->loadFile($ligaFile['path'] . $ligaFile['src']) == true) {
-
-                        $teamNames = $newLiga->teamNames();
-                        $newTeam_a = $newLiga->teamForName($team_a->name);
-                        $seachNames = $mini_unGreedy == 1 ? findTeamName($teamNames, $team_b->name) : NULL;  // ungreedy Searching
-                        if (isset($seachNames) && count($seachNames) == 1) {
-                            $newTeam_b = $newLiga->teamForName($seachNames[0]);// Ungreedy Searching was successful
-                            $match = $seachNames[0];
-                        } else {
-                            $newTeam_b = $newLiga->teamForName($team_b->name);// Searching was too imprecise (more than one result)
-                            $match = NULL;
-                        }
-                        if (!is_null($newTeam_a) && !is_null($newTeam_b)) {
-                            $spiele = $newLiga->allPartieForTeams($newTeam_a, $newTeam_b, true);
-                            foreach($spiele ?? array() as $spiel) {  // null: die beiden treffen in dieser Liga nie aufeinander
-                                if ($spiel->hTore != -1 && $spiel->gTore != -1) {
-                                    $archivSortDummy[] = $spiel->zeit;
-                                    if ($spiel->heim == $newTeam_a) {
-                                        $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $text['mini'][13], 'partie' => $spiel, 'match' => $match);
-                                    } else {
-                                        $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $text['mini'][12], 'partie' => $spiel, 'match' => $match);
-                                    }
-                                }
+                if ($ligaFile != $lmo_mini_datei && is_file($ligaFile)) {
+                    $newLiga = \Lmo\Liga\Begegnungen::aus(\Lmo\Liga\Rohdaten\Liga::lies($ligaFile));
+                    $newTeam_a = $newLiga->mannschaftNamens($nameA);
+                    $seachNames = $mini_unGreedy == 1 ? \Lmo\Liga\Begegnungen::aehnlicheNamen($newLiga->namen(), $nameB) : NULL;  // ungreedy Searching
+                    if (isset($seachNames) && count($seachNames) == 1) {
+                        $newTeam_b = $newLiga->mannschaftNamens($seachNames[0]);  // Ungreedy Searching was successful
+                        $match = $seachNames[0];
+                    } else {
+                        $newTeam_b = $newLiga->mannschaftNamens($nameB);  // Searching was too imprecise (more than one result)
+                        $match = NULL;
+                    }
+                    if (!is_null($newTeam_a) && !is_null($newTeam_b)) {
+                        foreach ($newLiga->zwischen($newTeam_a, $newTeam_b, true) as $spiel) {
+                            if ($spiel->toreHeim != -1 && $spiel->toreGast != -1) {
+                                $archivSortDummy[] = $spiel->zeit;
+                                $archivPaarungen[] = array('time' => $spiel->zeit, 'where' => $spiel->heim == $newTeam_a ? $text['mini'][13] : $text['mini'][12], 'partie' => $spiel, 'match' => $match);
                             }
                         }
                     }
                 }
-                unset($newLiga);
             }
-            array_multisort($archivSortDummy, SORT_DESC, $archivPaarungen);
+            // die neuesten zuerst
+            $lmo_mini_reihenfolge = array_keys($archivPaarungen);
+            usort($lmo_mini_reihenfolge, static fn (int $x, int $y): int => array($archivSortDummy[$y], $archivPaarungen[$y]['where']) <=> array($archivSortDummy[$x], $archivPaarungen[$x]['where']));
+            $archivPaarungen = array_map(static fn (int $i): array => $archivPaarungen[$i], $lmo_mini_reihenfolge);
 
             $spAnzahl = count($archivPaarungen);
 
@@ -289,38 +299,38 @@ if (!file_exists($mini_cache_filename) ||
             $lostCount = $drawCount = $winCount = 0;
 
             foreach ($archivPaarungen as $paarung) {
-                $template->setVariable('date', $paarung['partie']->datumString());
-                $template->setVariable('hTore', $paarung['partie']->hToreString());
-                $template->setVariable('gTore', $paarung['partie']->gToreString());
+                $template->setVariable('date', $paarung['partie']->datum());
+                $template->setVariable('hTore', $paarung['partie']->toreHeimText());
+                $template->setVariable('gTore', $paarung['partie']->toreGastText());
                 $template->setVariable('where', $paarung['where']);
-                if (isset($paarung['match']) && strtolower($paarung['match']) != strtolower($team_b->name)) {
+                if (isset($paarung['match']) && strtolower($paarung['match']) != strtolower($nameB)) {
                     $template->setVariable('matchingName', '<acronym title="' . $paarung['match'] . '">*</acronym>');
                 }
-                $valuate = $paarung['partie']->valuateGame();
+                $valuate = $paarung['partie']->wertung();
                 if ($paarung['where'] == $text['mini'][13] && $valuate == 1) {
                     $template->setVariable('class', 'win');
-                    $template->setVariable('hTore', $paarung['partie']->hToreString());
-                    $template->setVariable('gTore', $paarung['partie']->gToreString());
+                    $template->setVariable('hTore', $paarung['partie']->toreHeimText());
+                    $template->setVariable('gTore', $paarung['partie']->toreGastText());
                     $winCount++;
                 } elseif ($paarung['where'] == $text['mini'][12] && $valuate == 2) {
                     $template->setVariable('class', 'win');
-                    $template->setVariable('hTore', $paarung['partie']->gToreString());
-                    $template->setVariable('gTore', $paarung['partie']->hToreString());
+                    $template->setVariable('hTore', $paarung['partie']->toreGastText());
+                    $template->setVariable('gTore', $paarung['partie']->toreHeimText());
                     $winCount++;
                 } elseif ($paarung['where'] == $text['mini'][13] && $valuate == 2) {
                     $template->setVariable('class', 'lost');
-                    $template->setVariable('hTore', $paarung['partie']->hToreString());
-                    $template->setVariable('gTore', $paarung['partie']->gToreString());
+                    $template->setVariable('hTore', $paarung['partie']->toreHeimText());
+                    $template->setVariable('gTore', $paarung['partie']->toreGastText());
                     $lostCount++;
                 } elseif ($paarung['where'] == $text['mini'][12] && $valuate == 1) {
                     $template->setVariable('class', 'lost');
-                    $template->setVariable('hTore', $paarung['partie']->gToreString());
-                    $template->setVariable('gTore', $paarung['partie']->hToreString());
+                    $template->setVariable('hTore', $paarung['partie']->toreGastText());
+                    $template->setVariable('gTore', $paarung['partie']->toreHeimText());
                     $lostCount++;
                 } elseif ($valuate == 0) {
                     $template->setVariable('class', 'draw');
-                    $template->setVariable('hTore', $paarung['partie']->hToreString());
-                    $template->setVariable('gTore', $paarung['partie']->gToreString());
+                    $template->setVariable('hTore', $paarung['partie']->toreHeimText());
+                    $template->setVariable('gTore', $paarung['partie']->toreGastText());
                     $drawCount++;
                 } else {
                     $template->setVariable('class', 'noResult');

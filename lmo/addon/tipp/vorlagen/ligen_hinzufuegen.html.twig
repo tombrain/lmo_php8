@@ -1,0 +1,40 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Ligen hinzufuegen (Lmo\Addon\Tipp\KontoController). -#}
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+  <caption>{{ tipper|raw }}</caption>
+  <tr>
+    <th align="center">{{ t[135]|raw }}</th>
+  </tr>
+  <tr>
+    <td align="left">{% if not gespeichert %}
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="newligen">
+        <input type="hidden" name="newpage" value="1">
+{% include 'ligen_liste.html.twig' %}
+{% if ligen is not empty %}
+        <input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ t[11]|raw }}">
+{% endif %}
+      </form>{% endif %}
+    </td>
+  </tr>
+{% if gespeichert %}
+  <tr>
+    <td align="center"><p class="message"><img src="{{ bilder|raw }}/right.svg" border="0" width="20" alt=""> {{ t[20]|raw }}</p></td>
+  </tr>
+{% endif %}
+{% if gespeichert or ligen is empty %}
+  <tr>
+    <td class="lmoFooter" align="right"><a href="{{ adresse|raw }}?action=tipp&amp;todo=">{{ text[5]|raw }} {{ t[1]|raw }}</a></td>
+  </tr>
+{% endif %}
+</table>

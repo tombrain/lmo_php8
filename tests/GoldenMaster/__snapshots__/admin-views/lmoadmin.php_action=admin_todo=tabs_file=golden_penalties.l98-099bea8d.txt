@@ -112,8 +112,8 @@
 <th style="text-align:center">
 <acronym title="Niederlage">n</acronym>
 </th>
-<th style="text-align:"left" width="2">&nbsp;</th>
-<th style="text-align:"left" colspan="3" align="center">Tore</th>
+<th style="text-align:left" width="2">&nbsp;</th>
+<th colspan="3" align="center">Tore</th>
 <th align="right">Diff.</th>
 <th>&nbsp;</th>
 <th colspan="3" style="text-align:center">Pkt.</th>
@@ -171,7 +171,7 @@
 <td class="nobr">Mannschaft 4</td>
 <td>&nbsp;</td>
 <td>
-<a href='#' onclick="alert('');window.focus();return false;">
+<a href='#' onclick="alert(&quot;Mannschaft 4\nStraf-/Bonustore: -2:0 (ab ST 3)&quot;);window.focus();return false;">
 <img src='http://lmo.test/lmo/img/lmo-st2.svg' height='15' border='0' alt=''>
 <span class='popup'>
 <strong>Mannschaft 4</strong>
@@ -216,7 +216,7 @@
 <td class="nobr">Mannschaft 3</td>
 <td>&nbsp;</td>
 <td>
-<a href='#' onclick="alert('');window.focus();return false;">
+<a href='#' onclick="alert(&quot;Mannschaft 3\n\nStraf-/Bonuspunkte: -6:-6 (ab ST 9)\nStraf-/Bonustore: +2:-4 (ab ST 9)&quot;);window.focus();return false;">
 <img src='http://lmo.test/lmo/img/lmo-st2.svg' height='15' border='0' alt=''>
 <span class='popup'>
 <strong>Mannschaft 3</strong>
@@ -263,7 +263,7 @@
 <td class="nobr">Mannschaft 1</td>
 <td>&nbsp;</td>
 <td>
-<a href='#' onclick="alert('');window.focus();return false;">
+<a href='#' onclick="alert(&quot;Mannschaft 1\n\nStraf-/Bonuspunkte: -3:0&quot;);window.focus();return false;">
 <img src='http://lmo.test/lmo/img/lmo-st2.svg' height='15' border='0' alt=''>
 <span class='popup'>
 <strong>Mannschaft 1</strong>
@@ -346,7 +346,7 @@
 <td class="nobr">Mannschaft 2</td>
 <td>&nbsp;</td>
 <td>
-<a href='#' onclick="alert('');window.focus();return false;">
+<a href='#' onclick="alert(&quot;Mannschaft 2\n\nStraf-/Bonuspunkte: +2:+1 (ab ST 5)\nStraf-/Bonustore: -3:-1 (ab ST 5)&quot;);window.focus();return false;">
 <img src='http://lmo.test/lmo/img/lmo-st2.svg' height='15' border='0' alt=''>
 <span class='popup'>
 <strong>Mannschaft 2</strong>
@@ -454,7 +454,7 @@
 <tr>
 <th style="text-align:center" colspan="16">
 <input title="Klicken Sie hier, um Ihre Änderungen zu speichern" class="lmo-formular-button" type="submit" name="best" value="manuelle Tabelle speichern">
-</td>
+</th>
 </tr>
 </table>
 </form>

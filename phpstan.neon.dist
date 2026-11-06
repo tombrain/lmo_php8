@@ -3,9 +3,9 @@
 # Aufruf: composer phpstan  bzw.  docker compose run --rm phpstan
 parameters:
     level: 0
-    # der LMO laeuft auf PHP 8.0 bis 8.5
+    # der LMO laeuft auf PHP 8.1 bis 8.5
     phpVersion:
-        min: 80000
+        min: 80100
         max: 80599
     paths:
         - lmo

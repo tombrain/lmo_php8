@@ -97,6 +97,18 @@ final class AdminClient
         $this->state = StateTracker::read($this->instance->path());
     }
 
+    /** Die letzte Antwort, wie sie kam (etwa ein Bild), ohne Normalisierung. */
+    public function roh(): string
+    {
+        return $this->lastRaw;
+    }
+
+    /** Die Sitzungs-ID, mit der die naechste Anfrage kommt ('' vor der ersten) */
+    public function sitzungsId(): string
+    {
+        return $this->sid;
+    }
+
     public function instance(): Instance
     {
         return $this->instance;

@@ -1,10 +1,14 @@
 # Neuer Code auf Stufe 8. Dateien, die typisiert und ohne globale Variablen geschrieben sind, hier eintragen.
 parameters:
-    level: 8
+    level: max
     phpVersion:
-        min: 80000
+        min: 80100
         max: 80599
     paths:
         - src
+        - lmo/addon/spieler/src
+        - lmo/addon/ticker/src
+        - lmo/addon/tipp/src
+        - lmo/addon/viewer/src
         - bin/lmo-install
         - lmo/lmo-version.php

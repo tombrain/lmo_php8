@@ -1,0 +1,55 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Rahmen der oeffentlichen Seiten (Lmo\Web\Rahmen), Nachfolger von template/lmo-standard-komplett.tpl.php. Alle Teile sind fertiges HTML. -#}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="{{ teile.HTML_LANG|raw }}">
+<head>
+<title>{{ teile.Titel|raw }}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{{ teile.Stylesheet|raw }}
+</head>
+<body>
+  <div align="center">
+    <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <td colspan="2" align="center"><h1>{{ teile.Titel|raw }}</h1></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">{{ teile.Newsticker|raw }}</td>
+      </tr>
+      <tr>
+        <td class="lmoMenu" align="left">{{ teile.Kalender|raw }}{{ teile.Ergebnisse|raw }}{{ teile.Tabelle|raw }}{{ teile.Spielplan|raw }}{{ teile.Kreuztabelle|raw }}{{ teile.Fieberkurve|raw }}{{ teile.Ligastatistik|raw }}{{ teile.Spielerstatistik|raw }}{{ teile.Tippspiel|raw }}&nbsp;&nbsp;<td class="lmoMenu" align="right">{{ teile.Info|raw }}</td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">{{ teile.Hauptteil|raw }}</td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">{{ teile.Savehtml|raw }}</td>
+      </tr>
+      <tr>
+        <td class="lmoFooter" colspan="2" align="left">{{ teile.Sprachauswahl|raw }}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="bottom" align="left">{{ teile.Ligenuebersicht|raw }}</td>
+              <td class="lmoFooter" valign="bottom" align="right">{{ teile.LetzteAuswertung|raw }}<br>{{ teile.Berechnungszeit|raw }}{{ teile.Infolink|raw }}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+{{ teile.Javascript|raw }}
+</body>
+</html>

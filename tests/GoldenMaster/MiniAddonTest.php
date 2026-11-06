@@ -14,8 +14,8 @@ use PHPUnit\Framework\TestCase;
  * Addon "mini": Minitabelle (lmo-minitab.php) und Mini-Spielplan (lmo-mininext.php), direkt
  * aufgerufen wie in einem IFRAME.
  *
- * Die Minitabelle rechnet mit der classlib, die Haupttabelle mit lmo-calctable.php: beide muessen
- * dieselbe Tabelle zeigen. Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
+ * Die Minitabelle und die Haupttabelle muessen dieselbe Tabelle zeigen (bis 4.5 rechnete die
+ * Minitabelle mit der Classlib). Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
  */
 final class MiniAddonTest extends TestCase
 {
@@ -147,6 +147,52 @@ final class MiniAddonTest extends TestCase
     {
         // Mannschaft gegen sich selbst: diese Paarung gibt es in keinem Spielplan
         self::assertSame([], self::previousMatches('file=golden/basic.l98&a=1&b=1&mini_withArchiv=0'));
+    }
+
+    /**
+     * Mit Cache (CacheTable=1) zeigt jeder Ausschnitt seine Plaetze, und ein zweiter Aufruf kommt
+     * aus dem Cache. Bis 4.5 griff der Cache nie (die erste Zeile endete nicht) und haette den
+     * Ausschnitt nicht beachtet.
+     */
+    public function testCacheBeachtetDenAusschnitt(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        file_put_contents($cfg, (string)preg_replace('/^CacheTable=.*$/m', 'CacheTable=1', $vorher));
+        $cache = self::$app->path() . '/output/basic.l98-standard.cache';
+        $plaetze = static function (string $platz): array {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=' . $platz . '&mini_ueber=1&mini_unter=1');
+            preg_match_all('~<td align="center"><strong>(\d+)</strong></td>~', $html, $treffer);
+            return $treffer[1];
+        };
+        try {
+            self::assertSame(['4', '5', '6'], $plaetze('5'));
+            self::assertFileExists($cache);
+            self::assertStringEndsWith('|1|1|5', explode("\n", (string)file_get_contents($cache))[0], 'der Ausschnitt im Schluessel');
+            self::assertSame(['1', '2', '3'], $plaetze('1'), 'ein anderer Ausschnitt nicht aus dem Cache');
+            file_put_contents($cache, (string)preg_replace('~<strong>2</strong>~', '<strong>99</strong>', (string)file_get_contents($cache)));
+            self::assertSame(['1', '99', '3'], $plaetze('1'), 'derselbe Ausschnitt aus dem Cache');
+        } finally {
+            file_put_contents($cfg, $vorher);
+            @unlink($cache);
+        }
+    }
+
+    /** Gestreifte Tabelle (stripedTable): abwechselnd die beiden Farben, ohne "\n" im Stil (bis 4.5 mit). */
+    public function testGestreifteTabelle(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        // in Anfuehrungszeichen, sonst schneidet das Einlesen den Wert beim ";" ab
+        file_put_contents($cfg, $vorher . "stripedTable=\"#111;#222\"\n");
+        try {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=5&mini_ueber=1&mini_unter=1');
+        } finally {
+            file_put_contents($cfg, $vorher);
+        }
+
+        self::assertStringContainsString('background-color: #222;', $html);
+        self::assertStringNotContainsString('\n', $html);
     }
 
     public function testMissingArchiveFolderShowsMessage(): void

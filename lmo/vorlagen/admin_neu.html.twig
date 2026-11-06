@@ -1,0 +1,190 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Eine neue Liga anlegen (Lmo\Web\Admin\NeuController), bis 4.5 lmo-adminnew.php.
+   Schritte (newpage): 0 Datei, Titel, Typ; 1 Groesse; 2 Spielplan bzw. Spiele je Pokalrunde; 3 angelegt #}
+{% macro zaehler(name, wert, groesse, laenge, auf, klick, titel, bild, bilder) %}
+                    <table cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td class="nobr" align="right">
+                          <input class="lmo-formular-input" type="text" name="{{ name }}" size="{{ groesse }}" maxlength="{{ laenge }}" value="{{ wert }}" onChange="{{ auf }}('{{ name }}',0)" onKeyDown="{{ klick }}('{{ name }}',event.keyCode)">
+                        </td>
+                        <td class="nobr" align="center">
+                          <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td>
+                                <script type="text/javascript">document.write('<a href="#" onclick="{{ auf }}(\'{{ name }}\',1);" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ bild }}a\',img1)" onMouseOut="lmoimg(\'{{ bild }}a\',img0)"><img src="{{ bilder }}/lmo-admin0.gif" name="ximg{{ bild }}a" width="7" height="7" border="0"><\/a>')</script>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <script type="text/javascript">document.write('<a href="#" onclick="{{ auf }}(\'{{ name }}\',-1);" title="{{ titel|raw }}" onMouseOver="lmoimg(\'{{ bild }}b\',img3)" onMouseOut="lmoimg(\'{{ bild }}b\',img2)"><img src="{{ bilder }}/lmo-admin2.gif" name="ximg{{ bild }}b" width="7" height="7" border="0"><\/a>')</script>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+{% endmacro %}
+{% import _self as f %}
+      <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td align="center"><h1>{{ text[243]|raw }}</h1></td>
+        </tr>
+        <tr>
+          <td align="center">
+{% if newpage < 3 %}
+            <form name="lmoedit" action="{{ adresse }}" method="post">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="new">
+              <input type="hidden" name="newpage" value="{{ newpage + 1 }}">
+{% if newpage > 0 %}
+              <input type="hidden" name="xfile" value="{{ xfile }}">
+              <input type="hidden" name="xtitel" value="{{ xtitel }}">
+              <input type="hidden" name="xtype" value="{{ xtype }}">
+{% endif %}
+{% if newpage > 1 %}
+              <input type="hidden" name="xteams" value="{{ xteams }}">
+              <input type="hidden" name="xanzst" value="{{ xanzst }}">
+              <input type="hidden" name="xanzsp" value="{{ xanzsp }}">
+{% endif %}
+{% endif %}
+              <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <th class="nobr" align="left" colspan="3">{{ text[246]|raw }} {{ newpage + 1 }} {{ text[259]|raw }} 4</th>
+                </tr>
+{# Schritt 1: Datei, Titel, Typ #}
+{% if newpage == 0 %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[245]|raw }}">{{ text[244]|raw }}</acronym></td>
+                  <td class="nobr" align="left"><acronym title="{{ text[245]|raw }}">{{ ordner }}<input class="lmo-formular-input" type="text" name="xfile" size="28" maxlength="28" value="{{ xfile }}" onChange="lmofilename()">.l98</acronym></td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[118]|raw }}">{{ text[113]|raw }}</acronym></td>
+                  <td class="nobr" align="left"><acronym title="{{ text[118]|raw }}"><input class="lmo-formular-input" type="text" name="xtitel" size="40" maxlength="60" value="{{ xtitel }}" onChange="lmotitelname()"></acronym></td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[175]|raw }}">{{ text[174]|raw }}</acronym></td>
+                  <td class="nobr" align="left"><acronym title="{{ text[175]|raw }}">
+                    <select class="lmo-formular-input" name="xtype" onChange="dolmoedit()">
+                      <option value="0"{% if xtype == 0 %} selected{% endif %}>{{ text[176]|raw }}</option>
+                      <option value="1"{% if xtype == 1 %} selected{% endif %}>{{ text[177]|raw }}</option>
+                    </select></acronym></td>
+                </tr>
+{% endif %}
+{# Schritt 2: Groesse (Liga) bzw. Mannschaften (Pokal) #}
+{% if newpage == 1 %}
+{% if xtype == 0 %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[272]|raw }}">{{ text[271]|raw }}</acronym></td>
+                  <td class="nobr" align="left">
+{{ f.zaehler('xteams', '18', 2, 2, 'lmoteamauf', 'lmoteamclk', text[273], 't', bilder) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[275]|raw }}">{{ text[274]|raw }}</acronym></td>
+                  <td class="nobr" align="left">
+{{ f.zaehler('xanzst', '34', 3, 3, 'lmoanzstauf', 'lmoanzstclk', text[276], 's', bilder) }}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[278]|raw }}">{{ text[277]|raw }}</acronym></td>
+                  <td class="nobr" align="left">
+{{ f.zaehler('xanzsp', '9', 2, 2, 'lmoanzspauf', 'lmoanzspclk', text[279], 'p', bilder) }}
+                  </td>
+                </tr>
+{% else %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[272]|raw }}">{{ text[271]|raw }}</acronym></td>
+                  <td class="nobr" align="left">
+                    <select class="lmo-formular-input" name="xteams" onChange="dolmoedit()">
+{# 24 stand bisher fest in der Liste und war nie vorausgewaehlt #}
+{% for groesse in pokalgroessen %}
+                <option value="{{ groesse }}"{% if pokalteams == groesse and groesse != 24 %} selected{% endif %}>{{ groesse }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr">&nbsp;</td>
+                  <td class="nobr">{{ text[350]|raw }}</td>
+                </tr>
+{% endif %}
+{% endif %}
+{# Schritt 3: Spielplan (Liga) bzw. Spiele je Runde (Pokal) #}
+{% if newpage == 2 %}
+{% if xtype == 0 %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right" valign="top"><acronym title="{{ text[285]|raw }}">{{ text[284]|raw }}</acronym></td>
+                  <td class="nobr" align="left">
+                    <input type="radio" name="xprogram" value="none"{% if xprogram == 'none' %} checked{% endif %} onChange="dolmoedit()">{{ text[286]|raw }}<br><br>{{ text[287]|raw }}:<br>
+{% for vorlage in vorlagen %}
+                    <input type='radio' name='xprogram' value="{{ vorlage.wert }}"{% if xprogram == vorlage.wert %} checked{% endif %} onChange="dolmoedit()">{{ vorlage.name }}<br>
+{% else %}
+                    <strong>[{{ text[224]|raw }}]</strong><br>
+{% endfor %}
+{% if zufall %}
+                    <br>
+                    <input type="radio" name="xprogram" value="random"{% if xprogram == 'random' %} checked{% endif %} onChange="dolmoedit()">{{ text[288]|raw }}
+{% endif %}
+                  </td>
+                </tr>
+{% else %}
+{% for i in 1..xanzst %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="right"><acronym title="{{ text[352]|raw }}">{{ text[351]|raw }} {{ i }}</acronym></td>
+                  <td class="nobr" align="left">
+                    <select class="lmo-formular-input" name="xmod{{ i }}" onChange="dolmoedit()">
+{% for spiele, nr in pokalmodi %}
+                      <option value="{{ spiele }}"{% if (xmodus[i - 1] ?? null) == spiele %} selected{% endif %}>{{ text[nr]|raw }}</option>
+{% endfor %}
+                    </select>
+                  </td>
+                </tr>
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if newpage < 3 %}
+                <tr>
+                  <td class="lmoFooter" align="left" colspan="2"><a href="{{ adresse }}" onclick="return siklmolink(this.href);" title="{{ text[248]|raw }}">{{ text[247]|raw }}</a></td>
+{% if newpage < 2 %}
+                  <td align="right"><input title="{{ text[261]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[260]|raw }}"></td>
+{% else %}
+                  <td align="right"><input title="{{ text[290]|raw }}" class="lmo-formular-button" type="submit" name="best" value="{{ text[289]|raw }}"></td>
+{% endif %}
+                </tr>
+{% endif %}
+{# angelegt: Link zu den Mannschaften der neuen Liga #}
+{% if newpage == 3 %}
+                <tr>
+                  <td width="20">&nbsp;</td>
+                  <td class="nobr" align="left" colspan="2">&nbsp;<br>{{ text[291]|raw }}<br>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="lmoFooter" colspan="3" align="left">
+                    <a href="{{ adresse }}?action=admin&amp;todo=edit&amp;st=-2&amp;file={{ datei }}" title="{{ text[293]|raw }}">{{ text[292]|raw }}</a>
+                  </td>
+                </tr>
+{% endif %}
+              </table>
+            </form>
+          </td>
+        </tr>
+      </table>
