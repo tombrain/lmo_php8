@@ -137,6 +137,9 @@ L98;
     {
         $client = Fixture::loggedInClient();
         $path = $client->instance()->path();
+        // alle Ligen werden getippt: nur fuer sie gibt es Erinnerungen
+        $cfg = $path . '/config/tipp/cfg.txt';
+        file_put_contents($cfg, (string) preg_replace('/^immeralle=.*$/m', 'immeralle=1', (string) file_get_contents($cfg)));
         // Feld 10 (Index 10) ungleich -1: der Tipper will erinnert werden
         file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
             . "tester|geheim|5|Tina Test|tester@example.org||||1|1|1|EOL\n"
