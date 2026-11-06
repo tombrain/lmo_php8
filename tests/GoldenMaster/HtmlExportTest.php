@@ -4,6 +4,7 @@ namespace Lmo\Tests\GoldenMaster;
 
 use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
 use Lmo\Tests\GoldenMaster\Support\Fixture;
+use Lmo\Tests\GoldenMaster\Support\Normalizer;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * lmo-savehtml.php) und <liga>-sp.html (Spielplan, lmo-savehtml1.php). Die Seiten-Snapshots zeigen
  * nur den Link darauf; hier wird der Inhalt der Dateien festgehalten. Bis 4.5 entstanden sie beim
  * Anzeigen von Ergebnissen oder Tabelle; die Faelle heissen noch nach der Seite von damals.
+ * Verglichen wird das HTML in kanonischer Form (Normalizer::canonical): Leerraum zaehlt nicht.
  */
 final class HtmlExportTest extends TestCase
 {
@@ -60,7 +62,7 @@ final class HtmlExportTest extends TestCase
         $text = '';
         foreach (['-st.html', '-sp.html'] as $endung) {
             $text .= '=== ' . basename($liga) . $endung . " ===\n"
-                . (is_file($ausgabe . $endung) ? str_replace("\r\n", "\n", (string) file_get_contents($ausgabe . $endung)) : '(nicht geschrieben)') . "\n";
+                . (is_file($ausgabe . $endung) ? Normalizer::canonical((string) file_get_contents($ausgabe . $endung)) : '(nicht geschrieben)') . "\n";
         }
         $this->assertMatchesSnapshot('html-export', (string) $this->dataName(), $text);
     }
@@ -80,7 +82,7 @@ final class HtmlExportTest extends TestCase
         $text = '';
         foreach (['-st.html', '-sp.html'] as $endung) {
             self::assertFileExists($ausgabe . $endung);
-            $text .= '=== basic.classlib.l98' . $endung . " ===\n" . str_replace("\r\n", "\n", (string) file_get_contents($ausgabe . $endung)) . "\n";
+            $text .= '=== basic.classlib.l98' . $endung . " ===\n" . Normalizer::canonical((string) file_get_contents($ausgabe . $endung)) . "\n";
         }
         $this->assertMatchesSnapshot('html-export', 'classlib_basic', $text);
     }
