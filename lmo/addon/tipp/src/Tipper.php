@@ -46,10 +46,25 @@ final class Tipper
         return $this->feld(1);
     }
 
-    /** Vor- und Nachname, mit Leerzeichen getrennt */
+    /** Vor- und Nachname, mit Leerzeichen getrennt (bis 4.5 schrieb die Registrierung &nbsp; dazwischen) */
     public function name(): string
     {
         return $this->feld(3);
+    }
+
+    /**
+     * Vor- und Nachname aus dem gespeicherten Namen: getrennt am ersten Leerzeichen oder &nbsp;
+     * (so schrieb die Registrierung bis 4.5); ohne Trennzeichen ist alles der Nachname, nur &nbsp;
+     * ein leerer Name. Bis 4.5 fehlte ohne Leerzeichen das erste Zeichen.
+     *
+     * @return array{0: string, 1: string}
+     */
+    public static function teileName(string $name): array
+    {
+        $name = str_replace('&nbsp;', ' ', $name);
+        $leer = strpos($name, ' ');
+
+        return $leer === false ? ['', $name] : [substr($name, 0, $leer), substr($name, $leer + 1)];
     }
 
     public function email(): string
