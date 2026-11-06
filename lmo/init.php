@@ -151,10 +151,12 @@ magicQuotesRemove($_COOKIE);
 
 // Workaround for register_globals TODO: fix that!!!
 // Ohne Superglobale: bis 4.5 ueberschrieb ?_SESSION[lmouserok]=2 die Sitzung und meldete als
-// Hauptadmin an.
+// Hauptadmin an. Nur neue Variablen (EXTR_SKIP): bis 4.5 ersetzten Parameter auch, was schon
+// gesetzt war, etwa die Konfiguration (?dirliga=...) oder die Sprachtexte (?text[...]=...).
 if (!function_exists('ini_get') || !ini_get('register_globals')) {
-    foreach (array($_GET, $_POST, $_COOKIE) as $lmo_anfragewerte) {
-        @extract(array_filter($lmo_anfragewerte, static fn ($lmo_name): bool => is_string($lmo_name) && $lmo_name !== '' && $lmo_name[0] !== '_' && $lmo_name !== 'GLOBALS', ARRAY_FILTER_USE_KEY));
+    // bei gleichem Namen gilt wie bisher Cookie vor Formular vor Adresse
+    foreach (array($_COOKIE, $_POST, $_GET) as $lmo_anfragewerte) {
+        @extract(array_filter($lmo_anfragewerte, static fn ($lmo_name): bool => is_string($lmo_name) && $lmo_name !== '' && $lmo_name[0] !== '_' && $lmo_name !== 'GLOBALS', ARRAY_FILTER_USE_KEY), EXTR_SKIP);
     }
     unset($lmo_anfragewerte);
 }

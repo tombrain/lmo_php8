@@ -195,6 +195,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Parameter überschreiben keine gesetzten Variablen mehr: `init.php` übernimmt Adresse, Formular und Cookies nur noch als neue Variablen (`EXTR_SKIP`). Bisher ersetzte etwa `?text[16]=…` alle Sprachtexte, `?dirliga=…` den Ligenordner des alten Codes und `?lmouserlang=…` die zuvor geprüfte Sprache. Bei gleichem Namen gilt wie bisher Cookie vor Formular vor Adresse. Wer `lmo.php` in eine eigene Seite einbindet und vorher Variablen wie `$file` setzt, behält diese jetzt auch dann, wenn die Adresse einen gleichnamigen Parameter enthält.  
 * Anmeldung umgehbar: `init.php` übernahm alle Parameter der Adresse, des Formulars und der Cookies per `extract()` als Variablen, auch `_SESSION`. Mit `?_SESSION[lmouserok]=2` war man ohne Kennwort als Hauptadmin angemeldet, dauerhaft in der Sitzung, mit Zugriff auf die ganze Administration und den Download der Ligen. Namen, die mit `_` beginnen, und `GLOBALS` werden nicht mehr übernommen.  
 * Administration, Liga per E-Mail: Das Formular gibt den Parameter `down` und die eigene Adresse maskiert aus. Bisher ließ sich über einen präparierten Link HTML und JavaScript in die Seite eines angemeldeten Admins einschleusen.  
 * Statistikdatei einer Liga: Mannschaftsnamen stehen dort in doppelten Anführungszeichen im PHP-Code; `$` und `\` werden jetzt maskiert. Bisher lief ein Name wie `{${…}}` beim Anzeigen der Statistik als PHP-Code, und Namen können auch Hilfsadmins setzen.  
@@ -717,6 +718,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Parameters no longer overwrite variables already set: `init.php` imports URL, form and cookie values only as new variables (`EXTR_SKIP`). Until now e.g. `?text[16]=…` replaced all language texts, `?dirliga=…` the league folder of the old code and `?lmouserlang=…` the language checked before. With the same name, cookie still wins over form over URL. If you include `lmo.php` into your own page and set variables such as `$file` beforehand, they are now kept even if the URL contains a parameter of the same name.  
 * Login bypass: `init.php` imported all URL, form and cookie parameters as variables via `extract()`, including `_SESSION`. With `?_SESSION[lmouserok]=2` one was logged in as main admin without a password, permanently in the session, with access to the whole administration and the league download. Names starting with `_` and `GLOBALS` are no longer imported.  
 * Administration, league by e-mail: the form outputs the parameter `down` and its own address escaped. Until now a crafted link could inject HTML and JavaScript into the page of a logged-in admin.  
 * Statistics file of a league: team names are stored there in double quotes inside PHP code; `$` and `\` are now escaped. Until now a name like `{${…}}` ran as PHP code when the statistics were shown, and team names can also be set by assistant admins.  
