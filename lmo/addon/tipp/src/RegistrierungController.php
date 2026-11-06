@@ -107,7 +107,8 @@ final class RegistrierungController implements Controller
                     $gespeichert = false;
                     $fehler($t[67] ?? '');
                 }
-                if (str_contains($nachname, '&nbsp;') || str_contains($vorname, '&nbsp;')) {
+                // Vor- und Nachname trennt das Leerzeichen, darin darf keines stehen (wie in den persoenlichen Daten)
+                if (str_contains($nachname, ' ') || str_contains($vorname, ' ') || str_contains($nachname, '&nbsp;') || str_contains($vorname, '&nbsp;')) {
                     $gespeichert = false;
                     $fehler($t[109] ?? '');
                 }
@@ -167,7 +168,9 @@ final class RegistrierungController implements Controller
         if ($gespeichert) {
             $verein = $vereinswahl == 1 ? $vereinAlt : ($vereinswahl == 2 ? $vereinNeu : '');
             $sitzung->setze('lmotipperverein', $verein);
-            $name = $vorname . '&nbsp;' . $nachname;
+            // mit Leerzeichen getrennt wie in den persoenlichen Daten und der Administration (bis 4.5
+            // mit &nbsp;, ohne Namen nur &nbsp;)
+            $name = trim($vorname . ' ' . $nachname);
             $neu = Tipper::ausZeile(implode('|', [
                 $nick,
                 '',
