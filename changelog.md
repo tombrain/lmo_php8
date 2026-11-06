@@ -125,6 +125,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Removed  
+* `lmo/ini.fct` (die Bibliothek myIniFunctions von 2002): Weder der LMO noch die mitgelieferten Addons nutzen sie noch; Ligadateien liest `Lmo\Liga\LigaDatei`.  
 * `lmo-adminsubnavi.php`; die Navigation beim Bearbeiten einer Liga liefert `Lmo\Web\Admin\LigaNavigation`.  
 * `lmo-spieltagsmenu.php`; die Auswahl der Spieltage liefert `Lmo\Web\Seiten\SpieltagsMenue`.  
 * `getSmallImage()` aus `lmo-functions.php`; das kleine Wappen einer Mannschaft liefert `Lmo\Web\Darstellung::wappen()`.  
@@ -655,6 +656,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Removed  
+* `lmo/ini.fct` (the myIniFunctions library from 2002): neither LMO nor the bundled addons use it anymore; league files are read by `Lmo\Liga\LigaDatei`.  
 * `lmo-adminsubnavi.php`; `Lmo\Web\Admin\LigaNavigation` provides the navigation while editing a league.  
 * `lmo-spieltagsmenu.php`; the round menu comes from `Lmo\Web\Seiten\SpieltagsMenue`.  
 * `getSmallImage()` from `lmo-functions.php`; the small logo of a team comes from `Lmo\Web\Darstellung::wappen()`.  
