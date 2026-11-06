@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Anmeldung: `Lmo\Web\Admin\Anmeldung` mit der Vorlage `lmo/vorlagen/admin_anmeldung.html.twig` prüft Name und Kennwort, stellt alte Kennwörter wie bisher still auf den aktuellen Hash um und zeigt das Formular. `lmo-adminauth.php`, `lmo-admincheck_auth.php` und `lmo-loadauth.php` gibt es nicht mehr.  
 * Administration und Classlib, Liga laden: `Lmo\Web\LigaOeffnen` lädt die Liga zum Bearbeiten (Rohdaten, Spieltag, Stand, eigene Bezeichnungen für Punkte und Tore) und meldet unbekannte oder fremde Ligen wie bisher. `lmo-openfile.php` gibt es nicht mehr; die Administration und `updateAddons()` setzen die Variablen für den alten Code (`$lmo_liga`, `$st`, `$stats`, `$stand`) selbst.  
 * Administration, Kalender zur Datumswahl (`lmo-admincal.php`): `Lmo\Web\Admin\KalenderPopup` mit der Vorlage `lmo/vorlagen/admin_kalender.html.twig` zeigt den Monat wie bisher; `lmo-admincal.php` ist nur noch der Einstieg.  
 * Administration, Ligen herunterladen (`lmo-admindownload.php`): `Lmo\Web\Admin\LigaDownload` liefert eine Liga als `.l98` oder alle als `ligen.zip` wie bisher; `lmo-admindownload.php` ist nur noch der Einstieg. Die sortierte Liste der Ligadateien, über deren Nummer Herunterladen und Liga per E-Mail eine Liga wählen, kommt aus `Lmo\Web\Admin\Ligendateien`.  
@@ -533,6 +534,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, login: `Lmo\Web\Admin\Anmeldung` with the template `lmo/vorlagen/admin_anmeldung.html.twig` checks name and password, silently upgrades old passwords to the current hash as before and shows the form. `lmo-adminauth.php`, `lmo-admincheck_auth.php` and `lmo-loadauth.php` are gone.  
 * Administration and classlib, loading a league: `Lmo\Web\LigaOeffnen` loads the league for editing (raw data, round, last change, the league's own labels for points and goals) and reports unknown or foreign leagues as before. `lmo-openfile.php` is gone; the administration and `updateAddons()` set the variables for the old code (`$lmo_liga`, `$st`, `$stats`, `$stand`) themselves.  
 * Administration, date picker calendar (`lmo-admincal.php`): `Lmo\Web\Admin\KalenderPopup` with the template `lmo/vorlagen/admin_kalender.html.twig` shows the month as before; `lmo-admincal.php` is only the entry point.  
 * Administration, downloading leagues (`lmo-admindownload.php`): `Lmo\Web\Admin\LigaDownload` delivers one league as `.l98` or all as `ligen.zip` as before; `lmo-admindownload.php` is only the entry point. The sorted list of league files, whose number download and league by e-mail use to pick a league, comes from `Lmo\Web\Admin\Ligendateien`.  

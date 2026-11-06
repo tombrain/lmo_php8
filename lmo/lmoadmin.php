@@ -71,7 +71,24 @@
         require(PATH_TO_LMO . '/lmo-adminsetup.php');
     }
     if (lmo_has_admin()) {
-        require(PATH_TO_LMO . '/lmo-adminauth.php');
+        // Anmeldung (Lmo\Web\Admin\Anmeldung; bis 4.5 lmo-adminauth.php, lmo-admincheck_auth.php und
+        // lmo-loadauth.php)
+        $lmo_anmeldung = new \Lmo\Web\Admin\Anmeldung(PATH_TO_CONFIGDIR . '/lmo-auth.php');
+        if (empty($_SESSION['lmouserok']) && isset($_POST['xusername']) && is_string($_POST['xusername'])) {
+            $_SESSION['lmousername'] = $_POST['xusername'];
+            $_SESSION['lmouserpass'] = is_string($_POST['xuserpass'] ?? null) ? $_POST['xuserpass'] : '';
+            $lmo_konto = $lmo_anmeldung->meldeAn($_SESSION['lmousername'], $_SESSION['lmouserpass']);
+            if ($lmo_konto !== null) {
+                $_SESSION['lmouserok'] = $lmo_konto['rang'];
+                if ($_SESSION['lmouserok'] == 1) {
+                    $_SESSION['lmouserfile'] = $lmo_konto['ligen'];
+                    $_SESSION['lmouserokerweitert'] = $lmo_konto['erweitert'];
+                }
+            }
+        }
+        if (empty($_SESSION['lmouserok'])) {
+            echo $lmo_anmeldung->formular($text, (string)$_SERVER['PHP_SELF'], (string)$_SESSION['lmousername'], !empty($einsprachwahl) ? getLangSelector() : '', URL_TO_LMO, PATH_TO_LMO . '/vorlagen');
+        }
     }
     if (isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0) {
         $file =! empty($_REQUEST['file']) ? $_REQUEST['file'] : '';
