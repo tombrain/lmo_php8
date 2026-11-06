@@ -27,7 +27,8 @@ final class ParameterUeberschreibenTest extends TestCase
             'unbekannte Sprache' => 'action=table&file=golden/basic.l98&lmouserlang=../../x',
         ] as $fall => $parameter) {
             $seite = $c->get('lmo.php', $parameter);
-            $t->add($fall, $seite, $c->changes());
+            // die Zeit im Log der abgewiesenen Eingaben laeuft (faketime) und steht nicht fest
+            $t->add($fall, $seite, (string) preg_replace('/^([-+]?)\[\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\]/m', '$1[ZEIT]', $c->changes()));
             // bis 4.5 ersetzte ?text[16]=... alle Sprachtexte: die Seite zerfiel mit Warnungen
             self::assertStringNotContainsString('STDERR', $seite, $fall);
         }
