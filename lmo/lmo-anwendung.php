@@ -28,8 +28,8 @@ if (!defined('PATH_TO_LMO')) {
  *
  * Diese Datei wird eingebunden und erwartet:
  *
- * @var array<string, mixed> $cfgarray Konfiguration der Installation (lmo-cfgload.php)
- * @var array<int|string, mixed> $text Sprachtexte (lmo-langload.php)
+ * @var array<string, mixed> $cfgarray Konfiguration der Installation (init.php)
+ * @var array<int|string, mixed> $text Sprachtexte (init.php)
  */
 
 $lmo_konfiguration = new \Lmo\Web\Konfiguration($cfgarray);

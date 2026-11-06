@@ -6,8 +6,8 @@
  */
 function updateAddons($fileName) {
     include PATH_TO_LMO . '/init.php';
-    //Importieren der Konfigurations-Variablen. Alternativ müssten alle gebrauchten Variabeln hier als global deklariert werden
-    include PATH_TO_LMO . '/lmo-cfgload.php';
+    // init.php legt auch hier im Bereich der Funktion die Konfiguration als Variablen an (bis 4.5
+    // band die Classlib dafuer zusaetzlich lmo-cfgload.php ein)
     // die Sprachtexte (fuer die Auswertungen der Addons)
     global $text;
 

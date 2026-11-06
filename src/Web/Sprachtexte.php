@@ -17,7 +17,7 @@ namespace Lmo\Web;
 use Lmo\Liga\Rohdaten\Liga;
 
 /**
- * Die Sprachtexte des LMO (lang/lang-<Sprache>.txt, Zeilen "Nummer=Text"), wie lmo-langload.php
+ * Die Sprachtexte des LMO (lang/lang-<Sprache>.txt, Zeilen "Nummer=Text"), wie bis 4.5 lmo-langload.php
  * sie liest: erst Deutsch, darueber die Standardsprache, darueber die Sprache des Besuchers; so
  * bleiben bei unvollstaendigen Uebersetzungen die deutschen Texte stehen.
  *
@@ -83,7 +83,7 @@ final class Sprachtexte
     }
 
     /**
-     * Die Texte aus dem Array des alten Codes ($text aus lmo-langload.php): Nummern sind die
+     * Die Texte aus dem Array des alten Codes ($text aus init.php): Nummern sind die
      * Kerntexte, Namen die Texte der Unterordner.
      *
      * @param array<int|string, mixed> $text
