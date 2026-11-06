@@ -103,6 +103,12 @@ final class AdminClient
         return $this->lastRaw;
     }
 
+    /** Die Sitzungs-ID, mit der die naechste Anfrage kommt ('' vor der ersten) */
+    public function sitzungsId(): string
+    {
+        return $this->sid;
+    }
+
     public function instance(): Instance
     {
         return $this->instance;
