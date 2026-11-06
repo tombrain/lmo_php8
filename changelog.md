@@ -6,6 +6,7 @@ __Alle wesentlichen Änderungen am PHP Script des LMO werden in dieser Datei dok
 _Hier schreiben wir Changelog Hinweise der nächsten Version._  
 
 ### Added  
+* Administration, Ersteinrichtung: `Lmo\Web\Admin\Ersteinrichtung` mit der Vorlage `lmo/vorlagen/admin_einrichtung.html.twig` legt das erste Admin-Konto an und zeigt das Formular wie bisher. `lmo-adminsetup.php` gibt es nicht mehr, ebenso die Funktionen `lmo_has_admin()` und `lmo_create_admin()` in `lmo-setup.php`; dort stehen nur noch die Funktionen, die `init.php` vor dem Autoloader braucht (Pfad, Adresse, Standardkonfiguration).  
 * Administration, Anmeldung: `Lmo\Web\Admin\Anmeldung` mit der Vorlage `lmo/vorlagen/admin_anmeldung.html.twig` prüft Name und Kennwort, stellt alte Kennwörter wie bisher still auf den aktuellen Hash um und zeigt das Formular. `lmo-adminauth.php`, `lmo-admincheck_auth.php` und `lmo-loadauth.php` gibt es nicht mehr.  
 * Administration und Classlib, Liga laden: `Lmo\Web\LigaOeffnen` lädt die Liga zum Bearbeiten (Rohdaten, Spieltag, Stand, eigene Bezeichnungen für Punkte und Tore) und meldet unbekannte oder fremde Ligen wie bisher. `lmo-openfile.php` gibt es nicht mehr; die Administration und `updateAddons()` setzen die Variablen für den alten Code (`$lmo_liga`, `$st`, `$stats`, `$stand`) selbst.  
 * Administration, Kalender zur Datumswahl (`lmo-admincal.php`): `Lmo\Web\Admin\KalenderPopup` mit der Vorlage `lmo/vorlagen/admin_kalender.html.twig` zeigt den Monat wie bisher; `lmo-admincal.php` ist nur noch der Einstieg.  
@@ -538,6 +539,7 @@ __All significant changes to the LMO PHP script are documented in this file.__
 _Here we write changelog notes for the next version._  
 
 ### Added  
+* Administration, first-run setup: `Lmo\Web\Admin\Ersteinrichtung` with the template `lmo/vorlagen/admin_einrichtung.html.twig` creates the first admin account and shows the form as before. `lmo-adminsetup.php` is gone, as are the functions `lmo_has_admin()` and `lmo_create_admin()` in `lmo-setup.php`; it now only contains the functions `init.php` needs before the autoloader (path, address, default configuration).  
 * Administration, login: `Lmo\Web\Admin\Anmeldung` with the template `lmo/vorlagen/admin_anmeldung.html.twig` checks name and password, silently upgrades old passwords to the current hash as before and shows the form. `lmo-adminauth.php`, `lmo-admincheck_auth.php` and `lmo-loadauth.php` are gone.  
 * Administration and classlib, loading a league: `Lmo\Web\LigaOeffnen` loads the league for editing (raw data, round, last change, the league's own labels for points and goals) and reports unknown or foreign leagues as before. `lmo-openfile.php` is gone; the administration and `updateAddons()` set the variables for the old code (`$lmo_liga`, `$st`, `$stats`, `$stand`) themselves.  
 * Administration, date picker calendar (`lmo-admincal.php`): `Lmo\Web\Admin\KalenderPopup` with the template `lmo/vorlagen/admin_kalender.html.twig` shows the month as before; `lmo-admincal.php` is only the entry point.  

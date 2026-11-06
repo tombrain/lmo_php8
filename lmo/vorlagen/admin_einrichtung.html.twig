@@ -1,0 +1,54 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Ersteinrichtung: das erste Admin-Konto (Lmo\Web\Admin\Ersteinrichtung) #}
+  <table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td align="center"><h1>{{ text[77]|raw }} {{ text[54]|raw }} - {{ text[5013]|raw }}</h1></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <form action="{{ selbst }}" method="post">
+          <table class="lmoMiddle" width="99%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td align="center"><p>{{ text[5014]|raw }}</p>{{ fehler|raw }}</td>
+            </tr>
+            <tr>
+              <td align="center">
+                <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td align="right">{{ text[306]|raw }}</td>
+                    <td align="left"><input class="lmo-formular-input" type="text" name="setup_user" size="20" maxlength="40" value="{{ name }}" autocomplete="username"></td>
+                  </tr>
+                  <tr>
+                    <td align="right">{{ text[5015]|raw }}</td>
+                    <td align="left"><input class="lmo-formular-input" type="password" name="setup_pass" size="20" autocomplete="new-password"></td>
+                  </tr>
+                  <tr>
+                    <td align="right">{{ text[5016]|raw }}</td>
+                    <td align="left"><input class="lmo-formular-input" type="password" name="setup_pass2" size="20" autocomplete="new-password"></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td align="left"><input class="lmo-formular-button" type="submit" name="setup_submit" value="{{ text[5017]|raw }}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </td>
+    </tr>
+{% if sprachwahl != '' %}
+    <tr>
+      <td class="lmoFooter" align="left">{{ sprachwahl|raw }}</td>
+    </tr>
+{% endif %}
+  </table>
