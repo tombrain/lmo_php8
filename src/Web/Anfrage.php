@@ -50,6 +50,12 @@ final class Anfrage
         return $this->werte;
     }
 
+    /** Dieselbe Anfrage mit einem anderen Wert fuer den Parameter */
+    public function mit(string $name, mixed $wert): self
+    {
+        return new self([$name => $wert] + $this->werte);
+    }
+
     /** Ist der Parameter da, auch leer (wie isset())? */
     public function gesetzt(string $name): bool
     {

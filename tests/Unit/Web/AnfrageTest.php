@@ -25,6 +25,15 @@ class AnfrageTest extends TestCase
         self::assertFalse($anfrage->gesetzt('fehlt'));
     }
 
+    public function testMit(): void
+    {
+        $anfrage = new Anfrage(['todo' => 'open', 'file' => 'a.l98']);
+        $neu = $anfrage->mit('todo', 'edit');
+
+        self::assertSame(['edit', 'a.l98'], [$neu->text('todo'), $neu->text('file')]);
+        self::assertSame('open', $anfrage->text('todo'), 'die alte bleibt');
+    }
+
     public function testListe(): void
     {
         $anfrage = new Anfrage(['ligen' => ['bula', 2, ['tief'], null], 'text' => 'bula']);
