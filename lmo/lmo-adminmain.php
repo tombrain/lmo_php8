@@ -76,9 +76,8 @@ if ($action == 'admin') {
     }
 
     // Speichern einer Liga (Lmo\Web\Admin\LigaSpeichern; bis 4.5 lmo-saveliga.php im globalen Bereich).
-    // Statistik und Druckansicht schreibt noch der alte Code (lmo-zustat.php, lmo-savehtml.php,
-    // lmo-savehtml1.php), jeweils in eigenem Bereich. Zurueck kommen die Meldungen und die Liga im
-    // gespeicherten Stand (Lmo\Liga\Normalform).
+    // Die Druckansicht schreibt noch der alte Code (lmo-savehtml.php, lmo-savehtml1.php) in eigenem
+    // Bereich. Zurueck kommen die Meldungen und die Liga im gespeicherten Stand (Lmo\Liga\Normalform).
     $lmo_admin_ligaspeichern = new \Lmo\Web\Admin\LigaSpeichern(
         PATH_TO_LMO . '/' . $dirliga,
         PATH_TO_LMO . '/' . $diroutput,
