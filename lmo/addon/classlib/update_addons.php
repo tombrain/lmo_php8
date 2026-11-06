@@ -8,14 +8,8 @@ function updateAddons($fileName) {
     include PATH_TO_LMO . '/init.php';
     //Importieren der Konfigurations-Variablen. Alternativ müssten alle gebrauchten Variabeln hier als global deklariert werden
     include PATH_TO_LMO . '/lmo-cfgload.php';
-    //Die restlichen nötigen Variabeln fürs Tippspiel als global deklarieren
+    // die Sprachtexte (fuer die Auswertungen der Addons)
     global $text;
-    global $punkte1;
-    global $punkte2;
-    global $punkte3;
-    global $punkte4;
-    global $punkte5;
-    global $punkte6;
 
     //Falls diese Datei geändert wird, empfiehlt es sich, alle Fehler
     //anzeigen zu lassen, um evtl. nicht gesetzte Variablen frühzeitig zu erkennen
@@ -45,32 +39,11 @@ function updateAddons($fileName) {
     }
     // ZUSTAT
 
-    // ADDON: TIPPSPIEL
-    //Ermittelt, ob die Liga getippt werden darf
-    $ftest0 = 1;
-    if ($tipp_immeralle == 0) {
-        $ftest0 = 0;
-        $ftest1 = '';
-        $ftest1 = explode(',', $tipp_ligenzutippen);
-        if (isset($ftest1)) {
-            for ($u = 0; $u < count($ftest1); $u++) {
-                if ($ftest1[$u] == $liga) {
-                    $ftest0 = 1;
-                }
-            }
-        }
-    }
-    // Neu-Auswertung des Tippspiels
-    if ($ftest0 == 1) {       // Liga darf getippt werden
-        $st = 0;              // alle Spieltage auswerten
-        $todo = 'tipp';
-        if ($tipp_aktauswert == 1) {
-            require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsavewert.php');
-        }
-        if ($tipp_aktauswertges == 1) {
-            require(PATH_TO_ADDONDIR . '/tipp/lmo-tippsavewertgesamt.php');
-        }
-    }
-    // ADDON: TIPPSPIEL
+    // Auswertungen der Addons beim Speichern (Lmo\Addon\MitErgebnisAuswertung), wie in der
+    // Administration, ueber alle Spieltage; bis 4.5 band die Classlib hier fest die Dateien des
+    // Tippspiels ein
+    $lmo_update_anwendung = require PATH_TO_LMO . '/lmo-anwendung.php';
+    $lmo_update_kontext = $lmo_update_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
+    echo $lmo_update_kontext->addons->werteBeimSpeichern($lmo_update_kontext, \Lmo\Liga\Rohdaten\Liga::lies($fileName), 0);
 }
 ?>

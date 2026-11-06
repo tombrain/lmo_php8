@@ -93,10 +93,14 @@ Addons nach neuer Art:
 - Ein Controller bekommt alles, was er braucht, im Lmo\Web\Kontext (Anfrage, geladene Liga,
   Konfiguration, Sprachtexte, Pfade, Addons) und braucht keine globalen Variablen.
 
-- Die Classlib (addon/classlib) laedt der Kern nicht mehr. Ein Addon, das ihre Klassen oder
-  Funktionen braucht (liga, HTML_icon() ...), bindet sie selbst ein, wie Viewer und Mini:
+- Die Classlib (addon/classlib) ist veraltet und bleibt nur fuer bestehende eigene Skripte
+  erhalten; nichts im LMO nutzt sie noch. Neue Addons verwenden die Klassen des Kerns
+  (Lmo\Liga\Rohdaten\Liga, Lmo\Liga\Tabelle, Lmo\Liga\Begegnungen, Lmo\Web\Bilder ...).
+  Wer ihre Klassen oder Funktionen (liga, HTML_icon() ...) noch braucht, bindet sie selbst ein:
 
     require_once(PATH_TO_ADDONDIR . '/classlib/ini.php');
+
+  In einer spaeteren Hauptversion wird sie entfernt.
 
 - Ein Addon liegt vollstaendig in seinem Ordner:
 

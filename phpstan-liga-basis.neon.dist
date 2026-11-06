@@ -20,6 +20,5 @@ parameters:
         -
             identifier: isset.variable
     paths:
-        - lmo/addon/tipp/lmo-tippsavewert.php
         - lmo/lmo-openfile.php
         - lmo/lmo-zustat.php
