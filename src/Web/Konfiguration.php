@@ -18,7 +18,7 @@ use RuntimeException;
 
 /**
  * Die Konfiguration der Installation (config/cfg.txt, dazu config/<addon>/cfg.txt je Addon) mit
- * typisierten Gettern. Ersetzt die globalen Variablen, die lmo-cfgload.php per extract() anlegt.
+ * typisierten Gettern. Ersetzt die globalen Variablen, die init.php per extract() anlegt.
  */
 final class Konfiguration
 {
@@ -32,7 +32,7 @@ final class Konfiguration
     private array $werte;
 
     /**
-     * @param array<string, mixed> $werte Schluessel => Wert, wie $cfgarray in lmo-cfgload.php
+     * @param array<string, mixed> $werte Schluessel => Wert, wie $cfgarray in init.php
      *        (die Werte der Addons als Array unter ihrem Ordnernamen)
      */
     public function __construct(array $werte)
@@ -41,7 +41,7 @@ final class Konfiguration
     }
 
     /**
-     * Liest config/cfg.txt und die cfg.txt der Addons in den Unterordnern, wie lmo-cfgload.php.
+     * Liest config/cfg.txt und die cfg.txt der Addons in den Unterordnern, wie init.php (Lmo\Web\Start).
      *
      * @throws RuntimeException wenn config/cfg.txt fehlt oder unlesbar ist
      */
@@ -120,7 +120,7 @@ final class Konfiguration
      * Schreibt die Konfiguration wie bis 4.5 lmo-savecfg.php: die Hauptkonfiguration nach
      * <ordner>/cfg.txt, die eines Addons nach <ordner>/<addon>/cfg.txt, je Zeile "Schluessel=Wert"
      * in der Reihenfolge der Werte. Ist timezone leer, kommt wie bisher die eingestellte Zeitzone
-     * hinein (lmo-cfgload.php setzt sie). false, wenn eine Datei nicht geschrieben werden konnte.
+     * hinein (init.php setzt sie). false, wenn eine Datei nicht geschrieben werden konnte.
      */
     public function speichere(string $ordner): bool
     {

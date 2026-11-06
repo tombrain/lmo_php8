@@ -375,4 +375,28 @@ $_POST    = lmo_sanitize_and_log($_POST, '$_POST', (isset($_SESSION['lmouserok']
 // Manually construct $_REQUEST from the already clean values
 $_REQUEST = array_merge($_GET, $_POST, $_COOKIE);
 
+// Eine Sprachdatei in $text lesen (bis 4.5 in lmo-langload.php; der LMO liest seine Texte ueber
+// Lmo\Web\Sprachtexte, die Funktion bleibt fuer eigene Skripte)
+if (!function_exists('read_langfile')) {
+  function read_langfile(&$text, $langfile, $addon = '') {
+    if (($datei = @file($langfile)) !== false) {
+      foreach ($datei as $value) {
+        $paar = explode('=', trim($value), 2);
+        if (isset($paar[0]) && is_numeric($paar[0])) {
+          if (!isset($paar[1])) $paar[1] = '';
+          if (func_num_args() == 2) {
+            $text[intval($paar[0])] = $paar[1];
+          }
+          else {
+            $text[$addon][intval($paar[0])] = $paar[1];
+          }
+        }
+      }
+    }
+  }
+}
+
+// Copyright-Hinweis (bis 4.5 in lmo-langload.php): c() fuer den Rahmen, d() fuer eigene Vorlagen nach alter Art
+if (!function_exists('c')) {function c($c) {if ($c == 1) return(base64_decode('PGEgaHJlZj0iaHR0cHM6Ly93d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5vcmciIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ibG1vLWxpbmstdHJpZ2dlciIgZGF0YS1pbmZvPSI8c3Ryb25nPkxpZ2EgTWFuYWdlciBPbmxpbmU8L3N0cm9uZz5UaGlzIGlzIGEgY2xvbmUgb2YgdGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUuPGJyPjxiPkFkYXB0ZWQgZm9yIFBIUCA4LjwvYj48YnI+Q2xpY2tpbmcgdGhpcyBsaW5rIHdpbGwgdGFrZSB5b3UgdG8gdGhlIHdlYnNpdGUgb2YgdGhlIG5ldyBwcm9qZWN0LiIgb25tb3VzZW92ZXI9InNob3dMTU9Ub29sdGlwKHRoaXMpIiBvbm1vdXNlb3V0PSJoaWRlTE1PVG9vbHRpcCgpIj5MTU8gNCBmb3IgUEhQODwvYT4mbmJzcDstJm5ic3A7')); return(base64_decode('PHNwYW4gY2xhc3M9Imxtby10ZXh0LXRyaWdnZXIiIGRhdGEtaW5mbz0iPHN0cm9uZz5MaWdhIE1hbmFnZXIgT25saW5lPC9zdHJvbmc+VGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUgcHJvamVjdCBvbiB0aGUgd2Vic2l0ZSB3d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5kZSB3YXMgZGlzY29udGludWVkIGF0IHRoZSBlbmQgb2YgMjAyNS4iIG9ubW91c2VvdmVyPSJzaG93TE1PVG9vbHRpcCh0aGlzKSIgb25tb3VzZW91dD0iaGlkZUxNT1Rvb2x0aXAoKSI+wqkgMTk5Ny1ub3cgTE1PLUdyb3VwPC9zcGFuPg=='));}}
+if (!function_exists('d')) {function d($c) {if (strpos(htmlentities($c), htmlentities(base64_decode('PCEtLUluZm9saW5rLS0+'))) > 0) {false;} else {eval(base64_decode('ZWNobyAnPGEgaHJlZj0iaHR0cHM6Ly93d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5vcmciIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0ibG1vLWxpbmstdHJpZ2dlciIgZGF0YS1pbmZvPSI8c3Ryb25nPkxpZ2EgTWFuYWdlciBPbmxpbmU8L3N0cm9uZz5UaGlzIGlzIGEgY2xvbmUgb2YgdGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUuPGJyPjxiPkFkYXB0ZWQgZm9yIFBIUCA4LjwvYj48YnI+Q2xpY2tpbmcgdGhpcyBsaW5rIHdpbGwgdGFrZSB5b3UgdG8gdGhlIHdlYnNpdGUgb2YgdGhlIG5ldyBwcm9qZWN0LiIgb25tb3VzZW92ZXI9InNob3dMTU9Ub29sdGlwKHRoaXMpIiBvbm1vdXNlb3V0PSJoaWRlTE1PVG9vbHRpcCgpIj5MTU8gNCBmb3IgUEhQODwvYT4mbmJzcDstJm5ic3A7PHNwYW4gY2xhc3M9Imxtby10ZXh0LXRyaWdnZXIiIGRhdGEtaW5mbz0iPHN0cm9uZz5MaWdhIE1hbmFnZXIgT25saW5lPC9zdHJvbmc+VGhlIG9yaWdpbmFsIExpZ2EgTWFuYWdlciBPbmxpbmUgcHJvamVjdCBvbiB0aGUgd2Vic2l0ZSB3d3cubGlnYS1tYW5hZ2VyLW9ubGluZS5kZSB3YXMgZGlzY29udGludWVkIGF0IHRoZSBlbmQgb2YgMjAyNS4iIG9ubW91c2VvdmVyPSJzaG93TE1PVG9vbHRpcCh0aGlzKSIgb25tb3VzZW91dD0iaGlkZUxNT1Rvb2x0aXAoKSI+wqkgMTk5Ny1ub3cgTE1PLUdyb3VwPC9zcGFuPic7'));}}}
 ?>

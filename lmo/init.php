@@ -68,8 +68,48 @@ if (!file_exists(PATH_TO_LMO . '/init.php')) {
     exit();
 }
 
-// Configuration
-require(PATH_TO_LMO . '/lmo-cfgload.php');
+// Composer-Autoloader: pear/html_template_it und LMO_Template (classmap); nennt auch die installierte Version.
+// lmo-install legt vendor/autoload.php als Verweis an; im Repo selbst liegt vendor/ neben lmo/.
+require_once(is_file(PATH_TO_LMO . '/vendor/autoload.php') ? PATH_TO_LMO . '/vendor/autoload.php' : dirname(PATH_TO_LMO) . '/vendor/autoload.php');
+// Klassen der Addons aus addon/<addon>/src (Lmo\Addon\Autoloader)
+\Lmo\Addon\Autoloader::registriere(PATH_TO_ADDONDIR);
+
+// Konfiguration (Lmo\Web\Start; bis 4.5 lmo-cfgload.php und lmo-updateoptions.php): als globale
+// Variablen fuer den alten Code, die Classlib und eingebundene Seiten. Eine Seite, die lmo.php
+// einbindet, kann $cfgarray vorher setzen; die Datei ergaenzt, was fehlt.
+$cfgfile = PATH_TO_CONFIGDIR . '/cfg.txt';
+if (!isset($cfgarray)) {
+    $cfgarray = array();
+}
+$main_cfgarray = \Lmo\Web\Start::hauptkonfiguration($cfgfile);
+if ($main_cfgarray === null) {
+    // zweisprachig ohne Sprachtexte: die werden erst nach der Konfiguration geladen
+    die('LMO: config/cfg.txt nicht gefunden. / config/cfg.txt not found.');
+}
+$cfgarray += $main_cfgarray;
+extract($cfgarray);
+$timezone = \Lmo\Web\Start::zeitzone($timezone ?? null);
+@ini_set('date.timezone', $timezone);
+date_default_timezone_set($timezone);
+// Optionen, die aeltere Konfigurationen nicht kennen (ab beta3)
+if (!isset($lmo_fieber_color1)) {
+    $cfgarray['lmo_fieber_color1'] = '#00f';
+    $lmo_fieber_color1 = '#00f';
+}
+if (!isset($lmo_fieber_color2)) {
+    $cfgarray['lmo_fieber_color2'] = '#f00';
+    $lmo_fieber_color2 = '#f00';
+}
+if (!isset($cfgarray['timezone'])) {
+    $cfgarray['timezone'] = $timezone;
+}
+unset($cfgarray['einhinrueck']);
+// die Addons: $cfgarray[<addon>] und Variablen mit dem Namen des Addons davor ($tipp_dirtipp ...)
+foreach (\Lmo\Web\Start::addonKonfigurationen(PATH_TO_CONFIGDIR) as $lmo_addon => $lmo_addon_werte) {
+    $cfgarray[$lmo_addon] = $lmo_addon_werte;
+    extract($lmo_addon_werte, EXTR_PREFIX_ALL, $lmo_addon);
+}
+unset($lmo_addon, $lmo_addon_werte);
 
 // Admin session keys: always ensure defaults exist, regardless of entry
 // point (public frontend, admin area, tipp addon, ...), so downstream
@@ -126,13 +166,27 @@ if (isset($_SESSION['lmouserlang'])){
 }
 
 
-require(PATH_TO_LMO . '/lmo-langload.php');
-
-// Composer-Autoloader: pear/html_template_it und LMO_Template (classmap); nennt auch die installierte Version.
-// lmo-install legt vendor/autoload.php als Verweis an; im Repo selbst liegt vendor/ neben lmo/.
-require_once(is_file(PATH_TO_LMO . '/vendor/autoload.php') ? PATH_TO_LMO . '/vendor/autoload.php' : dirname(PATH_TO_LMO) . '/vendor/autoload.php');
-// Klassen der Addons aus addon/<addon>/src (Lmo\Addon\Autoloader)
-\Lmo\Addon\Autoloader::registriere(PATH_TO_ADDONDIR);
+// Sprachtexte (Lmo\Web\Sprachtexte; bis 4.5 lmo-langload.php): $text mit den Kerntexten unter ihrer
+// Nummer und denen von lang/<ordner> und der Addons unter ihrem Namen. Nur bekannte Sprachen: beide
+// kommen auch aus der Anfrage und werden in Dateinamen verwendet.
+$languages = \Lmo\Web\Start::SPRACHEN;
+[$deflang, $lmo_besucher, $lmo_ersetzt] = \Lmo\Web\Start::sprachen($deflang ?? null, $lmouserlang ?? null);
+if ($lmo_besucher !== null) {
+    $lmouserlang = $lmo_besucher;
+}
+if ($lmo_ersetzt) {
+    $_SESSION['lmouserlang'] = $deflang;
+}
+unset($lmo_besucher, $lmo_ersetzt);
+$text = \Lmo\Web\Sprachtexte::lies(PATH_TO_LANGDIR, $deflang, $lmouserlang ?? null, PATH_TO_ADDONDIR)->alsAltesArray();
+@setlocale(LC_TIME, $languages[$deflang][0]);
+if (isset($lmouserlang) && $lmouserlang != $deflang) {
+    setlocale(LC_TIME, $languages[$lmouserlang][0]);
+}
+setlocale(LC_NUMERIC, 'en_EN');  // Wichtig: Fuer Arithmetik immer englische Trennzeichen
+// die Bezeichnungen fuer Punkte und Tore, bevor eine Liga eigene setzt
+$orgpkt = $text[37];
+$orgtor = $text[38];
 // Functions
 require_once(PATH_TO_LMO . '/lmo-functions.php');
 // installierte Version (bis 4.5 aus addon/classlib/ini.php); eigene Skripte, die die veraltete

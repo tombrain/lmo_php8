@@ -129,7 +129,7 @@ if ($action == 'admin') {
         new \Lmo\Web\Admin\NeuController($lmo_admin_speichere),
         new \Lmo\Web\Admin\AnzahlController($lmo_admin_speichere),
         new \Lmo\Web\Admin\MannschaftenController($lmo_admin_speichere),
-        // die Bezeichnungen fuer Punkte und Tore vor denen der Liga (lmo-langload.php)
+        // die Bezeichnungen fuer Punkte und Tore vor denen der Liga (init.php)
         new \Lmo\Web\Admin\GrundeinstellungenController($lmo_admin_speichere, (string)$orgpkt, (string)$orgtor),
         // zuletzt: alle uebrigen Seiten mit todo=edit
         new \Lmo\Web\Admin\ErgebnisseBearbeitenController($lmo_admin_speichere),
