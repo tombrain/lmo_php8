@@ -69,7 +69,12 @@ if ($action == 'admin') {
     // Kontext der Anfrage (Lmo\Web\Kontext) mit den Addons der Installation; dazu die Bruecke zum
     // PDF-Addon nach alter Art (nicht Teil des LMO). Die Addons tragen ihre Menuepunkte und Seiten bei.
     $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
-    $lmo_admin_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
+    // todo wie in lmoadmin.php: mit einer Liga wird aus "open" oder keinem todo "edit"
+    $lmo_admin_anfrage = \Lmo\Web\Anfrage::ausGlobalen();
+    if ($lmo_admin_anfrage->text('todo') !== (string)$todo) {
+        $lmo_admin_anfrage = $lmo_admin_anfrage->mit('todo', (string)$todo);
+    }
+    $lmo_admin_kontext = $lmo_anwendung->kontext($lmo_admin_anfrage, $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
     $lmo_admin_addons = $lmo_admin_kontext->addons;
     if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php')) {
         $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));

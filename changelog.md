@@ -139,6 +139,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Administration: Kurze Links wie `lmoadmin.php?todo=open&file=<liga>` oder `lmoadmin.php?file=<liga>` öffnen die Liga wieder zum Bearbeiten. `lmoadmin.php` macht daraus `todo=edit`, die Seiten nach neuer Art lasen aber das ursprüngliche `todo` und zeigten nur die Liste zum Öffnen.  
 * Tippspiel, Namen aus der Registrierung bis 4.5 (`Vorname&nbsp;Nachname`): Die Rangliste zeigt sie mit Leerzeichen statt `&nbsp;` als Text, ebenso der Platzhalter `[name]` in Newsletter und Erinnerung.  
 * Tippspiel, Registrierung: Vor- und Nachname werden mit Leerzeichen gespeichert wie in den persönlichen Daten und der Administration (bisher mit `&nbsp;`, ohne abgefragten Namen nur `&nbsp;`, jetzt leer); Leerzeichen im Vor- oder Nachnamen werden wie dort abgewiesen.  
 * Tippspiel, Vor- und Nachname in den persönlichen Daten und beim Bearbeiten eines Tippers in der Administration: Der gespeicherte Name wird am ersten Leerzeichen oder `&nbsp;` getrennt (so speicherte die Registrierung), ohne Trennzeichen ist er ganz der Nachname. Bisher fehlte dann das erste Zeichen: Aus `Max&nbsp;Muster` wurde der Nachname „ax&nbsp;Muster“, aus `&nbsp;` „nbsp;“; beim Speichern landete das so in der Tipperdatei.  
@@ -664,6 +665,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Administration: short links such as `lmoadmin.php?todo=open&file=<liga>` or `lmoadmin.php?file=<liga>` open the league for editing again. `lmoadmin.php` turns them into `todo=edit`, but the new-style pages read the original `todo` and only showed the list to open.  
 * Prediction game, names from the registration up to 4.5 (`first&nbsp;last`): the ranking shows them with a space instead of `&nbsp;` as text, as does the placeholder `[name]` in newsletter and reminder.  
 * Prediction game, registration: first and last name are stored with a space as in the personal data and the administration (so far with `&nbsp;`, without a requested name only `&nbsp;`, now empty); spaces within the first or last name are rejected as there.  
 * Prediction game, first and last name in the personal data and when editing a tipper in the administration: the stored name is split at the first space or `&nbsp;` (as the registration stored it), without a separator it is all last name. So far the first character went missing: `Max&nbsp;Muster` became the last name "ax&nbsp;Muster", `&nbsp;` became "nbsp;"; saving wrote that into the tipper file.  
