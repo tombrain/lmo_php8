@@ -44,9 +44,12 @@ services:
       - "${WEB_PORT:-8082}:80"
     volumes:
       - ./lmo:/var/www/html/lmo
-      # Composer-Abhaengigkeiten liegen wie im Repo neben lmo/, aus dem Volume des Test-Dienstes
-      # (vorher einmal docker compose run --rm tests, das befuellt es)
-      - vendor:/var/www/html/vendor:ro
+      # Composer-Abhaengigkeiten liegen wie im Repo neben lmo/, im Volume des Test-Dienstes; ist es
+      # leer, installiert docker/web-entrypoint.sh sie beim Start (dafuer beschreibbar)
+      - vendor:/var/www/html/vendor
+      # Composer-Konfiguration fuer die Installation beim Start
+      - ./composer.json:/var/www/html/composer.json:ro
+      - ./composer.lock:/var/www/html/composer.lock:ro
       # die Klassen des LMO (Lmo\Liga\...), die der Composer-Autoloader neben vendor/ erwartet
       - ./src:/var/www/html/src:ro
       # Laufzeitdaten getrennt vom Code (Neustart von vorn: docker compose down -v)
