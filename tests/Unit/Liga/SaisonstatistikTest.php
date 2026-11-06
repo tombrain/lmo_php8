@@ -96,4 +96,13 @@ class SaisonstatistikTest extends TestCase
         Saisonstatistik::schreibe(self::liga("[Options]\nName=Pokal\nType=1\nTeams=2\nRounds=1\nMatches=1\n\n[Teams]\n1=A\n2=B\n"), $this->datei, 'Sp');
         self::assertFileDoesNotExist($this->datei, 'im Pokal keine Datei');
     }
+
+    public function testNamenWerdenNichtAusgefuehrt(): void
+    {
+        $name = '{${print(7)}} $a';
+        $this->expectOutputString('');
+        $s = $this->statistik("[Options]\nName=Liga\nType=0\nTeams=2\nRounds=1\nMatches=1\n\n[Teams]\n1=" . $name . "\n2=B\n\n[Round1]\nTA1=1\nTB1=2\nGA1=2\nGB1=0\n");
+
+        self::assertSame(htmlspecialchars($name), $s->text('hheimsieg'), 'der Name als Text');
+    }
 }
