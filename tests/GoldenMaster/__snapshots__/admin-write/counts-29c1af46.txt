@@ -284,7 +284,7 @@ GEAENDERT ligen/golden/basic.l98
 +BE4=
 +TI4=
 +AT4=
-NEU output/basic.l98-sp.html (22692 Bytes)
+NEU output/basic.l98-sp.html (22426 Bytes)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -356,7 +356,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">1</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>2.  Spieltag</caption>
           <tr>
@@ -404,7 +403,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>3.  Spieltag</caption>
           <tr>
@@ -452,7 +450,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">3</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>4.  Spieltag</caption>
           <tr>
@@ -500,7 +497,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>5.  Spieltag</caption>
           <tr>
@@ -548,7 +544,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>6.  Spieltag</caption>
           <tr>
@@ -596,7 +591,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">1</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>7.  Spieltag</caption>
           <tr>
@@ -644,7 +638,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">3</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>8.  Spieltag</caption>
           <tr>
@@ -692,7 +685,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>9.  Spieltag</caption>
           <tr>
@@ -740,7 +732,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>10.  Spieltag</caption>
           <tr>
@@ -788,7 +779,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">2</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>11.  Spieltag</caption>
           <tr>
@@ -836,7 +826,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">3</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>12.  Spieltag</caption>
           <tr>
@@ -884,7 +873,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>13.  Spieltag</caption>
           <tr>
@@ -932,7 +920,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">_</td>
           </tr>
         </table>
-      </small></p>
         <table>
         <caption>14.  Spieltag</caption>
           <tr>
@@ -980,7 +967,6 @@ NEU output/basic.l98-sp.html (22692 Bytes)
             <td align="left">3</td>
           </tr>
         </table>
-      </small></p>
       <p><small>Spielfrei: Mannschaft 1&nbsp;&nbsp;Mannschaft 2&nbsp;&nbsp;Mannschaft 3&nbsp;&nbsp;Mannschaft 4&nbsp;&nbsp;Mannschaft 5&nbsp;&nbsp;Mannschaft 6&nbsp;&nbsp;Mannschaft 7&nbsp;&nbsp;Mannschaft 8&nbsp;&nbsp;      </small></p>
       </td>
     </tr>

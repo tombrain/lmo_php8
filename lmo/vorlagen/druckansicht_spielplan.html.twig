@@ -59,8 +59,8 @@
 {% endfor %}
         </table>
 {% endif %}
-{% if t.spielfrei is not null %}
-{% if t.spielfrei %}      <p><small>{{ text[4004]|raw }}: {% endif %}{% for n in t.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>
+{% if t.spielfrei %}
+      <p><small>{{ text[4004]|raw }}: {% for n in t.spielfrei %}{{ n|raw }}&nbsp;&nbsp;{% endfor %}      </small></p>
 {% endif %}
 {% endfor %}
       </td>
