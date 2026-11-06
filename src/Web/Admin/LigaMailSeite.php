@@ -85,13 +85,7 @@ final class LigaMailSeite
      */
     private function verschicke(int $down, string $madr): array
     {
-        $dateien = [];
-        foreach (scandir(rtrim($this->ligenordner, '/')) ?: [] as $datei) {
-            if (strtolower(substr($datei, -4)) == '.l98') {
-                $dateien[] = $datei;
-            }
-        }
-        sort($dateien);
+        $dateien = Ligendateien::in($this->ligenordner);
         $zip = $this->ausgabeordner . 'ligen.zip';
         $meldung = ['', false];
         if (!class_exists(ZipArchive::class)) {

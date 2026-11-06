@@ -22,8 +22,8 @@ use Lmo\Web\Vorlagen;
 
 /**
  * Ligen herunterladen oder per E-Mail schicken (todo=download): je eine Liste der Ligen im
- * Ligenordner, die Links fuehren zu lmo-admindownload.php bzw. lmo-adminmimesend.php (Nummer der
- * Liga in der sortierten Liste ab 1, -1 fuer alle). Hilfsadmins sehen nur ihre Ligen
+ * Ligenordner (Ligendateien), die Links fuehren zu lmo-admindownload.php bzw. lmo-adminmimesend.php
+ * (LigaDownload, LigaMailSeite; Nummer der Liga in der sortierten Liste ab 1, -1 fuer alle). Hilfsadmins sehen nur ihre Ligen
  * (lmouserfile) und nicht "alle". Bis 4.5 lmo-admindown.php mit lmo-admindowndir.php und
  * lmo-adminmimedir.php.
  */
@@ -41,13 +41,7 @@ final class HerunterladenController implements Controller
         $hauptadmin = $sitzung->zahl('lmouserok') == 2;
         $eigene = explode(',', $sitzung->text('lmouserfile'));
         $ordner = $kontext->konfiguration->ligenordner();
-        $dateien = [];
-        foreach (scandir($kontext->pfade->lmo . '/' . $ordner) ?: [] as $datei) {
-            if (strtolower(substr($datei, -4)) == '.l98') {
-                $dateien[] = $datei;
-            }
-        }
-        sort($dateien);
+        $dateien = Ligendateien::in($kontext->pfade->lmo . '/' . $ordner);
         $ligen = [];
         foreach ($dateien as $k => $datei) {
             if ($hauptadmin || in_array(substr($datei, 0, -4), $eigene, true)) {
