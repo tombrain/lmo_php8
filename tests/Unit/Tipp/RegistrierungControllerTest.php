@@ -124,14 +124,24 @@ class RegistrierungControllerTest extends TestCase
         $tipper = Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora');
         self::assertNotNull($tipper);
         self::assertTrue($tipper->pruefeKennwort('neu123'));
-        self::assertStringEndsWith('|5|Nora&nbsp;Neu|nora@example.org|||||1|1|EOL', $tipper->zeile());
+        self::assertStringEndsWith('|5|Nora Neu|nora@example.org|||||1|1|EOL', $tipper->zeile(), 'bis 4.5 Nora&nbsp;Neu');
         self::assertSame("\n", file_get_contents($this->ordner . '/tipps/bula_nora.tip'));
         self::assertFileDoesNotExist($this->ordner . '/tipps/cup_nora.tip');
         self::assertFileDoesNotExist($this->ordner . '/boese_nora.tip', 'nur Ligen aus der Liste');
-        self::assertSame("\n[nora]\nTeam=\nName=Nora&nbsp;Neu\n", file_get_contents($this->ordner . '/tipps/auswert/bula.aus'));
-        self::assertSame("\n[nora]\nTeam=\nName=Nora&nbsp;Neu\n", file_get_contents($this->ordner . '/tipps/auswert/gesamt.aus'));
+        self::assertSame("\n[nora]\nTeam=\nName=Nora Neu\n", file_get_contents($this->ordner . '/tipps/auswert/bula.aus'));
+        self::assertSame("\n[nora]\nTeam=\nName=Nora Neu\n", file_get_contents($this->ordner . '/tipps/auswert/gesamt.aus'));
         self::assertSame(['Admin nora'], $this->mails);
         self::assertSame(['nora', 0], [$sitzung->text('lmotippername'), $sitzung->zahl('lmotipperok')]);
+    }
+
+    public function testNamen(): void
+    {
+        [$html] = $this->seite(['xtippervorname' => 'Nora Lena'] + self::nora());
+        self::assertStringContainsString('T109', $html, 'kein Leerzeichen im Vornamen (bis 4.5 erlaubt)');
+        self::assertNull(Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora'));
+
+        $this->seite(['xtippervorname' => '', 'xtippernachname' => ''] + self::nora(), ['realname' => '0']);
+        self::assertStringContainsString('|5||nora@example.org|', (string) Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora')?->zeile(), 'ohne Namen leer (bis 4.5 &nbsp;)');
     }
 
     public function testMitFreischaltung(): void
@@ -140,7 +150,7 @@ class RegistrierungControllerTest extends TestCase
 
         self::assertStringContainsString('[Freischaltmail]', $html);
         $tipper = Tipperdatei::lies($this->ordner . '/auth.txt')->tipper('nora');
-        self::assertStringContainsString('||Nora&nbsp;Neu|', (string) $tipper?->zeile(), 'noch nicht freigeschaltet');
+        self::assertStringContainsString('||Nora Neu|', (string) $tipper?->zeile(), 'noch nicht freigeschaltet');
         self::assertSame(1, preg_match('/^Freischaltung nora@example.org nora (\S+)$/', $this->mails[0] ?? '', $treffer));
         self::assertTrue($tipper?->pruefeKennwort($treffer[1]), 'das Kennwort aus der Mail');
     }
