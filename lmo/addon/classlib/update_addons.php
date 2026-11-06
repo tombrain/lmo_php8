@@ -21,8 +21,17 @@ function updateAddons($fileName) {
     $file = strpos($fileName, $ligenDir) === 0 ? substr($fileName, strlen($ligenDir)) : $liga . '.l98';
     $action = 'admin';
     $array = array();
-    //Liga-Datei öffnen
-    include PATH_TO_LMO . '/lmo-openfile.php';
+    // die Liga laden (Lmo\Web\LigaOeffnen, bis 4.5 lmo-openfile.php)
+    $lmo_geoeffnet = \Lmo\Web\LigaOeffnen::oeffne(PATH_TO_LMO . '/' . $dirliga, $file, $st ?? null, static fn (string $datei): bool => check_hilfsadmin($datei), (string)$defdateformat, URL_TO_IMGDIR, $text);
+    echo $lmo_geoeffnet->meldung;
+    $file = $lmo_geoeffnet->datei;
+    if ($lmo_geoeffnet->liga !== null) {
+        $lmo_liga = $lmo_geoeffnet->liga;
+        $st = $lmo_geoeffnet->st;
+        $stats = $lmo_geoeffnet->stats;
+        $stand = $lmo_geoeffnet->stand;
+        $text = $lmo_geoeffnet->text;
+    }
 
     // SAVEHTML
     //HTML-Ausgabe erstellen

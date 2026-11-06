@@ -20,4 +20,3 @@ parameters:
         -
             identifier: isset.variable
     paths:
-        - lmo/lmo-openfile.php

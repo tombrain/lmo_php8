@@ -19,7 +19,7 @@ use Lmo\Liga\LigaDatei;
 use Lmo\Liga\Rohdaten\Liga;
 
 /**
- * Laedt die Liga, die eine Seite zeigen soll, wie lmo-openfile.php: aus dem Ligenordner, nur
+ * Laedt die Liga, die eine Seite zeigen soll, wie Lmo\Web\LigaOeffnen: aus dem Ligenordner, nur
  * .l98-Dateien und nur, wenn der Besucher sie sehen darf (Hilfsadmins nur ihre eigenen Ligen).
  */
 final class LigaLader

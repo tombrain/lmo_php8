@@ -56,7 +56,7 @@ final class TabellenkorrekturController implements Controller
         $liga = $geladen->liga;
         $e = $liga->einstellungen();
         $mannschaften = $e->mannschaften();
-        // ohne Spieltag in der Anfrage der aktuelle (lmo-openfile.php)
+        // ohne Spieltag in der Anfrage der aktuelle (wie Lmo\Web\LigaOeffnen)
         $st = $anfrage->gesetzt('st') ? $anfrage->text('st') : ($liga->optionen['Actual'] ?? '1');
         // die Tabelle bis zum gewaehlten Spieltag, in der errechneten Reihenfolge (ohne Korrektur)
         $tabelle = Tabelle::fuerAnsicht($liga, 0, (int) $st);

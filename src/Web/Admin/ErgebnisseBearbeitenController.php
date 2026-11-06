@@ -70,7 +70,7 @@ final class ErgebnisseBearbeitenController implements Controller
         $spieltage = $e->spieltage();
         $paarungRechte = $sitzung->zahl('lmouserok') == 2 || $sitzung->zahl('lmouserokerweitert') == 1;
         $spalten = $kontext->addons->ergebnisSpalten($kontext);
-        // ohne Spieltag in der Anfrage der aktuelle (lmo-openfile.php)
+        // ohne Spieltag in der Anfrage der aktuelle (wie Lmo\Web\LigaOeffnen)
         $st = $anfrage->gesetzt('st') ? $anfrage->text('st') : (string) $e->aktuellerSpieltag();
         // Spieltag, den es in der Liga nicht gibt (z.B. st=-2 als Hilfsadmin ohne Recht auf die
         // Mannschaftsverwaltung): stattdessen den aktuellen Spieltag bearbeiten

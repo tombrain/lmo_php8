@@ -59,10 +59,20 @@ if ($action == 'admin') {
     $warning = (int)0;
     if (version_compare(PHP_VERSION, $min_php_version, '<')) echo getMessage('This LMO requires a web server with PHP ' . $min_php_version . ' or higher installed.<br>Your web server does not currently support this because your PHP version is:: <mark>' . PHP_VERSION . '</mark>', $warning = $warning + 1, true);
 
-    // die Liga laden; was dabei ausgegeben wird, stand bis 4.5 vorn in der Menuezeile
-    ob_start();
-    require_once(PATH_TO_LMO . '/lmo-openfile.php');
-    $lmo_admin_lademeldung = (string)ob_get_clean();
+    // die Liga laden (Lmo\Web\LigaOeffnen, bis 4.5 lmo-openfile.php); die Meldung steht vorn in der
+    // Menuezeile. Die Variablen bekommt der alte Code (Addons nach alter Art), die Sprachtexte mit
+    // den Bezeichnungen der Liga auch die Seiten (lmo-anwendung.php liest sie unten).
+    $lmo_admin_geoeffnet = \Lmo\Web\LigaOeffnen::oeffne(PATH_TO_LMO . '/' . $dirliga, is_string($file) ? $file : '', $st ?? null, static fn (string $datei): bool => check_hilfsadmin($datei), (string)$defdateformat, URL_TO_IMGDIR, $text);
+    $lmo_admin_lademeldung = $lmo_admin_geoeffnet->meldung;
+    $file = $lmo_admin_geoeffnet->datei;
+    $ligastats1 = 1;
+    if ($lmo_admin_geoeffnet->liga !== null) {
+        $lmo_liga = $lmo_admin_geoeffnet->liga;
+        $st = $lmo_admin_geoeffnet->st;
+        $stats = $lmo_admin_geoeffnet->stats;
+        $stand = $lmo_admin_geoeffnet->stand;
+        $text = $lmo_admin_geoeffnet->text;
+    }
     // das Menue zeigt die Datei, wie sie nach dem Laden ist; der Ruecklink unten die nach dem Inhalt
     $lmo_admin_datei = $file;
 
