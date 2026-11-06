@@ -75,23 +75,24 @@ if ($action == 'admin') {
         $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
-    // Bruecke zum Speichern einer Liga nach alter Art (lmo-saveliga.php): mit den globalen Variablen
-    // per Referenz wie bisher im globalen Bereich; $file und $lmo_liga zeigen danach auf die Liga.
-    // Zurueck kommen die Meldungen und die Liga im gespeicherten Stand (Lmo\Liga\Normalform).
-    $lmo_admin_speichere = static function (\Lmo\Liga\Rohdaten\Liga $lmo_speichern_liga, string $lmo_speichern_datei, string $lmo_speichern_st): array {
-        foreach (array_keys($GLOBALS) as $lmo_speichern_name) {
-            if ($lmo_speichern_name !== 'GLOBALS' && $lmo_speichern_name[0] !== '_' && strpos($lmo_speichern_name, 'lmo_speichern_') !== 0) {
-                ${$lmo_speichern_name} = &$GLOBALS[$lmo_speichern_name];
-            }
+    // Speichern einer Liga (Lmo\Web\Admin\LigaSpeichern; bis 4.5 lmo-saveliga.php im globalen Bereich).
+    // Statistik und Druckansicht schreibt noch der alte Code (lmo-zustat.php, lmo-savehtml.php,
+    // lmo-savehtml1.php), jeweils in eigenem Bereich. Zurueck kommen die Meldungen und die Liga im
+    // gespeicherten Stand (Lmo\Liga\Normalform).
+    $lmo_admin_ligaspeichern = new \Lmo\Web\Admin\LigaSpeichern(
+        PATH_TO_LMO . '/' . $dirliga,
+        PATH_TO_LMO . '/' . $diroutput,
+        $lmo_admin_kontext->konfiguration,
+        $text,
+        URL_TO_IMGDIR,
+        isset($_SESSION['lmouserok']) && ($_SESSION['lmouserok'] == 2 || $_SESSION['lmouserok'] == 1),
+        static fn (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $file) => $lmo_statistik_erzeugen($lmo_liga, $file, $text),
+        static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $st, string $file) use ($text, $diroutput, $defdateformat): void {
+            include(PATH_TO_LMO . '/lmo-savehtml.php');
+            include(PATH_TO_LMO . '/lmo-savehtml1.php');
         }
-        unset($lmo_speichern_name);
-        $lmo_liga = $lmo_speichern_liga;
-        $file = $lmo_speichern_datei;
-        $st = $lmo_speichern_st;
-        ob_start();
-        require(PATH_TO_LMO . '/lmo-saveliga.php');
-        return array((string)ob_get_clean(), $lmo_liga);
-    };
+    );
+    $lmo_admin_speichere = \Closure::fromCallable(array($lmo_admin_ligaspeichern, 'speichere'));
 
     // die Seiten des Kerns nach neuer Art (Lmo\Web\Admin); Hilfsadmins sehen nur ihre Ligen
     $lmo_admin_kern = array(

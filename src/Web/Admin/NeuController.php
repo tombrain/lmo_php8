@@ -40,7 +40,7 @@ final class NeuController implements Controller
     private const POKALMODI = [1 => 353, 2 => 354, 3 => 355, 5 => 356, 7 => 357];
 
     /**
-     * @param Closure(Liga, string, string): array{string, Liga} $speichere schreibt eine Liga (Rohdaten, Dateiname im Ligenordner, gewaehlter Spieltag) wie lmo-saveliga.php; zurueck kommen dessen Meldungen und die gespeicherte Liga
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere schreibt eine Liga (Rohdaten, Dateiname im Ligenordner, gewaehlter Spieltag) wie LigaSpeichern; zurueck kommen dessen Meldungen und die gespeicherte Liga
      * @param Closure(int, int): int|null $zufall Zufallszahl fuer den ausgelosten Spielplan (mt_rand)
      */
     public function __construct(private Closure $speichere, private ?Closure $zufall = null)
@@ -126,7 +126,7 @@ final class NeuController implements Controller
     /**
      * Die Rohdaten der neuen Liga: die Einstellungen, mit denen eine Liga beginnt, Mannschaften mit
      * vorlaeufigen Namen und der Spielplan (leer, aus der Vorlage oder ausgelost). Alles Uebrige
-     * ergaenzt das Speichern (lmo-saveliga.php).
+     * ergaenzt das Speichern (LigaSpeichern).
      *
      * @param array<int|string, string> $text
      * @param string|null $vorlage Datei der Liga, deren Spielplan uebernommen wird

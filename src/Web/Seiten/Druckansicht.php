@@ -20,7 +20,7 @@ use Lmo\Web\Vorlagen;
 /**
  * Die Links zur Druckansicht unter der Seite (Teil Savehtml des Rahmens): Spieltag mit Tabelle
  * (<liga>-st.html) und Spielplan (<liga>-sp.html). Die Dateien schreibt das Speichern der Liga
- * (lmo-saveliga.php, classlib); hier nur die Links darauf.
+ * (Lmo\Web\Admin\LigaSpeichern, classlib); hier nur die Links darauf.
  */
 final class Druckansicht
 {

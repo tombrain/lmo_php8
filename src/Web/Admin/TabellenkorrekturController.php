@@ -33,7 +33,7 @@ use Lmo\Web\Vorlagen;
 final class TabellenkorrekturController implements Controller
 {
     /**
-     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, gewaehlter Spieltag)
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga (LigaSpeichern) (Rohdaten, Datei, gewaehlter Spieltag)
      */
     public function __construct(private Closure $speichere)
     {
