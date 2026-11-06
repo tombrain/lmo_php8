@@ -57,7 +57,7 @@ class SaisonstatistikTest extends TestCase
         }
         self::assertEquals(['gzutore' => 12, 'gdstore' => 2.4, 'gzusieg1' => 2, 'gzusieg2' => 1, 'gzuunent' => 2, 'gbeide' => 0,
             'gheimtore' => 7, 'ggasttore' => 5, 'dsheimtore' => 1.4, 'dsgasttore' => 1], $zahlen);
-        self::assertSame([5, 6, 1], array_values(array_map(static fn (int $st): int|float|string => $s->toreSpieltag($st), [1, 2, 3])), 'Tore je Spieltag');
+        self::assertSame([5, 6, 1], array_map(static fn (int $st): int|float|string => $s->toreSpieltag($st), [1, 2, 3]), 'Tore je Spieltag');
     }
 
     public function testRekorde(): void
