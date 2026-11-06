@@ -84,8 +84,8 @@ final class AdminTipperController implements Controller
                 'id' => $nr + 1,
                 'nick' => $tipper->nick(),
                 // Vorname&nbsp;Nachname, am ersten Leerzeichen getrennt; ohne Leerzeichen der ganze Name
-                // (bis 4.5 fehlte dann der erste Buchstabe)
-                'name' => $leer === false ? $name : substr($name, 0, $leer) . '&nbsp;' . substr($name, $leer + 1),
+                // (bis 4.5 fehlte dann der erste Buchstabe). Fertiges HTML: die Teile maskiert (bis 4.5 roh)
+                'name' => $leer === false ? htmlspecialchars($name) : htmlspecialchars(substr($name, 0, $leer)) . '&nbsp;' . htmlspecialchars(substr($name, $leer + 1)),
                 'email' => $tipper->email(),
                 'team' => $tipper->verein(),
                 'ltipp' => $letzter,

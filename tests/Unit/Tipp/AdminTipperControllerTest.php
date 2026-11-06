@@ -66,6 +66,19 @@ class AdminTipperControllerTest extends TestCase
         return $controller->zustaendig($kontext) ? $controller->zeige($kontext)->html : null;
     }
 
+    public function testEingabenDerTipperMaskiert(): void
+    {
+        file_put_contents($this->ordner . '/lmo-tippauth.txt', "<?php exit; ?>\n"
+            . "x'onclick='a()|x|5|Ina \"<b>B</b>|i@x.org\"><i>|<s>FC</s>||||1|1|EOL\n");
+        $html = (string) $this->seite(['tipper_sort' => "id'><u>"]);
+
+        foreach (['<b>B</b>', '<i>', '<s>FC', "nick=x'onclick", "'><u>"] as $roh) {
+            self::assertStringNotContainsString($roh, $html, $roh);
+        }
+        self::assertStringContainsString('<td align="left">Ina&nbsp;&quot;&lt;b&gt;B&lt;/b&gt;</td>', $html, 'Vor- und Nachname, getrennt mit &nbsp;');
+        self::assertStringContainsString('nick=x%27onclick%3D%27a%28%29', $html, 'der Nick in Links kodiert');
+    }
+
     public function testNurHauptadmin(): void
     {
         self::assertNull($this->seite([], 1));
