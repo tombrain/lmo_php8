@@ -94,6 +94,20 @@ class AdminTipperBearbeitenControllerTest extends TestCase
         self::assertStringContainsString('<input type="hidden" name="newpage" value="0">', $html);
     }
 
+    public function testNameAusDerRegistrierung(): void
+    {
+        file_put_contents($this->ordner . '/daten/lmo-tippauth.txt', "<?php exit; ?>\n"
+            . "cleo|HASH|5|Cleo&nbsp;Neu|cleo@example.org|||||1|1|EOL\n"
+            . "test|HASH|5|&nbsp;|test@example.org|||||1|1|EOL\n");
+
+        $html = (string) $this->seite(['nick' => 'cleo']);
+        self::assertStringContainsString('name="xtippervorname" size="25" maxlength="32" value="Cleo"', $html, 'bis 4.5 leer');
+        self::assertStringContainsString('name="xtippernachname" size="25" maxlength="32" value="Neu"', $html, 'bis 4.5 "leo&nbsp;Neu"');
+
+        $html = (string) $this->seite(['nick' => 'test']);
+        self::assertStringContainsString('name="xtippernachname" size="25" maxlength="32" value=""', $html, 'bis 4.5 "nbsp;"');
+    }
+
     public function testSpeichern(): void
     {
         $html = (string) $this->seite(['nick' => 'anna', 'newpage' => '0', 'xtipperpass' => '', 'xtippervorname' => 'Anna', 'xtippernachname' => 'Neu',

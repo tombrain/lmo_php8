@@ -183,8 +183,8 @@ final class KontoController implements Controller
             $auswahl[strtolower((string) $name) . (50000000 + $nr++)] = ['name' => (string) $name, 'tipper' => $tipperzahl];
         }
         ksort($auswahl, SORT_STRING);
-        $name = $tipper->name();
-        $leerzeichen = (int) strpos($name, ' ');
+        // im Formular der gespeicherte Name
+        [$gespeicherterVorname, $gespeicherterNachname] = Tipper::teileName($tipper->name());
 
         return $meldungen . $this->vorlage($kontext, 'daten.html.twig', [
             'gespeichert' => $gespeichert,
@@ -192,8 +192,8 @@ final class KontoController implements Controller
             'mitAdresse' => $adresse,
             'email2' => ($cfg['freischaltcode'] ?? '') == 1,
             'team' => $imTeam >= 0,
-            'vorname' => substr($name, 0, $leerzeichen),
-            'nachname' => substr($name, $leerzeichen + 1),
+            'vorname' => $gespeicherterVorname,
+            'nachname' => $gespeicherterNachname,
             'gespeicherter' => $tipper,
             'newsletter' => $tipper->feld(9) != -1,
             'erinnerung' => $tipper->feld(10) != -1,

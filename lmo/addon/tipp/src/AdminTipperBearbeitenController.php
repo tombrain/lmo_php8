@@ -196,7 +196,7 @@ final class AdminTipperBearbeitenController implements Controller
         }
 
         $neu = $save == count($zeilen);
-        $leer = strpos($daten[3], ' ');
+        [$vorname, $nachname] = Tipper::teileName($daten[3]);
         // die Vereine fuer die Auswahl, nach Namen sortiert (wie bisher ueber Name und Nummer als Text)
         $auswahl = [];
         $nr = 0;
@@ -219,8 +219,8 @@ final class AdminTipperBearbeitenController implements Controller
             'nick' => $nick,
             'kennwort' => $neu ? self::zufallskennwort() : '',
             'daten' => $daten,
-            'vorname' => $leer === false ? '' : substr($daten[3], 0, $leer),
-            'nachname' => substr($daten[3], $leer === false ? 1 : $leer + 1),
+            'vorname' => $vorname,
+            'nachname' => $nachname,
             'mitVerein' => $imTeam >= 0,
             'vereinswahl' => $vereinswahl,
             'vereinAlt' => $vereinAlt,
