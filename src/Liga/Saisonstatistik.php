@@ -271,7 +271,9 @@ final class Saisonstatistik
         }
 
         $zahl = static fn (string $name, int|float $wert): string => '$' . $name . '=' . $wert . ";\n";
-        $text = static fn (string $name, string $wert): string => '$' . $name . '="' . $wert . "\";\n";
+        // in doppelten Anfuehrungszeichen: $ und \ maskiert, sonst liefe ein Name wie {${...}} beim
+        // Einbinden der Datei als PHP-Code
+        $text = static fn (string $name, string $wert): string => '$' . $name . '="' . addcslashes($wert, '\\$') . "\";\n";
         $html = static fn (string $name, string $wert): string => $text($name, htmlspecialchars($wert));
         $rekord = static fn (array $r, array $namen): string => $html($namen[0], (string) $r['heim']) . $html($namen[1], (string) $r['gast'])
             . $text($namen[2], (string) $r['toreHeim']) . $text($namen[3], (string) $r['toreGast']) . $zahl($namen[4], $r['st']);
