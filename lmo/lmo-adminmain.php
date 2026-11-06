@@ -75,9 +75,10 @@ if ($action == 'admin') {
         $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
     }
 
-    // Speichern einer Liga (Lmo\Web\Admin\LigaSpeichern; bis 4.5 lmo-saveliga.php im globalen Bereich).
-    // Die Druckansicht schreibt noch der alte Code (lmo-savehtml.php, lmo-savehtml1.php) in eigenem
-    // Bereich. Zurueck kommen die Meldungen und die Liga im gespeicherten Stand (Lmo\Liga\Normalform).
+    // Speichern einer Liga (Lmo\Web\Admin\LigaSpeichern; bis 4.5 lmo-saveliga.php im globalen Bereich)
+    // mit Statistik (Lmo\Liga\Saisonstatistik) und Druckansicht (Lmo\Web\Druckdateien). Zurueck
+    // kommen die Meldungen und die Liga im gespeicherten Stand (Lmo\Liga\Normalform).
+    $lmo_admin_druckdateien = new \Lmo\Web\Druckdateien(PATH_TO_LMO . '/' . $diroutput, $text, new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR), (string)$defdateformat, PATH_TO_LMO . '/vorlagen');
     $lmo_admin_ligaspeichern = new \Lmo\Web\Admin\LigaSpeichern(
         PATH_TO_LMO . '/' . $dirliga,
         PATH_TO_LMO . '/' . $diroutput,
@@ -86,10 +87,7 @@ if ($action == 'admin') {
         URL_TO_IMGDIR,
         isset($_SESSION['lmouserok']) && ($_SESSION['lmouserok'] == 2 || $_SESSION['lmouserok'] == 1),
         static fn (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $file) => $lmo_statistik_erzeugen($lmo_liga, $file, $text),
-        static function (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $st, string $file) use ($text, $diroutput, $defdateformat): void {
-            include(PATH_TO_LMO . '/lmo-savehtml.php');
-            include(PATH_TO_LMO . '/lmo-savehtml1.php');
-        }
+        static fn (\Lmo\Liga\Rohdaten\Liga $lmo_liga, string $st, string $file) => $lmo_admin_druckdateien->schreibe($lmo_liga, $file, $st)
     );
     // die zuletzt gespeicherte Datei: auf sie zeigt der Ruecklink (etwa nach dem Anlegen einer Liga;
     // bis 4.5 setzte lmo-saveliga.php dafuer das globale $file)

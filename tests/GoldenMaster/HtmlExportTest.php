@@ -10,8 +10,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * HTML-Ausgabe zum Drucken (einsavehtml=1): Beim Speichern einer Liga schreibt der LMO fuer den
  * gespeicherten Spieltag zwei Dateien in den Ausgabeordner, <liga>-st.html (Spieltag und Tabelle,
- * lmo-savehtml.php) und <liga>-sp.html (Spielplan, lmo-savehtml1.php). Die Seiten-Snapshots zeigen
- * nur den Link darauf; hier wird der Inhalt der Dateien festgehalten. Bis 4.5 entstanden sie beim
+ * bis 4.5 lmo-savehtml.php) und <liga>-sp.html (Spielplan, lmo-savehtml1.php), heute
+ * Lmo\Web\Druckdateien. Die Seiten-Snapshots zeigen nur den Link darauf; hier wird der Inhalt der
+ * Dateien festgehalten. Bis 4.5 entstanden sie beim
  * Anzeigen von Ergebnissen oder Tabelle; die Faelle heissen noch nach der Seite von damals.
  * Verglichen wird das HTML in kanonischer Form (Normalizer::canonical): Leerraum zaehlt nicht.
  */

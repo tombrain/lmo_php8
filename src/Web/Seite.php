@@ -19,7 +19,7 @@ final class Seite
 {
     /**
      * @param string $html Hauptteil der Seite
-     * @param bool $druckbar Links zur Druckansicht (lmo-savehtml.php) unter der Seite zeigen
+     * @param bool $druckbar Links zur Druckansicht (Lmo\Web\Druckdateien) unter der Seite zeigen
      */
     public function __construct(
         public readonly string $html,

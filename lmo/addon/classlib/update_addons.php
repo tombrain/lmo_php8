@@ -26,9 +26,10 @@ function updateAddons($fileName) {
 
     // SAVEHTML
     //HTML-Ausgabe erstellen
+    // (Lmo\Web\Druckdateien, bis 4.5 lmo-savehtml.php und lmo-savehtml1.php)
     if ($einsavehtml == 1) {
-        include(PATH_TO_LMO . '/lmo-savehtml.php');
-        include(PATH_TO_LMO . '/lmo-savehtml1.php');
+        (new \Lmo\Web\Druckdateien(PATH_TO_LMO . '/' . $diroutput, $text, new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR), (string)$defdateformat, PATH_TO_LMO . '/vorlagen'))
+            ->schreibe($lmo_liga, $file, (string)$st);
     }
     // SAVEHTML
 

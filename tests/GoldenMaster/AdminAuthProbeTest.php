@@ -48,7 +48,6 @@ final class AdminAuthProbeTest extends TestCase
             'lmo-adminmain.php' => 'action=admin',
             'lmo-adminmimesend.php' => '',
             'lmo-admincal.php' => '',
-            'lmo-savehtml.php' => 'file=golden/basic.l98',
             'lmo-openfile.php' => 'file=golden/basic.l98',
         ] as $script => $query) {
             $t->add('direkter Aufruf ' . $script, $c->get($script, $query), $c->changes());
