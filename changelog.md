@@ -80,6 +80,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Changed  
+* Toter Code entfernt: `lmo-admindir.php`, `lmo-openfiledat.php` und `lmo-adminjavascript.php` band nichts mehr ein (das JavaScript der Administration kommt aus `js/admin.js.php`).  
 * Classlib: Sie ist veraltet und bleibt nur für bestehende eigene Skripte erhalten; nichts im LMO nutzt sie noch, in einer späteren Hauptversion wird sie entfernt. `updateAddons()` nach `liga::writeFile()` ruft die Auswertungen der Addons jetzt über den Erweiterungspunkt `MitErgebnisAuswertung` auf statt fest die Dateien des Tippspiels; `lmo-tippsavewert.php` und `lmo-tippsavewertgesamt.php` gibt es nicht mehr.  
 * Viewer (`addon/viewer/viewer.php`): Liga und Spiele liest er mit `Lmo\Liga\Begegnungen` (Bilder über `Lmo\Web\Bilder`) und braucht die Classlib nicht mehr. Ausgabe, Vorlagen, Cache und Einbindung bleiben, wie sie waren. Damit nutzt nichts im LMO die Classlib mehr.  
 * Mini, Mini-Spielplan: Die Fußzeile nennt die Classlib nicht mehr (bisher „(classlib 2.8)“); den Platzhalter `CLASSLIB_VERSION` gibt es in den Sprachdateien des Mini nicht mehr.  
@@ -593,6 +594,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Changed  
+* Dead code removed: nothing included `lmo-admindir.php`, `lmo-openfiledat.php` and `lmo-adminjavascript.php` any more (the administration JavaScript comes from `js/admin.js.php`).  
 * Classlib: it is deprecated and only kept for existing custom scripts; nothing in the LMO uses it any more, it will be removed in a later major version. `updateAddons()` after `liga::writeFile()` now runs the add-on evaluations through the extension point `MitErgebnisAuswertung` instead of including the prediction game files directly; `lmo-tippsavewert.php` and `lmo-tippsavewertgesamt.php` are gone.  
 * Viewer (`addon/viewer/viewer.php`): it reads league and games with `Lmo\Liga\Begegnungen` (images through `Lmo\Web\Bilder`) and no longer needs the classlib. Output, templates, cache and embedding stay as they were. Nothing in the LMO uses the classlib any more.  
 * Mini, mini schedule: the footer no longer names the classlib (so far "(classlib 2.8)"); the placeholder `CLASSLIB_VERSION` is gone from the mini language files.  

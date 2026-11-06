@@ -295,9 +295,9 @@ im Kern einzeln geprueft:
 | `index.php` | reiner Redirect auf `lmo.php` | `CoreGapsTest::testIndexRedirectsToLmoPhp` |
 | `lmo-adminopenprogram.php` (heute `Lmo\Web\Admin\NeuController`) | Spielplan "aus Datei uebernehmen"; `$xprogram` wird ungeprueft an `fopen()` uebergeben (nur Suffix `.l98` verlangt) - eigener, kleiner Befund zum Pfad-Handling, siehe Klassenkommentar in `CoreGapsTest.php` | `CoreGapsTest::testCreateLeagueFromTemplate` |
 | `lmo-adminrndprogram.php` (heute `Lmo\Liga\Zufallsspielplan`, mit Unit-Test) | erzeugt einen echten Zufallsspielplan (nicht deterministisch) | `RandomScheduleSmokeTest`: kein Golden-Master-Vergleich, sondern Plausibilitaetspruefung (jedes Team pro Spieltag genau einmal) + Pruefung auf PHP-Fehler |
-| `lmo-admindir.php` | **toter Code** - keine einzige Referenz im gesamten Repository (auch nicht in Addons) | bewusst nicht getestet, bleibt bei 0% |
+| `lmo-admindir.php` | war toter Code ohne Referenz | entfernt |
 | `lmo-paintgraph.php` | war toter Code ohne Referenz und ist in 4.2.1 entfernt (die Fieberkurve zeichnet der Browser mit Chart.js; das Tippspiel-Addon hat eine eigene Datei `lmo-tipppaintgraph.php`) | entfaellt |
-| `lmo-openfiledat.php` | nur vom Tippspiel-Addon genutzt (E-Mail-Versand mit Spieltagsbezug; das Zufallspasswort bei neuem Tipper kommt heute aus `AdminTipperBearbeitenController`) | zurueckgestellt, gehoert zum separaten Block "Tippspiel-Addon" (aktuell 4% Abdeckung, 64 Dateien) |
+| `lmo-openfiledat.php` | nutzte nur der alte Mailversand des Tippspiels (heute `Lmo\Addon\Tipp\Rundmail`) | entfernt |
 
 KO-Ligen (`Type=1`: `lmo-showkoprogram.php`, `lmo-showkoresults.php`, Teile von `lmo-adminnew.php`)
 sind bewusst **nicht** Teil dieser Runde: Das ist ein eigener, groesserer Baustein (eigene
