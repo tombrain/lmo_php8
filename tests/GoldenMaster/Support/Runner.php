@@ -31,6 +31,12 @@ final class Runner
         return $this->run('request.php', [$query]);
     }
 
+    /** Was init.php anlegt (bin/globals.php), Rueckgabe: JSON. */
+    public function globals(string $query = ''): string
+    {
+        return $this->run('globals.php', [$query]);
+    }
+
     /** Berechnet die Tabellen einer Liga in allen Ansichten, Rueckgabe: JSON. */
     /** @param bool $allRounds jeden Spieltag rechnen statt der festen Auswahl fuer den Golden Master */
     public function calc(string $leagueFile, bool $allRounds = false): string
