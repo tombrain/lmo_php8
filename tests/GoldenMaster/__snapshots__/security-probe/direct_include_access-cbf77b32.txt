@@ -187,11 +187,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-savehtml.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-openfile.php ===
 
 --- Dateiaenderungen ---
