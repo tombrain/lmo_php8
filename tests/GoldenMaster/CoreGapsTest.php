@@ -15,10 +15,9 @@ use PHPUnit\Framework\TestCase;
  *   Bis 4.5 ging $xprogram dafuer OHNE Pruefung an fopen() (nur der Suffix ".l98" wurde verlangt),
  *   und das Formular trug den vollen Serverpfad; heute gilt nur eine angebotene Liga des Ligenordners.
  *
- * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-admindir.php ist
- * toter Code (keine einzige Referenz irgendwo im Repository); lmo-openfiledat.php wird
- * ausschliesslich vom Tippspiel-Addon genutzt (lmo-adminuserpass.php gibt es nicht mehr); lmo-adminrndprogram.php wird separat als Rauchtest gefuehrt
- * (siehe RandomScheduleSmokeTest), weil sein Ergebnis auf echtem Zufall beruht.
+ * Bewusst NICHT geschlossen (siehe TESTING.md): lmo-adminrndprogram.php wird separat als
+ * Rauchtest gefuehrt (siehe RandomScheduleSmokeTest), weil sein Ergebnis auf echtem Zufall beruht.
+ * lmo-admindir.php und lmo-openfiledat.php waren toter Code und sind entfernt.
  */
 final class CoreGapsTest extends TestCase
 {

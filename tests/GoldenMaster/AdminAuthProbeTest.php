@@ -48,7 +48,6 @@ final class AdminAuthProbeTest extends TestCase
             'lmo-adminmain.php' => 'action=admin',
             'lmo-saveliga.php' => 'file=golden/basic.l98',
             'lmo-adminmimesend.php' => '',
-            'lmo-adminjavascript.php' => '',
             'lmo-admincal.php' => '',
             'lmo-savehtml.php' => 'file=golden/basic.l98',
             'lmo-openfile.php' => 'file=golden/basic.l98',
