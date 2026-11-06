@@ -72,8 +72,10 @@ final class Anmeldung
             if (count($felder) < 2 || $felder[0] !== $name) {
                 continue;
             }
-            // gehasht oder im Klartext
-            if (password_verify($kennwort, $felder[1]) || $kennwort === $felder[1]) {
+            // gehasht oder (alte Konten) im Klartext; den Klartext nur, wenn kein Hash dasteht: bis
+            // 4.5 meldete auch der Hash selbst an. Ohne Kennwort nie.
+            $klartext = !password_get_info($felder[1])['algo'] && $felder[1] !== '' && hash_equals($felder[1], $kennwort);
+            if ($kennwort !== '' && (password_verify($kennwort, $felder[1]) || $klartext)) {
                 $angemeldet = true;
                 if (password_needs_rehash($felder[1], $verfahren) || !password_get_info($felder[1])['algo']) {
                     $felder[1] = password_hash($kennwort, $verfahren);
