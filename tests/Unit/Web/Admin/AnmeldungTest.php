@@ -58,6 +58,16 @@ class AnmeldungTest extends TestCase
         self::assertNull((new Anmeldung($this->datei))->meldeAn('leer', ''), 'ohne Kennwort keine Anmeldung');
     }
 
+    public function testFormularMaskiert(): void
+    {
+        $text = array_fill(0, 800, 'T');
+        $html = (new Anmeldung($this->datei))->formular($text, '/lmo/lmoadmin.php/"><script>a()</script>', '"><script>b()</script>', '', 'LMO', dirname(__DIR__, 4) . '/lmo/vorlagen');
+
+        self::assertStringNotContainsString('<script>', $html);
+        self::assertStringContainsString('value="&quot;&gt;&lt;script&gt;b()&lt;/script&gt;"', $html, 'der zuletzt eingegebene Name');
+        self::assertStringContainsString('action="/lmo/lmoadmin.php/&quot;&gt;&lt;script&gt;a()&lt;/script&gt;"', $html);
+    }
+
     public function testFalsch(): void
     {
         $anmeldung = new Anmeldung($this->datei);

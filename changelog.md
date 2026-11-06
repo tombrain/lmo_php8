@@ -200,6 +200,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Administration, Anmeldeformular: Der zuletzt eingegebene Benutzername und die eigene Adresse werden maskiert ausgegeben. Bisher ließ sich darüber HTML und JavaScript in die Anmeldeseite einschleusen.  
 * Administration, Anmeldung: Nach erfolgreicher Anmeldung gibt es eine neue Sitzungs-ID (gegen Session Fixation), und das Kennwort steht nicht mehr im Klartext in der Sitzung (`lmouserpass`). Ausgewertet wird die Anmeldung jetzt vor jeder Ausgabe der Seite.  
 * Administration, Anmeldung: Der Hash aus `config/lmo-auth.php` gilt nicht mehr selbst als Kennwort. Der Vergleich im Klartext, gedacht für alte Konten, galt bisher für jeden gespeicherten Wert; wer den Hash kannte (etwa aus einer Sicherung), konnte sich damit anmelden. Klartext zählt jetzt nur, wo kein Hash steht, der Vergleich ist zeitkonstant, und ein leeres Kennwort meldet nie an.  
 * Administration, Kalender zur Datumswahl: Die Parameter `abs` und `feld` (Formular und Feld im aufrufenden Fenster) gelten nur noch aus Buchstaben, Ziffern und `_`, die eigene Adresse wird maskiert. Bisher standen sie ungeprüft im JavaScript der Seite, ein präparierter Link konnte so Skript einschleusen.  
@@ -731,6 +732,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Administration, login form: the last entered user name and the page's own address are output escaped. Until now HTML and JavaScript could be injected into the login page through them.  
 * Administration, login: after a successful login there is a new session ID (against session fixation), and the password is no longer kept in plain text in the session (`lmouserpass`). The login is now evaluated before any output of the page.  
 * Administration, login: the hash from `config/lmo-auth.php` no longer works as a password itself. The plain-text comparison, meant for old accounts, applied to every stored value; anyone who knew the hash (e.g. from a backup) could log in with it. Plain text now only counts where no hash is stored, the comparison is constant-time, and an empty password never logs in.  
 * Administration, date picker calendar: the parameters `abs` and `feld` (form and field in the calling window) are only accepted as letters, digits and `_`, and the page's own address is escaped. Until now they were put into the page's JavaScript unchecked, so a crafted link could inject script.  
