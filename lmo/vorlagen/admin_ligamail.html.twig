@@ -20,11 +20,11 @@
 <body>
 <div class="lmoMain">
 {% if formular %}
-  <form action="{{ formular.ziel|raw }}">
+  <form action="{{ formular.ziel }}">
     <label>Mailadresse: <input name="madr" type="text" class="lmo-formular-input" size="25" maxlength="128"></label>
     <input type="hidden" name="action" value="admin">
     <input type="hidden" name="todo" value="email">
-    <input type="hidden" name="down" value="{{ formular.down|raw }}">
+    <input type="hidden" name="down" value="{{ formular.down }}">
     <input type="submit" value="Senden">
   </form>
 {% else %}
