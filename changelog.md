@@ -194,6 +194,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Security  
+* Administration, Liga per E-Mail: Das Formular gibt den Parameter `down` und die eigene Adresse maskiert aus. Bisher ließ sich über einen präparierten Link HTML und JavaScript in die Seite eines angemeldeten Admins einschleusen.  
 * Statistikdatei einer Liga: Mannschaftsnamen stehen dort in doppelten Anführungszeichen im PHP-Code; `$` und `\` werden jetzt maskiert. Bisher lief ein Name wie `{${…}}` beim Anzeigen der Statistik als PHP-Code, und Namen können auch Hilfsadmins setzen.  
 * Tippspiel, Newsletter/Reminder: Die Erinnerung für eine Liga gilt nur für Ligen, die getippt werden. Bisher las sie jede Datei, deren Name in der Anfrage stand, mit `../` auch außerhalb des Ligenordners.  
 * Tippspiel, Administration, Auswertung: Auswerten (`save=2`) und Tipp-Einsicht erstellen (`save=3`) gelten nur für Ligen, die getippt werden. Bisher ging jeder Ligenname aus der Anfrage in die Dateinamen, mit `../` auch außerhalb des Tippordners.  
@@ -713,6 +714,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Security  
+* Administration, league by e-mail: the form outputs the parameter `down` and its own address escaped. Until now a crafted link could inject HTML and JavaScript into the page of a logged-in admin.  
 * Statistics file of a league: team names are stored there in double quotes inside PHP code; `$` and `\` are now escaped. Until now a name like `{${…}}` ran as PHP code when the statistics were shown, and team names can also be set by assistant admins.  
 * Prediction game, newsletter/reminder: the reminder for a league only applies to leagues that are tipped. So far it read every file whose name was in the request, with `../` even outside the league folder.  
 * Prediction game, administration, evaluation: evaluating (`save=2`) and creating the tip view (`save=3`) only apply to leagues that are tipped. So far every league name from the request went into the file names, with `../` even outside the tip folder.  

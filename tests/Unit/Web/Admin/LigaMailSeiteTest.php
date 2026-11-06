@@ -94,6 +94,13 @@ class LigaMailSeiteTest extends TestCase
         self::assertSame([], $this->gesendet);
     }
 
+    public function testFormularMaskiert(): void
+    {
+        $html = $this->seite(['down' => '1"><script>x</script>']);
+        self::assertStringNotContainsString('<script>x', $html);
+        self::assertStringContainsString('value="1&quot;&gt;&lt;script&gt;x&lt;/script&gt;"', $html);
+    }
+
     public function testEineLiga(): void
     {
         $html = $this->seite(['down' => '2', 'madr' => 'x@example.org']);
