@@ -1,0 +1,106 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Kalender zur Datumswahl, Pop-up (Lmo\Web\Admin\KalenderPopup) #}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="{{ text[798] }}">
+<head>
+<title>Pop-Up {{ text[255]|raw }}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<style type="text/css">
+body{font-size:81%;font-family:sans-serif;}
+table.caltab { font-size:91%;width:160px; border:1px solid grey; background-color:#ddd; padding:2px; margin:0;}
+table.caltab1 { border:0; padding:0; margin:0; background-color:#fff;}
+a:link, a:visited { color:#000; background-color:#fff;text-decoration:none;}
+a:hover, a:active { color:#fff; background-color:#48f;}
+td.caltz, td.calwt { color:#000; background-color:#ddd;font-weight: bolder; }
+
+td.calat { color:#000; }
+td.calat a:link, td.calat a:visited { color:#000; background-color:#fff;  text-decoration:none; }
+td.calat a:hover, td.calat a:active { color:#ddd; background-color:#000;}
+
+td.calht { color:#000; background-color:#aaf;font-weight: bolder;   }
+td.calht a:link, td.calht a:visited { color:#000; background-color:#aaf;  text-decoration:none; }
+td.calht a:hover, td.calht a:active { color:#aaf; background-color:#000;}
+
+td.calhe { color:#f00; background-color:#aaf;  font-weight: bolder; }
+td.calhe a:link, td.calhe a:visited { color:#f00; background-color:#aaf;  text-decoration:none; }
+td.calhe a:hover, td.calhe a:active { color:#aaf; background-color:#f00;}
+
+td.calwe { color:#f00;  font-weight: bolder; }
+td.calwe a:link, td.calwe a:visited { color:#f00; background-color:#fff;  text-decoration:none; }
+td.calwe a:hover, td.calwe a:active { color:#ddd; background-color:#f00;}
+</style>
+<script type="text/javascript">
+<!--
+opener.document.forms.{{ abs|raw }}.{{ feld|raw }}.select();
+function lmogeben(x){
+  opener.document.forms.{{ abs|raw }}.{{ feld|raw }}.value=x;
+  self.close();
+  }
+// -->
+</script>
+</head>
+<body>
+<center>
+<table class="caltab">
+  <tr>
+    <td align="center">
+      <table class="caltab1" width=100%>
+        <tr>
+          <td align="left"><a href="{{ adresse|raw }}&amp;calshow={{ davor|raw }}" title="{{ datum[38]|raw }}">&nbsp;&lt;&nbsp;</a></td>
+          <td align="center" class="caltz">{{ titel|raw }}</td>
+          <td align="right"><a href="{{ adresse|raw }}" title="{{ datum[39]|raw }}">&nbsp;#&nbsp;</a><a href="{{ adresse|raw }}&amp;calshow={{ danach|raw }}" title="{{ datum[40]|raw }}">&nbsp;&gt;&nbsp;</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="caltab1" width=100%>
+        <tr>
+{% for i in 7..13 %}
+          <td align="center" class="calwt">{{ datum[i]|raw }}</td>
+{% endfor %}
+        </tr>
+        <tr>
+{% if leerVorn > 0 %}
+{% for i in 1..leerVorn %}
+          <td class="calat">&nbsp;</td>
+{% endfor %}
+{% endif %}
+{% for t in tage %}
+{% if t.zeileAuf %}
+        <tr>
+{% endif %}
+          <td align="center" class="{{ t.stil }}"><a href="#" onclick='lmogeben("{{ t.datum }}")' title="{{ datum[41]|raw }}">{{ t.tag }}</a></td>
+{% if t.zeileZu %}
+        </tr>
+{% endif %}
+{% endfor %}
+{% if leerHinten > 0 %}
+{% for i in 1..leerHinten %}
+            <td class="calat">&nbsp;</td>
+{% endfor %}
+        </tr>
+{% endif %}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><a href="#" onclick="self.close()" title="{{ datum[42]|raw }}">[{{ text[347]|raw }}]</a></td>
+  </tr>
+</table>
+</center>
+</body>
+</html>
