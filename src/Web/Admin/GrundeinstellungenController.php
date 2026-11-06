@@ -39,7 +39,7 @@ final class GrundeinstellungenController implements Controller
     private int $jetzt;
 
     /**
-     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, gewaehlter Spieltag)
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga (LigaSpeichern) (Rohdaten, Datei, gewaehlter Spieltag)
      * @param string $punkte die allgemeine Bezeichnung der Punkte (Text 37 vor der eigenen der Liga, $orgpkt)
      * @param string $tore dasselbe fuer die Tore (Text 38, $orgtor)
      * @param int|null $jetzt Zeitpunkt fuer die Beispiele der Datumsformate; null: time()

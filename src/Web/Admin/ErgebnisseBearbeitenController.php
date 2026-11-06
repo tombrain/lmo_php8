@@ -42,7 +42,7 @@ final class ErgebnisseBearbeitenController implements Controller
     private const MONATE = ['0', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     /**
-     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga (LigaSpeichern) (Rohdaten, Datei, Spieltag)
      */
     public function __construct(private Closure $speichere)
     {

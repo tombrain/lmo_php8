@@ -2,7 +2,7 @@
 /**
  * Kindprozess: prueft, ob die classlib eine Ligadatei unveraendert durchreicht.
  *
- * Je Liga: erst speichert LMO selbst die Datei (lmo-openfile.php + lmo-saveliga.php wie beim
+ * Je Liga: erst speichert LMO selbst die Datei (lmo-openfile.php + Lmo\Web\Admin\LigaSpeichern wie beim
  * Speichern im Admin), damit sie im Format der Oberflaeche vorliegt. Dann laedt die classlib sie
  * (liga::loadFile) und speichert sie unter neuem Namen (liga::writeFile). Verglichen werden alle
  * Schluessel beider Dateien.
@@ -32,7 +32,12 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 define('LMO_AUTH', 1);
 require $gm_instance . '/init.php';
 require_once PATH_TO_ADDONDIR . '/classlib/ini.php';
-$_SESSION['lmouserok'] = 2;  // Hauptadmin, sonst speichert lmo-saveliga.php nicht
+$_SESSION['lmouserok'] = 2;  // Hauptadmin
+// speichert wie die Administration (ohne Statistik und Druckansicht: hier zaehlt nur die Ligadatei)
+$gm_speichern = new \Lmo\Web\Admin\LigaSpeichern(PATH_TO_LMO . '/' . $dirliga, PATH_TO_LMO . '/' . $diroutput, new \Lmo\Web\Konfiguration($cfgarray), $text, URL_TO_IMGDIR, true,
+    static function (): void {
+    }, static function (): void {
+    });
 
 /** @return array<string,string> "Abschnitt:Schluessel" => Wert */
 function gm_keys(string $path): array
@@ -59,7 +64,7 @@ foreach ($gm_leagues as $gm_league) {
     $ftype = '.l98';
     ob_start();
     require PATH_TO_LMO . '/lmo-openfile.php';
-    require PATH_TO_LMO . '/lmo-saveliga.php';
+    $gm_speichern->speichere($lmo_liga, $file, (string)$st);
     ob_end_clean();
     $gm_source = PATH_TO_LMO . '/' . $dirliga . $gm_league;
 

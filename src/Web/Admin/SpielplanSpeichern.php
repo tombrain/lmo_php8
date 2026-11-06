@@ -26,7 +26,7 @@ use Lmo\Web\Kontext;
 final class SpielplanSpeichern
 {
     /**
-     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga wie lmo-saveliga.php (Rohdaten, Datei, Spieltag)
+     * @param Closure(Liga, string, string): array{string, Liga} $speichere speichert eine Liga (LigaSpeichern) (Rohdaten, Datei, Spieltag)
      * @return array{string, Liga} Ausgaben und die gespeicherte Liga
      */
     public static function nach(Kontext $kontext, Liga $liga, string $datei, Closure $speichere): array
