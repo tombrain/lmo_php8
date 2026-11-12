@@ -558,7 +558,7 @@
         "spieler_standard_richtung": "1",
         "spieler_standard_sortierung": "0",
         "spieler_vereinsweise_anzeigen": "0",
-        "string_json": "{\r\n    \"license\": \"GPL-2.0-or-later\",\r\n    \"require\": {\r\n        \"php\": \">=8.1\"\r\n    }\r\n}\r\n",
+        "string_json": "{\n    \"license\": \"GPL-2.0-or-later\",\n    \"require\": {\n        \"php\": \">=8.1\"\n    }\n}\n",
         "tabonres": "1",
         "tabpkt": "1",
         "text": {

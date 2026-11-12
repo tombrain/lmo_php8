@@ -42,12 +42,15 @@ ksort($gm_konstanten);
 $gm_neu = array_values(array_diff(get_defined_functions()['user'], $gm_funktionen));
 sort($gm_neu);
 
-echo str_replace($gm_instance, '{LMO_PATH}', (string) json_encode([
+// was von der Umgebung abhaengt: Zeilenenden gelesener Dateien (Windows-Checkout: CRLF) und die
+// Standard-Locale ohne installierte Locales ("C" im Container, "C.UTF-8" auf dem GitHub-Runner)
+$gm_locale = static fn (string|false $locale): string|false => $locale === 'C.UTF-8' ? 'C' : $locale;
+echo str_replace([$gm_instance, '\r\n'], ['{LMO_PATH}', '\n'], (string) json_encode([
     'variablen' => $gm_variablen,
     'konstanten' => $gm_konstanten,
     'zeitzone' => date_default_timezone_get(),
-    'locale_time' => setlocale(LC_TIME, '0'),
-    'locale_numeric' => setlocale(LC_NUMERIC, '0'),
+    'locale_time' => $gm_locale(setlocale(LC_TIME, '0')),
+    'locale_numeric' => $gm_locale(setlocale(LC_NUMERIC, '0')),
     'sitzung' => $_SESSION,
     'funktionen' => $gm_neu,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PARTIAL_OUTPUT_ON_ERROR));
