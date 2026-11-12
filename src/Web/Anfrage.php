@@ -102,4 +102,23 @@ final class Anfrage
 
         return is_scalar($wert) ? (string) $wert : $vorgabe;
     }
+
+    /**
+     * Ein Unterordner des Ligenordners (subdir) ohne Weg heraus, wie lmo_clean_subdir() in init.php:
+     * jeder Pfadteil einzeln, leere Teile, "." und ".." fallen weg, ebenso Nullbytes; "\" gilt als "/".
+     * Das fruehere str_replace(['../', './'], '', ...) liess sich umgehen ("...././/" ergab "../").
+     *
+     * @return string "" oder ein relativer Pfad mit "/" am Ende
+     */
+    public static function unterordner(string $pfad): string
+    {
+        $teile = [];
+        foreach (explode('/', str_replace(["\0", '\\'], ['', '/'], $pfad)) as $teil) {
+            if ($teil !== '' && $teil !== '.' && $teil !== '..') {
+                $teile[] = $teil;
+            }
+        }
+
+        return $teile !== [] ? implode('/', $teile) . '/' : '';
+    }
 }

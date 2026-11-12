@@ -693,7 +693,7 @@
 <tr>
 <td class="lmoTabelleMeister nobr" align="right">1 &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab1.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleMeister nobr" align="left">&nbsp;Bert Bunt (bert) &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
@@ -714,7 +714,7 @@
 <td class="lmoTabelleCleague nobr" align="right">
 <strong>2</strong> &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab1.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleague nobr" align="left">&nbsp;<strong>
 <a href='mailto:tester@example.org'>Tina Test</a> (tester)</strong> &nbsp;</td>
@@ -746,7 +746,7 @@
 <tr>
 <td class="lmoTabelleCleaguequali nobr" align="right">3 &nbsp;</td>
 <td class="lmoTabelleCleaguequali nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab2.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleaguequali nobr" align="left">&nbsp;<a href='mailto:anna@example.org'>Anna Alt</a> (anna) &nbsp;</td>
 <td class="lmoTabelleCleaguequali nobr">
@@ -766,7 +766,7 @@
 <tr>
 <td class="nobr" align="right">4 &nbsp;</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="nobr" align="left">&nbsp;<a href='mailto:dora@example.org'>Dora Dreh</a> (dora) &nbsp;</td>
 <td class="nobr">&nbsp;</td>
@@ -1603,7 +1603,7 @@
 <tr>
 <td class="lmoTabelleMeister nobr" align="right">1 &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleMeister nobr" align="left">&nbsp;<a href='mailto:anna@example.org'>Anna Alt</a> (anna) &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
@@ -1623,7 +1623,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">2 &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleague nobr" align="left">&nbsp;Bert Bunt (bert) &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
@@ -1644,7 +1644,7 @@
 <td class="lmoTabelleCleaguequali nobr" align="right">
 <strong>3</strong> &nbsp;</td>
 <td class="lmoTabelleCleaguequali nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleaguequali nobr" align="left">&nbsp;<strong>
 <a href='mailto:tester@example.org'>Tina Test</a> (tester)</strong> &nbsp;</td>
@@ -1676,7 +1676,7 @@
 <tr>
 <td class="nobr" align="right">4 &nbsp;</td>
 <td class="nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="nobr" align="left">&nbsp;<a href='mailto:dora@example.org'>Dora Dreh</a> (dora) &nbsp;</td>
 <td class="nobr">&nbsp;</td>
@@ -2167,7 +2167,7 @@
 <tr>
 <td class="lmoTabelleMeister nobr" align="right">1 &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleMeister nobr" align="left">
 <a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;stwertmodus=bis&amp;file=tippliga.l98&amp;gewicht=absolut&amp;endtab=2&amp;wertung=intern&amp;teamintern=Rot" title="Team-intern-Wertung">Rot</a>&nbsp;</td>
@@ -2187,7 +2187,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">2 &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab0.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab0.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleague nobr" align="left">
 <a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;stwertmodus=bis&amp;file=tippliga.l98&amp;gewicht=absolut&amp;endtab=2&amp;wertung=intern&amp;teamintern=Blau" title="Team-intern-Wertung">Blau</a>&nbsp;</td>
@@ -3959,7 +3959,7 @@ GEAENDERT config/tipp/cfg.txt
 <tr>
 <td class="lmoTabelleMeister nobr" align="right">1 &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab1.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab1.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleMeister nobr" align="left">&nbsp;bert &nbsp;</td>
 <td class="lmoTabelleMeister nobr">
@@ -3972,7 +3972,7 @@ GEAENDERT config/tipp/cfg.txt
 <tr>
 <td class="lmoTabelleCleague nobr" align="right">2 &nbsp;</td>
 <td class="lmoTabelleCleague nobr">
-<img src='http://lmo.test/lmo/img/lmo-tab2.gif' width="9" height="9" border="0" alt=''>
+<img src='http://lmo.test/lmo/img/lmo-tab2.svg' width="9" height="9" border="0" alt=''>
 </td>
 <td class="lmoTabelleCleague nobr" align="left">&nbsp;<a href='mailto:anna@example.org'>anna@example.org</a> &nbsp;</td>
 <td class="lmoTabelleCleague nobr">

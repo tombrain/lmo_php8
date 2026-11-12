@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web\Controller;
 
 use Closure;
+use Lmo\Web\Anfrage;
 use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
 use Lmo\Web\Seiten\Ligenliste;
@@ -51,7 +52,7 @@ final class LigenuebersichtController implements Controller
         $k = $kontext->konfiguration;
         $anfrage = $kontext->anfrage;
         // kein Weg aus dem Ligenordner heraus
-        $unterordner = str_replace(['../', './'], ['', ''], $anfrage->text('subdir'));
+        $unterordner = Anfrage::unterordner($anfrage->text('subdir'));
         $ligenordner = $kontext->pfade->lmo . '/' . $k->ligenordner();
 
         $liste = (new Ligenliste($kontext->text, $kontext->darstellung, $kontext->pfade->vorlagen, $kontext->pfade->bilder, $kontext->pfade->adresse, $this->darfLesen))->zeige(

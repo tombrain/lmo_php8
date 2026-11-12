@@ -109,10 +109,10 @@
 {% for zeile in zeilen %}
   <tr>
     <td class="{{ zeile.klasse }}" align="right">{{ m.wert(zeile.platz, zeile.fett) }}</td>
-    <td class="{{ zeile.klasse }}"><img src='{{ bilder|raw }}/lmo-tab{{ zeile.pfeil }}.gif' width="9" height="9" border="0" alt=""></td>
+    <td class="{{ zeile.klasse }}"><img src='{{ bilder|raw }}/lmo-tab{{ zeile.pfeil }}.svg' width="9" height="9" border="0" alt=""></td>
     <td class="{{ zeile.klasse }}" align="center">{{ zeile.symbol|raw }}</td>
     <td class="{{ zeile.klasse }}" align="left">{{ m.wert(zeile.name, zeile.fett) }}
-{%- if zeile.url is not null %} <a href="{{ zeile.url }}" target="_blank"><img border="0" title="{{ text[46]|raw }}" width="11" src="{{ bilder|raw }}/url.png" alt="{{ text[564]|raw }}"></a>{% endif -%}
+{%- if zeile.url is not null %} <a href="{{ zeile.url }}" target="_blank"><img border="0" title="{{ text[46]|raw }}" width="11" src="{{ bilder|raw }}/url.svg" alt="{{ text[564]|raw }}"></a>{% endif -%}
     </td>
     <td class="{{ zeile.klasse }}" style="width:2px;">&nbsp;</td>
     <td class="{{ zeile.klasse }}">{{ zeile.notiz|raw }}</td>

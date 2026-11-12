@@ -40,7 +40,7 @@
 <th class="nobr" align="center">&nbsp;Name&nbsp;</th>
 <th class="nobr" align="center">&nbsp;Verein&nbsp;</th>
 <th class="nobr" align="center">&nbsp;<acronym title="Tore">
-<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.png" alt="Tore">
+<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.svg" alt="Tore">
 </acronym>&nbsp;</th>
 <th class="nobr" align="center">&nbsp;<acronym title="Spiele">
 <img border="0" src="http://lmo.test/lmo/img/spieler/Spiele.gif" alt="Spiele">

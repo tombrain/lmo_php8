@@ -40,7 +40,7 @@
 <th class="nobr" align="center">&nbsp;Name&nbsp;</th>
 <th class="nobr" align="center">&nbsp;Verein&nbsp;</th>
 <th class="nobr" align="center">&nbsp;<acronym title="Tore">
-<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.png" alt="Tore">
+<img border="0" src="http://lmo.test/lmo/img/spieler/Tore.svg" alt="Tore">
 </acronym>&nbsp;</th>
 <th class="nobr" align="center">&nbsp;<acronym title="Spiele">
 <img border="0" src="http://lmo.test/lmo/img/spieler/Spiele.gif" alt="Spiele">
@@ -71,7 +71,7 @@
 <td align="left" class="lmoBackMarkierung">
 </td>
 <td class="nobr" align="left">&nbsp;Müller<a href="https://example.org/mueller" title="Zur Seite des Spielers">
-<img border="0" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;">
+<img border="0" width="11" src="http://lmo.test/lmo/img/url.svg" alt="&#8599;">
 </a>
 </td>
 <td class="nobr" align="left">Mannschaft&nbsp;1&nbsp;</td>

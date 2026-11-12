@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Lmo\Web\Admin;
 
 use Closure;
+use Lmo\Web\Anfrage;
 use Lmo\Web\Controller\Controller;
 use Lmo\Web\Kontext;
 use Lmo\Web\Seite;
@@ -38,7 +39,7 @@ final class OeffnenController implements Controller
 
     public function zeige(Kontext $kontext): Seite
     {
-        $unterordner = str_replace(['../', './'], '', $kontext->anfrage->text('subdir'));
+        $unterordner = Anfrage::unterordner($kontext->anfrage->text('subdir'));
         $ligen = StartseiteController::ligenliste($kontext, $this->darfLesen, 'open', $unterordner);
 
         $ordner = $kontext->pfade->lmo . '/' . $kontext->konfiguration->ligenordner() . $unterordner;

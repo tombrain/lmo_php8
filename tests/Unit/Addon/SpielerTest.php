@@ -150,9 +150,9 @@ class SpielerTest extends TestCase
         $mitLinks = ['[Options]', 'urlT=1', '[Team1]', 'URL=https://eins.example/?a=1&b=2'];
 
         $html = $controller->zeige($this->kontext('spieler', true, [], $mitLinks))->html;
-        self::assertStringContainsString('Eins&nbsp;<a href="https://eins.example/?a=1&amp;b=2" target="_blank" title="Homepage"><img border="0" width="11" src="IMG/url.png" alt="&#8599;" title="Homepage"></a></td>', $html, 'Link in der Zelle des Vereins');
-        self::assertSame(1, substr_count($html, 'url.png'), 'Zwei hat keine Homepage');
-        self::assertStringNotContainsString('url.png', $controller->zeige($this->kontext('spieler', true, [], ['[Options]', 'urlT=0', '[Team1]', 'URL=https://eins.example/']))->html, 'Liga ohne Links (urlT)');
+        self::assertStringContainsString('Eins&nbsp;<a href="https://eins.example/?a=1&amp;b=2" target="_blank" title="Homepage"><img border="0" width="11" src="IMG/url.svg" alt="&#8599;" title="Homepage"></a></td>', $html, 'Link in der Zelle des Vereins');
+        self::assertSame(1, substr_count($html, 'url.svg'), 'Zwei hat keine Homepage');
+        self::assertStringNotContainsString('url.svg', $controller->zeige($this->kontext('spieler', true, [], ['[Options]', 'urlT=0', '[Team1]', 'URL=https://eins.example/']))->html, 'Liga ohne Links (urlT)');
     }
 
     public function testDruckansicht(): void

@@ -27,13 +27,15 @@ class PokalControllerTest extends TestCase
     /**
      * @param array<string, string> $parameter
      * @param list<string> $optionen weitere Zeilen fuer [Options]
+     * @param array<string, array<int, string>> $weitereTexte Texte der Unterordner von lang/
      */
-    private static function kontext(string $action, array $parameter = [], array $optionen = [], ?Addons $addons = null): Kontext
+    private static function kontext(string $action, array $parameter = [], array $optionen = [], ?Addons $addons = null, array $weitereTexte = []): Kontext
     {
         $zeilen = array_merge(['[Options]', 'Type=1', 'Teams=4', 'Rounds=2', 'Actual=1'], $optionen, [
             '[Teams]', '1=A', '2=B & C', '3=C', '4=D',
             '[Team1]', 'URL=https://a.example/',
-            '[Round1]', 'MO=2', 'TA1=1', 'TB1=2', 'GA11=2', 'GB11=0', 'GA12=1', 'GB12=1', 'NT12=Regen',
+            // Anstoss des ersten Spiels: Mittwoch, 1. Januar 2025, 12 Uhr UTC (nur mit DatM=1 zu sehen)
+            '[Round1]', 'MO=2', 'TA1=1', 'TB1=2', 'GA11=2', 'GB11=0', 'AT11=1735732800', 'GA12=1', 'GB12=1', 'NT12=Regen',
             'TA2=3', 'TB2=4', 'GA21=-1', 'GB21=-1', 'GA22=-1', 'GB22=-1',
             '[Round2]', 'MO=1', 'TA1=1', 'TB1=3', 'GA11=-1', 'GB11=-1',
         ]);
@@ -51,7 +53,8 @@ class PokalControllerTest extends TestCase
             '/lmo.php',
             new Pfade('/lmo', dirname(__DIR__, 3) . '/lmo/vorlagen', 'IMG'),
             new Darstellung(static fn (string $datei, string $name, string $attribute): string => '[W:' . $name . ']'),
-            $addons ?? new Addons()
+            $addons ?? new Addons(),
+            $weitereTexte
         );
     }
 
@@ -122,6 +125,15 @@ class PokalControllerTest extends TestCase
         self::assertStringContainsString('<td width="8">|&nbsp;&nbsp;</td>', $html, 'zweites Spiel');
         self::assertStringContainsString('class="lmoTurnierSieger nobr" align="right"><strong>A</strong>', $html);
         self::assertStringContainsString('<td align="left" class="lmoTurnierVerlierer nobr">[W:B & C]&nbsp;B &amp; C', $html);
+    }
+
+    public function testAnstossMitUebersetztenNamen(): void
+    {
+        $datum = [2 => 'Mittwoch', 14 => 'Januar'];
+        $html = (new PokalSpielplanController())->zeige(self::kontext('program', ['selteam' => '1'], ['DatM=1', 'DatF=l, j. F Y'], null, ['date' => $datum]))->html;
+
+        self::assertStringContainsString('<acronym title="Mittwoch, 1. Januar 2025">', $html, 'wie bis 4.5 mit $trans_lang');
+        self::assertStringNotContainsString('Wednesday', $html);
     }
 
     public function testSpielplanOhneGewaehlteMannschaft(): void

@@ -91,7 +91,7 @@
 <tr>
 <th align="right">&nbsp;<a href="/lmo/lmo.php?action=results&amp;file=pokal/standard.l98&amp;st=3" title="Klicken Sie hier, um die gesamte Runde zu sehen.">F</a>&nbsp;</th>
 <td class="nobr" align="right">Alpha&nbsp; <a href="https://alpha.example/?a=1&amp;b=2" target="_blank" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
-<img border="0" width="11" src="http://lmo.test/lmo/img/url.png" alt="&#8599;" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
+<img border="0" width="11" src="http://lmo.test/lmo/img/url.svg" alt="&#8599;" title="Hier gelangen Sie zur Homepage der Mannschaft (wird in einem neuen Fenster geöffnet)">
 </a>
 </td>
 <td class="lmost5" align="center" width="10">-</td>

@@ -11,9 +11,9 @@ xbarWidth=120
 xstandardTemplate=mininext.tpl.php
 xcache_refresh=0
 xCacheTable=
-xTendenzPfeilUpImg=lmo-tab1.gif
-xTendenzPfeilDownImg=lmo-tab2.gif
-xTendenzPunktImg=lmo-tab0.gif
+xTendenzPfeilUpImg=lmo-tab1.svg
+xTendenzPfeilDownImg=lmo-tab2.svg
+xTendenzPunktImg=lmo-tab0.svg
 xstandardLiga=
 xstandardAnzahlueber=
 xstandardAnzahlunter=
@@ -164,21 +164,21 @@ xclassFavorit=
 <td class="lmost5" width="20">&nbsp;</td>
 <td align="right">TendenzPfeilUpImg</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPfeilUpImg" size="30" value="lmo-tab1.gif" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xTendenzPfeilUpImg" size="30" value="lmo-tab1.svg" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>
 <td class="lmost5" width="20">&nbsp;</td>
 <td align="right">TendenzPfeilDownImg</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPfeilDownImg" size="30" value="lmo-tab2.gif" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xTendenzPfeilDownImg" size="30" value="lmo-tab2.svg" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>
 <td class="lmost5" width="20">&nbsp;</td>
 <td align="right">TendenzPunktImg</td>
 <td align="left">
-<input class="lmo-formular-input" type="text" name="xTendenzPunktImg" size="30" value="lmo-tab0.gif" onChange="dolmoedit()">
+<input class="lmo-formular-input" type="text" name="xTendenzPunktImg" size="30" value="lmo-tab0.svg" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>

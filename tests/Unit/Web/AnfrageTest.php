@@ -42,4 +42,25 @@ class AnfrageTest extends TestCase
         self::assertSame([], $anfrage->werte('text'), 'ein Text ist keine Liste');
         self::assertSame([], $anfrage->werte('fehlt'));
     }
+
+    public function testUnterordner(): void
+    {
+        self::assertSame('', Anfrage::unterordner(''));
+        self::assertSame('', Anfrage::unterordner('/'));
+        self::assertSame('', Anfrage::unterordner('./'), 'dirname() einer Datei ohne Ordner');
+        self::assertSame('archiv/', Anfrage::unterordner('archiv'));
+        self::assertSame('archiv/2024/', Anfrage::unterordner('archiv/2024/'));
+        self::assertSame('archiv/2024/', Anfrage::unterordner('archiv\\2024'), 'Backslash wie /');
+    }
+
+    public function testUnterordnerOhneWegHeraus(): void
+    {
+        // str_replace(['../', './'], '', ...) machte daraus wieder "../"; "...." ist nur ein Ordnername
+        self::assertSame('..../', Anfrage::unterordner('...././/'));
+        self::assertSame('', Anfrage::unterordner('../../'));
+        self::assertSame('etc/', Anfrage::unterordner('/../etc'));
+        self::assertSame('archiv/', Anfrage::unterordner('archiv/../..'));
+        self::assertSame('...x/', Anfrage::unterordner('...x'), 'nur "." und ".." fallen weg');
+        self::assertSame('ab/', Anfrage::unterordner("a\0b"), 'ohne Nullbyte');
+    }
 }

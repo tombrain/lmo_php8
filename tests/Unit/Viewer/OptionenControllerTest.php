@@ -89,7 +89,7 @@ class OptionenControllerTest extends TestCase
         self::assertStringContainsString('<input type="checkbox" name="c2" value="c2"> Liga ohne Namen 1<br>', $html);
         self::assertStringContainsString('name="zaehler" value="3"', $html);
         self::assertStringContainsString('name="dateiname" value="meine"', $html);
-        self::assertStringContainsString('name="config_array" value="modus=2;anzahl_tage_plus=5;anzahl_tage_minus=;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=;titelzeile=Titel;anstosstermin=;template=standard;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.gif;spielberichtesymbol=bericht.gif;notizsymbol=notiz.gif;spieltagtext=;cache_refresh=;favteam_highlight="', $html);
+        self::assertStringContainsString('name="config_array" value="modus=2;anzahl_tage_plus=5;anzahl_tage_minus=;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=;titelzeile=Titel;anstosstermin=;template=standard;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.svg;spielberichtesymbol=bericht.svg;notizsymbol=notiz.svg;spieltagtext=;cache_refresh=;favteam_highlight="', $html);
     }
 
     public function testAnfuehrungszeichenBleibenErhalten(): void

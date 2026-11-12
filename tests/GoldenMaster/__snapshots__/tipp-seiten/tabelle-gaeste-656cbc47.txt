@@ -782,7 +782,7 @@
 <tr>
 <td class="lmoTabelleMeister nobr nobr" align="right"> 1 </td>
 <td class="lmoTabelleMeister nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleMeister nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleMeister nobr nobr" align="left"> Eintracht Frankfurt</td>
@@ -809,7 +809,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr nobr" align="right"> 2 </td>
 <td class="lmoTabelleCleague nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleCleague nobr nobr" align="left"> VfL Wolfsburg</td>
@@ -836,7 +836,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr nobr" align="right"> 3 </td>
 <td class="lmoTabelleCleague nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleCleague nobr nobr" align="left"> SC Freiburg</td>
@@ -863,7 +863,7 @@
 <tr>
 <td class="lmoTabelleCleague nobr nobr" align="right"> 4 </td>
 <td class="lmoTabelleCleague nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleague nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleCleague nobr nobr" align="left"> Borussia M'gladbach</td>
@@ -890,7 +890,7 @@
 <tr>
 <td class="lmoTabelleCleaguequali nobr nobr" align="right"> 5 </td>
 <td class="lmoTabelleCleaguequali nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleCleaguequali nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleCleaguequali nobr nobr" align="left"> FC Augsburg</td>
@@ -917,7 +917,7 @@
 <tr>
 <td class="lmoTabelleUefa nobr nobr" align="right"> 6 </td>
 <td class="lmoTabelleUefa nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleUefa nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleUefa nobr nobr" align="left"> Borussia Dortmund</td>
@@ -944,7 +944,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 7 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> FC St. Pauli</td>
@@ -971,7 +971,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 8 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> Holstein Kiel</td>
@@ -998,7 +998,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 9 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> Werder Bremen</td>
@@ -1025,7 +1025,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 10 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> TSG Hoffenheim</td>
@@ -1052,7 +1052,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 11 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> 1.FC Union Berlin</td>
@@ -1079,7 +1079,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 12 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> 1.FC Heidenheim</td>
@@ -1106,7 +1106,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 13 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> RB Leipzig</td>
@@ -1133,7 +1133,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 14 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> VfL Bochum</td>
@@ -1160,7 +1160,7 @@
 <tr>
 <td class="nobr nobr" align="right"> 15 </td>
 <td class="nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="nobr" align="center">&nbsp;</td>
 <td class="nobr nobr" align="left"> VfB Stuttgart</td>
@@ -1187,7 +1187,7 @@
 <tr>
 <td class="lmoTabelleRelegation nobr nobr" align="right"> 16 </td>
 <td class="lmoTabelleRelegation nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleRelegation nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleRelegation nobr nobr" align="left"> FSV Mainz 05</td>
@@ -1214,7 +1214,7 @@
 <tr>
 <td class="lmoTabelleAbsteiger nobr nobr" align="right"> 17 </td>
 <td class="lmoTabelleAbsteiger nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleAbsteiger nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleAbsteiger nobr nobr" align="left"> Bayer 04 Leverkusen</td>
@@ -1241,7 +1241,7 @@
 <tr>
 <td class="lmoTabelleAbsteiger nobr nobr" align="right"> 18 </td>
 <td class="lmoTabelleAbsteiger nobr">
-<img src="http://lmo.test/lmo/img/lmo-tab0.gif" width="9" height="9" border="0" alt="">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" width="9" height="9" border="0" alt="">
 </td>
 <td class="lmoTabelleAbsteiger nobr" align="center">&nbsp;</td>
 <td class="lmoTabelleAbsteiger nobr nobr" align="left"> Bayern München</td>

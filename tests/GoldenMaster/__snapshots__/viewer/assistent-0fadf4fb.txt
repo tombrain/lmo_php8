@@ -10,9 +10,9 @@ uhrzeitformat=H:i
 favteam_highlight=on
 mannschaftsnamen=0
 heute_highlight=on
-spielberichtesymbol=bericht.gif
-tabellensymbol=tabelle.gif
-notizsymbol=notiz.gif
+spielberichtesymbol=bericht.svg
+tabellensymbol=tabelle.svg
+notizsymbol=notiz.svg
 spieltagtext=ST
 cache_refresh=0
 tordummy=_
@@ -92,7 +92,7 @@ todo=vieweroptions
 <input type="hidden" name="formular2" value="1">
 <input type="hidden" name="dateinameok" value="1">
 <input type="hidden" name="dateiname" value="assistent">
-<input type="hidden" name="config_array" value="modus=1;anzahl_tage_plus=7;anzahl_tage_minus=7;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=0;titelzeile=Assistent;anstosstermin=;template=big_nur_icons;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.gif;spielberichtesymbol=bericht.gif;notizsymbol=notiz.gif;spieltagtext=ST;cache_refresh=0;favteam_highlight=1">
+<input type="hidden" name="config_array" value="modus=1;anzahl_tage_plus=7;anzahl_tage_minus=7;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=0;titelzeile=Assistent;anstosstermin=;template=big_nur_icons;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.svg;spielberichtesymbol=bericht.svg;notizsymbol=notiz.svg;spieltagtext=ST;cache_refresh=0;favteam_highlight=1">
 <input type="hidden" name="zaehler" value="2">
 <input type="submit" class="lmo-formular-button" value="weiter>>" name="B2">
 </td>
@@ -292,7 +292,7 @@ todo=vieweroptions
 <input type="hidden" name="ausgewaehlte_ligen" value="1">
 <input type="hidden" name="zaehler" value="18">
 <input type="hidden" name="dateiname" value="assistent">
-<input type="hidden" name="config_array" value="modus=1;anzahl_tage_plus=7;anzahl_tage_minus=7;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=0;titelzeile=Assistent;anstosstermin=;template=big_nur_icons;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.gif;spielberichtesymbol=bericht.gif;notizsymbol=notiz.gif;spieltagtext=ST;cache_refresh=0;favteam_highlight=1">
+<input type="hidden" name="config_array" value="modus=1;anzahl_tage_plus=7;anzahl_tage_minus=7;anzahl_spieltage_vor=;anzahl_spieltage_zurueck=;datumsformat=d.m.Y;heute_highlight=1;tabelle_verlinken=;spielberichte_neues_fenster=;mannschaftshomepages_verlinken=;mannschaftsnamen=0;titelzeile=Assistent;anstosstermin=;template=big_nur_icons;uhrzeitformat=H:i;tordummy=_;tabellensymbol=tabelle.svg;spielberichtesymbol=bericht.svg;notizsymbol=notiz.svg;spieltagtext=ST;cache_refresh=0;favteam_highlight=1">
 <input type="hidden" name="zaehler" value="18">
 <input type="submit" class="lmo-formular-button" value="fertigstellen>>" name="B3">
 </td>
@@ -519,9 +519,9 @@ anstosstermin=
 template=big_nur_icons
 uhrzeitformat=H:i
 tordummy=_
-tabellensymbol=tabelle.gif
-spielberichtesymbol=bericht.gif
-notizsymbol=notiz.gif
+tabellensymbol=tabelle.svg
+spielberichtesymbol=bericht.svg
+notizsymbol=notiz.svg
 spieltagtext=ST
 cache_refresh=0
 favteam_highlight=1

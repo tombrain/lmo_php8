@@ -141,8 +141,8 @@ class RanglisteControllerTest extends TestCase
         $html = $this->seite($this->kontext(['endtab' => '2']));
 
         self::assertStringContainsString('2. T2', $html);
-        self::assertStringContainsString('IMG/lmo-tab1.gif', $html, 'tester steigt auf');
-        self::assertStringContainsString('IMG/lmo-tab2.gif', $html);
+        self::assertStringContainsString('IMG/lmo-tab1.svg', $html, 'tester steigt auf');
+        self::assertStringContainsString('IMG/lmo-tab2.svg', $html);
         self::assertStringContainsString('title="T43"', $html, 'zurueck zu Spieltag 1');
     }
 
