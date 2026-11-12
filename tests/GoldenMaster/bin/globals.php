@@ -39,7 +39,11 @@ foreach (get_defined_vars() as $gm_name => $gm_wert) {
 ksort($gm_variablen);
 $gm_konstanten = array_filter(get_defined_constants(true)['user'] ?? [], static fn (string $n): bool => strpos($n, 'PATH_TO_') === 0 || strpos($n, 'URL_TO_') === 0 || strpos($n, 'LMO_') === 0, ARRAY_FILTER_USE_KEY);
 ksort($gm_konstanten);
-$gm_neu = array_values(array_diff(get_defined_functions()['user'], $gm_funktionen));
+// nur die Funktionen des LMO: die aus vendor/ (Polyfills, Twig, PHPUnit) haengen von PHP-Version und Installation ab
+$gm_neu = array_values(array_filter(
+    array_diff(get_defined_functions()['user'], $gm_funktionen),
+    static fn (string $f): bool => strpos(str_replace('\\', '/', (string) (new ReflectionFunction($f))->getFileName()), '/vendor/') === false
+));
 sort($gm_neu);
 
 // was von der Umgebung abhaengt: Zeilenenden gelesener Dateien (Windows-Checkout: CRLF) und die
