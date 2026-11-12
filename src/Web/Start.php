@@ -54,13 +54,29 @@ final class Start
     {
         $werte = file_exists($datei) ? parse_ini_file($datei) : false;
 
-        return $werte === false ? null : $werte;
+        return $werte === false ? null : self::mitNamen($werte);
+    }
+
+    /**
+     * Die Werte unter ihrem Namen (wie parse_ini_file() sie liefert; nur fuer die Typen).
+     *
+     * @param array<mixed> $werte
+     * @return array<string, mixed>
+     */
+    private static function mitNamen(array $werte): array
+    {
+        $mitNamen = [];
+        foreach ($werte as $name => $wert) {
+            $mitNamen[(string) $name] = $wert;
+        }
+
+        return $mitNamen;
     }
 
     /**
      * Die Konfigurationen der Addons (config/<addon>/cfg.txt), in fester (alphabetischer) Reihenfolge.
      *
-     * @return array<string, array<string, string>>
+     * @return array<string, array<string, mixed>>
      */
     public static function addonKonfigurationen(string $ordner): array
     {
@@ -69,7 +85,7 @@ final class Start
             $datei = $ordner . '/' . $name . '/cfg.txt';
             if ($name != '.' && $name != '..' && is_dir($ordner . '/' . $name) && file_exists($datei)) {
                 $werte = parse_ini_file($datei, false, INI_SCANNER_RAW);
-                $addons[$name] = $werte === false ? [] : $werte;
+                $addons[$name] = $werte === false ? [] : self::mitNamen($werte);
             }
         }
 
