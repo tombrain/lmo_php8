@@ -154,7 +154,8 @@ final class Minitabelle
 
     /**
      * Stil und CSS-Klasse einer Zeile: die Streifen (stripedTable), darueber die Farben der
-     * Platzgruppen aus dem Design (lmo_tabelle_background1 bis 6) und die Klassen des Mini.
+     * Platzgruppen aus dem Design (lmo_tabelle_background1 bis 6) und die Klassen des Mini. Mit
+     * stripedVorPlatz=1 bleibt der Streifen, die Platzgruppe gibt nur Textfarbe und Klasse.
      *
      * @param \Closure(string): int $wert Einstellung der Liga als Zahl
      * @param array<mixed> $mini die Konfiguration des Mini
@@ -185,6 +186,12 @@ final class Minitabelle
             return [$stil, ''];
         }
         [$klasse, $nr] = $gruppe;
+        if (!empty($mini['stripedTable']) && !empty($mini['stripedVorPlatz'])) {
+            // der Streifen bleibt (stripedVorPlatz=1); von der Platzgruppe nur Textfarbe und Klasse
+            $stil .= isset($this->cfg['lmo_tabelle_color' . $nr]) ? 'color: ' . self::text($this->cfg['lmo_tabelle_color' . $nr]) . ';' : '';
+
+            return [$stil, isset($mini[$klasse]) ? self::text($mini[$klasse]) : ''];
+        }
         // die Farbe der Platzgruppe ersetzt den Streifen
         $stil = isset($this->cfg['lmo_tabelle_background' . $nr]) ? 'background: ' . self::text($this->cfg['lmo_tabelle_background' . $nr]) . ' repeat;' : '';
         $stil .= isset($this->cfg['lmo_tabelle_color' . $nr]) ? 'color: ' . self::text($this->cfg['lmo_tabelle_color' . $nr]) . ';' : '';

@@ -19,3 +19,4 @@ tabelle_classUEFA=
 tabelle_classAbstiegsRelegation=
 tabelle_classAbsteiger=
 classFavorit=
+stripedVorPlatz=0

@@ -66,6 +66,15 @@ class MinitabelleTest extends TestCase
         self::assertSame(['background: #f00 repeat;color: #fff;', 'ab'], [$zeilen[3]['Style'], $zeilen[3]['Class']], 'Absteiger');
     }
 
+    public function testStreifenVorPlatzfarben(): void
+    {
+        $zeilen = self::werte(['stripedTable' => '#eee;#ddd', 'stripedVorPlatz' => '1', 'tabelle_classMeister' => 'meister', 'tabelle_classAbsteiger' => 'ab'], 2, 2)['bloecke']['Inhalt'];
+
+        self::assertSame(['background-color: #eee;color: #000;', 'meister'], [$zeilen[0]['Style'], $zeilen[0]['Class']], 'der Streifen bleibt, vom Meister nur Textfarbe und Klasse');
+        self::assertSame(['background-color: #ddd;color: #fff;', 'ab'], [$zeilen[3]['Style'], $zeilen[3]['Class']]);
+        self::assertSame('background: #ff0 repeat;color: #000;', self::werte(['stripedVorPlatz' => '1'], 2, 2)['bloecke']['Inhalt'][0]['Style'], 'ohne Streifen wie bisher');
+    }
+
     public function testWerteDerVorlage(): void
     {
         $w = self::werte()['werte'];
