@@ -123,6 +123,7 @@
                 "unGreedy": "1",
                 "barWidth": "120",
                 "standardTemplate": "mininext.tpl.php",
+                "standardTemplateTabelle": "standard",
                 "cache_refresh": "0",
                 "CacheTable": "",
                 "TendenzPfeilUpImg": "lmo-tab1.svg",
@@ -138,7 +139,8 @@
                 "tabelle_classUEFA": "",
                 "tabelle_classAbstiegsRelegation": "",
                 "tabelle_classAbsteiger": "",
-                "classFavorit": ""
+                "classFavorit": "",
+                "stripedVorPlatz": "0"
             },
             "spieler": {
                 "anzeige_pro_seite": "10",
@@ -539,6 +541,8 @@
         "mini_standardLiga": "",
         "mini_standardTabellenPlatz": "",
         "mini_standardTemplate": "mininext.tpl.php",
+        "mini_standardTemplateTabelle": "standard",
+        "mini_stripedVorPlatz": "0",
         "mini_tabelle_classAbsteiger": "",
         "mini_tabelle_classAbstiegsRelegation": "",
         "mini_tabelle_classCLAufsteiger": "",

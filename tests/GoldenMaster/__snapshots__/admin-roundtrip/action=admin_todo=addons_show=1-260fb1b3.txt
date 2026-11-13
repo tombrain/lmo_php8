@@ -1,5 +1,5 @@
 ### action=admin&todo=addons&show=1
-### GESENDETE FELDER (POST, 25)
+### GESENDETE FELDER (POST, 27)
 action=admin
 todo=addons
 save=1
@@ -9,6 +9,7 @@ xwithArchiv=1
 xunGreedy=1
 xbarWidth=120
 xstandardTemplate=mininext.tpl.php
+xstandardTemplateTabelle=standard
 xcache_refresh=0
 xCacheTable=
 xTendenzPfeilUpImg=lmo-tab1.svg
@@ -25,6 +26,7 @@ xtabelle_classUEFA=
 xtabelle_classAbstiegsRelegation=
 xtabelle_classAbsteiger=
 xclassFavorit=
+xstripedVorPlatz=0
 ### ANTWORT
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="de">
@@ -148,6 +150,13 @@ xclassFavorit=
 </tr>
 <tr>
 <td class="lmost5" width="20">&nbsp;</td>
+<td align="right">standardTemplateTabelle</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstandardTemplateTabelle" size="30" value="standard" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
 <td align="right">cache_refresh</td>
 <td align="left">
 <input class="lmo-formular-input" type="text" name="xcache_refresh" size="30" value="0" onChange="dolmoedit()">
@@ -256,6 +265,13 @@ xclassFavorit=
 <td align="right">classFavorit</td>
 <td align="left">
 <input class="lmo-formular-input" type="text" name="xclassFavorit" size="30" value="" onChange="dolmoedit()">
+</td>
+</tr>
+<tr>
+<td class="lmost5" width="20">&nbsp;</td>
+<td align="right">stripedVorPlatz</td>
+<td align="left">
+<input class="lmo-formular-input" type="text" name="xstripedVorPlatz" size="30" value="0" onChange="dolmoedit()">
 </td>
 </tr>
 <tr>

@@ -221,11 +221,12 @@ lmo_fieber_color2=#00C
 timezone=Europe/Berlin
 NEU config/classlib/cfg.txt (31 Bytes)
 img_types=.gif,.jpg,.png,.jpeg
-NEU config/mini/cfg.txt (432 Bytes)
+NEU config/mini/cfg.txt (483 Bytes)
 withArchiv=1
 unGreedy=1
 barWidth=120
 standardTemplate=mininext.tpl.php
+standardTemplateTabelle=standard
 cache_refresh=0
 CacheTable=
 TendenzPfeilUpImg=lmo-tab1.svg
@@ -242,6 +243,7 @@ tabelle_classUEFA=
 tabelle_classAbstiegsRelegation=
 tabelle_classAbsteiger=
 classFavorit=
+stripedVorPlatz=0
 NEU config/spieler/cfg.txt (239 Bytes)
 anzeige_pro_seite=10
 nullwerte_anzeigen=1
