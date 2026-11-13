@@ -148,6 +148,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Fixed  
+* Mini-Tabelle ohne `mini_template`: Sie nimmt jetzt die eigene Einstellung `standardTemplateTabelle` aus `config/mini/cfg.txt` (Vorgabe `standard`). Bisher galt `standardTemplate`, die Vorlage des Mini-Spielplans (`mininext.tpl.php`); die Tabelle fand damit keine Vorlage und blieb leer.  
 * Mini (`lmo-minitab.php`, `lmo-mininext.php`): Platzhalter einer Vorlage, für die es keinen Wert gibt (etwa `<!--homeTore-->` vor dem Spiel), bleiben nicht mehr als HTML-Kommentar in der Seite stehen.  
 * Druckansicht (`<liga>-st.html`, `<liga>-sp.html`): Ist niemand spielfrei, steht kein überzähliges `</small></p>` mehr in der Datei. Die Spielfreien des folgenden Spieltags in `<liga>-st.html` ergeben sich aus dessen eigenen Partien; bisher galten Mannschaften aus Partien des gespeicherten Spieltags, die es am folgenden nicht gab, noch als belegt.  
 * Administration, Kalender zur Datumswahl: Jede Woche steht in einer eigenen Zeile mit sieben Zellen. Bisher begann ein Monat, der am Montag anfängt, mit einer doppelten Zeile, die letzte Woche blieb ohne Auffüllung, und am Ende stand ein überzähliges `</td>`.  
@@ -690,6 +691,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Fixed  
+* Mini table without `mini_template`: it now uses its own setting `standardTemplateTabelle` from `config/mini/cfg.txt` (default `standard`). Until now `standardTemplate`, the template of the mini fixtures (`mininext.tpl.php`), applied; the table then found no template and stayed empty.  
 * Mini (`lmo-minitab.php`, `lmo-mininext.php`): placeholders of a template without a value (e.g. `<!--homeTore-->` before the match) no longer remain in the page as HTML comments.  
 * Print view (`<liga>-st.html`, `<liga>-sp.html`): if nobody has a bye, there is no stray `</small></p>` in the file anymore. The teams with a bye in the next round of `<liga>-st.html` follow from that round's own matches; until now teams from matches of the saved round that did not exist in the next one still counted as playing.  
 * Administration, date picker calendar: every week is a row of its own with seven cells. Until now a month starting on Monday began with a doubled row, the last week was not filled up, and a stray `</td>` was left at the end.  

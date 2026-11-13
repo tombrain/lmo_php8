@@ -2,6 +2,7 @@ withArchiv=1
 unGreedy=1
 barWidth=120
 standardTemplate=mininext.tpl.php
+standardTemplateTabelle=standard
 cache_refresh=0
 CacheTable=
 TendenzPfeilUpImg=lmo-tab1.svg

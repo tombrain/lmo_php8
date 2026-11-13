@@ -32,9 +32,9 @@ $m_template = !empty($_GET['mini_template'])
     ? str_replace('..', '', $_GET['mini_template'])
     : (isset($mini_template)
         ?  str_replace('..', '', $mini_template)
-        : $cfgarray['mini']['standardTemplate'] );
-
-//if (!is_readable(PATH_TO_TEMPLATEDIR . '/mini/$m_template.tpl.php')) $m_template = 'standard'; // Standard template called 'standard.tpl.php'
+        // eigene Einstellung der Tabelle (bis 4.5 standardTemplate, die des Mini-Spielplans mit
+        // .tpl.php: die Tabelle fand dann keine Vorlage und blieb leer)
+        : (!empty($cfgarray['mini']['standardTemplateTabelle']) ? str_replace('..', '', $cfgarray['mini']['standardTemplateTabelle']) : 'standard'));
 
 $m_liga = !empty($_GET['mini_liga'])
     ? urldecode($_GET['mini_liga'])
