@@ -59,7 +59,11 @@ final class Installation
     /** Die Installation mit den Pfaden, die init.php festlegt */
     public static function ausKonstanten(): self
     {
-        $konstante = static fn (string $name): string => defined($name) && is_string(constant($name)) ? (string) constant($name) : '';
+        $konstante = static function (string $name): string {
+            $wert = defined($name) ? constant($name) : '';
+
+            return is_string($wert) ? $wert : '';
+        };
 
         return new self($konstante('PATH_TO_LMO'), $konstante('PATH_TO_ADDONDIR'), $konstante('PATH_TO_IMGDIR'), $konstante('URL_TO_IMGDIR'), $konstante('URL_TO_LMO'));
     }
