@@ -23,9 +23,7 @@
 <td align="center">1.FC Union Berlin</td>
 </tr>
 <tr>
-<td align="center">&nbsp;<span class="result">
-<!--homeTore-->&nbsp;:&nbsp;<!--guestTore-->
-</span>&nbsp;</td>
+<td align="center">&nbsp;<span class="result">&nbsp;:&nbsp;</span>&nbsp;</td>
 </tr>
 <tr>
 <td align="center">Bayern München</td>

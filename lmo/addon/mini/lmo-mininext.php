@@ -115,7 +115,8 @@ if (!file_exists($mini_cache_filename) ||
     }
 
     $template = new LMO_Template($template_folder);  // folder
-    $template->loadTemplatefile($mini_template);
+    // nicht gesetzte Platzhalter verschwinden (bis 4.5 blieben sie als HTML-Kommentar stehen)
+    $template->loadTemplatefile($mini_template, true);
     // die Spiele der Liga (Lmo\Liga\Begegnungen; bis 4.5 die Classlib), Mannschaften als Nummern
     $team_a = NULL;
     $team_b = NULL;

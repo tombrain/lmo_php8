@@ -23,9 +23,7 @@
 <td align="center">FSV Mainz 05</td>
 </tr>
 <tr>
-<td align="center">&nbsp;<span class="result">
-<!--homeTore-->&nbsp;:&nbsp;<!--guestTore-->
-</span>&nbsp;</td>
+<td align="center">&nbsp;<span class="result">&nbsp;:&nbsp;</span>&nbsp;</td>
 </tr>
 <tr>
 <td align="center">VfB Stuttgart</td>
@@ -33,7 +31,6 @@
 <tr>
 <td>
 <small>
-<!--gameNote-->
 </small>
 </td>
 </tr>

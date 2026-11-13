@@ -64,7 +64,8 @@ final class Vorlagen
             return \Lmo\Web\Vorlagen::zeige($this->twig, $name . '.html.twig', $werte + $bloecke);
         }
         $vorlage = new LMO_Template($this->ordner);
-        $vorlage->loadTemplatefile($name . '.tpl.php');
+        // nicht gesetzte Platzhalter verschwinden wie bei Twig (bis 4.5 blieben sie als HTML-Kommentar stehen)
+        $vorlage->loadTemplatefile($name . '.tpl.php', true);
         foreach ($bloecke as $block => $zeilen) {
             foreach ($zeilen as $zeile) {
                 $vorlage->setCurrentBlock($block);
