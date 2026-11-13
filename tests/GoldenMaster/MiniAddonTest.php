@@ -210,6 +210,7 @@ final class MiniAddonTest extends TestCase
             'Minitabelle, Ausschnitt um Platz 5' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=5&mini_ueber=1&mini_unter=1'],
             'Minitabelle, Minuspunkte' => ['lmo-minitab.php', 'mini_liga=golden/minus2_direct.l98&mini_template=standard'],
             'Minitabelle ohne Liga' => ['lmo-minitab.php', ''],
+            'Minitabelle ohne Vorlage' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98'],
             // die uebrigen mitgelieferten Vorlagen (template/mini)
             'Minitabelle, Vorlage all' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=all'],
             'Minitabelle, Vorlage round' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=round'],
