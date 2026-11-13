@@ -528,8 +528,8 @@ Hallo Zoe Zweite (zweiter)
 http://lmo.test/lmo/lmoadmin.php?action=tipp&todo=getpass&xtippername2=zweiter
 --- Dateiaenderungen ---
 NEU xss_log.txt (124 Bytes)
-[2025-03-15 13:00:00] [IP: 127.0.0.1] Blocked $_POST[betreff]
-[2025-03-15 13:00:00] [IP: 127.0.0.1] Blocked $_POST[message]
+[ZEIT] [IP: 127.0.0.1] Blocked $_POST[betreff]
+[ZEIT] [IP: 127.0.0.1] Blocked $_POST[message]
 
 === Mail an zweiter ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
