@@ -63,8 +63,9 @@ if($_REQUEST['action'] == 'admin') {
  * @var int|string $einsprachwahl Einstellung aus cfg.txt
  */
 
-// die Anwendung (Lmo\Web\Anwendung) und der Kontext dieser Anfrage
-$lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
+// die Anwendung dieser Installation (Lmo\Web\Installation, bis 4.5 lmo-anwendung.php) und der
+// Kontext dieser Anfrage
+$lmo_anwendung = \Lmo\Web\Installation::ausKonstanten()->anwendung($cfgarray, $text, static fn (string $datei): bool => check_hilfsadmin($datei), isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, (string)constant('LMO_VERSION_NR'));
 $lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
 if ($file != '' && $lmo_kontext->liga === null) {
     // Datei existiert nicht, ist keine Liga oder darf nicht gelesen werden (Hilfsadmin): wie bisher

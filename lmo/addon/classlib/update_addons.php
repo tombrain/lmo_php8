@@ -53,7 +53,7 @@ function updateAddons($fileName) {
     // Auswertungen der Addons beim Speichern (Lmo\Addon\MitErgebnisAuswertung), wie in der
     // Administration, ueber alle Spieltage; bis 4.5 band die Classlib hier fest die Dateien des
     // Tippspiels ein
-    $lmo_update_anwendung = require PATH_TO_LMO . '/lmo-anwendung.php';
+    $lmo_update_anwendung = \Lmo\Web\Installation::ausKonstanten()->anwendung($cfgarray, $text, static fn (string $datei): bool => check_hilfsadmin($datei), isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, (string)constant('LMO_VERSION_NR'));
     $lmo_update_kontext = $lmo_update_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
     echo $lmo_update_kontext->addons->werteBeimSpeichern($lmo_update_kontext, \Lmo\Liga\Rohdaten\Liga::lies($fileName), 0);
 }

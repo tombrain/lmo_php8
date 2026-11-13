@@ -61,7 +61,7 @@ if ($action == 'admin') {
 
     // die Liga laden (Lmo\Web\LigaOeffnen, bis 4.5 lmo-openfile.php); die Meldung steht vorn in der
     // Menuezeile. Die Variablen bekommt der alte Code (Addons nach alter Art), die Sprachtexte mit
-    // den Bezeichnungen der Liga auch die Seiten (lmo-anwendung.php liest sie unten).
+    // den Bezeichnungen der Liga auch die Seiten (Lmo\Web\Installation liest sie unten).
     $lmo_admin_geoeffnet = \Lmo\Web\LigaOeffnen::oeffne(PATH_TO_LMO . '/' . $dirliga, is_string($file) ? $file : '', $st ?? null, static fn (string $datei): bool => check_hilfsadmin($datei), (string)$defdateformat, URL_TO_IMGDIR, $text);
     $lmo_admin_lademeldung = $lmo_admin_geoeffnet->meldung;
     $file = $lmo_admin_geoeffnet->datei;
@@ -78,7 +78,9 @@ if ($action == 'admin') {
 
     // Kontext der Anfrage (Lmo\Web\Kontext) mit den Addons der Installation; dazu die Bruecke zum
     // PDF-Addon nach alter Art (nicht Teil des LMO). Die Addons tragen ihre Menuepunkte und Seiten bei.
-    $lmo_anwendung = require(PATH_TO_LMO . '/lmo-anwendung.php');
+    $lmo_installation = \Lmo\Web\Installation::ausKonstanten();
+    $lmo_anwendung = $lmo_installation->anwendung($cfgarray, $text, static fn (string $datei): bool => check_hilfsadmin($datei), isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, (string)constant('LMO_VERSION_NR'));
+    $lmo_statistik_erzeugen = $lmo_installation->statistikErzeugen(new \Lmo\Web\Konfiguration($cfgarray));
     // todo wie in lmoadmin.php: mit einer Liga wird aus "open" oder keinem todo "edit"
     $lmo_admin_anfrage = \Lmo\Web\Anfrage::ausGlobalen();
     if ($lmo_admin_anfrage->text('todo') !== (string)$todo) {
