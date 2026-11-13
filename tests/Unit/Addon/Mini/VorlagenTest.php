@@ -61,14 +61,13 @@ class VorlagenTest extends TestCase
         $zeile = ['Platz' => '<strong>1</strong>', 'TeamLang' => 'Lang', 'Team' => 'K', 'TeamMittel' => 'M', 'Punkte' => '3', 'Style' => 'color:red;', 'Tordifferenz' => '+1'];
         $bloecke = ['Inhalt' => [$zeile, ['Platz' => '2'] + $zeile]];
         foreach (['all', 'round', 'round_all', 'standard', 'standard_old'] as $name) {
-            $twig = $this->vorlagen()->zeige($name, $werte, $bloecke);
+            $twig = $this->vorlagen()->zeige($name . '.tpl.php', $werte, $bloecke);
             // nach alter Art: eine angepasste Datei (ein Leerzeichen mehr am Ende)
             file_put_contents($this->ordner . '/' . $name . '.tpl.php', ' ', FILE_APPEND);
             self::assertFalse($this->vorlagen()->mitTwig($name));
-            $alt = $this->vorlagen()->zeige($name, $werte, $bloecke);
+            $alt = $this->vorlagen()->zeige($name . '.tpl.php', $werte, $bloecke);
 
-            // nicht gesetzte Platzhalter laesst die alte Art als HTML-Kommentar stehen, Twig leer
-            self::assertSame(self::kanonisch((string) preg_replace('/<!--\w+-->/', '', $alt)), self::kanonisch($twig), $name);
+            self::assertSame(self::kanonisch($alt), self::kanonisch($twig), $name);
             self::assertStringContainsString('<strong>1</strong>', $twig);
             self::assertStringNotContainsString('<!--', str_replace(['<!-- ', '<!--['], '', $twig), $name . ': keine Platzhalter uebrig');
         }
@@ -78,6 +77,6 @@ class VorlagenTest extends TestCase
     {
         file_put_contents($this->ordner . '/meine.tpl.php', "<ul><!-- BEGIN Inhalt --><li><!--Team--></li><!-- END Inhalt --></ul><p><!--Tabelle--></p>");
         self::assertFalse($this->vorlagen()->mitTwig('meine'));
-        self::assertSame('<ul><li>A</li><li>B</li></ul><p>T</p>', $this->vorlagen()->zeige('meine', ['Tabelle' => 'T'], ['Inhalt' => [['Team' => 'A'], ['Team' => 'B']]]));
+        self::assertSame('<ul><li>A</li><li>B</li></ul><p>T</p>', $this->vorlagen()->zeige('meine.tpl.php', ['Tabelle' => 'T'], ['Inhalt' => [['Team' => 'A'], ['Team' => 'B']]]));
     }
 }

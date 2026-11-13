@@ -106,7 +106,7 @@ if (empty($CacheOutput)) {
         $lmo_mini_werte = (new \Lmo\Addon\Mini\Minitabelle($cfgarray, $text, new \Lmo\Web\Bilder(PATH_TO_IMGDIR, URL_TO_IMGDIR), URL_TO_IMGDIR, URL_TO_LMO, URL_TO_TEMPLATEDIR))
             ->werte($lmo_mini_liga, (string)$m_liga, (int)filemtime($lmo_mini_datei), $m_ueber, $m_unter, $m_platz);
         $lmo_mini_html = (new \Lmo\Addon\Mini\Vorlagen(PATH_TO_TEMPLATEDIR . '/mini', __DIR__ . '/vorlagen'))
-            ->zeige($m_template, $lmo_mini_werte['werte'], $lmo_mini_werte['bloecke']);
+            ->zeige($m_template . '.tpl.php', $lmo_mini_werte['werte'], $lmo_mini_werte['bloecke']);
         // write cache File
         if (is_writable(dirname($TableCacheFile)) && $cfgarray['mini']['CacheTable'] == 1) {
             $CacheOutput = $lmo_mini_cacheschluessel . "\n" . $lmo_mini_html;

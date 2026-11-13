@@ -55,17 +55,20 @@ final class Vorlagen
     /**
      * Die Vorlage mit den Werten.
      *
+     * @param string $datei die Datei in template/mini, mit .tpl.php (wie bis 4.5 angegeben)
      * @param array<string, string> $werte Platzhalter => Wert
-     * @param array<string, list<array<string, string>>> $bloecke Block => Zeilen mit ihren Platzhaltern
+     * @param array<string, list<array<string, string>>> $bloecke Block => Zeilen mit ihren Platzhaltern;
+     *        nach alter Art gelten in den Zeilen nur die eigenen Werte
      */
-    public function zeige(string $name, array $werte, array $bloecke): string
+    public function zeige(string $datei, array $werte, array $bloecke): string
     {
-        if ($this->mitTwig($name)) {
+        $name = str_ends_with($datei, '.tpl.php') ? substr($datei, 0, -8) : '';
+        if ($name !== '' && $this->mitTwig($name)) {
             return \Lmo\Web\Vorlagen::zeige($this->twig, $name . '.html.twig', $werte + $bloecke);
         }
         $vorlage = new LMO_Template($this->ordner);
         // nicht gesetzte Platzhalter verschwinden wie bei Twig (bis 4.5 blieben sie als HTML-Kommentar stehen)
-        $vorlage->loadTemplatefile($name . '.tpl.php', true);
+        $vorlage->loadTemplatefile($datei, true);
         foreach ($bloecke as $block => $zeilen) {
             foreach ($zeilen as $zeile) {
                 $vorlage->setCurrentBlock($block);
