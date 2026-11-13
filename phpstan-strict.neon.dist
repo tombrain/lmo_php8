@@ -6,6 +6,7 @@ parameters:
         max: 80599
     paths:
         - src
+        - lmo/addon/mini/src
         - lmo/addon/spieler/src
         - lmo/addon/ticker/src
         - lmo/addon/tipp/src
