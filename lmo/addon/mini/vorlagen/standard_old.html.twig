@@ -1,0 +1,26 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+
+  Mitgelieferte Vorlage standard_old (bis 4.5 template/mini/standard_old.tpl.php; Lmo\Addon\Mini\Vorlagen).
+  Die Platzhalter heissen wie dort; in Bloecken stehen sie an der Zeile (z.Name).
+-#}
+<table style="font-size:90%;font-family:sans-serif;border-spacing:0;border-collapse:collapse;border:1px solid black;" cellspacing="0">
+  <caption style="font-weight:bold;border:1px solid black;"><a style="text-decoration:underline;" href="{{ Link|default("")|raw }}">{{ Tabelle|default("")|raw }} »</a></caption>
+  {% for z in Inhalt %}
+  <tr style="{{ z.Style|default("")|raw }}">
+    <td align="right">{{ z.Platz|default("")|raw }}</td>
+    <td align="right">{{ z.TendenzIMG|default("")|raw }}</td>
+    <td align="center">{{ z.TeamBild|default("")|raw }}</td>
+    <td><acronym title="{{ z.TeamLang|default("")|raw }}">{{ z.Team|default("")|raw }}</acronym></td>
+    <td align="right">{{ z.Tordifferenz|default("")|raw }}</td>
+    <td align="right">{{ z.Punkte|default("")|raw }}</td>
+  </tr>
+  {% endfor %}
+</table>
