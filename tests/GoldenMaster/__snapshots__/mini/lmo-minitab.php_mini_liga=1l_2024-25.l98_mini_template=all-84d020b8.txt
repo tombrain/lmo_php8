@@ -1,0 +1,101 @@
+### lmo-minitab.php?mini_liga=1l_2024-25.l98&mini_template=all
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Minitable</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css"> html,body {margin:0;padding:0;background:transparent;} </style>
+</head>
+<body>
+<table style="font-size:90%;font-family:sans-serif;border-spacing:0;border-collapse:collapse;border:1px solid black;" cellspacing="0">
+<caption style="font-weight:bold;border:1px solid black;">
+<a style="text-decoration:underline;" href="http://lmo.test/lmo/?action=table&amp;file=1l_2024-25.l98">Tabelle »</a>
+</caption>
+<tr style="background: #0c0 repeat;color: #000;">
+<td align="right">
+<strong>1</strong>
+</td>
+<td align="right">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" border="0" title="0">
+</td>
+<td>&nbsp;<acronym title="Eintracht Frankfurt (SGE)">Frankfurt</acronym>
+</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>0:0</td>
+<td align="right">0</td>
+<td align="right">0:0</td>
+</tr>
+<tr style="background: #6e6 repeat;color: #000;">
+<td align="right">
+<strong>2</strong>
+</td>
+<td align="right">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" border="0" title="0">
+</td>
+<td>&nbsp;<acronym title="VfL Wolfsburg (WOB)">Wolfsburg</acronym>
+</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>0:0</td>
+<td align="right">0</td>
+<td align="right">0:0</td>
+</tr>
+<tr style="background: #6e6 repeat;color: #000;">
+<td align="right">
+<strong>3</strong>
+</td>
+<td align="right">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" border="0" title="0">
+</td>
+<td>&nbsp;<acronym title="SC Freiburg (SCF)">Freiburg</acronym>
+</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>0:0</td>
+<td align="right">0</td>
+<td align="right">0:0</td>
+</tr>
+<tr style="background: #6e6 repeat;color: #000;">
+<td align="right">
+<strong>4</strong>
+</td>
+<td align="right">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" border="0" title="0">
+</td>
+<td>&nbsp;<acronym title="Borussia M'gladbach (BMG)">Gladbach</acronym>
+</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>0:0</td>
+<td align="right">0</td>
+<td align="right">0:0</td>
+</tr>
+<tr style="background: #afa repeat;color: #000;">
+<td align="right">
+<strong>5</strong>
+</td>
+<td align="right">
+<img src="http://lmo.test/lmo/img/lmo-tab0.svg" border="0" title="0">
+</td>
+<td>&nbsp;<acronym title="FC Augsburg (FCA)">Augsburg</acronym>
+</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>0:0</td>
+<td align="right">0</td>
+<td align="right">0:0</td>
+</tr>
+</table>
+</body>
+</html>
