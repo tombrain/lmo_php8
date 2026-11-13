@@ -220,6 +220,10 @@ final class MiniAddonTest extends TestCase
             'Mini-Spielplan, Paarung ohne Archiv' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1&b=2&mini_withArchiv=0'],
             'Mini-Spielplan, Balkenbreite und unGreedy' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=3&b=4&mini_barWidth=50&mini_unGreedy=1'],
             'Mini-Spielplan, nur Mannschaft b' => ['lmo-mininext.php', 'file=1l_2024-25.l98&b=2'],
+            // mit gespielten Partien (Block matches)
+            'Mini-Spielplan, Paarung mit Ergebnissen' => ['lmo-mininext.php', 'file=golden/basic.l98&a=1&b=5'],
+            'Mini-Spielplan, naechstes Spiel mit Ergebnissen' => ['lmo-mininext.php', 'file=golden/basic.l98&a=2'],
+            'Mini-Spielplan, Wertungen' => ['lmo-mininext.php', 'file=golden/wertung.l98&a=1&b=2&mini_withArchiv=0'],
             'Mini-Spielplan, naechstes Spiel' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1'],
             'Mini-Spielplan, Paarung' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1&b=2'],
             'Mini-Spielplan ohne Mannschaft' => ['lmo-mininext.php', 'file=1l_2024-25.l98'],
