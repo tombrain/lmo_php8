@@ -48,8 +48,8 @@ Addons:
     # Die globale Sprache des LMO (das $text[xxx]-Array]
 
 - Das Ändern der Konfigurationsvariablen geschieht im Adminbereich des LMO oder (besser) mittels
-  einer eigenen Konfigurationsoberfläche - das Speichern der Konfigurationsvariablen übernimmt dabei
-  immer die Datei lmo/savecfg.php (per include einzubinden)
+  einer eigenen Konfigurationsoberfläche (Addons nach neuer Art: MitAdminSeiten); gespeichert wird
+  über Lmo\Web\Konfiguration::speichere()
 
 
 Addons nach neuer Art:

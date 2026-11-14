@@ -100,24 +100,6 @@ $lmo_teile = \Lmo\Web\Rahmen::teile(
     $calctime == 1 ? getmicrotime() - $startzeit : null
 );
 
-// PDF-Addon (nach alter Art, nicht mitgeliefert): ergaenzt die Links zur Druckansicht ($output_savehtml)
-if ($lmo_kontext->liga !== null && file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php')) {
-    $lmo_teile['Savehtml'] = (static function (\Lmo\Web\GeladeneLiga $lmo_geladen, string $output_savehtml, int $druck): string {
-        // was es aus dem globalen Bereich erwartet (Einstellungen, $text); dazu die Liga wie aus Lmo\Web\LigaOeffnen
-        foreach (array_keys($GLOBALS) as $lmo_pdf_name) {
-            if ($lmo_pdf_name !== 'GLOBALS' && $lmo_pdf_name[0] !== '_' && !in_array($lmo_pdf_name, array('lmo_geladen', 'output_savehtml', 'druck'), true)) {
-                ${$lmo_pdf_name} = &$GLOBALS[$lmo_pdf_name];
-            }
-        }
-        unset($lmo_pdf_name);
-        $lmo_liga = $lmo_geladen->liga;
-        $file = $lmo_geladen->datei;
-        $stand = $lmo_geladen->stand;
-        include(PATH_TO_ADDONDIR . '/pdf/lmo-showmain2.inc.php');
-        return $output_savehtml;
-    })($lmo_kontext->liga, $lmo_teile['Savehtml'], $lmo_seite !== null && $lmo_seite->druckbar ? 1 : 0);
-}
-
 // Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu der
 // Copyright-Hinweis
 $lmo_teile['Infolink'] = $p1;

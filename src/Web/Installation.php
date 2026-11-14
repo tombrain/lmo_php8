@@ -16,7 +16,6 @@ namespace Lmo\Web;
 
 use Closure;
 use Lmo\Addon\Addons;
-use Lmo\Addon\AltesSeitenInclude;
 use Lmo\Addon\AltesSpielInclude;
 use Lmo\Liga\Rohdaten\Liga;
 use Lmo\Liga\Saisonstatistik;
@@ -129,9 +128,8 @@ final class Installation
     }
 
     /**
-     * Die Addons mit addon.php (Lmo\Addon\Addon); dazu die Bruecken zu Addons nach alter Art:
-     * bisherige Ergebnisse am Ende jeder Ergebniszeile in Liga und Pokal (AddOn Team Vergleich) und
-     * der Teamplan unter dem Spielplan (PDF-Addon).
+     * Die Addons mit addon.php (Lmo\Addon\Addon); dazu die Bruecke zum AddOn Team Vergleich nach
+     * alter Art: bisherige Ergebnisse am Ende jeder Ergebniszeile in Liga und Pokal.
      */
     private function addons(): Addons
     {
@@ -141,9 +139,6 @@ final class Installation
         }
         if (file_exists($this->addons . '/stats/lmo-showkoresults.inc.php')) {
             $addons = $addons->mit(new AltesSpielInclude('stats', $this->addons . '/stats/lmo-showkoresults.inc.php', true));
-        }
-        if (file_exists($this->addons . '/pdf/lmo-showprogram.inc.php')) {
-            $addons = $addons->mit(new AltesSeitenInclude('pdf', 'program', $this->addons . '/pdf/lmo-showprogram.inc.php'));
         }
 
         return $addons;

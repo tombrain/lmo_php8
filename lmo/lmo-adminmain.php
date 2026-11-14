@@ -20,7 +20,9 @@ if (!defined('PATH_TO_LMO')) {
     exit;  // kein Direktaufruf: diese Datei wird nur ueber LMO eingebunden
 }
 
-require_once(PATH_TO_LMO . '/lmo-admintest.php');
+if (!defined('LMO_AUTH')) {
+    exit;  // nur ueber lmoadmin.php (Anmeldung)
+}
 function getmicrotime()
 {
     list($usec, $sec) = explode(' ', microtime());
@@ -76,8 +78,8 @@ if ($action == 'admin') {
     // das Menue zeigt die Datei, wie sie nach dem Laden ist; der Ruecklink unten die nach dem Inhalt
     $lmo_admin_datei = $file;
 
-    // Kontext der Anfrage (Lmo\Web\Kontext) mit den Addons der Installation; dazu die Bruecke zum
-    // PDF-Addon nach alter Art (nicht Teil des LMO). Die Addons tragen ihre Menuepunkte und Seiten bei.
+    // Kontext der Anfrage (Lmo\Web\Kontext) mit den Addons der Installation. Die Addons tragen ihre
+    // Menuepunkte und Seiten bei.
     $lmo_installation = \Lmo\Web\Installation::ausKonstanten();
     $lmo_anwendung = $lmo_installation->anwendung($cfgarray, $text, static fn (string $datei): bool => check_hilfsadmin($datei), isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, (string)constant('LMO_VERSION_NR'));
     $lmo_statistik_erzeugen = $lmo_installation->statistikErzeugen(new \Lmo\Web\Konfiguration($cfgarray));
@@ -88,9 +90,6 @@ if ($action == 'admin') {
     }
     $lmo_admin_kontext = $lmo_anwendung->kontext($lmo_admin_anfrage, $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
     $lmo_admin_addons = $lmo_admin_kontext->addons;
-    if (file_exists(PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php')) {
-        $lmo_admin_addons = $lmo_admin_addons->mit(new \Lmo\Addon\AltesAdminAddon('pdf', 'pdfoptions', PATH_TO_ADDONDIR . '/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
-    }
 
     // Speichern einer Liga (Lmo\Web\Admin\LigaSpeichern; bis 4.5 lmo-saveliga.php im globalen Bereich)
     // mit Statistik (Lmo\Liga\Saisonstatistik) und Druckansicht (Lmo\Web\Druckdateien). Zurueck
@@ -161,10 +160,7 @@ if ($action == 'admin') {
         'update' => $_SESSION['lmouserok'] == 2 && lmo_is_newer($new_lmo_version ?? null, $lmo_version),
     );
     ob_start();
-    if ($lmo_admin_seite instanceof \Lmo\Addon\AlteAdminSeite) {
-        // eine Seite nach alter Art wie bisher im globalen Bereich
-        require($lmo_admin_seite->datei());
-    } elseif ($lmo_admin_seite !== null) {
+    if ($lmo_admin_seite !== null) {
         echo $lmo_admin_seite->zeige($lmo_admin_kontext)->html;
     }
     $lmo_admin_inhalt = (string)ob_get_clean();

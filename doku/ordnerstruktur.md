@@ -205,9 +205,9 @@ Menüpunkt, Schalter, Datenordner) und `addon/tipp/` (viele Seiten, Administrati
 
 ### Addons nach alter Art
 
-Ältere Addons ohne `addon.php` (etwa PDF oder Stats, nicht Teil des LMO) bindet der Kern über
-Brücken ein: `AltesSpielInclude`, `AltesSeitenInclude`, `AltesAdminAddon` und `AlteAdminSeite`
-in `src/Addon/`. Sprachtexte unter `lang/<name>/` werden für sie weiter gelesen. Neue Addons
+Ältere Addons ohne `addon.php` (etwa Stats, nicht Teil des LMO) bindet der Kern über die
+Brücke `AltesSpielInclude` in `src/Addon/` ein. Das PDF-Addon gibt es dafür neu geschrieben als
+eigenes Addon (https://github.com/tombrain/lmo-pdf-addon). Sprachtexte unter `lang/<name>/` werden für sie weiter gelesen. Neue Addons
 sollen diese Brücken nicht benutzen.
 
 ### Regeln für neuen Code

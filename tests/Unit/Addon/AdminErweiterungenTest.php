@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Lmo\Tests\Unit\Addon;
 
 use Lmo\Addon\Addons;
-use Lmo\Addon\AlteAdminSeite;
-use Lmo\Addon\AltesAdminAddon;
 use Lmo\Addon\Menuepunkt;
 use Lmo\Addon\MitSchaltern;
 use Lmo\Addon\Schalter;
@@ -23,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Was Addons zur Administration beitragen: Punkte im Hauptmenue und in der Navigation einer Liga
- * (MitAdminMenue) und eigene Seiten (MitAdminSeiten), noch nach alter Art ueber AlteAdminSeite.
+ * (MitAdminMenue) und eigene Seiten (MitAdminSeiten).
  */
 class AdminErweiterungenTest extends TestCase
 {
@@ -51,7 +49,7 @@ class AdminErweiterungenTest extends TestCase
             '/lmoadmin.php',
             new Pfade('/lmo', '', 'IMG'),
             new Darstellung(static fn (string $d, string $n, string $a): string => ''),
-            weitereTexte: ['tipp' => $texte('T'), 'viewer' => $texte('V'), 'spieler' => $texte('S'), 'pdf' => $texte('P')],
+            weitereTexte: ['tipp' => $texte('T'), 'viewer' => $texte('V'), 'spieler' => $texte('S')],
             sitzung: new Sitzung(['lmouserok' => $rolle])
         );
     }
@@ -67,8 +65,7 @@ class AdminErweiterungenTest extends TestCase
 
     private static function addons(): Addons
     {
-        return (new Addons([new SpielerAddon('/x/daten/spieler'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]))
-            ->mit(new AltesAdminAddon('pdf', 'pdfoptions', '/x/pdf/lmo-adminpdfoptions.inc.php', 200, 201));
+        return new Addons([new SpielerAddon('/x/daten/spieler'), new TippAddon('/x/tipp'), new ViewerAddon('/x/viewer')]);
     }
 
     public function testHauptmenueInDerReihenfolgeDerAddons(): void
@@ -76,12 +73,11 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame([
             ['tipp', 'T0', 'T57', false],
             ['vieweroptions', 'V20', 'V21', false],
-            ['pdfoptions', 'P200', 'P201', false],
         ], self::punkte(self::addons()->adminMenue(self::kontext())));
 
-        self::assertSame(['tipp', 'vieweroptions', 'pdfoptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext(['todo' => 'tippuser']))));
+        self::assertSame(['tipp', 'vieweroptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext(['todo' => 'tippuser']))));
         self::assertTrue(self::addons()->adminMenue(self::kontext(['todo' => 'tippuser']))[0]->aktiv, 'auf allen Seiten des Tippspiels');
-        self::assertSame(['vieweroptions', 'pdfoptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '0']))), 'Tippspiel abgeschaltet');
+        self::assertSame(['vieweroptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '0']))), 'Tippspiel abgeschaltet');
     }
 
     public function testStartseite(): void
@@ -99,39 +95,16 @@ class AdminErweiterungenTest extends TestCase
 
     public function testSeitenDerAddons(): void
     {
-        $seite = static function (Kontext $kontext): ?string {
-            foreach (self::addons()->adminController() as $controller) {
-                if ($controller->zustaendig($kontext) && $controller instanceof AlteAdminSeite) {
-                    return $controller->datei();
-                }
-            }
-
-            return null;
-        };
-
         $zustaendig = static fn (Kontext $kontext): array => array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig($kontext)));
         self::assertInstanceOf(\Lmo\Addon\Tipp\AdminOptionenController::class, $zustaendig(self::kontext(['todo' => 'tippoptions']))[0] ?? null, 'die Optionen nach neuer Art');
         self::assertInstanceOf(\Lmo\Addon\Tipp\AdminAuswertungController::class, $zustaendig(self::kontext(['todo' => 'tipp']))[0] ?? null, 'die Auswertung nach neuer Art');
         self::assertSame([], $zustaendig(self::kontext(['todo' => 'tipp'], rolle: 1)), 'nur fuer den Hauptadmin');
         $viewer = array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig(self::kontext(['todo' => 'vieweroptions']))));
         self::assertInstanceOf(\Lmo\Addon\Viewer\OptionenController::class, $viewer[0] ?? null, 'der Viewer nach neuer Art');
-        self::assertSame('/x/pdf/lmo-adminpdfoptions.inc.php', $seite(self::kontext(['todo' => 'pdfoptions'])));
         $spieler = static fn (Kontext $kontext): array => array_values(array_filter(self::addons()->adminController(), static fn ($c): bool => $c->zustaendig($kontext)));
         self::assertInstanceOf(\Lmo\Addon\Spieler\AdminController::class, $spieler(self::kontext(['todo' => 'edit', 'st' => '-4'], rolle: 1))[0] ?? null, 'auch fuer Hilfsadmins');
         self::assertSame([], $spieler(self::kontext(['todo' => 'edit', 'st' => '-4'], ['einspieler' => '0'])), 'abgeschaltet: die Ergebnisse');
-        self::assertNull($seite(self::kontext(['todo' => 'edit', 'st' => '1'])));
-    }
-
-    public function testAlteAdminSeiteBindetDieDateiEin(): void
-    {
-        $datei = sys_get_temp_dir() . '/lmo-alteadmin-' . bin2hex(random_bytes(4)) . '.php';
-        file_put_contents($datei, '<?php echo "Seite " . $lmo_test_wert;');
-        $GLOBALS['lmo_test_wert'] = 'mit globalen Werten';
-        $seite = new AlteAdminSeite(static fn (Kontext $kontext): bool => true, $datei);
-
-        self::assertSame('Seite mit globalen Werten', $seite->zeige(self::kontext())->html);
-        unset($GLOBALS['lmo_test_wert']);
-        unlink($datei);
+        self::assertSame([], $zustaendig(self::kontext(['todo' => 'pdfoptions'])), 'ohne Addon keine Seite');
     }
 
     public function testSchalterVonSpielerUndTipp(): void
@@ -143,7 +116,7 @@ class AdminErweiterungenTest extends TestCase
         self::assertSame(['eintippspiel', 'T0', 'T306', true], [$schalter['tipp'][0]->schluessel, $schalter['tipp'][0]->name, $schalter['tipp'][0]->titel, $schalter['tipp'][0]->vorgabe]);
 
         // aus: im Addon, bis 4.5 in config/cfg.txt; ohne beides an
-        self::assertSame(['vieweroptions', 'pdfoptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '1', 'tipp' => ['eintippspiel' => '0']]))), 'im Addon aus, das gilt vor config/cfg.txt');
+        self::assertSame(['vieweroptions'], array_map(static fn (Menuepunkt $p): string => $p->ziel, self::addons()->adminMenue(self::kontext([], ['eintippspiel' => '1', 'tipp' => ['eintippspiel' => '0']]))), 'im Addon aus, das gilt vor config/cfg.txt');
         self::assertFalse(TippAddon::an(new Konfiguration(['eintippspiel' => '0'])));
         self::assertTrue(TippAddon::an(new Konfiguration(['eintippspiel' => '0', 'tipp' => ['eintippspiel' => '1']])));
         self::assertTrue(SpielerAddon::an(new Konfiguration([])));

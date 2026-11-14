@@ -6,7 +6,6 @@ namespace Lmo\Tests\Unit\Addon;
 
 use Lmo\Addon\Addon;
 use Lmo\Addon\Addons;
-use Lmo\Addon\AltesSeitenInclude;
 use Lmo\Addon\AltesSpielInclude;
 use Lmo\Addon\MitRahmenteilen;
 use Lmo\Addon\MitSeiten;
@@ -187,18 +186,6 @@ class AddonsTest extends TestCase
 
         self::assertSame('<p>results</p>', (new Addons([self::zusatz('a'), $unter]))->zusatzUnterSeite(self::kontext()));
         self::assertSame('', (new Addons())->zusatzUnterSeite(self::kontext()));
-    }
-
-    public function testBrueckeZumAltenSeitenInclude(): void
-    {
-        $datei = $this->datei('pdf/lmo-showprogram.inc.php', '<?php echo "Plan $selteam aus $file, " . $text[1] . ", " . $lmo_liga->einstellungen()->spieltage();');
-        $bruecke = new AltesSeitenInclude('pdf', 'results', $datei);
-        $kontext = self::kontext();
-        $mitTeam = new Kontext(new Anfrage(['selteam' => '2', 'file' => 'fremd.l98']), $kontext->action, $kontext->liga, $kontext->konfiguration, $kontext->text, $kontext->adresse, $kontext->pfade, $kontext->darstellung);
-
-        self::assertSame('pdf', $bruecke->name());
-        self::assertSame('Plan 2 aus x.l98, Eins, 1', $bruecke->zusatzUnterSeite($mitTeam), 'Parameter als Variablen, $file aber die geladene Liga');
-        self::assertSame('', (new AltesSeitenInclude('pdf', 'program', $datei))->zusatzUnterSeite($mitTeam), 'nur unter seiner Seite');
     }
 
     public function testRahmenteileHintereinander(): void

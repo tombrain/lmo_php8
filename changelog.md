@@ -132,6 +132,7 @@ _Hier schreiben wir Changelog Hinweise der nächsten Version._
 
 
 ### Removed  
+* Die Brücken zum alten PDF-Addon (Einbindung von `lmo-showmain2.inc.php`, `lmo-showprogram.inc.php` und `lmo-adminpdfoptions.inc.php`; die Klassen `Lmo\Addon\AltesAdminAddon`, `AlteAdminSeite` und `AltesSeitenInclude`) sowie `lmo-savecfg.php` und `lmo-admintest.php`. Das alte PDF-Addon lief mit PHP 8 ohnehin nicht mehr; es gibt es neu geschrieben als Addon nach neuer Art mit Twig und Dompdf (https://github.com/tombrain/lmo-pdf-addon). Addons, die noch `lmo-savecfg.php` einbinden, speichern ihre Einstellungen über `Lmo\Web\Konfiguration::speichere()`.    
 * `lmo/ini.fct` (die Bibliothek myIniFunctions von 2002): Weder der LMO noch die mitgelieferten Addons nutzen sie noch; Ligadateien liest `Lmo\Liga\LigaDatei`.  
 * `lmo-adminsubnavi.php`; die Navigation beim Bearbeiten einer Liga liefert `Lmo\Web\Admin\LigaNavigation`.  
 * `lmo-spieltagsmenu.php`; die Auswahl der Spieltage liefert `Lmo\Web\Seiten\SpieltagsMenue`.  
@@ -676,6 +677,7 @@ _Here we write changelog notes for the next version._
 
 
 ### Removed  
+* The bridges to the old PDF addon (including `lmo-showmain2.inc.php`, `lmo-showprogram.inc.php` and `lmo-adminpdfoptions.inc.php`; the classes `Lmo\Addon\AltesAdminAddon`, `AlteAdminSeite` and `AltesSeitenInclude`) as well as `lmo-savecfg.php` and `lmo-admintest.php`. The old PDF addon no longer ran on PHP 8 anyway; it has been rewritten as a new-style addon with Twig and Dompdf (https://github.com/tombrain/lmo-pdf-addon). Addons still including `lmo-savecfg.php` save their settings through `Lmo\Web\Konfiguration::speichere()`.    
 * `lmo/ini.fct` (the myIniFunctions library from 2002): neither LMO nor the bundled addons use it anymore; league files are read by `Lmo\Liga\LigaDatei`.  
 * `lmo-adminsubnavi.php`; `Lmo\Web\Admin\LigaNavigation` provides the navigation while editing a league.  
 * `lmo-spieltagsmenu.php`; the round menu comes from `Lmo\Web\Seiten\SpieltagsMenue`.  
