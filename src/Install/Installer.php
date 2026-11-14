@@ -1,4 +1,16 @@
 <?php
+/** Liga Manager Online 4
+  *
+  * http://lmo.sourceforge.net/
+  *
+  * Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+  *
+  * SPDX-License-Identifier: GPL-2.0-or-later
+  *
+  * REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+  */
+
+declare(strict_types=1);
 
 namespace Lmo\Install;
 
@@ -12,7 +24,7 @@ namespace Lmo\Install;
 class Installer
 {
     /** Datenordner und vom Nutzer anpassbare Dateien, relativ zum LMO-Ordner */
-    public const KEEP = ['.htaccess', 'config', 'ligen', 'output', 'addon/tipp/tipps', 'addon/spieler/stats'];
+    public const KEEP = ['.htaccess', 'config', 'daten', 'ligen', 'output'];
 
     /** Liste der zuletzt kopierten Programmdateien: damit verschwinden Dateien, die es im Paket nicht mehr gibt */
     public const MANIFEST = 'config/.install-manifest';
@@ -124,8 +136,9 @@ class Installer
     public static function registeredTarget(string $composerJson): ?string
     {
         $data = is_file($composerJson) ? json_decode((string) file_get_contents($composerJson), true) : null;
+        $scripts = is_array($data) && isset($data['scripts']) && is_array($data['scripts']) ? $data['scripts'] : [];
         foreach (self::EVENTS as $event) {
-            foreach ((array) ($data['scripts'][$event] ?? []) as $entry) {
+            foreach ((array) ($scripts[$event] ?? []) as $entry) {
                 if (($target = self::targetOf($entry)) !== null) {
                     return $target;
                 }
@@ -184,6 +197,7 @@ class Installer
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($this->source, \FilesystemIterator::SKIP_DOTS)
         );
+        /** @var \SplFileInfo $file */
         foreach ($iterator as $file) {
             $relative = substr(str_replace('\\', '/', $file->getPathname()), strlen($this->source) + 1);
             if ($file->isFile() && strpos($relative, 'vendor/') !== 0) {

@@ -5,10 +5,10 @@ FROM php:${PHP_VERSION}-cli
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        git unzip faketime \
-        libpng-dev libjpeg-dev libfreetype6-dev \
+        git unzip faketime rsync \
+        libpng-dev libjpeg-dev libfreetype6-dev libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j"$(nproc)" gd \
+    && docker-php-ext-install -j"$(nproc)" gd zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Xdebug als Coverage-Treiber (pcov stuerzt hier mit Segmentation fault ab).

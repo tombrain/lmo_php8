@@ -1,0 +1,125 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Anmeldeseite des Tippspiels (Lmo\Addon\Tipp\AnmeldungController): Anmeldung, Registrierung, Auswertungen, Kennwort vergessen. Texte und Links sind fertiges HTML; Eingaben werden maskiert. -#}
+ <table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td colspan="3" align="center"><h1>{{ t[0]|raw }}&nbsp;{{ liganame|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center">
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="file" value="{{ datei }}">
+        <table class="lmoInner" width="99%">
+          <caption>{{ t[158]|raw }}</caption>
+          <tr>
+            <th colspan="2">{{ t[44]|raw }}</th>
+          </tr>
+{% if stand == -2 %}
+          <tr>
+            <td align="right" colspan="3"><p class="error"><img src="{{ bilder|raw }}/wrong.svg" border="0" width="20" alt=""> {{ t[43]|raw }}</p></td>
+          </tr>
+{% endif %}
+{% if nichtFreigeschaltet %}
+          <tr>
+            <td align="right" colspan="3"><p class="error"><img src="{{ bilder|raw }}/wrong.svg" border="0" width="20" alt=""> {{ t[148]|raw }}</p></td>
+          </tr>
+{% endif %}
+          <tr>
+            <td align="right"><acronym title="{{ text[307]|raw }}">&nbsp;{{ t[23]|raw }}</acronym></td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippername" size="16" maxlength="32" value="{{ nick }}"></td>
+          </tr>
+{% if stand == -1 %}
+          <tr>
+            <td align="right" colspan="3"><p class="error"><img src="{{ bilder|raw }}/wrong.svg" border="0" width="20" alt=""> {{ t[42]|raw }}</p></td>
+          </tr>
+{% endif %}
+          <tr>
+            <td align="right"><acronym title="{{ text[309]|raw }}">&nbsp;{{ text[308]|raw }}</acronym></td>
+            <td align="left"><input class="lmo-formular-input" type="password" name="xtipperpass" size="16" maxlength="32" value=""></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="left"><input class="lmo-formular-button" title="{{ text[311]|raw }}" type="submit" name="xtippersub" value="{{ t[12]|raw }}"></td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table class="lmoInner" width="99%">
+        <tr>
+          <th colspan="3">{{ t[45]|raw }}</th>
+        </tr>
+        <tr>
+          <td align="right" colspan="2">{{ t[46]|raw }}</td>
+          <td align="left">
+            <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+              <input type="hidden" name="action" value="tipp">
+              <input type="hidden" name="todo" value="newtipper">
+              <input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ t[11]|raw }}">
+            </form>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table class="lmoInner" width="99%">
+        <tr>
+          <th colspan="3">{{ t[4]|raw }}</th>
+        </tr>
+        <tr>
+          <td colspan="3" align="left">
+            <ul>
+{% if ligen is empty %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endif %}
+{% include 'wertungen.html.twig' with {klasse: 'lmoadminli'} %}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form name="lmotippedit" action="{{ adresse|raw }}" method="post">
+        <input type="hidden" name="action" value="tipp">
+        <input type="hidden" name="todo" value="getpass">
+        <table class="lmoInner" width="99%">
+          <tr>
+            <th colspan="3">{{ t[74]|raw }}</th>
+          </tr>
+{% if stand == -3 %}
+          <tr>
+            <td align="right" colspan="3"><p class="error"><img src="{{ bilder|raw }}/wrong.svg" border="0" width="20" alt=""> {{ t[43]|raw }}</p></td>
+          </tr>
+{% endif %}
+          <tr>
+            <td align="right"><acronym title="{{ text[307]|raw }}">&nbsp;{{ t[23]|raw }}&nbsp;{{ t[218]|raw }}&nbsp;{{ t[219]|raw }}</acronym></td>
+            <td align="left"><input class="lmo-formular-input" type="text" name="xtippername2" size="16" maxlength="32" value="{{ nickVergessen }}"></td>
+          </tr>
+          <tr>
+            <td align="right">{{ t[75]|raw }}</td>
+            <td align="left"><input class="lmo-formular-button" type="submit" name="xtippersub" value="{{ t[76]|raw }}"></td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>

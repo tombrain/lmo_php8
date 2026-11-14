@@ -1,0 +1,60 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Liste der Ligen eines Ordners (Lmo\Web\Seiten\Ligenliste), oeffentlich und im Adminbereich. Ohne
+    JavaScript sortieren Links neu; mit JavaScript sortiert js/sortable die Tabelle im Browser. -#}
+{%- macro kopf(feld, name, text, adresse, bilder) -%}
+      <th class="nobr" align="left" title="{{ text[525]|raw }} {{ name|raw }} {{ text[526]|raw }}">
+        <noscript><a href="{{ adresse|raw }}?liga_sort={{ feld }}&amp;liga_sort_direction=asc" title="{{ text[527]|raw }} {{ text[525]|raw }} {{ name|raw }} {{ text[526]|raw }}"><img src="{{ bilder|raw }}/upsimple.png" width="8" height="7" border="0" alt="&and;"></a> {{ name|raw }} <a href="{{ adresse|raw }}?liga_sort={{ feld }}&amp;liga_sort_direction=desc" title="{{ text[528]|raw }} {{ text[525]|raw }} {{ name|raw }} {{ text[526]|raw }}"><img src="{{ bilder|raw }}/downsimple.png" width="8" height="7" border="0" alt="&or;"></a></noscript>
+        <script type="text/javascript">document.write('{{ name|raw }}');</script>
+      </th>
+{%- endmacro -%}
+{%- import _self as e %}
+{% if fehler %}<p class="error"><img src="{{ bilder|raw }}/wrong.svg" border="0" width="20" alt=""> {{ text[224]|raw }}</p>{% endif %}
+
+<script type="text/javascript" src="{{ lmo|raw }}/js/sortable/sortabletable.js"></script>
+<script type="text/javascript" src="{{ lmo|raw }}/js/sortable/limSortFunctions.js"></script>
+<table id="ligaliste" class="lmoInner" cellspacing="0" width="99%">
+  <thead>
+    <tr>
+      <th></th>
+{{ e.kopf('liga_name', text[529], text, adresse, bilder) }}
+{% if mit_datei %}
+{{ e.kopf('file_name', text[531], text, adresse, bilder) }}
+{% endif %}
+{{ e.kopf('aktueller_spieltag', text[2] ~ '/' ~ text[370], text, adresse, bilder) }}
+{{ e.kopf('file_date', text[530], text, adresse, bilder) }}
+    </tr>
+  </thead>
+  <tbody>
+{% for liga in ligen %}
+    <tr onMouseOver="this.className='lmoBackMarkierung';" onMouseOut="this.className=''">
+      <td class="nobr" align="center">{{ liga.symbol|raw }}</td>
+      <td class="nobr" align="left"><a href="{{ liga.link|raw }}">{{ liga.liga_name }}</a></td>
+{% if mit_datei %}
+      <td class="nobr" align="left">{{ liga.file_name }} &nbsp;</td>
+{% endif %}
+      <td class="nobr" align="left">{{ liga.rundenbezeichnung|raw }} {{ liga.aktueller_spieltag }} &nbsp;</td>
+      <td class="nobr" align="left"><!--{{ liga.file_date }}-->{{ liga.datum }}</td>
+    </tr>
+{% else %}
+<td colspan="5">[{{ text[223]|raw }}]</td>
+{% endfor %}
+
+</tbody>
+</table>
+<script type="text/javascript">
+  var ligaTable = new SortableTable(document.getElementById("ligaliste"),
+{%- if mit_datei %}
+                  ["None", "CaseInsensitiveString", "CaseInsensitiveString", "RoundSort", "timeStamp"]);
+{%- else %}
+                  ["None", "CaseInsensitiveString", "RoundSort", "timeStamp"]);
+{%- endif %}
+{%- if sortieren is not null %}ligaTable.sort({{ sortieren }});{% endif %}</script>

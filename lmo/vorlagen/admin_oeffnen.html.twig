@@ -1,0 +1,37 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Eine Liga oeffnen (Lmo\Web\Admin\OeffnenController), bis 4.5 lmo-adminopen.php #}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center"><h1>{{ text[294]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td align="center">{{ ligen|raw }}</td>
+  </tr>
+   <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left">
+{%- if ordner is not empty %}
+      <table class='lmoInner' cellspacing="0" width="99%">
+        <tr>
+          <th colspan="2">{{ text[509]|raw }}</th>
+        </tr>
+{% for o in ordner %}      <tr><td><a href="{{ adda|raw }}open&amp;subdir={{ o.pfad }}">{{ o.name }}</a></td>{% if o.beschreibung != '' %}<td><small>{{ o.beschreibung|raw }}</small></td>{% endif %}</tr>{% endfor %}
+      </table>
+{%- endif %}
+{%- if zurueck is not null %}
+      <p><a href="{{ adda|raw }}open&amp;subdir={{ zurueck }}">{{ text[5]|raw }} {{ text[562]|raw }}</a></p>
+{%- endif %}
+    </td>
+  </tr>
+</table>

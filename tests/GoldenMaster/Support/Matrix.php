@@ -25,6 +25,12 @@ final class Matrix
 
         $add('');
         $add('lmouserlang=English');
+        // Ligenuebersicht: Unterordner und Sortierung der Liste
+        $add('subdir=dfb/');
+        $add('subdir=golden/');
+        $add('subdir=golden/&liga_sort=file_date&liga_sort_direction=asc');
+        $add('subdir=golden/&liga_sort=aktueller_spieltag&liga_sort_direction=desc');
+        $add('subdir=golden/&liga_sort=liga_name&liga_sort_direction=desc');
 
         foreach (self::leagues($sourceRoot) as $file => $meta) {
             $rounds = $meta['rounds'];
@@ -75,6 +81,8 @@ final class Matrix
             $add($f . '&action=program&selteam=1');
             $add($f . '&action=graph');
             $add($f . '&action=cal');
+            $add($f . '&action=cal&cal=032025'); // ein vorgegebener Monat
+            $add($f . '&action=cal&cal=2025'); // Jahresansicht
             $add($f . '&action=info');
             $add($f . '&action=table&lmouserlang=English');
         }

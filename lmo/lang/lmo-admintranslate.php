@@ -30,15 +30,17 @@ header('Content-Type: text/html; charset=utf-8');
 mb_internal_encoding('UTF-8');
 
 $baseDir = __DIR__;  // Jetzt ist __DIR__ das /lang Verzeichnis
+$addonDir = dirname(__DIR__) . '/addon';  // die Addons haben ihre Sprachdateien in addon/<name>/lang
 $from_lang = 'Deutsch'; // Wähle die Basissprache aus
 $errorMsg = '';
 $successMsg = '';
 
-// Struktur mit Error Handling abrufen
-function getStructure($dir)
+// Struktur mit Error Handling abrufen; $dirs bekommt den Ordner je Typ
+function getStructure($dir, $addonDir, &$dirs)
 {
     $result = ['main' => []];
     $addons = [];
+    $dirs = ['main' => $dir];
 
     $mainFiles = glob($dir . '/lang-*.txt');
     if ($mainFiles !== false) {
@@ -58,6 +60,16 @@ function getStructure($dir)
         $path = $dir . '/' . $item;
         if (is_dir($path) && !is_link($path)) { // Symlinks prüfen
             $addons[] = $item;
+            $dirs[$item] = $path;
+        }
+    }
+
+    // Sprachordner der Addons (addon/<name>/lang); bis 4.5 lagen sie unter lang/<name>
+    foreach (@scandir($addonDir) ?: [] as $item) {
+        $path = $addonDir . '/' . $item . '/lang';
+        if ($item !== '.' && $item !== '..' && is_dir($path) && !is_link($path) && !is_link($addonDir . '/' . $item)) {
+            $addons[] = $item;
+            $dirs[$item] = $path;
         }
     }
 
@@ -68,7 +80,7 @@ function getStructure($dir)
     return $result;
 }
 
-$structure = getStructure($baseDir);
+$structure = getStructure($baseDir, $addonDir, $langDirs);
 
 // Validierung aller POST-Parameter
 $type = $_POST['type'] ?? 'main';
@@ -90,12 +102,12 @@ if (!in_array($lang, $allowedLangs, true)) {
     die('Invalid lang parameter');
 }
 
-$dir = ($type === 'main') ? $baseDir : $baseDir . '/' . $type;
+$dir = $langDirs[$type];
 $baseFile = $dir . '/lang-' . $from_lang . '.txt';
 $targetFile = $dir . '/' . $lang;
 
-// Pfade validieren (keine .. erlaubt)
-if (strpos(realpath($dir) ? : '', realpath($baseDir) ? : '') !== 0) {
+// Pfade validieren (keine .. erlaubt): nur unter lang/ oder addon/
+if (strpos(realpath($dir) ? : '', realpath($baseDir) ? : '') !== 0 && strpos(realpath($dir) ? : '', realpath($addonDir) ? : '') !== 0) {
     http_response_code(403);
     die('Invalid directory path');
 }

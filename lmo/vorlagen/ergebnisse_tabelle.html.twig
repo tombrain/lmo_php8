@@ -1,0 +1,45 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Ergebnis- und Tabellenseite (Lmo\Web\Controller\ErgebnisseController): Spieltagsauswahl,
+    Ergebnisse, Vor- und Zurueck-Pfeile, Tabelle. Die Teile kommen als fertiges HTML. -#}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+{#- Spieltagsauswahl #}
+  <tr>
+    <td align="center">{{ menue|raw }}</td>
+  </tr>
+{#- Ergebnisse #}
+{% if ergebnisse is not null %}
+  <tr>
+    <td align="center">{{ ergebnisse|raw }}</td>
+  </tr>
+{% endif %}
+{#- Vor und Zurück-Pfeile #}
+  <tr>
+    <td>
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+{% if zurueck is not null %}
+          <td align="left">&nbsp;<a href="{{ zurueck|raw }}" title="{{ text[6]|raw }}">{{ text[5]|raw }} {{ text[6]|raw }}</a>&nbsp;</td>
+{% endif %}
+{% if vor is not null %}
+          <td align="right">&nbsp;<a href="{{ vor|raw }}" title="{{ text[8]|raw }}">{{ text[8]|raw }} {{ text[7]|raw }}</a>&nbsp;</td>
+{% endif %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+{#- Tabelle #}
+{% if tabelle is not null %}
+  <tr>
+    <td align="center">{{ tabelle|raw }}</td>
+  </tr>
+{% endif %}
+</table>

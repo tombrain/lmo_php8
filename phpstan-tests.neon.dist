@@ -2,7 +2,7 @@
 parameters:
     level: 5
     phpVersion:
-        min: 80000
+        min: 80100
         max: 80599
     paths:
         - tests

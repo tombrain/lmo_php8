@@ -4,16 +4,6 @@
 --- Dateiaenderungen ---
 (keine)
 
-=== direkter Aufruf lmo-adminedit.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-saveliga.php ===
-
---- Dateiaenderungen ---
-(keine)
-
 === direkter Aufruf lmo-adminmimesend.php ===
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="de">
@@ -26,11 +16,6 @@
 <div class="lmoMain">
 </body>
 </html>
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-adminjavascript.php ===
-
 --- Dateiaenderungen ---
 (keine)
 
@@ -185,7 +170,12 @@
 <td align="center" class="calat">
 <a href="#" onclick='lmogeben("31.03.2025")' title="Datum übernehmen">31</a>
 </td>
-</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
+<td class="calat">&nbsp;</td>
 </tr>
 </table>
 </td>
@@ -199,41 +189,6 @@
 </center>
 </body>
 </html>
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-adminrounds.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-adminsubnavi.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-savehtml.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-kocal.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-rueckrunde.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-dirlist.php ===
-
---- Dateiaenderungen ---
-(keine)
-
-=== direkter Aufruf lmo-openfile.php ===
-
 --- Dateiaenderungen ---
 (keine)
 

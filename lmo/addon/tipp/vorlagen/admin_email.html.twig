@@ -1,0 +1,134 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Newsletter/Reminder (Lmo\Addon\Tipp\AdminEmailController), bis 4.5 lmo-admintippemail.php #}
+<script type="text/javascript">
+function changetextarea(x){
+  if (document.getElementById) {
+    if (x==0){
+      document.getElementById("message").value="{{ t[295]|raw }}";
+      document.getElementById("betreff").value="{{ t[296]|raw }}";
+    }
+    if (x==1){
+      document.getElementById("message").value=document.getElementsByName("textreminder1")[0].value;
+      document.getElementById("betreff").value="{{ t[167]|raw }}";
+    }
+    if (x==2){
+      document.getElementById("message").value="{{ t[297]|raw }}";
+      document.getElementById("betreff").value="{{ t[0]|raw }}";
+    }
+  }
+}
+</script>
+{{ menue|raw }}
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <th align="center"><h1>{{ t[165]|raw }}</h1></th>
+  </tr>
+  <tr>
+    <td align="left">
+      <form name="lmoedit" action="{{ adresse }}" method="post">
+        <input type="hidden" name="action" value="admin">
+        <input type="hidden" name="todo" value="tippemail">
+        <input type="hidden" name="save" value="1">
+        <input type="hidden" name="textreminder1" value="{{ erinnerung|raw }}">
+        <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td width="20">&nbsp;</td>
+            <td colspan="3" align="left"><input type="radio" name="emailart" value="0" {% if emailart == 0 %}checked{% endif %} onClick="changetextarea(0)">{{ t[166]|raw }}</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="left"><input type="radio" name="emailart" value="2" {% if emailart == 2 %}checked{% endif %} onClick="changetextarea(2)">{{ t[168]|raw }}</td>
+            <td colspan="2" align="left">
+              <select name="adressat" onChange="emailart[1].checked=true;changetextarea(2);">
+                <option value="">{{ t[51]|raw }}</option>
+{% for eintrag in tipper %}
+                <option value="{{ eintrag.nick }}">{{ eintrag.nick }} ({{ eintrag.name }} - {{ eintrag.email }})</option>
+{% endfor %}
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td valign="top" align="left">
+              <input type="radio" name="emailart" value="1" {% if emailart == 1 %}checked{% endif %} onClick="changetextarea(1)">{{ t[167]|raw }}
+            </td>
+            <td colspan="2">
+              <table cellspacing="0" cellpadding="0" border="0">
+{% for liga in ligen %}
+  <tr>
+    <td class="nobr">
+        <input type="hidden" name="liga1[]" value="{{ liga.datei }}">
+        <input type="radio" name="liganr" value="{{ loop.index }}" {% if liga.gewaehlt %}checked{% endif %} onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;">{{ liga.name }}
+    </td>
+    <td class="nobr">
+      <select class="lmo-formular-input" name="st1[]" onChange="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;liganr[{{ loop.index0 }}].checked=true;"><option value="0"{% if liga.alle %} selected{% endif %}>{{ (liga.pokal ? t[229] : t[228])|raw }}</option>{% for spieltag in liga.spieltage %}<option value="{{ spieltag.wert }}"{% if spieltag.gewaehlt %} selected{% endif %}>{{ spieltag.name|raw }}</option>{% endfor %}
+      </select>
+    </td>
+  </tr>
+{% else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text[223]|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endfor %}
+{% if ligen %}
+                <tr>
+                  <td colspan="2" align="left">
+                    <input type="radio" name="liganr" value="0" {% if alleLigen %}checked{% endif %} onClick="if (emailart[2].checked==false)changetextarea(1);emailart[2].checked=true;"><strong>{{ t[263]|raw }}</strong>
+                  </td>
+                </tr>
+{% endif %}
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+            <td align="left">
+              {{ t[164]|raw }}
+              <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="{{ start }}">
+              {{ text[4]|raw }}
+              <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="{{ ende }}">
+              {{ t[170]|raw }}
+              <input class="lmo-formular-input" type="text" name="tage" size="2" maxlength="2" value="{{ tage }}" onFocus="emailart[2].checked=true;"> {{ t[171]|raw }}
+            </td>
+          </tr>
+          <tr>
+            <th colspan="4">&nbsp;</th>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="3" align="left">
+              {{ t[265]|raw }}
+              <input class="lmo-formular-input" type="text" name="betreff" id="betreff" size="20" maxlength="40" value="{{ betreff }}">
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="left" colspan="3">
+              <textarea id="message" name="message" rows="10" cols="60">{{ nachricht|raw }}              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" align="right"><input class="lmo-formular-button" type="submit" name="best" value="{{ t[169]|raw }}"></td>
+          </tr>
+          <tr>
+            <td class="lmoFooter" width="20">&nbsp;</td>
+            <td class="lmoFooter" valign="top" align="right">{{ t[178]|raw }}</td>
+            <td class="lmoFooter" colspan="2" align="left">{{ t[179]|raw }}</td>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>

@@ -484,9 +484,7 @@
 483=Nézet nyomtatása
 484=Kíván nyomtatóbarát nézetet létrehozni?
 485=Játékosok statisztikái
-486=Kívánja megjeleníteni a játékos-statisztika bejegyzéseit? (Minden bajnokságra külön kell engedélyezni!)
 487=Tippjáték
-488=Kívánja megjeleníteni a tippjátékot?
 489=Gól statisztikák
 490=Kívánja megjeleníteni a további gól statisztikákat (összgól és gólátlag)?
 491=helyezések alá

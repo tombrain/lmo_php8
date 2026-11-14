@@ -1,0 +1,69 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Rahmen der Administration: Menue, Inhalt, Sprachwahl, Ruecklink und Ladezeit; bis 4.5 lmo-adminmain.php #}
+{% macro punkt(adda, link, aktiv, titel, name) %}{% if aktiv %}      {{ name|raw }}{% else %}      <a href="{{ adda|raw }}{{ link|raw }}" onclick="return chklmolink();" title="{{ titel|raw }}">{{ name|raw }}</a>{% endif %}{% endmacro %}
+{% import _self as m %}
+<script type="text/javascript" src="{{ lmo|raw }}/js/admin.js.php"></script>
+<table class="lmoMain" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td colspan="2" align="center"><h1>{{ text[77]|raw }} {{ text[54]|raw }}</h1></td>
+  </tr>
+  <tr>
+    <td class="lmoMenu" align="left">
+{{ lademeldung|raw }}
+{%- if rolle == 2 %}
+{{ m.punkt(adda, 'new&amp;newpage=' ~ newpage, todo == 'new', text[79], text[78]) }}&nbsp;
+{{ m.punkt(adda, 'open&amp;subdir=' ~ subdir, todo == 'open', text[81], text[80]) }}&nbsp;
+{{ m.punkt(adda, 'delete', todo == 'delete', text[83], text[82]) }}&nbsp;
+{% if datei != '' %}{{ m.punkt(adda, 'edit&amp;file=' ~ datei, todo == 'edit' or todo == 'tabs', text[91], text[90]) }}&nbsp;
+{% endif %}
+{{ m.punkt(adda, 'upload', todo == 'upload', text[85], text[84]) }}&nbsp;
+{{ m.punkt(adda, 'download', todo == 'download', text[315], text[314]) }}&nbsp;
+{{ m.punkt(adda, 'options', todo in ['options', 'addons', 'user', 'design'], text[87], text[86]) }}&nbsp;
+{#- die Punkte der Addons (Lmo\Addon\MitAdminMenue), durch Leerzeichen getrennt #}
+{% for p in addons %}{{ m.punkt(adda, p.ziel, p.aktiv, p.titel, p.name) }}{% if not loop.last %}&nbsp;{% endif %}
+{% endfor %}
+{% elseif rolle == 1 %}
+{{ m.punkt(adda, 'open', todo == 'open', text[81], text[80]) }}&nbsp;
+{% if datei != '' %}{{ m.punkt(adda, 'edit&amp;file=' ~ datei, todo == 'edit' or todo == 'tabs', text[91], text[90]) }}&nbsp;
+{% endif %}
+{{ m.punkt(adda, 'download', todo == 'download', text[315], text[314]) }}
+{% endif %}
+
+    </td>
+    <td class="lmoMenu" align="right">
+{% if update %}
+      <a href="{{ adda|raw }}update" onclick="return chklmolink();" class="lmopUpdate" title="{{ text[590]|raw }}">{{ text[593]|raw }}</a>
+&nbsp;
+{% endif %}
+      <a href="{{ lmo|raw }}/help/Deutsch/index.html" target="_blank" title="{{ text[313]|raw }}">{{ text[312]|raw }}</a>
+      <a href="{{ adda|raw }}logout" onclick="return chklmolink();" title="{{ text[89]|raw }}">{{ text[88]|raw }}</a>&nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+{{ inhalt|raw }}
+
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="lmoFooter" align="left">
+{{ sprachwahl|raw }}
+
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <a href="{{ lmo|raw }}/lmo.php?file={{ ruecklink|raw }}" target="_blank" title="{{ text[116]|raw }}">{{ text[5]|raw }} {{ text[115]|raw }}</a>
+    </td>
+    <td class="lmoFooter" align="right">{{ text[471]|raw }}: {{ ladezeit }} {{ text[799]|raw }}.</td>
+  </tr>
+</table>

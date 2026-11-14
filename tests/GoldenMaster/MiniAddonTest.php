@@ -14,8 +14,8 @@ use PHPUnit\Framework\TestCase;
  * Addon "mini": Minitabelle (lmo-minitab.php) und Mini-Spielplan (lmo-mininext.php), direkt
  * aufgerufen wie in einem IFRAME.
  *
- * Die Minitabelle rechnet mit der classlib, die Haupttabelle mit lmo-calctable.php: beide muessen
- * dieselbe Tabelle zeigen. Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
+ * Die Minitabelle und die Haupttabelle muessen dieselbe Tabelle zeigen (bis 4.5 rechnete die
+ * Minitabelle mit der Classlib). Eigene Testinstanz, weil der Mini-Spielplan Cache-Dateien schreibt.
  */
 final class MiniAddonTest extends TestCase
 {
@@ -149,6 +149,52 @@ final class MiniAddonTest extends TestCase
         self::assertSame([], self::previousMatches('file=golden/basic.l98&a=1&b=1&mini_withArchiv=0'));
     }
 
+    /**
+     * Mit Cache (CacheTable=1) zeigt jeder Ausschnitt seine Plaetze, und ein zweiter Aufruf kommt
+     * aus dem Cache. Bis 4.5 griff der Cache nie (die erste Zeile endete nicht) und haette den
+     * Ausschnitt nicht beachtet.
+     */
+    public function testCacheBeachtetDenAusschnitt(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        file_put_contents($cfg, (string)preg_replace('/^CacheTable=.*$/m', 'CacheTable=1', $vorher));
+        $cache = self::$app->path() . '/output/basic.l98-standard.cache';
+        $plaetze = static function (string $platz): array {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=' . $platz . '&mini_ueber=1&mini_unter=1');
+            preg_match_all('~<td align="center"><strong>(\d+)</strong></td>~', $html, $treffer);
+            return $treffer[1];
+        };
+        try {
+            self::assertSame(['4', '5', '6'], $plaetze('5'));
+            self::assertFileExists($cache);
+            self::assertStringEndsWith('|1|1|5', explode("\n", (string)file_get_contents($cache))[0], 'der Ausschnitt im Schluessel');
+            self::assertSame(['1', '2', '3'], $plaetze('1'), 'ein anderer Ausschnitt nicht aus dem Cache');
+            file_put_contents($cache, (string)preg_replace('~<strong>2</strong>~', '<strong>99</strong>', (string)file_get_contents($cache)));
+            self::assertSame(['1', '99', '3'], $plaetze('1'), 'derselbe Ausschnitt aus dem Cache');
+        } finally {
+            file_put_contents($cfg, $vorher);
+            @unlink($cache);
+        }
+    }
+
+    /** Gestreifte Tabelle (stripedTable): abwechselnd die beiden Farben, ohne "\n" im Stil (bis 4.5 mit). */
+    public function testGestreifteTabelle(): void
+    {
+        $cfg = self::$app->path() . '/config/mini/cfg.txt';
+        $vorher = (string)file_get_contents($cfg);
+        // in Anfuehrungszeichen, sonst schneidet das Einlesen den Wert beim ";" ab
+        file_put_contents($cfg, $vorher . "stripedTable=\"#111;#222\"\n");
+        try {
+            $html = self::page('lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=5&mini_ueber=1&mini_unter=1');
+        } finally {
+            file_put_contents($cfg, $vorher);
+        }
+
+        self::assertStringContainsString('background-color: #222;', $html);
+        self::assertStringNotContainsString('\n', $html);
+    }
+
     public function testMissingArchiveFolderShowsMessage(): void
     {
         $html = self::page('lmo-mininext.php', 'file=golden/basic.l98&a=1&b=2&folder=gibtesnicht');
@@ -164,6 +210,21 @@ final class MiniAddonTest extends TestCase
             'Minitabelle, Ausschnitt um Platz 5' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard&mini_platz=5&mini_ueber=1&mini_unter=1'],
             'Minitabelle, Minuspunkte' => ['lmo-minitab.php', 'mini_liga=golden/minus2_direct.l98&mini_template=standard'],
             'Minitabelle ohne Liga' => ['lmo-minitab.php', ''],
+            'Minitabelle ohne Vorlage' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98'],
+            // die uebrigen mitgelieferten Vorlagen (template/mini)
+            'Minitabelle, Vorlage all' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=all'],
+            'Minitabelle, Vorlage round' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=round'],
+            'Minitabelle, Vorlage round_all' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=round_all'],
+            'Minitabelle, Vorlage standard_old' => ['lmo-minitab.php', 'mini_liga=golden/basic.l98&mini_template=standard_old'],
+            'Minitabelle, Handicap' => ['lmo-minitab.php', 'mini_liga=golden/handicap.l98&mini_template=all'],
+            'Minitabelle, Bundesliga' => ['lmo-minitab.php', 'mini_liga=1l_2024-25.l98&mini_template=all'],
+            'Mini-Spielplan, Paarung ohne Archiv' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1&b=2&mini_withArchiv=0'],
+            'Mini-Spielplan, Balkenbreite und unGreedy' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=3&b=4&mini_barWidth=50&mini_unGreedy=1'],
+            'Mini-Spielplan, nur Mannschaft b' => ['lmo-mininext.php', 'file=1l_2024-25.l98&b=2'],
+            // mit gespielten Partien (Block matches)
+            'Mini-Spielplan, Paarung mit Ergebnissen' => ['lmo-mininext.php', 'file=golden/basic.l98&a=1&b=5'],
+            'Mini-Spielplan, naechstes Spiel mit Ergebnissen' => ['lmo-mininext.php', 'file=golden/basic.l98&a=2'],
+            'Mini-Spielplan, Wertungen' => ['lmo-mininext.php', 'file=golden/wertung.l98&a=1&b=2&mini_withArchiv=0'],
             'Mini-Spielplan, naechstes Spiel' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1'],
             'Mini-Spielplan, Paarung' => ['lmo-mininext.php', 'file=1l_2024-25.l98&a=1&b=2'],
             'Mini-Spielplan ohne Mannschaft' => ['lmo-mininext.php', 'file=1l_2024-25.l98'],
@@ -175,8 +236,10 @@ final class MiniAddonTest extends TestCase
     public function testPageOutputIsUnchanged(string $script, string $query): void
     {
         $html = self::page($script, $query);
-        // Countdown bis zum Spiel: die Testuhr laeuft weiter, je nach Dauer des Aufrufs ist schon eine Minute weniger uebrig
-        $html = (string)preg_replace('/(Minuten: )\d+/', '$1{MIN}', $html);
+        // Countdown bis zum Spiel: die Testuhr laeuft weiter, je nach Dauer des Aufrufs ist schon eine Minute
+        // weniger uebrig, und die kann auch Stunde und Tag wechseln. Die Rechnung prueft MinispielplanTest
+        // mit fester Uhr; hier zaehlt nur, dass der Countdown dasteht.
+        $html = (string)preg_replace('/Tage: -?\d+, Stunden: -?\d+, Minuten: -?\d+/', 'Tage: {TAGE}, Stunden: {STD}, Minuten: {MIN}', $html);
 
         $this->assertMatchesSnapshot('mini', $script . '?' . $query, Normalizer::html($html, self::$app->path(), $query));
     }

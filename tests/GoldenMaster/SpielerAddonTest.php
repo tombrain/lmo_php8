@@ -3,18 +3,22 @@
 namespace Lmo\Tests\GoldenMaster;
 
 use Lmo\Tests\GoldenMaster\Support\AdminClient;
+use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
 use Lmo\Tests\GoldenMaster\Support\Fixture;
+use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Addon "spieler" (Spielerstatistik): Der Admin legt Spieler und Spalten an und traegt Werte ein
- * (lmo-statadmin.php, gespeichert in addon/spieler/stats/<liga>.stat), die Ligaseite zeigt sie
- * unter action=spieler (lmo-statshow.php).
+ * (Lmo\Addon\Spieler\AdminController, bis 4.5 lmo-statadmin.php; gespeichert in daten/spieler/<liga>.stat), die Ligaseite zeigt sie
+ * unter action=spieler (Lmo\Addon\Spieler\StatistikController).
  *
  * Die Tests bauen aufeinander auf und laufen in dieser Reihenfolge auf einer eigenen Testinstanz.
  */
 final class SpielerAddonTest extends TestCase
 {
+    use AssertsSnapshots;
+
     private const LIGA = 'golden/basic.l98';
 
     private static AdminClient $client;
@@ -41,7 +45,7 @@ final class SpielerAddonTest extends TestCase
 
     private static function statFile(?AdminClient $client = null): string
     {
-        return ($client ?? self::$client)->instance()->path() . '/addon/spieler/stats/basic.stat';
+        return ($client ?? self::$client)->instance()->path() . '/daten/spieler/basic.stat';
     }
 
     /** @return string[][] Zeilen der Statistikdatei, Spalten an "#" getrennt */
@@ -209,9 +213,30 @@ final class SpielerAddonTest extends TestCase
         self::assertEquals(0, $players['Zander'][2]);
     }
 
+    public function testStatistikenZiehenAusDemAddonOrdnerUm(): void
+    {
+        // eine Installation von 4.5: die Statistiken liegen noch in addon/spieler/stats
+        $client = Fixture::loggedInClient();
+        $pfad = $client->instance()->path();
+        rmdir($pfad . '/daten/spieler');
+        mkdir($pfad . '/addon/spieler/stats');
+        file_put_contents($pfad . '/addon/spieler/stats/basic.stat', "Name#Tore
+Alt#3
+");
+
+        $html = self::admin([], $client);
+
+        self::assertStringNotContainsString('STDERR', $html);
+        self::assertStringEqualsFile($pfad . '/daten/spieler/basic.stat', "Name#Tore
+Alt#3
+");
+        self::assertFileDoesNotExist($pfad . '/addon/spieler/stats/basic.stat');
+        self::assertStringContainsString('Alt', $html, 'die Seite liest am neuen Ort');
+    }
+
     public function testFormulaWithOtherTextIsNotExecuted(): void
     {
-        $marker = self::$client->instance()->path() . '/addon/spieler/stats/eingeschleust.txt';
+        $marker = self::$client->instance()->path() . '/daten/spieler/eingeschleust.txt';
 
         $html = self::update([], 2, ['formel_str3' => "file_put_contents('$marker', 'x')"]);
 
@@ -261,5 +286,42 @@ final class SpielerAddonTest extends TestCase
         self::admin(['option' => 'addplayer', 'wert' => 'Eindringling'], $anonymous);
 
         self::assertFileDoesNotExist(self::statFile($anonymous), 'ohne Anmeldung wird keine Statistik angelegt');
+    }
+
+    /**
+     * Die Seite der Administration selbst, Schritt fuer Schritt auf einer eigenen Instanz: Spieler,
+     * Zahlen-, Vereins- und Formelspalte, Werte, Sortierung, Einstellungen, Hilfsadmin.
+     */
+    public function testAdminSeite(): void
+    {
+        [$app, $runner] = Fixture::freshInstance();
+        file_put_contents($app->path() . '/config/lmo-auth.php', "<?php exit(); ?>
+admin|lmo|2|||
+hilfe|geheim|1|basic|0
+");
+        $c = new AdminClient($app, $runner);
+        $c->login('admin', 'lmo');
+        $c->changes();
+        $t = new Transcript();
+        $seite = static fn (array $params = [], ?AdminClient $wer = null): string => ($wer ?? $c)->post('lmoadmin.php', '', ['action' => 'admin', 'todo' => 'edit', 'file' => self::LIGA, 'st' => '-4'] + $params);
+
+        $t->add('leer', $seite(), $c->changes());
+        $seite(['option' => 'addplayer', 'wert' => 'Müller']);
+        $seite(['option' => 'addplayer', 'wert' => 'Ahrens']);
+        $seite(['option' => 'addcolumn', 'wert' => 'Tore', 'type' => '0']);
+        $seite(['option' => 'addcolumn', 'wert' => 'Verein', 'type' => '___']);
+        $t->add('Spieler, Zahl- und Vereinsspalte', $seite(['option' => 'addcolumn', 'wert' => 'Quote', 'type' => 'F']), $c->changes());
+        $t->add('Werte und Formel', $seite(['option' => 'statupdate', 'data0|1' => '3', 'data1|1' => '5', 'data0|2' => 'Mannschaft 2', 'formel_str3' => 'TORE*2']), $c->changes());
+        $t->add('absteigend nach Toren', $c->get('lmoadmin.php', 'action=admin&todo=edit&st=-4&sort=1&file=' . self::LIGA . '&sort_direction=desc'), $c->changes());
+        $t->add('Einstellungen speichern', $seite(['option' => 'saveconfig', 'anzeige_pro_seite' => '5', 'standard_sortierung' => '1', 'standard_richtung' => '0', 'adminbereich_standard_sortierung' => '1', 'ligalink' => 'Statistik', 'extra_sortierspalte' => '1', 'adminbereich_hilfsadmin_zulassen' => '1']), $c->changes());
+        $t->add('Spieler und Spalte loeschen', $seite(['option' => 'delplayer', 'wert' => '0']) . $seite(['option' => 'delcolumn', 'wert' => '3']), $c->changes());
+        $hilfe = new AdminClient($app, $runner);
+        $hilfe->login('hilfe', 'geheim');
+        $hilfe->changes();
+        $t->add('Hilfsadmin (zugelassen, ohne Spalten)', $seite([], $hilfe), $hilfe->changes());
+        $seite(['option' => 'saveconfig', 'anzeige_pro_seite' => '5']);
+        $t->add('Hilfsadmin (nicht zugelassen)', $seite([], $hilfe), $hilfe->changes() . $c->changes());
+
+        $this->assertMatchesSnapshot('spieler-admin', 'seite', $t->text());
     }
 }

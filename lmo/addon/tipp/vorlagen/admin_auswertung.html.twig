@@ -1,0 +1,80 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{# Auswertung des Tippspiels in der Administration (Lmo\Addon\Tipp\AdminAuswertungController), bis 4.5 lmo-admintipp.php #}
+{# je getippter Liga ein Formular: Spieltag, von, bis; save 2 auswerten, 3 Einsicht erstellen #}
+{% macro ligen(ligen, save, knopf, text, adresse) %}
+{% for l in ligen %}
+        <tr>
+          <td width="20">&nbsp;</td>
+          <td class="nobr" align="left">{{ l.name|raw }}</td>
+          <td class="nobr" align="right">
+            <form name="lmoedit" action="{{ adresse }}" method="post">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="tipp">
+              <input type="hidden" name="save" value="{{ save }}">
+              <input type="hidden" name="liga" value="{{ l.liga }}">
+              <select class="lmo-formular-input" name="st">
+{% for s in l.spieltage %}
+                <option value="{{ s.wert }}"{% if s.gewaehlt %} selected{% endif %}>{{ s.name|raw }}</option>
+{% endfor %}
+              </select>{{ text.tipp164|raw }}
+              <input class="lmo-formular-input" type="text" name="start" size="2" maxlength="4" value="{{ l.von }}">
+                {{ text.bis|raw }}
+              <input class="lmo-formular-input" type="text" name="ende" size="2" maxlength="4" value="{{ l.bis }}">
+              <input class="lmo-formular-button" type="submit" name="best" value="{{ knopf|raw }}">
+            </form>
+          </td>
+        </tr>
+{% else %}
+        <tr>
+          <td></td>
+          <td><li>[ {{ text.keine|raw }} ]</li></td>
+          <td></td>
+        </tr>
+{% endfor %}
+{% endmacro %}
+{% import _self as f %}
+{% set texte = {tipp164: t[164], bis: text[4], keine: text[223]} %}
+{{ menue|raw }}
+
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <th style="text-align:center"><h1>{{ t[63]|raw }}</h1></th>
+  </tr>
+  <tr>
+    <td align="center">
+      <table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th align="left" colspan="3">{{ t[64]|raw }}</th>
+        </tr>
+{{ f.ligen(auswerten, 2, t[58], texte, adresse) }}
+{% if gesamt %}
+        <tr>
+          <td width="20">&nbsp;</td>
+          <td align="left"><strong>{{ t[56]|raw }}</strong></td>
+          <td align="right">
+            <form name="lmoedit" action="{{ adresse }}" method="post">
+              <input type="hidden" name="action" value="admin">
+              <input type="hidden" name="todo" value="tipp">
+              <input type="hidden" name="save" value="4">
+              <input class="lmo-formular-button" type="submit" name="best" value="{{ t[236]|raw }}">
+            </form>
+          </td>
+        </tr>
+{% endif %}
+        <tr>
+          <th align="left" colspan="3">{{ t[155]|raw }}</th>
+        </tr>
+{{ f.ligen(einsicht, 3, t[156], texte, adresse) }}
+      </table>
+    </td>
+  </tr>
+</table>

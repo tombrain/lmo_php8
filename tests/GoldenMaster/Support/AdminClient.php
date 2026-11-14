@@ -88,13 +88,27 @@ final class AdminClient
         $now = StateTracker::read($this->instance->path());
         $report = StateTracker::diff($this->state, $now, $this->instance->path());
         $this->state = $now;
-        return $report;
+        // die Zeit im Log der abgewiesenen Eingaben (xss_log.txt) laeuft unter faketime weiter und
+        // steht nicht fest
+        return (string)preg_replace('/^([-+]?)\[\d{4}-\d\d-\d\d \d\d:\d\d:\d\d\] (\[IP: )/m', '$1[ZEIT] $2', $report);
     }
 
     /** Baseline neu setzen, z. B. nachdem der Test selbst Dateien vorbereitet hat. */
     public function resetChanges(): void
     {
         $this->state = StateTracker::read($this->instance->path());
+    }
+
+    /** Die letzte Antwort, wie sie kam (etwa ein Bild), ohne Normalisierung. */
+    public function roh(): string
+    {
+        return $this->lastRaw;
+    }
+
+    /** Die Sitzungs-ID, mit der die naechste Anfrage kommt ('' vor der ersten) */
+    public function sitzungsId(): string
+    {
+        return $this->sid;
     }
 
     public function instance(): Instance

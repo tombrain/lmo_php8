@@ -14,8 +14,9 @@ use PHPUnit\Framework\TestCase;
  * Scope (Nachbau von register_globals). extract() schuetzt nur $this und $GLOBALS, nicht $_SESSION.
  * Ob Sitzungswerte dadurch ueberschreibbar sind, wird hier an einer lokalen Testinstanz geprueft.
  *
- * Der Snapshot haelt den IST-Zustand fest. Wird die Luecke geschlossen, muss er bewusst neu
- * aufgezeichnet werden (und sollte danach eine Anmeldeseite statt Admin-Inhalt zeigen).
+ * Bis 4.5 meldete ?_SESSION[lmouserok]=2 als Hauptadmin an, dauerhaft in der Sitzung. Seitdem
+ * uebernimmt init.php keine Namen mit _ am Anfang mehr: ohne Anmeldung kommt die Anmeldeseite, der
+ * Download liefert nichts.
  */
 final class AdminAuthProbeTest extends TestCase
 {
@@ -33,8 +34,12 @@ final class AdminAuthProbeTest extends TestCase
         $t->add('falsches Kennwort plus Parameter', $c->post('lmoadmin.php', '', [
             'action' => 'admin', 'xusername' => 'admin', 'xuserpass' => 'falsch', 'lmouserok' => '2',
         ]), $c->changes());
-        $t->add('Download ohne Anmeldung', $c->get('lmo-admindownload.php', $a . '&todo=download&down=1'), $c->changes());
-        $t->add('Download mit Sitzungswert im Parameter', $c->get('lmo-admindownload.php', $a . '&todo=download&down=1&_SESSION[lmouserok]=2'), $c->changes());
+        $download = $c->get('lmo-admindownload.php', $a . '&todo=download&down=1');
+        self::assertStringNotContainsString('[Options]', $download, 'keine Liga ohne Anmeldung, auch nicht nach den Versuchen oben');
+        $t->add('Download ohne Anmeldung', $download, $c->changes());
+        $download = $c->get('lmo-admindownload.php', $a . '&todo=download&down=1&_SESSION[lmouserok]=2');
+        self::assertStringNotContainsString('[Options]', $download, 'der Sitzungswert im Parameter meldet nicht an');
+        $t->add('Download mit Sitzungswert im Parameter', $download, $c->changes());
 
         $this->assertMatchesSnapshot('security-probe', 'admin_without_login', $t->text());
     }
@@ -46,18 +51,8 @@ final class AdminAuthProbeTest extends TestCase
 
         foreach ([
             'lmo-adminmain.php' => 'action=admin',
-            'lmo-adminedit.php' => 'action=admin&todo=edit&file=golden/basic.l98&st=1',
-            'lmo-saveliga.php' => 'file=golden/basic.l98',
             'lmo-adminmimesend.php' => '',
-            'lmo-adminjavascript.php' => '',
             'lmo-admincal.php' => '',
-            'lmo-adminrounds.php' => 'file=golden/basic.l98',
-            'lmo-adminsubnavi.php' => 'file=golden/basic.l98',
-            'lmo-savehtml.php' => 'file=golden/basic.l98',
-            'lmo-kocal.php' => '',
-            'lmo-rueckrunde.php' => 'file=golden/basic.l98',
-            'lmo-dirlist.php' => '',
-            'lmo-openfile.php' => 'file=golden/basic.l98',
         ] as $script => $query) {
             $t->add('direkter Aufruf ' . $script, $c->get($script, $query), $c->changes());
         }

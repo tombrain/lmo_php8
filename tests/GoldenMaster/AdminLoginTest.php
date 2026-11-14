@@ -19,6 +19,26 @@ final class AdminLoginTest extends TestCase
 {
     use AssertsSnapshots;
 
+    /**
+     * Die Anmeldung beginnt eine neue Sitzung (gegen Session Fixation), und das Kennwort bleibt
+     * nicht darin stehen.
+     */
+    public function testAnmeldungMitNeuerSitzung(): void
+    {
+        [$app, $runner] = Fixture::freshInstance();
+        $c = new AdminClient($app, $runner);
+        $c->get('lmoadmin.php', 'action=admin');
+        $vorher = $c->sitzungsId();
+        self::assertNotSame('', $vorher);
+
+        $c->login('admin', 'lmo');
+        self::assertNotSame($vorher, $c->sitzungsId(), 'neue Sitzungs-ID nach der Anmeldung');
+        self::assertStringContainsString('todo=logout', $c->get('lmoadmin.php', 'action=admin'), 'angemeldet');
+        $sitzung = (string) file_get_contents($app->sessionDir() . '/sess_' . $c->sitzungsId());
+        self::assertStringNotContainsString('"lmo"', $sitzung, 'das Kennwort steht nicht in der Sitzung');
+        self::assertFileDoesNotExist($app->sessionDir() . '/sess_' . $vorher, 'die alte Sitzung ist weg');
+    }
+
     public function testLoginAndLogoutFlow(): void
     {
         [$app, $runner] = Fixture::freshInstance();

@@ -1,0 +1,694 @@
+### tippregeln_varianten
+=== Englisch ===
+<div class="regeln-container">
+<h1>Instructions for the Prediction Game</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">After registering for the prediction game, the user has the option to subscribe to one <strong>or</strong> several prediction leagues.</p>
+<details open>
+<summary>Procedure for subscribing and playing individual leagues</summary>
+<div class="accordion-content">
+<strong>Registration and Management</strong>
+<p>Click on '<strong>register</strong>' in the login area.</p>
+<p>Enter all registration data and select which league you would like to subscribe to.<br>
+<strong>Note</strong>: You can subscribe to additional leagues at any time after the initial registration under your username!</p>
+<p>After registering, you are logged in, or you can log in at any time with your nickname.</p>
+<p>In the user area of the prediction game you can:</p>
+<ul>
+<li>Submit <strong>predictions for a league</strong> you subscribed to</li>
+<li>
+<strong>View scoreboards</strong>
+</li>
+<li>
+<strong>Change your data</strong>
+</li>
+<li>
+<strong>Add other or new leagues to your prediction sheet</strong>
+</li>
+<li>
+<strong>Change password</strong>
+</li>
+<li>
+<strong>Delete prediction account</strong> (<strong>Warning</strong>: All subscribed prediction games of your nickname will be deleted!)</li>
+<li>
+<strong>Log out of the prediction game</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Predict league</strong>
+<p>After logging in, select a subscribed league to predict in the prediction area.</p>
+<p>In the fixtures area, you can now submit your predictions for the individual matchdays.</p>
+<p>After entering the predictions for <strong>one matchday</strong>, click on <strong>save predictions</strong>
+</p>
+<p>You can now switch to another matchday and submit further predictions.</p>
+<p>It is also possible to set a <strong>Joker</strong> per matchday. The points won for this matchday will then be multiplied by a certain factor.</p>
+<strong>Notes on submitting predictions</strong>
+<p>The prediction time expires for each game individually.</p>
+<p>The prediction deadline is always 15 minutes before kick-off.</p>
+<p>Should individual games be brought forward <strong>without</strong> our knowledge, we apologize for this. However, we always try to update all changed kick-off times <strong>before</strong> a matchday.</p>
+</div>
+</details>
+<details>
+<summary>Game scoring and league standings</summary>
+<div class="accordion-content">
+<p>Game scoring (Point distribution)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">4</span>
+<span class="label">Correct result</span>
+</div>
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">3</span>
+<span class="label">Correct tendency and goal difference only</span>
+</div>
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">2</span>
+<span class="label">Correct tendency only</span>
+</div>
+<div class="point-card">
+<span class="unit">Point</span>
+<span class="value">1</span>
+<span class="label">Only one goal count correct</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Point</span>
+<span class="value">1</span>
+<span class="label">Bonus for correct draw prediction</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Factor</span>
+<span class="value">x&nbsp;2</span>
+<span class="label">Joker multiplier</span>
+</div>
+</div>
+<strong>League and matchday standings</strong>
+<p>You can access the overall league standings by selecting a subscribed league in the prediction overview under the item: <strong>View scores</strong>.</p>
+<p>You can also reach the overall league standings by switching to - <strong>League standings</strong> in the prediction area.</p>
+<p>You can view the points achieved for your <strong>individual</strong> games by calling up a <strong>completed matchday</strong> in the prediction area of a league.</p>
+<p>The <strong>overall winner</strong> is the person who has the most points in their account after a season.</p>
+<p>In addition, the predictions of other players can be viewed under <strong>Prediction insights</strong>
+</p>
+<p>The <strong>Prediction table</strong> is an additional display, i.e., a table generated based on your submitted predictions</p>
+<strong>Notes on the timing of prediction evaluation</strong>
+<p>The technical evaluation of the match predictions usually takes place after each completed matchday.</p>
+<p>Please note that for organizational reasons, the prediction evaluation may occasionally be delayed by <strong>1 to 2 days</strong>.</p>
+</div>
+</details>
+<details>
+<summary>Disclaimer</summary>
+<div class="accordion-content">
+<p>The organizer is in no way responsible for any transmission errors or other technical difficulties.</p>
+<p>By registering for the game, you accept the terms and conditions. This game is for entertainment purposes only. Anyone who hacks, falsifies, or registers several times under different names will be punished with a game ban.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>Legal recourse is excluded.</strong>
+</p>
+</div>
+</details>
+</div>
+--- Dateiaenderungen ---
+(keine)
+
+=== Italienisch ===
+<div class="regeln-container">
+<h1>Istruzioni per il gioco dei pronostici</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">Dopo la registrazione al gioco, l'utente ha la possibilità di abbonarsi a uno <strong>o</strong> più campionati.</p>
+<details open>
+<summary>Procedura per l'abbonamento e la partecipazione alle singole leghe</summary>
+<div class="accordion-content">
+<strong>Registrazione e gestione</strong>
+<p>Nell'area di login, cliccare su '<strong>registrati</strong>'.</p>
+<p>Inserire tutti i dati di registrazione e selezionare a quale lega ci si desidera abbonare.<br>
+<strong>Nota</strong>: è possibile abbonarsi a ulteriori leghe in qualsiasi momento dopo la registrazione iniziale sotto il proprio nome utente!</p>
+<p>Dopo la registrazione, sarai loggato o potrai accedere in qualsiasi momento con il tuo nickname.</p>
+<p>Nell'area utente del gioco è possibile:</p>
+<ul>
+<li>Inviare <strong>pronostici per una lega</strong> abbonata</li>
+<li>
+<strong>Visualizzare i punteggi</strong>
+</li>
+<li>
+<strong>Modificare i propri dati</strong>
+</li>
+<li>
+<strong>Aggiungere altre o nuove leghe alla propria schedina</strong>
+</li>
+<li>
+<strong>Cambiare la password</strong>
+</li>
+<li>
+<strong>Eliminare l'account</strong> (<strong>Attenzione</strong>: tutti i giochi abbonati del tuo nickname verranno eliminati!)</li>
+<li>
+<strong>Effettuare il logout dal gioco</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Giocare la lega</strong>
+<p>Dopo il login, selezionare una lega abbonata nell'area pronostici.</p>
+<p>Nell'area incontri, è ora possibile inserire i pronostici per le singole giornate.</p>
+<p>Dopo l'inserimento dei pronostici di <strong>una giornata</strong>, cliccare su <strong>salva pronostici</strong>
+</p>
+<p>È ora possibile passare a un'altra giornata e inserire ulteriori pronostici.</p>
+<p>È inoltre possibile impostare un <strong>Joker</strong> per ogni giornata. I punti guadagnati per quella giornata verranno moltiplicati per un determinato fattore.</p>
+<strong>Note sull'invio dei pronostici</strong>
+<p>Il tempo per i pronostici scade per ogni partita individualmente.</p>
+<p>La scadenza per i pronostici è fissata a 15 minuti prima del calcio d'inizio.</p>
+<p>Qualora alcune partite venissero anticipate <strong>senza</strong> la nostra conoscenza, ce ne scusiamo. Tuttavia, cerchiamo sempre di aggiornare tutti gli orari di inizio modificati <strong>prima</strong> di ogni giornata.</p>
+</div>
+</details>
+<details>
+<summary>Valutazione del gioco e della lega</summary>
+<div class="accordion-content">
+<p>Valutazione della partita (distribuzione dei punti)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Punti</span>
+<span class="value">4</span>
+<span class="label">Risultato esatto</span>
+</div>
+<div class="point-card">
+<span class="unit">Punti</span>
+<span class="value">3</span>
+<span class="label">Solo tendenza e differenza reti esatte</span>
+</div>
+<div class="point-card">
+<span class="unit">Punti</span>
+<span class="value">2</span>
+<span class="label">Solo tendenza esatta</span>
+</div>
+<div class="point-card">
+<span class="unit">Punto</span>
+<span class="value">1</span>
+<span class="label">Solo il numero di reti di una squadra esatto</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Punto</span>
+<span class="value">1</span>
+<span class="label">Bonus per pronostico di pareggio esatto</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Fattore</span>
+<span class="value">x&nbsp;2</span>
+<span class="label">Moltiplicatore Joker</span>
+</div>
+</div>
+<strong>Valutazione della lega e della giornata</strong>
+<p>È possibile visualizzare la classifica generale selezionando una lega abbonata nella panoramica alla voce: <strong>Visualizza punteggi</strong>.</p>
+<p>È possibile raggiungere la classifica generale anche passando a <strong>Classifica lega</strong> nell'area pronostici.</p>
+<p>È possibile visualizzare i punti ottenuti per le <strong>singole</strong> partite consultando una <strong>giornata completata</strong> nell'area pronostici di una lega.</p>
+<p>Il <strong>vincitore assoluto</strong> è colui che accumula il maggior numero di punti sul proprio conto dopo una stagione.</p>
+<p>Inoltre, sotto <strong>Visualizza pronostici</strong> è possibile vedere i pronostici degli altri giocatori.</p>
+<p>La <strong>Tabella pronostici</strong> è una visualizzazione aggiuntiva, ovvero una tabella generata in base ai pronostici inseriti.</p>
+<strong>Note sulla tempistica di valutazione</strong>
+<p>La valutazione tecnica dei pronostici avviene solitamente dopo ogni giornata completata.</p>
+<p>Si prega di notare che, per motivi organizzativi, la valutazione può talvolta subire un ritardo di <strong>1 o 2 giorni</strong>.</p>
+</div>
+</details>
+<details>
+<summary>Esclusione di responsabilità</summary>
+<div class="accordion-content">
+<p>L'organizzatore non è in alcun modo responsabile per eventuali errori di trasmissione o altre difficoltà tecniche.</p>
+<p>Con la registrazione al gioco, si accettano le condizioni. Questo gioco è a puro scopo di intrattenimento. Chiunque hackererà, falsificherà o si registrerà più volte con nomi diversi sarà punito con l'esclusione dal gioco.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>È escluso ogni ricorso legale.</strong>
+</p>
+</div>
+</details>
+</div>
+--- Dateiaenderungen ---
+(keine)
+
+=== Ungarisch (ohne eigene Texte) ===
+<div class="regeln-container">
+<h1>Instructions for the Prediction Game</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">After registering for the prediction game, the user has the option to subscribe to one <strong>or</strong> several prediction leagues.</p>
+<details open>
+<summary>Procedure for subscribing and playing individual leagues</summary>
+<div class="accordion-content">
+<strong>Registration and Management</strong>
+<p>Click on '<strong>register</strong>' in the login area.</p>
+<p>Enter all registration data and select which league you would like to subscribe to.<br>
+<strong>Note</strong>: You can subscribe to additional leagues at any time after the initial registration under your username!</p>
+<p>After registering, you are logged in, or you can log in at any time with your nickname.</p>
+<p>In the user area of the prediction game you can:</p>
+<ul>
+<li>Submit <strong>predictions for a league</strong> you subscribed to</li>
+<li>
+<strong>View scoreboards</strong>
+</li>
+<li>
+<strong>Change your data</strong>
+</li>
+<li>
+<strong>Add other or new leagues to your prediction sheet</strong>
+</li>
+<li>
+<strong>Change password</strong>
+</li>
+<li>
+<strong>Delete prediction account</strong> (<strong>Warning</strong>: All subscribed prediction games of your nickname will be deleted!)</li>
+<li>
+<strong>Log out of the prediction game</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Predict league</strong>
+<p>After logging in, select a subscribed league to predict in the prediction area.</p>
+<p>In the fixtures area, you can now submit your predictions for the individual matchdays.</p>
+<p>After entering the predictions for <strong>one matchday</strong>, click on <strong>save predictions</strong>
+</p>
+<p>You can now switch to another matchday and submit further predictions.</p>
+<p>It is also possible to set a <strong>Joker</strong> per matchday. The points won for this matchday will then be multiplied by a certain factor.</p>
+<strong>Notes on submitting predictions</strong>
+<p>The prediction time expires for each game individually.</p>
+<p>The prediction deadline is always 15 minutes before kick-off.</p>
+<p>Should individual games be brought forward <strong>without</strong> our knowledge, we apologize for this. However, we always try to update all changed kick-off times <strong>before</strong> a matchday.</p>
+</div>
+</details>
+<details>
+<summary>Game scoring and league standings</summary>
+<div class="accordion-content">
+<p>Game scoring (Point distribution)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">4</span>
+<span class="label">Correct result</span>
+</div>
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">3</span>
+<span class="label">Correct tendency and goal difference only</span>
+</div>
+<div class="point-card">
+<span class="unit">Points</span>
+<span class="value">2</span>
+<span class="label">Correct tendency only</span>
+</div>
+<div class="point-card">
+<span class="unit">Point</span>
+<span class="value">1</span>
+<span class="label">Only one goal count correct</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Point</span>
+<span class="value">1</span>
+<span class="label">Bonus for correct draw prediction</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Factor</span>
+<span class="value">x&nbsp;2</span>
+<span class="label">Joker multiplier</span>
+</div>
+</div>
+<strong>League and matchday standings</strong>
+<p>You can access the overall league standings by selecting a subscribed league in the prediction overview under the item: <strong>View scores</strong>.</p>
+<p>You can also reach the overall league standings by switching to - <strong>League standings</strong> in the prediction area.</p>
+<p>You can view the points achieved for your <strong>individual</strong> games by calling up a <strong>completed matchday</strong> in the prediction area of a league.</p>
+<p>The <strong>overall winner</strong> is the person who has the most points in their account after a season.</p>
+<p>In addition, the predictions of other players can be viewed under <strong>Prediction insights</strong>
+</p>
+<p>The <strong>Prediction table</strong> is an additional display, i.e., a table generated based on your submitted predictions</p>
+<strong>Notes on the timing of prediction evaluation</strong>
+<p>The technical evaluation of the match predictions usually takes place after each completed matchday.</p>
+<p>Please note that for organizational reasons, the prediction evaluation may occasionally be delayed by <strong>1 to 2 days</strong>.</p>
+</div>
+</details>
+<details>
+<summary>Disclaimer</summary>
+<div class="accordion-content">
+<p>The organizer is in no way responsible for any transmission errors or other technical difficulties.</p>
+<p>By registering for the game, you accept the terms and conditions. This game is for entertainment purposes only. Anyone who hacks, falsifies, or registers several times under different names will be punished with a game ban.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>Legal recourse is excluded.</strong>
+</p>
+</div>
+</details>
+</div>
+--- Dateiaenderungen ---
+(keine)
+
+=== ohne Joker, mit Remis-Bonus ===
+<div class="regeln-container">
+<h1>Anleitung für das Tippspiel</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">Nach der Anmeldung zum Tippspiel hat der Tipper die Möglichkeit, eine <strong>oder</strong> mehrere Tippspiele zu abonnieren.</p>
+<details open>
+<summary>Verfahren zum Abonnieren und Spielen einzelner Ligen</summary>
+<div class="accordion-content">
+<strong>Anmelden und Verwalten</strong>
+<p>Im Login-Bereich auf '<strong>anmelden</strong>' klicken .</p>
+<p>Alle Anmeldedaten eintragen und auswählen, welche Liga Sie abonnieren möchten.<br>
+<strong>Hinweis</strong>: Weitere Ligen können Sie jederzeit nach der Erstanmeldung unter Ihrem Usernamen nachträglich abonnieren!</p>
+<p>Nach der Anmeldung sind Sie eingeloggt bzw. Sie können sich jetzt jederzeit mit Ihrem Nickname einloggen.</p>
+<p>Im User-Bereich des Tippspiels können Sie:</p>
+<ul>
+<li>Eine abonnierte <strong>Liga tippen</strong>
+</li>
+<li>
+<strong>Punktstände anschauen</strong>
+</li>
+<li>
+<strong>Ihre Daten ändern</strong>
+</li>
+<li>
+<strong>andere bzw. neue Ligen in Ihren Tippschein aufnehmen</strong>
+</li>
+<li>
+<strong>Passwort ändern</strong>
+</li>
+<li>
+<strong>Tipp-Account löschen</strong> (<strong>Achtung</strong>: Alle abonnierten Tippspiele Ihres Nicknames werden gelöscht!)</li>
+<li>
+<strong>Aus dem Tippspiel ausloggen</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Liga tippen</strong>
+<p>Nach dem Einloggen im Tippspielbereich eine abonnierte Liga zum Tippen auswählen.</p>
+<p>Im Ansetzungsbereich können Sie nun Ihre Tipps für die einzelnen Spieltage abgeben.</p>
+<p>Nach Eingabe der Tipps <strong>eines Spieltages</strong> klicken Sie auf <strong>Tipps speichern</strong>
+</p>
+<p>Sie können jetzt auf einen anderen Spieltag wechseln und weitere Tipps abgeben.</p>
+<strong>Hinweise zur Tippabgabe</strong>
+<p>Die Tippzeit läuft für jedes Spiel einzeln ab.</p>
+<p>Ablauf der Tippzeit ist jeweils 30 Minuten vor Anpfiff.</p>
+<p>Sollten <strong>ohne</strong> unsere Kenntnis einzelne Spiele vorgezogen werden, bitten wir das zu entschuldigen. Wir versuchen jedoch immer <strong>vor</strong> einem Spieltag alle veränderten Anstoßzeiten zu aktualisieren.</p>
+</div>
+</details>
+<details>
+<summary>Spielwertung und Ligawertung</summary>
+<div class="accordion-content">
+<p>Die Spielwertung (Punktverteilung)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">Ergebnis richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">3</span>
+<span class="label">nur Tendenz und Tordifferenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">nur Tendenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">nur eine Toranzahl richtig</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">Bonus für richtigen Unentschieden-Tipp</span>
+</div>
+</div>
+<strong>Die Liga- und Spieltagswertung</strong>
+<p>Die Gesamtligawertung erhalten Sie, wenn Sie in der Tippspiel-Übersicht eine abonnierte Liga unter dem Punkt: <strong>Punktestände anschauen</strong> auswählen.</p>
+<p>Sie erreichen die Gesamtligawertung auch, wenn Sie im Tippbereich auf - <strong>Ligawertung</strong> wechseln</p>
+<p>Die erzielten Punkte Ihrer <strong>einzelnen</strong> Spiele können Sie einsehen, wenn Sie im Tippbereich einer Liga einen <strong>absolvierten Spieltag</strong> aufrufen.</p>
+<p>
+<strong>Gesamtsieger</strong> ist, wer nach einer Spielsaison die meisten Punkte auf seinem Spielkonto verbuchen kann.</p>
+<p>Zusätzlich können unter <strong>Tippeinsicht</strong> die Tipps der Mitspieler eingesehen werden</p>
+<p>Die <strong>Tipp-Tabelle</strong> ist eine Zusatzanzeige, also eine Tabelle erzeugt nach Ihren abgegebenen Tipps</p>
+<strong>Hinweise zum Zeitpunkt der Tippauswertung</strong>
+<p>Die technische Auswertung der Spieltipps erfolgt in der Regel nach jedem absolvierten Spieltag.</p>
+<p>Bitte beachten Sie, dass sich aus organisatorischen Gründen die Tippauswertung auch einmal um <strong>1 bis 2 Tage</strong> verzögern kann.</p>
+</div>
+</details>
+<details>
+<summary>Haftungsausschluß</summary>
+<div class="accordion-content">
+<p>Für etwaige Übertragungsfehler und sonstige technische Schwierigkeiten ist der Veranstalter in keiner Weise verantwortlich zu machen.</p>
+<p>Mit der Anmeldung zum Spiel akzeptieren Sie die Bedingungen. Dieses Spiel dient dem reinen Unterhaltungszweck. Wer hackt, verfälscht, oder sich mehrmals unter verschiedenen Namen anmeldet, wird mit Spielsperre bestraft.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>Der Rechtsweg ist ausgeschlossen.</strong>
+</p>
+</div>
+</details>
+</div>
+--- Dateiaenderungen ---
+(keine)
+
+=== Dialog im Menue ===
+<dialog id="regelnModal" style="border:none; border-radius:20px; padding:0; width:95%; max-width:850px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow:hidden;">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #fff; border-bottom: 1px solid #edf2f7;">
+<h2 style="margin:0; font-size:1.1rem; font-family:sans-serif; color: #1a20
+...
+<div class="regeln-container">
+<h1>Anleitung für das Tippspiel</h1>
+<p style="text-align:center; color: #718096; margin-bottom: 30px;">Nach der Anmeldung zum Tippspiel hat der Tipper die Möglichkeit, eine <strong>oder</strong> mehrere Tippspiele zu abonnieren.</p>
+<details open>
+<summary>Verfahren zum Abonnieren und Spielen einzelner Ligen</summary>
+<div class="accordion-content">
+<strong>Anmelden und Verwalten</strong>
+<p>Im Login-Bereich auf '<strong>anmelden</strong>' klicken .</p>
+<p>Alle Anmeldedaten eintragen und auswählen, welche Liga Sie abonnieren möchten.<br>
+<strong>Hinweis</strong>: Weitere Ligen können Sie jederzeit nach der Erstanmeldung unter Ihrem Usernamen nachträglich abonnieren!</p>
+<p>Nach der Anmeldung sind Sie eingeloggt bzw. Sie können sich jetzt jederzeit mit Ihrem Nickname einloggen.</p>
+<p>Im User-Bereich des Tippspiels können Sie:</p>
+<ul>
+<li>Eine abonnierte <strong>Liga tippen</strong>
+</li>
+<li>
+<strong>Punktstände anschauen</strong>
+</li>
+<li>
+<strong>Ihre Daten ändern</strong>
+</li>
+<li>
+<strong>andere bzw. neue Ligen in Ihren Tippschein aufnehmen</strong>
+</li>
+<li>
+<strong>Passwort ändern</strong>
+</li>
+<li>
+<strong>Tipp-Account löschen</strong> (<strong>Achtung</strong>: Alle abonnierten Tippspiele Ihres Nicknames werden gelöscht!)</li>
+<li>
+<strong>Aus dem Tippspiel ausloggen</strong>
+</li>
+</ul>
+<hr style="border:0; border-top:1px dashed #cbd5e0; margin:15px 0;">
+<strong>Liga tippen</strong>
+<p>Nach dem Einloggen im Tippspielbereich eine abonnierte Liga zum Tippen auswählen.</p>
+<p>Im Ansetzungsbereich können Sie nun Ihre Tipps für die einzelnen Spieltage abgeben.</p>
+<p>Nach Eingabe der Tipps <strong>eines Spieltages</strong> klicken Sie auf <strong>Tipps speichern</strong>
+</p>
+<p>Sie können jetzt auf einen anderen Spieltag wechseln und weitere Tipps abgeben.</p>
+<strong>Hinweise zur Tippabgabe</strong>
+<p>Die Tippzeit läuft für jedes Spiel einzeln ab.</p>
+<p>Ablauf der Tippzeit ist jeweils 30 Minuten vor Anpfiff.</p>
+<p>Sollten <strong>ohne</strong> unsere Kenntnis einzelne Spiele vorgezogen werden, bitten wir das zu entschuldigen. Wir versuchen jedoch immer <strong>vor</strong> einem Spieltag alle veränderten Anstoßzeiten zu aktualisieren.</p>
+</div>
+</details>
+<details>
+<summary>Spielwertung und Ligawertung</summary>
+<div class="accordion-content">
+<p>Die Spielwertung (Punktverteilung)</p>
+<div class="points-grid">
+<div class="point-card">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">Ergebnis richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">3</span>
+<span class="label">nur Tendenz und Tordifferenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">nur Tendenz richtig</span>
+</div>
+<div class="point-card">
+<span class="unit">Punkt</span>
+<span class="value">1</span>
+<span class="label">nur eine Toranzahl richtig</span>
+</div>
+<div class="point-card highlight">
+<span class="unit">Punkte</span>
+<span class="value">2</span>
+<span class="label">Bonus für richtigen Unentschieden-Tipp</span>
+</div>
+</div>
+<strong>Die Liga- und Spieltagswertung</strong>
+<p>Die Gesamtligawertung erhalten Sie, wenn Sie in der Tippspiel-Übersicht eine abonnierte Liga unter dem Punkt: <strong>Punktestände anschauen</strong> auswählen.</p>
+<p>Sie erreichen die Gesamtligawertung auch, wenn Sie im Tippbereich auf - <strong>Ligawertung</strong> wechseln</p>
+<p>Die erzielten Punkte Ihrer <strong>einzelnen</strong> Spiele können Sie einsehen, wenn Sie im Tippbereich einer Liga einen <strong>absolvierten Spieltag</strong> aufrufen.</p>
+<p>
+<strong>Gesamtsieger</strong> ist, wer nach einer Spielsaison die meisten Punkte auf seinem Spielkonto verbuchen kann.</p>
+<p>Zusätzlich können unter <strong>Tippeinsicht</strong> die Tipps der Mitspieler eingesehen werden</p>
+<p>Die <strong>Tipp-Tabelle</strong> ist eine Zusatzanzeige, also eine Tabelle erzeugt nach Ihren abgegebenen Tipps</p>
+<strong>Hinweise zum Zeitpunkt der Tippauswertung</strong>
+<p>Die technische Auswertung der Spieltipps erfolgt in der Regel nach jedem absolvierten Spieltag.</p>
+<p>Bitte beachten Sie, dass sich aus organisatorischen Gründen die Tippauswertung auch einmal um <strong>1 bis 2 Tage</strong> verzögern kann.</p>
+</div>
+</details>
+<details>
+<summary>Haftungsausschluß</summary>
+<div class="accordion-content">
+<p>Für etwaige Übertragungsfehler und sonstige technische Schwierigkeiten ist der Veranstalter in keiner Weise verantwortlich zu machen.</p>
+<p>Mit der Anmeldung zum Spiel akzeptieren Sie die Bedingungen. Dieses Spiel dient dem reinen Unterhaltungszweck. Wer hackt, verfälscht, oder sich mehrmals unter verschiedenen Namen anmeldet, wird mit Spielsperre bestraft.</p>
+<p style="font-style: italic; color: #e53e3e;">
+<strong>Der Rechtsweg ist ausgeschlossen.</strong>
+</p>
+</div>
+</details>
+</div>
+</div>
+</div>
+</dialog>&nbsp;&nbsp;<a href="/lmo/lmo.php?action=tipp&amp;todo=logout">Logout</a>&nbsp; </td>
+</tr>
+</table>
+<table class="lmoMiddle" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td colspan="3" align="center">
+<h1>Tippspiel </h1>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+<table class="lmoInner" cellspacing="0" cellpadding="0" border="0">
+<caption>tester<br>Was möchtest Du jetzt tun?</caption>
+<tr>
+<th align="left">Liga tippen:</th>
+</tr>
+<tr>
+<td align="left">
+<ul>
+<li>
+<a href="/lmo/lmo.php?action=tipp&amp;todo=edit&amp;file=1l_2024-25.l98">1. Bundesliga 2024/25</a>
+<br>
+<small>Dein letzter Tipp: 10.03.2025 13:00 / 1. Spieltag</small>
+</li>
+<li>
+<a href="/lmo/lmo.php?action=tipp&amp;todo=edit&amp;file=&amp;viewermode=1">
+<strong>Alle Spiele in den nächsten 8 Tagen</strong>
+</a>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th align="left">Punktestände anschauen:</th>
+</tr>
+<tr>
+<td class="nobr" align="left">
+<ul>
+<li>
+<a href="/lmo/lmo.php?action=tipp&amp;todo=wert&amp;file=&amp;all=1">
+<strong>Gesamt</strong>
+</a>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th align="left">Sonstiges:</th>
+</tr>
+<tr>
+<td class="nobr" align="left">
+<ul>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=newligen'>Ligen in den Tippschein aufnehmen</a>
+</li>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=delligen'>Ligen abbestellen</a>
+</li>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=daten'>Daten ändern</a>
+</li>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=pwchange'>Passwort ändern</a>
+</li>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=delaccount'>Tipp-Account löschen</a>
+</li>
+<li class="lmoadminli">
+<a href='/lmo/lmo.php?action=tipp&amp;todo=logout'>Aus dem Tippspiel ausloggen</a>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+</td>
+</tr>
+<tr>
+<td class="lmoFooter" colspan="2" align="left">
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Bosanski" title="Bosanski">
+<img src="http://lmo.test/lmo/img/Bosanski.svg" height="16" style="margin-right:1mm" title="Bosanski" alt="Bosanski">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Cestina" title="Cestina">
+<img src="http://lmo.test/lmo/img/Cestina.svg" height="16" style="margin-right:1mm" title="Cestina" alt="Cestina">
+</a>
+<img src="http://lmo.test/lmo/img/Deutsch.selected.svg" height="16" border="0" title="Deutsch" alt="Deutsch">
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=English" title="English">
+<img src="http://lmo.test/lmo/img/English.svg" height="16" style="margin-right:1mm" title="English" alt="English">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Espanol" title="Espanol">
+<img src="http://lmo.test/lmo/img/Espanol.svg" height="16" style="margin-right:1mm" title="Espanol" alt="Espanol">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Francais" title="Francais">
+<img src="http://lmo.test/lmo/img/Francais.svg" height="16" style="margin-right:1mm" title="Francais" alt="Francais">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Hrvatski" title="Hrvatski">
+<img src="http://lmo.test/lmo/img/Hrvatski.svg" height="16" style="margin-right:1mm" title="Hrvatski" alt="Hrvatski">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Italiano" title="Italiano">
+<img src="http://lmo.test/lmo/img/Italiano.svg" height="16" style="margin-right:1mm" title="Italiano" alt="Italiano">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Magyar" title="Magyar">
+<img src="http://lmo.test/lmo/img/Magyar.svg" height="16" style="margin-right:1mm" title="Magyar" alt="Magyar">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Nederlands" title="Nederlands">
+<img src="http://lmo.test/lmo/img/Nederlands.svg" height="16" style="margin-right:1mm" title="Nederlands" alt="Nederlands">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Norsk" title="Norsk">
+<img src="http://lmo.test/lmo/img/Norsk.svg" height="16" style="margin-right:1mm" title="Norsk" alt="Norsk">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Portugues" title="Portugues">
+<img src="http://lmo.test/lmo/img/Portugues.svg" height="16" style="margin-right:1mm" title="Portugues" alt="Portugues">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Romanian" title="Romanian">
+<img src="http://lmo.test/lmo/img/Romanian.svg" height="16" style="margin-right:1mm" title="Romanian" alt="Romanian">
+</a>
+<a href="/lmo/lmo.php?action=tipp&amp;lmouserlang=Slovenskega" title="Slovenskega">
+<img src="http://lmo.test/lmo/img/Slovenskega.svg" height="16" style="margin-right:1mm" title="Slovenskega" alt="Slovenskega">
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td valign="bottom" align="left">
+<a href="/lmo/lmo.php" title="Hier können Sie sich eine andere Liga laden">« zur Ligenübersicht</a>&nbsp;&nbsp;&nbsp;</td>
+<td class="lmoFooter" valign="bottom" align="right">
+<br>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<!-- Dieser Container dient als das schwebende Fenster -->
+<div id="globalLMOTooltip" class="lmo-smart-tooltip">
+</div>
+<script> // Das Tooltip-Element referenzieren const sportTooltip = document.getElementById("globalLMOTooltip"); function showLMOTooltip(element) { // Text aus dem data-info Attribut auslesen const infoText = element.getAttribute("data-info"); if (!infoText) return; // Inhalt in das Fenster schreiben und sichtbar machen sportTooltip.innerHTML = infoText; sportTooltip.style.visibility = "visible"; sportTooltip.style.opacity = "1"; // Position des SVG-Icons auf dem Bildschirm ermitteln const rect = element.getBoundingClientRect(); const winW = window.innerWidth; const winH = window.innerHeight; // Standard-Position: Direkt unter dem Icon (8px Abstand) let top = rect.bottom + window.scrollY + 8; let left = rect.left + window.scrollX; // Fixed Koordinaten sportTooltip.style.position = "fixed"; top = rect.bottom + 8; left = rect.left; // AUTO-KORREKTUR: Unten if (top + sportTooltip.offsetHeight> winH) { // Über dem Icon anzeigen top = rect.top - sportTooltip.offsetHeight - 8; } // AUTO-KORREKTUR: Rechts if (left + sportTooltip.offsetWidth> winW) { // Nach links verschieben, mit 15px Sicherheitsabstand zum Rand left = winW - sportTooltip.offsetWidth - 15; } // Falls das Icon ganz links am Rand ist, Mindestabstand einhalten if (left < 10) left = 10; // Positionswerte zuweisen sportTooltip.style.top = top + "px"; sportTooltip.style.left = left + "px"; } function hideLMOTooltip() { // Fenster wieder ausblenden sportTooltip.style.visibility = "hidden"; sportTooltip.style.opacity = "0"; } </script>
+</body>
+</html>
+--- Dateiaenderungen ---
+(keine)
+

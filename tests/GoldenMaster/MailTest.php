@@ -20,7 +20,7 @@ final class MailTest extends TestCase
         self::$client = Fixture::loggedInClient();
         // ein freigeschalteter Tipper mit Mailadresse
         file_put_contents(
-            self::$client->instance()->path() . '/addon/tipp/lmo-tippauth.txt',
+            self::$client->instance()->path() . '/daten/tipp/lmo-tippauth.txt',
             "<?php exit; ?>\ntester|altesPasswort|5|Tina Test|tester@example.org||||1|1|EOL\n"
         );
     }
@@ -67,7 +67,7 @@ final class MailTest extends TestCase
 
     private static function tipperRecord(): string
     {
-        return (string)file_get_contents(self::$client->instance()->path() . '/addon/tipp/lmo-tippauth.txt');
+        return (string)file_get_contents(self::$client->instance()->path() . '/daten/tipp/lmo-tippauth.txt');
     }
 
     public function testLeagueIsSentAsZipAttachment(): void

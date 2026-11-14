@@ -8,7 +8,7 @@ use Lmo\Tests\GoldenMaster\Support\Transcript;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Die Statistikdatei einer Liga (lmo-zustat.php schreibt output/<liga>.l98.php): Sie entsteht bei
+ * Die Statistikdatei einer Liga (Lmoigasaisonstatistik, bis 4.5 lmo-zustat.php, schreibt output/<liga>.l98.php): Sie entsteht bei
  * jedem Speichern im Adminbereich aus dem gerade gespeicherten Stand. Die uebrigen Tests halten
  * nur ihre Groesse fest; hier steht ihr Inhalt.
  */

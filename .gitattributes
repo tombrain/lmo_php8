@@ -2,6 +2,8 @@
 tests/GoldenMaster/__snapshots__/** text eol=lf
 # Tests enthalten Ligadateien als Textblock und vergleichen sie zeilenweise: immer LF
 tests/**/*.php text eol=lf
+# Twig verschluckt nach {% %} nur LF, nicht CRLF: sonst aendert sich der Leerraum der Ausgabe (Druckansicht, CSS)
+*.twig text eol=lf
 # Shell-Skripte laufen im Linux-Container: mit CRLF startet das Docker-Image nicht
 *.sh text eol=lf
 # wird unter Linux direkt ausgefuehrt (Shebang)
@@ -15,8 +17,6 @@ bin/* text eol=lf
 /phpstan-strict.neon.dist export-ignore
 /phpstan-classlib.neon.dist export-ignore
 /phpstan-tests.neon.dist export-ignore
-/phpstan-liga.neon.dist export-ignore
-/phpstan-liga-basis.neon.dist export-ignore
 /phpstan-bootstrap.php export-ignore
 /tests export-ignore
 /TESTING.md export-ignore

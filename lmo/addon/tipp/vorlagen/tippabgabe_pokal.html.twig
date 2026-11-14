@@ -1,0 +1,131 @@
+{# Liga Manager Online 4
+
+  http://lmo.sourceforge.net/
+
+  Umgebaut fuer PHP 8 im Rahmen von lmo_php8 (https://github.com/henshingly/lmo_php8).
+
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  REMOVING OR CHANGING THE COPYRIGHT NOTICES IS NOT ALLOWED!
+-#}
+{#- Eine Zeile der Tippabgabe im Pokal: ein Spiel einer Paarung (bis 4.5 lmo-tippeditko.php). -#}
+{% if z.ueberschrift is not null %}
+  <tr>
+    <th class="nobr" colspan={{ breite }} align="left">{{ z.ueberschrift|raw }}
+    </th>
+  </tr>
+{% endif %}
+  <tr>
+{% if z.anstoss is not null %}
+    <td class="nobr" align="left">{{ z.anstoss|raw }}</td>
+{% endif %}
+    <td>&nbsp;</td>
+{% if z.ersteDerPaarung %}
+<td class="{{ z.heimKlasse }}" align="right">{% if z.heimFavorit %}<strong>{% endif %}{{ z.heim|raw }}{% if z.heimFavorit %}</strong>{% endif %}</td>
+    <td align="center" width="10">-</td>
+<td class="{{ z.gastKlasse }}" align="left">{% if z.gastFavorit %}<strong>{% endif %}{{ z.gast|raw }}{% if z.gastFavorit %}</strong>{% endif %}</td>
+{% else %}
+    <td colspan="3">&nbsp;</td>
+{% endif %}
+    <td>&nbsp;</td>
+{% if cfg.showtendenzabs == 1 %}
+    <td align="center" class="nobr">{% if not z.verborgen %}{{ z.tendenzAbsolut }}{% endif %}
+    </td>
+    <td>&nbsp;</td>
+{% endif %}
+{% if cfg.showtendenzpro == 1 %}
+    <td align="center" class="nobr">{% if not z.verborgen %}{{ z.tendenzProzent|raw }}{% endif %}
+    </td>
+    <td>&nbsp;</td>
+{% endif %}
+{% if cfg.tippmodus == 1 %}
+{% if cfg.showdurchschntipp == 1 %}
+      <td align="center" class="nobr">{% if not z.verborgen %}{{ z.durchschnitt|raw }}{% endif %}
+    </td>
+    <td>&nbsp;</td>
+{% endif %}
+{% if z.offen %}
+    <td align="right">
+      <input class="lmo-formular-input" type="text" name="xtippa{{ z.feld }}" size="4" maxlength="4" value="{{ z.a }}" onKeyDown="lmotorclk('a','{{ z.feld }}', event.keyCode)">
+    </td>{% if cfg.pfeiltipp == 1 %}
+    <td align="center">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+            <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'{{ z.feld }}\',1);return false;" title="{{ t[243]|raw }}" onMouseOver="lmoimg(\'{{ z.feld }}a\',img1)" onMouseOut="lmoimg(\'{{ z.feld }}a\',img0)"><img src="{{ bilder|raw }}/lmo-admin0.gif" name="ximg{{ z.feld }}a" width="7" height="7" border="0"><\/a>')</script>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'a\',\'{{ z.feld }}\',-1);return false;" title="{{ t[243]|raw }}" onMouseOver="lmoimg(\'{{ z.feld }}b\',img3)" onMouseOut="lmoimg(\'{{ z.feld }}b\',img2)"><img src="{{ bilder|raw }}/lmo-admin2.gif" name="ximg{{ z.feld }}b" width="7" height="7" border="0"><\/a>')</script>
+          </td>
+        </tr>
+      </table>
+    </td>
+{% endif %}
+{% else %}
+{% if cfg.pfeiltipp == 1 %}
+    <td>&nbsp;</td>
+{% endif %}
+    <td align="right">{{ z.a }}</td>
+{% endif %}
+    <td>:</td>
+{% if z.offen %}
+    <td align="right">
+      <input class="lmo-formular-input" type="text" name="xtippb{{ z.feld }}" size="4" maxlength="4" value="{{ z.b }}" onKeyDown="lmotorclk('b','{{ z.feld }}',event.keyCode)">
+    </td>
+{% if cfg.pfeiltipp == 1 %}
+    <td align="center">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+            <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'{{ z.feld }}\',1);return false;" title="{{ t[244]|raw }}" onMouseOver="lmoimg(\'{{ z.feld }}f\',img1)" onMouseOut="lmoimg(\'{{ z.feld }}f\',img0)"><img src="{{ bilder|raw }}/lmo-admin0.gif" name="ximg{{ z.feld }}f" width="7" height="7" border="0"><\/a>')</script>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <script type="text/javascript">document.write('<a href="#" onclick="lmotorauf(\'b\',\'{{ z.feld }}\',-1);return false;" title="{{ t[244]|raw }}" onMouseOver="lmoimg(\'{{ z.feld }}d\',img3)" onMouseOut="lmoimg(\'{{ z.feld }}d\',img2)"><img src="{{ bilder|raw }}/lmo-admin2.gif" name="ximg{{ z.feld }}d" width="7" height="7" border="0"><\/a>')</script>
+          </td>
+        </tr>
+      </table>
+    </td>
+{% endif %}
+{% else %}
+    <td align="left">{{ z.b }}</td>
+{% if cfg.pfeiltipp == 1 %}
+    <td>&nbsp;</td>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if cfg.tippmodus == 0 %}
+    <td align="right">
+      <input type="radio" name="xtipp{{ z.feld }}" value="1" {% if z.tendenz == 1 %} checked{% endif %}{% if not z.offen %} disabled{% endif %}>
+    </td>{% if not ohneRemis %}
+    <td align="center">
+      <input type="radio" name="xtipp{{ z.feld }}" value="3" {% if z.tendenz == 0 %} checked{% endif %}{% if not z.offen %} disabled{% endif %}>
+    </td>{% endif %}
+    <td align="right">
+      <input type="radio" name="xtipp{{ z.feld }}" value="2" {% if z.tendenz == 2 %} checked{% endif %}{% if not z.offen %} disabled{% endif %}>
+    </td>
+{% endif %}
+{% if cfg.jokertipp == 1 %}
+    <td align="center"><input type="radio" name="xjokerspiel" value="{{ z.joker }}" {% if z.jokerGesetzt %} checked{% endif %}{% if z.jokerGesperrt %} disabled{% endif %}></td>
+{% endif %}
+    <td class="lmoBackMarkierung" align="right">{{ z.toreHeim|raw }}</td>
+    <td class="lmoBackMarkierung" align="center">:</td>
+    <td class="lmoBackMarkierung" align="left">{{ z.toreGast|raw }}</td>
+    <td class="lmoBackMarkierung" align="left">{{ z.zusatz|raw }}</td>
+    <td width="2">&nbsp;</td>
+    <td class="nobr" align="right">
+      <strong>{{ z.punkteHtml|raw }}
+      </strong>
+    </td>
+    <td>&nbsp;</td>
+    <td>{{ z.notizen|raw }}
+    </td>
+  </tr>
+{% if z.leerzeileDanach %}
+  <tr>
+    <td colspan="{{ breite }}">&nbsp;</td>
+  </tr>
+{% endif %}

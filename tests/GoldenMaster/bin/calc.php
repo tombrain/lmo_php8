@@ -1,6 +1,6 @@
 <?php
 /**
- * Kindprozess: laedt eine Liga wie lmo-start.php/lmo-showmain2.php und fuehrt
+ * Kindprozess: laedt eine Liga wie die Administration (Lmo\Web\LigaOeffnen) und fuehrt
  * calctable.php (in diesem Ordner) fuer alle Ansichten aus. Ausgabe: JSON auf stdout.
  * Aufruf: php calc.php <Instanzpfad> <Ligadatei relativ zu ligen/> [alle]
  * Mit "alle" wird jeder Spieltag gerechnet, sonst eine feste Auswahl (Golden Master).
@@ -36,13 +36,20 @@ $array = array();
 $ftype = '.l98';
 $subdir = '';
 $action = 'table';
-require PATH_TO_LMO . '/lmo-openfile.php';
+$gm_geoeffnet = \Lmo\Web\LigaOeffnen::oeffne(PATH_TO_LMO . '/' . $dirliga, (string)($file ?? ''), $st ?? null, static fn (string $datei): bool => check_hilfsadmin($datei), (string)$defdateformat, URL_TO_IMGDIR, $text);
+echo $gm_geoeffnet->meldung;
+$file = $gm_geoeffnet->datei;
+if ($gm_geoeffnet->liga !== null) {
+    $lmo_liga = $gm_geoeffnet->liga;
+    $st = $gm_geoeffnet->st;
+    $text = $gm_geoeffnet->text;
+}
 
 $gm_columns = ['spiele', 'siege', 'unent', 'nieder', 'punkte', 'negativ', 'etore', 'atore', 'dtore',
     'maxs0', 'maxs1', 'maxs2', 'maxn0', 'maxn1', 'maxn2', 'ser1', 'ser2', 'ser3', 'ser4'];
 $gm_scalars = ['stt', 'hoy', 'anzcnt', 'subteams'];
 
-// Spieltage der geladenen Liga (Rohdaten aus lmo-openfile.php)
+// Spieltage der geladenen Liga (Rohdaten aus Lmo\Web\LigaOeffnen)
 $gm_anzst = isset($lmo_liga) ? $lmo_liga->einstellungen()->spieltage() : 0;
 $gm_endtabs = $gm_allRounds
     ? range($gm_anzst, 1)

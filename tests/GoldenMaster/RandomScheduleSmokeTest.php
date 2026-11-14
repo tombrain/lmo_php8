@@ -6,7 +6,8 @@ use Lmo\Tests\GoldenMaster\Support\Fixture;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Rauchtest fuer lmo-adminrndprogram.php: erzeugt echte Zufallsspielplaene.
+ * Rauchtest fuer den ausgelosten Spielplan (bis 4.5 lmo-adminrndprogram.php, heute
+ * Lmo\Liga\Zufallsspielplan): erzeugt echte Zufallsspielplaene ueber die Administration.
  *
  * Bewusst KEIN Golden-Master-Vergleich (das Ergebnis ist nicht deterministisch, siehe
  * CoreGapsTest-Klassenkommentar).

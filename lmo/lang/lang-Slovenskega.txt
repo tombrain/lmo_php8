@@ -484,9 +484,7 @@
 483=Pogled za tiskanje
 484=Ali želite ustvariti tiskalniku prijazen pogled?
 485=Statistika igralcev
-486=Ali naj se prikaže vnos statistike igralca? (Mora biti aktiviran tudi posebej za vsako ligo!)
 487=Stavna igra
-488=Ali naj se prikaže stavna igra?
 489=Statistika golov
 490=Ali naj se prikažejo dodatni statistični podatki o golih (skupni goli in povprečni goli)?
 491=pod mizami

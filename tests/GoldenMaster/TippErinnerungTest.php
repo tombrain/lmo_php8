@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Erinnerungsmail des Tippspiels fuer eine einzelne Liga (Adminbereich, todo=tippemail mit
- * emailart=1 und gewaehlter Liga -> lmo-tippemail.php mit lmo-tippopenfile.php bzw.
- * lmo-tippopenfileall.php): Jeder Tipper bekommt die anstehenden Spiele, die er noch nicht getippt hat.
+ * emailart=1 und gewaehlter Liga -> Lmo\Addon\Tipp\Rundmail, bis 4.5 lmo-tippemail.php): Jeder
+ * Tipper bekommt die anstehenden Spiele, die er noch nicht getippt hat.
  *
  * Die Mails landen ueber bin/sendmail.php als Dateien in der Testinstanz. "Heute" ist der 15.03.2025.
  */
@@ -137,15 +137,18 @@ L98;
     {
         $client = Fixture::loggedInClient();
         $path = $client->instance()->path();
+        // alle Ligen werden getippt: nur fuer sie gibt es Erinnerungen
+        $cfg = $path . '/config/tipp/cfg.txt';
+        file_put_contents($cfg, (string) preg_replace('/^immeralle=.*$/m', 'immeralle=1', (string) file_get_contents($cfg)));
         // Feld 10 (Index 10) ungleich -1: der Tipper will erinnert werden
-        file_put_contents($path . '/addon/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
+        file_put_contents($path . '/daten/tipp/lmo-tippauth.txt', "<?php exit; ?>\n"
             . "tester|geheim|5|Tina Test|tester@example.org||||1|1|1|EOL\n"
             . "zweiter|geheim|5|Zoe Zweite|zweite@example.org||||1|1|1|EOL\n"
             . "ohne|geheim|5|Otto Ohne|ohne@example.org||||1|1|1|EOL\n");
         file_put_contents($client->instance()->ligenDir() . '/erinnerliga.l98', self::LIGA);
         file_put_contents($client->instance()->ligenDir() . '/erinnerpokal.l98', self::POKAL);
         $client->instance()->freezeLeagueTimes();
-        $tipps = $path . '/addon/tipp/tipps/';
+        $tipps = $path . '/daten/tipp/tipps/';
         // "tester" hat schon einiges getippt, "zweiter" noch nichts, "ohne" tippt die Ligen gar nicht
         file_put_contents($tipps . 'erinnerliga_tester.tip', "[Round2]\n@0@\nGA1=1\nGB1=1\nGA2=-1\nGB2=-1\n[Round3]\n@0@\nGA1=2\nGB1=0\n");
         file_put_contents($tipps . 'erinnerliga_zweiter.tip', "[Round1]\n@0@\nGA1=1\nGB1=0\n");
@@ -172,6 +175,14 @@ L98;
             'liga1' => [$liga], 'st1' => [(string) $spieltag], 'tage' => (string) $tage, 'start' => '1', 'ende' => '3',
             'betreff' => 'Erinnerung', 'message' => "Hallo [name] ([nick]), es fehlen:\n[spiele]\nEnde",
         ]);
+
+        return self::mails($client);
+    }
+
+    /** Die verschickten Mails (Empfaenger und Text, in fester Reihenfolge); danach ist der Mailordner leer. */
+    private static function mails(AdminClient $client): string
+    {
+        $dir = $client->instance()->mailDir();
         $mails = [];
         foreach (glob($dir . '/*.eml') ?: [] as $datei) {
             $mail = str_replace("\r\n", "\n", (string) file_get_contents($datei));
@@ -181,6 +192,7 @@ L98;
             $mails[] = 'An: ' . ($an[1] ?? '?') . "\n" . ($roh !== false && $roh !== '' ? $roh : $text);
         }
         sort($mails);
+        array_map('unlink', glob($dir . '/*') ?: []);
 
         return $mails ? implode("\n-----\n", $mails) : '(keine Mail)';
     }
@@ -200,5 +212,38 @@ L98;
         $t->add('Pokal, alle Runden, neun Tage', self::erinnere($c, 'erinnerpokal.l98', 0, 9), '');
 
         $this->assertMatchesSnapshot('tipp', 'erinnerung', $t->text());
+    }
+
+    /**
+     * Die Seite Newsletter/Reminder (todo=tippemail): das Formular mit den Tippern und den getippten
+     * Ligen, ein Newsletter an alle, eine Mail an einen Tipper, eine Erinnerung fuer eine Liga und
+     * fuer alle Ligen, ohne Text. Mit einem gespeicherten Erinnerungstext.
+     */
+    public function testAdminSeite(): void
+    {
+        $c = self::client();
+        $cfg = $c->instance()->path() . '/config/tipp/cfg.txt';
+        $inhalt = (string) preg_replace(['/^immeralle=.*$/m', '/^textreminder1=.*$/m'], ['immeralle=1', 'textreminder1=Gespeichert: [spiele]&#10;Gruss'], (string) file_get_contents($cfg), 1, $count);
+        self::assertSame(2, $count);
+        file_put_contents($cfg, $inhalt);
+        $c->resetChanges();
+        $t = new Transcript();
+        $a = ['action' => 'admin', 'todo' => 'tippemail', 'save' => '1', 'start' => '1', 'ende' => '3', 'tage' => '9',
+            'liga1' => ['erinnerliga.l98', 'erinnerpokal.l98'], 'st1' => ['2', '1']];
+        $add = static fn (string $titel, string $html) => $t->add($titel, $html . "\n===== Mails\n" . self::mails($c), $c->changes());
+
+        $add('Formular', $c->get('lmoadmin.php', 'action=admin&todo=tippemail'));
+        $add('Newsletter an alle', $c->post('lmoadmin.php', '', $a + ['emailart' => '0', 'liganr' => '1', 'adressat' => '',
+            'betreff' => 'Neues <b>', 'message' => "Hallo [name] ([nick]) <b>\n[pass]"]));
+        $add('Mail an zweiter', $c->post('lmoadmin.php', '', $a + ['emailart' => '2', 'liganr' => '1', 'adressat' => 'zweiter',
+            'betreff' => 'Nur fuer dich', 'message' => 'Hallo [name]']));
+        $add('Erinnerung Pokal, Runde 1', $c->post('lmoadmin.php', '', $a + ['emailart' => '1', 'liganr' => '2', 'adressat' => '',
+            'betreff' => 'Tippen!', 'message' => "Hallo [nick]:\n[spiele]"]));
+        $add('Erinnerung alle Ligen', $c->post('lmoadmin.php', '', $a + ['emailart' => '1', 'liganr' => '0', 'adressat' => '',
+            'betreff' => 'Alle', 'message' => "Alle [nick]:\n[spiele]"]));
+        $add('ohne Text und Betreff', $c->post('lmoadmin.php', '', $a + ['emailart' => '0', 'liganr' => '1', 'adressat' => '',
+            'betreff' => '', 'message' => '']));
+
+        $this->assertMatchesSnapshot('tipp', 'admin_email', $t->text());
     }
 }

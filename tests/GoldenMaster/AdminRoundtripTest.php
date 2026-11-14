@@ -41,8 +41,17 @@ final class AdminRoundtripTest extends TestCase
         };
 
         $add($a . '&todo=options', 'xadr');
+        $add($a . '&todo=options&show=1', 'xtabpkt');
+        $add($a . '&todo=options&show=2', 'xbacklink');
         $add($a . '&todo=addons', null);
+        $add($a . '&todo=addons&show=1', null);
         $add($a . '&todo=design', 'xlmo_main_background1');
+        $add($a . '&todo=design&show=1', 'xlmo_middle_background1');
+        $add($a . '&todo=design&show=2', 'xlmo_inner_background1');
+        $add($a . '&todo=design&show=3', 'xlmo_tabelle_background1');
+        $add($a . '&todo=design&show=4', 'xlmo_turnier_background1');
+        $add($a . '&todo=design&show=5', 'xlmo_kreuz_fontsize1');
+        $add($a . '&todo=design&show=6', 'xlmo_formular_background1');
         $add($a . '&todo=user&show=0', 'xadmin_name0');
         $add($a . '&todo=vieweroptions', null);
         $add($a . '&todo=tippoptions', null);

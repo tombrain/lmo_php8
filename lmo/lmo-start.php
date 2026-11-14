@@ -27,10 +27,6 @@ if (!function_exists('getmicrotime')) {
 $startzeit = getmicrotime();
 require(__DIR__ . '/init.php');
 
-if((isset($_REQUEST['action']) && $_REQUEST['action'] == 'tipp') && session_id() == '') {
-    session_start();
-}
-
 $array = array();
 $ftype = '.l98';
 if (isset($_REQUEST['st'])) {
@@ -59,5 +55,70 @@ if($_REQUEST['action'] == 'admin') {
     $action = '';
 }
 
-include(PATH_TO_LMO . '/lmo-showmain2.php');
+/**
+ * Von init.php:
+ *
+ * @var array<int|string, mixed> $text Sprachtexte
+ * @var int|string $calctime Einstellung aus cfg.txt
+ * @var int|string $einsprachwahl Einstellung aus cfg.txt
+ */
+
+// die Anwendung dieser Installation (Lmo\Web\Installation, bis 4.5 lmo-anwendung.php) und der
+// Kontext dieser Anfrage
+$lmo_anwendung = \Lmo\Web\Installation::ausKonstanten()->anwendung($cfgarray, $text, static fn (string $datei): bool => check_hilfsadmin($datei), isset($_SESSION['lmouserok']) && $_SESSION['lmouserok'] > 0, (string)constant('LMO_VERSION_NR'));
+$lmo_kontext = $lmo_anwendung->kontext(\Lmo\Web\Anfrage::ausGlobalen(), $_SERVER['PHP_SELF'], $file, \Lmo\Web\Sitzung::ausGlobalen());
+if ($file != '' && $lmo_kontext->liga === null) {
+    // Datei existiert nicht, ist keine Liga oder darf nicht gelesen werden (Hilfsadmin): wie bisher
+    // die Meldung vor der Seite und weiter ohne Liga
+    echo getMessage($text[224], true);
+    $file = '';
+}
+
+if (!defined('LMO_TEMPLATE')) define('LMO_TEMPLATE', 'lmo-standard.tpl.php');
+
+// Wenn ein Template der Form [liganame].tpl.php existiert, wird dieses benutzt. Das ermöglicht
+// die Nutzung verschiedener Templates für unterschiedliche Ligen. Die mitgelieferten Vorlagen
+// ersetzt der Rahmen mit Twig (Lmo\Web\Rahmen); eigene nach alter Art gelten weiter (veraltet).
+$lmo_alte_vorlage = \Lmo\Web\Rahmen::alteVorlage(PATH_TO_TEMPLATEDIR, $file, LMO_TEMPLATE);
+
+// Copyright-Hinweis
+$p1 = '';
+if ($file != '') {
+    $p0 = 'p1';
+    $$p0 = c(1).c(0);
+}
+
+// die Seite: Controller des Kerns und der Addons (Lmo\Web\Anwendung)
+$lmo_seite = $lmo_anwendung->zeige($lmo_kontext);
+
+// die Teile des Kerns: Kopf, Menue, Hauptteil, Druckansicht, Fusszeile (Lmo\Web\Rahmen)
+$lmo_teile = \Lmo\Web\Rahmen::teile(
+    $lmo_kontext,
+    $lmo_seite !== null ? $lmo_seite->html : '',
+    $lmo_seite !== null && $lmo_seite->druckbar,
+    $einsprachwahl == 1 ? getLangSelector() : '',
+    $calctime == 1 ? getmicrotime() - $startzeit : null
+);
+
+// Seite ausgeben: die Teile des Rahmens, wie die Platzhalter der Vorlagen heissen; dazu der
+// Copyright-Hinweis
+$lmo_teile['Infolink'] = $p1;
+// Teile, die Addons nach neuer Art zum Rahmen beitragen (Lmo\Addon\MitRahmenteilen), stehen dahinter
+foreach ($lmo_kontext->addons->rahmenteile($lmo_kontext) as $lmo_teil => $lmo_wert) {
+    $lmo_teile[$lmo_teil] = ($lmo_teile[$lmo_teil] ?? '') . $lmo_wert;
+}
+if (\Lmo\Web\Rahmen::ersetzt($lmo_alte_vorlage)) {
+    echo \Lmo\Web\Rahmen::zeige(PATH_TO_LMO . '/vorlagen', $lmo_alte_vorlage, $lmo_teile);
+} else {
+    // eigene Vorlage nach alter Art (veraltet): fehlt ihr der Platzhalter Infolink, gibt d() den Copyright-Hinweis aus
+    $template = new LMO_Template(PATH_TO_TEMPLATEDIR);
+    $template->loadTemplatefile($lmo_alte_vorlage);
+    d($template->toString());
+    // jeder Platzhalter wird ersetzt, auch die der Teile, die es auf dieser Seite nicht gibt
+    $lmo_teile += array_fill_keys(\Lmo\Web\Rahmen::TEILE, '');
+    foreach ($lmo_teile as $lmo_teil => $lmo_wert) {
+        $template->setVariable($lmo_teil, $lmo_wert);
+    }
+    $template->show();
+}
 ?>

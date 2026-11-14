@@ -14,7 +14,7 @@
 <table width="100%">
 <caption>Spielpaarung</caption>
 <tr>
-<th>Tage: -168, Stunden: 1, Minuten: {MIN}</th>
+<th>Tage: {TAGE}, Stunden: {STD}, Minuten: {MIN}</th>
 </tr>
 <tr>
 <th>28.09.2024 15:30</th>
@@ -23,9 +23,7 @@
 <td align="center">Bayern München</td>
 </tr>
 <tr>
-<td align="center">&nbsp;<span class="result">
-<!--homeTore-->&nbsp;:&nbsp;<!--guestTore-->
-</span>&nbsp;</td>
+<td align="center">&nbsp;<span class="result">&nbsp;:&nbsp;</span>&nbsp;</td>
 </tr>
 <tr>
 <td align="center">Bayer 04 Leverkusen</td>
@@ -33,7 +31,6 @@
 <tr>
 <td>
 <small>
-<!--gameNote-->
 </small>
 </td>
 </tr>
@@ -65,7 +62,7 @@
 </tr>
 <tr>
 <td align="right">
-<small>Stand: 01.01.2025&nbsp;[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group (classlib&nbsp;2.8)'>©</acronym>]</small>
+<small>Stand: 01.01.2025&nbsp;[<acronym title='lmo-mininext for LMO © Tim Schumacher/LMO-Group'>©</acronym>]</small>
 </td>
 </tr>
 </table>

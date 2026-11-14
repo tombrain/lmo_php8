@@ -4,13 +4,17 @@ namespace Lmo\Tests\GoldenMaster;
 
 use Lmo\Tests\GoldenMaster\Support\AssertsSnapshots;
 use Lmo\Tests\GoldenMaster\Support\Fixture;
+use Lmo\Tests\GoldenMaster\Support\Normalizer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * HTML-Ausgabe zum Drucken (einsavehtml=1): Beim Anzeigen von Ergebnissen oder Tabelle einer Liga
- * schreibt der LMO zwei Dateien in den Ausgabeordner, <liga>-st.html (Spieltag und Tabelle,
- * lmo-savehtml.php) und <liga>-sp.html (Spielplan, lmo-savehtml1.php). Die Seiten-Snapshots zeigen
- * nur den Link darauf; hier wird der Inhalt der Dateien festgehalten.
+ * HTML-Ausgabe zum Drucken (einsavehtml=1): Beim Speichern einer Liga schreibt der LMO fuer den
+ * gespeicherten Spieltag zwei Dateien in den Ausgabeordner, <liga>-st.html (Spieltag und Tabelle,
+ * bis 4.5 lmo-savehtml.php) und <liga>-sp.html (Spielplan, lmo-savehtml1.php), heute
+ * Lmo\Web\Druckdateien. Die Seiten-Snapshots zeigen nur den Link darauf; hier wird der Inhalt der
+ * Dateien festgehalten. Bis 4.5 entstanden sie beim
+ * Anzeigen von Ergebnissen oder Tabelle; die Faelle heissen noch nach der Seite von damals.
+ * Verglichen wird das HTML in kanonischer Form (Normalizer::canonical): Leerraum zaehlt nicht.
  */
 final class HtmlExportTest extends TestCase
 {
@@ -37,7 +41,7 @@ final class HtmlExportTest extends TestCase
      */
     public function testGeschriebeneDateienSindUnveraendert(string $liga, string $parameter): void
     {
-        $client = Fixture::anonymousClient();
+        $client = Fixture::loggedInClient();
         $ausgabe = $client->instance()->path() . '/output/' . basename($liga);
         foreach (['-st.html', '-sp.html'] as $endung) {
             if (is_file($ausgabe . $endung)) {
@@ -45,14 +49,42 @@ final class HtmlExportTest extends TestCase
             }
         }
 
-        $seite = $client->get('lmo.php', 'file=' . $liga . '&' . $parameter);
+        // Anzeigen schreibt nichts mehr
+        $client->get('lmo.php', 'file=' . $liga . '&' . $parameter);
+        self::assertFileDoesNotExist($ausgabe . '-st.html', 'die Seite schreibt keine Druckdatei');
+
+        // der Spieltag unveraendert gespeichert: ohne st der aktuelle der Liga
+        parse_str($parameter, $aufruf);
+        $optionen = \Lmo\Liga\LigaDatei::liesAbschnitt($client->instance()->ligenDir() . '/' . $liga, 'Options');
+        $st = isset($aufruf['st']) && is_string($aufruf['st']) ? $aufruf['st'] : ($optionen['Actual'] ?? '1');
+        $seite = $client->submitForm('lmoadmin.php', 'action=admin&todo=edit&file=' . $liga . '&st=' . $st, 'xgoala0');
 
         self::assertStringNotContainsString('STDERR', $seite, 'PHP-Meldungen beim Erzeugen');
         $text = '';
         foreach (['-st.html', '-sp.html'] as $endung) {
             $text .= '=== ' . basename($liga) . $endung . " ===\n"
-                . (is_file($ausgabe . $endung) ? str_replace("\r\n", "\n", (string) file_get_contents($ausgabe . $endung)) : '(nicht geschrieben)') . "\n";
+                . (is_file($ausgabe . $endung) ? Normalizer::canonical((string) file_get_contents($ausgabe . $endung)) : '(nicht geschrieben)') . "\n";
         }
         $this->assertMatchesSnapshot('html-export', (string) $this->dataName(), $text);
+    }
+
+    /**
+     * Auch das Speichern ueber die classlib (liga::writeFile(), z. B. Rueckrunde erstellen) schreibt
+     * die Dateien: updateAddons() in addon/classlib/update_addons.php, fuer den aktuellen Spieltag.
+     * Der Roundtrip speichert golden/basic.l98 als golden/basic.classlib.l98.
+     */
+    public function testSpeichernUeberDieClasslib(): void
+    {
+        [$app, $runner] = Fixture::freshInstance();
+        $ausgabe = $app->path() . '/output/basic.classlib.l98';
+
+        $runner->classlibRoundtrip(['golden/basic.l98']);
+
+        $text = '';
+        foreach (['-st.html', '-sp.html'] as $endung) {
+            self::assertFileExists($ausgabe . $endung);
+            $text .= '=== basic.classlib.l98' . $endung . " ===\n" . Normalizer::canonical((string) file_get_contents($ausgabe . $endung)) . "\n";
+        }
+        $this->assertMatchesSnapshot('html-export', 'classlib_basic', $text);
     }
 }
