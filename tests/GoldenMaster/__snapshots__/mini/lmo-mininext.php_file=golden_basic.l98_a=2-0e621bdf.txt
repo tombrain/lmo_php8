@@ -14,7 +14,7 @@
 <table width="100%">
 <caption>Letztes Saisonspiel</caption>
 <tr>
-<th>Tage: -20163, Stunden: 12, Minuten: {MIN}</th>
+<th>Tage: {TAGE}, Stunden: {STD}, Minuten: {MIN}</th>
 </tr>
 <tr>
 <th>
